@@ -7,6 +7,9 @@
     <groupId>academy.softserve.edu</groupId>
     <artifactId>oms_test_framework</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <properties>
+        <selenium-java.version>2.53.1</selenium-java.version>
+    </properties>
     <build>
         <plugins>
             <plugin>
@@ -40,37 +43,37 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>2.53.1</version>
+            <version>${selenium-java.version}</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-firefox-driver</artifactId>
-            <version>2.53.1</version>
+            <version>${selenium-java.version}</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-chrome-driver</artifactId>
-            <version>2.53.1</version>
+            <version>${selenium-java.version}</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-ie-driver</artifactId>
-            <version>2.53.1</version>
+            <version>${selenium-java.version}</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-api</artifactId>
-            <version>2.53.1</version>
+            <version>${selenium-java.version}</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-support</artifactId>
-            <version>2.53.1</version>
+            <version>${selenium-java.version}</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-remote-driver</artifactId>
-            <version>2.53.1</version>
+            <version>${selenium-java.version}</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
