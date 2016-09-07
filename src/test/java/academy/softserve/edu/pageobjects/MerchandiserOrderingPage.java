@@ -11,4 +11,8 @@ public class MerchandiserOrderingPage extends PageObject {
         super(driver);
     }
 
+    public final UserInfoPage clickUserInfoTab() {
+        driver.findElement(UserInfoPage.USER_INFO_LINK).click();
+        return new UserInfoPage(driver);
+    }
 }
