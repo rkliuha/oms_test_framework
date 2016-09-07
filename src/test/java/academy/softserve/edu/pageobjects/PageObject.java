@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class PageObject {
+public abstract class PageObject {
 
     public static final By LOG_OUT_BUTTON = By.id("logout");
 
