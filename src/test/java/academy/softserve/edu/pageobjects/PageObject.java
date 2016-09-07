@@ -22,5 +22,10 @@ public abstract class PageObject {
         driver.findElement(LOG_OUT_BUTTON).click();
         driver.switchTo().alert().accept();
         return new LogInPage(driver);
+
+    }
+    public final PageObject pause() throws InterruptedException {
+        Thread.sleep(2000);
+        return this;
     }
 }
