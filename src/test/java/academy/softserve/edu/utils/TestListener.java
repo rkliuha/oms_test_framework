@@ -10,6 +10,9 @@ import org.testng.TestListenerAdapter;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class TestListener extends TestListenerAdapter {
 
@@ -18,12 +21,15 @@ public class TestListener extends TestListenerAdapter {
         takeScreenShotOnFailure(iTestResult);
     }
 
-    public void takeScreenShotOnFailure(final ITestResult iTestResult) {
+    private void takeScreenShotOnFailure(final ITestResult iTestResult) {
         final Object object = iTestResult.getInstance();
         final WebDriver driver = ((TestClassForListener) object).getDriver();
+        final Date currentDate = new Date();
+        final Format formatter = new SimpleDateFormat("dd.MM.YYYY_H-MM - ");
         final File screenShotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         try {
-            FileUtils.copyFile(screenShotFile, new File("screenshot/" + iTestResult.getName() + ".png"));
+            FileUtils.copyFile(screenShotFile, new File("test-output//html//screenshots//" +
+                    formatter.format(currentDate) + iTestResult.getName() + ".png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
