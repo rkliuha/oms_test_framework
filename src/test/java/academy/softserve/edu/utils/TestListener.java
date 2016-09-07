@@ -16,7 +16,6 @@ public class TestListener extends TestListenerAdapter {
     @Override
     public void onTestFailure(final ITestResult iTestResult) {
         takeScreenShotOnFailure(iTestResult);
-        System.out.println("TestClass has failed: " + iTestResult.getName());
     }
 
     public void takeScreenShotOnFailure(final ITestResult iTestResult) {
