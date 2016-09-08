@@ -4,6 +4,7 @@ import academy.softserve.edu.enums.Drivers;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
 public class WebDriverFactory {
@@ -28,7 +29,7 @@ public class WebDriverFactory {
 
             case EXPLORER:
                 System.setProperty("webdriver.ie.driver", "src//resources//drivers//IEDriverServer.exe");
-                driver = new SafariDriver();
+                driver = new InternetExplorerDriver();
                 break;
 
             case FIREFOX:
