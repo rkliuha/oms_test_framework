@@ -24,7 +24,7 @@ public class TestCaseToCheckSurefire {
     }
 
     @Test
-    final public void testWebdriverPractice() {
+    final public void testWebDriverPractice() {
 
         driver.navigate().to("https://www.google.com");
 
