@@ -15,8 +15,6 @@ public class WebDriverFactory {
 
         switch (browser) {
 
-
-
             case CHROME_MAC:
                 System.setProperty("webdriver.chrome.driver", "src//resources//drivers//chromedriver_mac");
                 driver = new ChromeDriver();
