@@ -1,10 +1,11 @@
 package academy.softserve.edu.tests;
 
+import academy.softserve.edu.enums.Drivers;
 import academy.softserve.edu.pageobjects.LogInPage;
 import academy.softserve.edu.pageobjects.PageObject;
 import academy.softserve.edu.pageobjects.UserInfoPage;
+import academy.softserve.edu.utils.WebDriverFactory;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -22,25 +23,27 @@ public class TestLogOut {
 
     @BeforeClass
     public final void setUp() {
-        driver = new FirefoxDriver();
+        driver = new WebDriverFactory().getDriver(Drivers.CHROME);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(TIMEOUT, TimeUnit.SECONDS);
         driver.get(LOG_IN_PAGE);
     }
 
     @Test(dataProvider = "allTypesOfUsers")
-    public final void testLogOutButton(final String userType,
-                                       final String username,
-                                       final String password) {
+    public final void testLogOut(final String userType,
+                                 final String username,
+                                 final String password) {
         final LogInPage logInPage = new LogInPage(driver);
         logInPage.doLogIn(username, password);
 
         final UserInfoPage userInfoPage = new UserInfoPage(driver);
-        Assert.assertEquals(driver.getCurrentUrl(), UserInfoPage.USER_INFO_PAGE_URL);
+        Assert.assertEquals(driver.getCurrentUrl(), UserInfoPage.USER_INFO_PAGE_URL,
+                "LogIn failed!");
 
         Assert.assertTrue(userInfoPage
-                .getElement(PageObject.LOG_OUT_BUTTON)
-                .isDisplayed());
+                .getElement(UserInfoPage.LOG_OUT_BUTTON)
+                .isDisplayed(), "LogOut button is not displayed!\nURL: "
+                + driver.getCurrentUrl());
 
         userInfoPage.getElement(UserInfoPage.VISITOR_EXTRA_LINK)
                 .click();
@@ -48,11 +51,12 @@ public class TestLogOut {
         final PageObject pageObject = getExtraPage(userType, driver);
         Assert.assertTrue(pageObject
                 .getElement(PageObject.LOG_OUT_BUTTON)
-                .isDisplayed());
+                .isDisplayed(), "LogOut button is not displayed!\nURL: "
+                + driver.getCurrentUrl());
 
         pageObject.doLogOut();
 
-        Assert.assertEquals(driver.getCurrentUrl(), LOG_IN_PAGE);
+        Assert.assertEquals(driver.getCurrentUrl(), LOG_IN_PAGE, "LogOut failed!");
     }
 
     @AfterClass
