@@ -50,7 +50,7 @@ public class TestCaseSwitchTabsByCustomer {
     }
 
     @Test
-    public void defaultUserInfoPageTest() {
+    public void TestDefaultUserInfoPage() {
 
         logInPage
                 .doLogIn(USER_LOGIN, USER_PASSWORD);
@@ -60,7 +60,7 @@ public class TestCaseSwitchTabsByCustomer {
     }
 
     @Test
-    public void userInfoButtonCheck() {
+    public void TestUserInfoButtonCheck() {
 
         userInfoPage = logInPage
                 .doLogIn(USER_LOGIN, USER_PASSWORD);
@@ -71,7 +71,7 @@ public class TestCaseSwitchTabsByCustomer {
     }
 
     @Test
-    public void orderingBattonCheck() {
+    public void TestOrderingButtonCheck() {
 
         userInfoPage = logInPage
                 .doLogIn(USER_LOGIN, USER_PASSWORD);
@@ -82,7 +82,7 @@ public class TestCaseSwitchTabsByCustomer {
     }
 
     @Test
-    public void activeOrderingPageTest() {
+    public void TestActiveOrderingPage() {
 
         userInfoPage = logInPage
                 .doLogIn(USER_LOGIN, USER_PASSWORD);
@@ -94,7 +94,7 @@ public class TestCaseSwitchTabsByCustomer {
     }
 
     @Test
-    public void switchTabsUserOrdering() {
+    public void TestSwitchTabsUserOrdering() {
 
         userInfoPage = logInPage
                 .doLogIn(USER_LOGIN, USER_PASSWORD);
