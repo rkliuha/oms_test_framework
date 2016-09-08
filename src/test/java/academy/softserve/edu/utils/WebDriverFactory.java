@@ -14,9 +14,7 @@ public class WebDriverFactory {
 
         switch (browser) {
 
-            case FIREFOX:
-                driver = new FirefoxDriver();
-                break;
+
 
             case CHROME_MAC:
                 System.setProperty("webdriver.chrome.driver", "src//resources//drivers//chromedriver_mac");
@@ -33,6 +31,7 @@ public class WebDriverFactory {
                 driver = new SafariDriver();
                 break;
 
+            case FIREFOX:
             default:
                 driver = new FirefoxDriver();
                 break;
