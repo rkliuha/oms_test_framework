@@ -35,7 +35,7 @@ public class TestAdminAfterLogIn {
 
     //  This test checks if Administrator user can see the following tabs: ‘Administration’ and ‘User Info’(default).
     @Test
-    final public void checkDefaultTab() {
+    final public void testDefaultTab() {
         Assert.assertEquals(driver.getCurrentUrl(), UserInfoPage.USER_INFO_PAGE_URL);
         userInfoPage = new UserInfoPage(driver);
         Assert.assertTrue(userInfoPage.getElement(UserInfoPage.USER_INFO_LINK).isDisplayed() &&
@@ -44,7 +44,7 @@ public class TestAdminAfterLogIn {
 
     //  This test checks if Administrator user can switch between tabs.
     @Test
-    public void checkSwitchingBetweenTabs() {
+    public void testSwitchingBetweenTabs() {
         userInfoPage.clickAdministrationTab();
         administrationPage = new AdministrationPage(driver);
         Assert.assertTrue(administrationPage.getElement(UserInfoPage.USER_INFO_LINK).isDisplayed() &&
