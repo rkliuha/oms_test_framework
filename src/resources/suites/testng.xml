@@ -4,6 +4,8 @@
     <test name="oms_test_framework">
         <classes>
             <class name="academy.softserve.edu.tests.TestCaseToCheckSurefire"/>
+            <class name="academy.softserve.edu.tests.TestMerchandiserAfterLogInPage"/>
+            <!--<class name="academy.softserve.edu.tests.TestClassForListener"/>-->
         </classes>
     </test> <!-- oms_test_framework -->
 </suite> <!-- Default Suite -->
