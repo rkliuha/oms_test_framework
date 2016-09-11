@@ -14,6 +14,8 @@ public class LogInPage extends PageObject {
     public static final By ERROR_MESSAGE = By.cssSelector("#edit>fieldset>font");
     public static final String EXPECTED_INVALID_NAME_MESSAGE = "Such user does not exist in the system � please try again.";
     public static final String EXPECTED_INVALID_PASSWORD_MESSAGE = "Password is incorrect � please try again";
+    public static final String OMS_HOME_PAGE = "http://192.168.56.101:8080/oms5/login.htm";
+
 
     public LogInPage(final WebDriver driver) {
         super(driver);
