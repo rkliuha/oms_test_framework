@@ -25,7 +25,7 @@ public class TestListener extends TestListenerAdapter {
         final Object object = iTestResult.getInstance();
         final WebDriver driver = ((TestClassForListener) object).getDriver();
         final Date currentDate = new Date();
-        final Format formatter = new SimpleDateFormat("dd.MM.YYYY_H-MM - ");
+        final Format formatter = new SimpleDateFormat("dd.MM.yyyy_HH-mm - ");
         final File screenShotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         try {
             FileUtils.copyFile(screenShotFile, new File("test-output//html//screenshots//" +

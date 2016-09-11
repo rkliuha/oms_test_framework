@@ -8,6 +8,7 @@ public class LogInPage extends PageObject {
     public static final By USER_NAME_FIELD = By.name("j_username");
     public static final By PASSWORD_FIELD = By.name("j_password");
     public static final By LOG_IN_BUTTON = By.name("submit");
+    public static final String OMS_HOME_PAGE = "http://192.168.56.101:8080/oms5/login.htm";
 
     public LogInPage(final WebDriver driver) {
         super(driver);

@@ -1,10 +1,11 @@
 package academy.softserve.edu.tests;
 
+import academy.softserve.edu.enums.Drivers;
 import academy.softserve.edu.pageobjects.LogInPage;
 import academy.softserve.edu.pageobjects.MerchandiserOrderingPage;
 import academy.softserve.edu.pageobjects.UserInfoPage;
+import academy.softserve.edu.utils.WebDriverFactory;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -14,9 +15,9 @@ public class TestMerchandiserAfterLogInPage {
 
     public static final String LOG_IN_PAGE =
             "http://192.168.56.101:8080/oms5/login.htm";
+    public static final int TIMEOUT = 10;
 
-    private WebDriver driver;
-    private UserInfoPage userInfoPage;
+    protected WebDriver driver;
 
     @DataProvider
     final public Object[][] testData() {
@@ -27,14 +28,14 @@ public class TestMerchandiserAfterLogInPage {
 
     @BeforeTest
     final public void setUp() {
-        driver = new FirefoxDriver();
+        driver = new WebDriverFactory().getDriver(Drivers.FIREFOX);
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(TIMEOUT, TimeUnit.SECONDS);
         driver.get(LOG_IN_PAGE);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
     @AfterTest
     final public void tearDown() {
-        userInfoPage.doLogOut();
         driver.close();
     }
 
@@ -47,7 +48,7 @@ public class TestMerchandiserAfterLogInPage {
         Assert.assertEquals(driver.getCurrentUrl(), UserInfoPage.USER_INFO_PAGE_URL);
 
 //       if user can switch between tabs "User Info" and "Ordering"
-        userInfoPage = new UserInfoPage(driver);
+        final UserInfoPage userInfoPage = new UserInfoPage(driver);
         userInfoPage.clickMerchandiserOrderingTab();
         Assert.assertEquals(driver.getCurrentUrl(),
                 MerchandiserOrderingPage.MERCHANDISER_ORDERING_PAGE_URL);
