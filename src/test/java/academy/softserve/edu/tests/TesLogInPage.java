@@ -2,38 +2,20 @@ package academy.softserve.edu.tests;
 
 import academy.softserve.edu.pageobjects.LogInPage;
 import academy.softserve.edu.pageobjects.UserInfoPage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
-public class TesLogInPage {
-    private WebDriver driver;
-
+public class TesLogInPage extends TestRunner {
 
     @DataProvider
     final public Object[][] testData() {
         return new Object[][]{
                 {"login1", "qwerty"}
         };
-    }
-
-    @BeforeMethod
-    public void setUp() {
-        driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-        driver.get("http://192.168.56.101:8080/oms5/login.htm");
-    }
-
-    @AfterMethod
-    public void closeTests() {
-        driver.close();
     }
 
     // To check input fields empty or not.
@@ -65,14 +47,6 @@ public class TesLogInPage {
         Assert.assertFalse(logInPage
                 .getInputPasswordField().getText() == null &
                 !Objects.equals(logInPage.getInputPasswordField().getText(), password));
-    }
-
-    //To check is it possible to Log In in to the system if You are registered user
-    @Test(dataProvider = "testData")
-    public void testLogIn(final String name, final String password) throws InterruptedException {
-        final LogInPage logInPage = new LogInPage(driver);
-        logInPage.doLogIn(name, password);
-        Assert.assertTrue(driver.getCurrentUrl().equals(UserInfoPage.USER_INFO_PAGE_URL));
     }
 
     //Try to put in the both fields unregistered data
@@ -140,8 +114,8 @@ public class TesLogInPage {
     @Test(dataProvider = "testData")
     public void testUnregisteredUser(final String name, final String password) {
         final LogInPage logInPage = new LogInPage(driver);
-        logInPage.doLogIn("Sarumjan", password); // Input Incorrect name and empty password field and click
-        logInPage.doLogIn(name, "mordor");// Input Incorrect password and empty name field and click
+        logInPage.doLogIn("Sarumjan", password);      // Input Incorrect name and empty password field and click
+        logInPage.doLogIn(name, "mordor");            // Input Incorrect password and empty name field and click
         Assert.assertFalse(Objects.equals(driver.getCurrentUrl(), UserInfoPage.USER_INFO_PAGE_URL));
     }
 
@@ -157,7 +131,7 @@ public class TesLogInPage {
     }
 
     //Input not registered data in to the Name field, Try to Log In
-    //Expected message: «Such user does not exist in the system – please try again.»
+    //En expected message: «Such user does not exist in the system – please try again.»
     @Test
     public void testErrorMessage2() {
         final LogInPage logInPage = new LogInPage(driver);
@@ -167,7 +141,7 @@ public class TesLogInPage {
     }
 
     //Input data in to the User Field, Try to Log In
-    //Expected message: «Password is incorrect – please try again»
+    //En expected message: «Password is incorrect – please try again»
     @Test(dataProvider = "testData")
     public void testErrorMessage3(final String name, final String password) {
         final LogInPage logInPage = new LogInPage(driver);
