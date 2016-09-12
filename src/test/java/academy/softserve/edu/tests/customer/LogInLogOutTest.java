@@ -1,29 +1,30 @@
-package academy.softserve.edu.tests.merchandiser;
+package academy.softserve.edu.tests.customer;
 
-import academy.softserve.edu.pageobjects.AdministrationPage;
+
+import academy.softserve.edu.pageobjects.CustomerOrderingPage;
 import academy.softserve.edu.pageobjects.LogInPage;
 import academy.softserve.edu.pageobjects.UserInfoPage;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class TestLogInLogOut extends TestRunner {
+public class LogInLogOutTest extends TestRunner {
 
-    public static final String MERCHANDISER_USERNAME = "login1";
-    public static final String MERCHANDISER_PASSWORD = "qwerty";
+    public static final String CUSTOMER_USERNAME = "vpopkin";
+    public static final String CUSTOMER_PASSWORD = "qwerty";
 
     @Test
     public final void testLogIn() {
         final LogInPage logInPage = new LogInPage(driver);
-        logInPage.doLogIn(MERCHANDISER_USERNAME, MERCHANDISER_PASSWORD);
+        logInPage.doLogIn(CUSTOMER_USERNAME, CUSTOMER_PASSWORD);
         Assert.assertEquals(driver.getCurrentUrl(), UserInfoPage.USER_INFO_PAGE_URL,
                 "LogIn failed!");
     }
 
     @Test
-    public final void testLogOutButtonAbilityAndVisibility() {
+    public final void testLogOutButtonVisibility() {
         final LogInPage logInPage = new LogInPage(driver);
-        logInPage.doLogIn(MERCHANDISER_USERNAME, MERCHANDISER_PASSWORD);
+        logInPage.doLogIn(CUSTOMER_USERNAME, CUSTOMER_PASSWORD);
 
         final UserInfoPage userInfoPage = new UserInfoPage(driver);
         // below we have to check if logIn was successful because every page has
@@ -37,16 +38,16 @@ public class TestLogInLogOut extends TestRunner {
                 .isDisplayed(), "LogOut button is not displayed!\nURL: "
                 + driver.getCurrentUrl());
 
-        final AdministrationPage administrationPage =
-                userInfoPage.clickAdministrationTab();
+        final CustomerOrderingPage customerOrderingPage =
+                userInfoPage.clickCustomerOrderingTab();
         // we have to check switching between pages, has the same issue with logIn check;
         Assert.assertEquals(driver.getCurrentUrl(),
-                AdministrationPage.ADMINISTRATION_PAGE_URL,
+                CustomerOrderingPage.CUSTOMER_ORDERING_PAGE_URL,
                 "Page is not switched to: "
-                        + AdministrationPage.ADMINISTRATION_PAGE_URL);
+                        + CustomerOrderingPage.CUSTOMER_ORDERING_PAGE_URL);
 
-        Assert.assertTrue(administrationPage
-                .getElement(AdministrationPage.LOG_OUT_BUTTON)
+        Assert.assertTrue(customerOrderingPage
+                .getElement(CustomerOrderingPage.LOG_OUT_BUTTON)
                 .isDisplayed(), "LogOut button is not displayed!\nURL: "
                 + driver.getCurrentUrl());
     }
@@ -56,12 +57,12 @@ public class TestLogInLogOut extends TestRunner {
 
         final LogInPage logInPage = new LogInPage(driver);
         logInPage
-                .doLogIn(MERCHANDISER_USERNAME, MERCHANDISER_PASSWORD);
+                .doLogIn(CUSTOMER_USERNAME, CUSTOMER_PASSWORD);
         final UserInfoPage userInfoPage = new UserInfoPage(driver);
-        final AdministrationPage administrationPage =
+        final CustomerOrderingPage customerOrderingPage =
                 userInfoPage
-                        .clickAdministrationTab();
-        administrationPage
+                        .clickCustomerOrderingTab();
+        customerOrderingPage
                 .doLogOut();
         Assert
                 .assertEquals(driver.getCurrentUrl(), LOG_IN_PAGE, "LogOut failed!");

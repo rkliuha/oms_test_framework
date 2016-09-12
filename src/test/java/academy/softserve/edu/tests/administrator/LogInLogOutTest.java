@@ -7,7 +7,7 @@ import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class TestLogInLogOut extends TestRunner {
+public class LogInLogOutTest extends TestRunner {
 
     public static final String ADMINISTRATOR_USERNAME = "RomanS";
     public static final String ADMINISTRATOR_PASSWORD = "qwerty";
@@ -21,7 +21,7 @@ public class TestLogInLogOut extends TestRunner {
     }
 
     @Test
-    public final void testLogOutButtonAbilityAndVisibility() {
+    public final void testLogOutButtonVisibility() {
         final LogInPage logInPage = new LogInPage(driver);
         logInPage.doLogIn(ADMINISTRATOR_USERNAME, ADMINISTRATOR_PASSWORD);
 

@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 import java.util.Objects;
 
-public class TesLogInPage extends TestRunner {
+public class LogInPageTest extends TestRunner {
 
     @DataProvider
     final public Object[][] testData() {
