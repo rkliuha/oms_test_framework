@@ -1,66 +1,46 @@
-package academy.softserve.edu.tests;
+package academy.softserve.edu.tests.customer;
 
 import academy.softserve.edu.pageobjects.CustomerOrderingPage;
 import academy.softserve.edu.pageobjects.LogInPage;
 import academy.softserve.edu.pageobjects.UserInfoPage;
-import academy.softserve.edu.utils.WebDriverFactory;
-import org.openqa.selenium.WebDriver;
+import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
-
-import static academy.softserve.edu.enums.Drivers.FIREFOX;
 import static academy.softserve.edu.pageobjects.CustomerOrderingPage.CUSTOMER_ORDERING_PAGE_URL;
-import static academy.softserve.edu.pageobjects.LogInPage.OMS_HOME_PAGE;
 import static academy.softserve.edu.pageobjects.UserInfoPage.*;
 
-public class TestCaseSwitchTabsByCustomer {
+public class SwitchTabsByCustomerTest extends TestRunner {
 
-    public static final int TIME_OUT = 30;
     public static final String USER_LOGIN = "vpopkin";
     public static final String USER_PASSWORD = "qwerty";
+    public static final String USER_PAGE_IDENTIFICATION_TEXT = "User Info";
+    public static final String ORDERING_PAGE_IDENTIFICATION_TEXT = "Search for orders by";
 
-    private WebDriver driver;
-    private final WebDriverFactory webDriverFactory = new WebDriverFactory();
     private LogInPage logInPage;
     private UserInfoPage userInfoPage;
-
-    @BeforeMethod
-    public void setUp() {
-
-        driver = webDriverFactory.getDriver(FIREFOX);
-
-        driver
-                .manage()
-                .timeouts()
-                .implicitlyWait(TIME_OUT, TimeUnit.SECONDS);
-
-        driver
-                .get(OMS_HOME_PAGE);
-
-        logInPage = new LogInPage(driver);
-    }
-
-    @AfterMethod
-    public void ternDown() {
-
-        driver
-                .quit();
-    }
 
     @Test
     public void testDefaultUserInfoPage() {
 
+        logInPage = new LogInPage(driver);
+
         logInPage
                 .doLogIn(USER_LOGIN, USER_PASSWORD);
 
-        Assert.assertEquals(driver.getCurrentUrl(), USER_INFO_PAGE_URL);
+        Assert.assertEquals(driver
+                .getCurrentUrl(), USER_INFO_PAGE_URL);
+
+        Assert.assertTrue(driver
+                .getPageSource()
+                .contains(USER_PAGE_IDENTIFICATION_TEXT));
 
     }
 
-    @Test
+    @Test(dependsOnMethods = "testDefaultUserInfoPage")
     public void testUserInfoButtonCheck() {
+
+        logInPage = new LogInPage(driver);
 
         userInfoPage = logInPage
                 .doLogIn(USER_LOGIN, USER_PASSWORD);
@@ -70,8 +50,10 @@ public class TestCaseSwitchTabsByCustomer {
                 .isDisplayed());
     }
 
-    @Test
+    @Test(dependsOnMethods = "testUserInfoButtonCheck")
     public void testOrderingButtonCheck() {
+
+        logInPage = new LogInPage(driver);
 
         userInfoPage = logInPage
                 .doLogIn(USER_LOGIN, USER_PASSWORD);
@@ -81,8 +63,10 @@ public class TestCaseSwitchTabsByCustomer {
                 .isDisplayed());
     }
 
-    @Test
+    @Test(dependsOnMethods = "testOrderingButtonCheck")
     public void testActiveOrderingPage() {
+
+        logInPage = new LogInPage(driver);
 
         userInfoPage = logInPage
                 .doLogIn(USER_LOGIN, USER_PASSWORD);
@@ -90,11 +74,18 @@ public class TestCaseSwitchTabsByCustomer {
         userInfoPage
                 .clickCustomerOrderingTab();
 
-        Assert.assertEquals(driver.getCurrentUrl(), CUSTOMER_ORDERING_PAGE_URL);
+        Assert.assertEquals(driver
+                .getCurrentUrl(), CUSTOMER_ORDERING_PAGE_URL);
+
+        Assert.assertTrue(driver
+                .getPageSource()
+                .contains(ORDERING_PAGE_IDENTIFICATION_TEXT));
     }
 
-    @Test
+    @Test(dependsOnMethods = "testActiveOrderingPage")
     public void testSwitchTabsUserOrdering() {
+
+        logInPage = new LogInPage(driver);
 
         userInfoPage = logInPage
                 .doLogIn(USER_LOGIN, USER_PASSWORD);
@@ -102,12 +93,22 @@ public class TestCaseSwitchTabsByCustomer {
         final CustomerOrderingPage customerOrderingPage = userInfoPage
                 .clickCustomerOrderingTab();
 
-        Assert.assertEquals(driver.getCurrentUrl(), CUSTOMER_ORDERING_PAGE_URL);
+        Assert.assertEquals(driver
+                .getCurrentUrl(), CUSTOMER_ORDERING_PAGE_URL);
+
+        Assert.assertTrue(driver
+                .getPageSource()
+                .contains(ORDERING_PAGE_IDENTIFICATION_TEXT));
 
         customerOrderingPage
                 .clickUserInfoTab();
 
-        Assert.assertEquals(driver.getCurrentUrl(), USER_INFO_PAGE_URL);
+        Assert.assertEquals(driver
+                .getCurrentUrl(), USER_INFO_PAGE_URL);
+
+        Assert.assertTrue(driver
+                .getPageSource()
+                .contains(USER_PAGE_IDENTIFICATION_TEXT));
 
     }
 }

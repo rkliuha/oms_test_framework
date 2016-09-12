@@ -1,6 +1,6 @@
 package academy.softserve.edu.utils;
 
-import academy.softserve.edu.enums.Drivers;
+import academy.softserve.edu.enums.Browsers;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -10,7 +10,7 @@ public class WebDriverFactory {
 
     private WebDriver driver;
 
-    public WebDriver getDriver(final Drivers browser) {
+    public WebDriver getDriver(final Browsers browser) {
 
         switch (browser) {
 

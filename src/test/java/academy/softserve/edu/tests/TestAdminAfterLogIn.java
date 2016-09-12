@@ -1,6 +1,6 @@
 package academy.softserve.edu.tests;
 
-import academy.softserve.edu.enums.Drivers;
+import academy.softserve.edu.enums.Browsers;
 import academy.softserve.edu.pageobjects.AdministrationPage;
 import academy.softserve.edu.pageobjects.LogInPage;
 import academy.softserve.edu.pageobjects.UserInfoPage;
@@ -31,7 +31,7 @@ public class TestAdminAfterLogIn {
 
     @BeforeClass
     final public void setUp() {
-        driver = new WebDriverFactory().getDriver(Drivers.CHROME);
+        driver = new WebDriverFactory().getDriver(Browsers.CHROME);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(TIMEOUT, TimeUnit.SECONDS);
         driver.get(LOG_IN_PAGE);
