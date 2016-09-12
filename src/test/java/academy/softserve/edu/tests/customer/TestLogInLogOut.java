@@ -1,4 +1,4 @@
-package academy.softserve.edu.tests.administrator;
+package academy.softserve.edu.tests.customer;
 
 import academy.softserve.edu.pageobjects.AdministrationPage;
 import academy.softserve.edu.pageobjects.LogInPage;
@@ -7,15 +7,23 @@ import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class TestLogOut extends TestRunner {
+public class TestLogInLogOut extends TestRunner {
 
-    public static final String ADMINISTRATOR_USERNAME = "RomanS";
-    public static final String ADMINISTRATOR_PASSWORD = "qwerty";
+    public static final String CUSTOMER_USERNAME = "vpopkin";
+    public static final String CUSTOMER_PASSWORD = "qwerty";
+
+    @Test
+    public final void testLogIn() {
+        final LogInPage logInPage = new LogInPage(driver);
+        logInPage.doLogIn(CUSTOMER_USERNAME, CUSTOMER_PASSWORD);
+        Assert.assertEquals(driver.getCurrentUrl(), UserInfoPage.USER_INFO_PAGE_URL,
+                "LogIn failed!");
+    }
 
     @Test
     public final void testLogOutButtonAbilityAndVisibility() {
         final LogInPage logInPage = new LogInPage(driver);
-        logInPage.doLogIn(ADMINISTRATOR_USERNAME, ADMINISTRATOR_PASSWORD);
+        logInPage.doLogIn(CUSTOMER_USERNAME, CUSTOMER_PASSWORD);
 
         final UserInfoPage userInfoPage = new UserInfoPage(driver);
         // below we have to check if logIn was successful because every page has
@@ -41,9 +49,21 @@ public class TestLogOut extends TestRunner {
                 .getElement(AdministrationPage.LOG_OUT_BUTTON)
                 .isDisplayed(), "LogOut button is not displayed!\nURL: "
                 + driver.getCurrentUrl());
-
-        administrationPage.doLogOut();
-        Assert.assertEquals(driver.getCurrentUrl(), LOG_IN_PAGE, "LogOut failed!");
     }
 
+    @Test
+    public final void testLogOut() {
+
+        final LogInPage logInPage = new LogInPage(driver);
+        logInPage
+                .doLogIn(CUSTOMER_USERNAME, CUSTOMER_PASSWORD);
+        final UserInfoPage userInfoPage = new UserInfoPage(driver);
+        final AdministrationPage administrationPage =
+                userInfoPage
+                        .clickAdministrationTab();
+        administrationPage
+                .doLogOut();
+        Assert
+                .assertEquals(driver.getCurrentUrl(), LOG_IN_PAGE, "LogOut failed!");
+    }
 }
