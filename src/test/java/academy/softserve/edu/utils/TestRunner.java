@@ -1,6 +1,6 @@
 package academy.softserve.edu.utils;
 
-import academy.softserve.edu.enums.Drivers;
+import academy.softserve.edu.enums.Browsers;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -17,7 +17,7 @@ public class TestRunner {
 
     @BeforeMethod
     public final void setUp() {
-        driver = new WebDriverFactory().getDriver(Drivers.CHROME);
+        driver = new WebDriverFactory().getDriver(Browsers.CHROME);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(TIMEOUT, TimeUnit.SECONDS);
         driver.get(LOG_IN_PAGE);

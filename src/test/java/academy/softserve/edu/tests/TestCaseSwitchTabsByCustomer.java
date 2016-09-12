@@ -10,7 +10,7 @@ import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
 
-import static academy.softserve.edu.enums.Drivers.FIREFOX;
+import static academy.softserve.edu.enums.Browsers.FIREFOX;
 import static academy.softserve.edu.pageobjects.CustomerOrderingPage.CUSTOMER_ORDERING_PAGE_URL;
 import static academy.softserve.edu.pageobjects.LogInPage.OMS_HOME_PAGE;
 import static academy.softserve.edu.pageobjects.UserInfoPage.*;

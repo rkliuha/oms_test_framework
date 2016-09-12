@@ -1,45 +1,16 @@
-package academy.softserve.edu.tests;
+package academy.softserve.edu.tests.merchandiser;
 
-import academy.softserve.edu.enums.Drivers;
 import academy.softserve.edu.pageobjects.LogInPage;
 import academy.softserve.edu.pageobjects.MerchandiserOrderingPage;
 import academy.softserve.edu.pageobjects.UserInfoPage;
-import academy.softserve.edu.utils.WebDriverFactory;
-import org.openqa.selenium.WebDriver;
+import academy.softserve.edu.utils.DataProviders;
+import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-import java.util.concurrent.TimeUnit;
+public class MerchandiserAfterLogInPageTest extends TestRunner {
 
-public class TestMerchandiserAfterLogInPage {
-
-    public static final String LOG_IN_PAGE =
-            "http://192.168.56.101:8080/oms5/login.htm";
-    public static final int TIMEOUT = 10;
-
-    protected WebDriver driver;
-
-    @DataProvider
-    final public Object[][] testData() {
-        return new Object[][]{
-                {"login1", "qwerty"}
-        };
-    }
-
-    @BeforeTest
-    final public void setUp() {
-        driver = new WebDriverFactory().getDriver(Drivers.FIREFOX);
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(TIMEOUT, TimeUnit.SECONDS);
-        driver.get(LOG_IN_PAGE);
-    }
-
-    @AfterTest
-    final public void tearDown() {
-        driver.close();
-    }
-
-    @Test(dataProvider = "testData")
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
     final public void testMerchandiserSwitchTabAbility(final String username, final String password) {
 
 //       login and check if current page is UserInfo page opened by default

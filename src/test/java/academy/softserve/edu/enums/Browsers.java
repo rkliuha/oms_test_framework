@@ -1,7 +1,7 @@
 package academy.softserve.edu.enums;
 
 
-public enum Drivers {
+public enum Browsers {
 
     CHROME,
     CHROME_MAC,
