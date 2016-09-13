@@ -71,7 +71,7 @@ public class SwitchTabsByCustomerTest extends TestRunner {
                 .doLogIn(USER_LOGIN, USER_PASSWORD);
 
         userInfoPage
-                .clickCustomerOrderingTab();
+                .click(CUSTOMER_ORDERING_LINK);
 
         Assert.assertEquals(driver
                 .getCurrentUrl(), CUSTOMER_ORDERING_PAGE_URL, "URL is different from " + CUSTOMER_ORDERING_PAGE_URL);
@@ -89,8 +89,8 @@ public class SwitchTabsByCustomerTest extends TestRunner {
         userInfoPage = logInPage
                 .doLogIn(USER_LOGIN, USER_PASSWORD);
 
-        final CustomerOrderingPage customerOrderingPage = userInfoPage
-                .clickCustomerOrderingTab();
+        userInfoPage
+                .click(CUSTOMER_ORDERING_LINK);
 
         Assert.assertEquals(driver
                 .getCurrentUrl(), CUSTOMER_ORDERING_PAGE_URL, "URL is different from " + CUSTOMER_ORDERING_PAGE_URL);
@@ -99,8 +99,10 @@ public class SwitchTabsByCustomerTest extends TestRunner {
                 .getElement(CUSTOMER_PAGE_EXISTS)
                 .isDisplayed(), "Element " + CUSTOMER_PAGE_EXISTS + " isn't displayed");
 
+        CustomerOrderingPage customerOrderingPage = new CustomerOrderingPage(driver);
+
         customerOrderingPage
-                .clickUserInfoTab();
+                .click(USER_INFO_LINK);
 
         Assert.assertEquals(driver
                 .getCurrentUrl(), USER_INFO_PAGE_URL, "URL is different from " + USER_INFO_PAGE_URL);

@@ -1,0 +1,86 @@
+package academy.softserve.edu.tests.administrator;
+
+import academy.softserve.edu.pageobjects.AdministrationPage;
+import academy.softserve.edu.pageobjects.LogInPage;
+import academy.softserve.edu.pageobjects.UserInfoPage;
+import academy.softserve.edu.utils.TestRunner;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import static academy.softserve.edu.pageobjects.AdministrationPage.*;
+import static academy.softserve.edu.pageobjects.UserInfoPage.ADMINISTRATION_LINK;
+import static academy.softserve.edu.pageobjects.UserInfoPage.USER_INFO_LINK;
+
+public class DoNotRevertDefaultStateTest extends TestRunner {
+
+    public static final String USER_LOGIN = "iva";
+    public static final String USER_PASSWORD = "qwerty";
+    public static final String ROLE = "Role";
+    public static final String ROLE_FILTER = "contains";
+    public static final String TEXT = "A";
+
+    private LogInPage logInPage;
+    private UserInfoPage userInfoPage;
+
+    @Test
+    public void testUserInfoAdministrationButtonCheck() {
+
+        logInPage = new LogInPage(driver);
+
+        userInfoPage = logInPage
+                .doLogIn(USER_LOGIN, USER_PASSWORD);
+
+        Assert.assertTrue(userInfoPage
+                .getElement(USER_INFO_LINK)
+                .isDisplayed(), "Element " + USER_INFO_LINK + " isn't displayed");
+
+        Assert.assertTrue(userInfoPage
+                .getElement(ADMINISTRATION_LINK)
+                .isDisplayed(), "Element " + ADMINISTRATION_LINK + " isn't displayed");
+    }
+
+    @Test
+    public void testDoNotRevertDefaultState() {
+
+        logInPage = new LogInPage(driver);
+
+        userInfoPage = logInPage
+                .doLogIn(USER_LOGIN, USER_PASSWORD);
+
+        AdministrationPage administrationPage = userInfoPage
+                .clickAdministrationTab();
+
+        administrationPage
+                .getElement(FIRST_FILED_FILTER_DROPDOWN)
+                .sendKeys(ROLE);
+
+        administrationPage
+                .getElement(SECOND_FILED_FILTER_DROPDOWN)
+                .sendKeys(ROLE_FILTER);
+
+        administrationPage
+                .getElement(FILED_FILTER_TEXT_BOX)
+                .sendKeys(TEXT);
+
+        administrationPage
+                .click(FILED_FILTER_SEARCH_BUTTON);
+
+        administrationPage
+                .click(USER_INFO_LINK);
+
+        userInfoPage
+                .click(ADMINISTRATION_LINK);
+
+        Assert.assertTrue(administrationPage
+                .getElement(FIRST_FILED_FILTER_DROPDOWN).getText()
+                .contains(ROLE));
+
+        Assert.assertTrue(administrationPage
+                .getElement(SECOND_FILED_FILTER_DROPDOWN).getText()
+                .contains(ROLE_FILTER));
+
+        Assert.assertTrue(administrationPage
+                .getElement(FIRST_FILED_FILTER_DROPDOWN).getText()
+                .contains(TEXT));
+    }
+}
