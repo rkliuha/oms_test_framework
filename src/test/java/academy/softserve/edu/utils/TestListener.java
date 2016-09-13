@@ -21,11 +21,20 @@ public class TestListener extends TestListenerAdapter {
     }
 
     private void takeScreenShotOnFailure(final ITestResult iTestResult) {
-        final Object object = iTestResult.getInstance();
-        final WebDriver driver = ((AdminAfterLogInPageTest) object).getDriver();
+
+        final Object object = iTestResult
+                .getInstance();
+
+        final WebDriver driver = ((AdminAfterLogInPageTest) object)
+                .getDriver();
+
         final Date currentDate = new Date();
+
         final Format formatter = new SimpleDateFormat("dd.MM.yyyy_HH-mm - ");
-        final File screenShotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+        final File screenShotFile = ((TakesScreenshot) driver)
+                .getScreenshotAs(OutputType.FILE);
+
         try {
             FileUtils.copyFile(screenShotFile, new File("test-output//html//screenshots//" +
                     formatter.format(currentDate) + iTestResult.getName() + ".png"));

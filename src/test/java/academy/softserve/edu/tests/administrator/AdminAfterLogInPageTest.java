@@ -7,7 +7,12 @@ import academy.softserve.edu.utils.TestListener;
 import academy.softserve.edu.utils.TestRunner;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
+
+import static academy.softserve.edu.pageobjects.UserInfoPage.ADMINISTRATION_LINK;
+import static academy.softserve.edu.pageobjects.UserInfoPage.USER_INFO_LINK;
+import static academy.softserve.edu.pageobjects.UserInfoPage.USER_INFO_PAGE_URL;
 
 @Listeners({TestListener.class})
 public class AdminAfterLogInPageTest extends TestRunner {
@@ -24,22 +29,35 @@ public class AdminAfterLogInPageTest extends TestRunner {
     @Test
     final public void testSwitchingBetweenTabs() {
 
-        LogInPage logInPage = new LogInPage(driver);
+        final LogInPage logInPage = new LogInPage(driver);
         logInPage.doLogIn(ADMIN_USERNAME, ADMIN_PASSWORD);
-        Assert.assertEquals(driver.getCurrentUrl(), UserInfoPage.USER_INFO_PAGE_URL);
+        Assert.assertEquals(driver
+                .getCurrentUrl(), USER_INFO_PAGE_URL, "URL is different from " + USER_INFO_PAGE_URL);
 
         UserInfoPage userInfoPage = new UserInfoPage(driver);
-        Assert.assertTrue(userInfoPage.getElement(UserInfoPage.USER_INFO_LINK).isDisplayed() &&
-                userInfoPage.getElement(UserInfoPage.ADMINISTRATION_LINK).isDisplayed());
+        Assert.assertTrue(userInfoPage
+                .getElement(USER_INFO_LINK)
+                .isDisplayed() && userInfoPage
+                .getElement(ADMINISTRATION_LINK)
+                .isDisplayed(), "\nVerification Failed: Either\n" + USER_INFO_LINK
+                + " or\n" + ADMINISTRATION_LINK + "is not being displayed");
         userInfoPage.clickAdministrationTab();
 
         AdministrationPage administrationPage = new AdministrationPage(driver);
-        Assert.assertTrue(administrationPage.getElement(UserInfoPage.USER_INFO_LINK).isDisplayed() &&
-                administrationPage.getElement(UserInfoPage.ADMINISTRATION_LINK).isDisplayed());
+        Assert.assertTrue(administrationPage
+                .getElement(USER_INFO_LINK)
+                .isDisplayed() && administrationPage
+                .getElement(ADMINISTRATION_LINK)
+                .isDisplayed(), "\nVerification Failed: Either\n" + USER_INFO_LINK
+                + " or\n" + ADMINISTRATION_LINK + "is not being displayed");
         administrationPage.clickUserInfoTab();
 
-        Assert.assertTrue(userInfoPage.getElement(UserInfoPage.USER_INFO_LINK).isDisplayed() &&
-                userInfoPage.getElement(UserInfoPage.ADMINISTRATION_LINK).isDisplayed());
+        Assert.assertTrue(userInfoPage
+                .getElement(USER_INFO_LINK)
+                .isDisplayed() && userInfoPage
+                .getElement(ADMINISTRATION_LINK)
+                .isDisplayed(), "\nVerification Failed: Either\n" + USER_INFO_LINK
+                + " or\n" + ADMINISTRATION_LINK + "is not being displayed");
         administrationPage.doLogOut();
     }
 }

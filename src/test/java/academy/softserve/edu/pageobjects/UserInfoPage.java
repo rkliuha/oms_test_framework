@@ -12,6 +12,7 @@ public class UserInfoPage extends PageObject {
     public static final By VISITOR_EXTRA_LINK = By.xpath("//ul[@id='nav']//a[1]");
     public static final String USER_INFO_PAGE_URL = "http://192.168.56.101:8080/oms5/userInfo.htm";
     public static final By USER_INFO_LINK = By.xpath("(.//ul[@id='nav']//a)[2]");
+    public static final By USER_INFO_PAGE_EXISTS = By.xpath(".//div[@id='content']//legend");
 
     public UserInfoPage(final WebDriver driver) {
         super(driver);
