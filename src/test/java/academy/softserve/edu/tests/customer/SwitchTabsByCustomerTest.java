@@ -8,14 +8,13 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static academy.softserve.edu.pageobjects.CustomerOrderingPage.CUSTOMER_ORDERING_PAGE_URL;
+import static academy.softserve.edu.pageobjects.CustomerOrderingPage.CUSTOMER_PAGE_EXISTS;
 import static academy.softserve.edu.pageobjects.UserInfoPage.*;
 
 public class SwitchTabsByCustomerTest extends TestRunner {
 
     public static final String USER_LOGIN = "vpopkin";
     public static final String USER_PASSWORD = "qwerty";
-    public static final String USER_PAGE_IDENTIFICATION_TEXT = "User Info";
-    public static final String ORDERING_PAGE_IDENTIFICATION_TEXT = "Search for orders by";
 
     private LogInPage logInPage;
     private UserInfoPage userInfoPage;
@@ -25,19 +24,19 @@ public class SwitchTabsByCustomerTest extends TestRunner {
 
         logInPage = new LogInPage(driver);
 
-        logInPage
+        userInfoPage = logInPage
                 .doLogIn(USER_LOGIN, USER_PASSWORD);
 
         Assert.assertEquals(driver
-                .getCurrentUrl(), USER_INFO_PAGE_URL);
+                .getCurrentUrl(), USER_INFO_PAGE_URL, "URL is different from " + USER_INFO_PAGE_URL);
 
-        Assert.assertTrue(driver
-                .getPageSource()
-                .contains(USER_PAGE_IDENTIFICATION_TEXT));
+        Assert.assertTrue(userInfoPage
+                .getElement(USER_INFO_PAGE_EXISTS)
+                .isDisplayed(), "Element " + USER_INFO_PAGE_EXISTS + " isn't displayed");
 
     }
 
-    @Test(dependsOnMethods = "testDefaultUserInfoPage")
+    @Test
     public void testUserInfoButtonCheck() {
 
         logInPage = new LogInPage(driver);
@@ -47,10 +46,10 @@ public class SwitchTabsByCustomerTest extends TestRunner {
 
         Assert.assertTrue(userInfoPage
                 .getElement(USER_INFO_LINK)
-                .isDisplayed());
+                .isDisplayed(), "Element " + USER_INFO_LINK + " isn't displayed");
     }
 
-    @Test(dependsOnMethods = "testUserInfoButtonCheck")
+    @Test
     public void testOrderingButtonCheck() {
 
         logInPage = new LogInPage(driver);
@@ -60,10 +59,10 @@ public class SwitchTabsByCustomerTest extends TestRunner {
 
         Assert.assertTrue(userInfoPage
                 .getElement(CUSTOMER_ORDERING_LINK)
-                .isDisplayed());
+                .isDisplayed(), "Element " + CUSTOMER_ORDERING_LINK + " isn't displayed");
     }
 
-    @Test(dependsOnMethods = "testOrderingButtonCheck")
+    @Test
     public void testActiveOrderingPage() {
 
         logInPage = new LogInPage(driver);
@@ -75,14 +74,14 @@ public class SwitchTabsByCustomerTest extends TestRunner {
                 .clickCustomerOrderingTab();
 
         Assert.assertEquals(driver
-                .getCurrentUrl(), CUSTOMER_ORDERING_PAGE_URL);
+                .getCurrentUrl(), CUSTOMER_ORDERING_PAGE_URL, "URL is different from " + CUSTOMER_ORDERING_PAGE_URL);
 
-        Assert.assertTrue(driver
-                .getPageSource()
-                .contains(ORDERING_PAGE_IDENTIFICATION_TEXT));
+        Assert.assertTrue(userInfoPage
+                .getElement(CUSTOMER_PAGE_EXISTS)
+                .isDisplayed(), "Element " + CUSTOMER_PAGE_EXISTS + " isn't displayed");
     }
 
-    @Test(dependsOnMethods = "testActiveOrderingPage")
+    @Test
     public void testSwitchTabsUserOrdering() {
 
         logInPage = new LogInPage(driver);
@@ -94,21 +93,21 @@ public class SwitchTabsByCustomerTest extends TestRunner {
                 .clickCustomerOrderingTab();
 
         Assert.assertEquals(driver
-                .getCurrentUrl(), CUSTOMER_ORDERING_PAGE_URL);
+                .getCurrentUrl(), CUSTOMER_ORDERING_PAGE_URL, "URL is different from " + CUSTOMER_ORDERING_PAGE_URL);
 
-        Assert.assertTrue(driver
-                .getPageSource()
-                .contains(ORDERING_PAGE_IDENTIFICATION_TEXT));
+        Assert.assertTrue(userInfoPage
+                .getElement(CUSTOMER_PAGE_EXISTS)
+                .isDisplayed(), "Element " + CUSTOMER_PAGE_EXISTS + " isn't displayed");
 
         customerOrderingPage
                 .clickUserInfoTab();
 
         Assert.assertEquals(driver
-                .getCurrentUrl(), USER_INFO_PAGE_URL);
+                .getCurrentUrl(), USER_INFO_PAGE_URL, "URL is different from " + USER_INFO_PAGE_URL);
 
-        Assert.assertTrue(driver
-                .getPageSource()
-                .contains(USER_PAGE_IDENTIFICATION_TEXT));
+        Assert.assertTrue(userInfoPage
+                .getElement(USER_INFO_PAGE_EXISTS)
+                .isDisplayed(), "Element " + CUSTOMER_PAGE_EXISTS + " isn't displayed");
 
     }
 }
