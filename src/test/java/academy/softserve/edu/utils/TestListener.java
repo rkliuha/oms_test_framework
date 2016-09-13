@@ -1,12 +1,13 @@
 package academy.softserve.edu.utils;
 
-import academy.softserve.edu.tests.TestAdminAfterLogIn;
+import academy.softserve.edu.tests.AdminAfterLogInTest;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.Format;
@@ -25,7 +26,7 @@ public class TestListener extends TestListenerAdapter {
         final Object object = iTestResult
                 .getInstance();
 
-        final WebDriver driver = ((TestAdminAfterLogIn) object)
+        final WebDriver driver = ((AdminAfterLogInTest) object)
                 .getDriver();
 
         final Date currentDate = new Date();

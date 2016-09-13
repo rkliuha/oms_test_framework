@@ -10,4 +10,28 @@ public class DataProviders {
                 {"login1", "qwerty"}
         };
     }
+
+
+    @DataProvider
+    static public Object[][] testDataForAdministrator() {
+        return new Object[][]{
+                {"RomanS", "qwerty"}
+        };
+    }
+
+
+    @DataProvider
+    static public Object[][] testDataForSupervisor() {
+        return new Object[][]{
+                {"login2", "qwerty"}
+        };
+    }
+
+
+    @DataProvider
+    static public Object[][] testDataForCustomer() {
+        return new Object[][]{
+                {"vpopkin", "qwerty"}
+        };
+    }
 }

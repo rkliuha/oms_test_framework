@@ -1,21 +1,28 @@
 package academy.softserve.edu.tests.customer;
 
+
 import academy.softserve.edu.pageobjects.CustomerOrderingPage;
 import academy.softserve.edu.pageobjects.LogInPage;
 import academy.softserve.edu.pageobjects.UserInfoPage;
+import academy.softserve.edu.utils.DataProviders;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class TestLogOut extends TestRunner {
+public class LogInLogOutTest extends TestRunner {
 
-    public static final String CUSTOMER_USERNAME = "vpopkin";
-    public static final String CUSTOMER_PASSWORD = "qwerty";
-
-    @Test
-    public final void testLogOutButtonAbilityAndVisibility() {
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
+    public final void testLogIn(String name, String password) {
         final LogInPage logInPage = new LogInPage(driver);
-        logInPage.doLogIn(CUSTOMER_USERNAME, CUSTOMER_PASSWORD);
+        logInPage.doLogIn(name, password);
+        Assert.assertEquals(driver.getCurrentUrl(), UserInfoPage.USER_INFO_PAGE_URL,
+                "LogIn failed!");
+    }
+
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
+    public final void testLogOutButtonVisibility(String name, String password) {
+        final LogInPage logInPage = new LogInPage(driver);
+        logInPage.doLogIn(name, password);
 
         final UserInfoPage userInfoPage = new UserInfoPage(driver);
         // below we have to check if logIn was successful because every page has
@@ -41,9 +48,21 @@ public class TestLogOut extends TestRunner {
                 .getElement(CustomerOrderingPage.LOG_OUT_BUTTON)
                 .isDisplayed(), "LogOut button is not displayed!\nURL: "
                 + driver.getCurrentUrl());
-
-        customerOrderingPage.doLogOut();
-        Assert.assertEquals(driver.getCurrentUrl(), LOG_IN_PAGE, "LogOut failed!");
     }
 
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
+    public final void testLogOut(String name, String password) {
+
+        final LogInPage logInPage = new LogInPage(driver);
+        logInPage
+                .doLogIn(name, password);
+        final UserInfoPage userInfoPage = new UserInfoPage(driver);
+        final CustomerOrderingPage customerOrderingPage =
+                userInfoPage
+                        .clickCustomerOrderingTab();
+        customerOrderingPage
+                .doLogOut();
+        Assert
+                .assertEquals(driver.getCurrentUrl(), LOG_IN_PAGE, "LogOut failed!");
+    }
 }

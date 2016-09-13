@@ -3,7 +3,7 @@ package academy.softserve.edu.pageobjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class UserInfoPage extends PageObject {
+public class UserInfoPage extends PageObject<UserInfoPage> {
 
     public static final By ADMINISTRATION_LINK = By.xpath("//ul[@id='nav']/descendant::a[@href='users.htm']");
     public static final By ITEM_MANAGEMENT_LINK = By.xpath("//ul[@id='nav']/descendant::a[@href='itemManagement.htm']");

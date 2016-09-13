@@ -13,7 +13,7 @@ import org.testng.annotations.*;
 import java.util.concurrent.TimeUnit;
 
 @Listeners({TestListener.class})
-public class TestAdminAfterLogIn {
+public class AdminAfterLogInTest {
     public static final String LOG_IN_PAGE = "http://192.168.56.101:8080/oms5";
     public static final int TIMEOUT = 5;
     public static final String ADMIN_USERNAME = "iva";
