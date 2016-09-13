@@ -47,8 +47,10 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
         userInfoPage = logInPage
                 .doLogIn(USER_LOGIN, USER_PASSWORD);
 
-        AdministrationPage administrationPage = userInfoPage
-                .clickAdministrationTab();
+        final AdministrationPage administrationPage = new AdministrationPage(driver);
+
+        administrationPage
+                .click(ADMINISTRATION_LINK);
 
         administrationPage
                 .getElement(FIRST_FILED_FILTER_DROPDOWN)
@@ -73,14 +75,14 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
 
         Assert.assertTrue(administrationPage
                 .getElement(FIRST_FILED_FILTER_DROPDOWN).getText()
-                .contains(ROLE));
+                .contains(ROLE), "Role in the first drop down is different of " + ROLE);
 
         Assert.assertTrue(administrationPage
                 .getElement(SECOND_FILED_FILTER_DROPDOWN).getText()
-                .contains(ROLE_FILTER));
+                .contains(ROLE_FILTER), "Role filter in the second drop box is different of " + ROLE_FILTER);
 
         Assert.assertTrue(administrationPage
                 .getElement(FIRST_FILED_FILTER_DROPDOWN).getText()
-                .contains(TEXT));
+                .contains(TEXT), "Text in the text box is different of " + TEXT);
     }
 }

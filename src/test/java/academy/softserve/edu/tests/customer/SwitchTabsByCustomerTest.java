@@ -99,7 +99,7 @@ public class SwitchTabsByCustomerTest extends TestRunner {
                 .getElement(CUSTOMER_PAGE_EXISTS)
                 .isDisplayed(), "Element " + CUSTOMER_PAGE_EXISTS + " isn't displayed");
 
-        CustomerOrderingPage customerOrderingPage = new CustomerOrderingPage(driver);
+        final CustomerOrderingPage customerOrderingPage = new CustomerOrderingPage(driver);
 
         customerOrderingPage
                 .click(USER_INFO_LINK);
