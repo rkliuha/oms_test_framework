@@ -3,27 +3,25 @@ package academy.softserve.edu.tests.administrator;
 import academy.softserve.edu.pageobjects.AdministrationPage;
 import academy.softserve.edu.pageobjects.LogInPage;
 import academy.softserve.edu.pageobjects.UserInfoPage;
+import academy.softserve.edu.utils.DataProviders;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class LogInLogOutTest extends TestRunner {
 
-    public static final String ADMINISTRATOR_USERNAME = "RomanS";
-    public static final String ADMINISTRATOR_PASSWORD = "qwerty";
-
-    @Test
-    public final void testLogIn() {
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForAdministrator")
+    public final void testLogIn(String name, String password) {
         final LogInPage logInPage = new LogInPage(driver);
-        logInPage.doLogIn(ADMINISTRATOR_USERNAME, ADMINISTRATOR_PASSWORD);
+        logInPage.doLogIn(name, password);
         Assert.assertEquals(driver.getCurrentUrl(), UserInfoPage.USER_INFO_PAGE_URL,
                 "LogIn failed!");
     }
 
-    @Test
-    public final void testLogOutButtonVisibility() {
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForAdministrator")
+    public final void testLogOutButtonVisibility(String name, String password) {
         final LogInPage logInPage = new LogInPage(driver);
-        logInPage.doLogIn(ADMINISTRATOR_USERNAME, ADMINISTRATOR_PASSWORD);
+        logInPage.doLogIn(name, password);
 
         final UserInfoPage userInfoPage = new UserInfoPage(driver);
         // below we have to check if logIn was successful because every page has
@@ -51,12 +49,12 @@ public class LogInLogOutTest extends TestRunner {
                 + driver.getCurrentUrl());
     }
 
-    @Test
-    public final void testLogOut() {
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForAdministrator")
+    public final void testLogOut(String name, String password) {
 
         final LogInPage logInPage = new LogInPage(driver);
         logInPage
-                .doLogIn(ADMINISTRATOR_USERNAME, ADMINISTRATOR_PASSWORD);
+                .doLogIn(name, password);
         final UserInfoPage userInfoPage = new UserInfoPage(driver);
         final AdministrationPage administrationPage =
                 userInfoPage

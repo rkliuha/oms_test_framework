@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public abstract class PageObject {
+public abstract class PageObject<T> {
 
     public static final By LOG_OUT_BUTTON = By.id("logout");
 
@@ -18,9 +18,41 @@ public abstract class PageObject {
         return driver.findElement(elementLocation);
     }
 
-    public final LogInPage doLogOut() {
+    public final T doLogOut() {
         driver.findElement(LOG_OUT_BUTTON).click();
+        return acceptAlert();
+    }
+
+    public final T acceptAlert() {
         driver.switchTo().alert().accept();
-        return new LogInPage(driver);
+        return (T) this;
+    }
+
+    public final T dismissAlert() {
+        driver.switchTo().alert().dismiss();
+        return (T) this;
+    }
+
+    public final String getCurrentUrl() {
+        return driver.getCurrentUrl();
+    }
+
+    public final String getPageSource() {
+        return driver.getPageSource();
+    }
+
+    public final T navigateBack() {
+        driver.navigate().back();
+        return (T) this;
+    }
+
+    public final T navigateForvard() {
+        driver.navigate().forward();
+        return (T) this;
+    }
+
+    public final T refreshPage() {
+        driver.navigate().refresh();
+        return (T) this;
     }
 }

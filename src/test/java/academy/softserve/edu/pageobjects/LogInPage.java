@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class LogInPage extends PageObject {
+public class LogInPage extends PageObject<LogInPage> {
 
     public static final By USER_NAME_FIELD = By.name("j_username");
     public static final By PASSWORD_FIELD = By.name("j_password");
@@ -15,6 +15,8 @@ public class LogInPage extends PageObject {
     public static final String EXPECTED_INVALID_NAME_MESSAGE = "Such user does not exist in the system � please try again.";
     public static final String EXPECTED_INVALID_PASSWORD_MESSAGE = "Password is incorrect � please try again";
     public static final String OMS_HOME_PAGE = "http://192.168.56.101:8080/oms5/login.htm";
+    public static final By LOG_IN_PAGE_EXISTS = By.xpath(".//div[@id='edit']//legend");
+
 
 
     public LogInPage(final WebDriver driver) {
