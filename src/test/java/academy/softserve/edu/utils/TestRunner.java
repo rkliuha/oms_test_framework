@@ -17,6 +17,7 @@ public class TestRunner {
 
     @BeforeMethod
     public final void setUp() {
+
         driver = new WebDriverFactory().getDriver(Browsers.FIREFOX);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(TIMEOUT, TimeUnit.SECONDS);
