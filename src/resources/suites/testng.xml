@@ -4,8 +4,12 @@
     <test name="oms_test_framework">
         <classes>
             <class name="academy.softserve.edu.tests.merchandiser.MerchandiserAfterLogInPageTest"/>
-            <class name="academy.softserve.edu.tests.TestCaseSwitchTabsByCustomer"/>
+            <class name="academy.softserve.edu.tests.customer.SwitchTabsByCustomerTest"/>
             <class name="academy.softserve.edu.tests.TestAdminAfterLogIn"/>
+            <class name="academy.softserve.edu.tests.administrator.TestLogOut"/>
+            <class name="academy.softserve.edu.tests.customer.TestLogOut"/>
+            <class name="academy.softserve.edu.tests.merchandiser.TestLogOut"/>
+            <class name="academy.softserve.edu.tests.supervisor.TestLogOut"/>
         </classes>
     </test> <!-- oms_test_framework -->
 </suite> <!-- Default Suite -->
