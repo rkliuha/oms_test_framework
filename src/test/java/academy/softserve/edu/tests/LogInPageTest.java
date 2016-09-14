@@ -13,7 +13,7 @@ public class LogInPageTest extends TestRunner {
 
     // To check input fields empty or not.
     @Test
-    public void testOpenLogInPage() {
+    public void testLoginInputsAreEmpty() {
         final LogInPage logInPage = new LogInPage(driver);
         Assert.assertFalse(logInPage.getInputNameField().getText() == null &
                         logInPage.getInputPasswordField().getText() == null,
@@ -28,12 +28,12 @@ public class LogInPageTest extends TestRunner {
                 .getInputNameField()
                 .sendKeys("Asa23@(?|};6756%");
         Assert.assertTrue(logInPage.getInputNameField().getText() != null,
-                "Field is empty!");
+                "Input name field is empty!");
     }
 
     // To check is it possible to input password data, and characters must be converted in to the asterisk
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
-    public void testInputPassword(final String name, final String password) {
+    public void testInputsCanTakeSymbols(final String name, final String password) {
         final LogInPage logInPage = new LogInPage(driver);
         logInPage
                 .getInputPasswordField()
@@ -70,7 +70,7 @@ public class LogInPageTest extends TestRunner {
                 .inputPassword(password)
                 .clickLogInButton();
         Assert.assertFalse(Objects.equals(driver.getCurrentUrl(), UserInfoPage.USER_INFO_PAGE_URL),
-                "You Logged In without name!");
+                "You Logged In with empty name field!");
     }
 
     //Try to Log In with empty input fields
@@ -110,7 +110,7 @@ public class LogInPageTest extends TestRunner {
     }
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
-    public void testUnregisteredUser(final String name, final String password) {
+    public void testLoginWithNonExistingData(final String name, final String password) {
         final LogInPage logInPage = new LogInPage(driver);
         logInPage.doLogIn("Sarumjan", password);      // Input Incorrect name and empty password field and click
         logInPage.doLogIn(name, "mordor");            // Input Incorrect password and empty name field and click
@@ -121,7 +121,7 @@ public class LogInPageTest extends TestRunner {
     //Input data in to the Password field, Try to Log In
     //En expected message: «Such user does not exist in the system – please try again.»
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
-    public void testErrorMessage1(final String name, final String password) {
+    public void testErrorMessageOnEmptyUsername(final String name, final String password) {
         final LogInPage logInPage = new LogInPage(driver);
         logInPage
                 .inputPassword(password)
@@ -133,7 +133,7 @@ public class LogInPageTest extends TestRunner {
     //Input not registered data in to the Name field, Try to Log In
     //En expected message: «Such user does not exist in the system – please try again.»
     @Test
-    public void testErrorMessage2() {
+    public void testErrorMessageOnUnregisteredName() {
         final LogInPage logInPage = new LogInPage(driver);
         logInPage.inputName("unregistered data")
                 .clickLogInButton();
@@ -144,7 +144,7 @@ public class LogInPageTest extends TestRunner {
     //Input data in to the User Field, Try to Log In
     //En expected message: «Password is incorrect – please try again»
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
-    public void testErrorMessage3(final String name, final String password) {
+    public void testErrorMessageOnEmptyPasswordField(final String name, final String password) {
         final LogInPage logInPage = new LogInPage(driver);
         logInPage
                 .inputName(name)
@@ -156,7 +156,7 @@ public class LogInPageTest extends TestRunner {
     //Input right data in to the User field, input wrong data in to the Password field. Try to log in.
     //En expected message: «Password is incorrect – please try again»
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
-    public void testErrorMessage4(String name, String password) {
+    public void testErrorMessageOnWrongPassword(String name, String password) {
         final LogInPage logInPage = new LogInPage(driver);
         logInPage.doLogIn(name, "mordor");// Input Incorrect password and empty name field and click
         Assert.assertEquals(logInPage.getElement(LogInPage.ERROR_MESSAGE).getText(),

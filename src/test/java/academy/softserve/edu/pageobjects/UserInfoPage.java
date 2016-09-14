@@ -2,6 +2,7 @@ package academy.softserve.edu.pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class UserInfoPage extends PageObject<UserInfoPage> {
 
@@ -38,4 +39,7 @@ public class UserInfoPage extends PageObject<UserInfoPage> {
         return new MerchandiserOrderingPage(driver);
     }
 
+    public final WebElement getMerchandiserOrderingTab() {
+        return driver.findElement(MERCHANDISER_ORDERING_LINK);
+    }
 }

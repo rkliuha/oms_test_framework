@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 public abstract class PageObject<T> {
 
     public static final By LOG_OUT_BUTTON = By.id("logout");
+    private static final By UKRAINIAN_BUTTON = By.id("uk_UA");
+    private static final By ENGLISH_BUTTON = By.id("en_US");
 
     protected WebDriver driver;
 
@@ -54,5 +56,23 @@ public abstract class PageObject<T> {
     public final T refreshPage() {
         driver.navigate().refresh();
         return (T) this;
+    }
+
+    public T clickUkrainianButton() {
+        getElement(UKRAINIAN_BUTTON).click();
+        return (T) this;
+    }
+
+    public T clickEnglishButton() {
+        getElement(ENGLISH_BUTTON).click();
+        return (T) this;
+    }
+
+    public WebElement getEnglishButton() {
+        return driver.findElement(ENGLISH_BUTTON);
+    }
+
+    public WebElement getUkrainianButton() {
+        return driver.findElement(UKRAINIAN_BUTTON);
     }
 }
