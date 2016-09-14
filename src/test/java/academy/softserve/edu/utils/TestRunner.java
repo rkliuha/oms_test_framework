@@ -4,9 +4,11 @@ import academy.softserve.edu.enums.Browsers;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 
 import java.util.concurrent.TimeUnit;
 
+@Listeners({TestListener.class})
 public class TestRunner {
 
     public static final String LOG_IN_PAGE =
@@ -14,6 +16,10 @@ public class TestRunner {
     public static final int TIMEOUT = 30;
 
     protected WebDriver driver;
+
+    public final WebDriver getDriver() {
+        return driver;
+    }
 
     @BeforeMethod
     public final void setUp() {
