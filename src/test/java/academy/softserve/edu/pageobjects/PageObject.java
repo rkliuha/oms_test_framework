@@ -25,12 +25,10 @@ public abstract class PageObject {
         return new LogInPage(driver);
     }
 
-    public Object click(final By path) {
+    public void click(final By path) {
 
         driver
                 .findElement(path)
                 .click();
-
-        return new Object();
     }
 }
