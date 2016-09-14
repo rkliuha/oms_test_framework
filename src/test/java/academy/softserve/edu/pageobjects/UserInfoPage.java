@@ -12,7 +12,11 @@ public class UserInfoPage extends PageObject {
     public static final String USER_INFO_PAGE_URL = "http://192.168.56.101:8080/oms5/userInfo.htm";
     public static final By USER_INFO_LINK = By.xpath("(.//ul[@id='nav']//a)[2]");
     public static final By USER_INFO_PAGE_EXISTS = By.xpath(".//div[@id='content']//legend");
-    private final String userInfoData[] = {"//tr[1]/td[2]", "//tr[2]/td[2]", "//tr[3]/td[2]", "//tr[4]/td[2]"};
+    private final String firstNameValue = "//tr[1]/td[2]";
+    private final String lastNameValue = "//tr[2]/td[2]";
+    private final String customerTypeValue = "//tr[3]/td[2]";
+    private final String roleValue = "//tr[4]/td[2]";
+
 
     public UserInfoPage(final WebDriver driver) {
         super(driver);
@@ -38,12 +42,17 @@ public class UserInfoPage extends PageObject {
         return new MerchandiserOrderingPage(driver);
     }
 
-    public String[] getUserInfoData() {
-        String[] getElements = new String[userInfoData.length];
-        for (int i = 0; i < userInfoData.length; i++) {
-            getElements[i] = driver.findElement(By.xpath(userInfoData[i])).getText();
-        }
-        return getElements;
+    public String getFirstNameValue() {
+        return driver.findElement(By.xpath(firstNameValue)).getText();
+    }
+    public String getLastNameValue() {
+        return driver.findElement(By.xpath(lastNameValue)).getText();
+    }
+    public String getCustomerTypeValue() {
+        return driver.findElement(By.xpath(customerTypeValue)).getText();
+    }
+    public String getRoleValue() {
+        return driver.findElement(By.xpath(roleValue)).getText();
     }
 }
 
