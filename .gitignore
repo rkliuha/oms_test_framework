@@ -39,6 +39,7 @@ oms_test_framework.iml
 ## Directory-based project format:
 .idea/
 target/
+test-output/
 
 # JIRA plugin
 atlassian-ide-plugin.xml
