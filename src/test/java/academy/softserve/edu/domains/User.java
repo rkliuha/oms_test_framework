@@ -1,5 +1,7 @@
 package academy.softserve.edu.domains;
 
+import academy.softserve.edu.enums.CustomerTypes;
+import academy.softserve.edu.enums.Regions;
 import academy.softserve.edu.enums.Roles;
 
 public class User {
@@ -12,9 +14,9 @@ public class User {
     private String lastName;
     private String login;
     private String password;
-    private int customerTypeRef;
-    private int regionRef;
-    private int roleRef;
+    private int customerTypeReference;
+    private int regionReference;
+    private int roleReference;
 
     private User() {
 
@@ -53,19 +55,19 @@ public class User {
     }
 
     public interface PasswordStep {
-        CustomerTypeRefStep setPassword(final String password);
+        CustomerTypeReferenceStep setPassword(final String password);
     }
 
-    public interface CustomerTypeRefStep {
-        RegionRefStep setCustomerTypeRef(final int customerTypeRef);
+    public interface CustomerTypeReferenceStep {
+        RegionReferenceStep setCustomerTypeReference(final int customerTypeReference);
     }
 
-    public interface RegionRefStep {
-        RoleRefStep setRegionRef(final int regionRef);
+    public interface RegionReferenceStep {
+        RoleReferenceStep setRegionReference(final int regionReference);
     }
 
-    public interface RoleRefStep {
-        BuildStep setRoleRef(final int roleRef);
+    public interface RoleReferenceStep {
+        BuildStep setRoleReference(final int roleReference);
     }
 
     public interface BuildStep {
@@ -74,7 +76,7 @@ public class User {
 
     private static class Builder implements FirstIdStep, UserActiveStep, BalanceStep,
             EmailStep, FirstNameStep, LastNameStep, LoginStep, PasswordStep,
-            CustomerTypeRefStep, RegionRefStep, RoleRefStep, BuildStep {
+            CustomerTypeReferenceStep, RegionReferenceStep, RoleReferenceStep, BuildStep {
 
         private int id;
         private int userActive;
@@ -84,10 +86,9 @@ public class User {
         private String lastName;
         private String login;
         private String password;
-        private int customerTypeRef;
-        private int regionRef;
-        private int roleRef;
-
+        private int customerTypeReference;
+        private int regionReference;
+        private int roleReference;
 
         @Override
         public UserActiveStep setId(final int id) {
@@ -132,31 +133,32 @@ public class User {
         }
 
         @Override
-        public CustomerTypeRefStep setPassword(final String password) {
+        public CustomerTypeReferenceStep setPassword(final String password) {
             this.password = password;
             return this;
         }
 
         @Override
-        public RegionRefStep setCustomerTypeRef(final int customerTypeRef) {
-            this.customerTypeRef = customerTypeRef;
+        public RegionReferenceStep setCustomerTypeReference(final int customerTypeReference) {
+            this.customerTypeReference = customerTypeReference;
             return this;
         }
 
         @Override
-        public RoleRefStep setRegionRef(final int regionRef) {
-            this.regionRef = regionRef;
+        public RoleReferenceStep setRegionReference(final int regionReference) {
+            this.regionReference = regionReference;
             return this;
         }
 
         @Override
-        public BuildStep setRoleRef(final int roleRef) {
-            this.roleRef = roleRef;
+        public BuildStep setRoleReference(final int roleReference) {
+            this.roleReference = roleReference;
             return this;
         }
 
         @Override
         public User build() {
+
             final User user = new User();
 
             user.setId(id);
@@ -167,20 +169,29 @@ public class User {
             user.setLastName(lastName);
             user.setLogin(login);
             user.setPassword(password);
-            user.setCustomerTypeRef(customerTypeRef);
-            user.setRegionRef(regionRef);
-            user.setRoleRef(roleRef);
+            user.setCustomerTypeReference(customerTypeReference);
+            user.setRegionReference(regionReference);
+            user.setRoleReference(roleReference);
 
             return user;
         }
     }
 
     public final String getRoleName() {
-        return Roles.getRoleName(roleRef);
+        return Roles.getRoleNameByReference(roleReference);
+    }
+
+    public final String getRegionName() {
+        return Regions.getRegionNameByReference(regionReference);
+    }
+
+    public final String getCustomerTypeName() {
+        return CustomerTypes.getCustomerTypeNameByReference(customerTypeReference);
     }
 
     @Override
     public final String toString() {
+
         return "User {" +
                 "ID=" + id +
                 ", isUserActive=" + userActive +
@@ -190,9 +201,9 @@ public class User {
                 ", LastName=" + lastName +
                 ", Login=" + login +
                 ", Password=" + password +
-                ", CustomerTypeRef=" + customerTypeRef +
-                ", RegionRef=" + regionRef +
-                ", RoleRef=" + roleRef +
+                ", CustomerTypeRef=" + customerTypeReference +
+                ", RegionRef=" + regionReference +
+                ", RoleRef=" + roleReference +
                 "}";
     }
 
@@ -260,28 +271,28 @@ public class User {
         this.password = password;
     }
 
-    public final int getCustomerTypeRef() {
-        return customerTypeRef;
+    public final int getCustomerTypeReference() {
+        return customerTypeReference;
     }
 
-    public final void setCustomerTypeRef(final int customerTypeRef) {
-        this.customerTypeRef = customerTypeRef;
+    public final void setCustomerTypeReference(final int customerTypeReference) {
+        this.customerTypeReference = customerTypeReference;
     }
 
-    public final int getRegionRef() {
-        return regionRef;
+    public final int getRegionReference() {
+        return regionReference;
     }
 
-    public final void setRegionRef(final int regionRef) {
-        this.regionRef = regionRef;
+    public final void setRegionReference(final int regionReference) {
+        this.regionReference = regionReference;
     }
 
-    public final int getRoleRef() {
-        return roleRef;
+    public final int getRoleReference() {
+        return roleReference;
     }
 
-    public final void setRoleRef(final int roleRef) {
-        this.roleRef = roleRef;
+    public final void setRoleReference(final int roleReference) {
+        this.roleReference = roleReference;
     }
 
 }

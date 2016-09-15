@@ -1,14 +1,18 @@
 package academy.softserve.edu.dao.interfaces;
 
 import academy.softserve.edu.domains.User;
-
-import java.sql.SQLException;
+import academy.softserve.edu.enums.Roles;
 
 public interface UserDao {
 
-    void create(final User user) throws SQLException;
-    User read(final int primaryKey) throws SQLException;
-    void update(final User user) throws SQLException;
-    void delete(final int primaryKey) throws SQLException;
+    void createUser(final User user);
+
+    User getUserById(final int userId);
+
+    User getUserByRole(final Roles role);
+
+    void updateUser(final User user);
+
+    void deleteUser(final int userId);
 
 }

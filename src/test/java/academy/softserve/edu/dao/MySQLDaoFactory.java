@@ -14,9 +14,13 @@ public class MySQLDaoFactory implements DaoFactory {
     private static final String PASSWORD = "1qaz2wsx";
     private static final String DB_URL = "jdbc:mysql://192.168.56.101:3306/oms";
 
-    public MySQLDaoFactory() throws SQLException {
-        final Driver driver = new com.mysql.jdbc.Driver();
-        DriverManager.registerDriver(driver);
+    public MySQLDaoFactory() {
+        try {
+            final Driver driver = new com.mysql.jdbc.Driver();
+            DriverManager.registerDriver(driver);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

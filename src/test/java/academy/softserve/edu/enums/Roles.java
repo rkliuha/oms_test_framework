@@ -7,21 +7,30 @@ public enum Roles {
     SUPERVISOR(3, "Supervisor"),
     CUSTOMER(4, "Customer");
 
-    private final int roleRef;
+    private final int roleReference;
     private final String roleName;
 
-    Roles(final int roleRef, final String roleName) {
-        this.roleRef = roleRef;
+    Roles(final int roleReference, final String roleName) {
+        this.roleReference = roleReference;
         this.roleName = roleName;
     }
 
-    public static final String getRoleName(final int roleRef) {
+    public static final String getRoleNameByReference(final int roleReference) {
+
         String roleName = null;
-        for (Roles role : Roles.values()) {
-            if (role.roleRef == roleRef) {
+        for (final Roles role : Roles.values()) {
+            if (role.roleReference == roleReference) {
                 roleName = role.roleName;
             }
         }
+        return roleName;
+    }
+
+    public int getRoleReference() {
+        return roleReference;
+    }
+
+    public String getRoleName() {
         return roleName;
     }
 
