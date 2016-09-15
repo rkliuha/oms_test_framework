@@ -13,18 +13,22 @@ public class LogInLogOutTest extends TestRunner {
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
     public final void testLogIn(String name, String password) {
-        final LogInPage logInPage = new LogInPage(driver);
-        logInPage.doLogIn(name, password);
+
+        logInPage = new LogInPage(driver);
+        logInPage
+                .doLogIn(name, password);
         Assert.assertEquals(driver.getCurrentUrl(), UserInfoPage.USER_INFO_PAGE_URL,
                 "LogIn failed!");
     }
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
     public final void testLogOutButtonVisibility(String name, String password) {
-        final LogInPage logInPage = new LogInPage(driver);
-        logInPage.doLogIn(name, password);
 
-        final UserInfoPage userInfoPage = new UserInfoPage(driver);
+        logInPage = new LogInPage(driver);
+        logInPage
+                .doLogIn(name, password);
+
+        userInfoPage = new UserInfoPage(driver);
         // below we have to check if logIn was successful because every page has
         // logOut button with same locator and we could get false positive result
         // after logIn failure;
@@ -36,7 +40,7 @@ public class LogInLogOutTest extends TestRunner {
                 .isDisplayed(), "LogOut button is not displayed!\nURL: "
                 + driver.getCurrentUrl());
 
-        final CustomerOrderingPage customerOrderingPage =
+        customerOrderingPage =
                 userInfoPage.clickCustomerOrderingTab();
         // we have to check switching between pages, has the same issue with logIn check;
         Assert.assertEquals(driver.getCurrentUrl(),
@@ -53,11 +57,11 @@ public class LogInLogOutTest extends TestRunner {
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
     public final void testLogOut(String name, String password) {
 
-        final LogInPage logInPage = new LogInPage(driver);
+        logInPage = new LogInPage(driver);
         logInPage
                 .doLogIn(name, password);
-        final UserInfoPage userInfoPage = new UserInfoPage(driver);
-        final CustomerOrderingPage customerOrderingPage =
+        userInfoPage = new UserInfoPage(driver);
+        customerOrderingPage =
                 userInfoPage
                         .clickCustomerOrderingTab();
         customerOrderingPage

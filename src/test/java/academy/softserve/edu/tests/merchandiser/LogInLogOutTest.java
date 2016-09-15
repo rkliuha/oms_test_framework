@@ -12,16 +12,20 @@ public class LogInLogOutTest extends TestRunner {
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
     public final void testLogIn(String name, String password) {
-        final LogInPage logInPage = new LogInPage(driver);
-        logInPage.doLogIn(name, password);
+
+        logInPage = new LogInPage(driver);
+        logInPage
+                .doLogIn(name, password);
         Assert.assertEquals(driver.getCurrentUrl(), UserInfoPage.USER_INFO_PAGE_URL,
                 "LogIn failed!");
     }
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
     public final void testLogOutButtonVisibility(String name, String password) {
-        final LogInPage logInPage = new LogInPage(driver);
-        logInPage.doLogIn(name, password);
+
+        logInPage = new LogInPage(driver);
+        logInPage
+                .doLogIn(name, password);
 
         final UserInfoPage userInfoPage = new UserInfoPage(driver);
         // below we have to check if logIn was successful because every page has
@@ -35,11 +39,12 @@ public class LogInLogOutTest extends TestRunner {
                 .isDisplayed(), "LogOut button is not displayed!\nURL: "
                 + driver.getCurrentUrl());
 
-        final MerchandiserOrderingPage merchandiserOrderingPage =
+        merchandiserOrderingPage =
                 userInfoPage.clickMerchandiserOrderingTab();
         // we have to check switching between pages, has the same issue with logIn check;
         Assert.assertEquals(driver.getCurrentUrl(),
-                MerchandiserOrderingPage.MERCHANDISER_ORDERING_PAGE_URL,
+                MerchandiserOrderingPage
+                        .MERCHANDISER_ORDERING_PAGE_URL,
                 "Page is not switched to: "
                         + MerchandiserOrderingPage.MERCHANDISER_ORDERING_PAGE_URL);
 
@@ -52,11 +57,11 @@ public class LogInLogOutTest extends TestRunner {
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
     public final void testLogOut(String name, String password) {
 
-        final LogInPage logInPage = new LogInPage(driver);
+        logInPage = new LogInPage(driver);
         logInPage
                 .doLogIn(name, password);
-        final UserInfoPage userInfoPage = new UserInfoPage(driver);
-        final MerchandiserOrderingPage merchandiserOrderingPage =
+        userInfoPage = new UserInfoPage(driver);
+        merchandiserOrderingPage =
                 userInfoPage
                         .clickMerchandiserOrderingTab();
         merchandiserOrderingPage

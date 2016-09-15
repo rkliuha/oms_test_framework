@@ -12,16 +12,20 @@ public class LogInLogOutTest extends TestRunner {
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForSupervisor")
     public final void testLogIn(String name, String password) {
-        final LogInPage logInPage = new LogInPage(driver);
-        logInPage.doLogIn(name, password);
+
+        logInPage = new LogInPage(driver);
+        logInPage
+                .doLogIn(name, password);
         Assert.assertEquals(driver.getCurrentUrl(), UserInfoPage.USER_INFO_PAGE_URL,
                 "LogIn failed!");
     }
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForSupervisor")
     public final void testLogOutButtonVisibility(String name, String password) {
-        final LogInPage logInPage = new LogInPage(driver);
-        logInPage.doLogIn(name, password);
+
+        logInPage = new LogInPage(driver);
+        logInPage
+                .doLogIn(name, password);
 
         final UserInfoPage userInfoPage = new UserInfoPage(driver);
         // below we have to check if logIn was successful because every page has
@@ -35,11 +39,13 @@ public class LogInLogOutTest extends TestRunner {
                 .isDisplayed(), "LogOut button is not displayed!\nURL: "
                 + driver.getCurrentUrl());
 
-        final ItemManagementPage itemManagementPage =
-                userInfoPage.clickItemManagementTab();
+        itemManagementPage =
+                userInfoPage
+                        .clickItemManagementTab();
         // we have to check switching between pages, has the same issue with logIn check;
         Assert.assertEquals(driver.getCurrentUrl(),
-                ItemManagementPage.ITEM_MANAGEMENT_PAGE_URL,
+                ItemManagementPage
+                        .ITEM_MANAGEMENT_PAGE_URL,
                 "Page is not switched to: "
                         + ItemManagementPage.ITEM_MANAGEMENT_PAGE_URL);
 
@@ -52,13 +58,12 @@ public class LogInLogOutTest extends TestRunner {
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForSupervisor")
     public final void testLogOut(String name, String password) {
 
-        final LogInPage logInPage = new LogInPage(driver);
+        logInPage = new LogInPage(driver);
         logInPage
                 .doLogIn(name, password);
-        final UserInfoPage userInfoPage = new UserInfoPage(driver);
-        final ItemManagementPage itemManagementPage =
-                userInfoPage
-                        .clickItemManagementTab();
+        userInfoPage = new UserInfoPage(driver);
+        itemManagementPage = userInfoPage
+                .clickItemManagementTab();
         itemManagementPage
                 .doLogOut();
         Assert

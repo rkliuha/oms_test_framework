@@ -12,9 +12,9 @@ public class UserInfoPageTest extends TestRunner {
 
     //To check English by default
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
-    public void testDefaultEnglish(String name, String password) {
+    public final void testDefaultEnglish(String name, String password) {
 
-        final LogInPage logInPage = new LogInPage(driver);
+        logInPage = new LogInPage(driver);
         logInPage
                 .doLogIn(name, password);
         final UserInfoPage userInfoPage = new UserInfoPage(driver);
@@ -24,9 +24,9 @@ public class UserInfoPageTest extends TestRunner {
 
     //To check switch to Ukrainian language from default English language
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
-    public void testSwitchToUkrainian(String name, String password) {
+    public final void testSwitchToUkrainian(String name, String password) {
 
-        final LogInPage logInPage = new LogInPage(driver);
+        logInPage = new LogInPage(driver);
         logInPage
                 .doLogIn(name, password);
         final UserInfoPage userInfoPage = new UserInfoPage(driver);
@@ -38,9 +38,9 @@ public class UserInfoPageTest extends TestRunner {
 
     //To check switch to English from Ukrainian
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
-    public void testSwitchToEnglish(String name, String password) {
+    public final void testSwitchToEnglish(String name, String password) {
 
-        final LogInPage logInPage = new LogInPage(driver);
+        logInPage = new LogInPage(driver);
         logInPage
                 .doLogIn(name, password);
         final UserInfoPage userInfoPage = new UserInfoPage(driver);
@@ -53,9 +53,9 @@ public class UserInfoPageTest extends TestRunner {
 
     //To check English button is bold or not, when enabled English
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
-    public void testEnglishButtonBold(String name, String password) {
+    public final void testEnglishButtonBold(String name, String password) {
 
-        final LogInPage logInPage = new LogInPage(driver);
+        logInPage = new LogInPage(driver);
         logInPage
                 .doLogIn(name, password);
         final UserInfoPage userInfoPage = new UserInfoPage(driver);
@@ -63,12 +63,11 @@ public class UserInfoPageTest extends TestRunner {
                 "English Button is not bold");
     }
 
-
     //To check Ukrainian button is bold or not, when enabled Ukrainian
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
-    public void testUkrainianButtonBold(String name, String password) {
+    public final void testUkrainianButtonBold(String name, String password) {
 
-        final LogInPage logInPage = new LogInPage(driver);
+        logInPage = new LogInPage(driver);
         logInPage
                 .doLogIn(name, password);
         final UserInfoPage userInfoPage = new UserInfoPage(driver);

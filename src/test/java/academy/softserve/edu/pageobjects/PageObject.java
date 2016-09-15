@@ -20,19 +20,18 @@ public abstract class PageObject<T> {
         return driver.findElement(elementLocation);
     }
 
-    public final T doLogOut() {
+    public final LogInPage doLogOut() {
         driver.findElement(LOG_OUT_BUTTON).click();
-        return acceptAlert();
+        acceptAlert();
+        return new LogInPage(driver);
     }
 
-    public final T acceptAlert() {
+    public final void acceptAlert() {
         driver.switchTo().alert().accept();
-        return (T) this;
     }
 
-    public final T dismissAlert() {
+    public final void dismissAlert() {
         driver.switchTo().alert().dismiss();
-        return (T) this;
     }
 
     public final String getCurrentUrl() {
@@ -43,14 +42,12 @@ public abstract class PageObject<T> {
         return driver.getPageSource();
     }
 
-    public final T navigateBack() {
+    public final void navigateBack() {
         driver.navigate().back();
-        return (T) this;
     }
 
-    public final T navigateForvard() {
+    public final void navigateForvard() {
         driver.navigate().forward();
-        return (T) this;
     }
 
     public final T refreshPage() {

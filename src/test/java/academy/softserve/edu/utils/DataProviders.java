@@ -5,7 +5,7 @@ import org.testng.annotations.DataProvider;
 public class DataProviders {
 
     @DataProvider
-    static public Object[][] testDataForMerchandiser() {
+    static final public Object[][] testDataForMerchandiser() {
         return new Object[][]{
                 {"login1", "qwerty"}
         };
@@ -13,7 +13,7 @@ public class DataProviders {
 
 
     @DataProvider
-    static public Object[][] testDataForAdministrator() {
+    static final public Object[][] testDataForAdministrator() {
         return new Object[][]{
                 {"RomanS", "qwerty"}
         };
@@ -21,7 +21,7 @@ public class DataProviders {
 
 
     @DataProvider
-    static public Object[][] testDataForSupervisor() {
+    static final public Object[][] testDataForSupervisor() {
         return new Object[][]{
                 {"login2", "qwerty"}
         };
@@ -29,7 +29,7 @@ public class DataProviders {
 
 
     @DataProvider
-    static public Object[][] testDataForCustomer() {
+    static final public Object[][] testDataForCustomer() {
         return new Object[][]{
                 {"vpopkin", "qwerty"}
         };

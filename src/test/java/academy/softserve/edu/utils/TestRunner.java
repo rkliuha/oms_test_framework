@@ -1,6 +1,7 @@
 package academy.softserve.edu.utils;
 
 import academy.softserve.edu.enums.Browsers;
+import academy.softserve.edu.pageobjects.*;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -14,6 +15,13 @@ public class TestRunner {
     public static final int TIMEOUT = 30;
 
     protected WebDriver driver;
+    protected LogInPage logInPage;
+    protected UserInfoPage userInfoPage;
+    protected AdministrationPage administrationPage;
+    protected MerchandiserOrderingPage merchandiserOrderingPage;
+    protected CustomerOrderingPage customerOrderingPage;
+    protected ItemManagementPage itemManagementPage;
+
 
     @BeforeMethod
     public final void setUp() {
