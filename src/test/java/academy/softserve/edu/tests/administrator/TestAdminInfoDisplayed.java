@@ -4,6 +4,7 @@ import academy.softserve.edu.pageobjects.LogInPage;
 import academy.softserve.edu.pageobjects.UserInfoPage;
 import academy.softserve.edu.utils.DataProviders;
 import academy.softserve.edu.utils.TestRunner;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static org.testng.AssertJUnit.assertTrue;
@@ -12,14 +13,15 @@ public class TestAdminInfoDisplayed extends TestRunner {
 
     @Test(dataProvider = "testDataForAdministrator", dataProviderClass = DataProviders.class)
     public void testAdminInfoDisplayed(final String userName, final String userPassword) {
-        infoPage = new UserInfoPage(driver);
         loginPage = new LogInPage(driver);
         loginPage.doLogIn(userName, userPassword);
-        assertTrue(!infoPage.getFirstNameValue().isEmpty() &&
-                !infoPage.getLastNameValue().isEmpty() &&
-                !infoPage.getCustomerTypeValue().isEmpty() &&
-                !infoPage.getRoleValue().isEmpty());
+        Assert.assertTrue(!driver.findElement(UserInfoPage.FIRST_NAME_VALUE).getText().isEmpty() &&
+                        !driver.findElement(UserInfoPage.LAST_NAME_VALUE).getText().isEmpty() &&
+                        !driver.findElement(UserInfoPage.CUSTOMER_TYPE_VALUE).getText().isEmpty() &&
+                        !driver.findElement(UserInfoPage.ROLE_VALUE).getText().isEmpty(),
+                "\nFirst Name = " + driver.findElement(UserInfoPage.FIRST_NAME_VALUE).getText() +
+                        "\nLast Name = " + driver.findElement(UserInfoPage.LAST_NAME_VALUE).getText() +
+                        "\nCustomer Type = " + driver.findElement(UserInfoPage.CUSTOMER_TYPE_VALUE).getText() +
+                        "\nRole = " + driver.findElement(UserInfoPage.ROLE_VALUE).getText() + "\n");
     }
 }
-
-

@@ -11,16 +11,13 @@ import java.util.concurrent.TimeUnit;
 
 public class TestRunner {
     protected static final String LOG_IN_PAGE = PropertiesFile.getProperty("LOG_IN_PAGE");
-    //protected static final String LOG_IN_PAGE = "http://192.168.56.101:8080/oms5/login.htm";
     protected static final int TIMEOUT = 30;
-    protected UserInfoPage infoPage;
     protected LogInPage loginPage;
 
     protected WebDriver driver;
 
     @BeforeMethod
     public final void setUp() {
-
         driver = new WebDriverFactory().getDriver(Browsers.FIREFOX);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(TIMEOUT, TimeUnit.SECONDS);
@@ -29,7 +26,7 @@ public class TestRunner {
 
     @AfterMethod
     public final void tearDown() {
+        loginPage.doLogOut();
         driver.close();
     }
-
 }
