@@ -1,6 +1,6 @@
 package academy.softserve.edu.utils;
 
-import academy.softserve.edu.tests.AdminAfterLogInTest;
+
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -17,28 +17,22 @@ import java.util.Date;
 public class TestListener extends TestListenerAdapter {
 
     @Override
-    public void onTestFailure(final ITestResult iTestResult) {
-        takeScreenShotOnFailure(iTestResult);
-    }
+    public void onTestFailure(final ITestResult result) {
 
-    private void takeScreenShotOnFailure(final ITestResult iTestResult) {
-
-        final Object object = iTestResult
+        final Object currentClass = result
                 .getInstance();
 
-        final WebDriver driver = ((AdminAfterLogInTest) object)
+        final WebDriver driver = ((TestRunner) currentClass)
                 .getDriver();
 
         final Date currentDate = new Date();
-
         final Format formatter = new SimpleDateFormat("dd.MM.yyyy_HH-mm - ");
 
         final File screenShotFile = ((TakesScreenshot) driver)
                 .getScreenshotAs(OutputType.FILE);
-
         try {
             FileUtils.copyFile(screenShotFile, new File("test-output//html//screenshots//" +
-                    formatter.format(currentDate) + iTestResult.getName() + ".png"));
+                    formatter.format(currentDate) + result.getName() + ".png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,5 +1,6 @@
 package academy.softserve.edu.pageobjects;
 
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -26,6 +27,7 @@ public abstract class PageObject<T> {
         return new LogInPage(driver);
     }
 
+<<<<<<< HEAD
     public final void acceptAlert() {
         driver.switchTo().alert().accept();
     }
@@ -71,5 +73,12 @@ public abstract class PageObject<T> {
 
     public WebElement getUkrainianButton() {
         return driver.findElement(UKRAINIAN_BUTTON);
+=======
+    public void click(final By path) {
+
+        driver
+                .findElement(path)
+                .click();
+>>>>>>> f882beeb1a5bdba80d7c859834b19290187987af
     }
 }
