@@ -26,11 +26,11 @@ public enum Roles {
         return roleName;
     }
 
-    public int getRoleReference() {
+    public final int getRoleReference() {
         return roleReference;
     }
 
-    public String getRoleName() {
+    public final String getRoleName() {
         return roleName;
     }
 

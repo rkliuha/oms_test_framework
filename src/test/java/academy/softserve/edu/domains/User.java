@@ -91,73 +91,73 @@ public class User {
         private int roleReference;
 
         @Override
-        public UserActiveStep setId(final int id) {
+        public final UserActiveStep setId(final int id) {
             this.id = id;
             return this;
         }
 
         @Override
-        public BalanceStep setUserActive(final int userActive) {
+        public final BalanceStep setUserActive(final int userActive) {
             this.userActive = userActive;
             return this;
         }
 
         @Override
-        public EmailStep setBalance(final int balance) {
+        public final EmailStep setBalance(final int balance) {
             this.balance = balance;
             return this;
         }
 
         @Override
-        public FirstNameStep setEmail(final String email) {
+        public final FirstNameStep setEmail(final String email) {
             this.email = email;
             return this;
         }
 
         @Override
-        public LastNameStep setFirstName(final String firstName) {
+        public final LastNameStep setFirstName(final String firstName) {
             this.firstName = firstName;
             return this;
         }
 
         @Override
-        public LoginStep setLastName(final String lastName) {
+        public final LoginStep setLastName(final String lastName) {
             this.lastName = lastName;
             return this;
         }
 
         @Override
-        public PasswordStep setLogin(final String login) {
+        public final PasswordStep setLogin(final String login) {
             this.login = login;
             return this;
         }
 
         @Override
-        public CustomerTypeReferenceStep setPassword(final String password) {
+        public final CustomerTypeReferenceStep setPassword(final String password) {
             this.password = password;
             return this;
         }
 
         @Override
-        public RegionReferenceStep setCustomerTypeReference(final int customerTypeReference) {
+        public final RegionReferenceStep setCustomerTypeReference(final int customerTypeReference) {
             this.customerTypeReference = customerTypeReference;
             return this;
         }
 
         @Override
-        public RoleReferenceStep setRegionReference(final int regionReference) {
+        public final RoleReferenceStep setRegionReference(final int regionReference) {
             this.regionReference = regionReference;
             return this;
         }
 
         @Override
-        public BuildStep setRoleReference(final int roleReference) {
+        public final BuildStep setRoleReference(final int roleReference) {
             this.roleReference = roleReference;
             return this;
         }
 
         @Override
-        public User build() {
+        public final User build() {
 
             final User user = new User();
 

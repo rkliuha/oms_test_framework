@@ -26,11 +26,11 @@ public enum CustomerTypes {
         return customerTypeName;
     }
 
-    public int getCustomerTypeReference() {
+    public final int getCustomerTypeReference() {
         return customerTypeReference;
     }
 
-    public String getCustomerTypeName() {
+    public final String getCustomerTypeName() {
         return customerTypeName;
     }
 }

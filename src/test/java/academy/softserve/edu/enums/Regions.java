@@ -26,11 +26,11 @@ public enum Regions {
         return regionName;
     }
 
-    public int getRegionReference() {
+    public final int getRegionReference() {
         return regionReference;
     }
 
-    public String getRegionName() {
+    public final String getRegionName() {
         return regionName;
     }
 }
