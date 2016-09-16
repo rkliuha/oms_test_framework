@@ -2,7 +2,6 @@ package academy.softserve.edu.utils;
 
 import academy.softserve.edu.enums.Browsers;
 import academy.softserve.edu.pageobjects.LogInPage;
-import academy.softserve.edu.pageobjects.UserInfoPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -10,7 +9,8 @@ import org.testng.annotations.BeforeMethod;
 import java.util.concurrent.TimeUnit;
 
 public class TestRunner {
-    protected static final String LOG_IN_PAGE = PropertiesFile.getProperty("LOG_IN_PAGE");
+    protected static final String CONFIG_PROPERTIES = "src/resources/config.properties";
+    protected static final String LOG_IN_PAGE = PropertiesReader.getProperty("LOG_IN_PAGE", CONFIG_PROPERTIES);
     protected static final int TIMEOUT = 30;
     protected LogInPage loginPage;
 
@@ -26,7 +26,6 @@ public class TestRunner {
 
     @AfterMethod
     public final void tearDown() {
-        loginPage.doLogOut();
         driver.close();
     }
 }
