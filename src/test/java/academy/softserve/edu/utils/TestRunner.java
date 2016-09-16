@@ -12,10 +12,10 @@ import static academy.softserve.edu.enums.Browsers.FIREFOX;
 
 @Listeners({TestListener.class})
 public class TestRunner {
-
-    public static final String LOG_IN_PAGE =
-            "http://192.168.56.101:8080/oms5/login.htm";
-    public static final int TIMEOUT = 30;
+    protected static final String CONFIG_PROPERTIES = "src/resources/config.properties";
+    protected static final String LOG_IN_PAGE = PropertiesReader.getProperty("LOG_IN_PAGE", CONFIG_PROPERTIES);
+    protected static final int TIMEOUT = 30;
+    protected LogInPage loginPage;
 
     protected WebDriver driver;
 

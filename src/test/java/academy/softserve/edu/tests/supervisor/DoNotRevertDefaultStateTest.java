@@ -5,14 +5,8 @@ import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static academy.softserve.edu.pageobjects.ItemManagementPage.FIELD_FILTER_BUTTON;
-import static academy.softserve.edu.pageobjects.ItemManagementPage.FIELD_FILTER_DROPDOWN;
-import static academy.softserve.edu.pageobjects.ItemManagementPage.FIELD_FILTER_TEXT_BOX;
-import static academy.softserve.edu.pageobjects.MerchandiserOrderingPage.MERCHANDISER_SEARCH_ORDERS_BUTTON;
-import static academy.softserve.edu.pageobjects.MerchandiserOrderingPage.MERCHANDISER_SEARCH_ORDERS_DROPDOWN;
-import static academy.softserve.edu.pageobjects.MerchandiserOrderingPage.MERCHANDISER_SEARCH_ORDERS_TEXT_BOX;
+import static academy.softserve.edu.pageobjects.ItemManagementPage.*;
 import static academy.softserve.edu.pageobjects.UserInfoPage.ITEM_MANAGEMENT_LINK;
-import static academy.softserve.edu.pageobjects.UserInfoPage.MERCHANDISER_ORDERING_LINK;
 import static academy.softserve.edu.pageobjects.UserInfoPage.USER_INFO_LINK;
 
 public class DoNotRevertDefaultStateTest extends TestRunner {

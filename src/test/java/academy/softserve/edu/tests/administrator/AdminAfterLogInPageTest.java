@@ -3,27 +3,22 @@ package academy.softserve.edu.tests.administrator;
 import academy.softserve.edu.pageobjects.AdministrationPage;
 import academy.softserve.edu.pageobjects.LogInPage;
 import academy.softserve.edu.pageobjects.UserInfoPage;
-import academy.softserve.edu.utils.TestListener;
+import academy.softserve.edu.utils.DataProviders;
 import academy.softserve.edu.utils.TestRunner;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static academy.softserve.edu.pageobjects.UserInfoPage.*;
 
 public class AdminAfterLogInPageTest extends TestRunner {
 
-    private static final String ADMIN_USERNAME = "iva";
-    private static final String ADMIN_PASSWORD = "qwerty";
-
     //  This test checks if Administrator user can see the following tabs: ‘Administration’ and ‘User Info’(default),
     //  test checks if Administrator user can switch between tabs.
-    @Test
-    final public void testSwitchingBetweenTabs() {
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForAdministrator")
+    final public void testSwitchingBetweenTabs(final String username, final String password) {
 
         final LogInPage logInPage = new LogInPage(driver);
-        logInPage.doLogIn(ADMIN_USERNAME, ADMIN_PASSWORD);
+        logInPage.doLogIn(username, password);
         Assert.assertTrue(logInPage
                 .getElement(USER_INFO_PAGE_EXISTS)
                 .isDisplayed(), "After login tab isn't 'User Info'");
