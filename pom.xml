@@ -16,6 +16,8 @@
         <selenium-remote-driver.version>2.53.1</selenium-remote-driver.version>
         <testng.version>6.9.10</testng.version>
         <surefire-testng.version>2.19.1</surefire-testng.version>
+        <org.apache.poi>3.14</org.apache.poi>
+        <org.apache.poi-ooxml>3.14</org.apache.poi-ooxml>
     </properties>
 
     <build>
@@ -108,13 +110,13 @@
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
-            <version>3.14</version>
+            <version>${org.apache.poi}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
-            <version>3.14</version>
+            <version>${org.apache.poi-ooxml}</version>
         </dependency>
 
     </dependencies>

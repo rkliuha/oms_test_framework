@@ -16,7 +16,8 @@ public class LogInLogOutTest extends TestRunner {
         logInPage = new LogInPage(driver);
         logInPage
                 .doLogIn(name, password);
-        Assert.assertEquals(driver.getCurrentUrl(), UserInfoPage.USER_INFO_PAGE_URL,
+        userInfoPage = new UserInfoPage(driver);
+        Assert.assertTrue(userInfoPage.getIdentificationOfUserInfoPage().isDisplayed(),
                 "LogIn failed!");
     }
 
@@ -27,11 +28,11 @@ public class LogInLogOutTest extends TestRunner {
         logInPage
                 .doLogIn(name, password);
 
-        final UserInfoPage userInfoPage = new UserInfoPage(driver);
+        userInfoPage = new UserInfoPage(driver);
         // below we have to check if logIn was successful because every page has
         // logOut button with same locator and we could get false positive result
         // after logIn failure;
-        Assert.assertEquals(driver.getCurrentUrl(), UserInfoPage.USER_INFO_PAGE_URL,
+        Assert.assertTrue(userInfoPage.getIdentificationOfUserInfoPage().isDisplayed(),
                 "LogIn failed!");
 
         Assert.assertTrue(userInfoPage
@@ -43,9 +44,7 @@ public class LogInLogOutTest extends TestRunner {
                 userInfoPage
                         .clickItemManagementTab();
         // we have to check switching between pages, has the same issue with logIn check;
-        Assert.assertEquals(driver.getCurrentUrl(),
-                ItemManagementPage
-                        .ITEM_MANAGEMENT_PAGE_URL,
+        Assert.assertTrue(itemManagementPage.getIdentificationOfSupervisePage().isDisplayed(),
                 "Page is not switched to: "
                         + ItemManagementPage.ITEM_MANAGEMENT_PAGE_URL);
 
@@ -67,6 +66,7 @@ public class LogInLogOutTest extends TestRunner {
         itemManagementPage
                 .doLogOut();
         Assert
-                .assertEquals(driver.getCurrentUrl(), LOG_IN_PAGE, "LogOut failed!");
+                .assertTrue(logInPage.getLogInButton().isDisplayed(),
+                        "LogOut failed!");
     }
 }

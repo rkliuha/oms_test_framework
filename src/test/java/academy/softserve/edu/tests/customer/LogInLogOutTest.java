@@ -12,17 +12,19 @@ import org.testng.annotations.Test;
 public class LogInLogOutTest extends TestRunner {
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
-    public final void testLogIn(String name, String password) {
+    public final void testLogIn(final String name, final String password) {
 
         logInPage = new LogInPage(driver);
         logInPage
                 .doLogIn(name, password);
-        Assert.assertEquals(driver.getCurrentUrl(), UserInfoPage.USER_INFO_PAGE_URL,
-                "LogIn failed!");
+        userInfoPage = new UserInfoPage(driver);
+        Assert
+                .assertTrue(userInfoPage.getIdentificationOfUserInfoPage().isDisplayed(),
+                        "LogIn failed!");
     }
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
-    public final void testLogOutButtonVisibility(String name, String password) {
+    public final void testLogOutButtonVisibility(final String name, final String password) {
 
         logInPage = new LogInPage(driver);
         logInPage
@@ -32,7 +34,7 @@ public class LogInLogOutTest extends TestRunner {
         // below we have to check if logIn was successful because every page has
         // logOut button with same locator and we could get false positive result
         // after logIn failure;
-        Assert.assertEquals(driver.getCurrentUrl(), UserInfoPage.USER_INFO_PAGE_URL,
+        Assert.assertTrue(userInfoPage.getIdentificationOfUserInfoPage().isDisplayed(),
                 "LogIn failed!");
 
         Assert.assertTrue(userInfoPage
@@ -43,8 +45,7 @@ public class LogInLogOutTest extends TestRunner {
         customerOrderingPage =
                 userInfoPage.clickCustomerOrderingTab();
         // we have to check switching between pages, has the same issue with logIn check;
-        Assert.assertEquals(driver.getCurrentUrl(),
-                CustomerOrderingPage.CUSTOMER_ORDERING_PAGE_URL,
+        Assert.assertTrue(customerOrderingPage.getIdentificationOfCustomerPage().isDisplayed(),
                 "Page is not switched to: "
                         + CustomerOrderingPage.CUSTOMER_ORDERING_PAGE_URL);
 
@@ -55,7 +56,7 @@ public class LogInLogOutTest extends TestRunner {
     }
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
-    public final void testLogOut(String name, String password) {
+    public final void testLogOut(final String name, final String password) {
 
         logInPage = new LogInPage(driver);
         logInPage
@@ -67,6 +68,7 @@ public class LogInLogOutTest extends TestRunner {
         customerOrderingPage
                 .doLogOut();
         Assert
-                .assertEquals(driver.getCurrentUrl(), LOG_IN_PAGE, "LogOut failed!");
+                .assertTrue(logInPage.getLogInButton().isDisplayed(),
+                        "LogOut failed!");
     }
 }

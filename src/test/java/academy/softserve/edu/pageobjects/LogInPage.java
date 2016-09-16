@@ -65,6 +65,8 @@ public class LogInPage extends PageObject<LogInPage> {
         return getElement(PASSWORD_FIELD);
     }
 
+    public WebElement getLogInButton() { return getElement(LOG_IN_BUTTON); }
+
     public LogInPage clickRememberMeButton() {
         getElement(REMEMBER_ME_BUTTON).click();
         return this;

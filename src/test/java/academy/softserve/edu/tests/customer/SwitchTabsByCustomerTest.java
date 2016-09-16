@@ -1,12 +1,9 @@
 package academy.softserve.edu.tests.customer;
 
 import academy.softserve.edu.pageobjects.CustomerOrderingPage;
-<<<<<<< HEAD
 import academy.softserve.edu.pageobjects.LogInPage;
 import academy.softserve.edu.pageobjects.UserInfoPage;
 import academy.softserve.edu.utils.DataProviders;
-=======
->>>>>>> f882beeb1a5bdba80d7c859834b19290187987af
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -16,19 +13,12 @@ import static academy.softserve.edu.pageobjects.UserInfoPage.*;
 
 public class SwitchTabsByCustomerTest extends TestRunner {
 
-<<<<<<< HEAD
+
     private LogInPage logInPage;
     private UserInfoPage userInfoPage;
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
-    public void testDefaultUserInfoPage(String name, String password) {
-=======
-    public static final String USER_LOGIN = "vpopkin";
-    public static final String USER_PASSWORD = "qwerty";
-
-    @Test
-    public void testDefaultUserInfoPage() {
->>>>>>> f882beeb1a5bdba80d7c859834b19290187987af
+    public void testDefaultUserInfoPage(final String name, final String password) {
 
         userInfoPage = logInPage
                 .doLogIn(name, password);
@@ -39,7 +29,7 @@ public class SwitchTabsByCustomerTest extends TestRunner {
     }
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
-    public void testUserInfoButtonCheck(String name, String password) {
+    public void testUserInfoButtonCheck(final String name, final String password) {
 
         userInfoPage = logInPage
                 .doLogIn(name, password);
@@ -50,7 +40,7 @@ public class SwitchTabsByCustomerTest extends TestRunner {
     }
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
-    public void testOrderingButtonCheck(String name, String password) {
+    public void testOrderingButtonCheck(final String name, final String password) {
 
         userInfoPage = logInPage
                 .doLogIn(name, password);
@@ -61,7 +51,7 @@ public class SwitchTabsByCustomerTest extends TestRunner {
     }
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
-    public void testActiveOrderingPage(String name, String password) {
+    public void testActiveOrderingPage(final String name, final String password) {
 
         userInfoPage = logInPage
                 .doLogIn(name, password);
@@ -74,8 +64,8 @@ public class SwitchTabsByCustomerTest extends TestRunner {
                 .isDisplayed(), "Element " + CUSTOMER_PAGE_EXISTS + " isn't displayed");
     }
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForUser")
-    public void testSwitchTabsUserOrdering(String name, String password) {
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
+    public void testSwitchTabsUserOrdering(final String name, final String password) {
 
         userInfoPage = logInPage
                 .doLogIn(name, password);

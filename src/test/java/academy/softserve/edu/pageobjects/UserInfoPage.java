@@ -14,6 +14,7 @@ public class UserInfoPage extends PageObject<UserInfoPage> {
     public static final String USER_INFO_PAGE_URL = "http://192.168.56.101:8080/oms5/userInfo.htm";
     public static final By USER_INFO_LINK = By.xpath("(.//ul[@id='nav']//a)[2]");
     public static final By USER_INFO_PAGE_EXISTS = By.xpath(".//div[@id='content']//legend");
+    public static final By IDENTIFICATION_OF_USER_INFO_PAGE = By.xpath(".//*[@id='nav']/li[2]/a");
 
     public UserInfoPage(final WebDriver driver) {
         super(driver);
@@ -41,5 +42,9 @@ public class UserInfoPage extends PageObject<UserInfoPage> {
 
     public final WebElement getMerchandiserOrderingTab() {
         return driver.findElement(MERCHANDISER_ORDERING_LINK);
+    }
+
+    public final WebElement getIdentificationOfUserInfoPage() {
+        return driver.findElement(IDENTIFICATION_OF_USER_INFO_PAGE);
     }
 }

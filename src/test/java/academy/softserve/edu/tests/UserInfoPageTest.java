@@ -12,19 +12,19 @@ public class UserInfoPageTest extends TestRunner {
 
     //To check English by default
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
-    public final void testDefaultEnglish(String name, String password) {
+    public final void testDefaultEnglish(final String name, final String password) {
 
         logInPage = new LogInPage(driver);
         logInPage
                 .doLogIn(name, password);
         final UserInfoPage userInfoPage = new UserInfoPage(driver);
-        Assert.assertTrue(userInfoPage.getMerchandiserOrderingTab().getText().equals("Ordering"),
-                "English is not by default!");
+        Assert.assertTrue("Ordering".equals(userInfoPage.getMerchandiserOrderingTab().getText()),
+                "English should be by default!");
     }
 
     //To check switch to Ukrainian language from default English language
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
-    public final void testSwitchToUkrainian(String name, String password) {
+    public final void testSwitchToUkrainian(final String name, final String password) {
 
         logInPage = new LogInPage(driver);
         logInPage
@@ -32,13 +32,13 @@ public class UserInfoPageTest extends TestRunner {
         final UserInfoPage userInfoPage = new UserInfoPage(driver);
         userInfoPage
                 .clickUkrainianButton();
-        Assert.assertTrue(userInfoPage.getMerchandiserOrderingTab().getText().equals("Замовлення"),
+        Assert.assertTrue("Замовлення".equals(userInfoPage.getMerchandiserOrderingTab().getText()),
                 "This is not Ukrainian language");
     }
 
     //To check switch to English from Ukrainian
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
-    public final void testSwitchToEnglish(String name, String password) {
+    public final void testSwitchToEnglish(final String name, final String password) {
 
         logInPage = new LogInPage(driver);
         logInPage
@@ -47,34 +47,34 @@ public class UserInfoPageTest extends TestRunner {
         userInfoPage
                 .clickUkrainianButton()
                 .clickEnglishButton();
-        Assert.assertTrue(userInfoPage.getMerchandiserOrderingTab().getText().equals("Ordering"),
-                "Does not switched to English");
+        Assert.assertTrue("Ordering".equals(userInfoPage.getMerchandiserOrderingTab().getText()),
+                "The language of the page should switched on English");
     }
 
     //To check English button is bold or not, when enabled English
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
-    public final void testEnglishButtonBold(String name, String password) {
+    public final void testEnglishButtonBold(final String name, final String password) {
 
         logInPage = new LogInPage(driver);
         logInPage
                 .doLogIn(name, password);
-        final UserInfoPage userInfoPage = new UserInfoPage(driver);
-        Assert.assertTrue(userInfoPage.getEnglishButton().getCssValue("font-weight").equals("700"),
-                "English Button is not bold");
+        userInfoPage = new UserInfoPage(driver);
+        Assert.assertTrue("700".equals(userInfoPage.getEnglishButton().getCssValue("font-weight")),
+                "English Button should be bold");
     }
 
     //To check Ukrainian button is bold or not, when enabled Ukrainian
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
-    public final void testUkrainianButtonBold(String name, String password) {
+    public final void testUkrainianButtonBold(final String name, final String password) {
 
         logInPage = new LogInPage(driver);
         logInPage
                 .doLogIn(name, password);
-        final UserInfoPage userInfoPage = new UserInfoPage(driver);
+        userInfoPage = new UserInfoPage(driver);
         userInfoPage
                 .clickUkrainianButton();
-        Assert.assertTrue(userInfoPage.getUkrainianButton().getCssValue("font-weight").equals("700"),
-                "Ukrainian button is not bold!");
+        Assert.assertTrue("700".equals(userInfoPage.getUkrainianButton().getCssValue("font-weight")),
+                "Ukrainian button should be bold!");
     }
 
 }

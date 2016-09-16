@@ -1,7 +1,6 @@
 package academy.softserve.edu.tests;
 
 import academy.softserve.edu.pageobjects.LogInPage;
-import academy.softserve.edu.pageobjects.UserInfoPage;
 import academy.softserve.edu.utils.DataProviders;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
@@ -15,7 +14,8 @@ public class LogInPageTest extends TestRunner {
         logInPage = new LogInPage(driver);
         Assert.assertFalse(logInPage.getInputNameField().getText() == null &&
                         logInPage.getInputPasswordField().getText() == null,
-                "Input fields is not empty!");
+                "Input fields should be empty!");
+
     }
 
     // To check is it possible to input different symbols in to the inputName field.
@@ -26,8 +26,10 @@ public class LogInPageTest extends TestRunner {
         logInPage
                 .getInputNameField()
                 .sendKeys("Asa23@(?|};6756%");
+
         Assert.assertTrue(logInPage.getInputNameField().getText() != null,
-                "Input name field is empty!");
+                "Input name field should not be empty!");
+
     }
 
     // To check is it possible to input password data, and characters must be converted in to the asterisk
@@ -38,8 +40,9 @@ public class LogInPageTest extends TestRunner {
         logInPage
                 .getInputPasswordField()
                 .sendKeys(password);
-        Assert.assertFalse(logInPage.getInputPasswordField().getText().equals(password),
-                "You can see the password!");
+
+        Assert.assertFalse(password.equals(logInPage.getInputPasswordField().getText()),
+                "You should not see the password!");
     }
 
     //Try to put in the both fields unregistered data
@@ -49,8 +52,9 @@ public class LogInPageTest extends TestRunner {
         logInPage = new LogInPage(driver);
         logInPage
                 .doLogIn("Sarumjan", "Mordor");
-        Assert.assertFalse(driver.getCurrentUrl().equals(UserInfoPage.USER_INFO_PAGE_URL),
-                "You Logged In with unregistered data!");
+
+        Assert.assertTrue(logInPage.getLogInButton().isDisplayed(),
+                "You should not Logged In with unregistered data!");
     }
 
     //Try to Log In with only users field filled
@@ -61,8 +65,10 @@ public class LogInPageTest extends TestRunner {
         logInPage
                 .inputName(name)
                 .clickLogInButton();
-        Assert.assertFalse(driver.getCurrentUrl().equals(UserInfoPage.USER_INFO_PAGE_URL),
-                "You Logged In without password!");
+
+        Assert.assertTrue(logInPage.getLogInButton().isDisplayed(),
+                "You should not Logged In without password!");
+
     }
 
     //Input data at the password field only
@@ -73,8 +79,9 @@ public class LogInPageTest extends TestRunner {
         logInPage
                 .inputPassword(password)
                 .clickLogInButton();
-        Assert.assertFalse(driver.getCurrentUrl().equalsIgnoreCase(UserInfoPage.USER_INFO_PAGE_URL),
-                "You Logged In with empty name field!");
+
+        Assert.assertTrue(logInPage.getLogInButton().isDisplayed(),
+                "You should not Logged In with empty name field!");
     }
 
     //Try to Log In with empty input fields
@@ -84,7 +91,8 @@ public class LogInPageTest extends TestRunner {
         logInPage = new LogInPage(driver);
         logInPage
                 .clickLogInButton();
-        Assert.assertFalse(driver.getCurrentUrl().equals(UserInfoPage.USER_INFO_PAGE_URL),
+
+        Assert.assertTrue(logInPage.getLogInButton().isDisplayed(),
                 "You are David Copperfield!");
     }
 
@@ -97,9 +105,10 @@ public class LogInPageTest extends TestRunner {
                 .inputName(name)
                 .inputPassword(password)
                 .clickResetButton();
+
         Assert.assertTrue(logInPage.getNameField().getText().isEmpty() &&
                         logInPage.getPasswordField().getText().isEmpty(),
-                "Input fields is not empty!");
+                "Input fields should be empty!");
     }
 
     //Try to Log In and Log Out with valid data and turn on Remember me check box. Data should remain in the input fields
@@ -114,17 +123,21 @@ public class LogInPageTest extends TestRunner {
         logInPage
                 .doLogOut();
         Assert.assertFalse(logInPage.getInputNameField().getText() != name &&
-                logInPage.getInputPasswordField().getText().isEmpty(), "The data is not saved!");
+                        logInPage.getInputPasswordField().getText().isEmpty(),
+                "The data should be saved!");
     }
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
     public final void testLoginWithNonExistingData(final String name, final String password) {
 
         logInPage = new LogInPage(driver);
-        logInPage.doLogIn("Sarumjan", password);      // Input Incorrect name and empty password field and click
-        logInPage.doLogIn(name, "mordor");            // Input Incorrect password and empty name field and click
-        Assert.assertFalse(driver.getCurrentUrl().equalsIgnoreCase(UserInfoPage.USER_INFO_PAGE_URL),
-                "You are Logged In with invalid data!");
+        logInPage
+                .doLogIn("Sarumjan", password);      // Input Incorrect name and empty password field and click
+        logInPage
+                .doLogIn(name, "mordor");            // Input Incorrect password and empty name field and click
+
+        Assert.assertTrue(logInPage.getLogInButton().isDisplayed(),
+                "You should not Logged In with invalid data!");
     }
 
     //Input data in to the Password field, Try to Log In
@@ -174,10 +187,12 @@ public class LogInPageTest extends TestRunner {
     public final void testErrorMessageOnWrongPassword(String name, String password) {
 
         logInPage = new LogInPage(driver);
-        logInPage.doLogIn(name, "mordor");// Input Incorrect password and empty name field and click
+        logInPage
+                .doLogIn(name, "mordor");// Input Incorrect password and empty name field and click
         Assert.assertEquals(logInPage.getElement(LogInPage.ERROR_MESSAGE).getText(),
                 "Password is incorrect � please try again",
                 "Unexpected message!");
     }
+
 }
 
