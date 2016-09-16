@@ -30,14 +30,25 @@ public class TestListener extends TestListenerAdapter {
 
         final File screenShotFile = ((TakesScreenshot) driver)
                 .getScreenshotAs(OutputType.FILE);
+
+        Reporter.log(Logger.logInfo("Test Result:"));
+        Reporter.log(Logger.logFail(result.getName()));
+
         try {
-            FileUtils.copyFile(screenShotFile, new File("test-output//html//screenshots//" +
-                    formatter.format(currentDate) + result.getName() + ".png"));
+            FileUtils.copyFile(screenShotFile, new File("test-output//html//screenshots//"
+                    + formatter.format(currentDate) + result.getName() + ".png"));
             Reporter.log("<a href='" + "screenshots/" +
-                    formatter.format(currentDate) + result.getName() + ".png'> <img src='" +
-                    "screenshots/" + formatter.format(currentDate) + result.getName() + ".png' height='388' width='760'/> <a>");
+                    formatter.format(currentDate) + result.getName() + ".png'> <img src='"
+                    + "screenshots/" + formatter.format(currentDate) + result.getName()
+                    + ".png' height='388' width='760'/> <a>");
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onTestSuccess(final ITestResult result) {
+        Reporter.log(Logger.logInfo("Test Result: "));
+        Reporter.log(Logger.logPass(result.getName()));
     }
 }
