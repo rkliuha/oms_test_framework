@@ -2,8 +2,10 @@ package academy.softserve.edu.pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
-public class UserInfoPage extends PageObject {
+public class UserInfoPage extends PageObject<UserInfoPage> {
+
     public static final By ADMINISTRATION_LINK = By.xpath("//ul[@id='nav']/descendant::a[@href='users.htm']");
     public static final By ITEM_MANAGEMENT_LINK = By.xpath("//ul[@id='nav']/descendant::a[@href='itemManagement.htm']");
     public static final By CUSTOMER_ORDERING_LINK = By.xpath("//ul[@id='nav']/descendant::a[@href='order.htm']");
@@ -16,6 +18,7 @@ public class UserInfoPage extends PageObject {
     public static final By LAST_NAME_VALUE = By.xpath("//tr[2]/td[2]");
     public static final By CUSTOMER_TYPE_VALUE = By.xpath("//tr[3]/td[2]");
     public static final By ROLE_VALUE = By.xpath("//tr[4]/td[2]");
+    public static final By IDENTIFICATION_OF_USER_INFO_PAGE = By.xpath(".//*[@id='nav']/li[2]/a");
 
     public UserInfoPage(final WebDriver driver) {
         super(driver);
@@ -40,10 +43,12 @@ public class UserInfoPage extends PageObject {
         driver.findElement(MERCHANDISER_ORDERING_LINK).click();
         return new MerchandiserOrderingPage(driver);
     }
+
+    public final WebElement getMerchandiserOrderingTab() {
+        return driver.findElement(MERCHANDISER_ORDERING_LINK);
+    }
+
+    public final WebElement getIdentificationOfUserInfoPage() {
+        return driver.findElement(IDENTIFICATION_OF_USER_INFO_PAGE);
+    }
 }
-
-
-
-
-
-

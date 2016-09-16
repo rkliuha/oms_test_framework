@@ -1,6 +1,9 @@
 package academy.softserve.edu.tests.customer;
 
 import academy.softserve.edu.pageobjects.CustomerOrderingPage;
+import academy.softserve.edu.pageobjects.LogInPage;
+import academy.softserve.edu.pageobjects.UserInfoPage;
+import academy.softserve.edu.utils.DataProviders;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -10,47 +13,48 @@ import static academy.softserve.edu.pageobjects.UserInfoPage.*;
 
 public class SwitchTabsByCustomerTest extends TestRunner {
 
-    public static final String USER_LOGIN = "vpopkin";
-    public static final String USER_PASSWORD = "qwerty";
 
-    @Test
-    public void testDefaultUserInfoPage() {
+    private LogInPage logInPage;
+    private UserInfoPage userInfoPage;
+
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
+    public void testDefaultUserInfoPage(final String name, final String password) {
 
         userInfoPage = logInPage
-                .doLogIn(USER_LOGIN, USER_PASSWORD);
+                .doLogIn(name, password);
 
         Assert.assertTrue(userInfoPage
                 .getElement(USER_INFO_PAGE_EXISTS)
                 .isDisplayed(), "Element " + USER_INFO_PAGE_EXISTS + " isn't displayed");
     }
 
-    @Test
-    public void testUserInfoButtonCheck() {
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
+    public void testUserInfoButtonCheck(final String name, final String password) {
 
         userInfoPage = logInPage
-                .doLogIn(USER_LOGIN, USER_PASSWORD);
+                .doLogIn(name, password);
 
         Assert.assertTrue(userInfoPage
                 .getElement(USER_INFO_LINK)
                 .isDisplayed(), "Element " + USER_INFO_LINK + " isn't displayed");
     }
 
-    @Test
-    public void testOrderingButtonCheck() {
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
+    public void testOrderingButtonCheck(final String name, final String password) {
 
         userInfoPage = logInPage
-                .doLogIn(USER_LOGIN, USER_PASSWORD);
+                .doLogIn(name, password);
 
         Assert.assertTrue(userInfoPage
                 .getElement(CUSTOMER_ORDERING_LINK)
                 .isDisplayed(), "Element " + CUSTOMER_ORDERING_LINK + " isn't displayed");
     }
 
-    @Test
-    public void testActiveOrderingPage() {
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
+    public void testActiveOrderingPage(final String name, final String password) {
 
         userInfoPage = logInPage
-                .doLogIn(USER_LOGIN, USER_PASSWORD);
+                .doLogIn(name, password);
 
         userInfoPage
                 .click(CUSTOMER_ORDERING_LINK);
@@ -60,11 +64,11 @@ public class SwitchTabsByCustomerTest extends TestRunner {
                 .isDisplayed(), "Element " + CUSTOMER_PAGE_EXISTS + " isn't displayed");
     }
 
-    @Test
-    public void testSwitchTabsUserOrdering() {
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
+    public void testSwitchTabsUserOrdering(final String name, final String password) {
 
         userInfoPage = logInPage
-                .doLogIn(USER_LOGIN, USER_PASSWORD);
+                .doLogIn(name, password);
 
         userInfoPage
                 .click(CUSTOMER_ORDERING_LINK);

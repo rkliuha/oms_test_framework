@@ -15,4 +15,19 @@ public class DataProviders {
                 {"iva", "qwerty"}
         };
     }
+
+    @DataProvider
+    static final public Object[][] testDataForSupervisor() {
+        return new Object[][]{
+                {"login2", "qwerty"}
+        };
+    }
+
+
+    @DataProvider
+    static final public Object[][] testDataForCustomer() {
+        return new Object[][]{
+                {"vpopkin", "qwerty"}
+        };
+    }
 }
