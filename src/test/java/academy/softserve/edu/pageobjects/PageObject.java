@@ -1,5 +1,6 @@
 package academy.softserve.edu.pageobjects;
 
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,5 +21,12 @@ public abstract class PageObject {
         driver.findElement(LOG_OUT_BUTTON).click();
         driver.switchTo().alert().accept();
         return new LogInPage(driver);
+    }
+
+    public void click(final By path) {
+
+        driver
+                .findElement(path)
+                .click();
     }
 }
