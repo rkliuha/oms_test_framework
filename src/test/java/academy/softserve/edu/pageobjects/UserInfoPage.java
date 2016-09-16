@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class UserInfoPage extends PageObject {
-
     public static final By ADMINISTRATION_LINK = By.xpath("//ul[@id='nav']/descendant::a[@href='users.htm']");
     public static final By ITEM_MANAGEMENT_LINK = By.xpath("//ul[@id='nav']/descendant::a[@href='itemManagement.htm']");
     public static final By CUSTOMER_ORDERING_LINK = By.xpath("//ul[@id='nav']/descendant::a[@href='order.htm']");
@@ -13,6 +12,10 @@ public class UserInfoPage extends PageObject {
     public static final String USER_INFO_PAGE_URL = "http://192.168.56.101:8080/oms5/userInfo.htm";
     public static final By USER_INFO_LINK = By.xpath("(.//ul[@id='nav']//a)[2]");
     public static final By USER_INFO_PAGE_EXISTS = By.xpath(".//div[@id='content']//legend");
+    public static final By FIRST_NAME_VALUE = By.xpath("//tr[1]/td[2]");
+    public static final By LAST_NAME_VALUE = By.xpath("//tr[2]/td[2]");
+    public static final By CUSTOMER_TYPE_VALUE = By.xpath("//tr[3]/td[2]");
+    public static final By ROLE_VALUE = By.xpath("//tr[4]/td[2]");
 
     public UserInfoPage(final WebDriver driver) {
         super(driver);
@@ -37,5 +40,10 @@ public class UserInfoPage extends PageObject {
         driver.findElement(MERCHANDISER_ORDERING_LINK).click();
         return new MerchandiserOrderingPage(driver);
     }
-
 }
+
+
+
+
+
+

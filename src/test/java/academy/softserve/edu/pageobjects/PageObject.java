@@ -6,10 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public abstract class PageObject {
-
     public static final By LOG_OUT_BUTTON = By.id("logout");
-
-    protected WebDriver driver;
+    protected final WebDriver driver;
 
     public PageObject(final WebDriver driver) {
         this.driver = driver;
