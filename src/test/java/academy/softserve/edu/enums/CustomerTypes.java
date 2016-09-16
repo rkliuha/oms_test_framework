@@ -1,7 +1,6 @@
 package academy.softserve.edu.enums;
 
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public enum CustomerTypes {
 
@@ -14,8 +13,9 @@ public enum CustomerTypes {
 
         return Arrays.stream(CustomerTypes.values())
                 .filter(customerTypes -> (customerTypes.ordinal() + 1) == customerTypeReference)
-                .map(Enum::toString)
-                .collect(Collectors.joining());
+                .findFirst()
+                .get()
+                .toString();
     }
 
 }

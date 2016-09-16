@@ -1,7 +1,6 @@
 package academy.softserve.edu.enums;
 
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public enum Roles {
 
@@ -14,8 +13,9 @@ public enum Roles {
 
         return Arrays.stream(Roles.values())
                 .filter(roles -> (roles.ordinal() + 1) == roleReference)
-                .map(Enum::toString)
-                .collect(Collectors.joining());
+                .findFirst()
+                .get()
+                .toString();
     }
 
 }
