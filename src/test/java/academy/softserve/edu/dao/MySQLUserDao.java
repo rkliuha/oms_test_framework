@@ -84,7 +84,7 @@ public class MySQLUserDao implements UserDao {
 
         User user = null;
         try (final PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_ROLE_QUERY)) {
-            preparedStatement.setInt(1, role.getRoleReference());
+            preparedStatement.setInt(1, (role.ordinal() + 1));
             final ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
 
