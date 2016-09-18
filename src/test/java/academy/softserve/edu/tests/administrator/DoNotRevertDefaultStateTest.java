@@ -16,6 +16,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     public static final String ROLE = "Role";
     public static final String ROLE_FILTER = "contains";
     public static final String TEXT = "A";
+    public static final String TAG_ATRIBUT = "value";
 
     @Test
     public void testUserInfoAdministrationButtonCheck() {
@@ -76,7 +77,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
 
         Assert.assertTrue(administrationPage
                 .getElement(FILED_FILTER_TEXT_BOX)
-                .getAttribute("value")
+                .getAttribute(TAG_ATRIBUT)
                 .contains(TEXT), "Text in the text box is different of " + TEXT);
     }
 }

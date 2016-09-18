@@ -15,6 +15,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     public static final String USER_PASSWORD = "qwerty";
     public static final String SEARCH_ORDERS = "Status";
     public static final String SEARCH_ORDERS_VALUE = "Ordered";
+    public static final String TAG_ATRIBUT = "value";
 
     @Test
     public void testUserInfoOrderingButtonCheck() {
@@ -66,7 +67,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
 
         Assert.assertTrue(customerOrderingPage
                 .getElement(SEARCH_ORDERS_TEXT_BOX)
-                .getAttribute("value")
+                .getAttribute(TAG_ATRIBUT)
                 .contains(SEARCH_ORDERS_VALUE), "Search order value in the search order text box is different of " + SEARCH_ORDERS_VALUE);
     }
 }

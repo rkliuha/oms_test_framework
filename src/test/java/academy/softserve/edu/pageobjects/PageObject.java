@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
 public abstract class PageObject<T> {
 
     public static final By LOG_OUT_BUTTON = By.id("logout");
@@ -21,6 +23,9 @@ public abstract class PageObject<T> {
         return driver.findElement(elementLocation);
     }
 
+    public final List<WebElement> getElements(final By elementLocation) {
+        return driver.findElements(elementLocation);
+    }
 
     public final LogInPage doLogOut() {
 
