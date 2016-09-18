@@ -1,8 +1,6 @@
 package academy.softserve.edu.tests.customer;
 
 import academy.softserve.edu.pageobjects.CustomerOrderingPage;
-import academy.softserve.edu.pageobjects.LogInPage;
-import academy.softserve.edu.pageobjects.UserInfoPage;
 import academy.softserve.edu.utils.DataProviders;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
@@ -12,10 +10,6 @@ import static academy.softserve.edu.pageobjects.CustomerOrderingPage.CUSTOMER_PA
 import static academy.softserve.edu.pageobjects.UserInfoPage.*;
 
 public class SwitchTabsByCustomerTest extends TestRunner {
-
-
-    private LogInPage logInPage;
-    private UserInfoPage userInfoPage;
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
     public void testDefaultUserInfoPage(final String name, final String password) {
