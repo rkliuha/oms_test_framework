@@ -3,20 +3,22 @@ package academy.softserve.edu.domains;
 import academy.softserve.edu.enums.CustomerTypes;
 import academy.softserve.edu.enums.Regions;
 import academy.softserve.edu.enums.Roles;
+import lombok.Getter;
+import lombok.Setter;
 
 public class User {
 
-    private int id;
-    private int userActive;
-    private int balance;
-    private String email;
-    private String firstName;
-    private String lastName;
-    private String login;
-    private String password;
-    private int customerTypeReference;
-    private int regionReference;
-    private int roleReference;
+    @Getter @Setter private int id;
+    @Getter @Setter private int userActive;
+    @Getter @Setter private int balance;
+    @Getter @Setter private String email;
+    @Getter @Setter private String firstName;
+    @Getter @Setter private String lastName;
+    @Getter @Setter private String login;
+    @Getter @Setter private String password;
+    @Getter @Setter private int customerTypeReference;
+    @Getter @Setter private int regionReference;
+    @Getter @Setter private int roleReference;
 
     private User() {
 
@@ -205,94 +207,6 @@ public class User {
                 ", RegionRef=" + regionReference +
                 ", RoleRef=" + roleReference +
                 "}";
-    }
-
-    public final int getId() {
-        return id;
-    }
-
-    public final void setId(final int id) {
-        this.id = id;
-    }
-
-    public final int isUserActive() {
-        return userActive;
-    }
-
-    public final void setUserActive(final int userActive) {
-        this.userActive = userActive;
-    }
-
-    public final int getBalance() {
-        return balance;
-    }
-
-    public final void setBalance(final int balance) {
-        this.balance = balance;
-    }
-
-    public final String getEmail() {
-        return email;
-    }
-
-    public final void setEmail(final String email) {
-        this.email = email;
-    }
-
-    public final String getFirstName() {
-        return firstName;
-    }
-
-    public final void setFirstName(final String firstName) {
-        this.firstName = firstName;
-    }
-
-    public final String getLastName() {
-        return lastName;
-    }
-
-    public final void setLastName(final String lastName) {
-        this.lastName = lastName;
-    }
-
-    public final String getLogin() {
-        return login;
-    }
-
-    public final void setLogin(final String login) {
-        this.login = login;
-    }
-
-    public final String getPassword() {
-        return password;
-    }
-
-    public final void setPassword(final String password) {
-        this.password = password;
-    }
-
-    public final int getCustomerTypeReference() {
-        return customerTypeReference;
-    }
-
-    public final void setCustomerTypeReference(final int customerTypeReference) {
-        this.customerTypeReference = customerTypeReference;
-    }
-
-    public final int getRegionReference() {
-        return regionReference;
-    }
-
-    public final void setRegionReference(final int regionReference) {
-        this.regionReference = regionReference;
-    }
-
-    public final int getRoleReference() {
-        return roleReference;
-    }
-
-    public final void setRoleReference(final int roleReference) {
-        this.roleReference = roleReference;
     }
 
 }

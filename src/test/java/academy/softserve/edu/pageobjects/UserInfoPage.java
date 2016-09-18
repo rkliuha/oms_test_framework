@@ -10,7 +10,6 @@ public class UserInfoPage extends PageObject<UserInfoPage> {
     public static final By ITEM_MANAGEMENT_LINK = By.xpath("//ul[@id='nav']/descendant::a[@href='itemManagement.htm']");
     public static final By CUSTOMER_ORDERING_LINK = By.xpath("//ul[@id='nav']/descendant::a[@href='order.htm']");
     public static final By MERCHANDISER_ORDERING_LINK = By.xpath("//ul[@id='nav']/descendant::a[@href='order.htm']");
-    public static final By VISITOR_EXTRA_LINK = By.xpath("//ul[@id='nav']//a[1]");
     public static final String USER_INFO_PAGE_URL = "http://192.168.56.101:8080/oms5/userInfo.htm";
     public static final By USER_INFO_LINK = By.xpath("(.//ul[@id='nav']//a)[2]");
     public static final By USER_INFO_PAGE_EXISTS = By.xpath(".//div[@id='content']//legend");
