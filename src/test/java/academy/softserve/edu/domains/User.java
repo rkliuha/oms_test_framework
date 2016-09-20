@@ -6,19 +6,20 @@ import academy.softserve.edu.enums.Roles;
 import lombok.Getter;
 import lombok.Setter;
 
+@Getter @Setter
 public class User {
 
-    @Getter @Setter private int id;
-    @Getter @Setter private int userActive;
-    @Getter @Setter private int balance;
-    @Getter @Setter private String email;
-    @Getter @Setter private String firstName;
-    @Getter @Setter private String lastName;
-    @Getter @Setter private String login;
-    @Getter @Setter private String password;
-    @Getter @Setter private int customerTypeReference;
-    @Getter @Setter private int regionReference;
-    @Getter @Setter private int roleReference;
+    private int id;
+    private int userActive;
+    private int balance;
+    private String email;
+    private String firstName;
+    private String lastName;
+    private String login;
+    private String password;
+    private int customerTypeReference;
+    private int regionReference;
+    private int roleReference;
 
     private User() {
 
