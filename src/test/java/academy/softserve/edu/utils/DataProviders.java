@@ -5,14 +5,21 @@ import org.testng.annotations.DataProvider;
 public class DataProviders {
 
     @DataProvider
-    static public Object[][] testDataForAllUsersRole() {
+    static final public Object[][] testDataForAllUsersRole() {
         return new Object[][]{{"iva", "qwerty"}, {"login1", "qwerty"}, {"login2", "qwerty"}, {"login3", "qwerty"}};
     }
 
     @DataProvider
-    static public Object[][] testDataForAdministrator() {
+    static final public Object[][] testDataForAdministrator() {
         return new Object[][]{
                 {"iva", "qwerty"}
+        };
+    }
+
+    @DataProvider
+    static final public Object[][] testDataForMerchandiser() {
+        return new Object[][]{
+                {"login1", "qwerty"}
         };
     }
 
@@ -30,4 +37,5 @@ public class DataProviders {
                 {"vpopkin", "qwerty"}
         };
     }
+
 }

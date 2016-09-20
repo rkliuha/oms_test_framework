@@ -23,6 +23,7 @@ public class LogInPage extends PageObject<LogInPage> {
 
     public final UserInfoPage doLogIn(final String userName,
                                       final String password) {
+
         getElement(USER_NAME_FIELD).sendKeys(userName);
         getElement(PASSWORD_FIELD).sendKeys(password);
         getElement(LOG_IN_BUTTON).click();
