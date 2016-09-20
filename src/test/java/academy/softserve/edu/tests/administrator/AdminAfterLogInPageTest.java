@@ -12,8 +12,8 @@ import static academy.softserve.edu.pageobjects.UserInfoPage.*;
 
 public class AdminAfterLogInPageTest extends TestRunner {
 
-    //  This testIsEditFieldsFilledCorrectly checks if Administrator user can see the following tabs: ‘Administration’ and ‘User Info’(default),
-    //  testIsEditFieldsFilledCorrectly checks if Administrator user can switch between tabs.
+    //  This test checks if Administrator user can see the following tabs: ‘Administration’ and ‘User Info’(default),
+    //  test checks if Administrator user can switch between tabs.
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForAdministrator")
     final public void testSwitchingBetweenTabs(final String username, final String password) {
 
