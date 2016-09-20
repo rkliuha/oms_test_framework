@@ -15,15 +15,14 @@ import static academy.softserve.edu.pageobjects.UserInfoPage.CUSTOMER_ORDERING_L
 
 public class SearchResultTest extends TestRunner {
 
-    private static final String STATUS_SEARCH_ORDERS_VALUE = "ordered";
     private static final String TAG_ATRIBUT = "value";
-    private static final By ORDERED_RESULT_ATTRIBUTES = By.xpath(".//div[@id='list']/table//@*");
-    private static final By ORDERED_RESULT_STRINGS = By.xpath(".//div[@id='list']/table//tr");
+    private static final By ORDERED_RESULT = By.xpath(".//div[@id='list']/table//tr");
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
     public void testStatusSearch(final String name, final String password) {
 
-        final String STATUS_SEARCH_ORDERS = "Status";
+        final String SEARCH_ORDERS_VALUE = "ordered";
+        final String SEARCH_ORDERS = "Status";
 
         userInfoPage = logInPage
                 .doLogIn(name, password);
@@ -35,23 +34,27 @@ public class SearchResultTest extends TestRunner {
 
         customerOrderingPage
                 .getElement(SEARCH_ORDERS_DROPDOWN)
-                .sendKeys(STATUS_SEARCH_ORDERS);
+                .sendKeys(SEARCH_ORDERS);
 
         customerOrderingPage
                 .getElement(SEARCH_ORDERS_TEXT_BOX)
-                .sendKeys(STATUS_SEARCH_ORDERS_VALUE);
+                .sendKeys(SEARCH_ORDERS_VALUE);
 
-        Assert.assertTrue(customerOrderingPage
-                .getElement(ORDERED_RESULT_ATTRIBUTES)
-                .getAttribute(TAG_ATRIBUT)
-                .contains(STATUS_SEARCH_ORDERS_VALUE), "Status search result isn't contains " + STATUS_SEARCH_ORDERS_VALUE);
+
+        final List<WebElement> elementsList = customerOrderingPage
+                .getElements(ORDERED_RESULT);
+
+        elementsList
+                .forEach(element -> Assert.assertTrue(element
+                        .getAttribute(TAG_ATRIBUT)
+                        .equals(SEARCH_ORDERS_VALUE), "Status search result isn't contains " + SEARCH_ORDERS_VALUE));
     }
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
     public void testOrderNameSearch(final String name, final String password) {
 
-        final String ORDER_NAME_SEARCH_ORDERS = "Order Name";
-        final String ORDER_NAME_SEARCH_ORDERS_VALUE = "orderName1";
+        final String SEARCH_ORDERS = "Order Name";
+        final String SEARCH_ORDERS_VALUE = "orderName1";
 
         userInfoPage = logInPage
                 .doLogIn(name, password);
@@ -63,16 +66,19 @@ public class SearchResultTest extends TestRunner {
 
         customerOrderingPage
                 .getElement(SEARCH_ORDERS_DROPDOWN)
-                .sendKeys(ORDER_NAME_SEARCH_ORDERS);
+                .sendKeys(SEARCH_ORDERS);
 
         customerOrderingPage
                 .getElement(SEARCH_ORDERS_TEXT_BOX)
-                .sendKeys(ORDER_NAME_SEARCH_ORDERS_VALUE);
+                .sendKeys(SEARCH_ORDERS_VALUE);
 
-        Assert.assertTrue(customerOrderingPage
-                .getElement(ORDERED_RESULT_ATTRIBUTES)
-                .getAttribute(TAG_ATRIBUT)
-                .contains(ORDER_NAME_SEARCH_ORDERS_VALUE), "Order name search result isn't contains " + ORDER_NAME_SEARCH_ORDERS_VALUE);
+        final List<WebElement> elementsList = customerOrderingPage
+                .getElements(ORDERED_RESULT);
+
+        elementsList
+                .forEach(element -> Assert.assertTrue(element
+                        .getAttribute(TAG_ATRIBUT)
+                        .equals(SEARCH_ORDERS_VALUE), "Order name search result isn't contains " + SEARCH_ORDERS_VALUE));
     }
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
@@ -89,11 +95,12 @@ public class SearchResultTest extends TestRunner {
         customerOrderingPage
                 .click(SHOW_10_ITEMS_LINK);
 
-        final List<WebElement> elementsList = customerOrderingPage.getElements(ORDERED_RESULT_STRINGS);
+        final List<WebElement> elementsList = customerOrderingPage
+                .getElements(ORDERED_RESULT);
 
         elementsList
                 .stream()
-                .limit(10)
+                .filter(element -> elementsList.size() >= 10)
                 .forEach(element -> Assert.assertTrue(element.isDisplayed(), "Aren't 10 elements on page"));
     }
 
@@ -111,12 +118,13 @@ public class SearchResultTest extends TestRunner {
         customerOrderingPage
                 .click(SHOW_5_ITEMS_LINK);
 
-        final List<WebElement> elementsList = customerOrderingPage.getElements(ORDERED_RESULT_STRINGS);
+        final List<WebElement> elementsList = customerOrderingPage
+                .getElements(ORDERED_RESULT);
 
         elementsList
                 .stream()
-                .limit(10)
-                .forEach(element -> Assert.assertTrue(element.isDisplayed(), "Aren't 10 elements on page"));
+                .filter(element -> elementsList.size() >= 5)
+                .forEach(element -> Assert.assertTrue(element.isDisplayed(), "Aren't 5 elements on page"));
     }
 
 }

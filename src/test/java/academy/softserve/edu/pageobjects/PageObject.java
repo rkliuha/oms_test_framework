@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+//TODO use Lombok for getters
 import java.util.List;
 
 public abstract class PageObject<T> {
@@ -67,6 +68,7 @@ public abstract class PageObject<T> {
                 .navigate().back();
     }
 
+    //TODO rename
     public final void navigateForvard() {
         driver
                 .navigate().forward();

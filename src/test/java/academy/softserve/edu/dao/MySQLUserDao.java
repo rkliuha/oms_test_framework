@@ -3,12 +3,14 @@ package academy.softserve.edu.dao;
 import academy.softserve.edu.dao.interfaces.UserDao;
 import academy.softserve.edu.domains.User;
 import academy.softserve.edu.enums.Roles;
+import lombok.RequiredArgsConstructor;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@RequiredArgsConstructor
 public class MySQLUserDao implements UserDao {
 
     private static final String GET_USER_BY_ID_QUERY = "SELECT ID, IsUserActive, Balance, Email,"
@@ -27,15 +29,11 @@ public class MySQLUserDao implements UserDao {
 
     private final Connection connection;
 
-    public MySQLUserDao(final Connection connection) {
-        this.connection = connection;
-    }
-
     @Override
     public final void createUser(final User user) {
 
         try (final PreparedStatement preparedStatement = connection.prepareStatement(CREATE_USER_QUERY)) {
-            preparedStatement.setInt(1, user.isUserActive());
+            preparedStatement.setInt(1, user.getUserActive());
             preparedStatement.setInt(2, user.getBalance());
             preparedStatement.setString(3, user.getEmail());
             preparedStatement.setString(4, user.getFirstName());
@@ -111,7 +109,7 @@ public class MySQLUserDao implements UserDao {
     public final void updateUser(final User user) {
 
         try (final PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_QUERY)) {
-            preparedStatement.setInt(1, user.isUserActive());
+            preparedStatement.setInt(1, user.getUserActive());
             preparedStatement.setInt(2, user.getBalance());
             preparedStatement.setString(3, user.getEmail());
             preparedStatement.setString(4, user.getFirstName());
