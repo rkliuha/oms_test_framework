@@ -17,7 +17,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     public static final String SEARCH_ORDERS_VALUE = "Ordered";
 
     @Test
-    public void testUserInfoOrderingButtonCheck() {
+    public void testUserInfoButtonsDisplayed() {
 
         userInfoPage = logInPage
                 .doLogIn(USER_LOGIN, USER_PASSWORD);

@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+// TODO use Lombok for getters
 public class LogInPage extends PageObject<LogInPage> {
 
     public static final By USER_NAME_FIELD = By.name("j_username");
@@ -12,6 +13,7 @@ public class LogInPage extends PageObject<LogInPage> {
     public static final By RESET_BUTTON = By.name("reset");
     public static final By REMEMBER_ME_BUTTON = By.name("_spring_security_remember_me");
     public static final By ERROR_MESSAGE = By.cssSelector("#edit>fieldset>font");
+    //TODO remove
     public static final String OMS_HOME_PAGE = "http://192.168.56.101:8080/oms5/login.htm";
     public static final By LOG_IN_PAGE_EXISTS = By.xpath(".//div[@id='edit']//legend");
 

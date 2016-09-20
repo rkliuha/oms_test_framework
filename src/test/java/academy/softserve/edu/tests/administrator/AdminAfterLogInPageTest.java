@@ -24,11 +24,9 @@ public class AdminAfterLogInPageTest extends TestRunner {
                 .isDisplayed(), "After login tab isn't 'User Info'");
 
         final UserInfoPage userInfoPage = new UserInfoPage(driver);
-        Assert.assertTrue(userInfoPage
-                .getElement(USER_INFO_LINK)
-                .isDisplayed() && userInfoPage
-                .getElement(ADMINISTRATION_LINK)
-                .isDisplayed(), "\nVerification Failed: Either\n" + USER_INFO_LINK
+        Assert.assertTrue(userInfoPage.getElement(USER_INFO_LINK).isDisplayed()
+                && userInfoPage.getElement(ADMINISTRATION_LINK).isDisplayed(),
+                "\nVerification Failed: Either\n" + USER_INFO_LINK
                 + " or\n" + ADMINISTRATION_LINK + "is not being displayed");
         userInfoPage.clickAdministrationTab();
 
