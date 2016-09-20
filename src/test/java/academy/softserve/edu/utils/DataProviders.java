@@ -2,6 +2,8 @@ package academy.softserve.edu.utils;
 
 import org.testng.annotations.DataProvider;
 
+import java.io.IOException;
+
 public class DataProviders {
 
     @DataProvider
@@ -29,5 +31,16 @@ public class DataProviders {
         return new Object[][]{
                 {"vpopkin", "qwerty"}
         };
+    }
+
+
+    private static final String CONFIG_PROPERTIES = "src/resources/config.properties";
+    private static final String LINK_EXCEL_DATA = PropertiesReader.getProperty("LINK_EXCEL_DATA", CONFIG_PROPERTIES);
+
+    @DataProvider
+    static final public Object[][] dataForLogInTests() throws IOException {
+        final Object[][] arrayObject = ExcelReader
+                .saveDataInToArrayFromExcel(LINK_EXCEL_DATA);
+        return arrayObject;
     }
 }

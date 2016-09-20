@@ -113,7 +113,7 @@ public class LogInPageTest extends TestRunner {
 
     //Try to Log In and Log Out with valid data and turn on Remember me check box. Data should remain in the input fields
     //!!input fields on LogInPage remain clean after click on remember me check box. Log in and Log out!!!
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "dataForLogInTests")
     public final void testRememberUserData(final String name, final String password) {
 
         logInPage = new LogInPage(driver);
