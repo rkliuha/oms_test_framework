@@ -17,7 +17,7 @@ public class MerchandiserAfterLogInPageTest extends TestRunner {
     final public void testMerchandiserSwitchTabAbility(final String username, final String password) {
 
 //       login and check if current page is UserInfo page opened by default
-        final LogInPage logInPage = new LogInPage(driver);
+        logInPage = new LogInPage(driver);
         logInPage.doLogIn(username, password);
         Assert.assertEquals(driver.getCurrentUrl(),
                 USER_INFO_PAGE_URL,
