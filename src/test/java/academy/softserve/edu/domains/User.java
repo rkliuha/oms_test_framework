@@ -3,10 +3,11 @@ package academy.softserve.edu.domains;
 import academy.softserve.edu.enums.CustomerTypes;
 import academy.softserve.edu.enums.Regions;
 import academy.softserve.edu.enums.Roles;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter @Setter @EqualsAndHashCode
 public class User {
 
     private int id;
