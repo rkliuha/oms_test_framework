@@ -1,33 +1,51 @@
 package academy.softserve.edu.utils;
 
+import academy.softserve.edu.enums.Roles;
 import org.testng.annotations.DataProvider;
+
+import static academy.softserve.edu.utils.TestRunner.CONFIG_PROPERTIES;
 
 public class DataProviders {
 
     @DataProvider
     static public Object[][] testDataForAllUsersRole() {
-        return new Object[][]{{"iva", "qwerty"}, {"login1", "qwerty"}, {"login2", "qwerty"}, {"login3", "qwerty"}};
+        return new Object[][]{{Roles.ADMINISTRATOR}, {Roles.MERCHANDISER}, {Roles.SUPERVISOR}, {Roles.CUSTOMER}};
     }
 
     @DataProvider
     static public Object[][] testDataForAdministrator() {
         return new Object[][]{
-                {"iva", "qwerty"}
+                {Roles.ADMINISTRATOR}
         };
     }
 
     @DataProvider
-    static final public Object[][] testDataForSupervisor() {
+    static public Object[][] testDataForMerchandiser() {
         return new Object[][]{
-                {"login2", "qwerty"}
+                {Roles.MERCHANDISER}
+        };
+    }
+
+    @DataProvider
+    static public Object[][] testDataForSupervisor() {
+        return new Object[][]{
+                {Roles.SUPERVISOR}
         };
     }
 
 
     @DataProvider
-    static final public Object[][] testDataForCustomer() {
+    static public Object[][] testDataForCustomer() {
         return new Object[][]{
-                {"vpopkin", "qwerty"}
+                {Roles.CUSTOMER}
         };
     }
+
+    @DataProvider
+    static public Object[][] testDataForInvalidUser() {
+        return new Object[][]{
+                {Roles.INVALID_USER}
+        };
+    }
+
 }

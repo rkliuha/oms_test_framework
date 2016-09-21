@@ -12,8 +12,8 @@ import static academy.softserve.edu.enums.Browsers.FIREFOX;
 
 @Listeners({TestListener.class})
 public class TestRunner {
-    protected static final String CONFIG_PROPERTIES = "src/resources/config.properties";
-    protected static final String LOG_IN_PAGE = PropertiesReader.getProperty("LOG_IN_PAGE", CONFIG_PROPERTIES);
+    public static final String CONFIG_PROPERTIES = "src/resources/config.properties";
+    public static final String LOG_IN_PAGE = PropertiesReader.getProperty("login.url", CONFIG_PROPERTIES);
     protected static final int TIMEOUT = 30;
     protected LogInPage loginPage;
 

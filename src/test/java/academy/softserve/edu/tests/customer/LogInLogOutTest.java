@@ -1,6 +1,7 @@
 package academy.softserve.edu.tests.customer;
 
 
+import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.CustomerOrderingPage;
 import academy.softserve.edu.pageobjects.LogInPage;
 import academy.softserve.edu.pageobjects.UserInfoPage;
@@ -16,7 +17,7 @@ public class LogInLogOutTest extends TestRunner {
 
         logInPage = new LogInPage(driver);
         logInPage
-                .doLogIn(name, password);
+                .doLogIn(Roles.CUSTOMER);
         userInfoPage = new UserInfoPage(driver);
         Assert
                 .assertTrue(userInfoPage.getIdentificationOfUserInfoPage().isDisplayed(),
@@ -28,7 +29,7 @@ public class LogInLogOutTest extends TestRunner {
 
         logInPage = new LogInPage(driver);
         logInPage
-                .doLogIn(name, password);
+                .doLogIn(Roles.CUSTOMER);
 
         userInfoPage = new UserInfoPage(driver);
         // below we have to check if logIn was successful because every page has
@@ -60,7 +61,7 @@ public class LogInLogOutTest extends TestRunner {
 
         logInPage = new LogInPage(driver);
         logInPage
-                .doLogIn(name, password);
+                .doLogIn(Roles.CUSTOMER);
         userInfoPage = new UserInfoPage(driver);
         customerOrderingPage =
                 userInfoPage

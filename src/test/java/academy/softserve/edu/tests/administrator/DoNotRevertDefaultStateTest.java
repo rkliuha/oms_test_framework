@@ -1,5 +1,6 @@
 package academy.softserve.edu.tests.administrator;
 
+import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.AdministrationPage;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
@@ -21,7 +22,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     public void testUserInfoAdministrationButtonCheck() {
 
         userInfoPage = logInPage
-                .doLogIn(USER_LOGIN, USER_PASSWORD);
+                .doLogIn(Roles.ADMINISTRATOR);
 
         Assert.assertTrue(userInfoPage
                 .getElement(USER_INFO_LINK)
@@ -36,7 +37,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     public void testDoNotRevertDefaultState() {
 
         userInfoPage = logInPage
-                .doLogIn(USER_LOGIN, USER_PASSWORD);
+                .doLogIn(Roles.ADMINISTRATOR);
 
         userInfoPage
                 .click(ADMINISTRATION_LINK);

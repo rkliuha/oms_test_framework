@@ -1,6 +1,7 @@
 package academy.softserve.edu.tests;
 
 
+import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.LogInPage;
 import academy.softserve.edu.pageobjects.UserInfoPage;
 import academy.softserve.edu.utils.DataProviders;
@@ -16,7 +17,7 @@ public class UserInfoPageTest extends TestRunner {
 
         logInPage = new LogInPage(driver);
         logInPage
-                .doLogIn(name, password);
+                .doLogIn(Roles.MERCHANDISER);
         final UserInfoPage userInfoPage = new UserInfoPage(driver);
         Assert.assertTrue("Ordering".equals(userInfoPage.getMerchandiserOrderingTab().getText()),
                 "English should be by default!");
@@ -28,7 +29,7 @@ public class UserInfoPageTest extends TestRunner {
 
         logInPage = new LogInPage(driver);
         logInPage
-                .doLogIn(name, password);
+                .doLogIn(Roles.MERCHANDISER);
         final UserInfoPage userInfoPage = new UserInfoPage(driver);
         userInfoPage
                 .clickUkrainianButton();
@@ -42,7 +43,7 @@ public class UserInfoPageTest extends TestRunner {
 
         logInPage = new LogInPage(driver);
         logInPage
-                .doLogIn(name, password);
+                .doLogIn(Roles.MERCHANDISER);
         final UserInfoPage userInfoPage = new UserInfoPage(driver);
         userInfoPage
                 .clickUkrainianButton()
@@ -57,7 +58,7 @@ public class UserInfoPageTest extends TestRunner {
 
         logInPage = new LogInPage(driver);
         logInPage
-                .doLogIn(name, password);
+                .doLogIn(Roles.MERCHANDISER);
         userInfoPage = new UserInfoPage(driver);
         Assert.assertTrue("700".equals(userInfoPage.getEnglishButton().getCssValue("font-weight")),
                 "English Button should be bold");
@@ -69,7 +70,7 @@ public class UserInfoPageTest extends TestRunner {
 
         logInPage = new LogInPage(driver);
         logInPage
-                .doLogIn(name, password);
+                .doLogIn(Roles.MERCHANDISER);
         userInfoPage = new UserInfoPage(driver);
         userInfoPage
                 .clickUkrainianButton();

@@ -1,5 +1,6 @@
 package academy.softserve.edu.tests.customer;
 
+import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.CustomerOrderingPage;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
@@ -20,7 +21,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     public void testUserInfoOrderingButtonCheck() {
 
         userInfoPage = logInPage
-                .doLogIn(USER_LOGIN, USER_PASSWORD);
+                .doLogIn(Roles.CUSTOMER);
 
         Assert.assertTrue(userInfoPage
                 .getElement(USER_INFO_LINK)
@@ -35,7 +36,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     public void testDoNotRevertDefaultState() {
 
         userInfoPage = logInPage
-                .doLogIn(USER_LOGIN, USER_PASSWORD);
+                .doLogIn(Roles.CUSTOMER);
 
         userInfoPage
                 .click(CUSTOMER_ORDERING_LINK);

@@ -1,5 +1,6 @@
 package academy.softserve.edu.tests;
 
+import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.LogInPage;
 import academy.softserve.edu.utils.DataProviders;
 import academy.softserve.edu.utils.TestRunner;
@@ -51,7 +52,7 @@ public class LogInPageTest extends TestRunner {
 
         logInPage = new LogInPage(driver);
         logInPage
-                .doLogIn("Sarumjan", "Mordor");
+                .doLogIn(Roles.INVALID_USER);
 
         Assert.assertTrue(logInPage.getLogInButton().isDisplayed(),
                 "You should not Logged In with unregistered data!");
@@ -119,7 +120,7 @@ public class LogInPageTest extends TestRunner {
         logInPage = new LogInPage(driver);
         logInPage
                 .clickRememberMeButton()
-                .doLogIn(name, password);
+                .doLogIn(Roles.INVALID_USER);
         logInPage
                 .doLogOut();
         Assert.assertFalse(logInPage.getInputNameField().getText() != name &&
@@ -132,9 +133,9 @@ public class LogInPageTest extends TestRunner {
 
         logInPage = new LogInPage(driver);
         logInPage
-                .doLogIn("Sarumjan", password);      // Input Incorrect name and empty password field and click
+                .doLogIn(Roles.INVALID_USER);      // Input Incorrect name and empty password field and click
         logInPage
-                .doLogIn(name, "mordor");            // Input Incorrect password and empty name field and click
+                .doLogIn(Roles.INVALID_USER);            // Input Incorrect password and empty name field and click
 
         Assert.assertTrue(logInPage.getLogInButton().isDisplayed(),
                 "You should not Logged In with invalid data!");
@@ -188,7 +189,7 @@ public class LogInPageTest extends TestRunner {
 
         logInPage = new LogInPage(driver);
         logInPage
-                .doLogIn(name, "mordor");// Input Incorrect password and empty name field and click
+                .doLogIn(Roles.INVALID_USER);// Input Incorrect password and empty name field and click
         Assert.assertEquals(logInPage.getElement(LogInPage.ERROR_MESSAGE).getText(),
                 "Password is incorrect � please try again",
                 "Unexpected message!");

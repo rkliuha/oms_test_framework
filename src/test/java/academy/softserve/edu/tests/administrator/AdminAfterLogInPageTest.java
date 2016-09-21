@@ -1,5 +1,6 @@
 package academy.softserve.edu.tests.administrator;
 
+import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.AdministrationPage;
 import academy.softserve.edu.pageobjects.LogInPage;
 import academy.softserve.edu.pageobjects.UserInfoPage;
@@ -18,7 +19,7 @@ public class AdminAfterLogInPageTest extends TestRunner {
     final public void testSwitchingBetweenTabs(final String username, final String password) {
 
         final LogInPage logInPage = new LogInPage(driver);
-        logInPage.doLogIn(username, password);
+        logInPage.doLogIn(Roles.ADMINISTRATOR);
         Assert.assertTrue(logInPage
                 .getElement(USER_INFO_PAGE_EXISTS)
                 .isDisplayed(), "After login tab isn't 'User Info'");

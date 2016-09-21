@@ -1,5 +1,6 @@
 package academy.softserve.edu.tests.merchandiser;
 
+import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.LogInPage;
 import academy.softserve.edu.pageobjects.MerchandiserOrderingPage;
 import academy.softserve.edu.pageobjects.UserInfoPage;
@@ -18,7 +19,7 @@ public class MerchandiserAfterLogInPageTest extends TestRunner {
 
 //       login and check if current page is UserInfo page opened by default
         final LogInPage logInPage = new LogInPage(driver);
-        logInPage.doLogIn(username, password);
+        logInPage.doLogIn(Roles.MERCHANDISER);
         Assert.assertEquals(driver.getCurrentUrl(),
                 USER_INFO_PAGE_URL,
                 "Current page: " + driver.getCurrentUrl() + " is not 'UserInfo' page: "

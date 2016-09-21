@@ -1,5 +1,6 @@
 package academy.softserve.edu.tests.supervisor;
 
+import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.ItemManagementPage;
 import academy.softserve.edu.pageobjects.LogInPage;
 import academy.softserve.edu.pageobjects.UserInfoPage;
@@ -15,7 +16,7 @@ public class LogInLogOutTest extends TestRunner {
 
         logInPage = new LogInPage(driver);
         logInPage
-                .doLogIn(name, password);
+                .doLogIn(Roles.SUPERVISOR);
         userInfoPage = new UserInfoPage(driver);
         Assert.assertTrue(userInfoPage.getIdentificationOfUserInfoPage().isDisplayed(),
                 "LogIn failed!");
@@ -26,7 +27,7 @@ public class LogInLogOutTest extends TestRunner {
 
         logInPage = new LogInPage(driver);
         logInPage
-                .doLogIn(name, password);
+                .doLogIn(Roles.SUPERVISOR);
 
         userInfoPage = new UserInfoPage(driver);
         // below we have to check if logIn was successful because every page has
@@ -59,7 +60,7 @@ public class LogInLogOutTest extends TestRunner {
 
         logInPage = new LogInPage(driver);
         logInPage
-                .doLogIn(name, password);
+                .doLogIn(Roles.SUPERVISOR);
         userInfoPage = new UserInfoPage(driver);
         itemManagementPage = userInfoPage
                 .clickItemManagementTab();
