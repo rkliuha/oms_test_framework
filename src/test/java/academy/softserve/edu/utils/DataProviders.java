@@ -6,6 +6,8 @@ import java.io.IOException;
 
 public class DataProviders {
 
+    private static final String LINK_EXCEL_DATA = PropertiesReader.getProperty("LINK_EXCEL_DATA");
+
     @DataProvider
     static public Object[][] testDataForAllUsersRole() {
         return new Object[][]{{"iva", "qwerty"}, {"login1", "qwerty"}, {"login2", "qwerty"}, {"login3", "qwerty"}};
@@ -34,21 +36,23 @@ public class DataProviders {
     }
 
 
-    private static final String CONFIG_PROPERTIES = "src/resources/config.properties";
-    private static final String LINK_EXCEL_DATA = PropertiesReader.getProperty("LINK_EXCEL_DATA", CONFIG_PROPERTIES);
-
     @DataProvider
     static final public Object[][] excelLogInDataForAllUsersRole() throws IOException {
-        final Object[][] arrayObject = ExcelReader
-                .saveDataInToArrayFromExcel(LINK_EXCEL_DATA);
-        return arrayObject;
+        return ExcelReader
+                .saveDataInToArrayFromExcel(LINK_EXCEL_DATA, "sheet1");
     }
 
-    // defective provider
+
     @DataProvider
     static final public Object[][] oneColumnOfExcelLoginData() throws IOException {
-        final Object[][] arrayObject = ExcelReader
-                .getColumnByName(LINK_EXCEL_DATA, "password");
-        return arrayObject;
+        return ExcelReader
+                .getColumnByName(LINK_EXCEL_DATA, "password", "sheet1");
+    }
+
+    @DataProvider
+    static final public Object[][] oneColumnFromDefaultExcelFile() throws IOException {
+        return ExcelReader
+                .getColumnByNameDefaultFile("password", "sheet1");
+
     }
 }

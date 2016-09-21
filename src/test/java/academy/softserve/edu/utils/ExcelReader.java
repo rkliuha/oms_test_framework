@@ -11,28 +11,27 @@ import java.io.IOException;
 
 public class ExcelReader {
 
-
-    public static String[][] saveDataInToArrayFromExcel(final String linkExcelData) throws IOException {
+    public static String[][] saveDataInToArrayFromExcel(final String linkExcelData, final String sheetName) throws IOException {
 
         final FileInputStream fileSystem = new FileInputStream(linkExcelData);
 
         final Workbook workBook = new XSSFWorkbook(fileSystem);
-        final Sheet sheet1 = workBook
-                .getSheetAt(0);
+        final Sheet sheet = workBook
+                .getSheet(sheetName);
 
-        final int numberOfRows = sheet1
+        final int numberOfRows = sheet
                 .getPhysicalNumberOfRows();
-        final int numberOfCells = sheet1
+        final int numberOfCells = sheet
                 .getRow(0)
                 .getPhysicalNumberOfCells();
 
         //I appoint the array size by the number of rows and cells of Excel document
-        final String[][] loginData = new String[numberOfRows][numberOfCells];
+        final String[][] loginData = new String[numberOfRows - 1][numberOfCells];
 
-        for (int i = 0; i < numberOfRows; i++) {
+        for (int i = 1; i < numberOfRows; i++) {
             for (int j = 0; j < numberOfCells; j++) {
 
-                loginData[i][j] = sheet1
+                loginData[i - 1][j] = sheet
                         .getRow(i)
                         .getCell(j)
                         .getStringCellValue();
@@ -44,15 +43,15 @@ public class ExcelReader {
     }
 
 
-    public static String[][] getColumnByName(final String linkExcelData, final String cellName) throws IOException {
+    public static String[][] getColumnByName(final String linkExcelData, final String cellName, final String sheetName) throws IOException {
 
         final FileInputStream fileSystem = new FileInputStream(linkExcelData);
 
         final Workbook workBook = new XSSFWorkbook(fileSystem);
-        final Sheet sheet1 = workBook
-                .getSheetAt(0);
-        final Row row = sheet1.getRow(0);
-        final int numberOfRows = sheet1
+        final Sheet sheet = workBook
+                .getSheet(sheetName);
+        final Row row = sheet.getRow(0);
+        final int numberOfRows = sheet
                 .getPhysicalNumberOfRows() - 1;
         final int numberOfCells = row
                 .getPhysicalNumberOfCells();
@@ -61,21 +60,55 @@ public class ExcelReader {
         int cellColumn = 0;
 
         for (int j = 0; j < numberOfCells; j++) {
-            if (cellName
-                    .equals(row.getCell(j)
-                            .getStringCellValue())) {
+            if (cellName.equals(row.getCell(j).getStringCellValue())) {
                 cellColumn = j;
             }
         }
         int j = 1;
         for (int i = 0; i < numberOfRows; i++) {
-            columnArray[i][0] = sheet1
+            columnArray[i][0] = sheet
                     .getRow(j)
                     .getCell(cellColumn)
                     .getStringCellValue();
             j++;
         }
         fileSystem.close();
+
+        return columnArray;
+    }
+
+
+    public static String[][] getColumnByNameDefaultFile(final String cellName, final String sheetName) throws IOException {
+
+        final FileInputStream fileSystem = new FileInputStream(PropertiesReader.getProperty("LINK_EXCEL_DATA"));
+
+        final Workbook workBook = new XSSFWorkbook(fileSystem);
+        final Sheet sheet = workBook
+                .getSheet(sheetName);
+        final Row row = sheet.getRow(0);
+        final int numberOfRows = sheet
+                .getPhysicalNumberOfRows() - 1;
+        final int numberOfCells = row
+                .getPhysicalNumberOfCells();
+
+        final String[][] columnArray = new String[numberOfRows][1];
+        int cellColumn = 0;
+
+        for (int j = 0; j < numberOfCells; j++) {
+            if (cellName.equals(row.getCell(j).getStringCellValue())) {
+                cellColumn = j;
+            }
+        }
+        int j = 1;
+        for (int i = 0; i < numberOfRows; i++) {
+            columnArray[i][0] = sheet
+                    .getRow(j)
+                    .getCell(cellColumn)
+                    .getStringCellValue();
+            j++;
+        }
+        fileSystem.close();
+
         return columnArray;
     }
 
