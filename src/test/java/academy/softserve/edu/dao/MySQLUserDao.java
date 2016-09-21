@@ -19,6 +19,9 @@ public class MySQLUserDao implements UserDao {
     private static final String GET_USER_BY_ROLE_QUERY = "SELECT ID, IsUserActive, Balance, Email,"
             + " FirstName, LastName, Login, Password, CustomerTypeRef, RegionRef," +
             " RoleRef FROM Users WHERE RoleRef = ? LIMIT 1;";
+    private static final String GET_LAST_USER_QUERY = "SELECT ID, IsUserActive, Balance, Email,"
+            + " FirstName, LastName, Login, Password, CustomerTypeRef, RegionRef," +
+            " RoleRef FROM Users ORDER BY ID DESC LIMIT 1;";
     private static final String CREATE_USER_QUERY = "INSERT INTO Users (IsUserActive, Balance, Email,"
             + " FirstName, LastName, Login, Password, CustomerTypeRef, RegionRef," +
             " RoleRef) VALUES(?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?);";
@@ -83,6 +86,33 @@ public class MySQLUserDao implements UserDao {
         User user = null;
         try (final PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_ROLE_QUERY)) {
             preparedStatement.setInt(1, (role.ordinal() + 1));
+            final ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+
+            user = User.newBuilder()
+                    .setId(resultSet.getInt("ID"))
+                    .setUserActive(resultSet.getInt("IsUserActive"))
+                    .setBalance(resultSet.getInt("Balance"))
+                    .setEmail(resultSet.getString("Email"))
+                    .setFirstName(resultSet.getString("FirstName"))
+                    .setLastName(resultSet.getString("LastName"))
+                    .setLogin(resultSet.getString("Login"))
+                    .setPassword(resultSet.getString("Password"))
+                    .setCustomerTypeReference(resultSet.getInt("CustomerTypeRef"))
+                    .setRegionReference(resultSet.getInt("RegionRef"))
+                    .setRoleReference(resultSet.getInt("RoleRef"))
+                    .build();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    @Override
+    public final User getLastUser() {
+
+        User user = null;
+        try (final PreparedStatement preparedStatement = connection.prepareStatement(GET_LAST_USER_QUERY)) {
             final ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
 
