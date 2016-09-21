@@ -5,9 +5,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-//TODO use Lombok for getters
 import java.util.List;
 
+//TODO use Lombok for getters
 public abstract class PageObject<T> {
 
     public static final By LOG_OUT_BUTTON = By.id("logout");

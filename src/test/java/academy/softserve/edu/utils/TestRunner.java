@@ -8,7 +8,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 
 import java.util.concurrent.TimeUnit;
-
 import static academy.softserve.edu.enums.Browsers.FIREFOX;
 
 @Listeners({TestListener.class})
@@ -17,7 +16,7 @@ public class TestRunner {
     //TODO rename
     protected static final String CONFIG_PROPERTIES = "src/resources/config.properties";
     protected static final String LOG_IN_PAGE = PropertiesReader.getProperty("LOG_IN_PAGE", CONFIG_PROPERTIES);
-    protected static final int TIMEOUT = 30;
+    protected static final int TIMEOUT = 10;
 
     protected LogInPage loginPage;
 
@@ -29,6 +28,7 @@ public class TestRunner {
     protected LogInPage logInPage;
     protected MerchandiserOrderingPage merchandiserOrderingPage;
     protected UserInfoPage userInfoPage;
+    protected EditUserPage editUserPage;
 
     @BeforeMethod
     public final void setUp() {

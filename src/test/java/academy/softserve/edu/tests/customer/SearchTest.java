@@ -15,8 +15,7 @@ import static academy.softserve.edu.pageobjects.UserInfoPage.CUSTOMER_ORDERING_L
 
 public class SearchTest extends TestRunner {
 
-    private static final String TAG_ATRIBUTE = "value";
-    private static final By ORDERED_RESULT = By.xpath(".//div[@id='list']/table//tr");
+    private static final By ORDERED_RESULT = By.xpath(".//div[@id='list']/table/tbody/tr");
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataSearchStatusCustomer")
     public void testStatusSearch(final String name, final String password, final String searchOrder, final String searchOrderValue) {
@@ -37,13 +36,12 @@ public class SearchTest extends TestRunner {
                 .getElement(SEARCH_ORDERS_TEXT_BOX)
                 .sendKeys(searchOrderValue);
 
-
         final List<WebElement> elementsList = customerOrderingPage
                 .getElements(ORDERED_RESULT);
 
         elementsList
                 .forEach(element -> Assert.assertTrue(element
-                        .getAttribute(TAG_ATRIBUTE)
+                        .getText()
                         .equals(searchOrderValue), "Status search result isn't contains " + searchOrderValue));
     }
 

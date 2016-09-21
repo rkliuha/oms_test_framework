@@ -58,6 +58,21 @@ public final class DBHandler {
         return user;
     }
 
+    public static final User getLastUser() {
+
+        final DaoFactory daoFactory = new MySQLDaoFactory();
+        final UserDao userDao;
+        User user = null;
+
+        try (final Connection connection = daoFactory.getConnection()) {
+            userDao = daoFactory.getUserDao(connection);
+            user = userDao.getLastUser();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
     public static final void updateUser(final User user) {
 
         final DaoFactory daoFactory = new MySQLDaoFactory();

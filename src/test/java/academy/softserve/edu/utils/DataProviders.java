@@ -37,23 +37,23 @@ public class DataProviders {
     @DataProvider
     static final public Object[][] testDataSearchElementsCustomer() {
         return new Object[][]{
-                {"vpopkin", "qwerty", SHOW_10_ITEMS_LINK, 10},
-                {"vpopkin", "qwerty", SHOW_5_ITEMS_LINK, 5}
+                {"login4", "qwerty", SHOW_10_ITEMS_LINK, 10},
+                {"login4", "qwerty", SHOW_5_ITEMS_LINK, 5}
         };
     }
 
     @DataProvider
     static final public Object[][] testDataSearchStatusCustomer() {
         return new Object[][]{
-                {"vpopkin", "qwerty", "Status", "ordered"},
-                {"vpopkin", "qwerty", "Order Name", "orderName1"}
+                {"login4", "qwerty", "Status", "ordered"},
+                {"login4", "qwerty", "Order Name", "orderName1"}
         };
     }
 
     @DataProvider
     static final public Object[][] testDataForCustomer() {
         return new Object[][]{
-                {"vpopkin", "qwerty"}
+                {"login4", "qwerty"}
         };
     }
 
