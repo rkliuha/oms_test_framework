@@ -11,7 +11,9 @@ import java.io.IOException;
 
 public class ExcelReader {
 
+
     public static String[][] saveDataInToArrayFromExcel(final String linkExcelData, final String sheetName) throws IOException {
+
 
         final FileInputStream fileSystem = new FileInputStream(linkExcelData);
 
@@ -22,16 +24,19 @@ public class ExcelReader {
         final int numberOfRows = sheet
                 .getPhysicalNumberOfRows();
         final int numberOfCells = sheet
+
                 .getRow(0)
                 .getPhysicalNumberOfCells();
 
         //I appoint the array size by the number of rows and cells of Excel document
+
         final String[][] loginData = new String[numberOfRows - 1][numberOfCells];
 
         for (int i = 1; i < numberOfRows; i++) {
             for (int j = 0; j < numberOfCells; j++) {
 
                 loginData[i - 1][j] = sheet
+
                         .getRow(i)
                         .getCell(j)
                         .getStringCellValue();
@@ -80,7 +85,7 @@ public class ExcelReader {
 
     public static String[][] getColumnByNameDefaultFile(final String cellName, final String sheetName) throws IOException {
 
-        final FileInputStream fileSystem = new FileInputStream(PropertiesReader.getProperty("LINK_EXCEL_DATA"));
+        final FileInputStream fileSystem = new FileInputStream(PropertiesReader.getProperty("LINK_EXCEL_FILE"));
 
         final Workbook workBook = new XSSFWorkbook(fileSystem);
         final Sheet sheet = workBook

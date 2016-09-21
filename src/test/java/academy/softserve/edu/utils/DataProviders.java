@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class DataProviders {
 
-    private static final String LINK_EXCEL_DATA = PropertiesReader.getProperty("LINK_EXCEL_DATA");
+    private static final String LINK_EXCEL_FILE = PropertiesReader.getProperty("LINK_EXCEL_FILE");
 
     @DataProvider
     static public Object[][] testDataForAllUsersRole() {
@@ -39,20 +39,20 @@ public class DataProviders {
     @DataProvider
     static final public Object[][] excelLogInDataForAllUsersRole() throws IOException {
         return ExcelReader
-                .saveDataInToArrayFromExcel(LINK_EXCEL_DATA, "sheet1");
+                .saveDataInToArrayFromExcel(LINK_EXCEL_FILE, "sheet1");
     }
 
 
     @DataProvider
     static final public Object[][] oneColumnOfExcelLoginData() throws IOException {
         return ExcelReader
-                .getColumnByName(LINK_EXCEL_DATA, "password", "sheet1");
+                .getColumnByName(LINK_EXCEL_FILE, "password", "sheet1");
     }
+
 
     @DataProvider
     static final public Object[][] oneColumnFromDefaultExcelFile() throws IOException {
         return ExcelReader
                 .getColumnByNameDefaultFile("password", "sheet1");
-
     }
 }
