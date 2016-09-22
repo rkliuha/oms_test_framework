@@ -49,7 +49,7 @@ public class TestRunner {
 
     @AfterMethod
     public final void tearDown() {
-        driver.close();
+        driver.quit();
     }
 
 }
