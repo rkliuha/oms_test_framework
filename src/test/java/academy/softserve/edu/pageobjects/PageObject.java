@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
 //TODO use Lombok for getters
 public abstract class PageObject<T> {
 
@@ -22,6 +24,9 @@ public abstract class PageObject<T> {
         return driver.findElement(elementLocation);
     }
 
+    public final List<WebElement> getElements(final By elementLocation) {
+        return driver.findElements(elementLocation);
+    }
 
     public final LogInPage doLogOut() {
 

@@ -2,6 +2,9 @@ package academy.softserve.edu.utils;
 
 import org.testng.annotations.DataProvider;
 
+import static academy.softserve.edu.pageobjects.CustomerOrderingPage.SHOW_10_ITEMS_LINK;
+import static academy.softserve.edu.pageobjects.CustomerOrderingPage.SHOW_5_ITEMS_LINK;
+
 public class DataProviders {
 
     @DataProvider
@@ -32,9 +35,25 @@ public class DataProviders {
 
 
     @DataProvider
+    static final public Object[][] testDataSearchElementsCustomer() {
+        return new Object[][]{
+                {"login4", "qwerty", SHOW_10_ITEMS_LINK, 10},
+                {"login4", "qwerty", SHOW_5_ITEMS_LINK, 5}
+        };
+    }
+
+    @DataProvider
+    static final public Object[][] testDataSearchStatusCustomer() {
+        return new Object[][]{
+                {"login4", "qwerty", "Status", "ordered"},
+                {"login4", "qwerty", "Order Name", "orderName1"}
+        };
+    }
+
+    @DataProvider
     static final public Object[][] testDataForCustomer() {
         return new Object[][]{
-                {"vpopkin", "qwerty"}
+                {"login4", "qwerty"}
         };
     }
 
