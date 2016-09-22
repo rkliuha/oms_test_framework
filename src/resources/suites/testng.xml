@@ -2,12 +2,12 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Default Suite">
     <test name="Logout Tests">
-        <!--<classes>-->
-            <!--<class name="academy.softserve.edu.tests.administrator.AdminAfterLogInPageTest"/>-->
-            <!--<class name="academy.softserve.edu.tests.customer.TestLogOut"/>-->
-            <!--<class name="academy.softserve.edu.tests.merchandiser.TestLogOut"/>-->
-            <!--<class name="academy.softserve.edu.tests.supervisor.TestLogOut"/>-->
-        <!--</classes>-->
+        <classes>
+            <class name="academy.softserve.edu.tests.administrator.AdminAfterLogInPageTest"/>
+            <class name="academy.softserve.edu.tests.customer.TestLogOut"/>
+            <class name="academy.softserve.edu.tests.merchandiser.TestLogOut"/>
+            <class name="academy.softserve.edu.tests.supervisor.TestLogOut"/>
+        </classes>
     </test> <!-- Logout Tests -->
     <test name="Switch Tabs Tests">
         <classes>

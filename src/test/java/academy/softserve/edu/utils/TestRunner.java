@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 
 import java.util.concurrent.TimeUnit;
+
 import static academy.softserve.edu.enums.Browsers.FIREFOX;
 
 @Listeners({TestListener.class})

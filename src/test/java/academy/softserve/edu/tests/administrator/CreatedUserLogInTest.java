@@ -5,11 +5,12 @@ import academy.softserve.edu.pageobjects.EditUserPage;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 import static academy.softserve.edu.pageobjects.AdministrationPage.CREATE_NEW_USER_LINK;
-import static academy.softserve.edu.pageobjects.EditUserPage.*;
+import static academy.softserve.edu.pageobjects.CreateNewUserPage.*;
 import static academy.softserve.edu.pageobjects.UserInfoPage.ADMINISTRATION_LINK;
 import static academy.softserve.edu.pageobjects.UserInfoPage.USER_INFO_PAGE_EXISTS;
 
@@ -17,8 +18,10 @@ public class CreatedUserLogInTest extends TestRunner {
 
     private static final String USER_LOGIN = "iva";
     private static final String USER_PASSWORD = "qwerty";
+    private static final String LOGIN = "vgopkin";
 
-    @Test
+
+    @Test(priority = 1)
     public void testTabsExist() {
 
         userInfoPage = logInPage
@@ -35,7 +38,7 @@ public class CreatedUserLogInTest extends TestRunner {
                 .isDisplayed(), "Create new user link " + CREATE_NEW_USER_LINK + " isn't present");
     }
 
-    @Test
+    @Test(priority = 2)
     public void testCreateUserPageExist() {
 
         userInfoPage = logInPage
@@ -52,19 +55,18 @@ public class CreatedUserLogInTest extends TestRunner {
                 .click();
 
         Assert.assertTrue(administrationPage
-                .getElement(EDIT_USER_PAGE_EXISTS)
-                .isDisplayed(), "Element " + EDIT_USER_PAGE_EXISTS + " isn't present");
+                .getElement(CREATE_USER_PAGE_EXISTS)
+                .isDisplayed(), "Element " + CREATE_USER_PAGE_EXISTS + " isn't present");
     }
 
-    @Test
+    @Test(priority = 3)
     public void testCreatedUserExist() {
 
-        final int ID = 18;
-        final String LOGIN = "vpopkin";
+        //Login value should take from current class constants
         final String FIRST_NAME = "valodja";
-        final String LAST_NAME = "popkin";
+        final String LAST_NAME = "gopkin";
         final String PASSWORD = "qwerty";
-        final String EMAIL = "sharma@gmail.com";
+        final String EMAIL = "vgopkin@mail.ru";
         final String REGION = "north";
         final String ROLE = "customer";
 
@@ -96,7 +98,7 @@ public class CreatedUserLogInTest extends TestRunner {
                 .sendKeys(LAST_NAME);
 
         editUserPage
-                .getElement(NEW_PASSWORD_TEXT_FIELD)
+                .getElement(PASSWORD_TEXT_FIELD)
                 .sendKeys(PASSWORD);
 
         editUserPage
@@ -120,20 +122,18 @@ public class CreatedUserLogInTest extends TestRunner {
                 .click();
 
         Assert.assertNotNull(DBHandler
-                .getUserById(ID), "User dosen't exist");
+                .getUserByLogin(LOGIN), "User dosen't exist");
     }
 
-    @Test
+    @Test(priority = 4)
     public void testCreatedUserLogIn() {
 
-        final int ID = 18;
-
         final String login = DBHandler
-                .getUserById(ID)
+                .getUserByLogin(LOGIN)
                 .getLogin();
 
         final String password = DBHandler
-                .getUserById(ID)
+                .getUserByLogin(LOGIN)
                 .getPassword();
 
         userInfoPage = logInPage
@@ -144,11 +144,11 @@ public class CreatedUserLogInTest extends TestRunner {
                 .isDisplayed(), "Element " + USER_INFO_PAGE_EXISTS + " isn't displayed");
     }
 
-    @AfterTest
+    @AfterClass
     public final void deleteTestUser() {
 
         DBHandler.deleteUser(DBHandler
-                .getLastUser()
+                .getUserByLogin(LOGIN)
                 .getId());
     }
 }
