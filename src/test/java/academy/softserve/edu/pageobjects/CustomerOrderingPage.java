@@ -15,7 +15,8 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
     public static final By SEARCH_ORDERS_TEXT_BOX = By.xpath(".//input[@id='searchValue']");
     public static final By SEARCH_ORDERS_BUTTON = By.xpath(".//input[@name='Apply']");
     public static final By IDENTIFICATION_OF_CUSTOMER_PAGE = By.xpath(".//*[@id='content']/a");
-
+    public static final By SHOW_10_ITEMS_LINK = By.xpath(".//form[@id='searchFilter']//a");
+    public static final By SHOW_5_ITEMS_LINK = By.xpath(".//form[@id='searchFilter']//a");
 
     public CustomerOrderingPage(WebDriver driver) {
         super(driver);

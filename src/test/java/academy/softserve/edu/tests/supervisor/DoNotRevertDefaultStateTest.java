@@ -15,6 +15,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     public static final String USER_PASSWORD = "qwerty";
     public static final String FIELD_FILTER = "Description";
     public static final String FIELD_FILTER_VALUE = "Fruits";
+    public static final String TAG_ATRIBUT = "value";
 
     @Test
     public void testUserInfoItemManagementButtonCheck() {
@@ -66,7 +67,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
 
         Assert.assertTrue(itemManagementPage
                 .getElement(FIELD_FILTER_TEXT_BOX)
-                .getAttribute("value")
+                .getAttribute(TAG_ATRIBUT)
                 .contains(FIELD_FILTER_VALUE), "Field filter value in the field filter text box is different of " + FIELD_FILTER_VALUE);
     }
 }

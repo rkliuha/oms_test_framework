@@ -15,6 +15,7 @@ public class AdministrationPage extends PageObject<AdministrationPage> {
     public static final By IDENTIFICATION_OF_ADMINISTRATOR_PAGE = By.xpath(".//*[@id='list']/h4[1]");
     public static final By EDIT_LAST_USER_LINK = By.xpath("//table[@id='table']/tbody/tr[last()]/td[6]/a");
     public static final By LAST_USER_PAGINATION_BUTTON = By.id("last");
+    public static final By CREATE_NEW_USER_LINK = By.xpath(".//div[@id='list']/a");
 
 
     public AdministrationPage(final WebDriver driver) {
