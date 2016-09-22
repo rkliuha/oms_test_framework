@@ -14,37 +14,36 @@ public class AdminAfterLogInPageTest extends TestRunner {
 
     //  This test checks if Administrator user can see the following tabs: ‘Administration’ and ‘User Info’(default),
     //  test checks if Administrator user can switch between tabs.
+
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForAdministrator")
-    final public void testSwitchingBetweenTabs(final String username, final String password) {
+    final public void switchingBetweenTabsTest(final String username, final String password) {
 
-        final LogInPage logInPage = new LogInPage(driver);
+        logInPage = new LogInPage(driver);
+
         logInPage.doLogIn(username, password);
-        Assert.assertTrue(logInPage
-                .getElement(USER_INFO_PAGE_EXISTS)
-                .isDisplayed(), "After login tab isn't 'User Info'");
+        Assert.assertTrue(logInPage.getElement(USER_INFO_PAGE_EXISTS).isDisplayed(),
+                "After login tab isn't 'User Info'");
 
-        final UserInfoPage userInfoPage = new UserInfoPage(driver);
-        Assert.assertTrue(userInfoPage.getElement(USER_INFO_LINK).isDisplayed()
-                && userInfoPage.getElement(ADMINISTRATION_LINK).isDisplayed(),
-                "\nVerification Failed: Either\n" + USER_INFO_LINK
-                + " or\n" + ADMINISTRATION_LINK + "is not being displayed");
+        userInfoPage = new UserInfoPage(driver);
+
+        Assert.assertTrue(userInfoPage.getElement(USER_INFO_LINK).isDisplayed(),
+                "Element " + USER_INFO_LINK + " is not being displayed");
+        Assert.assertTrue(userInfoPage.getElement(ADMINISTRATION_LINK).isDisplayed(),
+                "Element " + ADMINISTRATION_LINK + " is not being displayed");
         userInfoPage.clickAdministrationTab();
 
-        final AdministrationPage administrationPage = new AdministrationPage(driver);
-        Assert.assertTrue(administrationPage
-                .getElement(USER_INFO_LINK)
-                .isDisplayed() && administrationPage
-                .getElement(ADMINISTRATION_LINK)
-                .isDisplayed(), "\nVerification Failed: Either\n" + USER_INFO_LINK
-                + " or\n" + ADMINISTRATION_LINK + "is not being displayed");
+        administrationPage = new AdministrationPage(driver);
+
+        Assert.assertTrue(administrationPage.getElement(USER_INFO_LINK).isDisplayed(),
+                "Element " + USER_INFO_LINK + " is not being displayed");
+        Assert.assertTrue(administrationPage.getElement(ADMINISTRATION_LINK).isDisplayed(),
+                "Element " + ADMINISTRATION_LINK + " is not being displayed");
         administrationPage.clickUserInfoTab();
 
-        Assert.assertTrue(userInfoPage
-                .getElement(USER_INFO_LINK)
-                .isDisplayed() && userInfoPage
-                .getElement(ADMINISTRATION_LINK)
-                .isDisplayed(), "\nVerification Failed: Either\n" + USER_INFO_LINK
-                + " or\n" + ADMINISTRATION_LINK + "is not being displayed");
-        administrationPage.doLogOut();
+        Assert.assertTrue(userInfoPage.getElement(USER_INFO_LINK).isDisplayed(),
+                "Element " + USER_INFO_LINK + " is not being displayed");
+        Assert.assertTrue(userInfoPage.getElement(ADMINISTRATION_LINK).isDisplayed(),
+                "Element " + ADMINISTRATION_LINK + " is not being displayed");
+        userInfoPage.doLogOut();
     }
 }
