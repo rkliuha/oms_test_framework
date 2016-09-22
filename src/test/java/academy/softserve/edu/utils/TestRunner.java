@@ -1,5 +1,6 @@
 package academy.softserve.edu.utils;
 
+import academy.softserve.edu.domains.User;
 import academy.softserve.edu.pageobjects.*;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
@@ -30,6 +31,10 @@ public class TestRunner {
     protected MerchandiserOrderingPage merchandiserOrderingPage;
     protected UserInfoPage userInfoPage;
     protected EditUserPage editUserPage;
+    protected CreateReportPage createReportPage;
+    protected ReportPage reportPage;
+
+    protected User userForLogin;
 
     @BeforeMethod
     public final void setUp() {
@@ -44,7 +49,7 @@ public class TestRunner {
 
     @AfterMethod
     public final void tearDown() {
-        driver.close();
+        driver.quit();
     }
 
 }
