@@ -13,7 +13,7 @@ public class CreateReportPage extends PageObject<CreateReportPage> {
     }
 
     public final ReportPage clickSaveReportLink() {
-        driver.findElement(SAVE_REPORT_LINK).click();
+        getSaveReportLink().click();
         return new ReportPage(driver);
     }
 

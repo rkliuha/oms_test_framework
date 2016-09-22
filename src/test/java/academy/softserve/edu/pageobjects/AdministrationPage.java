@@ -42,7 +42,7 @@ public class AdministrationPage extends PageObject<AdministrationPage> {
     }
 
     public final CreateReportPage clickCreateReportLink() {
-        driver.findElement(CREATE_REPORT_LINK).click();
+        getCreateReportLink().click();
         return new CreateReportPage(driver);
     }
 
