@@ -1,7 +1,8 @@
 package academy.softserve.edu.utils;
 
-
+import academy.softserve.edu.domains.User;
 import academy.softserve.edu.pageobjects.*;
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -17,11 +18,7 @@ public class TestRunner {
     protected static final int TIMEOUT = 30;
     protected LogInPage loginPage;
 
-    protected WebDriver driver;
-
-    public final WebDriver getDriver() {
-        return driver;
-    }
+    @Getter protected WebDriver driver;
 
     protected AdministrationPage administrationPage;
     protected CustomerOrderingPage customerOrderingPage;
@@ -29,9 +26,15 @@ public class TestRunner {
     protected LogInPage logInPage;
     protected MerchandiserOrderingPage merchandiserOrderingPage;
     protected UserInfoPage userInfoPage;
+    protected EditUserPage editUserPage;
+    protected CreateReportPage createReportPage;
+    protected ReportPage reportPage;
+
+    protected User userForLogin;
 
     @BeforeMethod
     public final void setUp() {
+
         driver = new WebDriverFactory().getDriver(FIREFOX);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(TIMEOUT, TimeUnit.SECONDS);
@@ -42,7 +45,7 @@ public class TestRunner {
 
     @AfterMethod
     public final void tearDown() {
-        driver.close();
+        driver.quit();
     }
 
 }

@@ -2,8 +2,6 @@ package academy.softserve.edu.tests.customer;
 
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.CustomerOrderingPage;
-import academy.softserve.edu.pageobjects.LogInPage;
-import academy.softserve.edu.pageobjects.UserInfoPage;
 import academy.softserve.edu.utils.DataProviders;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
@@ -14,15 +12,11 @@ import static academy.softserve.edu.pageobjects.UserInfoPage.*;
 
 public class SwitchTabsByCustomerTest extends TestRunner {
 
-
-    private LogInPage logInPage;
-    private UserInfoPage userInfoPage;
-
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
     public void testDefaultUserInfoPage(final String name, final String password) {
 
         userInfoPage = logInPage
-                .doLogIn(Roles.CUSTOMER);
+                .loginAs(Roles.CUSTOMER);
 
         Assert.assertTrue(userInfoPage
                 .getElement(USER_INFO_PAGE_EXISTS)
@@ -33,7 +27,7 @@ public class SwitchTabsByCustomerTest extends TestRunner {
     public void testUserInfoButtonCheck(final String name, final String password) {
 
         userInfoPage = logInPage
-                .doLogIn(Roles.CUSTOMER);
+                .loginAs(Roles.CUSTOMER);
 
         Assert.assertTrue(userInfoPage
                 .getElement(USER_INFO_LINK)
@@ -44,7 +38,7 @@ public class SwitchTabsByCustomerTest extends TestRunner {
     public void testOrderingButtonCheck(final String name, final String password) {
 
         userInfoPage = logInPage
-                .doLogIn(Roles.CUSTOMER);
+                .loginAs(Roles.CUSTOMER);
 
         Assert.assertTrue(userInfoPage
                 .getElement(CUSTOMER_ORDERING_LINK)
@@ -55,7 +49,7 @@ public class SwitchTabsByCustomerTest extends TestRunner {
     public void testActiveOrderingPage(final String name, final String password) {
 
         userInfoPage = logInPage
-                .doLogIn(Roles.CUSTOMER);
+                .loginAs(Roles.CUSTOMER);
 
         userInfoPage
                 .click(CUSTOMER_ORDERING_LINK);
@@ -69,7 +63,7 @@ public class SwitchTabsByCustomerTest extends TestRunner {
     public void testSwitchTabsUserOrdering(final String name, final String password) {
 
         userInfoPage = logInPage
-                .doLogIn(Roles.CUSTOMER);
+                .loginAs(Roles.CUSTOMER);
 
         userInfoPage
                 .click(CUSTOMER_ORDERING_LINK);

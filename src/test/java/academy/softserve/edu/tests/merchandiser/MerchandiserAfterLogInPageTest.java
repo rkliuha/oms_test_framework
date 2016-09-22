@@ -19,7 +19,7 @@ public class MerchandiserAfterLogInPageTest extends TestRunner {
 
 //       login and check if current page is UserInfo page opened by default
         final LogInPage logInPage = new LogInPage(driver);
-        logInPage.doLogIn(Roles.MERCHANDISER);
+        logInPage.loginAs(Roles.MERCHANDISER);
         Assert.assertEquals(driver.getCurrentUrl(),
                 USER_INFO_PAGE_URL,
                 "Current page: " + driver.getCurrentUrl() + " is not 'UserInfo' page: "

@@ -19,17 +19,15 @@ public class AdminAfterLogInPageTest extends TestRunner {
     final public void testSwitchingBetweenTabs(final String username, final String password) {
 
         final LogInPage logInPage = new LogInPage(driver);
-        logInPage.doLogIn(Roles.ADMINISTRATOR);
+        logInPage.loginAs(Roles.ADMINISTRATOR);
         Assert.assertTrue(logInPage
                 .getElement(USER_INFO_PAGE_EXISTS)
                 .isDisplayed(), "After login tab isn't 'User Info'");
 
         final UserInfoPage userInfoPage = new UserInfoPage(driver);
-        Assert.assertTrue(userInfoPage
-                .getElement(USER_INFO_LINK)
-                .isDisplayed() && userInfoPage
-                .getElement(ADMINISTRATION_LINK)
-                .isDisplayed(), "\nVerification Failed: Either\n" + USER_INFO_LINK
+        Assert.assertTrue(userInfoPage.getElement(USER_INFO_LINK).isDisplayed()
+                && userInfoPage.getElement(ADMINISTRATION_LINK).isDisplayed(),
+                "\nVerification Failed: Either\n" + USER_INFO_LINK
                 + " or\n" + ADMINISTRATION_LINK + "is not being displayed");
         userInfoPage.clickAdministrationTab();
 

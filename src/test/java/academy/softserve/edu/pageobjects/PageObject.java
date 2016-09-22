@@ -5,6 +5,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
+//TODO use Lombok for getters
 public abstract class PageObject<T> {
 
     public static final By LOG_OUT_BUTTON = By.id("logout");
@@ -21,6 +24,9 @@ public abstract class PageObject<T> {
         return driver.findElement(elementLocation);
     }
 
+    public final List<WebElement> getElements(final By elementLocation) {
+        return driver.findElements(elementLocation);
+    }
 
     public final LogInPage doLogOut() {
 
@@ -62,6 +68,7 @@ public abstract class PageObject<T> {
                 .navigate().back();
     }
 
+    //TODO rename
     public final void navigateForvard() {
         driver
                 .navigate().forward();

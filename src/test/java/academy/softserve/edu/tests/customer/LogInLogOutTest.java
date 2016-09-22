@@ -3,7 +3,6 @@ package academy.softserve.edu.tests.customer;
 
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.CustomerOrderingPage;
-import academy.softserve.edu.pageobjects.LogInPage;
 import academy.softserve.edu.pageobjects.UserInfoPage;
 import academy.softserve.edu.utils.DataProviders;
 import academy.softserve.edu.utils.TestRunner;
@@ -15,23 +14,17 @@ public class LogInLogOutTest extends TestRunner {
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
     public final void testLogIn(final String name, final String password) {
 
-        logInPage = new LogInPage(driver);
-        logInPage
-                .doLogIn(Roles.CUSTOMER);
-        userInfoPage = new UserInfoPage(driver);
-        Assert
-                .assertTrue(userInfoPage.getIdentificationOfUserInfoPage().isDisplayed(),
-                        "LogIn failed!");
+        userInfoPage = logInPage.loginAs(Roles.CUSTOMER);
+
+        Assert.assertTrue(userInfoPage
+                .getIdentificationOfUserInfoPage()
+                .isDisplayed(), "LogIn failed!");
     }
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
     public final void testLogOutButtonVisibility(final String name, final String password) {
 
-        logInPage = new LogInPage(driver);
-        logInPage
-                .doLogIn(Roles.CUSTOMER);
-
-        userInfoPage = new UserInfoPage(driver);
+        userInfoPage = logInPage.loginAs(Roles.CUSTOMER);
         // below we have to check if logIn was successful because every page has
         // logOut button with same locator and we could get false positive result
         // after logIn failure;
@@ -59,17 +52,13 @@ public class LogInLogOutTest extends TestRunner {
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
     public final void testLogOut(final String name, final String password) {
 
-        logInPage = new LogInPage(driver);
-        logInPage
-                .doLogIn(Roles.CUSTOMER);
-        userInfoPage = new UserInfoPage(driver);
-        customerOrderingPage =
-                userInfoPage
-                        .clickCustomerOrderingTab();
-        customerOrderingPage
-                .doLogOut();
-        Assert
-                .assertTrue(logInPage.getLogInButton().isDisplayed(),
-                        "LogOut failed!");
+        userInfoPage = logInPage.loginAs(Roles.CUSTOMER);
+
+        customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
+
+        customerOrderingPage.doLogOut();
+        Assert.assertTrue(logInPage
+                .getLogInButton()
+                .isDisplayed(), "LogOut failed!");
     }
 }

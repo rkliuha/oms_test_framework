@@ -17,7 +17,7 @@ public class UserInfoPageTest extends TestRunner {
 
         logInPage = new LogInPage(driver);
         logInPage
-                .doLogIn(Roles.MERCHANDISER);
+                .loginAs(Roles.MERCHANDISER);
         final UserInfoPage userInfoPage = new UserInfoPage(driver);
         Assert.assertTrue("Ordering".equals(userInfoPage.getMerchandiserOrderingTab().getText()),
                 "English should be by default!");
@@ -29,7 +29,7 @@ public class UserInfoPageTest extends TestRunner {
 
         logInPage = new LogInPage(driver);
         logInPage
-                .doLogIn(Roles.MERCHANDISER);
+                .loginAs(Roles.MERCHANDISER);
         final UserInfoPage userInfoPage = new UserInfoPage(driver);
         userInfoPage
                 .clickUkrainianButton();
@@ -43,7 +43,7 @@ public class UserInfoPageTest extends TestRunner {
 
         logInPage = new LogInPage(driver);
         logInPage
-                .doLogIn(Roles.MERCHANDISER);
+                .loginAs(Roles.MERCHANDISER);
         final UserInfoPage userInfoPage = new UserInfoPage(driver);
         userInfoPage
                 .clickUkrainianButton()
@@ -58,7 +58,7 @@ public class UserInfoPageTest extends TestRunner {
 
         logInPage = new LogInPage(driver);
         logInPage
-                .doLogIn(Roles.MERCHANDISER);
+                .loginAs(Roles.MERCHANDISER);
         userInfoPage = new UserInfoPage(driver);
         Assert.assertTrue("700".equals(userInfoPage.getEnglishButton().getCssValue("font-weight")),
                 "English Button should be bold");
@@ -70,7 +70,7 @@ public class UserInfoPageTest extends TestRunner {
 
         logInPage = new LogInPage(driver);
         logInPage
-                .doLogIn(Roles.MERCHANDISER);
+                .loginAs(Roles.MERCHANDISER);
         userInfoPage = new UserInfoPage(driver);
         userInfoPage
                 .clickUkrainianButton();

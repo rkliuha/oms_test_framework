@@ -17,12 +17,13 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     public static final String ROLE = "Role";
     public static final String ROLE_FILTER = "contains";
     public static final String TEXT = "A";
+    public static final String TAG_ATRIBUT = "value";
 
     @Test
     public void testUserInfoAdministrationButtonCheck() {
 
         userInfoPage = logInPage
-                .doLogIn(Roles.ADMINISTRATOR);
+                .loginAs(Roles.ADMINISTRATOR);
 
         Assert.assertTrue(userInfoPage
                 .getElement(USER_INFO_LINK)
@@ -37,7 +38,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     public void testDoNotRevertDefaultState() {
 
         userInfoPage = logInPage
-                .doLogIn(Roles.ADMINISTRATOR);
+                .loginAs(Roles.ADMINISTRATOR);
 
         userInfoPage
                 .click(ADMINISTRATION_LINK);
@@ -77,7 +78,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
 
         Assert.assertTrue(administrationPage
                 .getElement(FILED_FILTER_TEXT_BOX)
-                .getAttribute("value")
+                .getAttribute(TAG_ATRIBUT)
                 .contains(TEXT), "Text in the text box is different of " + TEXT);
     }
 }

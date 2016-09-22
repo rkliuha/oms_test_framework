@@ -52,7 +52,7 @@ public class LogInPageTest extends TestRunner {
 
         logInPage = new LogInPage(driver);
         logInPage
-                .doLogIn(Roles.INVALID_USER);
+                .loginAs(Roles.INVALID_USER);
 
         Assert.assertTrue(logInPage.getLogInButton().isDisplayed(),
                 "You should not Logged In with unregistered data!");
@@ -120,7 +120,7 @@ public class LogInPageTest extends TestRunner {
         logInPage = new LogInPage(driver);
         logInPage
                 .clickRememberMeButton()
-                .doLogIn(Roles.INVALID_USER);
+                .loginAs(Roles.INVALID_USER);
         logInPage
                 .doLogOut();
         Assert.assertFalse(logInPage.getInputNameField().getText() != name &&
@@ -133,9 +133,9 @@ public class LogInPageTest extends TestRunner {
 
         logInPage = new LogInPage(driver);
         logInPage
-                .doLogIn(Roles.INVALID_USER);      // Input Incorrect name and empty password field and click
+                .loginAs(Roles.INVALID_USER);      // Input Incorrect name and empty password field and click
         logInPage
-                .doLogIn(Roles.INVALID_USER);            // Input Incorrect password and empty name field and click
+                .loginAs(Roles.INVALID_USER);            // Input Incorrect password and empty name field and click
 
         Assert.assertTrue(logInPage.getLogInButton().isDisplayed(),
                 "You should not Logged In with invalid data!");
@@ -189,7 +189,7 @@ public class LogInPageTest extends TestRunner {
 
         logInPage = new LogInPage(driver);
         logInPage
-                .doLogIn(Roles.INVALID_USER);// Input Incorrect password and empty name field and click
+                .loginAs(Roles.INVALID_USER);// Input Incorrect password and empty name field and click
         Assert.assertEquals(logInPage.getElement(LogInPage.ERROR_MESSAGE).getText(),
                 "Password is incorrect � please try again",
                 "Unexpected message!");
