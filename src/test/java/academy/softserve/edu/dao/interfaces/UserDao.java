@@ -11,6 +11,8 @@ public interface UserDao {
 
     User getUserByRole(final Roles role);
 
+    User getLastUser();
+
     void updateUser(final User user);
 
     void deleteUser(final int userId);
