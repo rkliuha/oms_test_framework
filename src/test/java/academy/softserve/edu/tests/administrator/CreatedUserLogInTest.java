@@ -1,12 +1,12 @@
 package academy.softserve.edu.tests.administrator;
 
+import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.AdministrationPage;
 import academy.softserve.edu.pageobjects.EditUserPage;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 import static academy.softserve.edu.pageobjects.AdministrationPage.CREATE_NEW_USER_LINK;
@@ -25,7 +25,7 @@ public class CreatedUserLogInTest extends TestRunner {
     public void testTabsExist() {
 
         userInfoPage = logInPage
-                .doLogIn(USER_LOGIN, USER_PASSWORD);
+                .loginAs(Roles.ADMINISTRATOR);
 
         userInfoPage
                 .getElement(ADMINISTRATION_LINK)
@@ -42,7 +42,7 @@ public class CreatedUserLogInTest extends TestRunner {
     public void testCreateUserPageExist() {
 
         userInfoPage = logInPage
-                .doLogIn(USER_LOGIN, USER_PASSWORD);
+                .loginAs(Roles.ADMINISTRATOR);
 
         userInfoPage
                 .getElement(ADMINISTRATION_LINK)
@@ -71,7 +71,7 @@ public class CreatedUserLogInTest extends TestRunner {
         final String ROLE = "customer";
 
         userInfoPage = logInPage
-                .doLogIn(USER_LOGIN, USER_PASSWORD);
+                .loginAs(Roles.ADMINISTRATOR);
 
         userInfoPage
                 .getElement(ADMINISTRATION_LINK)
@@ -122,7 +122,7 @@ public class CreatedUserLogInTest extends TestRunner {
                 .click();
 
         Assert.assertNotNull(DBHandler
-                .getUserByLogin(LOGIN), "User dosen't exist");
+                .getUserByLogin(LOGIN), "User doesn't exist");
     }
 
     @Test(priority = 4)
@@ -137,7 +137,7 @@ public class CreatedUserLogInTest extends TestRunner {
                 .getPassword();
 
         userInfoPage = logInPage
-                .doLogIn(login, password);
+                .loginAs(login, password);
 
         Assert.assertTrue(userInfoPage
                 .getElement(USER_INFO_PAGE_EXISTS)

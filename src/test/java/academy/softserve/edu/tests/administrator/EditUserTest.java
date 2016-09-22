@@ -34,7 +34,7 @@ public class EditUserTest extends TestRunner {
 
         userForLogin = DBHandler.getUserByRole(Roles.ADMINISTRATOR);
 
-        userInfoPage = logInPage.doLogIn(userForLogin.getLogin(), userForLogin.getPassword());
+        userInfoPage = logInPage.loginAs(userForLogin.getLogin(), userForLogin.getPassword());
 
         administrationPage = userInfoPage
                 .clickAdministrationTab()

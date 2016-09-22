@@ -1,5 +1,6 @@
 package academy.softserve.edu.utils;
 
+import academy.softserve.edu.enums.Roles;
 import org.testng.annotations.DataProvider;
 
 import static academy.softserve.edu.pageobjects.CustomerOrderingPage.SHOW_10_ITEMS_LINK;
@@ -8,31 +9,23 @@ import static academy.softserve.edu.pageobjects.CustomerOrderingPage.SHOW_5_ITEM
 public class DataProviders {
 
     @DataProvider
-    static final public Object[][] testDataForAllUsersRole() {
-        return new Object[][]{{"iva", "qwerty"}, {"login1", "qwerty"}, {"login2", "qwerty"}, {"login3", "qwerty"}};
+    static public Object[][] testDataForAllUsersRole() {
+        return new Object[][]{{Roles.ADMINISTRATOR}, {Roles.MERCHANDISER}, {Roles.SUPERVISOR}, {Roles.CUSTOMER}};
     }
 
     @DataProvider
-    static final public Object[][] testDataForAdministrator() {
+    static public Object[][] testDataForAdministrator() {
         return new Object[][]{
-                {"iva", "qwerty"}
+                {Roles.ADMINISTRATOR}
         };
     }
 
     @DataProvider
-    static final public Object[][] testDataForMerchandiser() {
+    static public Object[][] testDataForMerchandiser() {
         return new Object[][]{
-                {"login1", "qwerty"}
+                {Roles.MERCHANDISER}
         };
     }
-
-    @DataProvider
-    static final public Object[][] testDataForSupervisor() {
-        return new Object[][]{
-                {"login2", "qwerty"}
-        };
-    }
-
 
     @DataProvider
     static final public Object[][] testDataSearchElementsCustomer() {
@@ -51,9 +44,24 @@ public class DataProviders {
     }
 
     @DataProvider
-    static final public Object[][] testDataForCustomer() {
+    static public Object[][] testDataForSupervisor() {
         return new Object[][]{
-                {"login4", "qwerty"}
+                {Roles.SUPERVISOR}
+        };
+    }
+
+
+    @DataProvider
+    static public Object[][] testDataForCustomer() {
+        return new Object[][]{
+                {Roles.CUSTOMER}
+        };
+    }
+
+    @DataProvider
+    static public Object[][] testDataForInvalidUser() {
+        return new Object[][]{
+                {Roles.INVALID_USER}
         };
     }
 

@@ -1,5 +1,6 @@
 package academy.softserve.edu.tests.customer;
 
+import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.CustomerOrderingPage;
 import academy.softserve.edu.utils.DataProviders;
 import academy.softserve.edu.utils.TestRunner;
@@ -15,7 +16,7 @@ public class SwitchTabsByCustomerTest extends TestRunner {
     public void testDefaultUserInfoPage(final String name, final String password) {
 
         userInfoPage = logInPage
-                .doLogIn(name, password);
+                .loginAs(Roles.CUSTOMER);
 
         Assert.assertTrue(userInfoPage
                 .getElement(USER_INFO_PAGE_EXISTS)
@@ -26,7 +27,7 @@ public class SwitchTabsByCustomerTest extends TestRunner {
     public void testUserInfoButtonCheck(final String name, final String password) {
 
         userInfoPage = logInPage
-                .doLogIn(name, password);
+                .loginAs(Roles.CUSTOMER);
 
         Assert.assertTrue(userInfoPage
                 .getElement(USER_INFO_LINK)
@@ -37,7 +38,7 @@ public class SwitchTabsByCustomerTest extends TestRunner {
     public void testOrderingButtonCheck(final String name, final String password) {
 
         userInfoPage = logInPage
-                .doLogIn(name, password);
+                .loginAs(Roles.CUSTOMER);
 
         Assert.assertTrue(userInfoPage
                 .getElement(CUSTOMER_ORDERING_LINK)
@@ -48,7 +49,7 @@ public class SwitchTabsByCustomerTest extends TestRunner {
     public void testActiveOrderingPage(final String name, final String password) {
 
         userInfoPage = logInPage
-                .doLogIn(name, password);
+                .loginAs(Roles.CUSTOMER);
 
         userInfoPage
                 .click(CUSTOMER_ORDERING_LINK);
@@ -62,7 +63,7 @@ public class SwitchTabsByCustomerTest extends TestRunner {
     public void testSwitchTabsUserOrdering(final String name, final String password) {
 
         userInfoPage = logInPage
-                .doLogIn(name, password);
+                .loginAs(Roles.CUSTOMER);
 
         userInfoPage
                 .click(CUSTOMER_ORDERING_LINK);

@@ -1,5 +1,6 @@
 package academy.softserve.edu.tests.customer;
 
+import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.CustomerOrderingPage;
 import academy.softserve.edu.utils.DataProviders;
 import academy.softserve.edu.utils.TestRunner;
@@ -21,7 +22,7 @@ public class SearchTest extends TestRunner {
     public void testStatusSearch(final String name, final String password, final String searchOrder, final String searchOrderValue) {
 
         userInfoPage = logInPage
-                .doLogIn(name, password);
+                .loginAs(Roles.CUSTOMER);
 
         userInfoPage
                 .click(CUSTOMER_ORDERING_LINK);
@@ -49,7 +50,7 @@ public class SearchTest extends TestRunner {
     public void testElementsSearch(final String name, final String password, final By elementPath, final int elementsAmount) {
 
         userInfoPage = logInPage
-                .doLogIn(name, password);
+                .loginAs(Roles.CUSTOMER);
 
         userInfoPage
                 .click(CUSTOMER_ORDERING_LINK);
