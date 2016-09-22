@@ -1,12 +1,12 @@
-package academy.softserve.edu.elements.locators.supervisorLocators;
+package academy.softserve.edu.elements.locators.administrator;
 
 import academy.softserve.edu.elements.interfaces.ILocator;
-import academy.softserve.edu.elements.locatorsType.LocatorsType;
+import academy.softserve.edu.elements.locatorstype.LocatorsType;
 import org.openqa.selenium.By;
 
-public enum SupervisorLocators implements ILocator {
+public enum CreateReportPageLocators implements ILocator {
 
-    ITEM_MANAGEMENT_LINK("Item Management Link",
+    ADMINISTRATION_LINK("Administration Link",
             LocatorsType.BY_XPATH,
             "//ul[@id='nav']/li[1]/a"),
 
@@ -18,17 +18,13 @@ public enum SupervisorLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//div[@id='list']/h2"),
 
-    ADD_PRODUCT_LINK("Add Product Link",
+    SAVE_REPORT_LINK("Save Report Link",
             LocatorsType.BY_XPATH,
-            "//div[@id='list']/a[1]"),
+            "//div[@id='list']/a"),
 
-    PRODUCT_FOUND_CONTAINER("Product Found Container",
+    FOUND_USERS_CONTAINER("Found Users Container",
             LocatorsType.BY_XPATH,
             "//div[@id='list']/h4[1]"),
-
-    RECORDS_COUNT_TEXT("Records Count Text",
-            LocatorsType.BY_ID,
-            "recordsFound"),
 
     SEARCH_BY_FIELDSET("Search By Fieldset",
             LocatorsType.BY_XPATH,
@@ -42,6 +38,10 @@ public enum SupervisorLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//select[@id='field']"),
 
+    SEARCH_CONDITION_DROPDOWN("Search Condition Dropdown",
+            LocatorsType.BY_XPATH,
+            "//select[@id='condition']"),
+
     SEARCH_INPUT("Search Input",
             LocatorsType.BY_XPATH,
             "//input[@id='searchField']"),
@@ -50,29 +50,49 @@ public enum SupervisorLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//form[@id='searchForm']/input[2]"),
 
-    RESIZE_PRODUCTS_LIST_LINK("Resize Products List Link",
+    RESIZE_USERS_LIST_LINK("Resize Users List Link",
             LocatorsType.BY_XPATH,
             "//div[@id='list']/p/a"),
 
-    NAME_HEADER_LINK("Name Header Link",
+    FIRST_NAME_HEADER_LINK("First Name Header Link",
             LocatorsType.BY_XPATH,
             "//table[@id='table']//tr/th[1]/a"),
 
-    DESCRIPTION_HEADER_LINK("Description Header Link",
+    FIRST_NAME_CELL("First Name Cell",
+            LocatorsType.BY_XPATH,
+            "//div[@id='list']/table/tbody/tr[%s]/td[1]"),
+
+    LAST_NAME_HEADER_LINK("Last Name Header Link",
             LocatorsType.BY_XPATH,
             "//table[@id='table']//tr/th[2]/a"),
 
-    PRICE_HEADER_LINK("Price Header Link",
+    LAST_NAME_CELL("Last Name Cell",
+            LocatorsType.BY_XPATH,
+            "//div[@id='list']/table/tbody/tr[%s]/td[2]"),
+
+    LOGIN_HEADER_LINK("Login Header Link",
             LocatorsType.BY_XPATH,
             "//table[@id='table']//tr/th[3]/a"),
 
-    EDIT_HEADER("Edit Header",
+    LOGIN_CELL("Login Cell",
             LocatorsType.BY_XPATH,
-            "//table[@id='table']//tr/th[4]"),
+            "//div[@id='list']/table/tbody/tr[%s]/td[3]"),
 
-    DELETE_HEADER("Delete Header",
+    ROLE_HEADER_LINK("Role Header Link",
             LocatorsType.BY_XPATH,
-            "//table[@id='table']//tr/th[5]"),
+            "//table[@id='table']//tr/th[4]/a"),
+
+    ROLE_CELL("Role Cell",
+            LocatorsType.BY_XPATH,
+            "//div[@id='list']/table/tbody/tr[%s]/td[4]"),
+
+    REGION_HEADER_LINK("Region Header Link",
+            LocatorsType.BY_XPATH,
+            "//table[@id='table']//tr/th[5]/a"),
+
+    REGION_CELL("Region Cell",
+            LocatorsType.BY_XPATH,
+            "//div[@id='list']/table/tbody/tr[%s]/td[5]"),
 
     FIRST_NAVIGATION_BUTTON("First Navigation Button",
             LocatorsType.BY_ID,
@@ -90,7 +110,7 @@ public enum SupervisorLocators implements ILocator {
             LocatorsType.BY_ID,
             "last"),
 
-    PAGE_NUMBER_CONTAINER("Page Number Text Container",
+    PAGE_NUMBER_CONTAINER("Page Number Container",
             LocatorsType.BY_XPATH,
             "//div[@id='list']/h4[2]"),
 
@@ -100,19 +120,15 @@ public enum SupervisorLocators implements ILocator {
 
     PAGE_COUNT_TEXT("Page Count Text",
             LocatorsType.BY_ID,
-            "pageCount"),
-
-    CREATE_REPORT_LINK("Create Report Link",
-            LocatorsType.BY_XPATH,
-            "//div[@id='list']/a[2]");
+            "pageCount");
 
     protected String elementName;
     protected LocatorsType locatorType;
     protected String locatorValue;
     private String modifiedLocator;
 
-    SupervisorLocators(final String elementName,
-                       final LocatorsType locatorType, final String locatorValue) {
+    CreateReportPageLocators(final String elementName,
+                             final LocatorsType locatorType, final String locatorValue) {
         this.elementName = elementName;
         this.locatorType = locatorType;
         this.locatorValue = locatorValue;
@@ -135,7 +151,7 @@ public enum SupervisorLocators implements ILocator {
     }
 
     @Override
-    public SupervisorLocators modify(final String parameter) {
+    public CreateReportPageLocators modify(final String parameter) {
         this.modifiedLocator = String.format(this.locatorValue, parameter);
         return this;
     }

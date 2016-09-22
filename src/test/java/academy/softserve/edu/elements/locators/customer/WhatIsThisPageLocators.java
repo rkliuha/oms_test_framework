@@ -1,10 +1,10 @@
-package academy.softserve.edu.elements.locators.customerLocators;
+package academy.softserve.edu.elements.locators.customer;
 
 import academy.softserve.edu.elements.interfaces.ILocator;
-import academy.softserve.edu.elements.locatorsType.LocatorsType;
+import academy.softserve.edu.elements.locatorstype.LocatorsType;
 import org.openqa.selenium.By;
 
-public enum WhatIsThisNewWindowLocators implements ILocator {
+public enum WhatIsThisPageLocators implements ILocator {
 
     WHAT_IS_CVV2_TITLE("What Is CVV2 Text",
             LocatorsType.BY_XPATH,
@@ -56,8 +56,8 @@ public enum WhatIsThisNewWindowLocators implements ILocator {
     protected String locatorValue;
     private String modifiedLocator;
 
-    WhatIsThisNewWindowLocators(final String elementName,
-                                final LocatorsType locatorType, final String locatorValue) {
+    WhatIsThisPageLocators(final String elementName,
+                           final LocatorsType locatorType, final String locatorValue) {
         this.elementName = elementName;
         this.locatorType = locatorType;
         this.locatorValue = locatorValue;
@@ -80,7 +80,7 @@ public enum WhatIsThisNewWindowLocators implements ILocator {
     }
 
     @Override
-    public WhatIsThisNewWindowLocators modify(final String parameter) {
+    public WhatIsThisPageLocators modify(final String parameter) {
         this.modifiedLocator = String.format(this.locatorValue, parameter);
         return this;
     }

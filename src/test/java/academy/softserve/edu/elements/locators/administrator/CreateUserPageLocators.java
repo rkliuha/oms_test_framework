@@ -1,10 +1,10 @@
-package academy.softserve.edu.elements.locators.administrationLocators;
+package academy.softserve.edu.elements.locators.administrator;
 
 import academy.softserve.edu.elements.interfaces.ILocator;
-import academy.softserve.edu.elements.locatorsType.LocatorsType;
+import academy.softserve.edu.elements.locatorstype.LocatorsType;
 import org.openqa.selenium.By;
 
-public enum CreateUserLocators implements ILocator {
+public enum CreateUserPageLocators implements ILocator {
 
     ADMINISTRATION_LINK("Administration Link",
             LocatorsType.BY_XPATH,
@@ -96,8 +96,8 @@ public enum CreateUserLocators implements ILocator {
     protected String locatorValue;
     private String modifiedLocator;
 
-    CreateUserLocators(final String elementName,
-                       final LocatorsType locatorType, final String locatorValue) {
+    CreateUserPageLocators(final String elementName,
+                           final LocatorsType locatorType, final String locatorValue) {
         this.elementName = elementName;
         this.locatorType = locatorType;
         this.locatorValue = locatorValue;
@@ -120,7 +120,7 @@ public enum CreateUserLocators implements ILocator {
     }
 
     @Override
-    public CreateUserLocators modify(final String parameter) {
+    public CreateUserPageLocators modify(final String parameter) {
         this.modifiedLocator = String.format(this.locatorValue, parameter);
         return this;
     }

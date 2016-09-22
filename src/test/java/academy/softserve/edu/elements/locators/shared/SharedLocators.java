@@ -1,7 +1,7 @@
-package academy.softserve.edu.elements.locators.sharedLocators;
+package academy.softserve.edu.elements.locators.shared;
 
 import academy.softserve.edu.elements.interfaces.ILocator;
-import academy.softserve.edu.elements.locatorsType.LocatorsType;
+import academy.softserve.edu.elements.locatorstype.LocatorsType;
 import org.openqa.selenium.By;
 
 public enum SharedLocators implements ILocator {

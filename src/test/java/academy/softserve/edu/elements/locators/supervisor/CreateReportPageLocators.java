@@ -1,12 +1,12 @@
-package academy.softserve.edu.elements.locators.administrationLocators;
+package academy.softserve.edu.elements.locators.supervisor;
 
 import academy.softserve.edu.elements.interfaces.ILocator;
-import academy.softserve.edu.elements.locatorsType.LocatorsType;
+import academy.softserve.edu.elements.locatorstype.LocatorsType;
 import org.openqa.selenium.By;
 
-public enum CreateReportLocators implements ILocator {
+public enum CreateReportPageLocators implements ILocator {
 
-    ADMINISTRATION_LINK("Administration Link",
+    ITEM_MANAGEMENT_LINK("Item Management Link",
             LocatorsType.BY_XPATH,
             "//ul[@id='nav']/li[1]/a"),
 
@@ -22,9 +22,13 @@ public enum CreateReportLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//div[@id='list']/a"),
 
-    FOUND_USERS_CONTAINER("Found Users Container",
+    PRODUCT_FOUND_CONTAINER("Product Found Container",
             LocatorsType.BY_XPATH,
             "//div[@id='list']/h4[1]"),
+
+    RECORDS_COUNT_TEXT("Records Count Text",
+            LocatorsType.BY_ID,
+            "recordsFound"),
 
     SEARCH_BY_FIELDSET("Search By Fieldset",
             LocatorsType.BY_XPATH,
@@ -38,10 +42,6 @@ public enum CreateReportLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//select[@id='field']"),
 
-    SEARCH_CONDITION_DROPDOWN("Search Condition Dropdown",
-            LocatorsType.BY_XPATH,
-            "//select[@id='condition']"),
-
     SEARCH_INPUT("Search Input",
             LocatorsType.BY_XPATH,
             "//input[@id='searchField']"),
@@ -50,49 +50,21 @@ public enum CreateReportLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//form[@id='searchForm']/input[2]"),
 
-    RESIZE_USERS_LIST_LINK("Resize Users List Link",
+    RESIZE_PRODUCTS_LIST_LINK("Resize Products List Link",
             LocatorsType.BY_XPATH,
             "//div[@id='list']/p/a"),
 
-    FIRST_NAME_HEADER_LINK("First Name Header Link",
+    NAME_HEADER_LINK("Name Header Link",
             LocatorsType.BY_XPATH,
             "//table[@id='table']//tr/th[1]/a"),
 
-    FIRST_NAME_CELL("First Name Cell",
-            LocatorsType.BY_XPATH,
-            "//div[@id='list']/table/tbody/tr[%s]/td[1]"),
-
-    LAST_NAME_HEADER_LINK("Last Name Header Link",
+    DESCRIPTION_HEADER_LINK("Description Header Link",
             LocatorsType.BY_XPATH,
             "//table[@id='table']//tr/th[2]/a"),
 
-    LAST_NAME_CELL("Last Name Cell",
-            LocatorsType.BY_XPATH,
-            "//div[@id='list']/table/tbody/tr[%s]/td[2]"),
-
-    LOGIN_HEADER_LINK("Login Header Link",
+    PRICE_HEADER_LINK("Price Header Link",
             LocatorsType.BY_XPATH,
             "//table[@id='table']//tr/th[3]/a"),
-
-    LOGIN_CELL("Login Cell",
-            LocatorsType.BY_XPATH,
-            "//div[@id='list']/table/tbody/tr[%s]/td[3]"),
-
-    ROLE_HEADER_LINK("Role Header Link",
-            LocatorsType.BY_XPATH,
-            "//table[@id='table']//tr/th[4]/a"),
-
-    ROLE_CELL("Role Cell",
-            LocatorsType.BY_XPATH,
-            "//div[@id='list']/table/tbody/tr[%s]/td[4]"),
-
-    REGION_HEADER_LINK("Region Header Link",
-            LocatorsType.BY_XPATH,
-            "//table[@id='table']//tr/th[5]/a"),
-
-    REGION_CELL("Region Cell",
-            LocatorsType.BY_XPATH,
-            "//div[@id='list']/table/tbody/tr[%s]/td[5]"),
 
     FIRST_NAVIGATION_BUTTON("First Navigation Button",
             LocatorsType.BY_ID,
@@ -110,7 +82,7 @@ public enum CreateReportLocators implements ILocator {
             LocatorsType.BY_ID,
             "last"),
 
-    PAGE_NUMBER_CONTAINER("Page Number Container",
+    PAGE_NUMBER_CONTAINER("Page Number Text Container",
             LocatorsType.BY_XPATH,
             "//div[@id='list']/h4[2]"),
 
@@ -127,8 +99,8 @@ public enum CreateReportLocators implements ILocator {
     protected String locatorValue;
     private String modifiedLocator;
 
-    CreateReportLocators(final String elementName,
-                         final LocatorsType locatorType, final String locatorValue) {
+    CreateReportPageLocators(final String elementName,
+                             final LocatorsType locatorType, final String locatorValue) {
         this.elementName = elementName;
         this.locatorType = locatorType;
         this.locatorValue = locatorValue;
@@ -151,7 +123,7 @@ public enum CreateReportLocators implements ILocator {
     }
 
     @Override
-    public CreateReportLocators modify(final String parameter) {
+    public CreateReportPageLocators modify(final String parameter) {
         this.modifiedLocator = String.format(this.locatorValue, parameter);
         return this;
     }

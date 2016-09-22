@@ -1,10 +1,10 @@
-package academy.softserve.edu.elements.locators.merchandiserLocators;
+package academy.softserve.edu.elements.locators.merchandiser;
 
 import academy.softserve.edu.elements.interfaces.ILocator;
-import academy.softserve.edu.elements.locatorsType.LocatorsType;
+import academy.softserve.edu.elements.locatorstype.LocatorsType;
 import org.openqa.selenium.By;
 
-public enum MerchandiserLocators implements ILocator {
+public enum MerchandiserOrderingPageLocators implements ILocator {
 
     ORDERING_LINK("Ordering Link",
             LocatorsType.BY_XPATH,
@@ -23,8 +23,8 @@ public enum MerchandiserLocators implements ILocator {
             "//select[@id='search']"),
 
     SEARCH_INPUT("Search Input",
-            LocatorsType.BY_XPATH,
-            "//input[@id='searchValue']"),
+            LocatorsType.BY_ID,
+            "searchValue"),
 
     APPLY_BUTTON("Apply Button",
             LocatorsType.BY_XPATH,
@@ -95,8 +95,8 @@ public enum MerchandiserLocators implements ILocator {
     protected String locatorValue;
     private String modifiedLocator;
 
-    MerchandiserLocators(final String elementName,
-                         final LocatorsType locatorType, final String locatorValue) {
+    MerchandiserOrderingPageLocators(final String elementName,
+                                     final LocatorsType locatorType, final String locatorValue) {
         this.elementName = elementName;
         this.locatorType = locatorType;
         this.locatorValue = locatorValue;
@@ -119,7 +119,7 @@ public enum MerchandiserLocators implements ILocator {
     }
 
     @Override
-    public MerchandiserLocators modify(final String parameter) {
+    public MerchandiserOrderingPageLocators modify(final String parameter) {
         this.modifiedLocator = String.format(this.locatorValue, parameter);
         return this;
     }

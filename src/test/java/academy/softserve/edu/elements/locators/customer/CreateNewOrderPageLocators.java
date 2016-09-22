@@ -1,10 +1,10 @@
-package academy.softserve.edu.elements.locators.customerLocators;
+package academy.softserve.edu.elements.locators.customer;
 
 import academy.softserve.edu.elements.interfaces.ILocator;
-import academy.softserve.edu.elements.locatorsType.LocatorsType;
+import academy.softserve.edu.elements.locatorstype.LocatorsType;
 import org.openqa.selenium.By;
 
-public enum CreateNewOrderLocators implements ILocator {
+public enum CreateNewOrderPageLocators implements ILocator {
 
     ORDERING_LINK("Ordering Link",
             LocatorsType.BY_XPATH,
@@ -288,8 +288,8 @@ public enum CreateNewOrderLocators implements ILocator {
     protected String locatorValue;
     private String modifiedLocator;
 
-    CreateNewOrderLocators(final String elementName,
-                           final LocatorsType locatorType, final String locatorValue) {
+    CreateNewOrderPageLocators(final String elementName,
+                               final LocatorsType locatorType, final String locatorValue) {
         this.elementName = elementName;
         this.locatorType = locatorType;
         this.locatorValue = locatorValue;
@@ -312,7 +312,7 @@ public enum CreateNewOrderLocators implements ILocator {
     }
 
     @Override
-    public CreateNewOrderLocators modify(final String parameter) {
+    public CreateNewOrderPageLocators modify(final String parameter) {
         this.modifiedLocator = String.format(this.locatorValue, parameter);
         return this;
     }

@@ -1,10 +1,10 @@
-package academy.softserve.edu.elements.locators.userInfoLocators;
+package academy.softserve.edu.elements.locators.userinfo;
 
 import academy.softserve.edu.elements.interfaces.ILocator;
-import academy.softserve.edu.elements.locatorsType.LocatorsType;
+import academy.softserve.edu.elements.locatorstype.LocatorsType;
 import org.openqa.selenium.By;
 
-public enum UserInfoLocators implements ILocator {
+public enum UserInfoPageLocators implements ILocator {
 
     ROLE_LINK("Role Link",
             LocatorsType.BY_XPATH,
@@ -65,8 +65,8 @@ public enum UserInfoLocators implements ILocator {
     private String parameter;
     private String modifiedLocator;
 
-    UserInfoLocators(final String elementName,
-                     final LocatorsType locatorType, final String locatorValue) {
+    UserInfoPageLocators(final String elementName,
+                         final LocatorsType locatorType, final String locatorValue) {
         this.elementName = elementName;
         this.locatorType = locatorType;
         this.locatorValue = locatorValue;
@@ -89,7 +89,7 @@ public enum UserInfoLocators implements ILocator {
     }
 
     @Override
-    public UserInfoLocators modify(final String parameter) {
+    public UserInfoPageLocators modify(final String parameter) {
         this.modifiedLocator = String.format(this.locatorValue, parameter);
         return this;
     }

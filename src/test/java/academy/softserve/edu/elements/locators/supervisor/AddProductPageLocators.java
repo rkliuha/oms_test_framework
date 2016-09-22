@@ -1,7 +1,7 @@
-package academy.softserve.edu.elements.locators.supervisorLocators;
+package academy.softserve.edu.elements.locators.supervisor;
 
 import academy.softserve.edu.elements.interfaces.ILocator;
-import academy.softserve.edu.elements.locatorsType.LocatorsType;
+import academy.softserve.edu.elements.locatorstype.LocatorsType;
 import org.openqa.selenium.By;
 
 public enum AddProductPageLocators implements ILocator {

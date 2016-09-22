@@ -1,10 +1,10 @@
-package academy.softserve.edu.elements.locators.supervisorLocators;
+package academy.softserve.edu.elements.locators.supervisor;
 
 import academy.softserve.edu.elements.interfaces.ILocator;
-import academy.softserve.edu.elements.locatorsType.LocatorsType;
+import academy.softserve.edu.elements.locatorstype.LocatorsType;
 import org.openqa.selenium.By;
 
-public enum CreateReportLocators implements ILocator {
+public enum ItemManagementPageLocators implements ILocator {
 
     ITEM_MANAGEMENT_LINK("Item Management Link",
             LocatorsType.BY_XPATH,
@@ -18,9 +18,9 @@ public enum CreateReportLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//div[@id='list']/h2"),
 
-    SAVE_REPORT_LINK("Save Report Link",
+    ADD_PRODUCT_LINK("Add Product Link",
             LocatorsType.BY_XPATH,
-            "//div[@id='list']/a"),
+            "//div[@id='list']/a[1]"),
 
     PRODUCT_FOUND_CONTAINER("Product Found Container",
             LocatorsType.BY_XPATH,
@@ -66,6 +66,14 @@ public enum CreateReportLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//table[@id='table']//tr/th[3]/a"),
 
+    EDIT_HEADER("Edit Header",
+            LocatorsType.BY_XPATH,
+            "//table[@id='table']//tr/th[4]"),
+
+    DELETE_HEADER("Delete Header",
+            LocatorsType.BY_XPATH,
+            "//table[@id='table']//tr/th[5]"),
+
     FIRST_NAVIGATION_BUTTON("First Navigation Button",
             LocatorsType.BY_ID,
             "first"),
@@ -92,15 +100,19 @@ public enum CreateReportLocators implements ILocator {
 
     PAGE_COUNT_TEXT("Page Count Text",
             LocatorsType.BY_ID,
-            "pageCount");
+            "pageCount"),
+
+    CREATE_REPORT_LINK("Create Report Link",
+            LocatorsType.BY_XPATH,
+            "//div[@id='list']/a[2]");
 
     protected String elementName;
     protected LocatorsType locatorType;
     protected String locatorValue;
     private String modifiedLocator;
 
-    CreateReportLocators(final String elementName,
-                         final LocatorsType locatorType, final String locatorValue) {
+    ItemManagementPageLocators(final String elementName,
+                               final LocatorsType locatorType, final String locatorValue) {
         this.elementName = elementName;
         this.locatorType = locatorType;
         this.locatorValue = locatorValue;
@@ -123,7 +135,7 @@ public enum CreateReportLocators implements ILocator {
     }
 
     @Override
-    public CreateReportLocators modify(final String parameter) {
+    public ItemManagementPageLocators modify(final String parameter) {
         this.modifiedLocator = String.format(this.locatorValue, parameter);
         return this;
     }
