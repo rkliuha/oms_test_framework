@@ -2,15 +2,13 @@ package academy.softserve.edu.elements.wrappers;
 
 import academy.softserve.edu.elements.interfaces.ILocator;
 import academy.softserve.edu.utils.Logger;
-import org.openqa.selenium.StaleElementReferenceException;
+import academy.softserve.edu.utils.Wait;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class AbstractClickableElement<T> extends AbstractElement {
 
-    private int timeout = 20;
+    final protected Wait wait = new Wait(driver, locator);
 
     AbstractClickableElement(final WebDriver driver, final ILocator locator) {
         super(driver, locator);
@@ -18,58 +16,43 @@ public abstract class AbstractClickableElement<T> extends AbstractElement {
 
     final public T click() {
 
-        waitUntilElementIsPresent();
-        waitUntilElementIsClickable();
+        wait.waitUntilElementIsPresent();
+        wait.waitUntilElementIsClickable();
         driver.findElement(locator.getBy()).click();
-        Logger.logInfo("<b><font size='1' color='black'>Clicked On "
-                + locator.getName() + "</font></b>");
+        Logger.logInfo("<font color='black'>Clicked On "
+                + "<b>" + locator.getName() + "</b></font>");
         return (T) this;
     }
 
     final public T doDoubleClick() {
 
-        waitUntilElementIsPresent();
-        waitUntilElementIsClickable();
+        wait.waitUntilElementIsPresent();
+        wait.waitUntilElementIsClickable();
         final Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(locator.getBy())).doubleClick().perform();
-        Logger.logInfo("<b><font size='1' color='black'>Double Clicked On "
-                + locator.getName() + "</font></b>");
+        Logger.logInfo("<font color='black'>Double Clicked On "
+                + "<b>" + locator.getName() + "</b></font>");
         return (T) this;
     }
 
     final public T clickAndHold() {
 
-        waitUntilElementIsPresent();
-        waitUntilElementIsClickable();
+        wait.waitUntilElementIsPresent();
+        wait.waitUntilElementIsClickable();
         final Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(locator.getBy())).clickAndHold().perform();
-        Logger.logInfo("<b><font size='1' color='black'>Clicked and Held On "
-                + locator.getName() + "</font></b>");
+        Logger.logInfo("<font color='black'>Clicked and Held On "
+                + "<b>" + locator.getName() + "</b></font>");
         return (T) this;
     }
 
     final public void doRightClick() {
 
-        waitUntilElementIsPresent();
-        waitUntilElementIsClickable();
+        wait.waitUntilElementIsPresent();
+        wait.waitUntilElementIsClickable();
         final Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(locator.getBy())).contextClick().perform();
-        Logger.logInfo("<b><font size='1' color='black'>Clicked with Right Button On "
-                + locator.getName() + "</font></b>\n");
-    }
-
-    private void waitUntilElementIsPresent() {
-
-        new WebDriverWait(driver, timeout)
-                .ignoring(StaleElementReferenceException.class)
-                .until(ExpectedConditions.presenceOfElementLocated(locator.getBy()));
-    }
-
-    private void waitUntilElementIsClickable() {
-
-        new WebDriverWait(driver, timeout)
-                .ignoring(StaleElementReferenceException.class)
-                .until(ExpectedConditions.elementToBeClickable(locator.getBy()));
-
+        Logger.logInfo("<font color='black'>Clicked by Right Button On "
+                + "<b>" + locator.getName() + "</b></font>");
     }
 }

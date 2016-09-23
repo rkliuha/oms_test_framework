@@ -1,19 +1,17 @@
 package academy.softserve.edu.elements.wrappers;
 
 import academy.softserve.edu.elements.interfaces.ILocator;
-import org.openqa.selenium.StaleElementReferenceException;
+import academy.softserve.edu.utils.Wait;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
 public abstract class AbstractElement<T> {
 
-    protected final WebDriver driver;
+    protected WebDriver driver;
     protected ILocator locator;
-    private int timeout = 20;
+    final protected Wait wait = new Wait(driver, locator);
 
     AbstractElement(final WebDriver driver, final ILocator locator) {
         this.driver = driver;
@@ -22,25 +20,25 @@ public abstract class AbstractElement<T> {
 
     final public WebElement getElement() {
 
-        waitUntilElementIsPresent();
+        wait.waitUntilElementIsPresent();
         return driver.findElement(locator.getBy());
     }
 
     final public boolean isDisplayed() {
 
-        waitUntilElementIsPresent();
+        wait.waitUntilElementIsPresent();
         return driver.findElement(locator.getBy()).isDisplayed();
     }
 
     final public boolean isEnabled() {
 
-        waitUntilElementIsPresent();
+        wait.waitUntilElementIsPresent();
         return driver.findElement(locator.getBy()).isEnabled();
     }
 
     final public String getText() {
 
-        waitUntilElementIsPresent();
+        wait.waitUntilElementIsPresent();
         return driver.findElement(locator.getBy()).getText();
     }
 
@@ -50,32 +48,25 @@ public abstract class AbstractElement<T> {
 
     final public String getId() {
 
-        waitUntilElementIsPresent();
+        wait.waitUntilElementIsPresent();
         return driver.findElement(locator.getBy()).getAttribute("id");
     }
 
     final public String getName() {
 
-        waitUntilElementIsPresent();
+        wait.waitUntilElementIsPresent();
         return driver.findElement(locator.getBy()).getAttribute("name");
     }
 
     final public String getValue() {
 
-        waitUntilElementIsPresent();
+        wait.waitUntilElementIsPresent();
         return driver.findElement(locator.getBy()).getAttribute("value");
     }
 
     final public String getType() {
 
-        waitUntilElementIsPresent();
+        wait.waitUntilElementIsPresent();
         return driver.findElement(locator.getBy()).getAttribute("type");
-    }
-
-    private void waitUntilElementIsPresent() {
-
-        new WebDriverWait(driver, timeout)
-                .ignoring(StaleElementReferenceException.class)
-                .until(ExpectedConditions.presenceOfElementLocated(locator.getBy()));
     }
 }

@@ -1,7 +1,5 @@
 package academy.softserve.edu.tests.merchandiser;
 
-import academy.softserve.edu.elements.locators.merchandiser.MerchandiserOrderingPageLocators;
-import academy.softserve.edu.elements.wrappers.Dropdown;
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.LogInPage;
 import academy.softserve.edu.pageobjects.MerchandiserOrderingPage;
