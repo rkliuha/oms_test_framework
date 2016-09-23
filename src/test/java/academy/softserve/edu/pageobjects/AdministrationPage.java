@@ -17,6 +17,8 @@ public class AdministrationPage extends PageObject<AdministrationPage> {
     public static final By EDIT_LAST_USER_LINK = By.xpath("//table[@id='table']/tbody/tr[last()]/td[6]/a");
     public static final By LAST_USER_PAGINATION_BUTTON = By.id("last");
     public static final By DELETE_FIRST_USER_LINK = By.xpath("//table[@id='table']/tbody/tr[1]/td[7]/a");
+    public static final By CREATE_REPORT_LINK = By.xpath("//div[@id='list']/h5/a");
+    public static final By CREATE_NEW_USER_LINK = By.xpath(".//div[@id='list']/a");
 
     public AdministrationPage(final WebDriver driver) {
         super(driver);
@@ -62,5 +64,14 @@ public class AdministrationPage extends PageObject<AdministrationPage> {
     public final WebElement identificationOfAdministratorPage() {
         return getElement(IDENTIFICATION_OF_ADMINISTRATOR_PAGE);
     }
-}
 
+    public final CreateReportPage clickCreateReportLink() {
+        getCreateReportLink().click();
+        return new CreateReportPage(driver);
+    }
+
+    public final WebElement getCreateReportLink() {
+        return driver.findElement(CREATE_REPORT_LINK);
+    }
+
+}

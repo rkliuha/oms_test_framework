@@ -1,5 +1,6 @@
 package academy.softserve.edu.tests.merchandiser;
 
+import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.MerchandiserOrderingPage;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
@@ -15,12 +16,13 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     public static final String USER_PASSWORD = "qwerty";
     public static final String SEARCH_ORDERS = "Status";
     public static final String SEARCH_ORDERS_VALUE = "Ordered";
+    public static final String TAG_ATRIBUT = "value";
 
     @Test
     public void testUserInfoOrderingButtonCheck() {
 
         userInfoPage = logInPage
-                .doLogIn(USER_LOGIN, USER_PASSWORD);
+                .loginAs(Roles.MERCHANDISER);
 
         Assert.assertTrue(userInfoPage
                 .getElement(USER_INFO_LINK)
@@ -35,7 +37,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     public void testDoNotRevertDefaultState() {
 
         userInfoPage = logInPage
-                .doLogIn(USER_LOGIN, USER_PASSWORD);
+                .loginAs(Roles.MERCHANDISER);
 
         userInfoPage
                 .click(MERCHANDISER_ORDERING_LINK);
@@ -66,7 +68,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
 
         Assert.assertTrue(merchandiserOrderingPage
                 .getElement(MERCHANDISER_SEARCH_ORDERS_TEXT_BOX)
-                .getAttribute("value")
+                .getAttribute(TAG_ATRIBUT)
                 .contains(SEARCH_ORDERS_VALUE), "Search order value in the search order text box is different of " + SEARCH_ORDERS_VALUE);
     }
 }

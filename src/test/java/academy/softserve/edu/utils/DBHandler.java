@@ -43,6 +43,21 @@ public final class DBHandler {
         return user;
     }
 
+    public static final User getUserByLogin(final String userLogin) {
+
+        final DaoFactory daoFactory = new MySQLDaoFactory();
+        final UserDao userDao;
+        User user = null;
+
+        try (final Connection connection = daoFactory.getConnection()) {
+            userDao = daoFactory.getUserDao(connection);
+            user = userDao.getUserByLogin(userLogin);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
     public static final User getUserByRole(final Roles role) {
 
         final DaoFactory daoFactory = new MySQLDaoFactory();

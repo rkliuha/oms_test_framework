@@ -32,9 +32,9 @@ public class EditUserTest extends TestRunner {
     @BeforeMethod
     public final void setUpTests() {
 
-        final User userForLogin = DBHandler.getUserByRole(Roles.ADMINISTRATOR);
+        userForLogin = DBHandler.getUserByRole(Roles.ADMINISTRATOR);
 
-        userInfoPage = logInPage.doLogIn(userForLogin.getLogin(), userForLogin.getPassword());
+        userInfoPage = logInPage.loginAs(userForLogin.getLogin(), userForLogin.getPassword());
 
         administrationPage = userInfoPage
                 .clickAdministrationTab()

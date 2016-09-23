@@ -5,6 +5,8 @@ import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.TestRunner;
 import academy.softserve.edu.utils.TestUtil;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
@@ -15,7 +17,9 @@ public class DeleteUserTest extends TestRunner {
 
     private final static String FILTER_DROPDOWN = "Login";
     private final static String CONDITION_DROPDOWN = "equals";
+    private final static String CREATED_USER_LOGIN = "justlogin";
     private final static byte USER_STATUS = 1;
+    private final static int TIMEOUT = 10;
 
     private User lastAddedUserForDelete;
 
@@ -23,19 +27,15 @@ public class DeleteUserTest extends TestRunner {
     public final void createTestUser() {
 
         TestUtil.createValidUserInDB();
-        lastAddedUserForDelete = DBHandler.getLastUser();
+        lastAddedUserForDelete = DBHandler.getUserByLogin(CREATED_USER_LOGIN);
     }
 
     @BeforeMethod
     public final void setUpTests() {
 
-        final User userForLogin = DBHandler.getUserByRole(Roles.ADMINISTRATOR);
+        userInfoPage = logInPage.loginAs(Roles.ADMINISTRATOR);
 
-        userInfoPage = logInPage
-                .doLogIn(userForLogin.getLogin(), userForLogin.getPassword());
-
-        administrationPage = userInfoPage
-                .clickAdministrationTab();
+        administrationPage = userInfoPage.clickAdministrationTab();
 
         administrationPage.getFirstFilterDropDown()
                 .sendKeys(FILTER_DROPDOWN);
@@ -49,7 +49,12 @@ public class DeleteUserTest extends TestRunner {
     @Test
     public final void testDeleteUserAndClickCancel() {
 
-        administrationPage.clickDeleteFirstUserLink().dismissAlert();
+        administrationPage.clickDeleteFirstUserLink();
+
+        Assert.assertNotNull(new WebDriverWait(driver, TIMEOUT)
+                .until(ExpectedConditions.alertIsPresent()), "Alert is not present");
+
+        administrationPage.dismissAlert();
 
         Assert.assertEquals(lastAddedUserForDelete
                 .getUserActive(), USER_STATUS, "User status changed into 'inactive'");
@@ -58,7 +63,12 @@ public class DeleteUserTest extends TestRunner {
     @Test
     public final void testDeleteUserAndClickConfirm() {
 
-        administrationPage.clickDeleteFirstUserLink().acceptAlert();
+        administrationPage.clickDeleteFirstUserLink();
+
+        Assert.assertNotNull(new WebDriverWait(driver, TIMEOUT)
+                .until(ExpectedConditions.alertIsPresent()), "Alert is not present");
+
+        administrationPage.acceptAlert();
 
         Assert.assertNotEquals(lastAddedUserForDelete
                 .getUserActive(), USER_STATUS, "User status stays 'active'");
@@ -66,6 +76,8 @@ public class DeleteUserTest extends TestRunner {
 
     @AfterTest
     public final void deleteTestUser() {
-        DBHandler.deleteUser(DBHandler.getLastUser().getId());
+        DBHandler.deleteUser(DBHandler
+                .getUserByLogin(CREATED_USER_LOGIN)
+                .getId());
     }
 }
