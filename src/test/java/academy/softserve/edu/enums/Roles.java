@@ -7,7 +7,8 @@ public enum Roles {
     ADMINISTRATOR,
     MERCHANDISER,
     SUPERVISOR,
-    CUSTOMER;
+    CUSTOMER,
+    INVALID_USER;
 
     public static final String getRoleNameByReference(final int roleReference) {
 

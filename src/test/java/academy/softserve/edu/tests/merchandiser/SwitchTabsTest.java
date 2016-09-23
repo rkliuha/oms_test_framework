@@ -1,24 +1,27 @@
 package academy.softserve.edu.tests.merchandiser;
 
+import academy.softserve.edu.elements.locators.merchandiser.MerchandiserOrderingPageLocators;
+import academy.softserve.edu.elements.wrappers.Dropdown;
+import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.LogInPage;
 import academy.softserve.edu.pageobjects.MerchandiserOrderingPage;
 import academy.softserve.edu.pageobjects.UserInfoPage;
-import academy.softserve.edu.utils.DataProviders;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.Test;
 
 import static academy.softserve.edu.pageobjects.MerchandiserOrderingPage.MERCHANDISER_ORDERING_PAGE_URL;
 import static academy.softserve.edu.pageobjects.UserInfoPage.USER_INFO_PAGE_URL;
 
-public class MerchandiserAfterLogInPageTest extends TestRunner {
+public class SwitchTabsTest extends TestRunner {
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
-    final public void testMerchandiserSwitchTabAbility(final String username, final String password) {
+    @Test
+    final public void testMerchandiserSwitchTabAbility() {
 
 //       login and check if current page is UserInfo page opened by default
-        logInPage = new LogInPage(driver);
-        logInPage.doLogIn(username, password);
+
+        final LogInPage logInPage = new LogInPage(driver);
+        logInPage.loginAs(Roles.MERCHANDISER);
         Assert.assertEquals(driver.getCurrentUrl(),
                 USER_INFO_PAGE_URL,
                 "Current page: " + driver.getCurrentUrl() + " is not 'UserInfo' page: "

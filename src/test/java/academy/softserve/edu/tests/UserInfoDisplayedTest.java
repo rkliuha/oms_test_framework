@@ -1,5 +1,6 @@
 package academy.softserve.edu.tests;
 
+import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.LogInPage;
 import academy.softserve.edu.pageobjects.UserInfoPage;
 import academy.softserve.edu.utils.DataProviders;
@@ -12,9 +13,9 @@ import static org.testng.AssertJUnit.assertTrue;
 public class UserInfoDisplayedTest extends TestRunner {
 
     @Test(dataProvider = "testDataForAllUsersRole", dataProviderClass = DataProviders.class)
-    public void testAdminInfoDisplayed(final String userName, final String userPassword) {
+    public void testAdminInfoDisplayed(final Roles role) {
         loginPage = new LogInPage(driver);
-        loginPage.doLogIn(userName, userPassword);
+        loginPage.loginAs(role);
         Assert.assertTrue(!driver.findElement(UserInfoPage.FIRST_NAME_VALUE).getText().isEmpty() &&
                         !driver.findElement(UserInfoPage.LAST_NAME_VALUE).getText().isEmpty() &&
                         !driver.findElement(UserInfoPage.CUSTOMER_TYPE_VALUE).getText().isEmpty() &&

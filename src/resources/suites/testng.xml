@@ -3,7 +3,7 @@
 <suite name="Default Suite">
     <test name="Logout Tests">
         <classes>
-            <class name="academy.softserve.edu.tests.administrator.TestLogOut"/>
+            <class name="academy.softserve.edu.tests.administrator.AdminAfterLogInPageTest"/>
             <class name="academy.softserve.edu.tests.customer.TestLogOut"/>
             <class name="academy.softserve.edu.tests.merchandiser.TestLogOut"/>
             <class name="academy.softserve.edu.tests.supervisor.TestLogOut"/>

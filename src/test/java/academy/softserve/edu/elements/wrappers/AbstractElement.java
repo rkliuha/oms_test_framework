@@ -1,18 +1,19 @@
 package academy.softserve.edu.elements.wrappers;
 
 import academy.softserve.edu.elements.interfaces.ILocator;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public abstract class AbstractElement<T> {
 
     protected final WebDriver driver;
     protected ILocator locator;
+    private int timeout = 20;
 
     AbstractElement(final WebDriver driver, final ILocator locator) {
         this.driver = driver;
@@ -73,8 +74,8 @@ public abstract class AbstractElement<T> {
 
     private void waitUntilElementIsPresent() {
 
-        new WebDriverWait(driver, 20)
-                .pollingEvery(500, TimeUnit.MILLISECONDS)
+        new WebDriverWait(driver, timeout)
+                .ignoring(StaleElementReferenceException.class)
                 .until(ExpectedConditions.presenceOfElementLocated(locator.getBy()));
     }
 }
