@@ -3,6 +3,7 @@ package academy.softserve.edu.tests.administrator;
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.AdministrationPage;
 import academy.softserve.edu.utils.TestRunner;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -12,12 +13,9 @@ import static academy.softserve.edu.pageobjects.UserInfoPage.USER_INFO_LINK;
 
 public class DoNotRevertDefaultStateTest extends TestRunner {
 
-    public static final String USER_LOGIN = "iva";
-    public static final String USER_PASSWORD = "qwerty";
-    public static final String ROLE = "Role";
-    public static final String ROLE_FILTER = "contains";
-    public static final String TEXT = "A";
-    public static final String TAG_ATRIBUT = "value";
+    private static final String ROLE = "Role";
+    private static final String ROLE_FILTER = "contains";
+    private static final String TEXT = "A";
 
     @Test
     public void testUserInfoAdministrationButtonCheck() {
@@ -36,6 +34,8 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
 
     @Test
     public void testDoNotRevertDefaultState() {
+
+        final String TAG_ATRIBUTE = "value";
 
         userInfoPage = logInPage
                 .loginAs(Roles.ADMINISTRATOR);
@@ -66,19 +66,21 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
         userInfoPage
                 .click(ADMINISTRATION_LINK);
 
-        Assert.assertTrue(administrationPage
-                .getElement(FIRST_FILED_FILTER_DROPDOWN)
+        Assert.assertTrue(new Select(administrationPage
+                .getElement(FIRST_FILED_FILTER_DROPDOWN))
+                .getFirstSelectedOption()
                 .getText()
-                .contains(ROLE), "Role in the first drop down is different of " + ROLE);
+                .equalsIgnoreCase(ROLE), "Role in the first drop down is different of " + ROLE);
 
-        Assert.assertTrue(administrationPage
-                .getElement(SECOND_FILED_FILTER_DROPDOWN)
+        Assert.assertTrue(new Select(administrationPage
+                .getElement(SECOND_FILED_FILTER_DROPDOWN))
+                .getFirstSelectedOption()
                 .getText()
-                .contains(ROLE_FILTER), "Role filter in the second drop box is different of " + ROLE_FILTER);
+                .equalsIgnoreCase(ROLE_FILTER), "Role filter in the second drop box is different of " + ROLE_FILTER);
 
         Assert.assertTrue(administrationPage
                 .getElement(FILED_FILTER_TEXT_BOX)
-                .getAttribute(TAG_ATRIBUT)
+                .getAttribute(TAG_ATRIBUTE)
                 .contains(TEXT), "Text in the text box is different of " + TEXT);
     }
 }

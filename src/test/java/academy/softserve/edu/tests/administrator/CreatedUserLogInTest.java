@@ -16,10 +16,7 @@ import static academy.softserve.edu.pageobjects.UserInfoPage.USER_INFO_PAGE_EXIS
 
 public class CreatedUserLogInTest extends TestRunner {
 
-    private static final String USER_LOGIN = "iva";
-    private static final String USER_PASSWORD = "qwerty";
     private static final String LOGIN = "vgopkin";
-
 
     @Test(priority = 1)
     public void testTabsExist() {
