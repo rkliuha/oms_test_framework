@@ -10,6 +10,7 @@ import org.testng.annotations.Listeners;
 
 import java.util.concurrent.TimeUnit;
 import static academy.softserve.edu.enums.Browsers.FIREFOX;
+import static academy.softserve.edu.asserts.ProjectAssertions.*;
 
 @Listeners({TestListener.class})
 public class TestRunner {
