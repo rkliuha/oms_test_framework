@@ -70,7 +70,7 @@ public class LogInPage extends PageObject<LogInPage> {
         return new UserInfoPage(driver);
     }
 
-    public UserInfoPage doLogIn (final String login, final String password){
+    public UserInfoPage logInAs(final String login, final String password){
 
         inputName(login);
 

@@ -3,6 +3,7 @@ package academy.softserve.edu.tests;
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.LogInPage;
 import academy.softserve.edu.utils.DataProviders;
+import academy.softserve.edu.utils.PropertiesReader;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -106,19 +107,22 @@ public class LogInPageTest extends TestRunner {
 
     //Try to Log In and Log Out with valid data and turn on Remember me check box. Data should remain in the input fields
     //!!input fields on LogInPage remain clean after click on remember me check box. Log in and Log out!!!
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
-    public final void testRememberUserData(final String name, final String password) {
+    @Test
+    public final void testRememberUserData() {
 
         logInPage
                 .clickRememberMeButton()
-                .inputName(name)
-                .inputPassword(password)
-                .clickLogInButton();
-
+                .loginAs(Roles.CUSTOMER);
         logInPage
                 .doLogOut();
-        Assert.assertFalse(logInPage.getInputNameField().getText() != name &&
-                        logInPage.getInputPasswordField().getText().isEmpty(),
+        Assert.assertFalse(logInPage
+                        .getInputNameField()
+                        .getText() != PropertiesReader
+                        .getDefaultProperty("customer.login") &&
+                        logInPage
+                                .getInputPasswordField()
+                                .getText()
+                                .isEmpty(),
                 "The data should be saved!");
     }
 

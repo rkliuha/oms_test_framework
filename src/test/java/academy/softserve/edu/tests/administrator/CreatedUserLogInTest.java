@@ -134,7 +134,7 @@ public class CreatedUserLogInTest extends TestRunner {
                 .getPassword();
 
         userInfoPage = logInPage
-                .doLogIn(login, password);
+                .logInAs(login, password);
 
         Assert.assertTrue(userInfoPage
                 .getElement(USER_INFO_PAGE_EXISTS)
