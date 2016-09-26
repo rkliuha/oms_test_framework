@@ -13,6 +13,7 @@ import static academy.softserve.edu.enums.Browsers.FIREFOX;
 
 @Listeners({TestListener.class})
 public class TestRunner {
+
     public static final String CONFIG_PROPERTIES = "src/resources/config.properties";
     public static final String LOG_IN_PAGE = PropertiesReader.getProperty("login.url", CONFIG_PROPERTIES);
     protected static final int TIMEOUT = 10;

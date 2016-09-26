@@ -16,7 +16,6 @@ public class ExcelReader {
 
 
         final FileInputStream fileSystem = new FileInputStream(excelFileName);
-
         final Workbook workBook = new XSSFWorkbook(fileSystem);
         final Sheet sheet = workBook
                 .getSheet(sheetName);
@@ -48,7 +47,6 @@ public class ExcelReader {
     public static String[][] getColumnByName(final String excelFileName, final String cellName, final String sheetName) throws IOException {
 
         final FileInputStream fileSystem = new FileInputStream(excelFileName);
-
         final Workbook workBook = new XSSFWorkbook(fileSystem);
         final Sheet sheet = workBook
                 .getSheet(sheetName);
