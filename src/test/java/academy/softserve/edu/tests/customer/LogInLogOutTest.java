@@ -4,7 +4,6 @@ package academy.softserve.edu.tests.customer;
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.CustomerOrderingPage;
 import academy.softserve.edu.pageobjects.UserInfoPage;
-import academy.softserve.edu.utils.DataProviders;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -14,7 +13,7 @@ public class LogInLogOutTest extends TestRunner {
     @Test
     public final void testLogIn() {
 
-        userInfoPage = logInPage.loginAs(Roles.CUSTOMER);
+        userInfoPage = logInPage.logInAs(Roles.CUSTOMER);
 
         Assert.assertTrue(userInfoPage
                 .getIdentificationOfUserInfoPage()
@@ -24,7 +23,7 @@ public class LogInLogOutTest extends TestRunner {
     @Test
     public final void testLogOutButtonVisibility() {
 
-        userInfoPage = logInPage.loginAs(Roles.CUSTOMER);
+        userInfoPage = logInPage.logInAs(Roles.CUSTOMER);
         // below we have to check if logIn was successful because every page has
         // logOut button with same locator and we could get false positive result
         // after logIn failure;
@@ -52,7 +51,7 @@ public class LogInLogOutTest extends TestRunner {
     @Test
     public final void testLogOut() {
 
-        userInfoPage = logInPage.loginAs(Roles.CUSTOMER);
+        userInfoPage = logInPage.logInAs(Roles.CUSTOMER);
 
         customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
 

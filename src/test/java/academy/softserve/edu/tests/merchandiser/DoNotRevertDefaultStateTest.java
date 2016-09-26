@@ -20,7 +20,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     public void testUserInfoOrderingButtonCheck() {
 
         userInfoPage = logInPage
-                .loginAs(Roles.MERCHANDISER);
+                .logInAs(Roles.MERCHANDISER);
 
         Assert.assertTrue(userInfoPage
                 .getElement(USER_INFO_LINK)
@@ -35,7 +35,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     public void testDoNotRevertDefaultState() {
 
         userInfoPage = logInPage
-                .loginAs(Roles.MERCHANDISER);
+                .logInAs(Roles.MERCHANDISER);
 
         userInfoPage
                 .click(MERCHANDISER_ORDERING_LINK);

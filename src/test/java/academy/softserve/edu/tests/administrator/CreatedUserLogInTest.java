@@ -22,7 +22,7 @@ public class CreatedUserLogInTest extends TestRunner {
     public void testTabsExist() {
 
         userInfoPage = logInPage
-                .loginAs(Roles.ADMINISTRATOR);
+                .logInAs(Roles.ADMINISTRATOR);
 
         userInfoPage
                 .getElement(ADMINISTRATION_LINK)
@@ -39,7 +39,7 @@ public class CreatedUserLogInTest extends TestRunner {
     public void testCreateUserPageExist() {
 
         userInfoPage = logInPage
-                .loginAs(Roles.ADMINISTRATOR);
+                .logInAs(Roles.ADMINISTRATOR);
 
         userInfoPage
                 .getElement(ADMINISTRATION_LINK)
@@ -68,7 +68,7 @@ public class CreatedUserLogInTest extends TestRunner {
         final String ROLE = "customer";
 
         userInfoPage = logInPage
-                .loginAs(Roles.ADMINISTRATOR);
+                .logInAs(Roles.ADMINISTRATOR);
 
         userInfoPage
                 .getElement(ADMINISTRATION_LINK)

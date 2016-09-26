@@ -2,9 +2,7 @@ package academy.softserve.edu.tests;
 
 
 import academy.softserve.edu.enums.Roles;
-import academy.softserve.edu.pageobjects.LogInPage;
 import academy.softserve.edu.pageobjects.UserInfoPage;
-import academy.softserve.edu.utils.DataProviders;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -16,7 +14,7 @@ public class UserInfoPageTest extends TestRunner {
     public final void testDefaultEnglish() {
 
         logInPage
-                .loginAs(Roles.MERCHANDISER);
+                .logInAs(Roles.MERCHANDISER);
         userInfoPage = new UserInfoPage(driver);
         Assert.assertTrue("Ordering".equals(userInfoPage.getMerchandiserOrderingTab().getText()),
                 "English should be by default!");
@@ -27,7 +25,7 @@ public class UserInfoPageTest extends TestRunner {
     public final void testSwitchToUkrainian() {
 
         logInPage
-                .loginAs(Roles.MERCHANDISER);
+                .logInAs(Roles.MERCHANDISER);
         final UserInfoPage userInfoPage = new UserInfoPage(driver);
         userInfoPage
                 .clickUkrainianButton();
@@ -40,7 +38,7 @@ public class UserInfoPageTest extends TestRunner {
     public final void testSwitchToEnglish() {
 
         logInPage
-                .loginAs(Roles.MERCHANDISER);
+                .logInAs(Roles.MERCHANDISER);
         userInfoPage = new UserInfoPage(driver);
         userInfoPage
                 .clickUkrainianButton()
@@ -54,7 +52,7 @@ public class UserInfoPageTest extends TestRunner {
     public final void testEnglishButtonBold() {
 
         logInPage
-                .loginAs(Roles.MERCHANDISER);
+                .logInAs(Roles.MERCHANDISER);
         userInfoPage = new UserInfoPage(driver);
         Assert.assertTrue("700".equals(userInfoPage.getEnglishButton().getCssValue("font-weight")),
                 "English Button should be bold");
@@ -65,7 +63,7 @@ public class UserInfoPageTest extends TestRunner {
     public final void testUkrainianButtonBold() {
 
         logInPage
-                .loginAs(Roles.MERCHANDISER);
+                .logInAs(Roles.MERCHANDISER);
         userInfoPage = new UserInfoPage(driver);
         userInfoPage
                 .clickUkrainianButton();

@@ -21,7 +21,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     public void testUserInfoAdministrationButtonCheck() {
 
         userInfoPage = logInPage
-                .loginAs(Roles.ADMINISTRATOR);
+                .logInAs(Roles.ADMINISTRATOR);
 
         Assert.assertTrue(userInfoPage
                 .getElement(USER_INFO_LINK)
@@ -36,7 +36,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     public void testDoNotRevertDefaultState() {
 
         userInfoPage = logInPage
-                .loginAs(Roles.ADMINISTRATOR);
+                .logInAs(Roles.ADMINISTRATOR);
 
         userInfoPage
                 .click(ADMINISTRATION_LINK);

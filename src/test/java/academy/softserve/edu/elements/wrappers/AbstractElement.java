@@ -57,7 +57,7 @@ public abstract class AbstractElement<T> {
         return driver.findElement(locator.getBy()).getAttribute("id");
     }
 
-    final public String getName() {
+    final public String getNameAttribute() {
 
         wait.waitUntilElementIsPresent();
         return driver.findElement(locator.getBy()).getAttribute("name");

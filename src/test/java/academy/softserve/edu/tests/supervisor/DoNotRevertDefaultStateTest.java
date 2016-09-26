@@ -20,7 +20,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     public void testUserInfoItemManagementButtonCheck() {
 
         userInfoPage = logInPage
-                .loginAs(Roles.SUPERVISOR);
+                .logInAs(Roles.SUPERVISOR);
 
         Assert.assertTrue(userInfoPage
                 .getElement(USER_INFO_LINK)
@@ -35,7 +35,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     public void testDoNotRevertDefaultState() {
 
         userInfoPage = logInPage
-                .loginAs(Roles.SUPERVISOR);
+                .logInAs(Roles.SUPERVISOR);
 
         userInfoPage
                 .click(ITEM_MANAGEMENT_LINK);

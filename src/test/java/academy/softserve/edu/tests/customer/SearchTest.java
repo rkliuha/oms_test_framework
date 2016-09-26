@@ -22,7 +22,7 @@ public class SearchTest extends TestRunner {
     public void testStatusSearch(final String searchOrder, final String searchOrderValue) {
 
         userInfoPage = logInPage
-                .loginAs(Roles.CUSTOMER);
+                .logInAs(Roles.CUSTOMER);
 
         userInfoPage
                 .click(CUSTOMER_ORDERING_LINK);
@@ -50,7 +50,7 @@ public class SearchTest extends TestRunner {
     public void testElementsSearch(final By elementPath, final int elementsAmount) {
 
         userInfoPage = logInPage
-                .loginAs(Roles.CUSTOMER);
+                .logInAs(Roles.CUSTOMER);
 
         userInfoPage
                 .click(CUSTOMER_ORDERING_LINK);

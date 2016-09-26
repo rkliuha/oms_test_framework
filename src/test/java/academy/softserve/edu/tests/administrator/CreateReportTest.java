@@ -1,7 +1,6 @@
 package academy.softserve.edu.tests.administrator;
 
 import academy.softserve.edu.enums.Roles;
-import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -12,7 +11,7 @@ public class CreateReportTest extends TestRunner {
     @BeforeMethod
     public final void setUpTests() {
 
-        userInfoPage = logInPage.loginAs(Roles.ADMINISTRATOR);
+        userInfoPage = logInPage.logInAs(Roles.ADMINISTRATOR);
 
         administrationPage = userInfoPage.clickAdministrationTab();
     }

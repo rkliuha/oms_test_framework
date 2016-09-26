@@ -2,7 +2,6 @@ package academy.softserve.edu.tests.customer;
 
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.CustomerOrderingPage;
-import academy.softserve.edu.utils.DataProviders;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -16,7 +15,7 @@ public class SwitchTabsByCustomerTest extends TestRunner {
     public void testDefaultUserInfoPage() {
 
         userInfoPage = logInPage
-                .loginAs(Roles.CUSTOMER);
+                .logInAs(Roles.CUSTOMER);
 
         Assert.assertTrue(userInfoPage
                 .getElement(USER_INFO_PAGE_EXISTS)
@@ -27,7 +26,7 @@ public class SwitchTabsByCustomerTest extends TestRunner {
     public void testUserInfoButtonCheck() {
 
         userInfoPage = logInPage
-                .loginAs(Roles.CUSTOMER);
+                .logInAs(Roles.CUSTOMER);
 
         Assert.assertTrue(userInfoPage
                 .getElement(USER_INFO_LINK)
@@ -38,7 +37,7 @@ public class SwitchTabsByCustomerTest extends TestRunner {
     public void testOrderingButtonCheck() {
 
         userInfoPage = logInPage
-                .loginAs(Roles.CUSTOMER);
+                .logInAs(Roles.CUSTOMER);
 
         Assert.assertTrue(userInfoPage
                 .getElement(CUSTOMER_ORDERING_LINK)
@@ -49,7 +48,7 @@ public class SwitchTabsByCustomerTest extends TestRunner {
     public void testActiveOrderingPage() {
 
         userInfoPage = logInPage
-                .loginAs(Roles.CUSTOMER);
+                .logInAs(Roles.CUSTOMER);
 
         userInfoPage
                 .click(CUSTOMER_ORDERING_LINK);
@@ -63,7 +62,7 @@ public class SwitchTabsByCustomerTest extends TestRunner {
     public void testSwitchTabsUserOrdering() {
 
         userInfoPage = logInPage
-                .loginAs(Roles.CUSTOMER);
+                .logInAs(Roles.CUSTOMER);
 
         userInfoPage
                 .click(CUSTOMER_ORDERING_LINK);

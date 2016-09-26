@@ -49,7 +49,7 @@ public class LogInPageTest extends TestRunner {
     public final void testUnregisteredUser() {
 
         logInPage
-                .loginAs(Roles.INVALID_USER);
+                .logInAs(Roles.INVALID_USER);
 
         Assert.assertTrue(logInPage.getLogInButton().isDisplayed(),
                 "You should not Logged In with unregistered data!");
@@ -112,7 +112,7 @@ public class LogInPageTest extends TestRunner {
 
         logInPage
                 .clickRememberMeButton()
-                .loginAs(Roles.CUSTOMER);
+                .logInAs(Roles.CUSTOMER);
         logInPage
                 .doLogOut();
         Assert.assertFalse(logInPage

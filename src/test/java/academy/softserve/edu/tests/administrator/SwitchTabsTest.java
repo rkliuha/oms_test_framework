@@ -17,7 +17,7 @@ public class SwitchTabsTest extends TestRunner {
     @Test
     final public void testSwitchingBetweenTabs() {
 
-        logInPage.loginAs(Roles.ADMINISTRATOR);
+        logInPage.logInAs(Roles.ADMINISTRATOR);
         Assert.assertTrue(logInPage.getElement(USER_INFO_PAGE_EXISTS).isDisplayed(),
                 "After login tab isn't 'User Info'");
 

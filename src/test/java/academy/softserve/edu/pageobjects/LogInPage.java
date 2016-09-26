@@ -38,7 +38,7 @@ public class LogInPage extends PageObject<LogInPage> {
          return new UserInfoPage(driver);
      }
 
-    public final UserInfoPage loginAs(final Roles role) {
+    public final UserInfoPage logInAs(final Roles role) {
         String userName;
         String userPassword;
         switch (role) {
