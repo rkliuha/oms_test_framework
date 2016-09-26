@@ -12,8 +12,8 @@ import static academy.softserve.edu.pageobjects.UserInfoPage.*;
 
 public class SwitchTabsByCustomerTest extends TestRunner {
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
-    public void testDefaultUserInfoPage(final String name, final String password) {
+    @Test
+    public void testDefaultUserInfoPage() {
 
         userInfoPage = logInPage
                 .loginAs(Roles.CUSTOMER);
@@ -23,8 +23,8 @@ public class SwitchTabsByCustomerTest extends TestRunner {
                 .isDisplayed(), "Element " + USER_INFO_PAGE_EXISTS + " isn't displayed");
     }
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
-    public void testUserInfoButtonCheck(final String name, final String password) {
+    @Test
+    public void testUserInfoButtonCheck() {
 
         userInfoPage = logInPage
                 .loginAs(Roles.CUSTOMER);
@@ -34,8 +34,8 @@ public class SwitchTabsByCustomerTest extends TestRunner {
                 .isDisplayed(), "Element " + USER_INFO_LINK + " isn't displayed");
     }
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
-    public void testOrderingButtonCheck(final String name, final String password) {
+    @Test
+    public void testOrderingButtonCheck() {
 
         userInfoPage = logInPage
                 .loginAs(Roles.CUSTOMER);
@@ -45,8 +45,8 @@ public class SwitchTabsByCustomerTest extends TestRunner {
                 .isDisplayed(), "Element " + CUSTOMER_ORDERING_LINK + " isn't displayed");
     }
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
-    public void testActiveOrderingPage(final String name, final String password) {
+    @Test
+    public void testActiveOrderingPage() {
 
         userInfoPage = logInPage
                 .loginAs(Roles.CUSTOMER);
@@ -59,8 +59,8 @@ public class SwitchTabsByCustomerTest extends TestRunner {
                 .isDisplayed(), "Element " + CUSTOMER_PAGE_EXISTS + " isn't displayed");
     }
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
-    public void testSwitchTabsUserOrdering(final String name, final String password) {
+    @Test
+    public void testSwitchTabsUserOrdering() {
 
         userInfoPage = logInPage
                 .loginAs(Roles.CUSTOMER);

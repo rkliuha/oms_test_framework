@@ -12,12 +12,10 @@ import static academy.softserve.edu.pageobjects.UserInfoPage.USER_INFO_LINK;
 
 public class DoNotRevertDefaultStateTest extends TestRunner {
 
-    public static final String USER_LOGIN = "iva";
-    public static final String USER_PASSWORD = "qwerty";
-    public static final String ROLE = "Role";
-    public static final String ROLE_FILTER = "contains";
-    public static final String TEXT = "A";
-    public static final String TAG_ATRIBUT = "value";
+    private static final String ROLE = "Role";
+    private static final String ROLE_FILTER = "contains";
+    private static final String TEXT = "A";
+    private static final String TAG_ATRIBUT = "value";
 
     @Test
     public void testUserInfoAdministrationButtonCheck() {

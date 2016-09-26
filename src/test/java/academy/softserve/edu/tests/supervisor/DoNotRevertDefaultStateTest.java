@@ -12,8 +12,6 @@ import static academy.softserve.edu.pageobjects.UserInfoPage.USER_INFO_LINK;
 
 public class DoNotRevertDefaultStateTest extends TestRunner {
 
-    public static final String USER_LOGIN = "login2";
-    public static final String USER_PASSWORD = "qwerty";
     public static final String FIELD_FILTER = "Description";
     public static final String FIELD_FILTER_VALUE = "Fruits";
     public static final String TAG_ATRIBUT = "value";

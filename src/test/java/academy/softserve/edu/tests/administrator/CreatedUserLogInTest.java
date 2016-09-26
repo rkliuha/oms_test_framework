@@ -16,10 +16,7 @@ import static academy.softserve.edu.pageobjects.UserInfoPage.USER_INFO_PAGE_EXIS
 
 public class CreatedUserLogInTest extends TestRunner {
 
-    private static final String USER_LOGIN = "iva";
-    private static final String USER_PASSWORD = "qwerty";
     private static final String LOGIN = "vgopkin";
-
 
     @Test(priority = 1)
     public void testTabsExist() {
@@ -31,7 +28,7 @@ public class CreatedUserLogInTest extends TestRunner {
                 .getElement(ADMINISTRATION_LINK)
                 .click();
 
-        final AdministrationPage administrationPage = new AdministrationPage(driver);
+       administrationPage = new AdministrationPage(driver);
 
         Assert.assertTrue(administrationPage
                 .getElement(CREATE_NEW_USER_LINK)
@@ -48,7 +45,7 @@ public class CreatedUserLogInTest extends TestRunner {
                 .getElement(ADMINISTRATION_LINK)
                 .click();
 
-        final AdministrationPage administrationPage = new AdministrationPage(driver);
+        administrationPage = new AdministrationPage(driver);
 
         administrationPage
                 .getElement(CREATE_NEW_USER_LINK)
@@ -77,13 +74,13 @@ public class CreatedUserLogInTest extends TestRunner {
                 .getElement(ADMINISTRATION_LINK)
                 .click();
 
-        final AdministrationPage administrationPage = new AdministrationPage(driver);
+       administrationPage = new AdministrationPage(driver);
 
         administrationPage
                 .getElement(CREATE_NEW_USER_LINK)
                 .click();
 
-        EditUserPage editUserPage = new EditUserPage(driver);
+        editUserPage = new EditUserPage(driver);
 
         editUserPage
                 .getElement(LOGIN_NAME_TEXT_FIELD)
@@ -137,7 +134,7 @@ public class CreatedUserLogInTest extends TestRunner {
                 .getPassword();
 
         userInfoPage = logInPage
-                .loginAs(login, password);
+                .doLogIn(login, password);
 
         Assert.assertTrue(userInfoPage
                 .getElement(USER_INFO_PAGE_EXISTS)

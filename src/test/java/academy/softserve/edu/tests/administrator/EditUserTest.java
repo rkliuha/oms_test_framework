@@ -32,9 +32,7 @@ public class EditUserTest extends TestRunner {
     @BeforeMethod
     public final void setUpTests() {
 
-        userForLogin = DBHandler.getUserByRole(Roles.ADMINISTRATOR);
-
-        userInfoPage = logInPage.loginAs(userForLogin.getLogin(), userForLogin.getPassword());
+        userInfoPage = logInPage.loginAs(Roles.ADMINISTRATOR);
 
         administrationPage = userInfoPage
                 .clickAdministrationTab()
@@ -170,6 +168,7 @@ public class EditUserTest extends TestRunner {
 
     @AfterTest
     public final void deleteTestUser() {
+        //TODO Consider better deleting temporary user
         DBHandler.deleteUser(DBHandler.getLastUser().getId());
     }
 

@@ -11,8 +11,8 @@ import org.testng.annotations.Test;
 
 public class LogInLogOutTest extends TestRunner {
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForAdministrator")
-    public final void testLogIn(final String name, final String password) {
+    @Test
+    public final void testLogIn() {
 
         logInPage = new LogInPage(driver);
         logInPage
@@ -22,8 +22,8 @@ public class LogInLogOutTest extends TestRunner {
                 "LogIn failed!");
     }
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForAdministrator")
-    public final void testLogOutButtonVisibility(final String name, final String password) {
+    @Test
+    public final void testLogOutButtonVisibility() {
 
         logInPage = new LogInPage(driver);
         logInPage
@@ -54,8 +54,8 @@ public class LogInLogOutTest extends TestRunner {
                 + driver.getCurrentUrl());
     }
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForAdministrator")
-    public final void testLogOut(String name, String password) {
+    @Test
+    public final void testLogOut() {
 
         logInPage = new LogInPage(driver);
         logInPage

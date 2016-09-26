@@ -11,8 +11,8 @@ import org.testng.annotations.Test;
 
 public class LogInLogOutTest extends TestRunner {
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
-    public final void testLogIn(final String name, final String password) {
+    @Test
+    public final void testLogIn() {
 
         userInfoPage = logInPage.loginAs(Roles.CUSTOMER);
 
@@ -21,8 +21,8 @@ public class LogInLogOutTest extends TestRunner {
                 .isDisplayed(), "LogIn failed!");
     }
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
-    public final void testLogOutButtonVisibility(final String name, final String password) {
+    @Test
+    public final void testLogOutButtonVisibility() {
 
         userInfoPage = logInPage.loginAs(Roles.CUSTOMER);
         // below we have to check if logIn was successful because every page has
@@ -49,8 +49,8 @@ public class LogInLogOutTest extends TestRunner {
                 + driver.getCurrentUrl());
     }
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForCustomer")
-    public final void testLogOut(final String name, final String password) {
+    @Test
+    public final void testLogOut() {
 
         userInfoPage = logInPage.loginAs(Roles.CUSTOMER);
 

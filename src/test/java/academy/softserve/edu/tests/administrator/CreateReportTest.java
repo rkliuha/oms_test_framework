@@ -12,9 +12,7 @@ public class CreateReportTest extends TestRunner {
     @BeforeMethod
     public final void setUpTests() {
 
-        userForLogin = DBHandler.getUserByRole(Roles.ADMINISTRATOR);
-
-        userInfoPage = logInPage.loginAs(userForLogin.getLogin(), userForLogin.getPassword());
+        userInfoPage = logInPage.loginAs(Roles.ADMINISTRATOR);
 
         administrationPage = userInfoPage.clickAdministrationTab();
     }

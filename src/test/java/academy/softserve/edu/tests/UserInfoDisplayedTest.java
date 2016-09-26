@@ -14,8 +14,7 @@ public class UserInfoDisplayedTest extends TestRunner {
 
     @Test(dataProvider = "testDataForAllUsersRole", dataProviderClass = DataProviders.class)
     public void testAdminInfoDisplayed(final Roles role) {
-        loginPage = new LogInPage(driver);
-        loginPage.loginAs(role);
+        logInPage.loginAs(role);
         Assert.assertTrue(!driver.findElement(UserInfoPage.FIRST_NAME_VALUE).getText().isEmpty() &&
                         !driver.findElement(UserInfoPage.LAST_NAME_VALUE).getText().isEmpty() &&
                         !driver.findElement(UserInfoPage.CUSTOMER_TYPE_VALUE).getText().isEmpty() &&

@@ -19,7 +19,7 @@ public class SearchTest extends TestRunner {
     private static final By ORDERED_RESULT = By.xpath(".//div[@id='list']/table/tbody/tr");
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataSearchStatusCustomer")
-    public void testStatusSearch(final String name, final String password, final String searchOrder, final String searchOrderValue) {
+    public void testStatusSearch(final String searchOrder, final String searchOrderValue) {
 
         userInfoPage = logInPage
                 .loginAs(Roles.CUSTOMER);
@@ -27,7 +27,7 @@ public class SearchTest extends TestRunner {
         userInfoPage
                 .click(CUSTOMER_ORDERING_LINK);
 
-        final CustomerOrderingPage customerOrderingPage = new CustomerOrderingPage(driver);
+       customerOrderingPage = new CustomerOrderingPage(driver);
 
         customerOrderingPage
                 .getElement(SEARCH_ORDERS_DROPDOWN)
@@ -47,7 +47,7 @@ public class SearchTest extends TestRunner {
     }
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataSearchElementsCustomer")
-    public void testElementsSearch(final String name, final String password, final By elementPath, final int elementsAmount) {
+    public void testElementsSearch(final By elementPath, final int elementsAmount) {
 
         userInfoPage = logInPage
                 .loginAs(Roles.CUSTOMER);
@@ -55,7 +55,7 @@ public class SearchTest extends TestRunner {
         userInfoPage
                 .click(CUSTOMER_ORDERING_LINK);
 
-        final CustomerOrderingPage customerOrderingPage = new CustomerOrderingPage(driver);
+        customerOrderingPage = new CustomerOrderingPage(driver);
 
         customerOrderingPage
                 .click(elementPath);
