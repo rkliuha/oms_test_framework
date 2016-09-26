@@ -12,8 +12,6 @@ import static academy.softserve.edu.pageobjects.UserInfoPage.USER_INFO_LINK;
 
 public class DoNotRevertDefaultStateTest extends TestRunner {
 
-    public static final String USER_LOGIN = "vpopkin";
-    public static final String USER_PASSWORD = "qwerty";
     public static final String SEARCH_ORDERS = "Status";
     public static final String SEARCH_ORDERS_VALUE = "Ordered";
     public static final String TAG_ATRIBUT = "value";
@@ -22,7 +20,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     public void testUserInfoButtonsDisplayed() {
 
         userInfoPage = logInPage
-                .loginAs(Roles.CUSTOMER);
+                .logInAs(Roles.CUSTOMER);
 
         Assert.assertTrue(userInfoPage
                 .getElement(USER_INFO_LINK)
@@ -37,7 +35,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     public void testDoNotRevertDefaultState() {
 
         userInfoPage = logInPage
-                .loginAs(Roles.CUSTOMER);
+                .logInAs(Roles.CUSTOMER);
 
         userInfoPage
                 .click(CUSTOMER_ORDERING_LINK);

@@ -11,11 +11,16 @@ public abstract class AbstractElement<T> {
 
     protected WebDriver driver;
     protected ILocator locator;
-    final protected Wait wait = new Wait(driver, locator);
+    final protected Wait wait;
 
     AbstractElement(final WebDriver driver, final ILocator locator) {
         this.driver = driver;
         this.locator = locator;
+        wait = new Wait(driver, locator);
+    }
+
+    final public String getLocatorName() {
+        return locator.getName();
     }
 
     final public WebElement getElement() {
@@ -52,7 +57,7 @@ public abstract class AbstractElement<T> {
         return driver.findElement(locator.getBy()).getAttribute("id");
     }
 
-    final public String getName() {
+    final public String getNameAttribute() {
 
         wait.waitUntilElementIsPresent();
         return driver.findElement(locator.getBy()).getAttribute("name");

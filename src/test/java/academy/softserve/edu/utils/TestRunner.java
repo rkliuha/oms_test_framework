@@ -15,8 +15,7 @@ import static academy.softserve.edu.enums.Browsers.FIREFOX;
 public class TestRunner {
     public static final String CONFIG_PROPERTIES = "src/resources/config.properties";
     public static final String LOG_IN_PAGE = PropertiesReader.getProperty("login.url", CONFIG_PROPERTIES);
-    protected static final int TIMEOUT = 30;
-    protected LogInPage loginPage;
+    protected static final int TIMEOUT = 10;
 
     @Getter protected WebDriver driver;
 
@@ -30,7 +29,6 @@ public class TestRunner {
     protected CreateReportPage createReportPage;
     protected ReportPage reportPage;
 
-    protected User userForLogin;
 
     @BeforeMethod
     public final void setUp() {
