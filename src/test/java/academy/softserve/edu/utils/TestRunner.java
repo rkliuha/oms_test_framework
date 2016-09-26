@@ -1,15 +1,15 @@
 package academy.softserve.edu.utils;
 
 import academy.softserve.edu.domains.User;
+import academy.softserve.edu.enums.Browsers;
 import academy.softserve.edu.pageobjects.*;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
+import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
-import static academy.softserve.edu.enums.Browsers.FIREFOX;
+
+import static academy.softserve.edu.enums.Browsers.*;
 
 public class TestRunner {
     public static final String CONFIG_PROPERTIES = "src/resources/config.properties";
@@ -17,7 +17,8 @@ public class TestRunner {
     protected static final int TIMEOUT = 30;
     protected LogInPage loginPage;
 
-    @Getter protected WebDriver driver;
+    @Getter
+    protected WebDriver driver;
 
     protected AdministrationPage administrationPage;
     protected CustomerOrderingPage customerOrderingPage;
@@ -31,10 +32,28 @@ public class TestRunner {
 
     protected User userForLogin;
 
+    @Parameters("browser")
     @BeforeMethod
-    public final void setUp() {
+    public final void setUp(@Optional("firefox") final String browserParam) {
 
-        driver = new WebDriverFactory().getDriver(FIREFOX);
+        Browsers browser = null;
+
+        switch (browserParam) {
+            case ("firefox"):
+                browser = FIREFOX;
+                break;
+            case ("chrome"):
+                browser = CHROME;
+                break;
+            case ("chrome_mac") :
+                browser = CHROME_MAC;
+                break;
+            case ("ie"):
+                browser = EXPLORER;
+                break;
+        }
+
+        driver = new WebDriverFactory().getDriver(browser);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(TIMEOUT, TimeUnit.SECONDS);
         driver.get(LOG_IN_PAGE);
