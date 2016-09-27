@@ -3,7 +3,6 @@ package academy.softserve.edu.elements.wrappers;
 import academy.softserve.edu.elements.interfaces.ILocator;
 import academy.softserve.edu.utils.Logger;
 import org.openqa.selenium.WebDriver;
-import org.testng.Reporter;
 
 public class TextInputField extends AbstractClickableElement<TextInputField> {
 

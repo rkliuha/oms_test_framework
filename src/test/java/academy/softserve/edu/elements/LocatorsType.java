@@ -1,4 +1,4 @@
-package academy.softserve.edu.elements.locatorstype;
+package academy.softserve.edu.elements;
 
 import org.openqa.selenium.By;
 

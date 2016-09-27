@@ -2,7 +2,6 @@ package academy.softserve.edu.elements.wrappers;
 
 import academy.softserve.edu.elements.interfaces.ILocator;
 import academy.softserve.edu.utils.Logger;
-import academy.softserve.edu.utils.Wait;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 

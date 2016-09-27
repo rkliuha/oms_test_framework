@@ -19,6 +19,10 @@ public abstract class AbstractElement<T> {
         wait = new Wait(driver, locator);
     }
 
+    final public String getLocatorName() {
+        return locator.getName();
+    }
+
     final public WebElement getElement() {
 
         wait.waitUntilElementIsPresent();
@@ -53,7 +57,7 @@ public abstract class AbstractElement<T> {
         return driver.findElement(locator.getBy()).getAttribute("id");
     }
 
-    final public String getName() {
+    final public String getNameAttribute() {
 
         wait.waitUntilElementIsPresent();
         return driver.findElement(locator.getBy()).getAttribute("name");
@@ -70,10 +74,4 @@ public abstract class AbstractElement<T> {
         wait.waitUntilElementIsPresent();
         return driver.findElement(locator.getBy()).getAttribute("type");
     }
-
-    final public String getLocatorName() {
-
-        return locator.getName();
-    }
-
 }
