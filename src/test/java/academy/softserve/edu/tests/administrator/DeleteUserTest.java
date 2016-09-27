@@ -33,7 +33,7 @@ public class DeleteUserTest extends TestRunner {
     @BeforeMethod
     public final void setUpTests() {
 
-        userInfoPage = logInPage.loginAs(Roles.ADMINISTRATOR);
+        userInfoPage = logInPage.logInAs(Roles.ADMINISTRATOR);
 
         administrationPage = userInfoPage.clickAdministrationTab();
 
