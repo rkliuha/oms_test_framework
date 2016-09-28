@@ -1,9 +1,11 @@
 package academy.softserve.edu.pageobjects;
 
+import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+@Getter
 public class EditUserPage extends PageObject<EditUserPage> {
 
     public static final By EDIT_USER_PAGE_EXISTS = By.xpath("//td[contains(., 'New password:')]");
