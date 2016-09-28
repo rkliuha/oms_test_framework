@@ -3,7 +3,7 @@ package academy.softserve.edu.asserts;
 import academy.softserve.edu.domains.User;
 import academy.softserve.edu.elements.wrappers.AbstractElement;
 
-public class ProjectAssertions {
+public class FluentAssertions {
 
     public static final AbstractElementAssert assertThat(final AbstractElement element) {
         return new AbstractElementAssert(element);

@@ -168,8 +168,7 @@ public class EditUserTest extends TestRunner {
 
     @AfterTest
     public final void deleteTestUser() {
-        //TODO Consider better deleting temporary user
-        DBHandler.deleteUser(DBHandler.getLastUser().getId());
+        DBHandler.deleteUser(lastAddedUserForUpdate.getId());
     }
 
 }

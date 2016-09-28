@@ -46,7 +46,7 @@ public enum AddItemPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//form[@id='doneForm']//tr[1]/td[1]"),
 
-    ITEM_INPUT("Item Input",
+    ITEM_TEXT_FIELD("Item Text Field",
             LocatorsType.BY_XPATH,
             "//form[@id='doneForm']//tr[1]/td[2]"),
 
@@ -67,8 +67,8 @@ public enum AddItemPageLocators implements ILocator {
             "//form[@id='doneForm']//tr[4]/td[1]"),
 
     ITEM_QUANTITY_INPUT("Item Quantity Input",
-            LocatorsType.BY_ID,
-            "quantity"),
+            LocatorsType.BY_XPATH,
+            "//td[contains(text(),'Quantity:')]/following::input[@id='quantity']"),
 
     QUANTITY_ITEM_ERROR("Quantity Item Error",
             LocatorsType.BY_ID,
@@ -78,9 +78,9 @@ public enum AddItemPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//form[@id='doneForm']//tr[6]/td[1]"),
 
-    ITEM_DIMENSION_DROPDOWN("Item Dimension Dropdown",
-            LocatorsType.BY_ID,
-            "dimension"),
+    ITEM_DIMENSION_DROPDOWN("Item Dimension Textfield",
+            LocatorsType.BY_XPATH,
+            "//select[@id='dimension']"),
 
     RESET_BUTTON("Reset Button",
             LocatorsType.BY_XPATH,
@@ -92,7 +92,11 @@ public enum AddItemPageLocators implements ILocator {
 
     CANCEL_BUTTON("Cancel Button",
             LocatorsType.BY_XPATH,
-            "//form[@id='cancelForm']/input[2]");
+            "//form[@id='cancelForm']/input[2]"),
+
+    SELECT_LAST_ADDED_ITEM_LINK("Select Last Added Item Link",
+            LocatorsType.BY_XPATH,
+            "//div[@id='list']/descendant::form[contains(@id, 'selectFrom')][1]/a");
 
 
     protected String elementName;

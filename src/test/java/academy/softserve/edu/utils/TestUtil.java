@@ -1,5 +1,6 @@
 package academy.softserve.edu.utils;
 
+import academy.softserve.edu.domains.Product;
 import academy.softserve.edu.domains.User;
 import academy.softserve.edu.enums.CustomerTypes;
 import academy.softserve.edu.enums.Regions;
@@ -25,6 +26,17 @@ public final class TestUtil {
                 .setCustomerTypeReference(CustomerTypes.STANDART.ordinal() + 1)
                 .setRegionReference(Regions.NORTH.ordinal() + 1)
                 .setRoleReference(Roles.CUSTOMER.ordinal() + 1)
+                .build());
+    }
+
+    public static final void createActiveProductInDB() {
+
+        DBHandler.createProduct(Product.newBuilder()
+                .setId(0)
+                .setProductActive(1)
+                .setProductDescription("Original Irish Cream")
+                .setProductName("Baileys")
+                .setProductPrice(500.0)
                 .build());
     }
 

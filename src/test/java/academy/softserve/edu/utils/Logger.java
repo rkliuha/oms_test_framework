@@ -17,10 +17,10 @@ public class Logger {
     }
 
     public static void logPass(final String value) {
-        Reporter.log("<b> <font size='1' color='green'>" + "PASS" + "</font></b>" + " - Test Name: " + value);
+        Reporter.log("<b> <font size='1' color='green'>" + "PASS" + "</font></b>" + " - " + value);
     }
 
     public static void logFail(final String value) {
-        Reporter.log("<b> <font size='1' color='red'>" + "FAIL" + "</font></b>" + " - Here: " + value);
+        Reporter.log("<b> <font size='1' color='red'>" + "FAIL" + "</font></b>" + " - " + value);
     }
 }

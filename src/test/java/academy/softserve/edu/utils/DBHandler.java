@@ -2,7 +2,9 @@ package academy.softserve.edu.utils;
 
 import academy.softserve.edu.dao.MySQLDaoFactory;
 import academy.softserve.edu.dao.interfaces.DaoFactory;
+import academy.softserve.edu.dao.interfaces.ProductDao;
 import academy.softserve.edu.dao.interfaces.UserDao;
+import academy.softserve.edu.domains.Product;
 import academy.softserve.edu.domains.User;
 import academy.softserve.edu.enums.Roles;
 
@@ -109,6 +111,47 @@ public final class DBHandler {
         try (final Connection connection = daoFactory.getConnection()) {
             userDao = daoFactory.getUserDao(connection);
             userDao.deleteUser(userId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static final void createProduct(final Product product) {
+
+        final DaoFactory daoFactory = new MySQLDaoFactory();
+        final ProductDao productDao;
+
+        try (final Connection connection = daoFactory.getConnection()) {
+            productDao = daoFactory.getProductDao(connection);
+            productDao.createProduct(product);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static final Product getLastProduct() {
+
+        final DaoFactory daoFactory = new MySQLDaoFactory();
+        final ProductDao productDao;
+        Product product = null;
+
+        try (final Connection connection = daoFactory.getConnection()) {
+            productDao = daoFactory.getProductDao(connection);
+            product = productDao.getLastProduct();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return product;
+    }
+
+    public static final void deleteProduct(final int productId) {
+
+        final DaoFactory daoFactory = new MySQLDaoFactory();
+        final ProductDao productDao;
+
+        try (final Connection connection = daoFactory.getConnection()) {
+            productDao = daoFactory.getProductDao(connection);
+            productDao.deleteProduct(productId);
         } catch (SQLException e) {
             e.printStackTrace();
         }

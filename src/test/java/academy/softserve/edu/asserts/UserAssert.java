@@ -1,10 +1,10 @@
 package academy.softserve.edu.asserts;
 
 import academy.softserve.edu.domains.User;
-import academy.softserve.edu.utils.Logger;
 import org.assertj.core.api.AbstractAssert;
 
-import static org.testng.Reporter.log;
+import static academy.softserve.edu.utils.Logger.logFail;
+import static academy.softserve.edu.utils.Logger.logPass;
 
 public class UserAssert extends AbstractAssert<UserAssert, User> {
 
@@ -23,13 +23,13 @@ public class UserAssert extends AbstractAssert<UserAssert, User> {
 
         isNotNull();
 
-        if (!user.equals(condition)) {
+        if (!condition.equals(user)) {
 
             failWithMessage("User does not equal to expected");
-            log(Logger.logInfo("Assert <userEquals> failed: required user"
-                    + "does not equal to actual"));
+            logFail("Assert <userEquals> failed: required user"
+                    + "does not equal to actual");
         } else {
-            log(Logger.logInfo("Assert <userEquals> passed"));
+            logPass("Assert <userEquals> passed");
         }
         return this;
     }
@@ -40,9 +40,9 @@ public class UserAssert extends AbstractAssert<UserAssert, User> {
         if (user == null) {
 
             failWithMessage("Required user is null !");
-            log(Logger.logInfo("Assert <isNotNull> failed: required user is null"));
+            logFail("Assert <isNotNull> failed: required user is null");
         } else {
-            log(Logger.logInfo("Assert <isNotNull> passed"));
+            logPass("Assert <isNotNull> passed");
         }
         return this;
     }

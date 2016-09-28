@@ -28,7 +28,7 @@ public class MySQLUserDao implements UserDao {
     private static final String UPDATE_USER_QUERY = "UPDATE Users SET IsUserActive = ?, Balance = ?, Email = ?,"
             + " FirstName = ?, LastName = ?, Login = ?, Password = ?, CustomerTypeRef = ?, RegionRef = ?," +
             " RoleRef = ? WHERE ID = ?;";
-    private static final String DELETE_USER_QUERY = "DELETE FROM Users WHERE ID = ?";
+    private static final String DELETE_USER_QUERY = "DELETE FROM Users WHERE ID = ?;";
     private static final String GET_USER_BY_LOGIN_QUERY = "SELECT ID, IsUserActive, Balance, Email,"
             + " FirstName, LastName, Login, Password, CustomerTypeRef, RegionRef," +
             " RoleRef FROM Users WHERE Login = ?;";
