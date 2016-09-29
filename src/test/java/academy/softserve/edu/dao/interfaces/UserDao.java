@@ -9,7 +9,7 @@ public interface UserDao {
 
     User getUserById(final int userId);
 
-    User getUserByLogin(String userLogin);
+    User getUserByLogin(final String userLogin);
 
     User getUserByRole(final Roles role);
 

@@ -3,6 +3,7 @@ package academy.softserve.edu.tests;
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.LogInPage;
 import academy.softserve.edu.utils.DataProviders;
+import academy.softserve.edu.utils.PropertiesReader;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -12,7 +13,6 @@ public class LogInPageTest extends TestRunner {
     @Test
     public final void testLoginInputsAreEmpty() {
 
-        logInPage = new LogInPage(driver);
         Assert.assertFalse(logInPage.getInputNameField().getText() == null &&
                         logInPage.getInputPasswordField().getText() == null,
                 "Input fields should be empty!");
@@ -23,7 +23,6 @@ public class LogInPageTest extends TestRunner {
     @Test
     public final void testInputText() {
 
-        logInPage = new LogInPage(driver);
         logInPage
                 .getInputNameField()
                 .sendKeys("Asa23@(?|};6756%");
@@ -37,7 +36,6 @@ public class LogInPageTest extends TestRunner {
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
     public final void testInputsCanTakeSymbols(final String name, final String password) {
 
-        logInPage = new LogInPage(driver);
         logInPage
                 .getInputPasswordField()
                 .sendKeys(password);
@@ -50,9 +48,8 @@ public class LogInPageTest extends TestRunner {
     @Test
     public final void testUnregisteredUser() {
 
-        logInPage = new LogInPage(driver);
         logInPage
-                .loginAs(Roles.INVALID_USER);
+                .logInAs(Roles.INVALID_USER);
 
         Assert.assertTrue(logInPage.getLogInButton().isDisplayed(),
                 "You should not Logged In with unregistered data!");
@@ -62,7 +59,6 @@ public class LogInPageTest extends TestRunner {
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
     public final void testInputOnlyName(final String name, final String password) {
 
-        logInPage = new LogInPage(driver);
         logInPage
                 .inputName(name)
                 .clickLogInButton();
@@ -76,7 +72,6 @@ public class LogInPageTest extends TestRunner {
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
     public final void testInputOnlyPassword(final String name, final String password) {
 
-        logInPage = new LogInPage(driver);
         logInPage
                 .inputPassword(password)
                 .clickLogInButton();
@@ -89,7 +84,6 @@ public class LogInPageTest extends TestRunner {
     @Test
     public final void testInputNothing() {
 
-        logInPage = new LogInPage(driver);
         logInPage
                 .clickLogInButton();
 
@@ -101,7 +95,6 @@ public class LogInPageTest extends TestRunner {
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
     public final void testClearFields(final String name, final String password) {
 
-        logInPage = new LogInPage(driver);
         logInPage
                 .inputName(name)
                 .inputPassword(password)
@@ -114,28 +107,34 @@ public class LogInPageTest extends TestRunner {
 
     //Try to Log In and Log Out with valid data and turn on Remember me check box. Data should remain in the input fields
     //!!input fields on LogInPage remain clean after click on remember me check box. Log in and Log out!!!
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
-    public final void testRememberUserData(final String name, final String password) {
+    @Test
+    public final void testRememberUserData() {
 
-        logInPage = new LogInPage(driver);
         logInPage
                 .clickRememberMeButton()
-                .loginAs(Roles.INVALID_USER);
+                .logInAs(Roles.CUSTOMER);
         logInPage
                 .doLogOut();
-        Assert.assertFalse(logInPage.getInputNameField().getText() != name &&
-                        logInPage.getInputPasswordField().getText().isEmpty(),
+        Assert.assertFalse(logInPage
+                        .getInputNameField()
+                        .getText() != PropertiesReader
+                        .getDefaultProperty("customer.login") &&
+                        logInPage
+                                .getInputPasswordField()
+                                .getText()
+                                .isEmpty(),
                 "The data should be saved!");
     }
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
-    public final void testLoginWithNonExistingData(final String name, final String password) {
+    @Test
+    public final void testLoginWithNonExistingData() {
 
-        logInPage = new LogInPage(driver);
         logInPage
-                .loginAs(Roles.INVALID_USER);      // Input Incorrect name and empty password field and click
+                .inputName("Sarumjan")      // Input Incorrect name and empty password field and click
+                .clickLogInButton();
         logInPage
-                .loginAs(Roles.INVALID_USER);            // Input Incorrect password and empty name field and click
+                .inputPassword("Mordor")
+                .clickLogInButton();                // Input Incorrect password and empty name field and click
 
         Assert.assertTrue(logInPage.getLogInButton().isDisplayed(),
                 "You should not Logged In with invalid data!");
@@ -146,7 +145,6 @@ public class LogInPageTest extends TestRunner {
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
     public final void testErrorMessageOnEmptyUsername(final String name, final String password) {
 
-        logInPage = new LogInPage(driver);
         logInPage
                 .inputPassword(password)
                 .clickLogInButton();
@@ -160,7 +158,6 @@ public class LogInPageTest extends TestRunner {
     @Test
     public final void testErrorMessageOnUnregisteredName() {
 
-        logInPage = new LogInPage(driver);
         logInPage.inputName("unregistered data")
                 .clickLogInButton();
         Assert.assertEquals(logInPage.getElement(LogInPage.ERROR_MESSAGE).getText(),
@@ -173,7 +170,6 @@ public class LogInPageTest extends TestRunner {
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
     public final void testErrorMessageOnEmptyPasswordField(final String name, final String password) {
 
-        logInPage = new LogInPage(driver);
         logInPage
                 .inputName(name)
                 .clickLogInButton();
@@ -187,13 +183,13 @@ public class LogInPageTest extends TestRunner {
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
     public final void testErrorMessageOnWrongPassword(String name, String password) {
 
-        logInPage = new LogInPage(driver);
         logInPage
-                .loginAs(Roles.INVALID_USER);// Input Incorrect password and empty name field and click
+                .inputName(name)
+                .inputPassword("Mordor")
+                .clickLogInButton();
         Assert.assertEquals(logInPage.getElement(LogInPage.ERROR_MESSAGE).getText(),
                 "Password is incorrect � please try again",
                 "Unexpected message!");
     }
-
 }
 

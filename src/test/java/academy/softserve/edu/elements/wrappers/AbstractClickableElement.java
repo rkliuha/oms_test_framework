@@ -2,13 +2,10 @@ package academy.softserve.edu.elements.wrappers;
 
 import academy.softserve.edu.elements.interfaces.ILocator;
 import academy.softserve.edu.utils.Logger;
-import academy.softserve.edu.utils.Wait;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 
 public abstract class AbstractClickableElement<T> extends AbstractElement {
-
-    final protected Wait wait = new Wait(driver, locator);
 
     AbstractClickableElement(final WebDriver driver, final ILocator locator) {
         super(driver, locator);

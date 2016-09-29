@@ -4,16 +4,16 @@
       "platform": "MAC",
       "browserName": "firefox",
       "version": "46",
-      "maxInstances": 3,
+      "maxInstances": 1,
       "seleniumProtocol": "WebDriver"
     },
     {
       "platform": "MAC",
       "browserName": "chrome",
       "version": "43",
-      "maxInstances": 3,
+      "maxInstances": 1,
       "seleniumProtocol": "WebDriver",
-      "webdriver.chrome.driver": "chromedriver.mac"
+      "webdriver.chrome.driver": "chromedriver_mac"
     }
   ],
   "configuration": {

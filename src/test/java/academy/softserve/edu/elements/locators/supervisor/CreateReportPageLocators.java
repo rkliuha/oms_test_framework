@@ -1,7 +1,7 @@
 package academy.softserve.edu.elements.locators.supervisor;
 
 import academy.softserve.edu.elements.interfaces.ILocator;
-import academy.softserve.edu.elements.locatorstype.LocatorsType;
+import academy.softserve.edu.elements.LocatorsType;
 import org.openqa.selenium.By;
 
 public enum CreateReportPageLocators implements ILocator {

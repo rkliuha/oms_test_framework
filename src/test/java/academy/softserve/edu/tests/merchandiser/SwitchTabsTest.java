@@ -1,7 +1,6 @@
 package academy.softserve.edu.tests.merchandiser;
 
 import academy.softserve.edu.enums.Roles;
-import academy.softserve.edu.pageobjects.LogInPage;
 import academy.softserve.edu.pageobjects.MerchandiserOrderingPage;
 import academy.softserve.edu.pageobjects.UserInfoPage;
 import academy.softserve.edu.utils.TestRunner;
@@ -17,9 +16,7 @@ public class SwitchTabsTest extends TestRunner {
     final public void testMerchandiserSwitchTabAbility() {
 
 //       login and check if current page is UserInfo page opened by default
-
-        final LogInPage logInPage = new LogInPage(driver);
-        logInPage.loginAs(Roles.MERCHANDISER);
+        logInPage.logInAs(Roles.MERCHANDISER);
         Assert.assertEquals(driver.getCurrentUrl(),
                 USER_INFO_PAGE_URL,
                 "Current page: " + driver.getCurrentUrl() + " is not 'UserInfo' page: "

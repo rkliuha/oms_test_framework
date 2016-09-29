@@ -6,8 +6,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-// TODO use Lombok for getters
 import static academy.softserve.edu.utils.TestRunner.CONFIG_PROPERTIES;
+
+// TODO use Lombok for getters
 
 public class LogInPage extends PageObject<LogInPage> {
 
@@ -37,7 +38,7 @@ public class LogInPage extends PageObject<LogInPage> {
          return new UserInfoPage(driver);
      }
 
-    public final UserInfoPage loginAs(final Roles role) {
+    public final UserInfoPage logInAs(final Roles role) {
         String userName;
         String userPassword;
         switch (role) {
@@ -66,6 +67,17 @@ public class LogInPage extends PageObject<LogInPage> {
         getElement(USER_NAME_FIELD).sendKeys(userName);
         getElement(PASSWORD_FIELD).sendKeys(userPassword);
         getElement(LOG_IN_BUTTON).click();
+        return new UserInfoPage(driver);
+    }
+
+    public UserInfoPage logInAs(final String login, final String password){
+
+        inputName(login);
+
+        inputPassword(password);
+
+        clickLogInButton();
+
         return new UserInfoPage(driver);
     }
 

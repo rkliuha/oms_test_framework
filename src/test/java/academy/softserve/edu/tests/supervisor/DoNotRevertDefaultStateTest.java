@@ -12,8 +12,6 @@ import static academy.softserve.edu.pageobjects.UserInfoPage.USER_INFO_LINK;
 
 public class DoNotRevertDefaultStateTest extends TestRunner {
 
-    public static final String USER_LOGIN = "login2";
-    public static final String USER_PASSWORD = "qwerty";
     public static final String FIELD_FILTER = "Description";
     public static final String FIELD_FILTER_VALUE = "Fruits";
     public static final String TAG_ATRIBUT = "value";
@@ -22,7 +20,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     public void testUserInfoItemManagementButtonCheck() {
 
         userInfoPage = logInPage
-                .loginAs(Roles.SUPERVISOR);
+                .logInAs(Roles.SUPERVISOR);
 
         Assert.assertTrue(userInfoPage
                 .getElement(USER_INFO_LINK)
@@ -37,7 +35,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     public void testDoNotRevertDefaultState() {
 
         userInfoPage = logInPage
-                .loginAs(Roles.SUPERVISOR);
+                .logInAs(Roles.SUPERVISOR);
 
         userInfoPage
                 .click(ITEM_MANAGEMENT_LINK);

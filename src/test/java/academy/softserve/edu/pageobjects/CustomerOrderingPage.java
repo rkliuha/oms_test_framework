@@ -1,10 +1,11 @@
 package academy.softserve.edu.pageobjects;
 
+import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-//TODO use Lombok for getters
+@Getter
 public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
 
     //TODO remove

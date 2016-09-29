@@ -6,5 +6,6 @@ public enum Browsers {
     CHROME_MAC,
     FIREFOX,
     EXPLORER;
+
 }
 
