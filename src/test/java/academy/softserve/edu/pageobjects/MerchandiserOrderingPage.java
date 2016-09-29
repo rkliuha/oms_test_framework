@@ -1,33 +1,25 @@
 package academy.softserve.edu.pageobjects;
 
-import org.openqa.selenium.By;
+import academy.softserve.edu.elements.wrappers.*;
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
-// TODO use Lombok for getters
+import static academy.softserve.edu.elements.locators.merchandiser.MerchandiserOrderingPageLocators.*;
+import static academy.softserve.edu.elements.locators.userinfo.UserInfoPageLocators.USER_INFO_LINK;
+
+@Getter
 public class MerchandiserOrderingPage extends PageObject<MerchandiserOrderingPage> {
 
     //TODO remove
     public static final String MERCHANDISER_ORDERING_PAGE_URL = "http://192.168.56.101:8080/oms5/order.htm";
-    public static final By MERCHANDISER_PAGE_EXISTS = By.xpath(".//div[@id='edit']//td[1]");
-
-    public static final By MERCHANDISER_SEARCH_ORDERS_DROPDOWN = By.xpath(".//select[@id='search']");
-    public static final By MERCHANDISER_SEARCH_ORDERS_TEXT_BOX = By.xpath(".//input[@id='searchValue']");
-    public static final By MERCHANDISER_SEARCH_ORDERS_BUTTON = By.xpath(".//input [@name='Apply']");
-    //TODO rename
-    public static final By IDENTIFICATION_OF_MERCHANDISER_PAGE = By.xpath(".//*[@id='searchFilter']/table/tbody/tr/td[1]");
-
+    // searchByText is unique MerchandiserOrderingPage element
+    private final TextLabel searchByText = new TextLabel(driver, SEARCH_BY_TEXT);
+    private final Link userInfoLink = new Link(driver, USER_INFO_LINK);
+    private final Dropdown searchDropdown = new Dropdown(driver, SEARCH_DROPDOWN);
+    private final TextInputField searchInput = new TextInputField(driver, SEARCH_INPUT);
+    private final Button applyButton = new Button(driver, APPLY_BUTTON);
 
     public MerchandiserOrderingPage(final WebDriver driver) {
         super(driver);
-    }
-
-    public final UserInfoPage clickUserInfoTab() {
-        driver.findElement(UserInfoPage.USER_INFO_LINK).click();
-        return new UserInfoPage(driver);
-    }
-
-    public final WebElement getIdentificationOfMerchandiserPage() {
-        return getElement(IDENTIFICATION_OF_MERCHANDISER_PAGE);
     }
 }

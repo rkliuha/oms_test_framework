@@ -15,5 +15,4 @@ public class ReportPage extends PageObject<ReportPage> {
     public final WebElement getIdentificationOfReportPage() {
         return driver.findElement(REPORT_PAGE_EXISTS);
     }
-
 }

@@ -1,23 +1,27 @@
 package academy.softserve.edu.pageobjects;
 
 
+import academy.softserve.edu.elements.wrappers.Button;
+import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-//TODO use Lombok for getters
-public abstract class PageObject<T> {
+import static academy.softserve.edu.elements.locators.shared.SharedLocators.LOG_OUT_BUTTON;
 
-    public static final By LOG_OUT_BUTTON = By.id("logout");
-    private static final By UKRAINIAN_BUTTON = By.id("uk_UA");
-    private static final By ENGLISH_BUTTON = By.id("en_US");
+@Getter
+public abstract class PageObject<T> {
 
     protected WebDriver driver;
 
+    private Button logOutButton;
+
     public PageObject(final WebDriver driver) {
+
         this.driver = driver;
+        logOutButton = new Button(driver, LOG_OUT_BUTTON);
     }
 
     public final WebElement getElement(final By elementLocation) {
@@ -28,16 +32,17 @@ public abstract class PageObject<T> {
         return driver.findElements(elementLocation);
     }
 
+    public final void clickLogOutButton() {
+        driver.findElement(LOG_OUT_BUTTON.getBy()).click();
+    }
+
     public final LogInPage doLogOut() {
 
-        driver
-                .findElement(LOG_OUT_BUTTON)
-                .click();
+        clickLogOutButton();
         acceptAlert();
         return new LogInPage(driver);
 
     }
-
 
     public final void acceptAlert() {
         driver
@@ -77,26 +82,6 @@ public abstract class PageObject<T> {
     public final T refreshPage() {
         driver.navigate().refresh();
         return (T) this;
-    }
-
-    public T clickUkrainianButton() {
-        getElement(UKRAINIAN_BUTTON).click();
-        return (T) this;
-    }
-
-    public T clickEnglishButton() {
-        getElement(ENGLISH_BUTTON).click();
-        return (T) this;
-    }
-
-    public WebElement getEnglishButton() {
-        return driver
-                .findElement(ENGLISH_BUTTON);
-    }
-
-    public WebElement getUkrainianButton() {
-        return driver
-                .findElement(UKRAINIAN_BUTTON);
     }
 
     public void click(final By path) {

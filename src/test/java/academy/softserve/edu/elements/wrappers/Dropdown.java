@@ -3,6 +3,7 @@ package academy.softserve.edu.elements.wrappers;
 import academy.softserve.edu.elements.interfaces.ILocator;
 import academy.softserve.edu.utils.Logger;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 public class Dropdown extends AbstractClickableElement<Dropdown> {
@@ -55,4 +56,10 @@ public class Dropdown extends AbstractClickableElement<Dropdown> {
                 + locator.getName() + "</b></font>");
     }
 
+    final public WebElement getFirstSelectedOption() {
+
+        wait.waitUntilElementIsPresent();
+        wait.waitUntilElementIsClickable();
+        return select.getFirstSelectedOption();
+    }
 }

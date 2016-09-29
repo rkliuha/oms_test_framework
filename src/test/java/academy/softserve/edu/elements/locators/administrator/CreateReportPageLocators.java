@@ -8,7 +8,7 @@ public enum CreateReportPageLocators implements ILocator {
 
     ADMINISTRATION_LINK("Administration Link",
             LocatorsType.BY_XPATH,
-            "//ul[@id='nav']/li[1]/a"),
+            "//ul[@id='nav']/descendant::a[@href='users.htm']"),
 
     USER_INFO_LINK("User Info Link",
             LocatorsType.BY_XPATH,

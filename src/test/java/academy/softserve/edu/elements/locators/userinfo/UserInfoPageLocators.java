@@ -14,14 +14,6 @@ public enum UserInfoPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//ul[@id='nav']/li[2]/a"),
 
-    ENGLISH_SWITCH_LINK("English Switch Link",
-            LocatorsType.BY_XPATH,
-            "//a[@id='en_US']"),
-
-    UKRAINIAN_SWITCH_LINK("Ukrainian Switch Link",
-            LocatorsType.BY_XPATH,
-            "//a[@id='uk_UA']"),
-
     USER_INFO_FIELDSET("User Info Fieldset",
             LocatorsType.BY_XPATH,
             "//div[@id='content']//legend"),
@@ -30,7 +22,7 @@ public enum UserInfoPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//div[@id='content']//tr[1]/td[1]"),
 
-    FIRST_NAME_VALUE_TEXT("First Name Value Text",
+    FIRST_NAME_VALUE("First Name Value Text",
             LocatorsType.BY_XPATH,
             "//div[@id='content']//tr[1]/td[2]"),
 
@@ -38,7 +30,7 @@ public enum UserInfoPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//div[@id='content']//tr[2]/td[1]"),
 
-    LAST_NAME_VALUE_TEXT("Last Name Value Text",
+    LAST_NAME_VALUE("Last Name Value Text",
             LocatorsType.BY_XPATH,
             "//div[@id='content']//tr[2]/td[2]"),
 
@@ -46,7 +38,7 @@ public enum UserInfoPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//div[@id='content']//tr[3]/td[1]"),
 
-    CUSTOMER_TYPE_VALUE_TEXT("Customer Type Value Text",
+    CUSTOMER_TYPE_VALUE("Customer Type Value Text",
             LocatorsType.BY_XPATH,
             "//div[@id='content']//tr[3]/td[2]"),
 
@@ -54,7 +46,7 @@ public enum UserInfoPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//div[@id='content']//tr[4]/td[1]"),
 
-    ROLE_VALUE_TEXT("Role Value Text",
+    ROLE_VALUE("Role Value Text",
             LocatorsType.BY_XPATH,
             "//div[@id='content']//tr[4]/td[2]");
 
@@ -62,7 +54,6 @@ public enum UserInfoPageLocators implements ILocator {
     protected String elementName;
     protected LocatorsType locatorType;
     protected String locatorValue;
-    private String parameter;
     private String modifiedLocator;
 
     UserInfoPageLocators(final String elementName,

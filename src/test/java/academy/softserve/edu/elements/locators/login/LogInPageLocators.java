@@ -22,7 +22,7 @@ public enum LogInPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//div[@id='edit']//tr[1]/td[1]"),
 
-    USER_NAME_FIELD("User Name Field",
+    USER_NAME_INPUT("User Name Field",
             LocatorsType.BY_NAME,
             "j_username"),
 
@@ -30,7 +30,7 @@ public enum LogInPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//div[@id='edit']//tr[2]/td[1]"),
 
-    PASSWORD_FIELD("Password Field",
+    PASSWORD_INPUT("Password Field",
             LocatorsType.BY_NAME,
             "j_password"),
 

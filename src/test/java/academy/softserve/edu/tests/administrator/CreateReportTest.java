@@ -42,5 +42,4 @@ public class CreateReportTest extends TestRunner {
                         .isDisplayed(),
                 "Report is not created !");
     }
-
 }

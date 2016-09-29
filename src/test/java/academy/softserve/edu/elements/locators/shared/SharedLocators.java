@@ -10,6 +10,14 @@ public enum SharedLocators implements ILocator {
             LocatorsType.BY_ID,
             "logout"),
 
+    ENGLISH_SWITCH_LINK("English Switch Link",
+            LocatorsType.BY_XPATH,
+            "//a[@id='en_US']"),
+
+    UKRAINIAN_SWITCH_LINK("Ukrainian Switch Link",
+            LocatorsType.BY_XPATH,
+            "//a[@id='uk_UA']"),
+
     OMS_LOGO("OMS Logo",
             LocatorsType.BY_XPATH,
             "//div[@id='logo']/h1"),

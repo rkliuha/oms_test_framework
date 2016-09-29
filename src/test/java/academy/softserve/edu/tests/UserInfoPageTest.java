@@ -16,7 +16,7 @@ public class UserInfoPageTest extends TestRunner {
         logInPage
                 .logInAs(Roles.MERCHANDISER);
         userInfoPage = new UserInfoPage(driver);
-        Assert.assertTrue("Ordering".equals(userInfoPage.getMerchandiserOrderingTab().getText()),
+        Assert.assertTrue("Ordering".equals(userInfoPage.getMerchandiserOrderingLink().getText()),
                 "English should be by default!");
     }
 
@@ -29,7 +29,7 @@ public class UserInfoPageTest extends TestRunner {
         final UserInfoPage userInfoPage = new UserInfoPage(driver);
         userInfoPage
                 .clickUkrainianButton();
-        Assert.assertTrue("Замовлення".equals(userInfoPage.getMerchandiserOrderingTab().getText()),
+        Assert.assertTrue("Замовлення".equals(userInfoPage.getMerchandiserOrderingLink().getText()),
                 "This is not Ukrainian language");
     }
 
@@ -43,7 +43,7 @@ public class UserInfoPageTest extends TestRunner {
         userInfoPage
                 .clickUkrainianButton()
                 .clickEnglishButton();
-        Assert.assertTrue("Ordering".equals(userInfoPage.getMerchandiserOrderingTab().getText()),
+        Assert.assertTrue("Ordering".equals(userInfoPage.getMerchandiserOrderingLink().getText()),
                 "The language of the page should switched on English");
     }
 
@@ -54,7 +54,7 @@ public class UserInfoPageTest extends TestRunner {
         logInPage
                 .logInAs(Roles.MERCHANDISER);
         userInfoPage = new UserInfoPage(driver);
-        Assert.assertTrue("700".equals(userInfoPage.getEnglishButton().getCssValue("font-weight")),
+        Assert.assertTrue("700".equals(userInfoPage.getEnglishSwitchLink().getCssValue("font-weight")),
                 "English Button should be bold");
     }
 
@@ -67,7 +67,7 @@ public class UserInfoPageTest extends TestRunner {
         userInfoPage = new UserInfoPage(driver);
         userInfoPage
                 .clickUkrainianButton();
-        Assert.assertTrue("700".equals(userInfoPage.getUkrainianButton().getCssValue("font-weight")),
+        Assert.assertTrue("700".equals(userInfoPage.getUkrainianSwitchLink().getCssValue("font-weight")),
                 "Ukrainian button should be bold!");
     }
 

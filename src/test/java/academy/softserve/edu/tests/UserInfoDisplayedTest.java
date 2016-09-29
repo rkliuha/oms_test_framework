@@ -7,20 +7,19 @@ import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static org.testng.AssertJUnit.assertTrue;
-
 public class UserInfoDisplayedTest extends TestRunner {
 
     @Test(dataProvider = "testDataForAllUsersRole", dataProviderClass = DataProviders.class)
     public void testAdminInfoDisplayed(final Roles role) {
         logInPage.logInAs(role);
-        Assert.assertTrue(!driver.findElement(UserInfoPage.FIRST_NAME_VALUE).getText().isEmpty() &&
-                        !driver.findElement(UserInfoPage.LAST_NAME_VALUE).getText().isEmpty() &&
-                        !driver.findElement(UserInfoPage.CUSTOMER_TYPE_VALUE).getText().isEmpty() &&
-                        !driver.findElement(UserInfoPage.ROLE_VALUE).getText().isEmpty(),
-                "\nFirst Name = " + driver.findElement(UserInfoPage.FIRST_NAME_VALUE).getText() +
-                        "\nLast Name = " + driver.findElement(UserInfoPage.LAST_NAME_VALUE).getText() +
-                        "\nCustomer Type = " + driver.findElement(UserInfoPage.CUSTOMER_TYPE_VALUE).getText() +
-                        "\nRole = " + driver.findElement(UserInfoPage.ROLE_VALUE).getText() + "\n");
+        userInfoPage = new UserInfoPage(driver);
+        Assert.assertTrue(!userInfoPage.getFirstNameValue().getText().isEmpty() &&
+                        !userInfoPage.getLastNameValue().getText().isEmpty() &&
+                        !userInfoPage.getCustomerTypeValue().getText().isEmpty() &&
+                        !userInfoPage.getRoleValue().getText().isEmpty(),
+                "\nFirst Name = " + userInfoPage.getFirstNameValue().getText() +
+                        "\nLast Name = " + userInfoPage.getLastNameValue().getText() +
+                        "\nCustomer Type = " + userInfoPage.getCustomerTypeValue().getText() +
+                        "\nRole = " + userInfoPage.getRoleValue().getText() + "\n");
     }
 }

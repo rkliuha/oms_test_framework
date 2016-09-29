@@ -7,8 +7,6 @@ import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static academy.softserve.edu.pageobjects.UserInfoPage.*;
-
 public class SwitchTabsTest extends TestRunner {
 
     //  This test checks if Administrator user can see the following tabs: ‘Administration’ and ‘User Info’(default),
@@ -18,29 +16,32 @@ public class SwitchTabsTest extends TestRunner {
     final public void testSwitchingBetweenTabs() {
 
         logInPage.logInAs(Roles.ADMINISTRATOR);
-        Assert.assertTrue(logInPage.getElement(USER_INFO_PAGE_EXISTS).isDisplayed(),
+        userInfoPage = new UserInfoPage(driver);
+
+        Assert.assertTrue(userInfoPage.getUserInfoFieldSet().isDisplayed(),
                 "After login tab isn't 'User Info'");
 
-        userInfoPage = new UserInfoPage(driver);
-        Assert.assertTrue(userInfoPage.getElement(USER_INFO_LINK).isDisplayed(),
-                "Element " + USER_INFO_LINK + " is not being displayed");
-        Assert.assertTrue(userInfoPage.getElement(ADMINISTRATION_LINK).isDisplayed(),
-                "Element " + ADMINISTRATION_LINK + " is not being displayed");
+        Assert.assertTrue(userInfoPage.getUserInfoLink().isDisplayed(),
+                "Element " + userInfoPage.getUserInfoLink().getLocatorValue() + " is not being displayed");
+        Assert.assertTrue(userInfoPage.getAdministrationLink().isDisplayed(),
+                "Element " + userInfoPage.getAdministrationLink().getLocatorValue() + " is not being displayed");
 
-        userInfoPage.clickAdministrationTab();
+        userInfoPage
+                .getAdministrationLink()
+                .click();
 
         administrationPage = new AdministrationPage(driver);
 
-        Assert.assertTrue(administrationPage.getElement(USER_INFO_LINK).isDisplayed(),
-                "Element " + USER_INFO_LINK + " is not being displayed");
-        Assert.assertTrue(administrationPage.getElement(ADMINISTRATION_LINK).isDisplayed(),
-                "Element " + ADMINISTRATION_LINK + " is not being displayed");
+        Assert.assertTrue(administrationPage.getUserInfoLink().isDisplayed(),
+                "Element " + administrationPage.getUserInfoLink().getLocatorValue() + " is not being displayed");
+        Assert.assertTrue(administrationPage.getAdministrationLink().isDisplayed(),
+                "Element " + administrationPage.getAdministrationLink().getLocatorValue() + " is not being displayed");
         administrationPage.clickUserInfoTab();
 
-        Assert.assertTrue(userInfoPage.getElement(USER_INFO_LINK).isDisplayed(),
-                "Element " + USER_INFO_LINK + " is not being displayed");
-        Assert.assertTrue(userInfoPage.getElement(ADMINISTRATION_LINK).isDisplayed(),
-                "Element " + ADMINISTRATION_LINK + " is not being displayed");
+        Assert.assertTrue(userInfoPage.getUserInfoLink().isDisplayed(),
+                "Element " + userInfoPage.getUserInfoLink().getLocatorValue() + " is not being displayed");
+        Assert.assertTrue(userInfoPage.getAdministrationLink().isDisplayed(),
+                "Element " + userInfoPage.getAdministrationLink().getLocatorValue() + " is not being displayed");
         userInfoPage.doLogOut();
     }
 }

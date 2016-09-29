@@ -1,7 +1,6 @@
 package academy.softserve.edu.tests;
 
 import academy.softserve.edu.enums.Roles;
-import academy.softserve.edu.pageobjects.LogInPage;
 import academy.softserve.edu.utils.DataProviders;
 import academy.softserve.edu.utils.PropertiesReader;
 import academy.softserve.edu.utils.TestRunner;
@@ -13,8 +12,8 @@ public class LogInPageTest extends TestRunner {
     @Test
     public final void testLoginInputsAreEmpty() {
 
-        Assert.assertFalse(logInPage.getInputNameField().getText() == null &&
-                        logInPage.getInputPasswordField().getText() == null,
+        Assert.assertFalse(logInPage.getUserNameInput().getText() == null &&
+                        logInPage.getPasswordInput().getText() == null,
                 "Input fields should be empty!");
 
     }
@@ -24,10 +23,10 @@ public class LogInPageTest extends TestRunner {
     public final void testInputText() {
 
         logInPage
-                .getInputNameField()
+                .getUserNameInput()
                 .sendKeys("Asa23@(?|};6756%");
 
-        Assert.assertTrue(logInPage.getInputNameField().getText() != null,
+        Assert.assertTrue(logInPage.getUserNameInput().getText() != null,
                 "Input name field should not be empty!");
 
     }
@@ -37,10 +36,10 @@ public class LogInPageTest extends TestRunner {
     public final void testInputsCanTakeSymbols(final String name, final String password) {
 
         logInPage
-                .getInputPasswordField()
+                .getPasswordInput()
                 .sendKeys(password);
 
-        Assert.assertFalse(password.equals(logInPage.getInputPasswordField().getText()),
+        Assert.assertFalse(password.equals(logInPage.getPasswordInput().getText()),
                 "You should not see the password!");
     }
 
@@ -98,10 +97,11 @@ public class LogInPageTest extends TestRunner {
         logInPage
                 .inputName(name)
                 .inputPassword(password)
-                .clickResetButton();
+                .getCancelButton()
+                .click();
 
-        Assert.assertTrue(logInPage.getNameField().getText().isEmpty() &&
-                        logInPage.getPasswordField().getText().isEmpty(),
+        Assert.assertTrue(logInPage.getUserNameInput().getText().isEmpty() &&
+                        logInPage.getPasswordInput().getText().isEmpty(),
                 "Input fields should be empty!");
     }
 
@@ -111,16 +111,16 @@ public class LogInPageTest extends TestRunner {
     public final void testRememberUserData() {
 
         logInPage
-                .clickRememberMeButton()
+                .clickRememberMeCheckbox()
                 .logInAs(Roles.CUSTOMER);
         logInPage
                 .doLogOut();
         Assert.assertFalse(logInPage
-                        .getInputNameField()
+                        .getUserNameInput()
                         .getText() != PropertiesReader
                         .getDefaultProperty("customer.login") &&
                         logInPage
-                                .getInputPasswordField()
+                                .getPasswordInput()
                                 .getText()
                                 .isEmpty(),
                 "The data should be saved!");
@@ -148,7 +148,8 @@ public class LogInPageTest extends TestRunner {
         logInPage
                 .inputPassword(password)
                 .clickLogInButton();
-        Assert.assertEquals(logInPage.getElement(LogInPage.ERROR_MESSAGE).getText(),
+
+        Assert.assertEquals(logInPage.getLogInErrorMessage().getText(),
                 "Such user does not exist in the system � please try again.",
                 "Unexpected message!");
     }
@@ -160,7 +161,7 @@ public class LogInPageTest extends TestRunner {
 
         logInPage.inputName("unregistered data")
                 .clickLogInButton();
-        Assert.assertEquals(logInPage.getElement(LogInPage.ERROR_MESSAGE).getText(),
+        Assert.assertEquals(logInPage.getLogInErrorMessage().getText(),
                 "Such user does not exist in the system � please try again.",
                 "Unexpected message!");
     }
@@ -173,7 +174,7 @@ public class LogInPageTest extends TestRunner {
         logInPage
                 .inputName(name)
                 .clickLogInButton();
-        Assert.assertEquals(logInPage.getElement(LogInPage.ERROR_MESSAGE).getText(),
+        Assert.assertEquals(logInPage.getLogInErrorMessage().getText(),
                 "Password is incorrect � please try again",
                 "Unexpected message!");
     }
@@ -187,7 +188,7 @@ public class LogInPageTest extends TestRunner {
                 .inputName(name)
                 .inputPassword("Mordor")
                 .clickLogInButton();
-        Assert.assertEquals(logInPage.getElement(LogInPage.ERROR_MESSAGE).getText(),
+        Assert.assertEquals(logInPage.getLogInErrorMessage().getText(),
                 "Password is incorrect � please try again",
                 "Unexpected message!");
     }

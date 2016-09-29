@@ -17,7 +17,7 @@ public class LogInLogOutTest extends TestRunner {
         logInPage
                 .logInAs(Roles.ADMINISTRATOR);
         userInfoPage = new UserInfoPage(driver);
-        Assert.assertTrue(userInfoPage.getIdentificationOfUserInfoPage().isDisplayed(),
+        Assert.assertTrue(userInfoPage.getUserInfoFieldSet().isDisplayed(),
                 "LogIn failed!");
     }
 
@@ -32,23 +32,23 @@ public class LogInLogOutTest extends TestRunner {
         // below we have to check if logIn was successful because every page has
         // logOut button with same locator and we could get false positive result
         // after logIn failure;
-        Assert.assertTrue(userInfoPage.getIdentificationOfUserInfoPage().isDisplayed(),
+        Assert.assertTrue(userInfoPage.getUserInfoFieldSet().isDisplayed(),
                 "LogIn failed!");
 
         Assert.assertTrue(userInfoPage
-                .getElement(UserInfoPage.LOG_OUT_BUTTON)
+                .getLogOutButton()
                 .isDisplayed(), "LogOut button is not displayed!\nURL: "
                 + driver.getCurrentUrl());
 
         administrationPage =
                 userInfoPage.clickAdministrationTab();
         // we have to check switching between pages, has the same issue with logIn check;
-        Assert.assertTrue(administrationPage.identificationOfAdministratorPage().isDisplayed(),
+        Assert.assertTrue(administrationPage.getFoundUsersTextLabel().isDisplayed(),
                 "Page is not switched to: "
                         + AdministrationPage.ADMINISTRATION_PAGE_URL);
 
         Assert.assertTrue(administrationPage
-                .getElement(AdministrationPage.LOG_OUT_BUTTON)
+                .getLogOutButton()
                 .isDisplayed(), "LogOut button is not displayed!\nURL: "
                 + driver.getCurrentUrl());
     }

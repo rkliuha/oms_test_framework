@@ -6,7 +6,6 @@ import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.TestRunner;
 import academy.softserve.edu.utils.TestUtil;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
@@ -46,49 +45,49 @@ public class EditUserTest extends TestRunner {
     public final void testAreEditFieldsFilledCorrectly() {
 
         Assert.assertTrue(editUserPage
-                        .getIdentificationOfEditUserPage()
+                        .getNewPasswordText()
                         .isDisplayed(),
                 "Page is not switched to EditUserPage !");
 
         Assert.assertTrue(editUserPage
-                        .getFirstNameTextField()
-                        .getAttribute("value")
+                        .getFirstNameInput()
+                        .getValue()
                         .equals(testUser.getFirstName()),
                 "User First name does not equals to actual !");
 
         Assert.assertTrue(editUserPage
-                        .getLastNameTextField()
-                        .getAttribute("value")
+                        .getLastNameInput()
+                        .getValue()
                         .equals(testUser.getLastName()),
                 "User Last name does not equal to actual !");
 
         Assert.assertTrue(editUserPage
-                        .getNewPasswordTextField()
-                        .getAttribute("value")
+                        .getNewPasswordInput()
+                        .getValue()
                         .isEmpty(),
                 "Password field is not empty !");
 
         Assert.assertTrue(editUserPage
-                        .getConfirmPasswordTextField()
-                        .getAttribute("value")
+                        .getConfirmPasswordInput()
+                        .getValue()
                         .isEmpty(),
                 "Confirm password field is not empty !");
 
         Assert.assertTrue(editUserPage
-                        .getEmailAddressTextField()
-                        .getAttribute("value")
+                        .getEmailAddressInput()
+                        .getValue()
                         .equals(testUser.getEmail()),
                 "User Email does not equal to actual !");
 
-        Assert.assertTrue(new Select(editUserPage
-                        .getRoleDropdown())
+        Assert.assertTrue(editUserPage
+                        .getRoleDropdown()
                         .getFirstSelectedOption()
                         .getText()
                         .equalsIgnoreCase(testUser.getRoleName()),
                 "User Role does not equal to actual !");
 
-        Assert.assertTrue(new Select(editUserPage
-                        .getRegionDropdown())
+        Assert.assertTrue(editUserPage
+                        .getRegionDropdown()
                         .getFirstSelectedOption()
                         .getText()
                         .equalsIgnoreCase(testUser.getRegionName()),
@@ -99,21 +98,21 @@ public class EditUserTest extends TestRunner {
     public final void testEditUserAndClickSave() {
 
         Assert.assertTrue(editUserPage
-                        .getIdentificationOfEditUserPage()
+                        .getNewPasswordText()
                         .isDisplayed(),
                 "Page is not switched to EditUserPage !");
 
         editUserPage
-                .getLastNameTextField()
+                .getLastNameInput()
                 .clear();
         editUserPage
-                .getLastNameTextField()
+                .getLastNameInput()
                 .sendKeys(NEW_USER_LAST_NAME);
         editUserPage
-                .getNewPasswordTextField()
+                .getNewPasswordInput()
                 .sendKeys(NEW_USER_PASSWORD);
         editUserPage
-                .getConfirmPasswordTextField()
+                .getConfirmPasswordInput()
                 .sendKeys(NEW_USER_PASSWORD);
         editUserPage
                 .getRegionDropdown()
@@ -139,7 +138,7 @@ public class EditUserTest extends TestRunner {
                 "User Region does not equal to changed one");
 
         Assert.assertTrue(administrationPage
-                        .identificationOfAdministratorPage()
+                        .getFoundUsersTextLabel()
                         .isDisplayed(),
                 "Page is not returned to AdministratorPage after saving changes!");
     }
@@ -148,12 +147,12 @@ public class EditUserTest extends TestRunner {
     public final void testEditUserAndClickCancel() {
 
         Assert.assertTrue(editUserPage
-                        .getIdentificationOfEditUserPage()
+                        .getNewPasswordText()
                         .isDisplayed(),
                 "Page is not switched to EditUserPage !");
 
-        editUserPage.getEmailAddressTextField().clear();
-        editUserPage.getEmailAddressTextField().sendKeys(NEW_USER_EMAIL);
+        editUserPage.getEmailAddressInput().clear();
+        editUserPage.getEmailAddressInput().sendKeys(NEW_USER_EMAIL);
         editUserPage.clickCancelButton();
 
         Assert.assertTrue(DBHandler
@@ -162,7 +161,7 @@ public class EditUserTest extends TestRunner {
                 "User is unexpected changed !");
 
         Assert.assertTrue(administrationPage
-                        .identificationOfAdministratorPage()
+                        .getFoundUsersTextLabel()
                         .isDisplayed(),
                 "Page is not returned to AdministratorPage after saving changes!");
     }
