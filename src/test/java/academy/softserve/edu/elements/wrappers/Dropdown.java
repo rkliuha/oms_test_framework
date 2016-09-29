@@ -1,6 +1,7 @@
 package academy.softserve.edu.elements.wrappers;
 
 import academy.softserve.edu.elements.interfaces.ILocator;
+import academy.softserve.edu.utils.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
@@ -44,4 +45,14 @@ public class Dropdown extends AbstractClickableElement<Dropdown> {
         select.deselectByValue(valueOfElement);
         return this;
     }
+
+    final public void sendKeys(final String inputText) {
+
+        wait.waitUntilElementIsPresent();
+        wait.waitUntilElementIsClickable();
+        driver.findElement(locator.getBy()).sendKeys(inputText);
+        Logger.logInfo("<font color='black'>Selected by value: " + inputText + " into " + "<b>"
+                + locator.getName() + "</b></font>");
+    }
+
 }

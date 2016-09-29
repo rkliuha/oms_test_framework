@@ -17,6 +17,8 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
     public static final By IDENTIFICATION_OF_CUSTOMER_PAGE = By.xpath(".//*[@id='content']/a");
     public static final By SHOW_10_ITEMS_LINK = By.xpath(".//form[@id='searchFilter']//a");
     public static final By SHOW_5_ITEMS_LINK = By.xpath(".//form[@id='searchFilter']//a");
+    public static final By CREATE_NEW_ORDER_LINK =
+            By.xpath("//div[@id='content']/a[@href='orderItemsCreate.htm']");
 
     public CustomerOrderingPage(WebDriver driver) {
         super(driver);
@@ -29,6 +31,12 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
                 .click();
 
         return new UserInfoPage(driver);
+    }
+
+    public final CreateNewOrderPage clickCreateNewOrderLink() {
+
+        driver.findElement(CREATE_NEW_ORDER_LINK).click();
+        return new CreateNewOrderPage(driver);
     }
 
     public final WebElement getIdentificationOfCustomerPage() {

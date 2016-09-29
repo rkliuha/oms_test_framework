@@ -11,8 +11,6 @@ import org.testng.annotations.Parameters;
 
 import java.util.concurrent.TimeUnit;
 
-import static academy.softserve.edu.enums.Browsers.*;
-
 public class TestRunner {
 
     public static final String CONFIG_PROPERTIES = "src/resources/config.properties";
@@ -31,6 +29,8 @@ public class TestRunner {
     protected EditUserPage editUserPage;
     protected CreateReportPage createReportPage;
     protected ReportPage reportPage;
+    protected CreateNewOrderPage createNewOrderPage;
+    protected AddItemPage addItemPage;
 
 
     @Parameters("browser")
