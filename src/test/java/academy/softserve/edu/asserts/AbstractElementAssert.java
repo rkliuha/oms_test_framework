@@ -7,29 +7,27 @@ import org.openqa.selenium.support.ui.Select;
 import static academy.softserve.edu.utils.Logger.logFail;
 import static academy.softserve.edu.utils.Logger.logPass;
 
+//TODO improve logging possibility
 public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert, AbstractElement> {
 
-    private final AbstractElement element;
-
-    AbstractElementAssert(final AbstractElement element) {
-        super(element, AbstractElementAssert.class);
-        this.element = element;
+    AbstractElementAssert(final AbstractElement actual) {
+        super(actual, AbstractElementAssert.class);
     }
 
-    public static final AbstractElementAssert assertThat(final AbstractElement element) {
-        return new AbstractElementAssert(element);
+    public static final AbstractElementAssert assertThat(final AbstractElement actual) {
+        return new AbstractElementAssert(actual);
     }
 
     public final AbstractElementAssert isDisplayed() {
 
         isNotNull();
 
-        if (!element.isDisplayed()) {
+        if (!actual.isDisplayed()) {
 
             failWithMessage("Element <%s> is not displayed!",
-                    element.getLocatorName());
+                    actual.getLocatorName());
             logFail("Assert <isDisplayed> failed: <" +
-                    element.getLocatorName() + "> is not displayed");
+                    actual.getLocatorName() + "> is not displayed");
         } else {
             logPass("Assert <isDisplayed> passed");
         }
@@ -40,13 +38,13 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
 
         isNotNull();
 
-        if (!element.getText()
+        if (!actual.getText()
                 .contains(condition)) {
 
             failWithMessage("Element <%s> does not contain <%s>",
-                    element.getLocatorName(), condition);
+                    actual.getLocatorName(), condition);
             logFail("Assert <textContains> failed: element's text <"
-                    + element.getLocatorName() + "> does not contain <" + condition + ">");
+                    + actual.getLocatorName() + "> does not contain <" + condition + ">");
         } else {
             logPass("Assert <textContain> passed");
         }
@@ -57,12 +55,12 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
 
         isNotNull();
 
-        if (!condition.equals(element.getText())) {
+        if (!condition.equals(actual.getText())) {
 
             failWithMessage("Element <%s> does not equal to <%s>",
-                    element.getLocatorName(), condition);
+                    actual.getLocatorName(), condition);
             logFail("Assert <textEquals> failed: element's text <"
-                    + element.getLocatorName() + "> does not equal to <" + condition + ">");
+                    + actual.getLocatorName() + "> does not equal to <" + condition + ">");
         } else {
             logPass("Assert <textEquals> passed");
         }
@@ -73,13 +71,13 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
 
         isNotNull();
 
-        if (!element.getValue()
+        if (!actual.getValue()
                 .contains(condition)) {
 
             failWithMessage("Attribute 'Value' of <%s> does not contain <%s> !",
-                    element.getLocatorName(), condition);
+                    actual.getLocatorName(), condition);
             logFail("Assert <valueContains> failed: element's value <"
-                    + element.getLocatorName() + "> does not contain <" + condition + ">");
+                    + actual.getLocatorName() + "> does not contain <" + condition + ">");
         } else {
             logPass("Assert <valueContains> passed");
         }
@@ -90,12 +88,12 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
 
         isNotNull();
 
-        if (!condition.equals(element.getValue())) {
+        if (!condition.equals(actual.getValue())) {
 
             failWithMessage("Attribute 'Value' of <%s> does not equal to <%s> !",
-                    element.getLocatorName(), condition);
+                    actual.getLocatorName(), condition);
             logFail("Assert <valueEquals> failed: element's value <"
-                    + element.getLocatorName() + "> does not equal to <" + condition + ">");
+                    + actual.getLocatorName() + "> does not equal to <" + condition + ">");
         } else {
             logPass("Assert <valueEquals> passed");
         }
@@ -106,13 +104,13 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
 
         isNotNull();
 
-        if (!element.getValue()
+        if (!actual.getValue()
                 .isEmpty()) {
 
             failWithMessage("Attribute 'Value' of <%s> is not empty !",
-                    element.getLocatorName());
+                    actual.getLocatorName());
             logFail("Assert <isValueEmpty> failed: element's value <"
-                    + element.getLocatorName() + "> is not empty");
+                    + actual.getLocatorName() + "> is not empty");
         } else {
             logPass("Assert <isValueEmpty> passed");
         }
@@ -123,14 +121,14 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
 
         isNotNull();
 
-        if (!"700".equals(element
+        if (!"700".equals(actual
                 .getElement()
                 .getCssValue("font-weight"))) {
 
             failWithMessage("Text of <%s> is not bold !",
-                    element.getLocatorName());
+                    actual.getLocatorName());
             logFail("Assert <isTextBold> failed: element's text <"
-                    + element.getLocatorName() + "> is not bold");
+                    + actual.getLocatorName() + "> is not bold");
         } else {
             logPass("Assert <isTextBold> passed");
         }
@@ -141,13 +139,13 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
 
         isNotNull();
 
-        if (!element.getText()
+        if (!actual.getText()
                 .isEmpty()) {
 
             failWithMessage("Text of <%s> is not empty !",
-                    element.getLocatorName());
+                    actual.getLocatorName());
             logFail("Assert <isTextEmpty> failed: element's text <"
-                    + element.getLocatorName() + "> is not empty");
+                    + actual.getLocatorName() + "> is not empty");
         } else {
             logPass("Assert <isTextEmpty> passed");
         }
@@ -159,14 +157,14 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
         isNotNull();
 
         if (!condition.equals
-                (new Select(element.getElement())
+                (new Select(actual.getElement())
                         .getFirstSelectedOption()
                         .getText())) {
 
             failWithMessage("Selected value of dropdown <%s> does not equal to <%s>",
-                    element.getLocatorName(), condition);
+                    actual.getLocatorName(), condition);
             logFail("Assert <selectedDropDownEquals> failed: dropdown's selected value <"
-                    + element.getLocatorName() + "> does not equal to <" + condition + ">");
+                    + actual.getLocatorName() + "> does not equal to <" + condition + ">");
         } else {
             logPass("Assert <selectedDropDownEquals> passed");
         }
@@ -176,7 +174,7 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
     @Override
     public final AbstractElementAssert isNotNull() {
 
-        if (element == null) {
+        if (actual == null) {
 
             failWithMessage("Required element is null !");
             logFail("Assert <isNotNull> failed: required element is null ");

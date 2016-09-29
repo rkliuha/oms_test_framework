@@ -12,9 +12,9 @@ public final class TestUtil {
 
     }
 
-    public static final void createValidUserInDB() {
+    public static final int createValidUserInDB() {
 
-        DBHandler.createUser(User.newBuilder()
+        return DBHandler.createUser(User.newBuilder()
                 .setId(0)
                 .setUserActive(1)
                 .setBalance(20000)
@@ -29,9 +29,9 @@ public final class TestUtil {
                 .build());
     }
 
-    public static final void createActiveProductInDB() {
+    public static final int createActiveProductInDB() {
 
-        DBHandler.createProduct(Product.newBuilder()
+        return DBHandler.createProduct(Product.newBuilder()
                 .setId(0)
                 .setProductActive(1)
                 .setProductDescription("Original Irish Cream")

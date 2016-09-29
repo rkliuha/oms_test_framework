@@ -282,10 +282,6 @@ public enum CreateNewOrderPageLocators implements ILocator {
             LocatorsType.BY_ID,
             "totalsError"),
 
-    CREATE_NEW_ORDER_PAGE_EXISTS("Create New Order Page Exists",
-            LocatorsType.BY_XPATH,
-            "//legend[@id='legendHeight']/strong[contains(text(), 'Totals')]"),
-
     FIRST_ITEM_NUMBER("First Item Number",
             LocatorsType.BY_XPATH,
             "//table[@id='orderItems']/tbody/tr[1]/td[1]"),

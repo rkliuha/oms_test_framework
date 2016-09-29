@@ -68,7 +68,7 @@ public enum AddItemPageLocators implements ILocator {
 
     ITEM_QUANTITY_INPUT("Item Quantity Input",
             LocatorsType.BY_XPATH,
-            "//td[contains(text(),'Quantity:')]/following::input[@id='quantity']"),
+            "//form[@id='doneForm']/table/tbody/tr[4]/td[1]/following::input[1]"),
 
     QUANTITY_ITEM_ERROR("Quantity Item Error",
             LocatorsType.BY_ID,

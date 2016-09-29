@@ -18,7 +18,7 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
     public static final By SHOW_10_ITEMS_LINK = By.xpath(".//form[@id='searchFilter']//a");
     public static final By SHOW_5_ITEMS_LINK = By.xpath(".//form[@id='searchFilter']//a");
     public static final By CREATE_NEW_ORDER_LINK =
-            By.xpath("//div[@id='content']/a[contains(text(), 'Create new order')]");
+            By.xpath("//div[@id='content']/a[@href='orderItemsCreate.htm']");
 
     public CustomerOrderingPage(WebDriver driver) {
         super(driver);

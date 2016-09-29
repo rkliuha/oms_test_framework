@@ -5,10 +5,7 @@ import academy.softserve.edu.domains.User;
 import academy.softserve.edu.enums.Roles;
 import lombok.RequiredArgsConstructor;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 @RequiredArgsConstructor
 public class MySQLUserDao implements UserDao {
@@ -24,7 +21,7 @@ public class MySQLUserDao implements UserDao {
             " RoleRef FROM Users ORDER BY ID DESC LIMIT 1;";
     private static final String CREATE_USER_QUERY = "INSERT INTO Users (IsUserActive, Balance, Email,"
             + " FirstName, LastName, Login, Password, CustomerTypeRef, RegionRef," +
-            " RoleRef) VALUES(?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?);";
+            " RoleRef) VALUES(?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?); ";
     private static final String UPDATE_USER_QUERY = "UPDATE Users SET IsUserActive = ?, Balance = ?, Email = ?,"
             + " FirstName = ?, LastName = ?, Login = ?, Password = ?, CustomerTypeRef = ?, RegionRef = ?," +
             " RoleRef = ? WHERE ID = ?;";
@@ -36,9 +33,12 @@ public class MySQLUserDao implements UserDao {
     private final Connection connection;
 
     @Override
-    public final void createUser(final User user) {
+    public final int createUser(final User user) {
 
-        try (final PreparedStatement preparedStatement = connection.prepareStatement(CREATE_USER_QUERY)) {
+        int userId = 0;
+        try (final PreparedStatement preparedStatement = connection.prepareStatement(CREATE_USER_QUERY,
+                Statement.RETURN_GENERATED_KEYS)) {
+
             preparedStatement.setInt(1, user.getUserActive());
             preparedStatement.setInt(2, user.getBalance());
             preparedStatement.setString(3, user.getEmail());
@@ -50,9 +50,14 @@ public class MySQLUserDao implements UserDao {
             preparedStatement.setInt(9, user.getRegionReference());
             preparedStatement.setInt(10, user.getRoleReference());
             preparedStatement.execute();
+            final ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            resultSet.next();
+
+            userId = resultSet.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return userId;
     }
 
     @Override

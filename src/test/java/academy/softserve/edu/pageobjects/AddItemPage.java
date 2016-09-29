@@ -1,27 +1,32 @@
 package academy.softserve.edu.pageobjects;
 
-import academy.softserve.edu.elements.locators.customer.AddItemPageLocators;
 import academy.softserve.edu.elements.wrappers.*;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 
+import static academy.softserve.edu.elements.locators.customer.AddItemPageLocators.*;
+
 @Getter
 public class AddItemPage extends PageObject<AddItemPage> {
 
-    private final Button addItemPageExists =
-            new Button(driver, AddItemPageLocators.RESET_BUTTON);
+    /**
+     * resetButton is an unique element on the AddItemPage,
+     * can be used as identification of page;
+     */
+    private final Button resetButton =
+            new Button(driver, RESET_BUTTON);
     private final Link selectLastAddedItemLink =
-            new Link(driver, AddItemPageLocators.SELECT_LAST_ADDED_ITEM_LINK);
+            new Link(driver, SELECT_LAST_ADDED_ITEM_LINK);
     private final TextLabel itemTextField =
-            new TextLabel(driver, AddItemPageLocators.ITEM_TEXT_FIELD);
+            new TextLabel(driver, ITEM_TEXT_FIELD);
     private final TextLabel itemPriceField =
-            new TextLabel(driver, AddItemPageLocators.ITEM_PRICE_FIELD);
+            new TextLabel(driver, ITEM_PRICE_FIELD);
     private final TextInputField itemQuantityTextfield =
-            new TextInputField(driver, AddItemPageLocators.ITEM_QUANTITY_INPUT);
+            new TextInputField(driver, ITEM_QUANTITY_INPUT);
     private final Dropdown itemDimensionDropdown =
-            new Dropdown(driver, AddItemPageLocators.ITEM_DIMENSION_DROPDOWN);
+            new Dropdown(driver, ITEM_DIMENSION_DROPDOWN);
     private final Button doneButton =
-            new Button(driver, AddItemPageLocators.DONE_BUTTON);
+            new Button(driver, DONE_BUTTON);
 
     public AddItemPage(final WebDriver driver) {
         super(driver);

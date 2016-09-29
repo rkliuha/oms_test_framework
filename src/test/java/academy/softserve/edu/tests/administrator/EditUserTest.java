@@ -20,13 +20,14 @@ public class EditUserTest extends TestRunner {
     private static final String NEW_USER_EMAIL = "google@gmail.com";
     private static final Regions NEW_REGION = Regions.WEST;
 
-    private User lastAddedUserForUpdate;
+    private User testUser;
+    private int testUserId;
 
     @BeforeTest
     public final void createTestUser() {
 
-        TestUtil.createValidUserInDB();
-        lastAddedUserForUpdate = DBHandler.getLastUser();
+        testUserId = TestUtil.createValidUserInDB();
+        testUser = DBHandler.getUserById(testUserId);
     }
 
     @BeforeMethod
@@ -38,7 +39,7 @@ public class EditUserTest extends TestRunner {
                 .clickAdministrationTab()
                 .clickLastUserPaginationButton();
 
-        editUserPage = administrationPage.clickEditLastUserLink();
+        editUserPage = administrationPage.clickEditUserById(testUserId);
     }
 
     @Test
@@ -52,13 +53,13 @@ public class EditUserTest extends TestRunner {
         Assert.assertTrue(editUserPage
                         .getFirstNameTextField()
                         .getAttribute("value")
-                        .equals(lastAddedUserForUpdate.getFirstName()),
+                        .equals(testUser.getFirstName()),
                 "User First name does not equals to actual !");
 
         Assert.assertTrue(editUserPage
                         .getLastNameTextField()
                         .getAttribute("value")
-                        .equals(lastAddedUserForUpdate.getLastName()),
+                        .equals(testUser.getLastName()),
                 "User Last name does not equal to actual !");
 
         Assert.assertTrue(editUserPage
@@ -76,21 +77,21 @@ public class EditUserTest extends TestRunner {
         Assert.assertTrue(editUserPage
                         .getEmailAddressTextField()
                         .getAttribute("value")
-                        .equals(lastAddedUserForUpdate.getEmail()),
+                        .equals(testUser.getEmail()),
                 "User Email does not equal to actual !");
 
         Assert.assertTrue(new Select(editUserPage
                         .getRoleDropdown())
                         .getFirstSelectedOption()
                         .getText()
-                        .equalsIgnoreCase(lastAddedUserForUpdate.getRoleName()),
+                        .equalsIgnoreCase(testUser.getRoleName()),
                 "User Role does not equal to actual !");
 
         Assert.assertTrue(new Select(editUserPage
                         .getRegionDropdown())
                         .getFirstSelectedOption()
                         .getText()
-                        .equalsIgnoreCase(lastAddedUserForUpdate.getRegionName()),
+                        .equalsIgnoreCase(testUser.getRegionName()),
                 "User Region does not equal to actual !");
     }
 
@@ -120,19 +121,19 @@ public class EditUserTest extends TestRunner {
         editUserPage
                 .clickSaveChangesButton();
 
-        lastAddedUserForUpdate = DBHandler.getLastUser();
+        testUser = DBHandler.getUserById(testUserId);
 
-        Assert.assertTrue(lastAddedUserForUpdate
+        Assert.assertTrue(testUser
                         .getLastName()
                         .equals(NEW_USER_LAST_NAME),
                 "Last name does not equal to changed one");
 
-        Assert.assertTrue(lastAddedUserForUpdate
+        Assert.assertTrue(testUser
                         .getPassword()
                         .equals(NEW_USER_PASSWORD),
                 "User password does not equal to changed one");
 
-        Assert.assertTrue(lastAddedUserForUpdate
+        Assert.assertTrue(testUser
                         .getRegionName()
                         .equalsIgnoreCase(NEW_REGION.toString()),
                 "User Region does not equal to changed one");
@@ -157,7 +158,7 @@ public class EditUserTest extends TestRunner {
 
         Assert.assertTrue(DBHandler
                         .getLastUser()
-                        .equals(lastAddedUserForUpdate),
+                        .equals(testUser),
                 "User is unexpected changed !");
 
         Assert.assertTrue(administrationPage
@@ -168,7 +169,7 @@ public class EditUserTest extends TestRunner {
 
     @AfterTest
     public final void deleteTestUser() {
-        DBHandler.deleteUser(lastAddedUserForUpdate.getId());
+        DBHandler.deleteUser(testUserId);
     }
 
 }

@@ -14,19 +14,14 @@ import org.testng.annotations.Test;
 
 public class AddItemToOrderTest extends TestRunner {
 
-    private final static String QUANTITY_OF_ITEM = "3";
-    private final static String DIMENSION_OF_ITEM = "Box";
-    // if DIMENSION_OF_ITEM = "Item" - set multiplier = 1,
-    // if "Box" - set 5, if "Package" - set 10;
-    private final static int MULTIPLIER_OF_ITEM = 5;
-
-    private Product product;
+    private Product testProduct;
+    private int testProductId;
 
     @BeforeTest
     public final void createTestProduct() {
 
-        TestUtil.createActiveProductInDB();
-        product = DBHandler.getLastProduct();
+        testProductId = TestUtil.createActiveProductInDB();
+        testProduct = DBHandler.getProductById(testProductId);
     }
 
     @BeforeMethod
@@ -41,7 +36,7 @@ public class AddItemToOrderTest extends TestRunner {
     public final void testElementsVisibility() {
 
         Assert.assertTrue(createNewOrderPage
-                        .getCreateNewOrderPageExists()
+                        .getCVV2Text()
                         .isDisplayed(),
                 "Page is not switched to CreateNewOrderPage !");
 
@@ -55,7 +50,7 @@ public class AddItemToOrderTest extends TestRunner {
         addItemPage = new AddItemPage(driver);
 
         Assert.assertTrue(addItemPage
-                        .getAddItemPageExists()
+                        .getResetButton()
                         .isDisplayed(),
                 "Page is not switched to AddItemPage");
     }
@@ -69,19 +64,22 @@ public class AddItemToOrderTest extends TestRunner {
 
         addItemPage.getSelectLastAddedItemLink().click();
 
-        addItemPage.getItemDimensionDropdown().sendKeys(DIMENSION_OF_ITEM);
-        addItemPage.getItemQuantityTextfield().sendKeys(QUANTITY_OF_ITEM);
+        final String quantityOfItem = "3";
+        final String dimensionOfItem = "Box";
+
+        addItemPage.getItemDimensionDropdown().sendKeys(dimensionOfItem);
+        addItemPage.getItemQuantityTextfield().sendKeys(quantityOfItem);
 
         Assert.assertTrue(addItemPage
                         .getItemTextField()
                         .getText()
-                        .equals(product.getProductName()),
+                        .equals(testProduct.getProductName()),
                 "Item name in doneForm does not equal to selected one !");
 
         Assert.assertTrue(addItemPage
                         .getItemPriceField()
                         .getText()
-                        .equals(String.valueOf(product.getProductPrice())),
+                        .equals(String.valueOf(testProduct.getProductPrice())),
                 "Item price in doneForm does not equal to selected one !");
 
         addItemPage.getDoneButton().click();
@@ -89,49 +87,53 @@ public class AddItemToOrderTest extends TestRunner {
         Assert.assertTrue(createNewOrderPage
                         .getFirstItemNumber()
                         .getText()
-                        .equals(String.valueOf(product.getId())),
+                        .equals(String.valueOf(testProduct.getId())),
                 "Item number does not equal to selected one");
 
         Assert.assertTrue(createNewOrderPage
                         .getFirstItemName()
                         .getText()
-                        .equals(product.getProductName()),
+                        .equals(testProduct.getProductName()),
                 "Item name does not equal to selected one");
 
         Assert.assertTrue(createNewOrderPage
                         .getFirstItemDescription()
                         .getText()
-                        .equals(product.getProductDescription()),
+                        .equals(testProduct.getProductDescription()),
                 "Item description does not equal to selected one");
 
         Assert.assertTrue(createNewOrderPage
                         .getFirstItemDimension()
                         .getText()
-                        .equals(DIMENSION_OF_ITEM),
+                        .equals(dimensionOfItem),
                 "Item dimension does not equal to selected one");
 
         Assert.assertTrue(createNewOrderPage
                         .getFirstItemPrice()
                         .getText()
-                        .equals(String.valueOf(product.getProductPrice())),
+                        .equals(String.valueOf(testProduct.getProductPrice())),
                 "Item price does not equal to selected one");
 
         Assert.assertTrue(createNewOrderPage
                         .getFirstItemQuantity()
-                        .getText().equals(QUANTITY_OF_ITEM),
+                        .getText().equals(quantityOfItem),
                 "Item quantity does not equal to selected one");
+
+        // if dimensionOfItem == "Item" - set multiplier = 1,
+        // if == "Box" - set 5, if == "Package" - set 10;
+        final int multiplierOfItem = 5;
 
         Assert.assertTrue(createNewOrderPage
                         .getFirstItemPricePerLine()
                         .getText()
-                        .equals(String.valueOf(product.getProductPrice() *
-                                MULTIPLIER_OF_ITEM * Integer.parseInt(QUANTITY_OF_ITEM))),
+                        .equals(String.valueOf(testProduct.getProductPrice() *
+                                multiplierOfItem * Integer.parseInt(quantityOfItem))),
                 "Total price counted incorrectly !");
     }
 
     @AfterTest
     public final void deleteTestProduct() {
-        DBHandler.deleteProduct(product.getId());
+        DBHandler.deleteProduct(testProductId);
     }
 
 }
