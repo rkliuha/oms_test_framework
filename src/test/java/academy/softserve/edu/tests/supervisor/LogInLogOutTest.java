@@ -39,8 +39,7 @@ public class LogInLogOutTest extends TestRunner {
         // we have to check switching between pages, has the same issue with logIn check;
         Assert.assertTrue(itemManagementPage
                 .getIdentificationOfSupervisePage()
-                .isDisplayed(), "Page is not switched to: "
-                + ItemManagementPage.ITEM_MANAGEMENT_PAGE_URL);
+                .isDisplayed(), "Page is not switched to ItemManagementPage");
 
         Assert.assertTrue(itemManagementPage
                 .getElement(ItemManagementPage.LOG_OUT_BUTTON)

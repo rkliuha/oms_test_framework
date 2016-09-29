@@ -1,4 +1,3 @@
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Parallel test" verbose="1" parallel="tests" thread-count="2">
 
@@ -6,7 +5,7 @@
         <parameter name="browser" value="firefox"/>
         <parameter name="version" value="46"/>
         <classes>
-            <class name="academy.softserve.edu.tests.GridTestParallel">
+            <class name="academy.softserve.edu.tests.customer.SearchTest">
                 <methods>
                     <include name="test"/>
                 </methods>
@@ -18,7 +17,7 @@
         <parameter name="browser" value="chrome"/>
         <parameter name="version" value="43"/>
         <classes>
-            <class name="academy.softserve.edu.tests.GridTestParallel">
+            <class name="academy.softserve.edu.tests.customer.SearchTest">
                 <methods>
                     <include name="test"/>
                 </methods>

@@ -23,20 +23,20 @@ public class WebDriverFactory {
         final DesiredCapabilities capabilities = new DesiredCapabilities();
 
         final String remote = PropertiesReader.getDefaultProperty("remote");
-        final String browsers = PropertiesReader.getDefaultProperty("browsers");
+        final String propertyBrowser = PropertiesReader.getDefaultProperty("browser");
         final String platform = PropertiesReader.getDefaultProperty("platform");
 
-        final Browsers myBrowser = Browsers.valueOf(browsers.toUpperCase());
+        final Browsers propertyBrowserTypeEnum = Browsers.valueOf(propertyBrowser.toUpperCase());
 
-        final Browsers cmdBrowser = Browsers.valueOf(browser.toUpperCase());
+        final Browsers cmdBrowserTypeEnum = Browsers.valueOf(browser.toUpperCase());
 
-        final boolean myRemote = Boolean.valueOf(remote);
+        final boolean newRemote = Boolean.valueOf(remote);
 
-        if (!myRemote) {
+        if (!newRemote) {
 
-            if (browser.equals("default")) {
+            if ("default".equals(browser)) {
 
-                switch (myBrowser) {
+                switch (propertyBrowserTypeEnum) {
 
                     case CHROME_MAC:
                         System.setProperty("webdriver.chrome.driver", "src//resources//drivers//chromedriver_mac");
@@ -60,7 +60,7 @@ public class WebDriverFactory {
                 }
             } else {
 
-                switch (cmdBrowser) {
+                switch (cmdBrowserTypeEnum) {
 
                     case CHROME_MAC:
                         System.setProperty("webdriver.chrome.driver", "src//resources//drivers//chromedriver_mac");

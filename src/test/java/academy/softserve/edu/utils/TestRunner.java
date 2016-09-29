@@ -35,7 +35,7 @@ public class TestRunner {
 
     @Parameters({"browser", "version"})
     @BeforeMethod
-    public final void setUp(@Optional("default") final String browser, @Optional(" ") final String version) throws MalformedURLException {
+    public final void setUp(@Optional("default") final String browser, @Optional("46") final String version) throws MalformedURLException {
 
         final WebDriverFactory webDriverFactory = new WebDriverFactory();
 
@@ -49,6 +49,7 @@ public class TestRunner {
                 .window()
                 .maximize();
 
+        // TODO to remove when wrappers are ready
         driver
                 .manage()
                 .timeouts()

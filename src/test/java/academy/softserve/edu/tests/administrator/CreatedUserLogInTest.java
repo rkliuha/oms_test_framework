@@ -32,7 +32,8 @@ public class CreatedUserLogInTest extends TestRunner {
 
         Assert.assertTrue(administrationPage
                 .getElement(CREATE_NEW_USER_LINK)
-                .isDisplayed(), "Create new user link " + CREATE_NEW_USER_LINK + " isn't present");
+                .isDisplayed()
+                ,"Create new user link " + CREATE_NEW_USER_LINK + " isn't present");
     }
 
     @Test(priority = 2)
@@ -53,7 +54,8 @@ public class CreatedUserLogInTest extends TestRunner {
 
         Assert.assertTrue(administrationPage
                 .getElement(CREATE_USER_PAGE_EXISTS)
-                .isDisplayed(), "Element " + CREATE_USER_PAGE_EXISTS + " isn't present");
+                .isDisplayed()
+                ,"Element " + CREATE_USER_PAGE_EXISTS + " isn't present");
     }
 
     @Test(priority = 3)
@@ -119,7 +121,8 @@ public class CreatedUserLogInTest extends TestRunner {
                 .click();
 
         Assert.assertNotNull(DBHandler
-                .getUserByLogin(LOGIN), "User doesn't exist");
+                .getUserByLogin(LOGIN)
+                ,"User doesn't exist");
     }
 
     @Test(priority = 4)
@@ -138,7 +141,8 @@ public class CreatedUserLogInTest extends TestRunner {
 
         Assert.assertTrue(userInfoPage
                 .getElement(USER_INFO_PAGE_EXISTS)
-                .isDisplayed(), "Element " + USER_INFO_PAGE_EXISTS + " isn't displayed");
+                .isDisplayed()
+                ,"Element " + USER_INFO_PAGE_EXISTS + " isn't displayed");
     }
 
     @AfterClass

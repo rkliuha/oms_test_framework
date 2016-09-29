@@ -39,8 +39,7 @@ public class LogInLogOutTest extends TestRunner {
                 userInfoPage.clickCustomerOrderingTab();
         // we have to check switching between pages, has the same issue with logIn check;
         Assert.assertTrue(customerOrderingPage.getIdentificationOfCustomerPage().isDisplayed(),
-                "Page is not switched to: "
-                        + CustomerOrderingPage.CUSTOMER_ORDERING_PAGE_URL);
+                "Page is not switched to CustomerOrderingPage");
 
         Assert.assertTrue(customerOrderingPage
                 .getElement(CustomerOrderingPage.LOG_OUT_BUTTON)

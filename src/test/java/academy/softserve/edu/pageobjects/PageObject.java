@@ -68,8 +68,7 @@ public abstract class PageObject<T> {
                 .navigate().back();
     }
 
-    //TODO rename
-    public final void navigateForvard() {
+    public final void navigateForward() {
         driver
                 .navigate().forward();
     }
