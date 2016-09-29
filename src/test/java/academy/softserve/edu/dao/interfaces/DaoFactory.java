@@ -9,4 +9,6 @@ public interface DaoFactory {
 
     UserDao getUserDao(final Connection connection);
 
+    ProductDao getProductDao(final Connection connection);
+
 }

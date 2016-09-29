@@ -18,7 +18,6 @@ public enum LocatorsType {
         }
     },
 
-
     BY_NAME {
         @Override
         public By getBy(final String locator) {

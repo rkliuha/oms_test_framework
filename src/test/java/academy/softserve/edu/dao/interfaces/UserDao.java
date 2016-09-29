@@ -5,7 +5,7 @@ import academy.softserve.edu.enums.Roles;
 
 public interface UserDao {
 
-    void createUser(final User user);
+    int createUser(final User user);
 
     User getUserById(final int userId);
 

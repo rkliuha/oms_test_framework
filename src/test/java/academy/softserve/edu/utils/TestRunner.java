@@ -5,6 +5,10 @@ import academy.softserve.edu.enums.Browsers;
 import academy.softserve.edu.pageobjects.*;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.*;
 
 import java.net.MalformedURLException;
@@ -12,7 +16,6 @@ import java.util.concurrent.TimeUnit;
 
 import static academy.softserve.edu.enums.Browsers.FIREFOX;
 
-@Listeners({TestListener.class})
 public class TestRunner {
 
     public static final String CONFIG_PROPERTIES = "src/resources/config.properties";
@@ -31,6 +34,8 @@ public class TestRunner {
     protected EditUserPage editUserPage;
     protected CreateReportPage createReportPage;
     protected ReportPage reportPage;
+    protected CreateNewOrderPage createNewOrderPage;
+    protected AddItemPage addItemPage;
 
 
     @Parameters({"browser", "version"})
@@ -49,7 +54,7 @@ public class TestRunner {
                 .window()
                 .maximize();
 
-        // TODO to remove when wrappers are ready
+        //TODO to remove when wrappers are ready
         driver
                 .manage()
                 .timeouts()

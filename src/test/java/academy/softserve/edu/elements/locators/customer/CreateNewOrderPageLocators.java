@@ -1,7 +1,7 @@
 package academy.softserve.edu.elements.locators.customer;
 
-import academy.softserve.edu.elements.interfaces.ILocator;
 import academy.softserve.edu.elements.LocatorsType;
+import academy.softserve.edu.elements.interfaces.ILocator;
 import org.openqa.selenium.By;
 
 public enum CreateNewOrderPageLocators implements ILocator {
@@ -20,7 +20,7 @@ public enum CreateNewOrderPageLocators implements ILocator {
 
     ADD_ITEM_BUTTON("Add Item Button",
             LocatorsType.BY_XPATH,
-            "//form[@id='addItem']/input[2]"),
+            "//form[@id='addItem']/input[@value = 'Add Item']"),
 
     RESIZE_ITEMS_LIST_LINK("Resize Items List Link",
             LocatorsType.BY_XPATH,
@@ -280,8 +280,39 @@ public enum CreateNewOrderPageLocators implements ILocator {
 
     NO_ITEMS_ERROR("No Items ERROR",
             LocatorsType.BY_ID,
-            "totalsError");
+            "totalsError"),
 
+    FIRST_ITEM_NUMBER("First Item Number",
+            LocatorsType.BY_XPATH,
+            "//table[@id='orderItems']/tbody/tr[1]/td[1]"),
+
+    FIRST_ITEM_NAME("First Item Name",
+            LocatorsType.BY_XPATH,
+            "//table[@id='orderItems']/tbody/tr[1]/td[2]"),
+
+    FIRST_ITEM_DESCRIPTION("First Item Description",
+            LocatorsType.BY_XPATH,
+            "//table[@id='orderItems']/tbody/tr[1]/td[3]"),
+
+    FIRST_ITEM_DIMENSION("First Item Dimension",
+            LocatorsType.BY_XPATH,
+            "//table[@id='orderItems']/tbody/tr[1]/td[4]"),
+
+    FIRST_ITEM_PRICE("First Item Price",
+            LocatorsType.BY_XPATH,
+            "//table[@id='orderItems']/tbody/tr[1]/td[5]"),
+
+    FIRST_ITEM_QUANTITY("First Item Quantity",
+            LocatorsType.BY_XPATH,
+            "//table[@id='orderItems']/tbody/tr[1]/td[6]"),
+
+    FIRST_ITEM_PRICE_PER_LINE("First Item Price Per Line",
+            LocatorsType.BY_XPATH,
+            "//table[@id='orderItems']/tbody/tr[1]/td[7]"),
+
+    ITEM_SELECTION_SECTION("Item Selection Section",
+            LocatorsType.BY_XPATH,
+            "//div[@id='content']/fieldset");
 
     protected String elementName;
     protected LocatorsType locatorType;
