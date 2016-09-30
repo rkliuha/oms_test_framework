@@ -142,9 +142,30 @@ public enum AdministrationPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//div[@id='list']/h5/a"),
 
+
     SAVE_REPORT_LINK("Save Report Link",
             LocatorsType.BY_XPATH,
-            "//div[@id='list']/a");
+            "//div[@id='list']/a"),
+
+    FIRST_NAME_COLUMN("First Name column",
+            LocatorsType.BY_XPATH,
+            "//*[@id='table']/tbody/tr//td[1]"),
+
+    LAST_NAME_COLUMN("Last Name column",
+            LocatorsType.BY_XPATH,
+            "*//*[@id='table']/tbody/tr//td[2]"),
+
+    LOGIN_COLUMN("Login Column",
+            LocatorsType.BY_XPATH,
+            "/*//*[@id='table']/tbody/tr//td[3]"),
+
+    ROLE_COLUMN("Role Column",
+            LocatorsType.BY_XPATH,
+            "/*//*[@id='table']/tbody/tr//td[4]"),
+
+    REGION_COLUMN("Region Column",
+            LocatorsType.BY_XPATH,
+            "/*//*[@id='table']/tbody/tr//td[5]");
 
 
     protected String elementName;

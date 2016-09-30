@@ -6,9 +6,7 @@ public enum LocatorsType {
 
     BY_CLASS_NAME {
         @Override
-        public By getBy(final String locator) {
-            return By.className(locator);
-        }
+        public By getBy(final String locator) {return By.className(locator);}
     },
 
     BY_ID {
@@ -17,12 +15,10 @@ public enum LocatorsType {
             return By.id(locator);
         }
     },
-
-
+    
     BY_NAME {
         @Override
-        public By getBy(final String locator) {
-            return By.name(locator);
+        public By getBy(final String locator) {return By.name(locator);
         }
     },
 
