@@ -1,10 +1,12 @@
 package academy.softserve.edu.pageobjects;
 
+import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 //TODO use Lombok for getters
+@Getter
 public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
 
     //TODO remove
@@ -19,6 +21,11 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
     public static final By SHOW_5_ITEMS_LINK = By.xpath(".//form[@id='searchFilter']//a");
     public static final By CREATE_NEW_ORDER_LINK =
             By.xpath("//div[@id='content']/a[@href='orderItemsCreate.htm']");
+
+    public final WebElement getOrderStatusByNumber(final String orderNumber) {
+        return driver.findElement(By.xpath("//div[@id='list']/table/tbody/tr/"
+                + "td[contains(text(), 'OrderName" + orderNumber + "')]/following-sibling::td[4]"));
+    }
 
     public CustomerOrderingPage(WebDriver driver) {
         super(driver);
