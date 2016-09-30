@@ -146,6 +146,10 @@ public enum CreateNewOrderPageLocators implements ILocator {
             LocatorsType.BY_CLASS_NAME,
             "dp-choose-date"),
 
+    VALID_DELIVERY_DATE_LINK("Valid Delivery Date Link",
+            LocatorsType.BY_XPATH,
+            "//div[@id='dp-popup']/div[3]/table/tbody/tr[5]/td[5]"),
+
     DELIVERY_DATE_TEXT("Delivery Date Text",
             LocatorsType.BY_XPATH,
             "//form[@id='saveButton']//tr[7]/td[1]"),
@@ -162,7 +166,7 @@ public enum CreateNewOrderPageLocators implements ILocator {
             LocatorsType.BY_ID,
             "assignee"),
 
-    CARD_INFO_FIELDSET("Card Info Fieldset",
+    CARD_INFO_TEXT("Card Info Fieldset",
             LocatorsType.BY_XPATH,
             "//form[@id='form2']//legend/strong"),
 
@@ -202,7 +206,7 @@ public enum CreateNewOrderPageLocators implements ILocator {
             LocatorsType.BY_ID,
             "redAsterisk4"),
 
-    CREDIT_CARD_NUMBER_INPUT("Credit Card Number Input",
+    CREDIT_CARD_NUMBER_TEXTFIELD("Credit Card Number Textfield",
             LocatorsType.BY_ID,
             "cardNum"),
 
@@ -312,7 +316,11 @@ public enum CreateNewOrderPageLocators implements ILocator {
 
     ITEM_SELECTION_SECTION("Item Selection Section",
             LocatorsType.BY_XPATH,
-            "//div[@id='content']/fieldset");
+            "//div[@id='content']/fieldset"),
+
+    INCORRECT_CARD_ERROR("Incorrect Card Error",
+            LocatorsType.BY_ID,
+            "error");
 
     protected String elementName;
     protected LocatorsType locatorType;

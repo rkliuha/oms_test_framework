@@ -11,4 +11,6 @@ public interface DaoFactory {
 
     ProductDao getProductDao(final Connection connection);
 
+    OrderDao getOrderDao(final Connection connection);
+
 }

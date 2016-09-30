@@ -7,6 +7,7 @@ import academy.softserve.edu.elements.wrappers.TextInputField;
 import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import static academy.softserve.edu.elements.locators.customer.CustomerOrderingPageLocators.*;
 
@@ -24,6 +25,11 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
     // TODO make one method instead of two
     public static final By SHOW_10_ITEMS_LINK = By.xpath(".//form[@id='searchFilter']//a");
     public static final By SHOW_5_ITEMS_LINK = By.xpath(".//form[@id='searchFilter']//a");
+
+    public final WebElement getOrderStatusByNumber(final String orderNumber) {
+        return driver.findElement(By.xpath("//div[@id='list']/table/tbody/tr/"
+                + "td[contains(text(), 'OrderName" + orderNumber + "')]/following-sibling::td[4]"));
+    }
 
     public CustomerOrderingPage(WebDriver driver) {
         super(driver);
