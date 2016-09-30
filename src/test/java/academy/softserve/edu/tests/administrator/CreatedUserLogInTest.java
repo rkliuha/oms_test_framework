@@ -2,6 +2,7 @@ package academy.softserve.edu.tests.administrator;
 
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.AdministrationPage;
+import academy.softserve.edu.pageobjects.CreateNewUserPage;
 import academy.softserve.edu.pageobjects.EditUserPage;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.TestRunner;
@@ -9,10 +10,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
-import static academy.softserve.edu.pageobjects.AdministrationPage.CREATE_NEW_USER_LINK;
-import static academy.softserve.edu.pageobjects.CreateNewUserPage.*;
-import static academy.softserve.edu.pageobjects.UserInfoPage.ADMINISTRATION_LINK;
-import static academy.softserve.edu.pageobjects.UserInfoPage.USER_INFO_PAGE_EXISTS;
 
 public class CreatedUserLogInTest extends TestRunner {
 
@@ -25,15 +22,16 @@ public class CreatedUserLogInTest extends TestRunner {
                 .logInAs(Roles.ADMINISTRATOR);
 
         userInfoPage
-                .getElement(ADMINISTRATION_LINK)
+                .getAdministrationLink()
                 .click();
 
-       administrationPage = new AdministrationPage(driver);
+        administrationPage = new AdministrationPage(driver);
 
         Assert.assertTrue(administrationPage
-                .getElement(CREATE_NEW_USER_LINK)
-                .isDisplayed(), "Create new user link " + CREATE_NEW_USER_LINK + " isn't present");
+                .getCreateUserLink()
+                .isDisplayed(), "Create new user link " + administrationPage.getCreateUserLink().getLocatorValue() + " isn't present");
     }
+
 
     @Test(priority = 2)
     public void testCreateUserPageExist() {
@@ -42,18 +40,20 @@ public class CreatedUserLogInTest extends TestRunner {
                 .logInAs(Roles.ADMINISTRATOR);
 
         userInfoPage
-                .getElement(ADMINISTRATION_LINK)
+                .getAdministrationLink()
                 .click();
 
         administrationPage = new AdministrationPage(driver);
 
         administrationPage
-                .getElement(CREATE_NEW_USER_LINK)
+                .getCreateUserLink()
                 .click();
 
-        Assert.assertTrue(administrationPage
-                .getElement(CREATE_USER_PAGE_EXISTS)
-                .isDisplayed(), "Element " + CREATE_USER_PAGE_EXISTS + " isn't present");
+        createNewUserPage = new CreateNewUserPage(driver);
+
+        Assert.assertTrue(createNewUserPage
+                .getPageInfoText()
+                .isDisplayed(), "Element " + createNewUserPage.getPageInfoText().getValue() + " isn't present");
     }
 
     @Test(priority = 3)
@@ -71,51 +71,52 @@ public class CreatedUserLogInTest extends TestRunner {
                 .logInAs(Roles.ADMINISTRATOR);
 
         userInfoPage
-                .getElement(ADMINISTRATION_LINK)
+                .getAdministrationLink()
                 .click();
 
-       administrationPage = new AdministrationPage(driver);
+        administrationPage = new AdministrationPage(driver);
 
         administrationPage
-                .getElement(CREATE_NEW_USER_LINK)
+                .getCreateUserLink()
                 .click();
 
         editUserPage = new EditUserPage(driver);
+        createNewUserPage = new CreateNewUserPage(driver);
 
-        editUserPage
-                .getElement(LOGIN_NAME_TEXT_FIELD)
+        createNewUserPage
+                .getLogInNameInput()
                 .sendKeys(LOGIN);
 
-        editUserPage
-                .getElement(FIRST_NAME_TEXT_FIELD)
+        createNewUserPage
+                .getFirstNameInput()
                 .sendKeys(FIRST_NAME);
 
-        editUserPage
-                .getElement(LAST_NAME_TEXT_FIELD)
+        createNewUserPage
+                .getLastNameInput()
                 .sendKeys(LAST_NAME);
 
-        editUserPage
-                .getElement(PASSWORD_TEXT_FIELD)
+        createNewUserPage
+                .getPasswordInput()
                 .sendKeys(PASSWORD);
 
-        editUserPage
-                .getElement(CONFIRM_PASSWORD_TEXT_FIELD)
+        createNewUserPage
+                .getConfirmPasswordInput()
                 .sendKeys(PASSWORD);
 
-        editUserPage
-                .getElement(EMAIL_ADDRESS_TEXT_FIELD)
+        createNewUserPage
+                .getEmailInput()
                 .sendKeys(EMAIL);
 
-        editUserPage
-                .getElement(REGION_DROPDOWN)
+        createNewUserPage
+                .getRegionDropdown()
                 .sendKeys(REGION);
 
-        editUserPage
-                .getElement(ROLE_DROPDOWN)
+        createNewUserPage
+                .getRoleDropdown()
                 .sendKeys(ROLE);
 
-        editUserPage
-                .getElement(CREATE_BUTTON)
+        createNewUserPage
+                .getCreateButton()
                 .click();
 
         Assert.assertNotNull(DBHandler
@@ -137,8 +138,8 @@ public class CreatedUserLogInTest extends TestRunner {
                 .logInAs(login, password);
 
         Assert.assertTrue(userInfoPage
-                .getElement(USER_INFO_PAGE_EXISTS)
-                .isDisplayed(), "Element " + USER_INFO_PAGE_EXISTS + " isn't displayed");
+                .getUserInfoFieldSet()
+                .isDisplayed(), "Element " + userInfoPage.getUserInfoFieldSet().getLocatorValue() + " isn't displayed");
     }
 
     @AfterClass

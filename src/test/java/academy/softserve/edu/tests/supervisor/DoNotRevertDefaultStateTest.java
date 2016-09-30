@@ -6,10 +6,6 @@ import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static academy.softserve.edu.pageobjects.ItemManagementPage.*;
-import static academy.softserve.edu.pageobjects.UserInfoPage.ITEM_MANAGEMENT_LINK;
-import static academy.softserve.edu.pageobjects.UserInfoPage.USER_INFO_LINK;
-
 public class DoNotRevertDefaultStateTest extends TestRunner {
 
     public static final String FIELD_FILTER = "Description";
@@ -23,12 +19,12 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
                 .logInAs(Roles.SUPERVISOR);
 
         Assert.assertTrue(userInfoPage
-                .getElement(USER_INFO_LINK)
-                .isDisplayed(), "Element " + USER_INFO_LINK + " isn't displayed");
+                .getUserInfoLink()
+                .isDisplayed(), "Element " + userInfoPage.getUserInfoLink().getLocatorValue() + " isn't displayed");
 
         Assert.assertTrue(userInfoPage
-                .getElement(ITEM_MANAGEMENT_LINK)
-                .isDisplayed(), "Element " + ITEM_MANAGEMENT_LINK + " isn't displayed");
+                .getItemManagementLink()
+                .isDisplayed(), "Element " + userInfoPage.getItemManagementLink().getLocatorValue() + " isn't displayed");
     }
 
     @Test
@@ -38,35 +34,39 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
                 .logInAs(Roles.SUPERVISOR);
 
         userInfoPage
-                .click(ITEM_MANAGEMENT_LINK);
+                .getItemManagementLink()
+                .click();
 
         itemManagementPage = new ItemManagementPage(driver);
 
         itemManagementPage
-                .getElement(FIELD_FILTER_DROPDOWN)
+                .getSearchFieldFilterDropdown()
                 .sendKeys(FIELD_FILTER);
 
         itemManagementPage
-                .getElement(FIELD_FILTER_TEXT_BOX)
+                .getSearchInput()
                 .sendKeys(FIELD_FILTER_VALUE);
 
         itemManagementPage
-                .click(FIELD_FILTER_BUTTON);
+                .getSearchButton()
+                .click();
 
         itemManagementPage
-                .click(USER_INFO_LINK);
+                .getUserInfoLink()
+                .click();
 
         userInfoPage
-                .click(ITEM_MANAGEMENT_LINK);
+                .getItemManagementLink()
+                .click();
 
         Assert.assertTrue(itemManagementPage
-                .getElement(FIELD_FILTER_DROPDOWN)
+                .getSearchFieldFilterDropdown()
                 .getText()
                 .contains(FIELD_FILTER), "Field filter in the field filter order drop down is different of " + FIELD_FILTER);
 
         Assert.assertTrue(itemManagementPage
-                .getElement(FIELD_FILTER_TEXT_BOX)
-                .getAttribute(TAG_ATRIBUT)
+                .getSearchInput()
+                .getValue()
                 .contains(FIELD_FILTER_VALUE), "Field filter value in the field filter text box is different of " + FIELD_FILTER_VALUE);
     }
 }

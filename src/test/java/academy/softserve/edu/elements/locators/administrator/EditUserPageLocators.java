@@ -8,7 +8,7 @@ public enum EditUserPageLocators implements ILocator {
 
     ADMINISTRATION_LINK("Administration Link",
             LocatorsType.BY_XPATH,
-            "//ul[@id='nav']/li[1]/a"),
+            "//ul[@id='nav']/descendant::a[@href='users.htm']"),
 
     USER_INFO_LINK("User Info Link",
             LocatorsType.BY_XPATH,
@@ -40,7 +40,7 @@ public enum EditUserPageLocators implements ILocator {
 
     NEW_PASSWORD_TEXT("New Password Text",
             LocatorsType.BY_XPATH,
-            "//form[@id='userModel']//tr[3]/td[1]"),
+            "//td[contains(., 'New password:')]"),
 
     NEW_PASSWORD_INPUT("New Password Input",
             LocatorsType.BY_ID,
@@ -83,7 +83,7 @@ public enum EditUserPageLocators implements ILocator {
             "//form[@id='userModel']/input[5]"),
 
     CANCEL_BUTTON("Cancel Button",
-            LocatorsType.BY_ID,
+            LocatorsType.BY_XPATH,
             "//form[@id='userModel']/input[6]");
 
 

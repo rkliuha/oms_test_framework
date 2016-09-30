@@ -2,6 +2,7 @@ package academy.softserve.edu.elements.wrappers;
 
 import academy.softserve.edu.elements.interfaces.ILocator;
 import academy.softserve.edu.utils.Wait;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -22,6 +23,8 @@ public abstract class AbstractElement<T> {
     final public String getLocatorName() {
         return locator.getName();
     }
+
+    final public By getLocatorValue() {return locator.getBy();}
 
     final public WebElement getElement() {
 
@@ -68,6 +71,13 @@ public abstract class AbstractElement<T> {
         wait.waitUntilElementIsPresent();
         return driver.findElement(locator.getBy()).getAttribute("value");
     }
+
+    final public String getCssValue(final String value) {
+
+        wait.waitUntilElementIsPresent();
+        return driver.findElement(locator.getBy()).getCssValue(value);
+    }
+
 
     final public String getType() {
 

@@ -8,7 +8,7 @@ public enum AddProductPageLocators implements ILocator {
 
     ITEM_MANAGEMENT_LINK("Item Management Link",
             LocatorsType.BY_XPATH,
-            "//ul[@id='nav']/li[1]/a"),
+            "//ul[@id='nav']/descendant::a[@href='itemManagement.htm']"),
 
     USER_INFO_LINK("User Info Link",
             LocatorsType.BY_XPATH,

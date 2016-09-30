@@ -6,10 +6,6 @@ import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static academy.softserve.edu.pageobjects.CustomerOrderingPage.*;
-import static academy.softserve.edu.pageobjects.UserInfoPage.CUSTOMER_ORDERING_LINK;
-import static academy.softserve.edu.pageobjects.UserInfoPage.USER_INFO_LINK;
-
 public class DoNotRevertDefaultStateTest extends TestRunner {
 
     public static final String SEARCH_ORDERS = "Status";
@@ -23,12 +19,12 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
                 .logInAs(Roles.CUSTOMER);
 
         Assert.assertTrue(userInfoPage
-                .getElement(USER_INFO_LINK)
-                .isDisplayed(), "Element " + USER_INFO_LINK + " isn't displayed");
+                .getUserInfoLink()
+                .isDisplayed(), "Element " + userInfoPage.getUserInfoLink().getLocatorValue() + " isn't displayed");
 
         Assert.assertTrue(userInfoPage
-                .getElement(CUSTOMER_ORDERING_LINK)
-                .isDisplayed(), "Element " + CUSTOMER_ORDERING_LINK + " isn't displayed");
+                .getCustomerOrderingLink()
+                .isDisplayed(), "Element " + userInfoPage.getCustomerOrderingLink().getLocatorValue() + " isn't displayed");
     }
 
     @Test
@@ -37,36 +33,38 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
         userInfoPage = logInPage
                 .logInAs(Roles.CUSTOMER);
 
-        userInfoPage
-                .click(CUSTOMER_ORDERING_LINK);
+        userInfoPage.getCustomerOrderingLink()
+                .click();
 
         customerOrderingPage = new CustomerOrderingPage(driver);
 
         customerOrderingPage
-                .getElement(SEARCH_ORDERS_DROPDOWN)
+                .getSearchDropdown()
                 .sendKeys(SEARCH_ORDERS);
 
         customerOrderingPage
-                .getElement(SEARCH_ORDERS_TEXT_BOX)
+                .getSearchInput()
                 .sendKeys(SEARCH_ORDERS_VALUE);
 
         customerOrderingPage
-                .click(SEARCH_ORDERS_BUTTON);
+                .getApplyButton().click();
 
         customerOrderingPage
-                .click(USER_INFO_LINK);
+                .getUserInfoLink()
+                .click();
 
         userInfoPage
-                .click(CUSTOMER_ORDERING_LINK);
+                .getCustomerOrderingLink()
+                .click();
 
         Assert.assertTrue(customerOrderingPage
-                .getElement(SEARCH_ORDERS_DROPDOWN)
+                .getSearchDropdown()
                 .getText()
                 .contains(SEARCH_ORDERS), "Search order in the search order drop down is different of " + SEARCH_ORDERS);
 
         Assert.assertTrue(customerOrderingPage
-                .getElement(SEARCH_ORDERS_TEXT_BOX)
-                .getAttribute(TAG_ATRIBUT)
+                .getSearchInput()
+                .getValue()
                 .contains(SEARCH_ORDERS_VALUE), "Search order value in the search order text box is different of " + SEARCH_ORDERS_VALUE);
     }
 }

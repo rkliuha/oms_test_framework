@@ -6,9 +6,9 @@ import org.openqa.selenium.By;
 
 public enum MerchandiserOrderingPageLocators implements ILocator {
 
-    ORDERING_LINK("Ordering Link",
+    MERCHANDISER_ORDERING_LINK("Ordering Link",
             LocatorsType.BY_XPATH,
-            "//ul[@id='nav']/li[1]/a"),
+            "//ul[@id='nav']/descendant::a[@href='order.htm']"),
 
     USER_INFO_LINK("User Info Link",
             LocatorsType.BY_XPATH,

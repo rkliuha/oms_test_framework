@@ -1,6 +1,8 @@
 package academy.softserve.edu.utils;
 
 import academy.softserve.edu.enums.Roles;
+import academy.softserve.edu.pageobjects.CustomerOrderingPage;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.DataProvider;
 
 import java.io.IOException;
@@ -19,6 +21,7 @@ public class DataProviders {
 
 
     @DataProvider
+
     static final public Object[][] testDataSearchElementsCustomer() {
         return new Object[][]{
                 {SHOW_10_ITEMS_LINK, 10},

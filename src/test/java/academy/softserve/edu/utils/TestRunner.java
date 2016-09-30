@@ -21,6 +21,7 @@ public class TestRunner {
     protected WebDriver driver;
 
     protected AdministrationPage administrationPage;
+    protected CreateNewUserPage createNewUserPage;
     protected CustomerOrderingPage customerOrderingPage;
     protected ItemManagementPage itemManagementPage;
     protected LogInPage logInPage;
