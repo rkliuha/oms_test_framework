@@ -1,9 +1,6 @@
 package academy.softserve.edu.dao;
 
-import academy.softserve.edu.dao.interfaces.DaoFactory;
-import academy.softserve.edu.dao.interfaces.OrderDao;
-import academy.softserve.edu.dao.interfaces.ProductDao;
-import academy.softserve.edu.dao.interfaces.UserDao;
+import academy.softserve.edu.dao.interfaces.*;
 
 import java.sql.Connection;
 import java.sql.Driver;
@@ -14,7 +11,7 @@ public class MySQLDaoFactory implements DaoFactory {
 
     private static final String USERNAME = "oms";
     private static final String PASSWORD = "1qaz2wsx";
-    private static final String DB_URL = "jdbc:mysql://192.168.56.101:3306/oms";
+    private static final String DB_URL = "jdbc:mysql://192.168.56.101:3306/oms?allowMultiQueries=true";
 
     public MySQLDaoFactory() {
         try {
@@ -43,6 +40,11 @@ public class MySQLDaoFactory implements DaoFactory {
     @Override
     public final OrderDao getOrderDao(final Connection connection) {
         return new MySQLOrderDao(connection);
+    }
+
+    @Override
+    public final OrderItemDao getOrderItemDao(final Connection connection) {
+        return new MySQLOrderItemDao(connection);
     }
 
 }

@@ -33,7 +33,6 @@ public class TestRunner {
     protected CreateNewOrderPage createNewOrderPage;
     protected AddItemPage addItemPage;
 
-
     @Parameters("browser")
     @BeforeMethod
     public final void setUp(@Optional("firefox") final String browserParameter) {

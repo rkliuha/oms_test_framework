@@ -21,8 +21,10 @@ public class MySQLOrderDao implements OrderDao {
     private static final String GET_LAST_ORDER_QUERY = "SELECT ID, DeliveryDate, IsGift, MaxDiscount," +
             " OrderDate, OrderName, OrderNumber, PreferableDeliveryDate, TotalPrice, Assigne, Customer," +
             " OrderStatusRef FROM Orders ORDER BY ID DESC LIMIT 1;";
-    private static final String DELETE_ORDER_BY_ID_QUERY = "DELETE FROM Orders WHERE ID = ?;";
-    private static final String DELETE_ORDER_BY_NUMBER_QUERY = "DELETE FROM Orders WHERE OrderNumber = ?;";
+    private static final String DELETE_ORDER_BY_ID_QUERY = "DELETE FROM Orders WHERE ID = ?;" +
+            " ALTER TABLE Orders auto_increment=0;";
+    private static final String DELETE_ORDER_BY_NUMBER_QUERY = "DELETE FROM Orders WHERE OrderNumber = ?;" +
+            " ALTER TABLE Orders auto_increment=0;";
 
     private final Connection connection;
 
@@ -30,8 +32,8 @@ public class MySQLOrderDao implements OrderDao {
     public final int createOrder(final Order order) {
 
         int orderId = 0;
-        try (final PreparedStatement preparedStatement = connection.prepareStatement(CREATE_ORDER_QUERY,
-                Statement.RETURN_GENERATED_KEYS)) {
+        try (final PreparedStatement preparedStatement =
+                     connection.prepareStatement(CREATE_ORDER_QUERY, Statement.RETURN_GENERATED_KEYS)) {
 
             preparedStatement.setString(1, order.getDeliveryDate());
             preparedStatement.setInt(2, order.getGift());
@@ -59,7 +61,9 @@ public class MySQLOrderDao implements OrderDao {
     public final Order getOrderById(final int orderId) {
 
         Order order = null;
-        try (final PreparedStatement preparedStatement = connection.prepareStatement(GET_ORDER_BY_ID_QUERY)) {
+        try (final PreparedStatement preparedStatement =
+                     connection.prepareStatement(GET_ORDER_BY_ID_QUERY)) {
+
             preparedStatement.setInt(1, orderId);
             final ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
@@ -88,7 +92,9 @@ public class MySQLOrderDao implements OrderDao {
     public final Order getOrderByNumber(final int orderNumber) {
 
         Order order = null;
-        try (final PreparedStatement preparedStatement = connection.prepareStatement(GET_ORDER_BY_NUMBER_QUERY)) {
+        try (final PreparedStatement preparedStatement =
+                     connection.prepareStatement(GET_ORDER_BY_NUMBER_QUERY)) {
+
             preparedStatement.setInt(1, orderNumber);
             final ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
@@ -117,7 +123,9 @@ public class MySQLOrderDao implements OrderDao {
     public final Order getLastOrder() {
 
         Order order = null;
-        try (final PreparedStatement preparedStatement = connection.prepareStatement(GET_LAST_ORDER_QUERY)) {
+        try (final PreparedStatement preparedStatement =
+                     connection.prepareStatement(GET_LAST_ORDER_QUERY)) {
+
             final ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
 
@@ -144,7 +152,9 @@ public class MySQLOrderDao implements OrderDao {
     @Override
     public final void deleteOrderById(final int orderId) {
 
-        try (final PreparedStatement preparedStatement = connection.prepareStatement(DELETE_ORDER_BY_ID_QUERY)) {
+        try (final PreparedStatement preparedStatement =
+                     connection.prepareStatement(DELETE_ORDER_BY_ID_QUERY)) {
+
             preparedStatement.setInt(1, orderId);
             preparedStatement.execute();
         } catch (SQLException e) {
@@ -155,7 +165,9 @@ public class MySQLOrderDao implements OrderDao {
     @Override
     public final void deleteOrderByNumber(final int orderNumber) {
 
-        try (final PreparedStatement preparedStatement = connection.prepareStatement(DELETE_ORDER_BY_NUMBER_QUERY)) {
+        try (final PreparedStatement preparedStatement =
+                     connection.prepareStatement(DELETE_ORDER_BY_NUMBER_QUERY)) {
+
             preparedStatement.setInt(1, orderNumber);
             preparedStatement.execute();
         } catch (SQLException e) {

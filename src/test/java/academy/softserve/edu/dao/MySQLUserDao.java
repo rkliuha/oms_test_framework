@@ -10,24 +10,25 @@ import java.sql.*;
 @RequiredArgsConstructor
 public class MySQLUserDao implements UserDao {
 
-    private static final String GET_USER_BY_ID_QUERY = "SELECT ID, IsUserActive, Balance, Email,"
-            + " FirstName, LastName, Login, Password, CustomerTypeRef, RegionRef," +
+    private static final String GET_USER_BY_ID_QUERY = "SELECT ID, IsUserActive, Balance, Email," +
+            " FirstName, LastName, Login, Password, CustomerTypeRef, RegionRef," +
             " RoleRef FROM Users WHERE ID = ?;";
-    private static final String GET_USER_BY_ROLE_QUERY = "SELECT ID, IsUserActive, Balance, Email,"
-            + " FirstName, LastName, Login, Password, CustomerTypeRef, RegionRef," +
+    private static final String GET_USER_BY_ROLE_QUERY = "SELECT ID, IsUserActive, Balance, Email," +
+            " FirstName, LastName, Login, Password, CustomerTypeRef, RegionRef," +
             " RoleRef FROM Users WHERE RoleRef = ? LIMIT 1;";
-    private static final String GET_LAST_USER_QUERY = "SELECT ID, IsUserActive, Balance, Email,"
-            + " FirstName, LastName, Login, Password, CustomerTypeRef, RegionRef," +
+    private static final String GET_LAST_USER_QUERY = "SELECT ID, IsUserActive, Balance, Email," +
+            " FirstName, LastName, Login, Password, CustomerTypeRef, RegionRef," +
             " RoleRef FROM Users ORDER BY ID DESC LIMIT 1;";
-    private static final String CREATE_USER_QUERY = "INSERT INTO Users (IsUserActive, Balance, Email,"
-            + " FirstName, LastName, Login, Password, CustomerTypeRef, RegionRef," +
+    private static final String CREATE_USER_QUERY = "INSERT INTO Users (IsUserActive, Balance, Email," +
+            " FirstName, LastName, Login, Password, CustomerTypeRef, RegionRef," +
             " RoleRef) VALUES(?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?); ";
-    private static final String UPDATE_USER_QUERY = "UPDATE Users SET IsUserActive = ?, Balance = ?, Email = ?,"
-            + " FirstName = ?, LastName = ?, Login = ?, Password = ?, CustomerTypeRef = ?, RegionRef = ?," +
+    private static final String UPDATE_USER_QUERY = "UPDATE Users SET IsUserActive = ?, Balance = ?, Email = ?," +
+            " FirstName = ?, LastName = ?, Login = ?, Password = ?, CustomerTypeRef = ?, RegionRef = ?," +
             " RoleRef = ? WHERE ID = ?;";
-    private static final String DELETE_USER_QUERY = "DELETE FROM Users WHERE ID = ?;";
-    private static final String GET_USER_BY_LOGIN_QUERY = "SELECT ID, IsUserActive, Balance, Email,"
-            + " FirstName, LastName, Login, Password, CustomerTypeRef, RegionRef," +
+    private static final String DELETE_USER_QUERY = "DELETE FROM Users WHERE ID = ?;" +
+            " ALTER TABLE Users auto_increment=0;";
+    private static final String GET_USER_BY_LOGIN_QUERY = "SELECT ID, IsUserActive, Balance, Email," +
+            " FirstName, LastName, Login, Password, CustomerTypeRef, RegionRef," +
             " RoleRef FROM Users WHERE Login = ?;";
 
     private final Connection connection;

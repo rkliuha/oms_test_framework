@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+//TODO get rid of collection of WebElements, refactor for use wrappers and custom assertions;
 public class SearchTest extends TestRunner {
 
     private static final By ORDERED_RESULT = By.xpath(".//div[@id='list']/table/tbody/tr");
