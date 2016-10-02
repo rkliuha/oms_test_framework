@@ -44,5 +44,4 @@ public class MySQLDaoFactory implements DaoFactory {
     public final OrderDao getOrderDao(final Connection connection) {
         return new MySQLOrderDao(connection);
     }
-
 }

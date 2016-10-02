@@ -178,20 +178,19 @@ public final class DBHandler {
         }
     }
 
+
     //  Quantity of Orders must be "<=6"
-    public static final int createOrder(final Order order) {
+    public static final void createOrder(final Order order) {
 
         final DaoFactory daoFactory = new MySQLDaoFactory();
         final OrderDao orderDao;
-        int orderId = 0;
 
         try (final Connection connection = daoFactory.getConnection()) {
             orderDao = daoFactory.getOrderDao(connection);
-            orderId = orderDao.createOrder(order);
+            orderDao.createOrder(order);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return orderId;
     }
 
     public static final Order getOrderById(final int orderId) {
@@ -264,5 +263,4 @@ public final class DBHandler {
             e.printStackTrace();
         }
     }
-
 }

@@ -18,8 +18,15 @@ public class MerchandiserOrderingPage extends PageObject<MerchandiserOrderingPag
     private final Dropdown searchDropdown = new Dropdown(driver, SEARCH_DROPDOWN);
     private final TextInputField searchInput = new TextInputField(driver, SEARCH_INPUT);
     private final Button applyButton = new Button(driver, APPLY_BUTTON);
+    private final Link editFirstOrderLink = new Link(driver, EDIT_CELL_LINK.modify("//div[@id='list']//tr[2]/td[6]/a"));
+    private final TextLabel firstStatusOrder = new TextLabel(driver, STATUS_CELL.modify("//div[@id='list']//tr[2]/td[5]"));
 
     public MerchandiserOrderingPage(final WebDriver driver) {
         super(driver);
+    }
+
+    public final EditOrderByMerchandiserPage clickEditFirstOrder() {
+        editFirstOrderLink.click();
+        return new EditOrderByMerchandiserPage(driver);
     }
 }

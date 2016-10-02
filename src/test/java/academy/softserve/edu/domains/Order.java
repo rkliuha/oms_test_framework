@@ -3,7 +3,8 @@ package academy.softserve.edu.domains;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter
+@Setter
 public class Order {
 
     private int id;
@@ -14,7 +15,7 @@ public class Order {
     private String orderName;
     private int orderNumber;
     private String preferableDeliveryDate;
-    private double totalPrice;
+    private int totalPrice;
     private int assignee;
     private int customer;
     private int orderStatusReference;
@@ -60,7 +61,7 @@ public class Order {
     }
 
     public interface TotalPriceStep {
-        AssigneeStep setTotalPrice(final double totalPrice);
+        AssigneeStep setTotalPrice(final int totalPrice);
     }
 
     public interface AssigneeStep {
@@ -91,7 +92,7 @@ public class Order {
         private String orderName;
         private int orderNumber;
         private String preferableDeliveryDate;
-        private double totalPrice;
+        private int totalPrice;
         private int assignee;
         private int customer;
         private int orderStatusReference;
@@ -145,7 +146,7 @@ public class Order {
         }
 
         @Override
-        public final AssigneeStep setTotalPrice(final double totalPrice) {
+        public final AssigneeStep setTotalPrice(final int totalPrice) {
             this.totalPrice = totalPrice;
             return this;
         }

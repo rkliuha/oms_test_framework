@@ -3,8 +3,12 @@ package academy.softserve.edu.dao;
 import academy.softserve.edu.dao.interfaces.OrderDao;
 import academy.softserve.edu.domains.Order;
 import lombok.RequiredArgsConstructor;
+import org.apache.xpath.operations.Or;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @RequiredArgsConstructor
 public class MySQLOrderDao implements OrderDao {
@@ -27,12 +31,8 @@ public class MySQLOrderDao implements OrderDao {
     private final Connection connection;
 
     @Override
-    public final int createOrder(final Order order) {
-
-        int orderId = 0;
-        try (final PreparedStatement preparedStatement = connection.prepareStatement(CREATE_ORDER_QUERY,
-                Statement.RETURN_GENERATED_KEYS)) {
-
+    public final void createOrder(final Order order) {
+        try (final PreparedStatement preparedStatement = connection.prepareStatement(CREATE_ORDER_QUERY)) {
             preparedStatement.setString(1, order.getDeliveryDate());
             preparedStatement.setInt(2, order.getGift());
             preparedStatement.setInt(3, order.getMaxDiscount());
@@ -40,19 +40,14 @@ public class MySQLOrderDao implements OrderDao {
             preparedStatement.setString(5, order.getOrderName());
             preparedStatement.setInt(6, order.getOrderNumber());
             preparedStatement.setString(7, order.getPreferableDeliveryDate());
-            preparedStatement.setDouble(8, order.getTotalPrice());
+            preparedStatement.setInt(8, order.getTotalPrice());
             preparedStatement.setInt(9, order.getAssignee());
             preparedStatement.setInt(10, order.getCustomer());
             preparedStatement.setInt(11, order.getOrderStatusReference());
             preparedStatement.execute();
-            final ResultSet resultSet = preparedStatement.getGeneratedKeys();
-            resultSet.next();
-
-            orderId = resultSet.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return orderId;
     }
 
     @Override
@@ -73,7 +68,7 @@ public class MySQLOrderDao implements OrderDao {
                     .setOrderName(resultSet.getString("OrderName"))
                     .setOrderNumber(resultSet.getInt("OrderNumber"))
                     .setPreferableDeliveryDate(resultSet.getString("PreferableDeliveryDate"))
-                    .setTotalPrice(resultSet.getDouble("TotalPrice"))
+                    .setTotalPrice(resultSet.getInt("TotalPrice"))
                     .setAssignee(resultSet.getInt("Assigne"))
                     .setCustomer(resultSet.getInt("Customer"))
                     .setOrderStatusReference(resultSet.getInt("OrderStatusRef"))
@@ -102,7 +97,7 @@ public class MySQLOrderDao implements OrderDao {
                     .setOrderName(resultSet.getString("OrderName"))
                     .setOrderNumber(resultSet.getInt("OrderNumber"))
                     .setPreferableDeliveryDate(resultSet.getString("PreferableDeliveryDate"))
-                    .setTotalPrice(resultSet.getDouble("TotalPrice"))
+                    .setTotalPrice(resultSet.getInt("TotalPrice"))
                     .setAssignee(resultSet.getInt("Assigne"))
                     .setCustomer(resultSet.getInt("Customer"))
                     .setOrderStatusReference(resultSet.getInt("OrderStatusRef"))
@@ -130,7 +125,7 @@ public class MySQLOrderDao implements OrderDao {
                     .setOrderName(resultSet.getString("OrderName"))
                     .setOrderNumber(resultSet.getInt("OrderNumber"))
                     .setPreferableDeliveryDate(resultSet.getString("PreferableDeliveryDate"))
-                    .setTotalPrice(resultSet.getDouble("TotalPrice"))
+                    .setTotalPrice(resultSet.getInt("TotalPrice"))
                     .setAssignee(resultSet.getInt("Assigne"))
                     .setCustomer(resultSet.getInt("Customer"))
                     .setOrderStatusReference(resultSet.getInt("OrderStatusRef"))
@@ -162,5 +157,4 @@ public class MySQLOrderDao implements OrderDao {
             e.printStackTrace();
         }
     }
-
 }

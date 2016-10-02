@@ -12,6 +12,7 @@ public class Product {
     private String productName;
     private double productPrice;
 
+
     private Product() {
 
     }

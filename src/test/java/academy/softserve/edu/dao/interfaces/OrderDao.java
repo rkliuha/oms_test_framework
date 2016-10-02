@@ -4,7 +4,7 @@ import academy.softserve.edu.domains.Order;
 
 public interface OrderDao {
 
-    int createOrder(final Order order);
+    void createOrder(final Order order);
 
     Order getOrderById(final int orderId);
 
@@ -15,5 +15,4 @@ public interface OrderDao {
     void deleteOrderById(final int orderId);
 
     void deleteOrderByNumber(final int orderNumber);
-
 }
