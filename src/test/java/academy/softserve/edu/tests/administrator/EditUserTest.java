@@ -6,11 +6,12 @@ import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.TestRunner;
 import academy.softserve.edu.utils.TestUtil;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
+import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
 
 public class EditUserTest extends TestRunner {
 
@@ -44,63 +45,36 @@ public class EditUserTest extends TestRunner {
     @Test
     public final void testAreEditFieldsFilledCorrectly() {
 
-        Assert.assertTrue(editUserPage
-                        .getNewPasswordText()
-                        .isDisplayed(),
-                "Page is not switched to EditUserPage !");
+        assertThat(editUserPage.getNewPasswordText())
+                .isDisplayed();
 
-        Assert.assertTrue(editUserPage
-                        .getFirstNameInput()
-                        .getValue()
-                        .equals(testUser.getFirstName()),
-                "User First name does not equals to actual !");
+        assertThat(editUserPage.getFirstNameInput())
+                .valueEquals(testUser.getFirstName());
 
-        Assert.assertTrue(editUserPage
-                        .getLastNameInput()
-                        .getValue()
-                        .equals(testUser.getLastName()),
-                "User Last name does not equal to actual !");
+        assertThat(editUserPage.getLastNameInput())
+                .valueEquals(testUser.getLastName());
 
-        Assert.assertTrue(editUserPage
-                        .getNewPasswordInput()
-                        .getValue()
-                        .isEmpty(),
-                "Password field is not empty !");
+        assertThat(editUserPage.getNewPasswordInput())
+                .isValueEmpty();
 
-        Assert.assertTrue(editUserPage
-                        .getConfirmPasswordInput()
-                        .getValue()
-                        .isEmpty(),
-                "Confirm password field is not empty !");
+        assertThat(editUserPage.getConfirmPasswordInput())
+                .isValueEmpty();
 
-        Assert.assertTrue(editUserPage
-                        .getEmailAddressInput()
-                        .getValue()
-                        .equals(testUser.getEmail()),
-                "User Email does not equal to actual !");
+        assertThat(editUserPage.getEmailAddressInput())
+                .valueEquals(testUser.getEmail());
 
-        Assert.assertTrue(editUserPage
-                        .getRoleDropdown()
-                        .getFirstSelectedOption()
-                        .getText()
-                        .equalsIgnoreCase(testUser.getRoleName()),
-                "User Role does not equal to actual !");
+        assertThat(editUserPage.getRoleDropdown())
+                .selectedDropdownEqualsIgnoreCase(testUser.getRoleName());
 
-        Assert.assertTrue(editUserPage
-                        .getRegionDropdown()
-                        .getFirstSelectedOption()
-                        .getText()
-                        .equalsIgnoreCase(testUser.getRegionName()),
-                "User Region does not equal to actual !");
+        assertThat(editUserPage.getRegionDropdown())
+                .selectedDropdownEqualsIgnoreCase(testUser.getRegionName());
     }
 
     @Test
     public final void testEditUserAndClickSave() {
 
-        Assert.assertTrue(editUserPage
-                        .getNewPasswordText()
-                        .isDisplayed(),
-                "Page is not switched to EditUserPage !");
+        assertThat(editUserPage.getNewPasswordText())
+                .isDisplayed();
 
         editUserPage
                 .getLastNameInput()
@@ -122,48 +96,34 @@ public class EditUserTest extends TestRunner {
 
         testUser = DBHandler.getUserById(testUserId);
 
-        Assert.assertTrue(testUser
-                        .getLastName()
-                        .equals(NEW_USER_LAST_NAME),
-                "Last name does not equal to changed one");
+        assertThat(testUser)
+                .lastNameEquals(NEW_USER_LAST_NAME);
 
-        Assert.assertTrue(testUser
-                        .getPassword()
-                        .equals(NEW_USER_PASSWORD),
-                "User password does not equal to changed one");
+        assertThat(testUser)
+                .passwordEquals(NEW_USER_PASSWORD);
 
-        Assert.assertTrue(testUser
-                        .getRegionName()
-                        .equalsIgnoreCase(NEW_REGION.toString()),
-                "User Region does not equal to changed one");
+        assertThat(testUser)
+                .regionNameEquals(NEW_REGION.toString());
 
-        Assert.assertTrue(administrationPage
-                        .getFoundUsersTextLabel()
-                        .isDisplayed(),
-                "Page is not returned to AdministratorPage after saving changes!");
+        assertThat(administrationPage.getFoundUsersTextLabel())
+                .isDisplayed();
     }
 
     @Test
     public final void testEditUserAndClickCancel() {
 
-        Assert.assertTrue(editUserPage
-                        .getNewPasswordText()
-                        .isDisplayed(),
-                "Page is not switched to EditUserPage !");
+        assertThat(editUserPage.getNewPasswordText())
+                .isDisplayed();
 
         editUserPage.getEmailAddressInput().clear();
         editUserPage.getEmailAddressInput().sendKeys(NEW_USER_EMAIL);
         editUserPage.clickCancelButton();
 
-        Assert.assertTrue(DBHandler
-                        .getLastUser()
-                        .equals(testUser),
-                "User is unexpected changed !");
+        assertThat(DBHandler.getUserById(testUserId))
+                .userEquals(testUser);
 
-        Assert.assertTrue(administrationPage
-                        .getFoundUsersTextLabel()
-                        .isDisplayed(),
-                "Page is not returned to AdministratorPage after saving changes!");
+        assertThat(administrationPage.getFoundUsersTextLabel())
+                .isDisplayed();
     }
 
     @AfterTest

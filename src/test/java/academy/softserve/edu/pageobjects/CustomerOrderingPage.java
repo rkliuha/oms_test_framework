@@ -1,9 +1,6 @@
 package academy.softserve.edu.pageobjects;
 
-import academy.softserve.edu.elements.wrappers.Button;
-import academy.softserve.edu.elements.wrappers.Dropdown;
-import academy.softserve.edu.elements.wrappers.Link;
-import academy.softserve.edu.elements.wrappers.TextInputField;
+import academy.softserve.edu.elements.wrappers.*;
 import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -26,9 +23,8 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
     public static final By SHOW_10_ITEMS_LINK = By.xpath(".//form[@id='searchFilter']//a");
     public static final By SHOW_5_ITEMS_LINK = By.xpath(".//form[@id='searchFilter']//a");
 
-    public final WebElement getOrderStatusByNumber(final String orderNumber) {
-        return driver.findElement(By.xpath("//div[@id='list']/table/tbody/tr/"
-                + "td[contains(text(), 'OrderName" + orderNumber + "')]/following-sibling::td[4]"));
+    public final TextLabel getOrderStatusByNumber(final String orderNumber) {
+        return new TextLabel(driver, ORDER_STATUS.modify(orderNumber));
     }
 
     public CustomerOrderingPage(WebDriver driver) {

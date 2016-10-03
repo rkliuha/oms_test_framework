@@ -100,7 +100,12 @@ public enum CustomerOrderingPageLocators implements ILocator {
 
     PAGE_COUNT_TEXT("Page Count Text",
             LocatorsType.BY_ID,
-            "pageCount");
+            "pageCount"),
+
+    ORDER_STATUS("Order Status 1",
+            LocatorsType.BY_XPATH,
+            "//div[@id='list']/table/tbody/tr/"
+                    + "td[contains(text(), 'OrderName%s')]/following-sibling::td[4]");
 
     protected String elementName;
     protected LocatorsType locatorType;

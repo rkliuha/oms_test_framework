@@ -3,15 +3,15 @@ package academy.softserve.edu.tests.administrator;
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.AdministrationPage;
 import academy.softserve.edu.utils.TestRunner;
-import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
 
 public class DoNotRevertDefaultStateTest extends TestRunner {
 
     private static final String ROLE = "Role";
     private static final String ROLE_FILTER = "contains";
     private static final String TEXT = "A";
-    private static final String TAG_ATRIBUT = "value";
 
     @Test
     public void testUserInfoAdministrationButtonCheck() {
@@ -19,13 +19,11 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
         userInfoPage = logInPage
                 .logInAs(Roles.ADMINISTRATOR);
 
-        Assert.assertTrue(userInfoPage
-                .getUserInfoLink()
-                .isDisplayed(), "Element " + userInfoPage.getUserInfoLink().getLocatorValue() + " isn't displayed");
+        assertThat(userInfoPage.getUserInfoLink())
+                .isDisplayed();
 
-        Assert.assertTrue(userInfoPage
-                .getAdministrationLink()
-                .isDisplayed(), "Element " + userInfoPage.getAdministrationLink().getLocatorValue() + " isn't displayed");
+        assertThat(userInfoPage.getAdministrationLink())
+                .isDisplayed();
     }
 
     @Test
@@ -64,19 +62,14 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
                 .getAdministrationLink()
                 .click();
 
-        Assert.assertTrue(administrationPage
-                .getSearchFieldFilterDropdown()
-                .getText()
-                .contains(ROLE), "Role in the first drop down is different of " + ROLE);
+        assertThat(administrationPage.getSearchFieldFilterDropdown())
+                .selectedDropdownEquals(ROLE);
 
-        Assert.assertTrue(administrationPage
-                .getSearchConditionDropdown()
-                .getText()
-                .contains(ROLE_FILTER), "Role filter in the second drop box is different of " + ROLE_FILTER);
+        assertThat(administrationPage.getSearchConditionDropdown())
+                .selectedDropdownEquals(ROLE_FILTER);
 
-        Assert.assertTrue(administrationPage
-                .getSearchInput()
-                .getValue()
-                .contains(TEXT), "Text in the text box is different of " + TEXT);
+        assertThat(administrationPage.getSearchInput())
+                .valueEquals(TEXT);
     }
+
 }

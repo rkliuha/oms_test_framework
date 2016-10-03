@@ -1,11 +1,9 @@
 package academy.softserve.edu.utils;
 
 import academy.softserve.edu.dao.MySQLDaoFactory;
-import academy.softserve.edu.dao.interfaces.DaoFactory;
-import academy.softserve.edu.dao.interfaces.OrderDao;
-import academy.softserve.edu.dao.interfaces.ProductDao;
-import academy.softserve.edu.dao.interfaces.UserDao;
+import academy.softserve.edu.dao.interfaces.*;
 import academy.softserve.edu.domains.Order;
+import academy.softserve.edu.domains.OrderItem;
 import academy.softserve.edu.domains.Product;
 import academy.softserve.edu.domains.User;
 import academy.softserve.edu.enums.Roles;
@@ -260,6 +258,104 @@ public final class DBHandler {
         try (final Connection connection = daoFactory.getConnection()) {
             orderDao = daoFactory.getOrderDao(connection);
             orderDao.deleteOrderByNumber(orderNumber);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static final int createOrderItem(final OrderItem orderItem) {
+
+        final DaoFactory daoFactory = new MySQLDaoFactory();
+        final OrderItemDao orderItemDao;
+        int orderItemId = 0;
+
+        try (final Connection connection = daoFactory.getConnection()) {
+            orderItemDao = daoFactory.getOrderItemDao(connection);
+            orderItemId = orderItemDao.createOrderItem(orderItem);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return orderItemId;
+    }
+
+    public static final OrderItem getOrderItemById(final int orderItemId) {
+
+        final DaoFactory daoFactory = new MySQLDaoFactory();
+        final OrderItemDao orderItemDao;
+        OrderItem orderItem = null;
+
+        try (final Connection connection = daoFactory.getConnection()) {
+            orderItemDao = daoFactory.getOrderItemDao(connection);
+            orderItem = orderItemDao.getOrderItemById(orderItemId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return orderItem;
+    }
+
+    public static final OrderItem getOrderItemByReference(final int orderItemReference) {
+
+        final DaoFactory daoFactory = new MySQLDaoFactory();
+        final OrderItemDao orderItemDao;
+        OrderItem orderItem = null;
+        try (final Connection connection = daoFactory.getConnection()) {
+            orderItemDao = daoFactory.getOrderItemDao(connection);
+            orderItem = orderItemDao.getOrderItemByReference(orderItemReference);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return orderItem;
+    }
+
+    public static final OrderItem getLastOrderItem() {
+
+        final DaoFactory daoFactory = new MySQLDaoFactory();
+        final OrderItemDao orderItemDao;
+        OrderItem orderItem = null;
+
+        try (final Connection connection = daoFactory.getConnection()) {
+            orderItemDao = daoFactory.getOrderItemDao(connection);
+            orderItem = orderItemDao.getLastOrderItem();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return orderItem;
+    }
+
+    public static final void updateOrderItem(final OrderItem orderItem) {
+
+        final DaoFactory daoFactory = new MySQLDaoFactory();
+        final OrderItemDao orderItemDao;
+
+        try (final Connection connection = daoFactory.getConnection()) {
+            orderItemDao = daoFactory.getOrderItemDao(connection);
+            orderItemDao.updateOrderItem(orderItem);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static final void deleteOrderItemById(final int orderItemId) {
+
+        final DaoFactory daoFactory = new MySQLDaoFactory();
+        final OrderItemDao orderItemDao;
+
+        try (final Connection connection = daoFactory.getConnection()) {
+            orderItemDao = daoFactory.getOrderItemDao(connection);
+            orderItemDao.deleteOrderItemById(orderItemId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static final void deleteOrderItemByOrderRef(final int orderRef) {
+
+        final DaoFactory daoFactory = new MySQLDaoFactory();
+        final OrderItemDao orderItemDao;
+
+        try (final Connection connection = daoFactory.getConnection()) {
+            orderItemDao = daoFactory.getOrderItemDao(connection);
+            orderItemDao.deleteOrderItemByOrderRef(orderRef);
         } catch (SQLException e) {
             e.printStackTrace();
         }

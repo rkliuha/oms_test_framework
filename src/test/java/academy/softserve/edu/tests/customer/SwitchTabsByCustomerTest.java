@@ -3,8 +3,9 @@ package academy.softserve.edu.tests.customer;
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.CustomerOrderingPage;
 import academy.softserve.edu.utils.TestRunner;
-import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
 
 public class SwitchTabsByCustomerTest extends TestRunner {
 
@@ -14,9 +15,8 @@ public class SwitchTabsByCustomerTest extends TestRunner {
         userInfoPage = logInPage
                 .logInAs(Roles.CUSTOMER);
 
-        Assert.assertTrue(userInfoPage
-                .getUserInfoFieldSet()
-                .isDisplayed(), "Element " + userInfoPage.getUserInfoFieldSet().getLocatorValue() + " isn't displayed");
+        assertThat(userInfoPage.getUserInfoFieldSet())
+                .isDisplayed();
     }
 
     @Test
@@ -25,9 +25,8 @@ public class SwitchTabsByCustomerTest extends TestRunner {
         userInfoPage = logInPage
                 .logInAs(Roles.CUSTOMER);
 
-        Assert.assertTrue(userInfoPage
-                .getUserInfoLink()
-                .isDisplayed(), "Element " + userInfoPage.getUserInfoLink().getLocatorValue() + " isn't displayed");
+        assertThat(userInfoPage.getUserInfoLink())
+                .isDisplayed();
     }
 
     @Test
@@ -36,9 +35,8 @@ public class SwitchTabsByCustomerTest extends TestRunner {
         userInfoPage = logInPage
                 .logInAs(Roles.CUSTOMER);
 
-        Assert.assertTrue(userInfoPage
-                .getCustomerOrderingLink()
-                .isDisplayed(), "Element " + userInfoPage.getCustomerOrderingLink().getLocatorValue() + " isn't displayed");
+        assertThat(userInfoPage.getCustomerOrderingLink())
+                .isDisplayed();
     }
 
     @Test
@@ -53,9 +51,8 @@ public class SwitchTabsByCustomerTest extends TestRunner {
 
         customerOrderingPage = new CustomerOrderingPage(driver);
 
-        Assert.assertTrue(customerOrderingPage
-                .getCreateNewOrderLink()
-                .isDisplayed(), "Element " + customerOrderingPage.getCreateNewOrderLink().getLocatorValue() + " isn't displayed");
+        assertThat(customerOrderingPage.getCreateNewOrderLink())
+                .isDisplayed();
     }
 
     @Test
@@ -70,18 +67,15 @@ public class SwitchTabsByCustomerTest extends TestRunner {
 
         customerOrderingPage = new CustomerOrderingPage(driver);
 
-        Assert.assertTrue(customerOrderingPage
-                .getCreateNewOrderLink()
-                .isDisplayed(), "Element " + customerOrderingPage.getCreateNewOrderLink().getLocatorValue() + " isn't displayed");
-
-        customerOrderingPage = new CustomerOrderingPage(driver);
+        assertThat(customerOrderingPage.getCreateNewOrderLink())
+                .isDisplayed();
 
         customerOrderingPage
                 .getUserInfoLink()
                 .click();
 
-        Assert.assertTrue(userInfoPage
-                .getUserInfoFieldSet()
-                .isDisplayed(), "Element " + userInfoPage.getUserInfoFieldSet().getLocatorValue() + " isn't displayed");
+        assertThat(userInfoPage.getUserInfoFieldSet())
+                .isDisplayed();
     }
+
 }

@@ -1,10 +1,10 @@
 package academy.softserve.edu.tests.merchandiser;
 
 import academy.softserve.edu.enums.Roles;
-import academy.softserve.edu.pageobjects.MerchandiserOrderingPage;
 import academy.softserve.edu.utils.TestRunner;
-import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
 
 public class LogInLogOutTest extends TestRunner {
 
@@ -13,9 +13,8 @@ public class LogInLogOutTest extends TestRunner {
 
         userInfoPage = logInPage.logInAs(Roles.MERCHANDISER);
 
-        Assert.assertTrue(userInfoPage
-                .getUserInfoFieldSet()
-                .isDisplayed(), "LogIn failed!");
+        assertThat(userInfoPage.getUserInfoFieldSet())
+                .isDisplayed();
     }
 
     @Test
@@ -25,25 +24,19 @@ public class LogInLogOutTest extends TestRunner {
         // below we have to check if logIn was successful because every page has
         // logOut button with same locator and we could get false positive result
         // after logIn failure;
-        Assert.assertTrue(userInfoPage.getUserInfoFieldSet().isDisplayed(),
-                "LogIn failed!");
+        assertThat(userInfoPage.getUserInfoFieldSet())
+                .isDisplayed();
 
-        Assert.assertTrue(userInfoPage
-                .getLogOutButton()
-                .isDisplayed(), "LogOut button is not displayed!\nURL: "
-                + driver.getCurrentUrl());
+        assertThat(userInfoPage.getLogOutButton())
+                .isDisplayed();
 
-        merchandiserOrderingPage =
-                userInfoPage.clickMerchandiserOrderingTab();
+        merchandiserOrderingPage = userInfoPage.clickMerchandiserOrderingTab();
         // we have to check switching between pages, has the same issue with logIn check;
-        Assert.assertTrue(merchandiserOrderingPage.getSearchByText().isDisplayed(),
-                "Page is not switched to: "
-                        + MerchandiserOrderingPage.MERCHANDISER_ORDERING_PAGE_URL);
+        assertThat(merchandiserOrderingPage.getSearchByText())
+                .isDisplayed();
 
-        Assert.assertTrue(merchandiserOrderingPage
-                .getLogOutButton()
-                .isDisplayed(), "LogOut button is not displayed!\nURL: "
-                + driver.getCurrentUrl());
+        assertThat(merchandiserOrderingPage.getLogOutButton())
+                .isDisplayed();
     }
 
     @Test
@@ -54,8 +47,9 @@ public class LogInLogOutTest extends TestRunner {
         merchandiserOrderingPage = userInfoPage.clickMerchandiserOrderingTab();
 
         merchandiserOrderingPage.doLogOut();
-        Assert.assertTrue(logInPage
-                .getLogInButton()
-                .isDisplayed(), "LogOut failed!");
+
+        assertThat(logInPage.getLogInButton())
+                .isDisplayed();
     }
+
 }

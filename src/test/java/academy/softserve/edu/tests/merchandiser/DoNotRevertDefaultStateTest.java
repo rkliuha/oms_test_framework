@@ -3,14 +3,14 @@ package academy.softserve.edu.tests.merchandiser;
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.MerchandiserOrderingPage;
 import academy.softserve.edu.utils.TestRunner;
-import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
 
 public class DoNotRevertDefaultStateTest extends TestRunner {
 
     public static final String SEARCH_ORDERS = "Status";
     public static final String SEARCH_ORDERS_VALUE = "Ordered";
-    public static final String TAG_ATRIBUT = "value";
 
     @Test
     public void testUserInfoOrderingButtonCheck() {
@@ -18,13 +18,11 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
         userInfoPage = logInPage
                 .logInAs(Roles.MERCHANDISER);
 
-        Assert.assertTrue(userInfoPage
-                .getUserInfoLink()
-                .isDisplayed(), "Element " + userInfoPage.getUserInfoLink().getLocatorValue() + " isn't displayed");
+        assertThat(userInfoPage.getUserInfoLink())
+                .isDisplayed();
 
-        Assert.assertTrue(userInfoPage
-                .getMerchandiserOrderingLink()
-                .isDisplayed(), "Element " + userInfoPage.getMerchandiserOrderingLink().getLocatorValue() + " isn't displayed");
+        assertThat(userInfoPage.getMerchandiserOrderingLink())
+                .isDisplayed();
     }
 
     @Test
@@ -59,14 +57,11 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
                 .getMerchandiserOrderingLink()
                 .click();
 
-        Assert.assertTrue(merchandiserOrderingPage
-                .getSearchDropdown()
-                .getText()
-                .contains(SEARCH_ORDERS), "Search order in the search order drop down is different of " + SEARCH_ORDERS);
+        assertThat(merchandiserOrderingPage.getSearchDropdown())
+                .selectedDropdownEquals(SEARCH_ORDERS);
 
-        Assert.assertTrue(merchandiserOrderingPage
-                .getSearchInput()
-                .getValue()
-                .contains(SEARCH_ORDERS_VALUE), "Search order value in the search order text box is different of " + SEARCH_ORDERS_VALUE);
+        assertThat(merchandiserOrderingPage.getSearchInput())
+                .valueEquals(SEARCH_ORDERS_VALUE);
     }
+
 }
