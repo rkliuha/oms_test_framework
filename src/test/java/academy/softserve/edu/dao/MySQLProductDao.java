@@ -3,8 +3,11 @@ package academy.softserve.edu.dao;
 import academy.softserve.edu.dao.interfaces.ProductDao;
 import academy.softserve.edu.domains.Product;
 import lombok.RequiredArgsConstructor;
-
 import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @RequiredArgsConstructor
 public class MySQLProductDao implements ProductDao {

@@ -25,12 +25,6 @@ public abstract class PageObject<T> {
         logOutButton = new Button(driver, LOG_OUT_BUTTON);
     }
 
-    public final WebElement getElement(final By elementLocation) {
-        return driver.findElement(elementLocation);
-    }
-
-    public final List<String> gridsColumnValues = new LinkedList<>();
-
     public final List<WebElement> getElements(final By elementLocation) {
         return driver.findElements(elementLocation);
     }

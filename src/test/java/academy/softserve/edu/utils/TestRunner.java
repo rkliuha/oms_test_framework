@@ -13,7 +13,9 @@ import java.util.concurrent.TimeUnit;
 
 public class TestRunner {
 
+    //TODO remove, use default properties method
     public static final String CONFIG_PROPERTIES = "src/resources/config.properties";
+
     public static final String LOG_IN_PAGE = PropertiesReader.getProperty("login.url", CONFIG_PROPERTIES);
     protected static final int TIMEOUT = 10;
 
@@ -26,6 +28,7 @@ public class TestRunner {
     protected ItemManagementPage itemManagementPage;
     protected LogInPage logInPage;
     protected MerchandiserOrderingPage merchandiserOrderingPage;
+    protected MerchandiserEditOrderPage merchandiserEditOrderPage;
     protected UserInfoPage userInfoPage;
     protected EditUserPage editUserPage;
     protected CreateReportPage createReportPage;
@@ -41,6 +44,7 @@ public class TestRunner {
 
         driver = new WebDriverFactory().getDriver(browser);
         driver.manage().window().maximize();
+        //TODO remove when explicit waits are ready
         driver.manage().timeouts().implicitlyWait(TIMEOUT, TimeUnit.SECONDS);
         driver.get(LOG_IN_PAGE);
 

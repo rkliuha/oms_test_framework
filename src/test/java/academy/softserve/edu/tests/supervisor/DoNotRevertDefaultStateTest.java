@@ -9,6 +9,7 @@ import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
 
 public class DoNotRevertDefaultStateTest extends TestRunner {
 
+    //TODO move these inline
     public static final String FIELD_FILTER = "Description";
     public static final String FIELD_FILTER_VALUE = "Fruits";
 

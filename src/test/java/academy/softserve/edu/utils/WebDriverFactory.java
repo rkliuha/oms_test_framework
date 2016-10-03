@@ -12,6 +12,7 @@ public class WebDriverFactory {
 
     public WebDriver getDriver(final Browsers browser) {
 
+        //TODO re-factor into moving out set property methods
         switch (browser) {
 
             case CHROME_MAC:

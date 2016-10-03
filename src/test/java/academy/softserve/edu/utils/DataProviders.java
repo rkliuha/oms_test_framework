@@ -1,19 +1,17 @@
 package academy.softserve.edu.utils;
 
 import academy.softserve.edu.enums.Roles;
-import academy.softserve.edu.pageobjects.AdministrationPage;
-
 import org.testng.annotations.DataProvider;
 
 import java.io.IOException;
 
-import static academy.softserve.edu.elements.locators.administrator.AdministrationPageLocators.*;
 import static academy.softserve.edu.pageobjects.CustomerOrderingPage.SHOW_10_ITEMS_LINK;
 import static academy.softserve.edu.pageobjects.CustomerOrderingPage.SHOW_5_ITEMS_LINK;
 
+
 public class DataProviders {
 
-    private static final String EXCEL_FILE = PropertiesReader.getDefaultProperty("EXCEL_FILE");
+    private static final String EXCEL_FILE = PropertiesReader.getDefaultProperty("excel.file");
 
     @DataProvider
     static public Object[][] testDataForAllUsersRole() {

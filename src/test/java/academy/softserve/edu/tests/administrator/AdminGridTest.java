@@ -200,8 +200,7 @@ public class AdminGridTest extends TestRunner {
 
         DBHandler.deleteUser(DBHandler.getLastUser().getId());
     }
-
-
+    
     //To check is sorting function is available for First Name column in the Admin Grid.
     @Test
     public final void testSortingFirstNameColumn() {
