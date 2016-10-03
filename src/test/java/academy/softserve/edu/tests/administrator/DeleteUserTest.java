@@ -52,11 +52,6 @@ public class DeleteUserTest extends TestRunner {
 
         assertThat(DBHandler.getUserByLogin(testUser.getLogin()))
                 .isUserActive();
-
-//        Assert.assertEquals(testUser.getUserActive(),
-//                DBHandler.getUserByLogin(testUser.getLogin()).getUserActive(),
-//                "User status changed into 'inactive'");
-
     }
 
     @Test
