@@ -26,14 +26,13 @@ public class TestRunner {
     protected ItemManagementPage itemManagementPage;
     protected LogInPage logInPage;
     protected MerchandiserOrderingPage merchandiserOrderingPage;
-    protected EditOrderByMerchandiserPage editOrderByMerchandiserPage;
+    protected MerchandiserEditOrderPage merchandiserEditOrderPage;
     protected UserInfoPage userInfoPage;
     protected EditUserPage editUserPage;
     protected CreateReportPage createReportPage;
     protected ReportPage reportPage;
     protected CreateNewOrderPage createNewOrderPage;
     protected AddItemPage addItemPage;
-
 
     @Parameters("browser")
     @BeforeMethod

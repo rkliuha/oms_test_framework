@@ -15,7 +15,7 @@ public class Order {
     private String orderName;
     private int orderNumber;
     private String preferableDeliveryDate;
-    private int totalPrice;
+    private double totalPrice;
     private int assignee;
     private int customer;
     private int orderStatusReference;
@@ -61,7 +61,7 @@ public class Order {
     }
 
     public interface TotalPriceStep {
-        AssigneeStep setTotalPrice(final int totalPrice);
+        AssigneeStep setTotalPrice(final double totalPrice);
     }
 
     public interface AssigneeStep {
@@ -92,7 +92,7 @@ public class Order {
         private String orderName;
         private int orderNumber;
         private String preferableDeliveryDate;
-        private int totalPrice;
+        private double totalPrice;
         private int assignee;
         private int customer;
         private int orderStatusReference;
@@ -146,7 +146,7 @@ public class Order {
         }
 
         @Override
-        public final AssigneeStep setTotalPrice(final int totalPrice) {
+        public final AssigneeStep setTotalPrice(final double totalPrice) {
             this.totalPrice = totalPrice;
             return this;
         }

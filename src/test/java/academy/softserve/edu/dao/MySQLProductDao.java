@@ -18,7 +18,8 @@ public class MySQLProductDao implements ProductDao {
             " ProductDescription, ProductName, ProductPrice FROM Products ORDER BY ID DESC LIMIT 1;";
     private static final String GET_PRODUCT_BY_ID_QUERY = "SELECT ID, IsProductActive," +
             " ProductDescription, ProductName, ProductPrice FROM Products WHERE ID = ?;";
-    private static final String DELETE_PRODUCT_QUERY = "DELETE FROM Products WHERE ID = ?;";
+    private static final String DELETE_PRODUCT_QUERY = "DELETE FROM Products WHERE ID = ?;" +
+            " ALTER TABLE Products auto_increment=0;";
 
     private final Connection connection;
 
@@ -26,8 +27,8 @@ public class MySQLProductDao implements ProductDao {
     public final int createProduct(final Product product) {
 
         int productId = 0;
-        try (final PreparedStatement preparedStatement = connection.prepareStatement(CREATE_PRODUCT_QUERY,
-                Statement.RETURN_GENERATED_KEYS)) {
+        try (final PreparedStatement preparedStatement =
+                     connection.prepareStatement(CREATE_PRODUCT_QUERY, Statement.RETURN_GENERATED_KEYS)) {
 
             preparedStatement.setInt(1, product.getProductActive());
             preparedStatement.setString(2, product.getProductDescription());
@@ -48,7 +49,9 @@ public class MySQLProductDao implements ProductDao {
     public final Product getLastProduct() {
 
         Product product = null;
-        try (final PreparedStatement preparedStatement = connection.prepareStatement(GET_LAST_PRODUCT_QUERY)) {
+        try (final PreparedStatement preparedStatement =
+                     connection.prepareStatement(GET_LAST_PRODUCT_QUERY)) {
+
             final ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
 
@@ -69,7 +72,9 @@ public class MySQLProductDao implements ProductDao {
     public final Product getProductById(final int productId) {
 
         Product product = null;
-        try (final PreparedStatement preparedStatement = connection.prepareStatement(GET_PRODUCT_BY_ID_QUERY)) {
+        try (final PreparedStatement preparedStatement =
+                     connection.prepareStatement(GET_PRODUCT_BY_ID_QUERY)) {
+
             preparedStatement.setInt(1, productId);
             final ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
@@ -90,7 +95,9 @@ public class MySQLProductDao implements ProductDao {
     @Override
     public final void deleteProduct(final int productId) {
 
-        try (final PreparedStatement preparedStatement = connection.prepareStatement(DELETE_PRODUCT_QUERY)) {
+        try (final PreparedStatement preparedStatement =
+                     connection.prepareStatement(DELETE_PRODUCT_QUERY)) {
+
             preparedStatement.setInt(1, productId);
             preparedStatement.execute();
         } catch (SQLException e) {

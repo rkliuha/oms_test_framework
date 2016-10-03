@@ -2,13 +2,14 @@ package academy.softserve.edu.tests.merchandiser;
 
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.utils.TestRunner;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
+
 public class EditOrderTest extends TestRunner {
-    private boolean changeToStandardValues;
+    private boolean isChangedToStandardValues;
 
     @BeforeMethod
     public final void setUpTests() {
@@ -18,35 +19,45 @@ public class EditOrderTest extends TestRunner {
 
     @Test
     public final void testEditFieldsChangingCorrectly() {
-        editOrderByMerchandiserPage = merchandiserOrderingPage.clickEditFirstOrder();
-        editOrderByMerchandiserPage
+        merchandiserEditOrderPage = merchandiserOrderingPage
+                .clickEditOrder(merchandiserOrderingPage
+                        .getOrderLinkByNumber("2"));
+        merchandiserEditOrderPage
                 .changeOrderStatusTo("Ordered")
                 .clickSaveButton();
-        Assert.assertTrue(merchandiserOrderingPage.getFirstStatusOrder().getText().equals("Ordered"),
-                "Status doesn't changed");
-        changeToStandardValues = true;
+        assertThat(merchandiserOrderingPage.getOrderStatusByNumber("2"))
+        .textEquals("Ordered");
+        isChangedToStandardValues = true;
     }
 
-    @Test(dependsOnMethods = {"testEditFieldsChangingCorrectly"})
+    @Test
     public final void testShowItemsChanging() {
-        editOrderByMerchandiserPage = merchandiserOrderingPage.clickEditFirstOrder();
-        Assert.assertTrue(editOrderByMerchandiserPage.getShowItems().isDisplayed() &&
-                        editOrderByMerchandiserPage.getShowItems().isEnabled() &&
-                        editOrderByMerchandiserPage.getShowItems().getText().contains("Show 10 items"),
-                "Show 10 items is't correct, enabled and displayed");
-        editOrderByMerchandiserPage.clickShowItemsLink();
-        Assert.assertTrue(editOrderByMerchandiserPage.getShowItems().isDisplayed() &&
-                        editOrderByMerchandiserPage.getShowItems().isEnabled() &&
-                        editOrderByMerchandiserPage.getShowItems().getText().contains("Show 5 items"),
-                "Show 5 items isn't correct, enabled and displayed");
-        changeToStandardValues = false;
+        merchandiserEditOrderPage = merchandiserOrderingPage
+                .clickEditOrder(merchandiserOrderingPage
+                        .getOrderLinkByNumber("2"));
+        assertThat(merchandiserEditOrderPage.getShowItems())
+                .isDisplayed();
+        assertThat(merchandiserEditOrderPage.getShowItems())
+                .isEnabled();
+        assertThat(merchandiserEditOrderPage.getShowItems())
+                .textEquals("Show 10 items");
+        merchandiserEditOrderPage.clickShowItemsLink();
+        assertThat(merchandiserEditOrderPage.getShowItems())
+                .isDisplayed();
+        assertThat(merchandiserEditOrderPage.getShowItems())
+                .isEnabled();
+        assertThat(merchandiserEditOrderPage.getShowItems())
+                .textEquals("Show 5 items");
+        isChangedToStandardValues = false;
     }
 
     @AfterMethod()
     public final void changeToStandardValues() {
-        if (changeToStandardValues) {
-            editOrderByMerchandiserPage = merchandiserOrderingPage.clickEditFirstOrder();
-            editOrderByMerchandiserPage
+        if (isChangedToStandardValues) {
+            merchandiserEditOrderPage = merchandiserOrderingPage
+                    .clickEditOrder(merchandiserOrderingPage
+                            .getOrderLinkByNumber("2"));
+            merchandiserEditOrderPage
                     .changeOrderStatusTo("Created")
                     .clickSaveButton();
         }

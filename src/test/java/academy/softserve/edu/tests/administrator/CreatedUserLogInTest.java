@@ -6,10 +6,10 @@ import academy.softserve.edu.pageobjects.CreateNewUserPage;
 import academy.softserve.edu.pageobjects.EditUserPage;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.TestRunner;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
+import static academy.softserve.edu.asserts.FluentAssertions.*;
 
 public class CreatedUserLogInTest extends TestRunner {
 
@@ -27,11 +27,9 @@ public class CreatedUserLogInTest extends TestRunner {
 
         administrationPage = new AdministrationPage(driver);
 
-        Assert.assertTrue(administrationPage
-                .getCreateUserLink()
-                .isDisplayed(), "Create new user link " + administrationPage.getCreateUserLink().getLocatorValue() + " isn't present");
+        assertThat(administrationPage.getCreateUserLink())
+                .isDisplayed();
     }
-
 
     @Test(priority = 2)
     public void testCreateUserPageExist() {
@@ -51,9 +49,8 @@ public class CreatedUserLogInTest extends TestRunner {
 
         createNewUserPage = new CreateNewUserPage(driver);
 
-        Assert.assertTrue(createNewUserPage
-                .getPageInfoText()
-                .isDisplayed(), "Element " + createNewUserPage.getPageInfoText().getValue() + " isn't present");
+        assertThat(createNewUserPage.getPageInfoText())
+                .isDisplayed();
     }
 
     @Test(priority = 3)
@@ -119,8 +116,8 @@ public class CreatedUserLogInTest extends TestRunner {
                 .getCreateButton()
                 .click();
 
-        Assert.assertNotNull(DBHandler
-                .getUserByLogin(LOGIN), "User doesn't exist");
+        assertThat(DBHandler.getUserByLogin(LOGIN))
+                .isNotNull();
     }
 
     @Test(priority = 4)
@@ -137,9 +134,8 @@ public class CreatedUserLogInTest extends TestRunner {
         userInfoPage = logInPage
                 .logInAs(login, password);
 
-        Assert.assertTrue(userInfoPage
-                .getUserInfoFieldSet()
-                .isDisplayed(), "Element " + userInfoPage.getUserInfoFieldSet().getLocatorValue() + " isn't displayed");
+        assertThat(userInfoPage.getUserInfoFieldSet())
+                .isDisplayed();
     }
 
     @AfterClass
@@ -149,4 +145,5 @@ public class CreatedUserLogInTest extends TestRunner {
                 .getUserByLogin(LOGIN)
                 .getId());
     }
+
 }

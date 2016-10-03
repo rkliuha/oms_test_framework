@@ -8,6 +8,8 @@ import academy.softserve.edu.utils.TestUtil;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
+
 public class AddCardInfoToNewOrderTest extends TestRunner {
 
     private static final String CVV2_CODE = "456";
@@ -45,52 +47,34 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
     @Test
     public final void testElementsVisibility() {
 
-        Assert.assertTrue(createNewOrderPage
-                        .getCardInfoText()
-                        .isDisplayed(),
-                "Card Info Label is not displayed !");
+        assertThat(createNewOrderPage.getCardInfoText())
+                .isDisplayed();
 
-        Assert.assertTrue(createNewOrderPage
-                        .getCreditCardTypeText()
-                        .isDisplayed(),
-                "Credit Card Type Label is not displayed !");
+        assertThat(createNewOrderPage.getCreditCardTypeText())
+                .isDisplayed();
 
-        Assert.assertTrue(createNewOrderPage
-                        .getCreditCardNumberText()
-                        .isDisplayed(),
-                "Credit Card Number Label is not displayed !");
+        assertThat(createNewOrderPage.getCreditCardNumberText())
+                .isDisplayed();
 
-        Assert.assertTrue(createNewOrderPage
-                        .getCVV2Text()
-                        .isDisplayed(),
-                "CVV2 Label is not displayed !");
+        assertThat(createNewOrderPage.getCVV2Text())
+                .isDisplayed();
 
-        Assert.assertTrue(createNewOrderPage
-                        .getExpireDateText()
-                        .isDisplayed(),
-                "Expire Date Label is not displayed !");
+        assertThat(createNewOrderPage.getExpireDateText())
+                .isDisplayed();
 
-        Assert.assertTrue(createNewOrderPage
-                        .getStartDateMaestroText()
-                        .isDisplayed(),
-                "Start Date Maestro Label is not displayed !");
+        assertThat(createNewOrderPage.getStartDateMaestroText())
+                .isDisplayed();
 
-        Assert.assertTrue(createNewOrderPage
-                        .getIssueNumberMaestroText()
-                        .isDisplayed(),
-                "Issue Number Maestro Label is not displayed !");
+        assertThat(createNewOrderPage.getIssueNumberMaestroText())
+                .isDisplayed();
 
-        Assert.assertFalse(createNewOrderPage
-                        .getOrderButton()
-                        .isEnabled(),
-                "Order Button should be disabled while order is not saved !");
+        assertThat(createNewOrderPage.getOrderButton())
+                .isDisabled();
 
         createNewOrderPage.getSaveButton().click();
 
-        Assert.assertTrue(createNewOrderPage
-                        .getOrderButton()
-                        .isEnabled(),
-                "Order Button should be enabled when order is saved !");
+        assertThat(createNewOrderPage.getOrderButton())
+                .isEnabled();
     }
 
     @Test
@@ -106,10 +90,8 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
 
         createNewOrderPage.getOrderButton().click();
 
-        Assert.assertTrue(createNewOrderPage
-                        .getIncorrectCardErrorMessage()
-                        .isDisplayed(),
-                "Incorrect card credentials error message does not appear");
+        assertThat(createNewOrderPage.getIncorrectCardErrorMessage())
+                .isDisplayed();
     }
 
     @Test
@@ -144,10 +126,8 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
 
         createNewOrderPage.getOrderButton().click();
 
-        Assert.assertTrue("Ordered".equals(customerOrderingPage
-                        .getOrderStatusByNumber(orderNumber)
-                        .getText()),
-                "Order is not finished with Ordered status");
+        assertThat(customerOrderingPage.getOrderStatusByNumber(orderNumber))
+                .textEquals("Ordered");
     }
 
     @Test
@@ -193,6 +173,7 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
     @AfterMethod
     public final void deleteTestOrder() {
         DBHandler.deleteOrderByNumber(Integer.parseInt(orderNumber));
+        DBHandler.deleteOrderItemByOrderRef(Integer.parseInt(orderNumber));
     }
 
     @AfterTest

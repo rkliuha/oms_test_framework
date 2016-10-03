@@ -2,9 +2,10 @@ package academy.softserve.edu.tests.administrator;
 
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.utils.TestRunner;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
 
 public class CreateReportTest extends TestRunner {
 
@@ -19,10 +20,8 @@ public class CreateReportTest extends TestRunner {
     @Test
     public final void testCreateReportLinkVisibility() {
 
-        Assert.assertTrue(administrationPage
-                        .getCreateReportLink()
-                        .isDisplayed(),
-                "Create report link is not displayed !");
+        assertThat(administrationPage.getCreateReportLink())
+                .isDisplayed();
     }
 
     @Test
@@ -30,16 +29,12 @@ public class CreateReportTest extends TestRunner {
 
         createReportPage = administrationPage.clickCreateReportLink();
 
-        Assert.assertTrue(createReportPage
-                        .getSaveReportLink()
-                        .isDisplayed(),
-                "Save report link is not displayed !");
+        assertThat(createReportPage.getSaveReportLink())
+                .isDisplayed();
 
         reportPage = createReportPage.clickSaveReportLink();
 
-        Assert.assertTrue(reportPage
-                        .getIdentificationOfReportPage()
-                        .isDisplayed(),
-                "Report is not created !");
+        assertThat(reportPage.getReportPageExists())
+                .isDisplayed();
     }
 }
