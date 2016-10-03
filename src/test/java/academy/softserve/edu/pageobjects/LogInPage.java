@@ -21,6 +21,7 @@ public class LogInPage extends PageObject<LogInPage> {
     private final Button cancelButton = new Button(driver, CANCEL_BUTTON);
     private final Checkbox rememberMeCheckbox = new Checkbox(driver, REMEMBER_ME_CHECKBOX);
     private final TextLabel logInErrorMessage = new TextLabel(driver, LOGIN_ERROR_MESSAGE);
+
     //TODO remove
     public static final String OMS_HOME_PAGE = "http://192.168.56.101:8080/oms5/login.htm";
     // logInFieldSet is unique LogInPage element
@@ -35,6 +36,7 @@ public class LogInPage extends PageObject<LogInPage> {
         String userName;
         String userPassword;
         switch (role) {
+            //TODO use getDefaultProperty() method
             case ADMINISTRATOR:
             default:
                 userName = PropertiesReader.getProperty("administrator.login", CONFIG_PROPERTIES);

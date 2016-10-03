@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
+//TODO re-do into avoid re-finding web element
 public abstract class AbstractElement<T> {
 
     protected WebDriver driver;
@@ -32,12 +33,14 @@ public abstract class AbstractElement<T> {
         return driver.findElement(locator.getBy());
     }
 
+    //TODO re-factor into using specific conditions for methods
     final public boolean isDisplayed() {
 
         wait.waitUntilElementIsPresent();
         return driver.findElement(locator.getBy()).isDisplayed();
     }
 
+    //TODO re-factor into using specific conditions for methods
     final public boolean isEnabled() {
 
         wait.waitUntilElementIsPresent();
