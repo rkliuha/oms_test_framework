@@ -25,24 +25,24 @@ public class AdminGridTest extends TestRunner {
 
         // after if logIn failure;
         assertThat(userInfoPage
-                        .getUserInfoFieldSet())
-                        .isDisplayed();
+                .getUserInfoFieldSet())
+                .isDisplayed();
 
         administrationPage = userInfoPage.clickAdministrationTab();
     }
-    
+
 
     // To check Admin grid is enable or not. And Edit and Delete function is available
     @Test
     final public void testAdminGridIsEnable() {
 
         assertThat(administrationPage
-                        .getEditFirstUserCellLink())
-                        .isDisplayed();
+                .getEditFirstUserCellLink())
+                .isDisplayed();
 
-                assertThat(administrationPage
-                                .getDeleteFirstUserCellLink())
-                                .isDisplayed();
+        assertThat(administrationPage
+                .getDeleteFirstUserCellLink())
+                .isDisplayed();
     }
 
 
@@ -57,8 +57,8 @@ public class AdminGridTest extends TestRunner {
                 .putValueToTextBoxAndClick(searchingValue);
 
         assertThat(administrationPage
-                                        .getRoleFirstCellLink())
-                .as( "With filters: All columns and " + secondSearchFilter + " Searching function is failed")
+                .getRoleFirstCellLink())
+                .as("With filters: All columns and " + secondSearchFilter + " Searching function is failed")
                 .textEquals(comparisonValue);
     }
 
@@ -74,8 +74,8 @@ public class AdminGridTest extends TestRunner {
                 .putValueToTextBoxAndClick(searchingValue);
 
 
-                assertThat(administrationPage
-                                        .getFirstNameFirstCellLink())
+        assertThat(administrationPage
+                .getFirstNameFirstCellLink())
                 .as("With filters First Name and " + secondSearchFilter + " Searching function is failed")
                 .textEquals(comparisonValue);
     }
@@ -156,8 +156,8 @@ public class AdminGridTest extends TestRunner {
         assertThat(administrationPage
                 .getQuantityOfFoundUsers())
                 .as("If we want to check Show 10 items, should found more than 5 users in the Admin Grid ")
-                .isParseMoreThan(5);
-        
+                .isParseIntMoreThan(5);
+
         administrationPage
                 .getShowQuantityOfItems()
                 .click();
@@ -215,7 +215,7 @@ public class AdminGridTest extends TestRunner {
 
         assertThat(administrationPage
                 .getFirstNameColumn())
-                .isSortedByAscent();
+                .isSortedByAscentStrings();
     }
 
     //To check is sorting function is available for Last Name column in the Admin Grid.
@@ -232,7 +232,7 @@ public class AdminGridTest extends TestRunner {
 
         assertThat(administrationPage
                 .getLastNameColumn())
-                .isSortedByAscent();
+                .isSortedByAscentStrings();
     }
 
     //To check is sorting function is available for Login column in the Admin Grid.
@@ -249,7 +249,7 @@ public class AdminGridTest extends TestRunner {
 
         assertThat(administrationPage
                 .getLoginColumn())
-                .isSortedByAscent();
+                .isSortedByAscentStrings();
     }
 
     //To check is sorting function is available for Role column in the Admin Grid.
@@ -265,7 +265,7 @@ public class AdminGridTest extends TestRunner {
 
         assertThat(administrationPage
                 .getRoleColumn())
-                .isSortedByAscent();
+                .isSortedByAscentStrings();
     }
 
     //To check is sorting function is available for Region column in the Admin Grid.
@@ -282,9 +282,8 @@ public class AdminGridTest extends TestRunner {
 
         assertThat(administrationPage
                 .getRegionColumn())
-                .isSortedByAscent();
+                .isSortedByAscentStrings();
     }
-
 
 
     @Test
@@ -298,7 +297,7 @@ public class AdminGridTest extends TestRunner {
         assertThat(administrationPage
                 .getPageCountText())
                 .as("If we want to check navigation functions, should be more than 5 users in the Admin Grid ")
-                .isParseMoreThan(1);
+                .isParseIntMoreThan(1);
 
         assertThat(administrationPage
                 .getFirstNavigationButton())
@@ -315,7 +314,7 @@ public class AdminGridTest extends TestRunner {
         assertThat(administrationPage
                 .getPageNumberText())
                 .as("After FORWARD buttons click should shows the next page of the table")
-                .isParseEqualTo(2);
+                .isParseIntEqualTo(2);
 
         administrationPage
                 .getBackwardNavigationButton()
@@ -324,7 +323,7 @@ public class AdminGridTest extends TestRunner {
         assertThat(administrationPage
                 .getPageNumberText())
                 .as("After BACKWARD buttons click should shows previous AdminGrid page")
-                .isParseEqualTo(1);
+                .isParseIntEqualTo(1);
 
         administrationPage
                 .getLastNavigationButton()
@@ -333,7 +332,7 @@ public class AdminGridTest extends TestRunner {
         assertThat(administrationPage
                 .getPageNumberText())
                 .as("After LAST button click should shows last page in the Admin Grid")
-                .isParseEqualTo(quantityOfGridsPages);
+                .isParseIntEqualTo(quantityOfGridsPages);
 
         administrationPage
                 .getFirstNavigationButton()
@@ -341,8 +340,8 @@ public class AdminGridTest extends TestRunner {
 
         assertThat(administrationPage
                 .getPageNumberText())
-                .as( "After FIRST button click should shows first page in the Admin Grid")
-                .isParseEqualTo(1);
+                .as("After FIRST button click should shows first page in the Admin Grid")
+                .isParseIntEqualTo(1);
     }
 
 }

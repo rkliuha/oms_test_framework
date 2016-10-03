@@ -50,7 +50,6 @@ public enum MerchandiserOrderingPageLocators implements ILocator {
             LocatorsType.BY_ID,
             "last"),
 
-
     PAGE_NUMBER_CONTAINER("Page Number Text Container",
             LocatorsType.BY_XPATH,
             "//div[@id='list']/h4"),

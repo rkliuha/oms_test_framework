@@ -305,7 +305,7 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
         return this;
     }
 
-    public final AbstractElementAssert isSortedByAscent() {
+    public final AbstractElementAssert isSortedByAscentStrings() {
 
         final List<String> gridsColumnValues = new LinkedList<>();
 
@@ -315,6 +315,7 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
         if (!Ordering
                 .natural()
                 .isOrdered(gridsColumnValues)) {
+
             failWithMessage("Element's {%s} data should be sorted by ascent ", actual.getLocatorName());
             logFail("Element's {" + actual.getLocatorName() + "} data should be sorted by ascent ");
         } else {
@@ -325,6 +326,7 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
 
     public final AbstractElementAssert isMoreThan(int quantity) {
         if (actual.getElements().size() <= quantity) {
+
             failWithMessage("Element's {%s} data should be more, than {%s} ", actual.getLocatorName(), quantity);
             logFail("Element's {" + actual.getLocatorName() + "} data should be more than {" + quantity + "}");
         } else {
@@ -335,6 +337,7 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
 
     public final AbstractElementAssert isLessOrEqualsThan(int quantity) {
         if (actual.getElements().size() > quantity) {
+
             failWithMessage("Element's {%s} data should be less or equals, than {%s} ",
                     actual.getLocatorName(), quantity);
             logFail("Element's {" + actual.getLocatorName() + "} data should be less or equals" +
@@ -348,6 +351,7 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
 
     public final AbstractElementAssert isEqualTo(int quantity) {
         if (actual.getElements().size() != quantity) {
+
             failWithMessage("Element's {%s} data should be equal {%s} ", actual.getLocatorName(), quantity);
             logFail("Element's {" + actual.getLocatorName() + "} data should be equal {" + quantity + "}");
         } else {
@@ -356,8 +360,9 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
         return this;
     }
 
-    public final AbstractElementAssert isParseEqualTo(int quantity){
+    public final AbstractElementAssert isParseIntEqualTo(int quantity){
         if(Integer.parseInt(actual.getText()) != quantity) {
+
             failWithMessage("Element's {%s} data should be equal {%s} ", actual.getLocatorName(), quantity);
             logFail("Element's {" + actual.getLocatorName() + "} data should be equal {" + quantity + "}");
         } else {
@@ -366,13 +371,41 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
         return this;
     }
 
-    public final AbstractElementAssert isParseMoreThan(int quantity){
+    public final AbstractElementAssert isParseIntMoreThan(int quantity){
+
         if(Integer.parseInt(actual.getText()) <= quantity) {
+
             failWithMessage("Element's {%s} data should be more, than {%s} ", actual.getLocatorName(), quantity);
             logFail("Element's {" + actual.getLocatorName() + "} data should be more, than {" + quantity + "}");
         } else {
             logPass("Element's {" + actual.getLocatorName() + "} data more, than {" + quantity + "}");
         }
+        return this;
+    }
+
+    //Pull Double to List from any Grid column cells.
+    public final AbstractElementAssert isSortedByDescendDouble() {
+
+        List<Double> gridsColumnDoubleValues = new LinkedList<>();
+        for (int i = 0; i < actual.getElements().size(); i++) {
+            gridsColumnDoubleValues
+                    .add(i, Double
+                            .parseDouble(((WebElement) (actual
+                                    .getElements()
+                                    .get(i)))
+                                    .getText()));
+        }
+            if(!Ordering
+                    .natural()
+                    .reverse()
+                    .isOrdered(gridsColumnDoubleValues)){
+
+            failWithMessage("Element's {%s} data should be sorted by descend ", actual.getLocatorName());
+            logFail("Element's {" + actual.getLocatorName() + "} data should be sorted by descend ");
+        } else {
+            logPass("Element's {" + actual.getLocatorName() + "} data sorted by descend");
+        }
+
         return this;
     }
 
