@@ -18,6 +18,9 @@ public class MerchandiserOrderingPage extends PageObject<MerchandiserOrderingPag
     private final Dropdown searchDropdown = new Dropdown(driver, SEARCH_DROPDOWN);
     private final TextInputField searchInput = new TextInputField(driver, SEARCH_INPUT);
     private final Button applyButton = new Button(driver, APPLY_BUTTON);
+    private final TextLabel orderNameCell = new TextLabel(driver, ORDER_NAME_CELL.modify("2"));
+    private final TextLabel statusCell = new TextLabel(driver, STATUS_CELL.modify("2"));
+    private final Link deleteCellLink = new Link(driver, DELETE_CELL_LINK.modify("2"));
 
     public MerchandiserOrderingPage(final WebDriver driver) {
         super(driver);
