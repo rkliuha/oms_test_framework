@@ -1,6 +1,7 @@
 package academy.softserve.edu.utils;
 
 import academy.softserve.edu.domains.Order;
+import academy.softserve.edu.domains.OrderItem;
 import academy.softserve.edu.domains.Product;
 import academy.softserve.edu.domains.User;
 import academy.softserve.edu.enums.CustomerTypes;
@@ -42,8 +43,8 @@ public final class TestUtil {
     }
 
     //  Quantity of Orders must be "<=6"
-    public static final void createValidOrderInDB() {
-        DBHandler.createOrder(Order.newBuilder()
+    public static final int createValidOrderInDB() {
+        return DBHandler.createOrder(Order.newBuilder()
                 .setId(0)
                 .setDeliveryDate(null)
                 .setGift(0)

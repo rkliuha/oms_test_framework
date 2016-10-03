@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.sql.*;
 
+// TODO added while to getOrderById and getOrderByNumber, check if it is necessary to use it with other methods
 @RequiredArgsConstructor
 public class MySQLOrderDao implements OrderDao {
 
@@ -66,22 +67,23 @@ public class MySQLOrderDao implements OrderDao {
 
             preparedStatement.setInt(1, orderId);
             final ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
+            while (resultSet.next()) {
 
-            order = Order.newBuilder()
-                    .setId(resultSet.getInt("ID"))
-                    .setDeliveryDate(resultSet.getString("DeliveryDate"))
-                    .setGift(resultSet.getInt("IsGift"))
-                    .setMaxDiscount(resultSet.getInt("MaxDiscount"))
-                    .setOrderDate(resultSet.getString("OrderDate"))
-                    .setOrderName(resultSet.getString("OrderName"))
-                    .setOrderNumber(resultSet.getInt("OrderNumber"))
-                    .setPreferableDeliveryDate(resultSet.getString("PreferableDeliveryDate"))
-                    .setTotalPrice(resultSet.getDouble("TotalPrice"))
-                    .setAssignee(resultSet.getInt("Assigne"))
-                    .setCustomer(resultSet.getInt("Customer"))
-                    .setOrderStatusReference(resultSet.getInt("OrderStatusRef"))
-                    .build();
+                order = Order.newBuilder()
+                        .setId(resultSet.getInt("ID"))
+                        .setDeliveryDate(resultSet.getString("DeliveryDate"))
+                        .setGift(resultSet.getInt("IsGift"))
+                        .setMaxDiscount(resultSet.getInt("MaxDiscount"))
+                        .setOrderDate(resultSet.getString("OrderDate"))
+                        .setOrderName(resultSet.getString("OrderName"))
+                        .setOrderNumber(resultSet.getInt("OrderNumber"))
+                        .setPreferableDeliveryDate(resultSet.getString("PreferableDeliveryDate"))
+                        .setTotalPrice(resultSet.getDouble("TotalPrice"))
+                        .setAssignee(resultSet.getInt("Assigne"))
+                        .setCustomer(resultSet.getInt("Customer"))
+                        .setOrderStatusReference(resultSet.getInt("OrderStatusRef"))
+                        .build();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -89,7 +91,7 @@ public class MySQLOrderDao implements OrderDao {
     }
 
     @Override
-    public final Order getOrderByNumber(final int orderNumber) {
+    public final Order getOrderByNumber(final int orderNumber) throws SQLException {
 
         Order order = null;
         try (final PreparedStatement preparedStatement =
@@ -97,24 +99,26 @@ public class MySQLOrderDao implements OrderDao {
 
             preparedStatement.setInt(1, orderNumber);
             final ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
+            while (resultSet.next()) {
 
-            order = Order.newBuilder()
-                    .setId(resultSet.getInt("ID"))
-                    .setDeliveryDate(resultSet.getString("DeliveryDate"))
-                    .setGift(resultSet.getInt("IsGift"))
-                    .setMaxDiscount(resultSet.getInt("MaxDiscount"))
-                    .setOrderDate(resultSet.getString("OrderDate"))
-                    .setOrderName(resultSet.getString("OrderName"))
-                    .setOrderNumber(resultSet.getInt("OrderNumber"))
-                    .setPreferableDeliveryDate(resultSet.getString("PreferableDeliveryDate"))
-                    .setTotalPrice(resultSet.getDouble("TotalPrice"))
-                    .setAssignee(resultSet.getInt("Assigne"))
-                    .setCustomer(resultSet.getInt("Customer"))
-                    .setOrderStatusReference(resultSet.getInt("OrderStatusRef"))
-                    .build();
+
+                order = Order.newBuilder()
+                        .setId(resultSet.getInt("ID"))
+                        .setDeliveryDate(resultSet.getString("DeliveryDate"))
+                        .setGift(resultSet.getInt("IsGift"))
+                        .setMaxDiscount(resultSet.getInt("MaxDiscount"))
+                        .setOrderDate(resultSet.getString("OrderDate"))
+                        .setOrderName(resultSet.getString("OrderName"))
+                        .setOrderNumber(resultSet.getInt("OrderNumber"))
+                        .setPreferableDeliveryDate(resultSet.getString("PreferableDeliveryDate"))
+                        .setTotalPrice(resultSet.getDouble("TotalPrice"))
+                        .setAssignee(resultSet.getInt("Assigne"))
+                        .setCustomer(resultSet.getInt("Customer"))
+                        .setOrderStatusReference(resultSet.getInt("OrderStatusRef"))
+                        .build();
+            }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw e;
         }
         return order;
     }

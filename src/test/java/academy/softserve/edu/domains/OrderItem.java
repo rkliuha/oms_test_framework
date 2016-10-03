@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
+
 public class OrderItem {
 
     private int id;
@@ -137,5 +138,4 @@ public class OrderItem {
                 ", ProductReference=" + productReference +
                 "}";
     }
-
 }

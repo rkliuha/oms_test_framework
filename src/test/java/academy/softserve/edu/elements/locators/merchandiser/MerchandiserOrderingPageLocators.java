@@ -22,7 +22,6 @@ public enum MerchandiserOrderingPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//select[@id='search']"),
 
-
     SEARCH_INPUT("Search Input",
             LocatorsType.BY_ID,
             "searchValue"),
@@ -118,8 +117,8 @@ public enum MerchandiserOrderingPageLocators implements ILocator {
 
     DELETE_CELL_LINK("Delete Cell Link",
             LocatorsType.BY_XPATH,
-            "//div[@id='list']//tr[%s]/td[7]");
-
+            "//div[@id='list']//tr[%s]/td[7]"),
+    ;
 
     protected String elementName;
     protected LocatorsType locatorType;
