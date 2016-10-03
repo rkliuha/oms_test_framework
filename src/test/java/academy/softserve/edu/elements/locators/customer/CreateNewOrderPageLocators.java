@@ -314,13 +314,69 @@ public enum CreateNewOrderPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//table[@id='orderItems']/tbody/tr[1]/td[7]"),
 
+    FIRST_ITEM_EDIT_BUTTON("First Item Edit Button",
+            LocatorsType.BY_XPATH,
+            "//table[@id='orderItems']/tbody/tr[1]/td[8]//a"),
+
+    FIRST_ITEM_DELETE_BUTTON("First Item Delete Button",
+            LocatorsType.BY_XPATH,
+            "//table[@id='orderItems']/tbody/tr[1]/td[9]//a"),
+
     ITEM_SELECTION_SECTION("Item Selection Section",
             LocatorsType.BY_XPATH,
             "//div[@id='content']/fieldset"),
 
     INCORRECT_CARD_ERROR("Incorrect Card Error",
             LocatorsType.BY_ID,
-            "error");
+            "error"),
+
+    CALENDAR_POPUP_ELEMENT("Calendar Popup Element",
+            LocatorsType.BY_XPATH,
+            "//div[@id='dp-popup']"),
+
+    CALENDAR_MONDAY_ELEMENT("Calendar monday element",
+            LocatorsType.BY_XPATH,
+            "//div[@id='dp-popup']//tr[1]/td[%s]"),
+
+    CALENDAR_TUESDAY_ELEMENT("Calendar tuesday element",
+            LocatorsType.BY_XPATH,
+            "//div[@id='dp-popup']//tr[2]/td[%s]"),
+
+    CALENDAR_WEDNESDAY_ELEMENT("Calendar wednesday element",
+            LocatorsType.BY_XPATH,
+            "//div[@id='dp-popup']//tr[3]/td[%s]"),
+
+    CALENDAR_THURSDAY_ELEMENT("Calendar thursday element",
+            LocatorsType.BY_XPATH,
+            "//div[@id='dp-popup']//tr[4]/td[%s]"),
+
+    CALENDAR_FRIDAY_ELEMENT("Calendar friday element",
+            LocatorsType.BY_XPATH,
+            "//div[@id='dp-popup']//tr[5]/td[%s]"),
+
+    CALENDAR_SATURDAY_ELEMENT("Calendar saturday element",
+            LocatorsType.BY_XPATH,
+            "//div[@id='dp-popup']//tr[6]/td[%s]"),
+
+    CALENDAR_SUNDAY_ELEMENT("Calendar sunday element",
+            LocatorsType.BY_XPATH,
+            "//div[@id='dp-popup']//tr[7]/td[%s]"),
+
+    CALENDAR_YEAR_BACKWARD_BUTTON("Calendar Year Backward Button",
+            LocatorsType.BY_XPATH,
+            "//div[@id='dp-popup']/div[1]/a[1]"),
+
+    CALENDAR_MONTH_BACKWARD_BUTTON("Calendar Month Backward Button",
+            LocatorsType.BY_XPATH,
+            "//div[@id='dp-popup']/div[1]/a[2]"),
+
+    CALENDAR_YEAR_FORWARD_BUTTON("Calendar Year Forward Button",
+            LocatorsType.BY_XPATH,
+            "//div[@id='dp-popup']/div[2]/a[1]"),
+
+    CALENDAR_MONTH_FORWARD_BUTTON("Calendar Month Forward Button",
+            LocatorsType.BY_XPATH,
+            "//div[@id='dp-popup']/div[2]/a[2]");
 
     protected String elementName;
     protected LocatorsType locatorType;

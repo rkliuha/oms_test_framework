@@ -76,6 +76,62 @@ public class OrderAssert extends AbstractAssert<OrderAssert, Order> {
         return this;
     }
 
+    public final OrderAssert isCreated(final int condition) {
+
+        isNotNull();
+
+        if (!(condition == actual.getOrderStatusReference())) {
+            failWithMessage("Order {№%s} status is not Created !",
+                    actual.getOrderNumber());
+            logFail("Order {№" + actual.getOrderNumber() + "} status is not Created !");
+        } else {
+            logPass("Order {№" + actual.getOrderNumber() + "} status is Created");
+        }
+        return this;
+    }
+
+    public final OrderAssert isPending(final int condition) {
+
+        isNotNull();
+
+        if (!(condition == actual.getOrderStatusReference())) {
+            failWithMessage("Order {№%s} status is not Pending !",
+                    actual.getOrderNumber());
+            logFail("Order {№" + actual.getOrderNumber() + "} status is not Pending !");
+        } else {
+            logPass("Order {№" + actual.getOrderNumber() + "} status is Pending");
+        }
+        return this;
+    }
+
+    public final OrderAssert isOrdered(final int condition) {
+
+        isNotNull();
+
+        if (!(condition == actual.getOrderStatusReference())) {
+            failWithMessage("Order {№%s} status is not Ordered !",
+                    actual.getOrderNumber());
+            logFail("Order {№" + actual.getOrderNumber() + "} status is not Ordered !");
+        } else {
+            logPass("Order {№" + actual.getOrderNumber() + "} status is Ordered");
+        }
+        return this;
+    }
+
+    public final OrderAssert isDelivered(final int condition) {
+
+        isNotNull();
+
+        if (!(condition == actual.getOrderStatusReference())) {
+            failWithMessage("Order {№%s} status is not Delivered !",
+                    actual.getOrderNumber());
+            logFail("Order {№" + actual.getOrderNumber() + "} status is not Delivered !");
+        } else {
+            logPass("Order {№" + actual.getOrderNumber() + "} status is Delivered");
+        }
+        return this;
+    }
+
     @Override
     public final OrderAssert isNotNull() {
 

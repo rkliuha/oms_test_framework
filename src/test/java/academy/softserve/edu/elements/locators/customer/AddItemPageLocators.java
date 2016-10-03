@@ -22,7 +22,7 @@ public enum AddItemPageLocators implements ILocator {
             LocatorsType.BY_ID,
             "searchProperty"),
 
-    SEARCH_FOR_ITEM_INPUT("Seach For Item Input",
+    SEARCH_FOR_ITEM_INPUT("Search For Item Input",
             LocatorsType.BY_ID,
             "searchValue"),
 

@@ -11,4 +11,5 @@ public interface ProductDao {
     Product getProductById(final int productId);
 
     void deleteProduct(final int productId);
+
 }
