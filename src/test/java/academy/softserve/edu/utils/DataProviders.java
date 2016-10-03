@@ -2,6 +2,7 @@ package academy.softserve.edu.utils;
 
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.AdministrationPage;
+
 import org.testng.annotations.DataProvider;
 
 import java.io.IOException;
@@ -21,6 +22,7 @@ public class DataProviders {
 
 
     @DataProvider
+
     static final public Object[][] testDataSearchElementsCustomer() {
         return new Object[][]{
                 {SHOW_10_ITEMS_LINK, 10},
@@ -66,18 +68,6 @@ public class DataProviders {
 
 
     @DataProvider
-    static final public Object[][] testSortingAdminGrid() {
-        return new Object[][]{
-                {"First Name column", AdministrationPage.FIRST_NAME_HEADER, FIRST_NAME_COLUMN},
-                {"Last Name column", AdministrationPage.LAST_NAME_HEADER, LAST_NAME_COLUMN},
-                {"Login column", AdministrationPage.LOGIN_HEADER, LOGIN_COLUMN},
-                {"Role column", AdministrationPage.ROLE_HEADER, ROLE_COLUMN},
-                {"Region column", AdministrationPage.REGION_HEADER, REGION_COLUMN}
-        };
-    }
-
-
-    @DataProvider
     static final public Object[][] testSearchingForAllColumnsFilter() {
         return new Object[][]{
                 {"equals", "Customer", "Customer"},
@@ -104,8 +94,8 @@ public class DataProviders {
     static final public Object[][] testSearchingForLastNameFilter() {
         return new Object[][]{
                 {"equals", "horoshko", "horoshko"},
-                {"not equals to","shram","horoshko"},
-                {"starts with", "h","horoshko"},
+                {"not equals to", "shram", "horoshko"},
+                {"starts with", "h", "horoshko"},
                 {"contains", "horosh", "horoshko"},
                 {"does not contain", "a", "horoshko"},
         };

@@ -23,6 +23,7 @@ public class TextInputField extends AbstractClickableElement<TextInputField> {
 
         wait.waitUntilElementIsPresent();
         wait.waitUntilElementIsClickable();
+        driver.findElement(locator.getBy()).clear();
         driver.findElement(locator.getBy()).sendKeys(inputText);
         Logger.logInfo("<font color='black'>Made input: " + inputText + " into " + "<b>"
                 + locator.getName() + "</b></font>");

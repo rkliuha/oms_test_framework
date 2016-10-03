@@ -1,58 +1,68 @@
 package academy.softserve.edu.pageobjects;
 
-import org.openqa.selenium.By;
+import academy.softserve.edu.elements.wrappers.Link;
+import academy.softserve.edu.elements.wrappers.TextLabel;
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
-//TODO use Lombok for getters
+import static academy.softserve.edu.elements.locators.administrator.AdministrationPageLocators.ADMINISTRATION_LINK;
+import static academy.softserve.edu.elements.locators.customer.CustomerOrderingPageLocators.CUSTOMER_ORDERING_LINK;
+import static academy.softserve.edu.elements.locators.merchandiser.MerchandiserOrderingPageLocators.MERCHANDISER_ORDERING_LINK;
+import static academy.softserve.edu.elements.locators.shared.SharedLocators.ENGLISH_SWITCH_LINK;
+import static academy.softserve.edu.elements.locators.shared.SharedLocators.UKRAINIAN_SWITCH_LINK;
+import static academy.softserve.edu.elements.locators.supervisor.ItemManagementPageLocators.ITEM_MANAGEMENT_LINK;
+import static academy.softserve.edu.elements.locators.userinfo.UserInfoPageLocators.*;
+
+@Getter
 public class UserInfoPage extends PageObject<UserInfoPage> {
 
-    public static final By ADMINISTRATION_LINK = By.xpath("//ul[@id='nav']/descendant::a[@href='users.htm']");
-    public static final By ITEM_MANAGEMENT_LINK = By.xpath("//ul[@id='nav']/descendant::a[@href='itemManagement.htm']");
-    public static final By CUSTOMER_ORDERING_LINK = By.xpath("//ul[@id='nav']/descendant::a[@href='order.htm']");
-    public static final By MERCHANDISER_ORDERING_LINK = By.xpath("//ul[@id='nav']/descendant::a[@href='order.htm']");
+    private final Link administrationLink = new Link(driver, ADMINISTRATION_LINK);
+    private final Link itemManagementLink = new Link(driver, ITEM_MANAGEMENT_LINK);
+    private final Link customerOrderingLink = new Link(driver, CUSTOMER_ORDERING_LINK);
+    private final Link merchandiserOrderingLink = new Link(driver, MERCHANDISER_ORDERING_LINK);
     //TODO remove
     public static final String USER_INFO_PAGE_URL = "http://192.168.56.101:8080/oms5/userInfo.htm";
-
-    public static final By USER_INFO_LINK = By.xpath("(.//ul[@id='nav']//a)[2]");
-    public static final By USER_INFO_PAGE_EXISTS = By.xpath(".//div[@id='content']//legend");
-    public static final By FIRST_NAME_VALUE = By.xpath("//tr[1]/td[2]");
-    public static final By LAST_NAME_VALUE = By.xpath("//tr[2]/td[2]");
-    public static final By CUSTOMER_TYPE_VALUE = By.xpath("//tr[3]/td[2]");
-    public static final By ROLE_VALUE = By.xpath("//tr[4]/td[2]");
-
-    //TODO rename
-    public static final By IDENTIFICATION_OF_USER_INFO_PAGE = By.xpath(".//*[@id='nav']/li[2]/a");
+    private final Link ukrainianSwitchLink = new Link(driver, UKRAINIAN_SWITCH_LINK);
+    private final Link englishSwitchLink = new Link(driver, ENGLISH_SWITCH_LINK);
+    private final Link userInfoLink = new Link(driver, USER_INFO_LINK);
+    // userInfoFieldSet is unique UserInfoPage element
+    private final TextLabel userInfoFieldSet = new TextLabel(driver, USER_INFO_FIELDSET);
+    private final TextLabel firstNameValue = new TextLabel(driver, FIRST_NAME_VALUE);
+    private final TextLabel lastNameValue = new TextLabel(driver, LAST_NAME_VALUE);
+    private final TextLabel customerTypeValue = new TextLabel(driver, CUSTOMER_TYPE_VALUE);
+    private final TextLabel roleValue = new TextLabel(driver, ROLE_VALUE);
 
     public UserInfoPage(final WebDriver driver) {
         super(driver);
     }
 
     public final AdministrationPage clickAdministrationTab() {
-        driver.findElement(ADMINISTRATION_LINK).click();
+        administrationLink.click();
         return new AdministrationPage(driver);
     }
 
     public final CustomerOrderingPage clickCustomerOrderingTab() {
-        driver.findElement(CUSTOMER_ORDERING_LINK).click();
+        customerOrderingLink.click();
         return new CustomerOrderingPage(driver);
     }
 
     public final ItemManagementPage clickItemManagementTab() {
-        driver.findElement(ITEM_MANAGEMENT_LINK).click();
+        itemManagementLink.click();
         return new ItemManagementPage(driver);
     }
 
     public final MerchandiserOrderingPage clickMerchandiserOrderingTab() {
-        driver.findElement(MERCHANDISER_ORDERING_LINK).click();
+        merchandiserOrderingLink.click();
         return new MerchandiserOrderingPage(driver);
     }
 
-    public final WebElement getMerchandiserOrderingTab() {
-        return driver.findElement(MERCHANDISER_ORDERING_LINK);
+    public UserInfoPage clickUkrainianButton() {
+        ukrainianSwitchLink.click();
+        return this;
     }
 
-    public final WebElement getIdentificationOfUserInfoPage() {
-        return driver.findElement(IDENTIFICATION_OF_USER_INFO_PAGE);
+    public UserInfoPage clickEnglishButton() {
+        englishSwitchLink.click();
+        return this;
     }
 }

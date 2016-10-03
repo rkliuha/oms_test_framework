@@ -8,7 +8,7 @@ public enum AdministrationPageLocators implements ILocator {
 
     ADMINISTRATION_LINK("Administration Link",
             LocatorsType.BY_XPATH,
-            "//ul[@id='nav']/li[1]/a"),
+            "//ul[@id='nav']/descendant::a[@href='users.htm']"),
 
     USER_INFO_LINK("User Info Link",
             LocatorsType.BY_XPATH,
@@ -32,7 +32,7 @@ public enum AdministrationPageLocators implements ILocator {
 
     SEARCH_FIELD_FILTER("Search Field Filter",
             LocatorsType.BY_XPATH,
-            "//form[@id='searchForm']/label"),
+            " private final Button firstNameHeaderButton = new Button(driver, FIRST_NAME_HEADER_LINK);"),
 
     SEARCH_FIELD_FILTER_DROPDOWN("Search Field Filter Dropdown",
             LocatorsType.BY_XPATH,
@@ -49,6 +49,14 @@ public enum AdministrationPageLocators implements ILocator {
     SEARCH_BUTTON("Search Button",
             LocatorsType.BY_XPATH,
             "//form[@id='searchForm']/input[2]"),
+
+    FOUND_USERS_TEXT_LABEL("Found Users Text Label",
+            LocatorsType.BY_XPATH,
+            "//div[@id='list']/h4[1]"),
+
+    QUANTITY_OF_FOUND_USERS("Quantity of found Users",
+            LocatorsType.BY_XPATH,
+            "//*[@id='usersFound']"),
 
     RESIZE_USERS_LIST_LINK("Resize Users List Link",
             LocatorsType.BY_XPATH,
@@ -98,7 +106,7 @@ public enum AdministrationPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//table[@id='table']//tr/th[6]"),
 
-    EDIT_CELL_LINK("Edit Cell",
+    EDIT_USER_CELL_LINK("Edit Cell",
             LocatorsType.BY_XPATH,
             "//table[@id='table']/tbody/tr[%s]/td[6]/a"),
 
@@ -106,9 +114,9 @@ public enum AdministrationPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//table[@id='table']//tr/th[7]"),
 
-    DELETE_CELL_LINK("Delete Cell",
+    DELETE_USER_CELL_LINK("Delete Cell",
             LocatorsType.BY_XPATH,
-            "//table[@id='table']/tbody/tr[%s]/td[6]/a"),
+            "//table[@id='table']/tbody/tr[%s]/td[7]/a"),
 
     FIRST_NAVIGATION_BUTTON("First Navigation Button",
             LocatorsType.BY_ID,
@@ -131,12 +139,12 @@ public enum AdministrationPageLocators implements ILocator {
             "//div[@id='list']/h4[2]"),
 
     PAGE_NUMBER_TEXT("Page Number Text",
-            LocatorsType.BY_ID,
-            "pageNumber"),
+            LocatorsType.BY_XPATH,
+            "//*[@id='pageNumber']"),
 
     PAGE_COUNT_TEXT("Page Count Text",
-            LocatorsType.BY_ID,
-            "pageCount"),
+            LocatorsType.BY_XPATH,
+            "//*[@id='pageCount']"),
 
     CREATE_REPORT_LINK("Create Report Link",
             LocatorsType.BY_XPATH,
@@ -153,19 +161,19 @@ public enum AdministrationPageLocators implements ILocator {
 
     LAST_NAME_COLUMN("Last Name column",
             LocatorsType.BY_XPATH,
-            "*//*[@id='table']/tbody/tr//td[2]"),
+            "//*[@id='table']/tbody/tr//td[2]"),
 
     LOGIN_COLUMN("Login Column",
             LocatorsType.BY_XPATH,
-            "/*//*[@id='table']/tbody/tr//td[3]"),
+            "//*[@id='table']/tbody/tr//td[3]"),
 
     ROLE_COLUMN("Role Column",
             LocatorsType.BY_XPATH,
-            "/*//*[@id='table']/tbody/tr//td[4]"),
+            "//*[@id='table']/tbody/tr//td[4]"),
 
     REGION_COLUMN("Region Column",
             LocatorsType.BY_XPATH,
-            "/*//*[@id='table']/tbody/tr//td[5]");
+            "//*[@id='table']/tbody/tr//td[5]");
 
 
     protected String elementName;

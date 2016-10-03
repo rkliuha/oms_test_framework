@@ -6,9 +6,9 @@ import org.openqa.selenium.By;
 
 public enum MerchandiserOrderingPageLocators implements ILocator {
 
-    ORDERING_LINK("Ordering Link",
+    MERCHANDISER_ORDERING_LINK("Ordering Link",
             LocatorsType.BY_XPATH,
-            "//ul[@id='nav']/li[1]/a"),
+            "//ul[@id='nav']/descendant::a[@href='order.htm']"),
 
     USER_INFO_LINK("User Info Link",
             LocatorsType.BY_XPATH,
@@ -83,12 +83,41 @@ public enum MerchandiserOrderingPageLocators implements ILocator {
             "//div[@id='list']/h4"),
 
     PAGE_NUMBER_TEXT("Page Number Text",
-            LocatorsType.BY_ID,
-            "pageNumber"),
+            LocatorsType.BY_XPATH,
+            "//*[@id='pageNumber']"),
 
     PAGE_COUNT_TEXT("Page Count Text",
-            LocatorsType.BY_ID,
-            "pageCount");
+            LocatorsType.BY_XPATH,
+            "//*[@id='pageCount']"),
+
+    STATUS_CELL("Status Cell",
+            LocatorsType.BY_XPATH,
+            "//*[@id='list']/table/tbody/tr[%s]/td[5]"),
+
+    ORDER_NAME_CELL("Order Name Cell",
+            LocatorsType.BY_XPATH,
+            "//*[@id='list']/table/tbody/tr[2]/td[1]"),
+
+    ORDER_NAME_COLUMN("Order Name Column",
+            LocatorsType.BY_XPATH,
+            "//*[@id='list']/table/tbody//td[1]"),
+
+    TOTAL_PRICE_COLUMN("Total Price Column",
+            LocatorsType.BY_XPATH,
+            "//*[@id='list']/table/tbody//td[2]"),
+
+    MAX_DISCOUNT_COLUMN("Max Discount Column",
+            LocatorsType.BY_XPATH,
+            "//*[@id='list']/table/tbody//td[3]"),
+
+    DELIVERY_DATE("Delivery Date Column",
+            LocatorsType.BY_XPATH,
+            "//*[@id='list']/table/tbody//td[4]"),
+
+    STATUS_COLUMN("Status Column",
+            LocatorsType.BY_XPATH,
+            "//*[@id='list']/table/tbody//td[5]");
+
 
     protected String elementName;
     protected LocatorsType locatorType;

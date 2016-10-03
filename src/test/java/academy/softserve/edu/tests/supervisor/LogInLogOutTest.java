@@ -2,7 +2,6 @@ package academy.softserve.edu.tests.supervisor;
 
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.ItemManagementPage;
-import academy.softserve.edu.pageobjects.UserInfoPage;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -15,7 +14,7 @@ public class LogInLogOutTest extends TestRunner {
         userInfoPage = logInPage.logInAs(Roles.SUPERVISOR);
 
         Assert.assertTrue(userInfoPage
-                .getIdentificationOfUserInfoPage()
+                .getUserInfoFieldSet()
                 .isDisplayed(), "LogIn failed!");
     }
 
@@ -27,23 +26,23 @@ public class LogInLogOutTest extends TestRunner {
         // logOut button with same locator and we could get false positive result
         // after logIn failure;
         Assert.assertTrue(userInfoPage
-                .getIdentificationOfUserInfoPage()
+                .getUserInfoFieldSet()
                 .isDisplayed(), "LogIn failed!");
 
         Assert.assertTrue(userInfoPage
-                .getElement(UserInfoPage.LOG_OUT_BUTTON)
+                .getLogOutButton()
                 .isDisplayed(), "LogOut button is not displayed!\nURL: "
                 + driver.getCurrentUrl());
 
         itemManagementPage = userInfoPage.clickItemManagementTab();
         // we have to check switching between pages, has the same issue with logIn check;
         Assert.assertTrue(itemManagementPage
-                .getIdentificationOfSupervisePage()
+                .getSearchByFieldSet()
                 .isDisplayed(), "Page is not switched to: "
                 + ItemManagementPage.ITEM_MANAGEMENT_PAGE_URL);
 
         Assert.assertTrue(itemManagementPage
-                .getElement(ItemManagementPage.LOG_OUT_BUTTON)
+                .getLogOutButton()
                 .isDisplayed(), "LogOut button is not displayed!\nURL: "
                 + driver.getCurrentUrl());
     }

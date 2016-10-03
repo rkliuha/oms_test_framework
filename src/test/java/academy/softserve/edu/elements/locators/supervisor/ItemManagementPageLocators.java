@@ -8,7 +8,7 @@ public enum ItemManagementPageLocators implements ILocator {
 
     ITEM_MANAGEMENT_LINK("Item Management Link",
             LocatorsType.BY_XPATH,
-            "//ul[@id='nav']/li[1]/a"),
+            "//ul[@id='nav']/descendant::a[@href='itemManagement.htm']"),
 
     USER_INFO_LINK("User Info Link",
             LocatorsType.BY_XPATH,
@@ -34,7 +34,7 @@ public enum ItemManagementPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//div[@id='list']//legend"),
 
-    SEARCH_FIELD_FILTER("Search Field Filter",
+    SEARCH_FIELD_FILTER_TEXT("Search Field Filter",
             LocatorsType.BY_XPATH,
             "//form[@id='searchForm']/label"),
 

@@ -1,14 +1,9 @@
 package academy.softserve.edu.tests.merchandiser;
 
 import academy.softserve.edu.enums.Roles;
-import academy.softserve.edu.pageobjects.MerchandiserOrderingPage;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import static academy.softserve.edu.pageobjects.MerchandiserOrderingPage.*;
-import static academy.softserve.edu.pageobjects.UserInfoPage.MERCHANDISER_ORDERING_LINK;
-import static academy.softserve.edu.pageobjects.UserInfoPage.USER_INFO_LINK;
 
 public class DoNotRevertDefaultStateTest extends TestRunner {
 
@@ -23,12 +18,12 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
                 .logInAs(Roles.MERCHANDISER);
 
         Assert.assertTrue(userInfoPage
-                .getElement(USER_INFO_LINK)
-                .isDisplayed(), "Element " + USER_INFO_LINK + " isn't displayed");
+                .getUserInfoLink()
+                .isDisplayed(), "Element " + userInfoPage.getUserInfoLink().getLocatorValue() + " isn't displayed");
 
         Assert.assertTrue(userInfoPage
-                .getElement(MERCHANDISER_ORDERING_LINK)
-                .isDisplayed(), "Element " + MERCHANDISER_ORDERING_LINK + " isn't displayed");
+                .getMerchandiserOrderingLink()
+                .isDisplayed(), "Element " + userInfoPage.getMerchandiserOrderingLink().getLocatorValue() + " isn't displayed");
     }
 
     @Test
@@ -38,35 +33,39 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
                 .logInAs(Roles.MERCHANDISER);
 
         userInfoPage
-                .click(MERCHANDISER_ORDERING_LINK);
+                .getMerchandiserOrderingLink()
+                .click();
 
         merchandiserOrderingPage = new MerchandiserOrderingPage(driver);
 
         merchandiserOrderingPage
-                .getElement(MERCHANDISER_SEARCH_ORDERS_DROPDOWN)
+                .getSearchDropdown()
                 .sendKeys(SEARCH_ORDERS);
 
         merchandiserOrderingPage
-                .getElement(MERCHANDISER_SEARCH_ORDERS_TEXT_BOX)
+                .getSearchInput()
                 .sendKeys(SEARCH_ORDERS_VALUE);
 
         merchandiserOrderingPage
-                .click(MERCHANDISER_SEARCH_ORDERS_BUTTON);
+                .getApplyButton()
+                .click();
 
         merchandiserOrderingPage
-                .click(USER_INFO_LINK);
+                .getUserInfoLink()
+                .click();
 
         userInfoPage
-                .click(MERCHANDISER_ORDERING_LINK);
+                .getMerchandiserOrderingLink()
+                .click();
 
         Assert.assertTrue(merchandiserOrderingPage
-                .getElement(MERCHANDISER_SEARCH_ORDERS_DROPDOWN)
+                .getSearchDropdown()
                 .getText()
                 .contains(SEARCH_ORDERS), "Search order in the search order drop down is different of " + SEARCH_ORDERS);
 
         Assert.assertTrue(merchandiserOrderingPage
-                .getElement(MERCHANDISER_SEARCH_ORDERS_TEXT_BOX)
-                .getAttribute(TAG_ATRIBUT)
+                .getSearchInput()
+                .getValue()
                 .contains(SEARCH_ORDERS_VALUE), "Search order value in the search order text box is different of " + SEARCH_ORDERS_VALUE);
     }
 }

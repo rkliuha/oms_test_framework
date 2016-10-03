@@ -1,22 +1,35 @@
 package academy.softserve.edu.pageobjects;
 
+import academy.softserve.edu.elements.wrappers.Button;
+import academy.softserve.edu.elements.wrappers.Dropdown;
+import academy.softserve.edu.elements.wrappers.Link;
+import academy.softserve.edu.elements.wrappers.TextInputField;
+import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-//TODO use Lombok for getters
+import static academy.softserve.edu.elements.locators.customer.CustomerOrderingPageLocators.*;
+
+@Getter
 public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
 
     //TODO remove
     public static final String CUSTOMER_ORDERING_PAGE_URL = "http://192.168.56.101:8080/oms5/order.htm";
-    public static final By USER_INFO_BUTTON = By.xpath("(.//ul[@id='nav']//a)[2]");
-    public static final By CUSTOMER_PAGE_EXISTS = By.xpath(".//div[@id='content']/a");
-    public static final By SEARCH_ORDERS_DROPDOWN = By.xpath(".//select[@id='search']");
-    public static final By SEARCH_ORDERS_TEXT_BOX = By.xpath(".//input[@id='searchValue']");
-    public static final By SEARCH_ORDERS_BUTTON = By.xpath(".//input[@name='Apply']");
-    public static final By IDENTIFICATION_OF_CUSTOMER_PAGE = By.xpath(".//*[@id='content']/a");
+    private final Link userInfoLink = new Link(driver, USER_INFO_LINK);
+    // createNewOrderLink is an unique CustomerOrderingPage element
+    private final Link createNewOrderLink = new Link(driver, CREATE_NEW_ORDER_LINK);
+    private final Dropdown searchDropdown = new Dropdown(driver, SEARCH_DROPDOWN);
+    private final TextInputField searchInput = new TextInputField(driver, SEARCH_INPUT);
+    private final Button applyButton = new Button(driver, APPLY_BUTTON);
+    // TODO make one method instead of two
     public static final By SHOW_10_ITEMS_LINK = By.xpath(".//form[@id='searchFilter']//a");
     public static final By SHOW_5_ITEMS_LINK = By.xpath(".//form[@id='searchFilter']//a");
+
+    public final WebElement getOrderStatusByNumber(final String orderNumber) {
+        return driver.findElement(By.xpath("//div[@id='list']/table/tbody/tr/"
+                + "td[contains(text(), 'OrderName" + orderNumber + "')]/following-sibling::td[4]"));
+    }
 
     public CustomerOrderingPage(WebDriver driver) {
         super(driver);
@@ -24,14 +37,14 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
 
     public final UserInfoPage clickUserInfoTab() {
 
-        driver
-                .findElement(USER_INFO_BUTTON)
-                .click();
+        userInfoLink.click();
 
         return new UserInfoPage(driver);
     }
 
-    public final WebElement getIdentificationOfCustomerPage() {
-        return getElement(IDENTIFICATION_OF_CUSTOMER_PAGE);
+    public final CreateNewOrderPage clickCreateNewOrderLink() {
+
+        createNewOrderLink.click();
+        return new CreateNewOrderPage(driver);
     }
 }

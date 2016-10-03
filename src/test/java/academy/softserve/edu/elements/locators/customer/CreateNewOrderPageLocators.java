@@ -1,14 +1,14 @@
 package academy.softserve.edu.elements.locators.customer;
 
-import academy.softserve.edu.elements.interfaces.ILocator;
 import academy.softserve.edu.elements.LocatorsType;
+import academy.softserve.edu.elements.interfaces.ILocator;
 import org.openqa.selenium.By;
 
 public enum CreateNewOrderPageLocators implements ILocator {
 
-    ORDERING_LINK("Ordering Link",
+    CUSTOMER_ORDERING_LINK("Ordering Link",
             LocatorsType.BY_XPATH,
-            "//ul[@id='nav']/li[1]/a"),
+            "//ul[@id='nav']/descendant::a[@href='order.htm']"),
 
     USER_INFO_LINK("User Info Link",
             LocatorsType.BY_XPATH,
@@ -20,7 +20,7 @@ public enum CreateNewOrderPageLocators implements ILocator {
 
     ADD_ITEM_BUTTON("Add Item Button",
             LocatorsType.BY_XPATH,
-            "//form[@id='addItem']/input[2]"),
+            "//form[@id='addItem']/input[@value = 'Add Item']"),
 
     RESIZE_ITEMS_LIST_LINK("Resize Items List Link",
             LocatorsType.BY_XPATH,
@@ -146,6 +146,10 @@ public enum CreateNewOrderPageLocators implements ILocator {
             LocatorsType.BY_CLASS_NAME,
             "dp-choose-date"),
 
+    VALID_DELIVERY_DATE_LINK("Valid Delivery Date Link",
+            LocatorsType.BY_XPATH,
+            "//div[@id='dp-popup']/div[3]/table/tbody/tr[5]/td[5]"),
+
     DELIVERY_DATE_TEXT("Delivery Date Text",
             LocatorsType.BY_XPATH,
             "//form[@id='saveButton']//tr[7]/td[1]"),
@@ -162,7 +166,7 @@ public enum CreateNewOrderPageLocators implements ILocator {
             LocatorsType.BY_ID,
             "assignee"),
 
-    CARD_INFO_FIELDSET("Card Info Fieldset",
+    CARD_INFO_TEXT("Card Info Fieldset",
             LocatorsType.BY_XPATH,
             "//form[@id='form2']//legend/strong"),
 
@@ -202,7 +206,7 @@ public enum CreateNewOrderPageLocators implements ILocator {
             LocatorsType.BY_ID,
             "redAsterisk4"),
 
-    CREDIT_CARD_NUMBER_INPUT("Credit Card Number Input",
+    CREDIT_CARD_NUMBER_TEXTFIELD("Credit Card Number Textfield",
             LocatorsType.BY_ID,
             "cardNum"),
 
@@ -280,8 +284,43 @@ public enum CreateNewOrderPageLocators implements ILocator {
 
     NO_ITEMS_ERROR("No Items ERROR",
             LocatorsType.BY_ID,
-            "totalsError");
+            "totalsError"),
 
+    FIRST_ITEM_NUMBER("First Item Number",
+            LocatorsType.BY_XPATH,
+            "//table[@id='orderItems']/tbody/tr[1]/td[1]"),
+
+    FIRST_ITEM_NAME("First Item Name",
+            LocatorsType.BY_XPATH,
+            "//table[@id='orderItems']/tbody/tr[1]/td[2]"),
+
+    FIRST_ITEM_DESCRIPTION("First Item Description",
+            LocatorsType.BY_XPATH,
+            "//table[@id='orderItems']/tbody/tr[1]/td[3]"),
+
+    FIRST_ITEM_DIMENSION("First Item Dimension",
+            LocatorsType.BY_XPATH,
+            "//table[@id='orderItems']/tbody/tr[1]/td[4]"),
+
+    FIRST_ITEM_PRICE("First Item Price",
+            LocatorsType.BY_XPATH,
+            "//table[@id='orderItems']/tbody/tr[1]/td[5]"),
+
+    FIRST_ITEM_QUANTITY("First Item Quantity",
+            LocatorsType.BY_XPATH,
+            "//table[@id='orderItems']/tbody/tr[1]/td[6]"),
+
+    FIRST_ITEM_PRICE_PER_LINE("First Item Price Per Line",
+            LocatorsType.BY_XPATH,
+            "//table[@id='orderItems']/tbody/tr[1]/td[7]"),
+
+    ITEM_SELECTION_SECTION("Item Selection Section",
+            LocatorsType.BY_XPATH,
+            "//div[@id='content']/fieldset"),
+
+    INCORRECT_CARD_ERROR("Incorrect Card Error",
+            LocatorsType.BY_ID,
+            "error");
 
     protected String elementName;
     protected LocatorsType locatorType;

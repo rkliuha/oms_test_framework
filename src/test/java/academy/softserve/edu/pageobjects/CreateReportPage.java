@@ -1,24 +1,22 @@
 package academy.softserve.edu.pageobjects;
 
-import org.openqa.selenium.By;
+import academy.softserve.edu.elements.wrappers.Link;
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
+import static academy.softserve.edu.elements.locators.administrator.CreateReportPageLocators.SAVE_REPORT_LINK;
+
+@Getter
 public class CreateReportPage extends PageObject<CreateReportPage> {
 
-    public static final By SAVE_REPORT_LINK = By.xpath("//div[@id='list']/a");
+    private final Link saveReportLink = new Link(driver, SAVE_REPORT_LINK);
 
     public CreateReportPage(final WebDriver driver) {
         super(driver);
     }
 
     public final ReportPage clickSaveReportLink() {
-        getSaveReportLink().click();
+        saveReportLink.click();
         return new ReportPage(driver);
     }
-
-    public final WebElement getSaveReportLink() {
-        return driver.findElement(SAVE_REPORT_LINK);
-    }
-
 }

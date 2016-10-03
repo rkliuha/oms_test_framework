@@ -2,7 +2,11 @@ package academy.softserve.edu.utils;
 
 import academy.softserve.edu.dao.MySQLDaoFactory;
 import academy.softserve.edu.dao.interfaces.DaoFactory;
+import academy.softserve.edu.dao.interfaces.OrderDao;
+import academy.softserve.edu.dao.interfaces.ProductDao;
 import academy.softserve.edu.dao.interfaces.UserDao;
+import academy.softserve.edu.domains.Order;
+import academy.softserve.edu.domains.Product;
 import academy.softserve.edu.domains.User;
 import academy.softserve.edu.enums.Roles;
 
@@ -15,17 +19,19 @@ public final class DBHandler {
 
     }
 
-    public static final void createUser(final User user) {
+    public static final int createUser(final User user) {
 
         final DaoFactory daoFactory = new MySQLDaoFactory();
         final UserDao userDao;
+        int userId = 0;
 
         try (final Connection connection = daoFactory.getConnection()) {
             userDao = daoFactory.getUserDao(connection);
-            userDao.createUser(user);
+            userId = userDao.createUser(user);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return userId;
     }
 
     public static final User getUserById(final int userId) {
@@ -109,6 +115,151 @@ public final class DBHandler {
         try (final Connection connection = daoFactory.getConnection()) {
             userDao = daoFactory.getUserDao(connection);
             userDao.deleteUser(userId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static final int createProduct(final Product product) {
+
+        final DaoFactory daoFactory = new MySQLDaoFactory();
+        final ProductDao productDao;
+        int productId = 0;
+
+        try (final Connection connection = daoFactory.getConnection()) {
+            productDao = daoFactory.getProductDao(connection);
+            productId = productDao.createProduct(product);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return productId;
+    }
+
+    public static final Product getLastProduct() {
+
+        final DaoFactory daoFactory = new MySQLDaoFactory();
+        final ProductDao productDao;
+        Product product = null;
+
+        try (final Connection connection = daoFactory.getConnection()) {
+            productDao = daoFactory.getProductDao(connection);
+            product = productDao.getLastProduct();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return product;
+    }
+
+    public static final Product getProductById(final int productId) {
+
+        final DaoFactory daoFactory = new MySQLDaoFactory();
+        final ProductDao productDao;
+        Product product = null;
+
+        try (final Connection connection = daoFactory.getConnection()) {
+            productDao = daoFactory.getProductDao(connection);
+            product = productDao.getProductById(productId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return product;
+    }
+
+    public static final void deleteProduct(final int productId) {
+
+        final DaoFactory daoFactory = new MySQLDaoFactory();
+        final ProductDao productDao;
+
+        try (final Connection connection = daoFactory.getConnection()) {
+            productDao = daoFactory.getProductDao(connection);
+            productDao.deleteProduct(productId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //  Quantity of Orders must be "<=6"
+    public static final int createOrder(final Order order) {
+
+        final DaoFactory daoFactory = new MySQLDaoFactory();
+        final OrderDao orderDao;
+        int orderId = 0;
+
+        try (final Connection connection = daoFactory.getConnection()) {
+            orderDao = daoFactory.getOrderDao(connection);
+            orderId = orderDao.createOrder(order);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return orderId;
+    }
+
+    public static final Order getOrderById(final int orderId) {
+
+        final DaoFactory daoFactory = new MySQLDaoFactory();
+        final OrderDao orderDao;
+        Order order = null;
+
+        try (final Connection connection = daoFactory.getConnection()) {
+            orderDao = daoFactory.getOrderDao(connection);
+            order = orderDao.getOrderById(orderId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return order;
+    }
+
+    public static final Order getOrderByNumber(final int orderNumber) {
+
+        final DaoFactory daoFactory = new MySQLDaoFactory();
+        final OrderDao orderDao;
+        Order order = null;
+
+        try (final Connection connection = daoFactory.getConnection()) {
+            orderDao = daoFactory.getOrderDao(connection);
+            order = orderDao.getOrderByNumber(orderNumber);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return order;
+    }
+
+    public static final Order getLastOrder() {
+
+        final DaoFactory daoFactory = new MySQLDaoFactory();
+        final OrderDao orderDao;
+        Order order = null;
+
+        try (final Connection connection = daoFactory.getConnection()) {
+            orderDao = daoFactory.getOrderDao(connection);
+            order = orderDao.getLastOrder();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return order;
+    }
+
+    public static final void deleteOrderById(final int orderId) {
+
+        final DaoFactory daoFactory = new MySQLDaoFactory();
+        final OrderDao orderDao;
+
+        try (final Connection connection = daoFactory.getConnection()) {
+            orderDao = daoFactory.getOrderDao(connection);
+            orderDao.deleteOrderById(orderId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static final void deleteOrderByNumber(final int orderNumber) {
+
+        final DaoFactory daoFactory = new MySQLDaoFactory();
+        final OrderDao orderDao;
+
+        try (final Connection connection = daoFactory.getConnection()) {
+            orderDao = daoFactory.getOrderDao(connection);
+            orderDao.deleteOrderByNumber(orderNumber);
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -1,6 +1,8 @@
 package academy.softserve.edu.dao;
 
 import academy.softserve.edu.dao.interfaces.DaoFactory;
+import academy.softserve.edu.dao.interfaces.OrderDao;
+import academy.softserve.edu.dao.interfaces.ProductDao;
 import academy.softserve.edu.dao.interfaces.UserDao;
 
 import java.sql.Connection;
@@ -31,6 +33,16 @@ public class MySQLDaoFactory implements DaoFactory {
     @Override
     public final UserDao getUserDao(final Connection connection) {
         return new MySQLUserDao(connection);
+    }
+
+    @Override
+    public final ProductDao getProductDao(final Connection connection) {
+        return new MySQLProductDao(connection);
+    }
+
+    @Override
+    public final OrderDao getOrderDao(final Connection connection) {
+        return new MySQLOrderDao(connection);
     }
 
 }

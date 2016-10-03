@@ -6,10 +6,6 @@ import academy.softserve.edu.utils.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static academy.softserve.edu.pageobjects.AdministrationPage.*;
-import static academy.softserve.edu.pageobjects.UserInfoPage.ADMINISTRATION_LINK;
-import static academy.softserve.edu.pageobjects.UserInfoPage.USER_INFO_LINK;
-
 public class DoNotRevertDefaultStateTest extends TestRunner {
 
     private static final String ROLE = "Role";
@@ -24,12 +20,12 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
                 .logInAs(Roles.ADMINISTRATOR);
 
         Assert.assertTrue(userInfoPage
-                .getElement(USER_INFO_LINK)
-                .isDisplayed(), "Element " + USER_INFO_LINK + " isn't displayed");
+                .getUserInfoLink()
+                .isDisplayed(), "Element " + userInfoPage.getUserInfoLink().getLocatorValue() + " isn't displayed");
 
         Assert.assertTrue(userInfoPage
-                .getElement(ADMINISTRATION_LINK)
-                .isDisplayed(), "Element " + ADMINISTRATION_LINK + " isn't displayed");
+                .getAdministrationLink()
+                .isDisplayed(), "Element " + userInfoPage.getAdministrationLink().getLocatorValue() + " isn't displayed");
     }
 
     @Test
@@ -39,44 +35,48 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
                 .logInAs(Roles.ADMINISTRATOR);
 
         userInfoPage
-                .click(ADMINISTRATION_LINK);
+                .getAdministrationLink()
+                .click();
 
         administrationPage = new AdministrationPage(driver);
 
         administrationPage
-                .getElement(FIRST_FILED_FILTER_DROPDOWN)
+                .getSearchFieldFilterDropdown()
                 .sendKeys(ROLE);
 
         administrationPage
-                .getElement(SECOND_FILED_FILTER_DROPDOWN)
+                .getSearchConditionDropdown()
                 .sendKeys(ROLE_FILTER);
 
         administrationPage
-                .getElement(FILED_FILTER_TEXT_BOX)
+                .getSearchInput()
                 .sendKeys(TEXT);
 
         administrationPage
-                .click(FILED_FILTER_SEARCH_BUTTON);
+                .getSearchButton()
+                .click();
 
         administrationPage
-                .click(USER_INFO_LINK);
+                .getUserInfoLink()
+                .click();
 
         userInfoPage
-                .click(ADMINISTRATION_LINK);
+                .getAdministrationLink()
+                .click();
 
         Assert.assertTrue(administrationPage
-                .getElement(FIRST_FILED_FILTER_DROPDOWN)
+                .getSearchFieldFilterDropdown()
                 .getText()
                 .contains(ROLE), "Role in the first drop down is different of " + ROLE);
 
         Assert.assertTrue(administrationPage
-                .getElement(SECOND_FILED_FILTER_DROPDOWN)
+                .getSearchConditionDropdown()
                 .getText()
                 .contains(ROLE_FILTER), "Role filter in the second drop box is different of " + ROLE_FILTER);
 
         Assert.assertTrue(administrationPage
-                .getElement(FILED_FILTER_TEXT_BOX)
-                .getAttribute(TAG_ATRIBUT)
+                .getSearchInput()
+                .getValue()
                 .contains(TEXT), "Text in the text box is different of " + TEXT);
     }
 }

@@ -6,7 +6,6 @@ import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.TestRunner;
 import academy.softserve.edu.utils.TestUtil;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
@@ -20,13 +19,14 @@ public class EditUserTest extends TestRunner {
     private static final String NEW_USER_EMAIL = "google@gmail.com";
     private static final Regions NEW_REGION = Regions.WEST;
 
-    private User lastAddedUserForUpdate;
+    private User testUser;
+    private int testUserId;
 
     @BeforeTest
     public final void createTestUser() {
 
-        TestUtil.createValidUserInDB();
-        lastAddedUserForUpdate = DBHandler.getLastUser();
+        testUserId = TestUtil.createValidUserInDB();
+        testUser = DBHandler.getUserById(testUserId);
     }
 
     @BeforeMethod
@@ -38,59 +38,59 @@ public class EditUserTest extends TestRunner {
                 .clickAdministrationTab()
                 .clickLastUserPaginationButton();
 
-        editUserPage = administrationPage.clickEditLastUserLink();
+        editUserPage = administrationPage.clickEditUserById(testUserId);
     }
 
     @Test
     public final void testAreEditFieldsFilledCorrectly() {
 
         Assert.assertTrue(editUserPage
-                        .getIdentificationOfEditUserPage()
+                        .getNewPasswordText()
                         .isDisplayed(),
                 "Page is not switched to EditUserPage !");
 
         Assert.assertTrue(editUserPage
-                        .getFirstNameTextField()
-                        .getAttribute("value")
-                        .equals(lastAddedUserForUpdate.getFirstName()),
+                        .getFirstNameInput()
+                        .getValue()
+                        .equals(testUser.getFirstName()),
                 "User First name does not equals to actual !");
 
         Assert.assertTrue(editUserPage
-                        .getLastNameTextField()
-                        .getAttribute("value")
-                        .equals(lastAddedUserForUpdate.getLastName()),
+                        .getLastNameInput()
+                        .getValue()
+                        .equals(testUser.getLastName()),
                 "User Last name does not equal to actual !");
 
         Assert.assertTrue(editUserPage
-                        .getNewPasswordTextField()
-                        .getAttribute("value")
+                        .getNewPasswordInput()
+                        .getValue()
                         .isEmpty(),
                 "Password field is not empty !");
 
         Assert.assertTrue(editUserPage
-                        .getConfirmPasswordTextField()
-                        .getAttribute("value")
+                        .getConfirmPasswordInput()
+                        .getValue()
                         .isEmpty(),
                 "Confirm password field is not empty !");
 
         Assert.assertTrue(editUserPage
-                        .getEmailAddressTextField()
-                        .getAttribute("value")
-                        .equals(lastAddedUserForUpdate.getEmail()),
+                        .getEmailAddressInput()
+                        .getValue()
+                        .equals(testUser.getEmail()),
                 "User Email does not equal to actual !");
 
-        Assert.assertTrue(new Select(editUserPage
-                        .getRoleDropdown())
+        Assert.assertTrue(editUserPage
+                        .getRoleDropdown()
                         .getFirstSelectedOption()
                         .getText()
-                        .equalsIgnoreCase(lastAddedUserForUpdate.getRoleName()),
+                        .equalsIgnoreCase(testUser.getRoleName()),
                 "User Role does not equal to actual !");
 
-        Assert.assertTrue(new Select(editUserPage
-                        .getRegionDropdown())
+        Assert.assertTrue(editUserPage
+                        .getRegionDropdown()
                         .getFirstSelectedOption()
                         .getText()
-                        .equalsIgnoreCase(lastAddedUserForUpdate.getRegionName()),
+                        .equalsIgnoreCase(testUser.getRegionName()),
                 "User Region does not equal to actual !");
     }
 
@@ -98,21 +98,21 @@ public class EditUserTest extends TestRunner {
     public final void testEditUserAndClickSave() {
 
         Assert.assertTrue(editUserPage
-                        .getIdentificationOfEditUserPage()
+                        .getNewPasswordText()
                         .isDisplayed(),
                 "Page is not switched to EditUserPage !");
 
         editUserPage
-                .getLastNameTextField()
+                .getLastNameInput()
                 .clear();
         editUserPage
-                .getLastNameTextField()
+                .getLastNameInput()
                 .sendKeys(NEW_USER_LAST_NAME);
         editUserPage
-                .getNewPasswordTextField()
+                .getNewPasswordInput()
                 .sendKeys(NEW_USER_PASSWORD);
         editUserPage
-                .getConfirmPasswordTextField()
+                .getConfirmPasswordInput()
                 .sendKeys(NEW_USER_PASSWORD);
         editUserPage
                 .getRegionDropdown()
@@ -120,25 +120,25 @@ public class EditUserTest extends TestRunner {
         editUserPage
                 .clickSaveChangesButton();
 
-        lastAddedUserForUpdate = DBHandler.getLastUser();
+        testUser = DBHandler.getUserById(testUserId);
 
-        Assert.assertTrue(lastAddedUserForUpdate
+        Assert.assertTrue(testUser
                         .getLastName()
                         .equals(NEW_USER_LAST_NAME),
                 "Last name does not equal to changed one");
 
-        Assert.assertTrue(lastAddedUserForUpdate
+        Assert.assertTrue(testUser
                         .getPassword()
                         .equals(NEW_USER_PASSWORD),
                 "User password does not equal to changed one");
 
-        Assert.assertTrue(lastAddedUserForUpdate
+        Assert.assertTrue(testUser
                         .getRegionName()
                         .equalsIgnoreCase(NEW_REGION.toString()),
                 "User Region does not equal to changed one");
 
         Assert.assertTrue(administrationPage
-                        .identificationOfAdministratorPage()
+                        .getFoundUsersTextLabel()
                         .isDisplayed(),
                 "Page is not returned to AdministratorPage after saving changes!");
     }
@@ -147,29 +147,28 @@ public class EditUserTest extends TestRunner {
     public final void testEditUserAndClickCancel() {
 
         Assert.assertTrue(editUserPage
-                        .getIdentificationOfEditUserPage()
+                        .getNewPasswordText()
                         .isDisplayed(),
                 "Page is not switched to EditUserPage !");
 
-        editUserPage.getEmailAddressTextField().clear();
-        editUserPage.getEmailAddressTextField().sendKeys(NEW_USER_EMAIL);
+        editUserPage.getEmailAddressInput().clear();
+        editUserPage.getEmailAddressInput().sendKeys(NEW_USER_EMAIL);
         editUserPage.clickCancelButton();
 
         Assert.assertTrue(DBHandler
                         .getLastUser()
-                        .equals(lastAddedUserForUpdate),
+                        .equals(testUser),
                 "User is unexpected changed !");
 
         Assert.assertTrue(administrationPage
-                        .identificationOfAdministratorPage()
+                        .getFoundUsersTextLabel()
                         .isDisplayed(),
                 "Page is not returned to AdministratorPage after saving changes!");
     }
 
     @AfterTest
     public final void deleteTestUser() {
-        //TODO Consider better deleting temporary user
-        DBHandler.deleteUser(DBHandler.getLastUser().getId());
+        DBHandler.deleteUser(testUserId);
     }
 
 }

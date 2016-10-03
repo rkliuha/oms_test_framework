@@ -11,9 +11,6 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static academy.softserve.edu.pageobjects.CustomerOrderingPage.*;
-import static academy.softserve.edu.pageobjects.UserInfoPage.CUSTOMER_ORDERING_LINK;
-
 public class SearchTest extends TestRunner {
 
     private static final By ORDERED_RESULT = By.xpath(".//div[@id='list']/table/tbody/tr");
@@ -25,16 +22,17 @@ public class SearchTest extends TestRunner {
                 .logInAs(Roles.CUSTOMER);
 
         userInfoPage
-                .click(CUSTOMER_ORDERING_LINK);
+                .getCustomerOrderingLink()
+                .click();
 
-       customerOrderingPage = new CustomerOrderingPage(driver);
+        customerOrderingPage = new CustomerOrderingPage(driver);
 
         customerOrderingPage
-                .getElement(SEARCH_ORDERS_DROPDOWN)
+                .getSearchDropdown()
                 .sendKeys(searchOrder);
 
         customerOrderingPage
-                .getElement(SEARCH_ORDERS_TEXT_BOX)
+                .getSearchInput()
                 .sendKeys(searchOrderValue);
 
         final List<WebElement> elementsList = customerOrderingPage
@@ -46,6 +44,7 @@ public class SearchTest extends TestRunner {
                         .equals(searchOrderValue), "Status search result isn't contains " + searchOrderValue));
     }
 
+    // TODO remove data provider
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataSearchElementsCustomer")
     public void testElementsSearch(final By elementPath, final int elementsAmount) {
 
@@ -53,7 +52,8 @@ public class SearchTest extends TestRunner {
                 .logInAs(Roles.CUSTOMER);
 
         userInfoPage
-                .click(CUSTOMER_ORDERING_LINK);
+                .getCustomerOrderingLink()
+                .click();
 
         customerOrderingPage = new CustomerOrderingPage(driver);
 
