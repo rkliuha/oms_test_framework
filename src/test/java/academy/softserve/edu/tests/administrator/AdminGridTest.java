@@ -30,7 +30,7 @@ public class AdminGridTest extends TestRunner {
 
         administrationPage = userInfoPage.clickAdministrationTab();
     }
-
+    
 
     // To check Admin grid is enable or not. And Edit and Delete function is available
     @Test
@@ -200,7 +200,7 @@ public class AdminGridTest extends TestRunner {
 
         DBHandler.deleteUser(DBHandler.getLastUser().getId());
     }
-    
+
     //To check is sorting function is available for First Name column in the Admin Grid.
     @Test
     public final void testSortingFirstNameColumn() {
@@ -284,6 +284,7 @@ public class AdminGridTest extends TestRunner {
                 .getRegionColumn())
                 .isSortedByAscent();
     }
+
 
 
     @Test

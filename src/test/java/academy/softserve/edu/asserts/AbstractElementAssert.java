@@ -315,50 +315,63 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
         if (!Ordering
                 .natural()
                 .isOrdered(gridsColumnValues)) {
-            failWithMessage("Element's {%$} data should be sorted by ascent ", actual.getLocatorName());
+            failWithMessage("Element's {%s} data should be sorted by ascent ", actual.getLocatorName());
             logFail("Element's {" + actual.getLocatorName() + "} data should be sorted by ascent ");
+        } else {
+            logPass("Element's {" + actual.getLocatorName() + "} data sorted by ascent");
         }
         return this;
     }
 
     public final AbstractElementAssert isMoreThan(int quantity) {
         if (actual.getElements().size() <= quantity) {
-            failWithMessage("Element's {%$} data should be more, than {%$} ", actual.getLocatorName(), quantity);
-            logFail("Element's {" + actual.getLocatorName() + "} data should be more than {"+quantity+ "}");
+            failWithMessage("Element's {%s} data should be more, than {%s} ", actual.getLocatorName(), quantity);
+            logFail("Element's {" + actual.getLocatorName() + "} data should be more than {" + quantity + "}");
+        } else {
+            logPass("Element's {" + actual.getLocatorName() + "} data more than {" + quantity + "}");
         }
         return this;
     }
 
     public final AbstractElementAssert isLessOrEqualsThan(int quantity) {
         if (actual.getElements().size() > quantity) {
-            failWithMessage("Element's {%$} data should be less or equals, than {%$} ",
-                    actual.getLocatorName(),quantity);
+            failWithMessage("Element's {%s} data should be less or equals, than {%s} ",
+                    actual.getLocatorName(), quantity);
             logFail("Element's {" + actual.getLocatorName() + "} data should be less or equals" +
-                    " than {"+quantity+ "}");
+                    " than {" + quantity + "}");
+        } else {
+            logPass("Element's {" + actual.getLocatorName() + "} data less or equals" +
+                    " than {" + quantity + "}");
         }
         return this;
     }
 
     public final AbstractElementAssert isEqualTo(int quantity) {
         if (actual.getElements().size() != quantity) {
-            failWithMessage("Element's {%$} data should be equal {%$} ", actual.getLocatorName(), quantity);
-            logFail("Element's {" + actual.getLocatorName() + "} data should be equal {"+quantity+ "}");
+            failWithMessage("Element's {%s} data should be equal {%s} ", actual.getLocatorName(), quantity);
+            logFail("Element's {" + actual.getLocatorName() + "} data should be equal {" + quantity + "}");
+        } else {
+            logPass("Element's {" + actual.getLocatorName() + "} data equal {" + quantity + "}");
         }
         return this;
     }
 
     public final AbstractElementAssert isParseEqualTo(int quantity){
-        if(Integer.parseInt(actual.getText()) != quantity){
-            failWithMessage("Element's {%$} data should be equal {%$} ", actual.getLocatorName(), quantity);
-            logFail("Element's {" + actual.getLocatorName() + "} data should be equal {"+quantity+ "}");
+        if(Integer.parseInt(actual.getText()) != quantity) {
+            failWithMessage("Element's {%s} data should be equal {%s} ", actual.getLocatorName(), quantity);
+            logFail("Element's {" + actual.getLocatorName() + "} data should be equal {" + quantity + "}");
+        } else {
+            logPass("Element's {" + actual.getLocatorName() + "} data equal {" + quantity + "}");
         }
         return this;
     }
 
     public final AbstractElementAssert isParseMoreThan(int quantity){
-        if(Integer.parseInt(actual.getText()) <= quantity){
-            failWithMessage("Element's {%$} data should be more, than {%$} ", actual.getLocatorName(), quantity);
-            logFail("Element's {" + actual.getLocatorName() + "} data should be more, than {"+quantity+ "}");
+        if(Integer.parseInt(actual.getText()) <= quantity) {
+            failWithMessage("Element's {%s} data should be more, than {%s} ", actual.getLocatorName(), quantity);
+            logFail("Element's {" + actual.getLocatorName() + "} data should be more, than {" + quantity + "}");
+        } else {
+            logPass("Element's {" + actual.getLocatorName() + "} data more, than {" + quantity + "}");
         }
         return this;
     }
