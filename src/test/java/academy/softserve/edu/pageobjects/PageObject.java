@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import static academy.softserve.edu.elements.locators.shared.SharedLocators.LOG_OUT_BUTTON;
@@ -86,4 +87,5 @@ public abstract class PageObject<T> {
                 .findElement(path)
                 .click();
     }
+
 }

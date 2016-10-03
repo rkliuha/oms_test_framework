@@ -50,7 +50,6 @@ public enum MerchandiserOrderingPageLocators implements ILocator {
             LocatorsType.BY_ID,
             "last"),
 
-
     PAGE_NUMBER_CONTAINER("Page Number Text Container",
             LocatorsType.BY_XPATH,
             "//div[@id='list']/h4"),
@@ -117,8 +116,28 @@ public enum MerchandiserOrderingPageLocators implements ILocator {
 
     DELETE_CELL_LINK("Delete Cell Link",
             LocatorsType.BY_XPATH,
-            "//div[@id='list']//tr[%s]/td[7]"),
-    ;
+            "//div[@id='list']/h4"),
+
+    ORDER_NAME_COLUMN("Order Name Column",
+            LocatorsType.BY_XPATH,
+            "//*[@id='list']/table/tbody//td[1]"),
+
+    TOTAL_PRICE_COLUMN("Total Price Column",
+            LocatorsType.BY_XPATH,
+            "//*[@id='list']/table/tbody//td[2]"),
+
+    MAX_DISCOUNT_COLUMN("Max Discount Column",
+            LocatorsType.BY_XPATH,
+            "//*[@id='list']/table/tbody//td[3]"),
+
+    DELIVERY_DATE("Delivery Date Column",
+            LocatorsType.BY_XPATH,
+            "//*[@id='list']/table/tbody//td[4]"),
+
+    STATUS_COLUMN("Status Column",
+            LocatorsType.BY_XPATH,
+            "//*[@id='list']/table/tbody//td[5]");
+
 
     protected String elementName;
     protected LocatorsType locatorType;
