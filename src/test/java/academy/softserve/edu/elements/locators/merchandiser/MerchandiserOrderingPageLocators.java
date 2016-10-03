@@ -34,6 +34,35 @@ public enum MerchandiserOrderingPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//form[@id='searchFilter']/p/a"),
 
+    FIRST_NAVIGATION_BUTTON("First Navigation Button",
+            LocatorsType.BY_ID,
+            "first"),
+
+    BACKWARD_NAVIGATION_BUTTON("Backward Navigation Button",
+            LocatorsType.BY_ID,
+            "previous"),
+
+    FORWARD_NAVIGATION_BUTTON("Forward Navigation Button",
+            LocatorsType.BY_ID,
+            "next"),
+
+    LAST_NAVIGATION_BUTTON("Last Navigation Button",
+            LocatorsType.BY_ID,
+            "last"),
+
+
+    PAGE_NUMBER_CONTAINER("Page Number Text Container",
+            LocatorsType.BY_XPATH,
+            "//div[@id='list']/h4"),
+
+    PAGE_NUMBER_TEXT("Page Number Text",
+            LocatorsType.BY_ID,
+            "pageNumber"),
+
+    PAGE_COUNT_TEXT("Page Count Text",
+            LocatorsType.BY_ID,
+            "pageCount"),
+
     ORDER_NAME_HEADER_LINK("Order Name Header Link",
             LocatorsType.BY_XPATH,
             "//div[@id='list']/table//th[1]/a"),
@@ -89,35 +118,7 @@ public enum MerchandiserOrderingPageLocators implements ILocator {
     DELETE_CELL_LINK("Delete Cell Link",
             LocatorsType.BY_XPATH,
             "//div[@id='list']//tr[%s]/td[7]"),
-
-    FIRST_NAVIGATION_BUTTON("First Navigation Button",
-            LocatorsType.BY_ID,
-            "first"),
-
-    BACKWARD_NAVIGATION_BUTTON("Backward Navigation Button",
-            LocatorsType.BY_ID,
-            "previous"),
-
-    FORWARD_NAVIGATION_BUTTON("Forward Navigation Button",
-            LocatorsType.BY_ID,
-            "next"),
-
-    LAST_NAVIGATION_BUTTON("Last Navigation Button",
-            LocatorsType.BY_ID,
-            "last"),
-
-    PAGE_NUMBER_CONTAINER("Page Number Text Container",
-            LocatorsType.BY_XPATH,
-            "//div[@id='list']/h4"),
-
-    PAGE_NUMBER_TEXT("Page Number Text",
-            LocatorsType.BY_ID,
-            "pageNumber"),
-
-    PAGE_COUNT_TEXT("Page Count Text",
-            LocatorsType.BY_ID,
-            "pageCount");
-
+    ;
 
     protected String elementName;
     protected LocatorsType locatorType;

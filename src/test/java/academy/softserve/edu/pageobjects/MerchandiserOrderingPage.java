@@ -22,7 +22,19 @@ public class MerchandiserOrderingPage extends PageObject<MerchandiserOrderingPag
     private final TextLabel statusCell = new TextLabel(driver, STATUS_CELL.modify("2"));
     private final Link deleteCellLink = new Link(driver, DELETE_CELL_LINK.modify("2"));
 
+    public final Link getOrderLinkByNumber(final String editOrderNumber) {
+        return new Link(driver, EDIT_CELL_LINK.modify(editOrderNumber));
+    }
+    public final Link getOrderStatusByNumber(final String statusNumber) {
+        return new Link(driver, STATUS_CELL.modify(statusNumber));
+    }
+
     public MerchandiserOrderingPage(final WebDriver driver) {
         super(driver);
+    }
+
+    public final MerchandiserEditOrderPage clickEditOrder(final Link editOrderLink) {
+        editOrderLink.click();
+        return new MerchandiserEditOrderPage(driver);
     }
 }

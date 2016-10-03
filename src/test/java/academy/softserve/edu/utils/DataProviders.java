@@ -1,8 +1,6 @@
 package academy.softserve.edu.utils;
 
 import academy.softserve.edu.enums.Roles;
-import academy.softserve.edu.pageobjects.CustomerOrderingPage;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.DataProvider;
 
 import java.io.IOException;
@@ -12,7 +10,7 @@ import static academy.softserve.edu.pageobjects.CustomerOrderingPage.SHOW_5_ITEM
 
 public class DataProviders {
 
-    private static final String EXCEL_FILE = PropertiesReader.getDefaultProperty("EXCEL_FILE");
+    private static final String EXCEL_FILE = PropertiesReader.getDefaultProperty("excel.file");
 
     @DataProvider
     static public Object[][] testDataForAllUsersRole() {

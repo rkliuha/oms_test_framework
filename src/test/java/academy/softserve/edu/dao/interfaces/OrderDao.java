@@ -17,5 +17,4 @@ public interface OrderDao {
     void deleteOrderById(final int orderId);
 
     void deleteOrderByNumber(final int orderNumber);
-
 }

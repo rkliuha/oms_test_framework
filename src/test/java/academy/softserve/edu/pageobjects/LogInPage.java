@@ -53,8 +53,8 @@ public class LogInPage extends PageObject<LogInPage> {
                 userPassword = PropertiesReader.getProperty("customer.password", CONFIG_PROPERTIES);
                 break;
             case INVALID_USER:
-                userName = PropertiesReader.getProperty("invalid_user.login", CONFIG_PROPERTIES);
-                userPassword = PropertiesReader.getProperty("invalid_user.password", CONFIG_PROPERTIES);
+                userName = PropertiesReader.getProperty("invalid.user.login", CONFIG_PROPERTIES);
+                userPassword = PropertiesReader.getProperty("invalid.user.password", CONFIG_PROPERTIES);
                 break;
         }
         userNameInput.sendKeys(userName);
