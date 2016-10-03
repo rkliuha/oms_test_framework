@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import static academy.softserve.edu.elements.locators.shared.SharedLocators.LOG_OUT_BUTTON;
@@ -27,6 +28,8 @@ public abstract class PageObject<T> {
     public final WebElement getElement(final By elementLocation) {
         return driver.findElement(elementLocation);
     }
+
+    public final List<String> gridsColumnValues = new LinkedList<>();
 
     public final List<WebElement> getElements(final By elementLocation) {
         return driver.findElements(elementLocation);
@@ -89,5 +92,13 @@ public abstract class PageObject<T> {
         driver
                 .findElement(path)
                 .click();
+    }
+
+    //Pull String to List from any Grid column cells.
+    public final List<String> pullStringsValueFromGetElements(final By GridColumn) {
+        for (int i = 0; i < getElements(GridColumn).size(); i++) {
+            gridsColumnValues.add(i, getElements(GridColumn).get(i).getText());
+        }
+        return gridsColumnValues;
     }
 }
