@@ -1,13 +1,25 @@
 package academy.softserve.edu.asserts;
 
 import academy.softserve.edu.elements.wrappers.AbstractElement;
+import academy.softserve.edu.elements.wrappers.Element;
+import academy.softserve.edu.pageobjects.AdministrationPage;
+import academy.softserve.edu.pageobjects.PageObject;
+import com.google.common.collect.Ordering;
 import org.assertj.core.api.AbstractAssert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+
+import java.util.LinkedList;
+import java.util.List;
 
 import static academy.softserve.edu.utils.Logger.logFail;
 import static academy.softserve.edu.utils.Logger.logPass;
 
 public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert, AbstractElement> {
+
 
     AbstractElementAssert(final AbstractElement actual) {
         super(actual, AbstractElementAssert.class);
@@ -289,6 +301,64 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
         } else {
             logPass("Element's {" + actual.getLocatorName() + "} selected dropdown value equals {" +
                     condition + "} (case is ignored)");
+        }
+        return this;
+    }
+
+    public final AbstractElementAssert isSortedByAscent() {
+
+        final List<String> gridsColumnValues = new LinkedList<>();
+
+        for (int i = 0; i < actual.getElements().size(); i++) {
+            gridsColumnValues.add(i, ((WebElement)(actual.getElements().get(i))).getText());
+        }
+        if (!Ordering
+                .natural()
+                .isOrdered(gridsColumnValues)) {
+            failWithMessage("Element's {%$} data should be sorted by ascent ", actual.getLocatorName());
+            logFail("Element's {" + actual.getLocatorName() + "} data should be sorted by ascent ");
+        }
+        return this;
+    }
+
+    public final AbstractElementAssert isMoreThan(int quantity) {
+        if (actual.getElements().size() <= quantity) {
+            failWithMessage("Element's {%$} data should be more, than {%$} ", actual.getLocatorName(), quantity);
+            logFail("Element's {" + actual.getLocatorName() + "} data should be more than {"+quantity+ "}");
+        }
+        return this;
+    }
+
+    public final AbstractElementAssert isLessOrEqualsThan(int quantity) {
+        if (actual.getElements().size() > quantity) {
+            failWithMessage("Element's {%$} data should be less or equals, than {%$} ",
+                    actual.getLocatorName(),quantity);
+            logFail("Element's {" + actual.getLocatorName() + "} data should be less or equals" +
+                    " than {"+quantity+ "}");
+        }
+        return this;
+    }
+
+    public final AbstractElementAssert isEqualTo(int quantity) {
+        if (actual.getElements().size() != quantity) {
+            failWithMessage("Element's {%$} data should be equal {%$} ", actual.getLocatorName(), quantity);
+            logFail("Element's {" + actual.getLocatorName() + "} data should be equal {"+quantity+ "}");
+        }
+        return this;
+    }
+
+    public final AbstractElementAssert isParseEqualTo(int quantity){
+        if(Integer.parseInt(actual.getText()) != quantity){
+            failWithMessage("Element's {%$} data should be equal {%$} ", actual.getLocatorName(), quantity);
+            logFail("Element's {" + actual.getLocatorName() + "} data should be equal {"+quantity+ "}");
+        }
+        return this;
+    }
+
+    public final AbstractElementAssert isParseMoreThan(int quantity){
+        if(Integer.parseInt(actual.getText()) <= quantity){
+            failWithMessage("Element's {%$} data should be more, than {%$} ", actual.getLocatorName(), quantity);
+            logFail("Element's {" + actual.getLocatorName() + "} data should be more, than {"+quantity+ "}");
         }
         return this;
     }

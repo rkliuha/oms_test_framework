@@ -8,12 +8,10 @@ import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.DataProviders;
 import academy.softserve.edu.utils.TestRunner;
 import academy.softserve.edu.utils.TestUtil;
-import com.google.common.collect.Ordering;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static academy.softserve.edu.elements.locators.administrator.AdministrationPageLocators.*;
+import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
 
 public class AdminGridTest extends TestRunner {
 
@@ -21,21 +19,16 @@ public class AdminGridTest extends TestRunner {
 
     @BeforeMethod
     public final void setAdminGridTests() {
-        logInPage
-                .logInAs(Roles
-                        .ADMINISTRATOR);
+        logInPage.logInAs(Roles.ADMINISTRATOR);
 
         userInfoPage = new UserInfoPage(driver);
 
         // after if logIn failure;
-        Assert.assertTrue(userInfoPage
-                        .getUserInfoFieldSet()
-                        .isDisplayed(),
-                "LogIn failed!");
+        assertThat(userInfoPage
+                        .getUserInfoFieldSet())
+                        .isDisplayed();
 
-        administrationPage =
-                userInfoPage
-                        .clickAdministrationTab();
+        administrationPage = userInfoPage.clickAdministrationTab();
     }
 
 
@@ -43,16 +36,13 @@ public class AdminGridTest extends TestRunner {
     @Test
     final public void testAdminGridIsEnable() {
 
-        Assert.assertTrue(administrationPage
-                        .getEditFirstUserCellLink()
-                        .isDisplayed(),
-                "Edit function should be available! or There is no any users in the grid!");
+        assertThat(administrationPage
+                        .getEditFirstUserCellLink())
+                        .isDisplayed();
 
-        Assert
-                .assertTrue(administrationPage
-                                .getDeleteFirstUserCellLink()
-                                .isDisplayed(),
-                        "Delete user function should be available!");
+                assertThat(administrationPage
+                                .getDeleteFirstUserCellLink())
+                                .isDisplayed();
     }
 
 
@@ -66,12 +56,10 @@ public class AdminGridTest extends TestRunner {
                 .selectSecondFilterValue(secondSearchFilter)
                 .putValueToTextBoxAndClick(searchingValue);
 
-        Assert
-                .assertTrue(comparisonValue
-                                .equalsIgnoreCase(administrationPage
-                                        .getRoleFirstCellLink()
-                                        .getText()),
-                        "With filters: All columns and " + secondSearchFilter + " Searching function is failed");
+        assertThat(administrationPage
+                                        .getRoleFirstCellLink())
+                .as( "With filters: All columns and " + secondSearchFilter + " Searching function is failed")
+                .textEquals(comparisonValue);
     }
 
 
@@ -85,12 +73,11 @@ public class AdminGridTest extends TestRunner {
                 .selectSecondFilterValue(secondSearchFilter)
                 .putValueToTextBoxAndClick(searchingValue);
 
-        Assert
-                .assertTrue(comparisonValue
-                                .equalsIgnoreCase(administrationPage
-                                        .getFirstNameFirstCellLink()
-                                        .getText()),
-                        "With filters First Name and " + secondSearchFilter + " Searching function is failed");
+
+                assertThat(administrationPage
+                                        .getFirstNameFirstCellLink())
+                .as("With filters First Name and " + secondSearchFilter + " Searching function is failed")
+                .textEquals(comparisonValue);
     }
 
 
@@ -104,12 +91,10 @@ public class AdminGridTest extends TestRunner {
                 .selectSecondFilterValue(secondSearchFilter)
                 .putValueToTextBoxAndClick(searchingValue);
 
-        Assert
-                .assertTrue(comparisonValue
-                                .equalsIgnoreCase(administrationPage
-                                        .getLastNameFirstCellLink()
-                                        .getText()),
-                        "With filters Last Name and " + secondSearchFilter + " Searching function is failed");
+        assertThat(administrationPage
+                .getLastNameFirstCellLink())
+                .as("With filters Last Name and " + secondSearchFilter + " Searching function is failed")
+                .textEquals(comparisonValue);
     }
 
 
@@ -123,12 +108,10 @@ public class AdminGridTest extends TestRunner {
                 .selectSecondFilterValue(secondSearchFilter)
                 .putValueToTextBoxAndClick(searchingValue);
 
-        Assert
-                .assertTrue(comparisonValue
-                                .equalsIgnoreCase(administrationPage
-                                        .getLoginFirstCellLink()
-                                        .getText()),
-                        "With filters Login and " + secondSearchFilter + " Searching function is failed");
+        assertThat(administrationPage
+                .getLoginFirstCellLink())
+                .as("With filters Login and " + secondSearchFilter + " Searching function is failed")
+                .textEquals(comparisonValue);
     }
 
 
@@ -142,12 +125,11 @@ public class AdminGridTest extends TestRunner {
                 .selectSecondFilterValue(secondSearchFilter)
                 .putValueToTextBoxAndClick(searchingValue);
 
-        Assert
-                .assertTrue(comparisonValue
-                                .equalsIgnoreCase(administrationPage
-                                        .getRoleFirstCellLink()
-                                        .getText()),
-                        "With filters Role and " + secondSearchFilter + " Searching function is failed");
+        assertThat(administrationPage
+                .getRoleFirstCellLink())
+                .as("With filters Role and " + secondSearchFilter + " Searching function is failed")
+                .textEquals(comparisonValue);
+
     }
 
 
@@ -161,50 +143,40 @@ public class AdminGridTest extends TestRunner {
                 .selectSecondFilterValue(secondSearchFilter)
                 .putValueToTextBoxAndClick(searchingValue);
 
-        Assert
-                .assertTrue(comparisonValue
-                                .equalsIgnoreCase(administrationPage
-                                        .getRegionFirstCellLink()
-                                        .getText()),
-                        "With filters Region and " + secondSearchFilter + " Searching function is failed");
+        assertThat(administrationPage
+                .getRegionFirstCellLink())
+                .as("With filters Region and " + secondSearchFilter + " Searching function is failed")
+                .textEquals(comparisonValue);
     }
 
     //Check how many users shows in the Admin Grid, after click on the Show 5 or Show 10 buttons.
     @Test
     public final void testVisibleUsersInGrid() {
 
-        int numberOfFoundUsers = Integer
-                .parseInt(administrationPage
-                        .getQuantityOfFoundUsers()
-                        .getText());
-        Assert
-                .assertTrue(numberOfFoundUsers > 5,
-                        "If we want to check Show 10 items, should found more than 5 users in the Admin Grid ");
-
-        administrationPage
-                .getShowQuantityOfItems()
-                .click();
-        Assert
-                .assertTrue(administrationPage.getFirstNameColumn()
-                                .getElements()
-                                .size() > 5 &&
-                                administrationPage
-                                        .getLoginColumn()
-                                        .getElements()
-                                        .size() <= 10,
-                        "Amount of visible users in the table, after click Show 10 Items," +
-                                " should be in the range from 6 to 10");
+        assertThat(administrationPage
+                .getQuantityOfFoundUsers())
+                .as("If we want to check Show 10 items, should found more than 5 users in the Admin Grid ")
+                .isParseMoreThan(5);
+        
         administrationPage
                 .getShowQuantityOfItems()
                 .click();
 
-        Assert
-                .assertTrue(administrationPage
-                                .getLoginColumn()
-                                .getElements()
-                                .size() == 5,
-                        "Amount of visible users in the table, after click Show 5 Items, should be 5");
+        assertThat(administrationPage
+                .getFirstNameColumn())
+                .isMoreThan(5);
 
+        assertThat(administrationPage
+                .getFirstNameColumn())
+                .isLessOrEqualsThan(10);
+
+        administrationPage
+                .getShowQuantityOfItems()
+                .click();
+
+        assertThat(administrationPage
+                .getFirstNameColumn())
+                .isEqualTo(5);
     }
 
 
@@ -222,12 +194,9 @@ public class AdminGridTest extends TestRunner {
                 .selectSecondFilterValue("equals")
                 .putValueToTextBoxAndClick("justlogin");
 
-        Assert
-                .assertTrue(administrationPage
-                                .getLoginColumn()
-                                .getElements()
-                                .size() == 1,
-                        "Should be only 1 user with login justlogin!");
+        assertThat(administrationPage
+                .getLoginColumn())
+                .isEqualTo(1);
 
         DBHandler.deleteUser(DBHandler.getLastUser().getId());
     }
@@ -237,175 +206,143 @@ public class AdminGridTest extends TestRunner {
     @Test
     public final void testSortingFirstNameColumn() {
 
-        Assert
-                .assertTrue(administrationPage
-                                .getLoginSecondCellLink()
-                                .isDisplayed(),
-                        "If we want to check sorting functions, in grid should be 2 or more users!");
+        assertThat(administrationPage
+                .getLoginSecondCellLink())
+                .isDisplayed();
 
         administrationPage
                 .getFirstNameHeaderButton()
                 .click();
 
-        Assert
-                .assertTrue(Ordering
-                                .natural()
-                                .isOrdered(administrationPage
-                                        .pullStringsValueFromGetElements(FIRST_NAME_COLUMN
-                                                .getBy())),
-                        "First Name column data should be sorted by descend");
+        assertThat(administrationPage
+                .getFirstNameColumn())
+                .isSortedByAscent();
     }
 
     //To check is sorting function is available for Last Name column in the Admin Grid.
     @Test
     public final void testSortingLastNameColumn() {
 
-        Assert
-                .assertTrue(administrationPage
-                                .getLoginSecondCellLink()
-                                .isDisplayed(),
-                        "If we want to check sorting functions, in grid should be 2 or more users!");
+        assertThat(administrationPage
+                .getLoginSecondCellLink())
+                .isDisplayed();
 
         administrationPage
                 .getLastNameHeaderButton()
                 .click();
 
-        Assert
-                .assertTrue(Ordering
-                                .natural()
-                                .isOrdered(administrationPage
-                                        .pullStringsValueFromGetElements(LAST_NAME_COLUMN.getBy())),
-                        "Last Name column data should be sorted by descend");
+        assertThat(administrationPage
+                .getLastNameColumn())
+                .isSortedByAscent();
     }
 
     //To check is sorting function is available for Login column in the Admin Grid.
     @Test
     public final void testSortingLoginColumn() {
 
-
-        Assert
-                .assertTrue(administrationPage
-                                .getLoginSecondCellLink()
-                                .isDisplayed(),
-                        "If we want to check sorting functions, in grid should be 2 or more users!");
+        assertThat(administrationPage
+                .getLoginSecondCellLink())
+                .isDisplayed();
 
         administrationPage
                 .getLoginHeaderButton()
                 .click();
 
-        Assert
-                .assertTrue(Ordering
-                                .natural()
-                                .isOrdered(administrationPage
-                                        .pullStringsValueFromGetElements(LOGIN_COLUMN.getBy())),
-                        "Login column data should be sorted by descend");
+        assertThat(administrationPage
+                .getLoginColumn())
+                .isSortedByAscent();
     }
 
     //To check is sorting function is available for Role column in the Admin Grid.
     @Test
     public final void testSortingRoleColumn() {
 
-
-        Assert
-                .assertTrue(administrationPage
-                                .getLoginSecondCellLink()
-                                .isDisplayed(),
-                        "If we want to check sorting functions, in grid should be 2 or more users!");
+        assertThat(administrationPage
+                .getLoginSecondCellLink())
+                .isDisplayed();
 
         administrationPage
                 .getRoleHeaderButton();
 
-        Assert
-                .assertTrue(Ordering
-                                .natural()
-                                .isOrdered(administrationPage
-                                        .pullStringsValueFromGetElements(ROLE_COLUMN.getBy())),
-                        "Role column data data should be sorted by descend");
+        assertThat(administrationPage
+                .getRoleColumn())
+                .isSortedByAscent();
     }
 
     //To check is sorting function is available for Region column in the Admin Grid.
     @Test
     public final void testSortingGridsData() {
 
-
-        Assert
-                .assertTrue(administrationPage
-                                .getLoginSecondCellLink()
-                                .isDisplayed(),
-                        "If we want to check sorting functions, in grid should be 2 or more users!");
+        assertThat(administrationPage
+                .getLoginSecondCellLink())
+                .isDisplayed();
 
         administrationPage
                 .getRegionHeaderButton()
                 .click();
 
-        Assert
-                .assertTrue(Ordering
-                                .natural()
-                                .isOrdered(administrationPage
-                                        .pullStringsValueFromGetElements(REGION_COLUMN.getBy())),
-                        "Region column data should be sorted by descend");
+        assertThat(administrationPage
+                .getRegionColumn())
+                .isSortedByAscent();
     }
 
 
     @Test
     public final void testAdminTableNavigation() {
 
-        final int quantityOfGridsPages = Integer
+        int quantityOfGridsPages = Integer
                 .parseInt(administrationPage
                         .getPageCountText()
                         .getText());
 
-        Assert
-                .assertTrue(quantityOfGridsPages >= 2,
-                        "If we want to check navigation functions, should be more than 5 users in the Admin Grid ");
-        Assert
-                .assertFalse(administrationPage
-                                .getFirstNavigationButton()
-                                .isEnabled() &&
-                                administrationPage
-                                        .getBackwardNavigationButton()
-                                        .isEnabled(),
-                        "FIRST and BACKWARD buttons should be disabled at the first page of the Admin Grid  ");
+        assertThat(administrationPage
+                .getPageCountText())
+                .as("If we want to check navigation functions, should be more than 5 users in the Admin Grid ")
+                .isParseMoreThan(1);
+
+        assertThat(administrationPage
+                .getFirstNavigationButton())
+                .isDisabled();
+
+        assertThat(administrationPage
+                .getBackwardNavigationButton())
+                .isDisabled();
 
         administrationPage
                 .getForwardNavigationButton()
                 .click();
-        Assert
-                .assertTrue(Integer
-                                .parseInt(administrationPage
-                                        .getPageNumberText()
-                                        .getText()) == 2,
-                        "After FORWARD buttons click should shows the next page of the table");
+
+        assertThat(administrationPage
+                .getPageNumberText())
+                .as("After FORWARD buttons click should shows the next page of the table")
+                .isParseEqualTo(2);
 
         administrationPage
                 .getBackwardNavigationButton()
                 .click();
-        Assert
-                .assertTrue(Integer
-                                .parseInt(administrationPage
-                                        .getPageNumberText()
-                                        .getText()) == 1,
-                        "After BACKWARD buttons click should shows previous AdminGrid page");
+
+        assertThat(administrationPage
+                .getPageNumberText())
+                .as("After BACKWARD buttons click should shows previous AdminGrid page")
+                .isParseEqualTo(1);
 
         administrationPage
                 .getLastNavigationButton()
                 .click();
-        Assert
-                .assertTrue(Integer
-                                .parseInt(administrationPage
-                                        .getPageNumberText()
-                                        .getText()) == quantityOfGridsPages,
-                        "After LAST button click should shows last page in the Admin Grid");
+
+        assertThat(administrationPage
+                .getPageNumberText())
+                .as("After LAST button click should shows last page in the Admin Grid")
+                .isParseEqualTo(quantityOfGridsPages);
 
         administrationPage
                 .getFirstNavigationButton()
                 .click();
-        Assert
-                .assertTrue(Integer
-                                .parseInt(administrationPage
-                                        .getPageNumberText()
-                                        .getText()) == 1,
-                        "After FIRST button click should shows first page in the Admin Grid");
+
+        assertThat(administrationPage
+                .getPageNumberText())
+                .as( "After FIRST button click should shows first page in the Admin Grid")
+                .isParseEqualTo(1);
     }
 
 }

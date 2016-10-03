@@ -8,7 +8,6 @@ import org.openqa.selenium.WebDriver;
 
 import static academy.softserve.edu.elements.locators.administrator.AdministrationPageLocators.*;
 
-// TODO use Lombok for getters
 
 @Getter
 public class AdministrationPage extends PageObject<AdministrationPage> {
@@ -59,16 +58,16 @@ public class AdministrationPage extends PageObject<AdministrationPage> {
     private final Button backwardNavigationButton = new Button(driver, BACKWARD_NAVIGATION_BUTTON);
 
 
-    private final Link firstNameColumn =
-            new Link(driver, FIRST_NAME_COLUMN);
-    private final Link lastNameColumn =
-            new Link(driver, AdministrationPageLocators.LAST_NAME_COLUMN);
-    private final Link loginColumn =
-            new Link(driver, AdministrationPageLocators.LOGIN_COLUMN);
-    private final Link roleColumn =
-            new Link(driver, AdministrationPageLocators.ROLE_COLUMN);
-    private final Link regionColumn =
-            new Link(driver, AdministrationPageLocators.REGION_COLUMN);
+    private final Element firstNameColumn =
+            new Element(driver, FIRST_NAME_COLUMN);
+    private final Element lastNameColumn =
+            new Element(driver, AdministrationPageLocators.LAST_NAME_COLUMN);
+    private final Element loginColumn =
+            new Element(driver, AdministrationPageLocators.LOGIN_COLUMN);
+    private final Element roleColumn =
+            new Element(driver, AdministrationPageLocators.ROLE_COLUMN);
+    private final Element regionColumn =
+            new Element(driver, AdministrationPageLocators.REGION_COLUMN);
 
 
     public AdministrationPage(final WebDriver driver) {
@@ -126,7 +125,6 @@ public class AdministrationPage extends PageObject<AdministrationPage> {
     public final AdministrationPage putValueToTextBoxAndClick(final String searchingValue) {
         searchInput
                 .sendKeys(searchingValue);
-
         searchButton
                 .click();
         return this;

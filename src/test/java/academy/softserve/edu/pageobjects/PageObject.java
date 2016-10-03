@@ -94,11 +94,4 @@ public abstract class PageObject<T> {
                 .click();
     }
 
-    //Pull String to List from any Grid column cells.
-    public final List<String> pullStringsValueFromGetElements(final By GridColumn) {
-        for (int i = 0; i < getElements(GridColumn).size(); i++) {
-            gridsColumnValues.add(i, getElements(GridColumn).get(i).getText());
-        }
-        return gridsColumnValues;
-    }
 }
