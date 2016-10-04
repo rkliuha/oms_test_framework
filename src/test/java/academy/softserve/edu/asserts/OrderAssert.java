@@ -76,6 +76,21 @@ public class OrderAssert extends AbstractAssert<OrderAssert, Order> {
         return this;
     }
 
+    public final OrderAssert statusNameEquals(final String condition) {
+
+        isNotNull();
+
+        if (!condition.equals(actual.getOrderStatusName())) {
+            failWithMessage("Order {№%s} status {%s} should equal {%s} !",
+                    actual.getOrderNumber(), actual.getOrderStatusName(), condition);
+            logFail("Order {№" + actual.getOrderNumber() + "} status {" + actual.getOrderStatusName() +
+                    "} should equal {" + condition + "} !");
+        } else {
+            logPass("Order {№" + actual.getOrderNumber() + "} status equals {" + condition + "}");
+        }
+        return this;
+    }
+
     @Override
     public final OrderAssert isNotNull() {
 

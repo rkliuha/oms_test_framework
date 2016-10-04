@@ -28,4 +28,5 @@ public class TextInputField extends AbstractClickableElement<TextInputField> {
         Logger.logInfo("<font color='black'>Made input: " + inputText + " into " + "<b>"
                 + locator.getName() + "</b></font>");
     }
+
 }
