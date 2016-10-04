@@ -376,7 +376,11 @@ public enum CreateNewOrderPageLocators implements ILocator {
 
     CALENDAR_MONTH_FORWARD_BUTTON("Calendar Month Forward Button",
             LocatorsType.BY_XPATH,
-            "//div[@id='dp-popup']/div[2]/a[2]");
+            "//div[@id='dp-popup']/div[2]/a[2]"),
+
+    DATA_LINK("Data link",
+            LocatorsType.BY_XPATH,
+            "//div[@id='dp-popup']//tbody/tr[3]/td[1]");
 
     protected String elementName;
     protected LocatorsType locatorType;

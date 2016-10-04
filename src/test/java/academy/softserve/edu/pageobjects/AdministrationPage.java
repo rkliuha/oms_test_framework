@@ -11,8 +11,6 @@ import static academy.softserve.edu.elements.locators.userinfo.UserInfoPageLocat
 @Getter
 public class AdministrationPage extends PageObject<AdministrationPage> {
 
-    public static final String ADMINISTRATION_PAGE_URL = "http://192.168.56.101:8080/oms5/users.htm";
-
     private final Link administrationLink = new Link(driver, ADMINISTRATION_LINK);
     private final Link userInfoLink = new Link(driver, USER_INFO_LINK);
     private final Dropdown searchFieldFilterDropdown = new Dropdown(driver, SEARCH_FIELD_FILTER_DROPDOWN);

@@ -8,7 +8,6 @@ import academy.softserve.edu.enums.CustomerTypes;
 import academy.softserve.edu.enums.Regions;
 import academy.softserve.edu.enums.Roles;
 
-//TODO rename
 public final class TestUtil {
 
     private TestUtil() {

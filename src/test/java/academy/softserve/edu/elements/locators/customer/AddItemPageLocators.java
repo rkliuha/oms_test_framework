@@ -98,7 +98,6 @@ public enum AddItemPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//div[@id='list']/descendant::form[contains(@id, 'selectFrom')][1]/a");
 
-
     protected String elementName;
     protected LocatorsType locatorType;
     protected String locatorValue;

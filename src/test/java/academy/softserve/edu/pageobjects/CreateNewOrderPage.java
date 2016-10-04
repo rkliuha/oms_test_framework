@@ -136,6 +136,10 @@ public class CreateNewOrderPage extends PageObject<CreateNewOrderPage> {
     private final Button firstItemDeleteButton =
             new Button(driver, FIRST_ITEM_DELETE_BUTTON);
 
+    private  final Link dataLink = new Link(driver, DATA_LINK);
+
+    private  final Link orderingLink = new Link(driver, CUSTOMER_ORDERING_LINK);
+
     public CreateNewOrderPage(final WebDriver driver) {
         super(driver);
     }
@@ -143,6 +147,13 @@ public class CreateNewOrderPage extends PageObject<CreateNewOrderPage> {
     public final OrderItemsErrorMessagePage getOrderItemsErrorMessage() {
         saveButton.click();
         return new OrderItemsErrorMessagePage(driver);
+    }
+
+    public final AddItemPage clickAddItemButton() {
+
+        getAddItemButton().click();
+
+        return new AddItemPage(driver);
     }
 
 }
