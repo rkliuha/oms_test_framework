@@ -106,7 +106,6 @@ public class TotalsSectionTest extends TestRunner {
     }
 
     //  Test order status if the Totals are correctly specified is performed
-
     @Test
     public final void testItemsPerformed() {
 
@@ -155,7 +154,7 @@ public class TotalsSectionTest extends TestRunner {
         final Order testOrder = DBHandler.getOrderByNumber(Integer.parseInt(orderNumber));
 
         assertThat(testOrder)
-                .isCreated(DBHandler.getOrderByNumber(Integer.parseInt(orderNumber)).getOrderStatusReference());
+                .statusNameEquals(DBHandler.getOrderByNumber(Integer.parseInt(orderNumber)).getOrderStatusName());
     }
 
     //  Test error messages if some parameter incorrect
@@ -210,7 +209,6 @@ public class TotalsSectionTest extends TestRunner {
     }
 
     //  Test error message, if the Totals are correctly specified without order number
-    //  or such order number already exists
     @Test
     public final void testOrderNumberEmptyErrorMessage() {
 
@@ -240,6 +238,8 @@ public class TotalsSectionTest extends TestRunner {
                 .textContains("Order Number is int value");
     }
 
+    //  Test error message, if the Totals are correctly specified
+    // with order number, what already exists
     @Test
     public final void testOrderNumberExistsErrorMessage() {
 

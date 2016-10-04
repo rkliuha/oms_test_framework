@@ -5,7 +5,6 @@ import academy.softserve.edu.pageobjects.AddItemPage;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.TestRunner;
 import academy.softserve.edu.utils.TestUtil;
-import org.testng.Assert;
 import org.testng.annotations.*;
 
 import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
@@ -107,10 +106,8 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
 
         createNewOrderPage.getOrderButton().click();
 
-        Assert.assertTrue("Ordered".equals(customerOrderingPage
-                        .getOrderStatusByNumber(orderNumber)
-                        .getText()),
-                "Order is not finished with Ordered status");
+        assertThat(customerOrderingPage.getOrderStatusByNumber(orderNumber))
+                .textEquals("Ordered");
     }
 
     @Test
@@ -143,10 +140,8 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
 
         createNewOrderPage.getOrderButton().click();
 
-        Assert.assertTrue("Ordered".equals(customerOrderingPage
-                        .getOrderStatusByNumber(orderNumber)
-                        .getText()),
-                "Order is not finished with Ordered status");
+        assertThat(customerOrderingPage.getOrderStatusByNumber(orderNumber))
+                .textEquals("Ordered");
     }
 
     @Test
@@ -164,10 +159,8 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
 
         createNewOrderPage.getOrderButton().click();
 
-        Assert.assertTrue("Ordered".equals(customerOrderingPage
-                        .getOrderStatusByNumber(orderNumber)
-                        .getText()),
-                "Order is not finished with Ordered status");
+        assertThat(customerOrderingPage.getOrderStatusByNumber(orderNumber))
+                .textEquals("Ordered");
     }
 
     @AfterMethod
