@@ -33,6 +33,22 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
         return this;
     }
 
+    public final AbstractElementAssert isNotDisplayed() {
+
+        isNotNull();
+
+        if (actual.isDisplayed()) {
+
+            failWithMessage("Element {%s} with locator {%s} should not be displayed !",
+                    actual.getLocatorName(), actual.getLocatorValue());
+            logFail("Element {" + actual.getLocatorName() + "} with locator {" +
+                    actual.getLocatorValue() + "} should not be displayed !");
+        } else {
+            logPass("Element {" + actual.getLocatorName() + "} is not displayed");
+        }
+        return this;
+    }
+
     public final AbstractElementAssert textContains(final String condition) {
 
         isNotNull();
