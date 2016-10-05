@@ -31,6 +31,7 @@ public class CreatedUserLogInTest extends TestRunner {
                 .isDisplayed();
     }
 
+
     @Test(priority = 2)
     public void testCreateUserPageExist() {
 

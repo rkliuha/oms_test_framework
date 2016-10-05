@@ -10,9 +10,6 @@ import static academy.softserve.edu.elements.locators.userinfo.UserInfoPageLocat
 @Getter
 public class ItemManagementPage extends PageObject<ItemManagementPage> {
 
-    //TODO remove
-    public static final String ITEM_MANAGEMENT_PAGE_URL = "http://192.168.56.101:8080/oms5/itemManagement.htm";
-
     private final Link userInfoLink = new Link(driver, USER_INFO_LINK);
     private final Dropdown searchFieldFilterDropdown = new Dropdown(driver, SEARCH_FIELD_FILTER_DROPDOWN);
     private final TextInputField searchInput = new TextInputField(driver, SEARCH_INPUT);

@@ -18,7 +18,6 @@ public class Wait {
         this.locator = locator;
     }
 
-    //TODO re-do into returning web element
     public final void waitUntilElementIsPresent() {
 
         new WebDriverWait(driver, timeout)
@@ -26,7 +25,6 @@ public class Wait {
                 .until(ExpectedConditions.presenceOfElementLocated(locator.getBy()));
     }
 
-    //TODO re-do into returning web element
     public final void waitUntilElementIsClickable() {
 
         new WebDriverWait(driver, timeout)

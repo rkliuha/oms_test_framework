@@ -15,7 +15,6 @@ public enum LocatorsType {
             return By.id(locator);
         }
     },
-    
     BY_NAME {
         @Override
         public By getBy(final String locator) {return By.name(locator);

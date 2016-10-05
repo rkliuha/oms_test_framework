@@ -20,8 +20,6 @@ public class UserInfoPage extends PageObject<UserInfoPage> {
     private final Link itemManagementLink = new Link(driver, ITEM_MANAGEMENT_LINK);
     private final Link customerOrderingLink = new Link(driver, CUSTOMER_ORDERING_LINK);
     private final Link merchandiserOrderingLink = new Link(driver, MERCHANDISER_ORDERING_LINK);
-    //TODO remove
-    public static final String USER_INFO_PAGE_URL = "http://192.168.56.101:8080/oms5/userInfo.htm";
     private final Link ukrainianSwitchLink = new Link(driver, UKRAINIAN_SWITCH_LINK);
     private final Link englishSwitchLink = new Link(driver, ENGLISH_SWITCH_LINK);
     private final Link userInfoLink = new Link(driver, USER_INFO_LINK);

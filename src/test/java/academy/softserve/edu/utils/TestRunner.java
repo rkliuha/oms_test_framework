@@ -9,15 +9,13 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
+import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 
 public class TestRunner {
 
-    //TODO remove, use default properties method
     public static final String CONFIG_PROPERTIES = "src/resources/config.properties";
-
     public static final String LOG_IN_PAGE = PropertiesReader.getProperty("login.url", CONFIG_PROPERTIES);
-    protected static final int TIMEOUT = 10;
 
     @Getter
     protected WebDriver driver;
@@ -36,24 +34,35 @@ public class TestRunner {
     protected CreateNewOrderPage createNewOrderPage;
     protected AddItemPage addItemPage;
 
-    @Parameters("browser")
+    @Parameters({"browser", "version"})
     @BeforeMethod
-    public final void setUp(@Optional("firefox") final String browserParameter) {
+    public final void setUp(@Optional("firefox") final String browser, @Optional("46 ") final String version) throws MalformedURLException {
 
-        Browsers browser = Browsers.valueOf(browserParameter.toUpperCase());
+        final WebDriverFactory webDriverFactory = new WebDriverFactory();
 
-        driver = new WebDriverFactory().getDriver(browser);
-        driver.manage().window().maximize();
-        //TODO remove when explicit waits are ready
-        driver.manage().timeouts().implicitlyWait(TIMEOUT, TimeUnit.SECONDS);
-        driver.get(LOG_IN_PAGE);
+        webDriverFactory
+                .setDriver(browser, version);
+
+        driver = webDriverFactory.getDriver();
+
+        driver
+                .manage()
+                .window()
+                .maximize();
+
+        driver
+                .get(LOG_IN_PAGE);
 
         logInPage = new LogInPage(driver);
     }
 
     @AfterMethod
     public final void tearDown() {
-        driver.quit();
+
+        driver
+                .quit();
     }
 
 }
+
+

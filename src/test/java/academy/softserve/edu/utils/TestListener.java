@@ -5,7 +5,6 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
-import org.testng.Reporter;
 import org.testng.TestListenerAdapter;
 
 import java.io.File;
@@ -36,7 +35,7 @@ public class TestListener extends TestListenerAdapter {
                     + formatter.format(currentDate) + result.getName() + ".png"));
             Logger.logFail("<a target='_top' href='" + "screenshots/"
                     + formatter.format(currentDate) + result.getName()
-                    + ".png'><b><font size='2' color='orange'> Screenshot </font></b></a>");
+                    + ".png'><b><font size='2' color='orange'> Screenshot</font></b></a>");
         } catch (IOException e) {
             e.printStackTrace();
         }

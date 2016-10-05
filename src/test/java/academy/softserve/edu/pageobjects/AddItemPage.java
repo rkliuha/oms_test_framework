@@ -28,6 +28,12 @@ public class AddItemPage extends PageObject<AddItemPage> {
     private final Button doneButton =
             new Button(driver, DONE_BUTTON);
 
+    private final Dropdown searchForItemDropdown = new Dropdown(driver, SEARCH_FOR_ITEM_DROPDOWN);
+
+    private final TextInputField searchForItemInput = new TextInputField(driver, SEARCH_FOR_ITEM_INPUT);
+
+    private final Button searchForItemButton = new Button(driver, SEARCH_FOR_ITEM_BUTTON);
+
     public AddItemPage(final WebDriver driver) {
         super(driver);
     }

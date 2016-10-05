@@ -11,8 +11,6 @@ import static academy.softserve.edu.elements.locators.userinfo.UserInfoPageLocat
 @Getter
 public class MerchandiserOrderingPage extends PageObject<MerchandiserOrderingPage> {
 
-    //TODO remove
-    public static final String MERCHANDISER_ORDERING_PAGE_URL = "http://192.168.56.101:8080/oms5/order.htm";
     // searchByText is unique MerchandiserOrderingPage element
     private final TextLabel searchByText = new TextLabel(driver, SEARCH_BY_TEXT);
     private final Link userInfoLink = new Link(driver, USER_INFO_LINK);

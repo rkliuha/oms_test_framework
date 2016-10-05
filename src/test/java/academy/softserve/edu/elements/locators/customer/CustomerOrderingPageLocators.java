@@ -105,7 +105,31 @@ public enum CustomerOrderingPageLocators implements ILocator {
     ORDER_STATUS("Order Status 1",
             LocatorsType.BY_XPATH,
             "//div[@id='list']/table/tbody/tr/"
-                    + "td[contains(text(), 'OrderName%s')]/following-sibling::td[4]");
+                    + "td[contains(text(), 'OrderName%s')]/following-sibling::td[4]"),
+
+    EDIT_LINK("Edit link",
+            LocatorsType.BY_XPATH,
+            "(//div[@id='list']//tbody/tr[2]//a)[1]"),
+
+    DELETE_LINK("Delete link",
+            LocatorsType.BY_XPATH,
+            "(//div[@id='list']//tbody/tr[2]//a)[2]"),
+
+    ORDER_ROW("Order row",
+              LocatorsType.BY_XPATH,
+            "//div[@id='list']/table//tr[2]"),
+
+    RESIZE_SHOW_ITEMS_LINK("Resize show items link",
+            LocatorsType.BY_XPATH,
+            "//form[@id='searchFilter']//a"),
+
+    SEARCH_RESULT("Search_result",
+            LocatorsType.BY_XPATH,
+            "//div[@id='list']/table//tr[%s]"),
+
+    SEARCH_STATUS_RESULT("Search status result",
+                  LocatorsType.BY_XPATH,
+            "//div[@id='list']/table/tbody/tr[2]");
 
     protected String elementName;
     protected LocatorsType locatorType;

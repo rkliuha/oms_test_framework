@@ -1,5 +1,6 @@
 package academy.softserve.edu.tests.customer;
 
+import academy.softserve.edu.elements.wrappers.Element;
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.CustomerOrderingPage;
 import academy.softserve.edu.utils.DataProviders;
@@ -11,13 +12,14 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+import static academy.softserve.edu.asserts.FluentAssertions.*;
+
+
 //TODO get rid of collection of WebElements, refactor for use wrappers and custom assertions;
 public class SearchTest extends TestRunner {
 
-    private static final By ORDERED_RESULT = By.xpath(".//div[@id='list']/table/tbody/tr");
-
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataSearchStatusCustomer")
-    public void testStatusSearch(final String searchOrder, final String searchOrderValue) {
+    public void testStatusSearch(final String searchOrder, final String searchOrderValue, final Element element) {
 
         userInfoPage = logInPage
                 .logInAs(Roles.CUSTOMER);
@@ -36,18 +38,12 @@ public class SearchTest extends TestRunner {
                 .getSearchInput()
                 .sendKeys(searchOrderValue);
 
-        final List<WebElement> elementsList = customerOrderingPage
-                .getElements(ORDERED_RESULT);
-
-        elementsList
-                .forEach(element -> Assert.assertTrue(element
-                        .getText()
-                        .equals(searchOrderValue), "Status search result isn't contains " + searchOrderValue));
+        assertThat(element)
+                .isDisplayed();
     }
 
-    // TODO remove data provider
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataSearchElementsCustomer")
-    public void testElementsSearch(final By elementPath, final int elementsAmount) {
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "testData5SearchElementsCustomer")
+    public void test5ElementsSearch(final String elements) {
 
         userInfoPage = logInPage
                 .logInAs(Roles.CUSTOMER);
@@ -58,15 +54,29 @@ public class SearchTest extends TestRunner {
 
         customerOrderingPage = new CustomerOrderingPage(driver);
 
-        customerOrderingPage
-                .click(elementPath);
+        customerOrderingPage.getResizeShowItemsLink()
+                .click();
 
-        final List<WebElement> elementsList = customerOrderingPage
-                .getElements(ORDERED_RESULT);
+        assertThat(customerOrderingPage.getSearchResult(elements))
+                .isDisplayed();
+    }
 
-        elementsList
-                .stream()
-                .filter(element -> elementsList.size() >= elementsAmount)
-                .forEach(element -> Assert.assertTrue(element.isDisplayed(), "Aren't " + elementsAmount + " elements on page"));
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "testData10SearchElementsCustomer")
+    public void test10ElementsSearch(final String elements) {
+
+        userInfoPage = logInPage
+                .logInAs(Roles.CUSTOMER);
+
+        userInfoPage
+                .getCustomerOrderingLink()
+                .click();
+
+        customerOrderingPage = new CustomerOrderingPage(driver);
+
+        customerOrderingPage.getResizeShowItemsLink()
+                .click();
+
+        assertThat(customerOrderingPage.getSearchResult(elements))
+                .isDisplayed();
     }
 }

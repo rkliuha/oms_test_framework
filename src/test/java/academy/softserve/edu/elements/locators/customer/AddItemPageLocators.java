@@ -22,7 +22,7 @@ public enum AddItemPageLocators implements ILocator {
             LocatorsType.BY_ID,
             "searchProperty"),
 
-    SEARCH_FOR_ITEM_INPUT("Seach For Item Input",
+    SEARCH_FOR_ITEM_INPUT("Search For Item Input",
             LocatorsType.BY_ID,
             "searchValue"),
 
@@ -97,7 +97,6 @@ public enum AddItemPageLocators implements ILocator {
     SELECT_LAST_ADDED_ITEM_LINK("Select Last Added Item Link",
             LocatorsType.BY_XPATH,
             "//div[@id='list']/descendant::form[contains(@id, 'selectFrom')][1]/a");
-
 
     protected String elementName;
     protected LocatorsType locatorType;

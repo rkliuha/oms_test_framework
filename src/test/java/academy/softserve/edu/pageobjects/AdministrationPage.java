@@ -12,8 +12,6 @@ import static academy.softserve.edu.elements.locators.administrator.Administrati
 @Getter
 public class AdministrationPage extends PageObject<AdministrationPage> {
 
-    public static final String ADMINISTRATION_PAGE_URL = "http://192.168.56.101:8080/oms5/users.htm";
-
     private final Link administrationLink = new Link(driver, ADMINISTRATION_LINK);
     private final Link userInfoLink = new Link(driver, USER_INFO_LINK);
     private final Dropdown searchFieldFilterDropdown = new Dropdown(driver, SEARCH_FIELD_FILTER_DROPDOWN);
@@ -25,7 +23,7 @@ public class AdministrationPage extends PageObject<AdministrationPage> {
     private final Link editLastUserCellLink = new Link(driver,
             EDIT_USER_CELL_LINK.modify("//table[@id='table']/tbody/tr[last()]/td[6]/a"));
     private final Link deleteFirstUserCellLink = new Link(driver,
-            DELETE_USER_CELL_LINK.modify("//table[@id='table']/tbody/tr[1]/td[7]/a"));
+            DELETE_USER_CELL_LINK.modify("1"));
     private final Link createReportLink = new Link(driver, CREATE_REPORT_LINK);
     private final Link createUserLink = new Link(driver, CREATE_USER_LINK);
 

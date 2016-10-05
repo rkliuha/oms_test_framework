@@ -7,7 +7,6 @@ import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-//TODO not a factory, rename
 public class MySQLDaoFactory implements DaoFactory {
 
     private static final String USERNAME = "oms";

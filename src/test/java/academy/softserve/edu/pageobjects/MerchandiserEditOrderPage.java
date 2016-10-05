@@ -11,7 +11,6 @@ import static academy.softserve.edu.elements.locators.userinfo.UserInfoPageLocat
 @Getter
 public class MerchandiserEditOrderPage extends PageObject<MerchandiserEditOrderPage> {
 
-    public static final String MERCHANDISER_EDIT_USER_PAGE_URL = PropertiesReader.getDefaultProperty("merchandiser.edit.order.url");
     private final Link userInfoLink = new Link(driver, USER_INFO_LINK);
     private final Dropdown orderStatusDropdown = new Dropdown(driver, ORDER_STATUS_DROPDOWN);
     private final Link showItems = new Link(driver, SHOW_ITEMS);
