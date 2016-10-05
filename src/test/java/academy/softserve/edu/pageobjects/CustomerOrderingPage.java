@@ -2,14 +2,9 @@ package academy.softserve.edu.pageobjects;
 
 import academy.softserve.edu.elements.wrappers.*;
 import lombok.Getter;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
 
 import static academy.softserve.edu.elements.locators.customer.CustomerOrderingPageLocators.*;
-import static academy.softserve.edu.elements.locators.merchandiser.MerchandiserOrderingPageLocators.STATUS_CELL;
 
 @Getter
 public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
@@ -28,8 +23,6 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
     private final Link deleteLink = new Link(driver, DELETE_LINK);
 
     private final Element orderRow = new Element(driver, ORDER_ROW);
-
-    private final Element searchResult = new Element(driver, SEARCH_RESULT);
 
     private final Element searchStatusResult = new Element(driver, SEARCH_STATUS_RESULT);
 
@@ -57,11 +50,6 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
         createNewOrderLink.click();
 
         return new CreateNewOrderPage(driver);
-    }
-
-    public final Element getSearchResult(final String statusNumber) {
-
-        return new Element(driver, SEARCH_RESULT.modify(statusNumber));
     }
 
     final public boolean checkElementsAmount(final Element elements, final int elementsAmount) {

@@ -123,10 +123,6 @@ public enum CustomerOrderingPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//form[@id='searchFilter']//a"),
 
-    SEARCH_RESULT("Search_result",
-            LocatorsType.BY_XPATH,
-            "//div[@id='list']/table//tr[%s]"),
-
     SEARCH_STATUS_RESULT("Search status result",
             LocatorsType.BY_XPATH,
             "//div[@id='list']/table/tbody/tr[2]/td[5]"),
