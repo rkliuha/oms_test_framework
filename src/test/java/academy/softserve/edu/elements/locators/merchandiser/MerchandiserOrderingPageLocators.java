@@ -68,7 +68,7 @@ public enum MerchandiserOrderingPageLocators implements ILocator {
 
     ORDER_NAME_CELL("Order Name Cell",
             LocatorsType.BY_XPATH,
-            "//div[@id='list']//tr[%s]/td[1]"),
+            "//*[@id='list']/table/tbody/tr[%s]/td[1]"),
 
     TOTAL_PRICE_HEADER_LINK("Total Price Header Link",
             LocatorsType.BY_XPATH,
@@ -136,7 +136,11 @@ public enum MerchandiserOrderingPageLocators implements ILocator {
 
     STATUS_COLUMN("Status Column",
             LocatorsType.BY_XPATH,
-            "//*[@id='list']/table/tbody//td[5]");
+            "//*[@id='list']/table/tbody//td[5]"),
+
+    ORDER_NAME_CELL_VALUE("Order name value",
+            LocatorsType.BY_XPATH,
+            "//*[@id='list']/table/tbody/tr[2]/td[1]");
 
 
     protected String elementName;

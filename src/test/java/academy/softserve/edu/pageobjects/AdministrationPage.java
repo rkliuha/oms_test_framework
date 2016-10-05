@@ -107,27 +107,5 @@ public class AdministrationPage extends PageObject<AdministrationPage> {
         return new CreateReportPage(driver);
     }
 
-    //Methods for adminGridTests
-
-    // 3 methods for searching
-    public final AdministrationPage selectFirstFilterValue(final String firstSearchFilter) {
-        searchFieldFilterDropdown
-                .sendKeys(firstSearchFilter);
-        return this;
-    }
-
-    public final AdministrationPage selectSecondFilterValue(final String secondSearchFilter) {
-        searchConditionDropdown
-                .sendKeys(secondSearchFilter);
-        return this;
-    }
-
-    public final AdministrationPage putValueToTextBoxAndClick(final String searchingValue) {
-        searchInput
-                .sendKeys(searchingValue);
-        searchButton
-                .click();
-        return this;
-    }
 
 }

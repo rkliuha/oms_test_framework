@@ -305,24 +305,6 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
         return this;
     }
 
-    public final AbstractElementAssert isSortedByAscentStrings() {
-
-        final List<String> gridsColumnValues = new LinkedList<>();
-
-        for (int i = 0; i < actual.getElements().size(); i++) {
-            gridsColumnValues.add(i, ((WebElement)(actual.getElements().get(i))).getText());
-        }
-        if (!Ordering
-                .natural()
-                .isOrdered(gridsColumnValues)) {
-
-            failWithMessage("Element's {%s} data should be sorted by ascent ", actual.getLocatorName());
-            logFail("Element's {" + actual.getLocatorName() + "} data should be sorted by ascent ");
-        } else {
-            logPass("Element's {" + actual.getLocatorName() + "} data sorted by ascent");
-        }
-        return this;
-    }
 
     public final AbstractElementAssert isMoreThan(int quantity) {
         if (actual.getElements().size() <= quantity) {
@@ -360,8 +342,8 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
         return this;
     }
 
-    public final AbstractElementAssert isParseIntEqualTo(int quantity){
-        if(Integer.parseInt(actual.getText()) != quantity) {
+    public final AbstractElementAssert isParseIntEqualTo(int quantity) {
+        if (Integer.parseInt(actual.getText()) != quantity) {
 
             failWithMessage("Element's {%s} data should be equal {%s} ", actual.getLocatorName(), quantity);
             logFail("Element's {" + actual.getLocatorName() + "} data should be equal {" + quantity + "}");
@@ -371,9 +353,9 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
         return this;
     }
 
-    public final AbstractElementAssert isParseIntMoreThan(int quantity){
+    public final AbstractElementAssert isParseIntMoreThan(int quantity) {
 
-        if(Integer.parseInt(actual.getText()) <= quantity) {
+        if (Integer.parseInt(actual.getText()) <= quantity) {
 
             failWithMessage("Element's {%s} data should be more, than {%s} ", actual.getLocatorName(), quantity);
             logFail("Element's {" + actual.getLocatorName() + "} data should be more, than {" + quantity + "}");
@@ -383,29 +365,27 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
         return this;
     }
 
-    //Pull Double to List from any Grid column cells.
-    public final AbstractElementAssert isSortedByDescendDouble() {
 
-        List<Double> gridsColumnDoubleValues = new LinkedList<>();
-        for (int i = 0; i < actual.getElements().size(); i++) {
-            gridsColumnDoubleValues
-                    .add(i, Double
-                            .parseDouble(((WebElement) (actual
-                                    .getElements()
-                                    .get(i)))
-                                    .getText()));
-        }
-            if(!Ordering
-                    .natural()
-                    .reverse()
-                    .isOrdered(gridsColumnDoubleValues)){
+    public AbstractElementAssert isTrue(final boolean value) {
 
-            failWithMessage("Element's {%s} data should be sorted by descend ", actual.getLocatorName());
-            logFail("Element's {" + actual.getLocatorName() + "} data should be sorted by descend ");
+        if (!value) {
+            failWithMessage("Element's {%s} Expected True, but in fact False!", actual.getLocatorName());
+            logFail("Element's {" + actual.getLocatorName() + "} Expected True, but in fact False! ");
         } else {
-            logPass("Element's {" + actual.getLocatorName() + "} data sorted by descend");
+            logPass("Element's {" + actual.getLocatorName() + "} True");
         }
+        return this;
+    }
 
+    public AbstractElementAssert isValueEqualTo(String someString) {
+
+        if (!(someString.equals(actual.getText()))) {
+
+            failWithMessage("Element's {%s} text should be equal to {%s} ", actual.getText(), someString);
+            logFail("Element's  {" + actual.getLocatorName() + "} text should be equal to {" + someString + "}");
+        } else {
+            logPass("Element's {" + actual.getLocatorName() + "} text equal to  {" + someString + "}");
+        }
         return this;
     }
 
@@ -419,5 +399,6 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
         }
         return this;
     }
+
 
 }

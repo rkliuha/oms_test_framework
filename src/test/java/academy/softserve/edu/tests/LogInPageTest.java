@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
 
-public class LogInPageTest extends TestRunner {
+public class     LogInPageTest extends TestRunner {
 
     @Test
     public final void testLoginInputsAreEmpty() {
