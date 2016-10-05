@@ -104,7 +104,15 @@ public enum ItemManagementPageLocators implements ILocator {
 
     CREATE_REPORT_LINK("Create Report Link",
             LocatorsType.BY_XPATH,
-            "//div[@id='list']/a[2]");
+            "//div[@id='list']/a[2]"),
+
+    PRODUCT_SEARCH_RESULT("Product search result",
+            LocatorsType.BY_XPATH,
+            "//table[@id='table']/tbody/tr"),
+
+    DELETE_PRODUCT("Delete product",
+            LocatorsType.BY_XPATH,
+            "//table[@id='table']//td[5]/a");
 
     protected String elementName;
     protected LocatorsType locatorType;
