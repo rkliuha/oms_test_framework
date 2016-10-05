@@ -15,9 +15,16 @@ public enum MerchandiserEditOrderPageLocators implements ILocator {
             "//input[@type='button']"),
 
     SHOW_ITEMS("Edit Order",
-                     LocatorsType.BY_XPATH,
+            LocatorsType.BY_XPATH,
             "//a[@href='orderItemsResize.htm?orderId=1']"),
-    ;
+
+    CHOOSE_DATE("Choose date",
+            LocatorsType.BY_XPATH,
+            "//form[@id='merchandiserOrderEditForm']//a"),
+
+    LAST_DAY("Last day",
+            LocatorsType.BY_XPATH,
+            "//table[@class = 'jCalendar']//tr[6]/td[7]");
 
     protected String elementName;
     protected LocatorsType locatorType;

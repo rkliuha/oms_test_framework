@@ -15,6 +15,9 @@ public class MerchandiserEditOrderPage extends PageObject<MerchandiserEditOrderP
     private final Dropdown orderStatusDropdown = new Dropdown(driver, ORDER_STATUS_DROPDOWN);
     private final Link showItems = new Link(driver, SHOW_ITEMS);
     private final Button saveButton = new Button(driver, SAVE_BUTTON);
+    private final Link chooseDate = new Link(driver, CHOOSE_DATE);
+    private final Link lastDate = new Link(driver, LAST_DAY);
+
 
     public MerchandiserEditOrderPage(final WebDriver driver) {
         super(driver);
@@ -32,4 +35,13 @@ public class MerchandiserEditOrderPage extends PageObject<MerchandiserEditOrderP
         showItems.click();
         return this;
     }
+    public final MerchandiserEditOrderPage clickChooseDate(){
+        chooseDate.click();
+        return this;
+    }
+    public final MerchandiserEditOrderPage clickLastDate(){
+        lastDate.click();
+        return this;
+    }
+
 }
