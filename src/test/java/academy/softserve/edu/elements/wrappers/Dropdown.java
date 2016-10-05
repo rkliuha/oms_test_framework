@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 public class Dropdown extends AbstractClickableElement<Dropdown> {
 
     private Select select;
-
+    // TODO consider removing 'findElement' from constructor
     public Dropdown(final WebDriver driver, final ILocator locator) {
         super(driver, locator);
         select = new Select(driver.findElement(locator.getBy()));
