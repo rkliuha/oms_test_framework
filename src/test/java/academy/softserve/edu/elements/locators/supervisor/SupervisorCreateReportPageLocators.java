@@ -4,7 +4,7 @@ import academy.softserve.edu.elements.interfaces.ILocator;
 import academy.softserve.edu.elements.LocatorsType;
 import org.openqa.selenium.By;
 
-public enum CreateReportPageLocators implements ILocator {
+public enum SupervisorCreateReportPageLocators implements ILocator {
 
     ITEM_MANAGEMENT_LINK("Item Management Link",
             LocatorsType.BY_XPATH,
@@ -99,8 +99,8 @@ public enum CreateReportPageLocators implements ILocator {
     protected String locatorValue;
     private String modifiedLocator;
 
-    CreateReportPageLocators(final String elementName,
-                             final LocatorsType locatorType, final String locatorValue) {
+    SupervisorCreateReportPageLocators(final String elementName,
+                                       final LocatorsType locatorType, final String locatorValue) {
         this.elementName = elementName;
         this.locatorType = locatorType;
         this.locatorValue = locatorValue;
@@ -123,7 +123,7 @@ public enum CreateReportPageLocators implements ILocator {
     }
 
     @Override
-    public CreateReportPageLocators modify(final String parameter) {
+    public SupervisorCreateReportPageLocators modify(final String parameter) {
         this.modifiedLocator = String.format(this.locatorValue, parameter);
         return this;
     }
