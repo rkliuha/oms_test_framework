@@ -21,7 +21,7 @@ public class MySQLUserDao implements UserDao {
             " RoleRef FROM Users ORDER BY ID DESC LIMIT 1;";
     private static final String CREATE_USER_QUERY = "INSERT INTO Users (IsUserActive, Balance, Email," +
             " FirstName, LastName, Login, Password, CustomerTypeRef, RegionRef," +
-            " RoleRef) VALUES(?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?);";
+            " RoleRef) VALUES(?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?); ";
     private static final String UPDATE_USER_QUERY = "UPDATE Users SET IsUserActive = ?, Balance = ?, Email = ?," +
             " FirstName = ?, LastName = ?, Login = ?, Password = ?, CustomerTypeRef = ?, RegionRef = ?," +
             " RoleRef = ? WHERE ID = ?;";
