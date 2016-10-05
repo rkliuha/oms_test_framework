@@ -30,9 +30,9 @@ public class WebDriverFactory {
 
         final Browsers cmdBrowserTypeEnum = Browsers.valueOf(browser.toUpperCase());
 
-        final boolean newRemote = Boolean.valueOf(remote);
+        final boolean isRemote = Boolean.valueOf(remote);
 
-        if (!newRemote) {
+        if (!isRemote) {
 
             if ("firefox".equals(browser)) {
 
