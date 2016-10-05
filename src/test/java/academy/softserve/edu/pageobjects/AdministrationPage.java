@@ -23,7 +23,7 @@ public class AdministrationPage extends PageObject<AdministrationPage> {
             EDIT_USER_CELL_LINK.modify("//table[@id='table']/tbody/tr[last()]/td[6]/a"));
     private final Button lastNavigationButton = new Button(driver, LAST_NAVIGATION_BUTTON);
     private final Link deleteFirstUserCellLink = new Link(driver,
-            DELETE_USER_CELL_LINK.modify("1"));
+            DELETE_USER_CELL_LINK.modify("//table[@id='table']/tbody/tr[1]/td[7]/a"));
     private final Link createReportLink = new Link(driver, CREATE_REPORT_LINK);
     private final Link createUserLink = new Link(driver, CREATE_USER_LINK);
 

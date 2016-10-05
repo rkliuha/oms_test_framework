@@ -1,6 +1,5 @@
 package academy.softserve.edu.domains;
 
-import academy.softserve.edu.enums.OrderStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -190,10 +189,6 @@ public class Order {
 
             return order;
         }
-    }
-
-    public final String getOrderStatusName() {
-        return OrderStatus.getOrderStatusNameByReference(orderStatusReference);
     }
 
     @Override

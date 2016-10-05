@@ -44,7 +44,6 @@ public final class TestUtil {
 
     //  Quantity of Orders must be "<=6"
     public static final int createValidOrderInDB() {
-
         return DBHandler.createOrder(Order.newBuilder()
                 .setId(0)
                 .setDeliveryDate(null)
@@ -54,24 +53,11 @@ public final class TestUtil {
                 .setOrderName("NewOrderName")
                 .setOrderNumber(7)
                 .setPreferableDeliveryDate("2016-11-14 19:10:00")
-                .setTotalPrice(7500.0)
+                .setTotalPrice(25)
                 .setAssignee(8)
                 .setCustomer(13)
                 .setOrderStatusReference(1)
-                .build());
+                .build()
+        );
     }
-
-    public static final int createOrderItemInDB() {
-
-        return DBHandler.createOrderItem(OrderItem.newBuilder()
-                .setId(0)
-                .setCost(7500.0)
-                .setItemPrice(500.0)
-                .setQuantity(3)
-                .setDimensionReference(2)
-                .setOrderReference(7)
-                .setProductReference(6)
-                .build());
-    }
-
 }

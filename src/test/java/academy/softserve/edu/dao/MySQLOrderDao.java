@@ -91,7 +91,7 @@ public class MySQLOrderDao implements OrderDao {
     }
 
     @Override
-    public final Order getOrderByNumber(final int orderNumber) {
+    public final Order getOrderByNumber(final int orderNumber) throws SQLException {
 
         Order order = null;
         try (final PreparedStatement preparedStatement =
@@ -118,7 +118,7 @@ public class MySQLOrderDao implements OrderDao {
                         .build();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw e;
         }
         return order;
     }
