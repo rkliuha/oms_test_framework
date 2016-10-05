@@ -20,4 +20,11 @@ public class ItemManagementPage extends PageObject<ItemManagementPage> {
     public ItemManagementPage(final WebDriver driver) {
         super(driver);
     }
+
+    public final UserInfoPage clickUserInfoTab() {
+
+        userInfoLink.click();
+
+        return new UserInfoPage(driver);
+    }
 }

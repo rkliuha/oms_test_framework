@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
 
-public class SwitchTabsByCustomerTest extends TestRunner {
+public class SwitchTabsTest extends TestRunner {
 
     @Test
     public void testDefaultUserInfoPage() {
