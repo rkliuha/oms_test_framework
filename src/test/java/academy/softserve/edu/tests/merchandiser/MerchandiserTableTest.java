@@ -1,0 +1,251 @@
+package academy.softserve.edu.tests.merchandiser;
+
+import academy.softserve.edu.enums.Roles;
+import academy.softserve.edu.pageobjects.UserInfoPage;
+import academy.softserve.edu.utils.SortUtil;
+import academy.softserve.edu.utils.TestRunner;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
+
+public class MerchandiserTableTest extends TestRunner {
+
+    @BeforeMethod
+    public final void setMerchandiserTableTest() {
+        logInPage.logInAs(Roles.MERCHANDISER);
+
+        userInfoPage = new UserInfoPage(driver);
+
+        // after if logIn failure;
+        assertThat(userInfoPage
+                .getUserInfoFieldSet())
+                .isDisplayed();
+
+        merchandiserOrderingPage = userInfoPage.clickMerchandiserOrderingTab();
+    }
+
+/*
+
+    // To check Merchandiser table is enable or not. And Edit and Delete function is available
+    @Test
+    final public void testMerchandiserTableIsEnable() {
+
+        assertThat(merchandiserOrderingPage
+                .getEditCellLink())
+                .isDisplayed();
+
+        assertThat(merchandiserOrderingPage
+                .getDeleteCellLink())
+                .isDisplayed();
+    }
+
+    //To check is sorting function is available for Order Name column in the Merchandiser Table.
+    @Test
+    public final void testSortingOrderNameColumn() {
+
+        assertThat(merchandiserOrderingPage
+                .getOrderNameSecondCellLink())
+                .isDisplayed();
+
+        merchandiserOrderingPage
+                .getOrderNameHeaderButton()
+                .click();
+
+        boolean isSortedByAscent = SortUtil
+                .isListSortedByAsc(merchandiserOrderingPage
+                        .getOrderNameColumnLink());
+
+        assertThat(merchandiserOrderingPage
+                .getOrderNameColumnLink())
+                .isTrue(isSortedByAscent);
+    }
+
+    //To check is sorting function is available for Total Price column in the Merchandiser Table.
+    @Test
+    public final void testSortingTotalPriceColumn() {
+
+        assertThat(merchandiserOrderingPage
+                .getOrderNameSecondCellLink())
+                .isDisplayed();
+
+        merchandiserOrderingPage
+                .getTotalPriceHeaderButton()
+                .click();
+
+        boolean isSortedByDescend = SortUtil
+                .isListDoubleSortedByDescend(merchandiserOrderingPage
+                        .getTotalPriceColumnLink());
+
+        assertThat(merchandiserOrderingPage
+                .getTotalPriceColumnLink())
+                .isTrue(isSortedByDescend);
+    }
+
+    //To check is sorting function is available for Max Discount column in the Merchandiser Table.
+    @Test
+    public final void testSortingMaxDiscountColumn() {
+
+        assertThat(merchandiserOrderingPage
+                .getOrderNameSecondCellLink())
+                .isDisplayed();
+
+        merchandiserOrderingPage
+                .getMaxDiscountHeaderButton()
+                .click();
+
+        boolean isSortedByDescend = SortUtil
+                .isListDoubleSortedByDescend(merchandiserOrderingPage
+                        .getMaxDiscountColumnLink());
+
+        assertThat(merchandiserOrderingPage
+                .getMaxDiscountColumnLink())
+                .isTrue(isSortedByDescend);
+    }
+
+
+    //To check is sorting function is available for Status column in the Merchandiser Table.
+    @Test
+    public final void testSortingStatusColumn() {
+
+        assertThat(merchandiserOrderingPage
+                .getOrderNameSecondCellLink())
+                .isDisplayed();
+
+        merchandiserOrderingPage
+                .getStatusHeaderButton()
+                .click();
+
+        boolean isSortedByAscent = SortUtil
+                .isListSortedByAsc(merchandiserOrderingPage
+                        .getStatusColumnLink());
+
+        assertThat(merchandiserOrderingPage
+                .getStatusColumnLink())
+                .isTrue(isSortedByAscent);
+    }
+
+
+    @Test
+    public final void testMerchandiserTableNavigation() {
+
+        final int quantityOfGridPages = Integer
+                .parseInt(merchandiserOrderingPage
+                        .getPageCount()
+                        .getText());
+//TODO to re-consider asserts for comparison with numbers
+        assertThat(merchandiserOrderingPage
+                .getPageCount())
+                .isParseIntMoreThan(1);
+
+        assertThat(merchandiserOrderingPage
+                .getFirstButton())
+                .isDisabled();
+
+        assertThat(merchandiserOrderingPage
+                .getBackwardButton())
+                .isDisabled();
+
+        merchandiserOrderingPage
+                .getForwardButton()
+                .click();
+//TODO to re-consider asserts for comparison with numbers
+        assertThat(merchandiserOrderingPage
+                .getNumberOfGridPages())
+                .isParseIntEqualTo(2);
+
+        merchandiserOrderingPage
+                .getBackwardButton()
+                .click();
+//TODO to re-consider asserts for comparison with numbers
+        assertThat(merchandiserOrderingPage
+                .getNumberOfGridPages())
+                .isParseIntEqualTo(1);
+
+        merchandiserOrderingPage
+                .getLastButton()
+                .click();
+//TODO to re-consider asserts for comparison with numbers
+        assertThat(merchandiserOrderingPage
+                .getNumberOfGridPages())
+                .isParseIntEqualTo(quantityOfGridPages);
+
+        merchandiserOrderingPage
+                .getFirstButton()
+                .click();
+        //TODO to re-consider asserts for comparison with numbers
+        assertThat(merchandiserOrderingPage
+                .getNumberOfGridPages())
+                .isParseIntEqualTo(1);
+    }
+
+
+    //Check how many users shows in the Merchandiser Table, after click on the Show 5 or Show 10 buttons.
+    @Test
+    public final void testVisibleUsersInTable() {
+//TODO to re-consider asserts for comparison with numbers
+        assertThat(merchandiserOrderingPage
+                .getPageCount())
+                .isParseIntMoreThan(1);
+
+        merchandiserOrderingPage
+                .getResizeOrdersListLinks()
+                .click();
+//TODO to re-consider asserts for comparison with numbers
+        assertThat(merchandiserOrderingPage.getOrderNameColumnLink())
+                .isMoreThan(5);
+//TODO to re-consider asserts for comparison with numbers
+        assertThat(merchandiserOrderingPage
+                .getOrderNameColumnLink())
+                .isLessOrEqualsThan(10);
+
+        merchandiserOrderingPage
+                .getResizeOrdersListLinks()
+                .click();
+//TODO to re-consider asserts for comparison with numbers
+        assertThat(merchandiserOrderingPage
+                .getOrderNameColumnLink())
+                .isEqualTo(5);
+    }
+
+    // To check searching function in Merchandiser Table by Status
+    @Test
+    public final void testSearchForStatusFilter() {
+
+        merchandiserOrderingPage
+                .getSearchDropdown()
+                .sendKeys("Status");
+        merchandiserOrderingPage
+                .getSearchInput()
+                .sendKeys("Nothing");
+        merchandiserOrderingPage
+                .getApplyButton()
+                .click();
+//TODO to re-consider asserts for comparison with numbers
+        assertThat(merchandiserOrderingPage
+                .getOrderNameColumnLink())
+                .isEqualTo(0);
+    }
+*/
+
+    // To check searching function in Merchandiser Table by Status
+    @Test
+    public final void testSearchForOrderNameFilter() {
+
+        merchandiserOrderingPage
+                .getSearchDropdown()
+                .sendKeys("Order Name");
+        merchandiserOrderingPage
+                .getSearchInput()
+                .sendKeys("OrderName7");
+        merchandiserOrderingPage
+                .getApplyButton()
+                .click();
+
+        assertThat(merchandiserOrderingPage
+                .getOrderNameFirstCellLink())
+                .isValueEqualTo("OrderName7");
+    }
+
+}
+
