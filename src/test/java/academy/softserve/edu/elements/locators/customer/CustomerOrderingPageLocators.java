@@ -116,7 +116,7 @@ public enum CustomerOrderingPageLocators implements ILocator {
             "(//div[@id='list']//tbody/tr[2]//a)[2]"),
 
     ORDER_ROW("Order row",
-              LocatorsType.BY_XPATH,
+            LocatorsType.BY_XPATH,
             "//div[@id='list']/table//tr[2]"),
 
     RESIZE_SHOW_ITEMS_LINK("Resize show items link",
@@ -128,8 +128,16 @@ public enum CustomerOrderingPageLocators implements ILocator {
             "//div[@id='list']/table//tr[%s]"),
 
     SEARCH_STATUS_RESULT("Search status result",
-                  LocatorsType.BY_XPATH,
-            "//div[@id='list']/table/tbody/tr[2]");
+            LocatorsType.BY_XPATH,
+            "//div[@id='list']/table/tbody/tr[2]/td[5]"),
+
+    SEARCH_NAME_RESULT("Search name result",
+            LocatorsType.BY_XPATH,
+            "//div[@id='list']/table/tbody/tr[2]/td[1]"),
+
+    SEARCH_RESULT_ELEMENTS("Search status result",
+            LocatorsType.BY_XPATH,
+            "//div[@id='list']/table/tbody/tr");
 
     protected String elementName;
     protected LocatorsType locatorType;

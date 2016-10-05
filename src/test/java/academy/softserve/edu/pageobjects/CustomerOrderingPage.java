@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
 import static academy.softserve.edu.elements.locators.customer.CustomerOrderingPageLocators.*;
 import static academy.softserve.edu.elements.locators.merchandiser.MerchandiserOrderingPageLocators.STATUS_CELL;
 
@@ -30,6 +32,10 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
     private final Element searchResult = new Element(driver, SEARCH_RESULT);
 
     private final Element searchStatusResult = new Element(driver, SEARCH_STATUS_RESULT);
+
+    private final Element searchNameResult = new Element(driver, SEARCH_NAME_RESULT);
+
+    private final Element searchResultElements = new Element(driver, SEARCH_RESULT_ELEMENTS);
 
     public final TextLabel getOrderStatusByNumber(final String orderNumber) {
         return new TextLabel(driver, ORDER_STATUS.modify(orderNumber));
@@ -56,5 +62,14 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
     public final Element getSearchResult(final String statusNumber) {
 
         return new Element(driver, SEARCH_RESULT.modify(statusNumber));
+    }
+
+    final public boolean checkElementsAmount(final Element elements, final int elementsAmount) {
+
+        if (elements.getElements().size() == elementsAmount) {
+
+            return true;
+
+        } else return false;
     }
 }
