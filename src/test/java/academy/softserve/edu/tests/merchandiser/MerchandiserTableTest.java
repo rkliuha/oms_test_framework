@@ -7,7 +7,7 @@ import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
+import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
 
 public class MerchandiserTableTest extends TestRunner {
 
@@ -25,7 +25,7 @@ public class MerchandiserTableTest extends TestRunner {
         merchandiserOrderingPage = userInfoPage.clickMerchandiserOrderingTab();
     }
 
-/*
+
 
     // To check Merchandiser table is enable or not. And Edit and Delete function is available
     @Test
@@ -54,11 +54,10 @@ public class MerchandiserTableTest extends TestRunner {
 
         boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(merchandiserOrderingPage
-                        .getOrderNameColumnLink());
+                        .getOrderNameColumnLink()
+                        .getElements());
 
-        assertThat(merchandiserOrderingPage
-                .getOrderNameColumnLink())
-                .isTrue(isSortedByAscent);
+        assertThat(isSortedByAscent).isTrue();
     }
 
     //To check is sorting function is available for Total Price column in the Merchandiser Table.
@@ -75,11 +74,10 @@ public class MerchandiserTableTest extends TestRunner {
 
         boolean isSortedByDescend = SortUtil
                 .isListDoubleSortedByDescend(merchandiserOrderingPage
-                        .getTotalPriceColumnLink());
+                        .getTotalPriceColumnLink()
+                        .getElements());
 
-        assertThat(merchandiserOrderingPage
-                .getTotalPriceColumnLink())
-                .isTrue(isSortedByDescend);
+        assertThat(isSortedByDescend).isTrue();
     }
 
     //To check is sorting function is available for Max Discount column in the Merchandiser Table.
@@ -96,11 +94,10 @@ public class MerchandiserTableTest extends TestRunner {
 
         boolean isSortedByDescend = SortUtil
                 .isListDoubleSortedByDescend(merchandiserOrderingPage
-                        .getMaxDiscountColumnLink());
+                        .getMaxDiscountColumnLink()
+                        .getElements());
 
-        assertThat(merchandiserOrderingPage
-                .getMaxDiscountColumnLink())
-                .isTrue(isSortedByDescend);
+        assertThat(isSortedByDescend).isTrue();
     }
 
 
@@ -118,11 +115,10 @@ public class MerchandiserTableTest extends TestRunner {
 
         boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(merchandiserOrderingPage
-                        .getStatusColumnLink());
+                        .getStatusColumnLink()
+                        .getElements());
 
-        assertThat(merchandiserOrderingPage
-                .getStatusColumnLink())
-                .isTrue(isSortedByAscent);
+        assertThat(isSortedByAscent).isTrue();
     }
 
 
@@ -133,10 +129,10 @@ public class MerchandiserTableTest extends TestRunner {
                 .parseInt(merchandiserOrderingPage
                         .getPageCount()
                         .getText());
-//TODO to re-consider asserts for comparison with numbers
+
         assertThat(merchandiserOrderingPage
                 .getPageCount())
-                .isParseIntMoreThan(1);
+                .isParseIntQuantityMoreThan(1);
 
         assertThat(merchandiserOrderingPage
                 .getFirstButton())
@@ -149,52 +145,52 @@ public class MerchandiserTableTest extends TestRunner {
         merchandiserOrderingPage
                 .getForwardButton()
                 .click();
-//TODO to re-consider asserts for comparison with numbers
+
         assertThat(merchandiserOrderingPage
                 .getNumberOfGridPages())
-                .isParseIntEqualTo(2);
+                .isParseIntQuantityEqualTo(2);
 
         merchandiserOrderingPage
                 .getBackwardButton()
                 .click();
-//TODO to re-consider asserts for comparison with numbers
+
         assertThat(merchandiserOrderingPage
                 .getNumberOfGridPages())
-                .isParseIntEqualTo(1);
+                .isParseIntQuantityEqualTo(1);
 
         merchandiserOrderingPage
                 .getLastButton()
                 .click();
-//TODO to re-consider asserts for comparison with numbers
+
         assertThat(merchandiserOrderingPage
                 .getNumberOfGridPages())
-                .isParseIntEqualTo(quantityOfGridPages);
+                .isParseIntQuantityEqualTo(quantityOfGridPages);
 
         merchandiserOrderingPage
                 .getFirstButton()
                 .click();
-        //TODO to re-consider asserts for comparison with numbers
+
         assertThat(merchandiserOrderingPage
                 .getNumberOfGridPages())
-                .isParseIntEqualTo(1);
+                .isParseIntQuantityEqualTo(1);
     }
 
 
     //Check how many users shows in the Merchandiser Table, after click on the Show 5 or Show 10 buttons.
     @Test
     public final void testVisibleUsersInTable() {
-//TODO to re-consider asserts for comparison with numbers
+
         assertThat(merchandiserOrderingPage
                 .getPageCount())
-                .isParseIntMoreThan(1);
+                .isParseIntQuantityMoreThan(1);
 
         merchandiserOrderingPage
                 .getResizeOrdersListLinks()
                 .click();
-//TODO to re-consider asserts for comparison with numbers
+
         assertThat(merchandiserOrderingPage.getOrderNameColumnLink())
-                .isMoreThan(5);
-//TODO to re-consider asserts for comparison with numbers
+                .isQuantityMoreThan(5);
+
         assertThat(merchandiserOrderingPage
                 .getOrderNameColumnLink())
                 .isLessOrEqualsThan(10);
@@ -202,7 +198,7 @@ public class MerchandiserTableTest extends TestRunner {
         merchandiserOrderingPage
                 .getResizeOrdersListLinks()
                 .click();
-//TODO to re-consider asserts for comparison with numbers
+
         assertThat(merchandiserOrderingPage
                 .getOrderNameColumnLink())
                 .isEqualTo(5);
@@ -221,12 +217,11 @@ public class MerchandiserTableTest extends TestRunner {
         merchandiserOrderingPage
                 .getApplyButton()
                 .click();
-//TODO to re-consider asserts for comparison with numbers
+
         assertThat(merchandiserOrderingPage
                 .getOrderNameColumnLink())
                 .isEqualTo(0);
     }
-*/
 
     // To check searching function in Merchandiser Table by Status
     @Test
@@ -244,7 +239,7 @@ public class MerchandiserTableTest extends TestRunner {
 
         assertThat(merchandiserOrderingPage
                 .getOrderNameFirstCellLink())
-                .isValueEqualTo("OrderName7");
+                .textEquals("OrderName7");
     }
 
 }

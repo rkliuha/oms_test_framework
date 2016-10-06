@@ -1,11 +1,9 @@
 package academy.softserve.edu.pageobjects;
 
-        import academy.softserve.edu.elements.locators.administrator.ReportPageLocators;
-        import academy.softserve.edu.elements.wrappers.TextLabel;
-        import lombok.Getter;
-        import org.openqa.selenium.By;
-        import org.openqa.selenium.WebDriver;
-        import org.openqa.selenium.WebElement;
+import academy.softserve.edu.elements.locators.administrator.ReportPageLocators;
+import academy.softserve.edu.elements.wrappers.TextLabel;
+import lombok.Getter;
+import org.openqa.selenium.WebDriver;
 
 @Getter
 public class ReportPage extends PageObject<ReportPage> {

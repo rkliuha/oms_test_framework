@@ -1,37 +1,41 @@
 package academy.softserve.edu.utils;
 
 
-import academy.softserve.edu.elements.wrappers.Element;
 import com.google.common.collect.Ordering;
+import org.openqa.selenium.WebElement;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class SortUtil {
 
-    public static final boolean isListSortedByAsc(final Element abstractElement) {
+    public static final boolean isListSortedByAsc(final List<WebElement> elementsList) {
 
         final List<String> gridsColumnValues = new LinkedList<>();
 
-        for (int i = 0; i < abstractElement.getElements().size(); i++) {
-            gridsColumnValues.add(i, abstractElement.getElements().get(i).getText());
-        }
+        gridsColumnValues.addAll(elementsList
+                        .stream()
+                        .map(WebElement::getText)
+                        .collect(Collectors
+                                .toList()));
+
         return Ordering
                 .natural()
                 .isOrdered(gridsColumnValues);
     }
 
+    //TODO re-consider
     //Pull Double to List from list of elements.
-    public final static boolean isListDoubleSortedByDescend(final Element abstractElement) {
+    public final static boolean isListDoubleSortedByDescend(final List<WebElement> elementsList) {
 
         List<Double> gridsColumnDoubleValues = new LinkedList<>();
 
-        for (int i = 0; i < abstractElement.getElements().size(); i++) {
+        for (int i = 0; i < elementsList.size(); i++) {
             gridsColumnDoubleValues
                     .add(i, Double
-                            .parseDouble(abstractElement
-                                    .getElements()
+                            .parseDouble(elementsList
                                     .get(i)
                                     .getText()));
         }

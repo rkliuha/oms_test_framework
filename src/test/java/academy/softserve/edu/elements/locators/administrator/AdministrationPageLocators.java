@@ -32,7 +32,7 @@ public enum AdministrationPageLocators implements ILocator {
 
     SEARCH_FIELD_FILTER("Search Field Filter",
             LocatorsType.BY_XPATH,
-            " private final Button firstNameHeaderButton = new Button(driver, FIRST_NAME_HEADER_LINK);"),
+            "//*[@id='searchForm']/label"),
 
     SEARCH_FIELD_FILTER_DROPDOWN("Search Field Filter Dropdown",
             LocatorsType.BY_XPATH,

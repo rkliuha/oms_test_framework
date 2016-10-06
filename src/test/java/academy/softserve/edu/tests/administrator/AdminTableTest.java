@@ -8,7 +8,8 @@ import academy.softserve.edu.utils.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
+import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
+
 
 public class AdminTableTest extends TestRunner {
 
@@ -27,6 +28,9 @@ public class AdminTableTest extends TestRunner {
 
         administrationPage = userInfoPage.clickAdministrationTab();
     }
+
+
+/*
 
 
     // To check Admin table is enable or not. And Edit and Delete function is available
@@ -185,11 +189,12 @@ public class AdminTableTest extends TestRunner {
                 .getRegionFirstCellLink())
                 .textEquals(comparisonValue);
     }
+*/
 
     //Check how many users shows in the Admin Table, after click on the Show 5 or Show 10 buttons.
     @Test
     public final void testVisibleUsersInTable() {
-//TODO to re-consider asserts for comparison with numbers
+
         assertThat(administrationPage
                 .getQuantityOfFoundUsers())
                 .isParseIntQuantityMoreThan(5);
@@ -197,11 +202,11 @@ public class AdminTableTest extends TestRunner {
         administrationPage
                 .getShowQuantityOfItems()
                 .click();
-//TODO to re-consider asserts for comparison with numbers
+
         assertThat(administrationPage
                 .getFirstNameColumn())
                 .isQuantityMoreThan(5);
-//TODO to re-consider asserts for comparison with numbers
+
         assertThat(administrationPage
                 .getFirstNameColumn())
                 .isLessOrEqualsThan(10);
@@ -209,12 +214,13 @@ public class AdminTableTest extends TestRunner {
         administrationPage
                 .getShowQuantityOfItems()
                 .click();
-//TODO to re-consider asserts for comparison with numbers
+
         assertThat(administrationPage
                 .getFirstNameColumn())
-                .isEqualTo(5);
+                .isQuantityEqualTo(5);
     }
 
+/*
 
     //To check is number of found users displays the actual number of users for this criterion.
     @Test
@@ -237,13 +243,14 @@ public class AdminTableTest extends TestRunner {
         administrationPage
                 .getSearchButton()
                 .click();
-//TODO to re-consider asserts for comparison with numbers
+
         assertThat(administrationPage
                 .getLoginColumn())
-                .isEqualTo(1);
+                .isQuantityEqualTo(1);
 
         DBHandler.deleteUser(DBHandler.getLastUser().getId());
     }
+
 
 
     //To check is sorting function is available for First Name column in the Admin Grid.
@@ -260,11 +267,10 @@ public class AdminTableTest extends TestRunner {
 
         boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage
-                        .getFirstNameColumn());
+                        .getFirstNameColumn()
+                .getElements());
 
-        assertThat(administrationPage
-                .getFirstNameColumn())
-                .isTrue(isSortedByAscent);
+        assertThat(isSortedByAscent).isTrue();
     }
 
     //To check is sorting function is available for Last Name column in the Admin Table.
@@ -281,11 +287,10 @@ public class AdminTableTest extends TestRunner {
 
         boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage
-                        .getLastNameColumn());
+                        .getLastNameColumn()
+                .getElements());
 
-        assertThat(administrationPage
-                .getLastNameColumn())
-                .isTrue(isSortedByAscent);
+        assertThat(isSortedByAscent).isTrue();
 
 
     }
@@ -304,11 +309,10 @@ public class AdminTableTest extends TestRunner {
 
         boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage
-                        .getLoginColumn());
+                        .getLoginColumn()
+                .getElements());
 
-        assertThat(administrationPage
-                .getLoginColumn())
-                .isTrue(isSortedByAscent);
+        assertThat(isSortedByAscent).isTrue();
     }
 
     //To check is sorting function is available for Role column in the Admin Table.
@@ -325,16 +329,16 @@ public class AdminTableTest extends TestRunner {
 
         boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage
-                        .getRoleColumn());
+                        .getRoleColumn()
+                .getElements());
 
-        assertThat(administrationPage
-                .getRoleColumn())
-                .isTrue(isSortedByAscent);
+        assertThat(isSortedByAscent).isTrue();
     }
+
 
     //To check is sorting function is available for Region column in the Admin Table.
     @Test
-    public final void testSortingTablesData() {
+    public final void testSortingRegionColumn() {
 
         assertThat(administrationPage
                 .getLoginSecondCellLink())
@@ -346,12 +350,12 @@ public class AdminTableTest extends TestRunner {
 
         boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage
-                        .getRegionColumn());
+                        .getRegionColumn()
+                .getElements());
 
-        assertThat(administrationPage
-                .getRegionColumn())
-                .isTrue(isSortedByAscent);
+        assertThat(isSortedByAscent).isTrue();
     }
+
 
 
     @Test
@@ -361,10 +365,10 @@ public class AdminTableTest extends TestRunner {
                 .parseInt(administrationPage
                         .getPageCountText()
                         .getText());
-//TODO to re-consider asserts for comparison with numbers
+
         assertThat(administrationPage
                 .getPageCountText())
-                .isParseIntMoreThan(1);
+                .isParseIntQuantityMoreThan(1);
 
         assertThat(administrationPage
                 .getFirstNavigationButton())
@@ -377,18 +381,18 @@ public class AdminTableTest extends TestRunner {
         administrationPage
                 .getForwardNavigationButton()
                 .click();
-//TODO to re-consider asserts for comparison with numbers
+
         assertThat(administrationPage
                 .getPageNumberText())
-                .isParseIntEqualTo(2);
+                .isParseIntQuantityEqualTo(2);
 
         administrationPage
                 .getBackwardNavigationButton()
                 .click();
-//TODO to re-consider asserts for comparison with numbers
+
         assertThat(administrationPage
                 .getPageNumberText())
-                .isParseIntEqualTo(1);
+                .isParseIntQuantityEqualTo(1);
 
         administrationPage
                 .getLastNavigationButton()
@@ -396,15 +400,17 @@ public class AdminTableTest extends TestRunner {
 
         assertThat(administrationPage
                 .getPageNumberText())
-                .isParseIntEqualTo(quantityOfGridsPages);
+                .isParseIntQuantityEqualTo(quantityOfGridsPages);
 
         administrationPage
                 .getFirstNavigationButton()
                 .click();
-//TODO to re-consider asserts for comparison with numbers
+
         assertThat(administrationPage
                 .getPageNumberText())
-                .isParseIntEqualTo(1);
+                .isParseIntQuantityEqualTo(1);
     }
+
+*/
 
 }

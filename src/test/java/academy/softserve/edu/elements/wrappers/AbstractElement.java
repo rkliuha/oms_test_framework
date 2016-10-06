@@ -52,6 +52,8 @@ public abstract class AbstractElement<T> {
     }
 
     final public List<WebElement> getElements() {
+
+        wait.waitUntilElementIsPresent();
         return driver.findElements(locator.getBy());
     }
 
