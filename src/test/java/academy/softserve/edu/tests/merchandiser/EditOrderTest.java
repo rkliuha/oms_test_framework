@@ -15,7 +15,7 @@ public class EditOrderTest extends TestRunner {
     private int testOrderItem;
 
     @BeforeClass
-    public final void createDB() {
+    public final void createDataInDB() {
         testOrderId = TestUtil.createValidOrderInDB();
         testProduct = TestUtil.createActiveProductInDB();
         testOrderItem = TestUtil.createOrderItemInDB();

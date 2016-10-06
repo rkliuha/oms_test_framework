@@ -119,7 +119,7 @@ public enum MerchandiserOrderingPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//div[@id='list']//tr[%s]/td[7]"),
 
-    SHOW_ITEMS("Show items",
+    SHOW_ITEMS_LINK("Show items",
             LocatorsType.BY_XPATH,
             "//a[@href='resizeOrdersLisr.htm']");
 
