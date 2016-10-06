@@ -8,18 +8,15 @@ import org.openqa.selenium.support.ui.Select;
 
 public class Dropdown extends AbstractClickableElement<Dropdown> {
 
-    private Select select;
-
     public Dropdown(final WebDriver driver, final ILocator locator) {
         super(driver, locator);
-        select = new Select(driver.findElement(locator.getBy()));
     }
 
     final public Dropdown selectByIndex(final int indexOfElement) {
 
         wait.waitUntilElementIsPresent();
         wait.waitUntilElementIsClickable();
-        select.selectByIndex(indexOfElement);
+        new Select(driver.findElement(locator.getBy())).selectByIndex(indexOfElement);
         return this;
     }
 
@@ -27,7 +24,7 @@ public class Dropdown extends AbstractClickableElement<Dropdown> {
 
         wait.waitUntilElementIsPresent();
         wait.waitUntilElementIsClickable();
-        select.selectByValue(valueOfElement);
+        new Select(driver.findElement(locator.getBy())).selectByValue(valueOfElement);
         return this;
     }
 
@@ -35,7 +32,7 @@ public class Dropdown extends AbstractClickableElement<Dropdown> {
 
         wait.waitUntilElementIsPresent();
         wait.waitUntilElementIsClickable();
-        select.deselectByIndex(indexOfElement);
+        new Select(driver.findElement(locator.getBy())).deselectByIndex(indexOfElement);
         return this;
     }
 
@@ -43,7 +40,7 @@ public class Dropdown extends AbstractClickableElement<Dropdown> {
 
         wait.waitUntilElementIsPresent();
         wait.waitUntilElementIsClickable();
-        select.deselectByValue(valueOfElement);
+        new Select(driver.findElement(locator.getBy())).deselectByValue(valueOfElement);
         return this;
     }
 
@@ -60,6 +57,7 @@ public class Dropdown extends AbstractClickableElement<Dropdown> {
 
         wait.waitUntilElementIsPresent();
         wait.waitUntilElementIsClickable();
-        return select.getFirstSelectedOption();
+        return new Select(driver.findElement(locator.getBy())).getFirstSelectedOption();
     }
+
 }

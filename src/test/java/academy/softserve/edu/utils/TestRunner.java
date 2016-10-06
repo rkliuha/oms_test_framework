@@ -1,6 +1,5 @@
 package academy.softserve.edu.utils;
 
-import academy.softserve.edu.enums.Browsers;
 import academy.softserve.edu.pageobjects.*;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
@@ -10,7 +9,6 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
 import java.net.MalformedURLException;
-import java.util.concurrent.TimeUnit;
 
 public class TestRunner {
 
@@ -33,6 +31,7 @@ public class TestRunner {
     protected ReportPage reportPage;
     protected CreateNewOrderPage createNewOrderPage;
     protected AddItemPage addItemPage;
+    protected EditProductPage editProductPage;
 
     @Parameters({"browser", "version"})
     @BeforeMethod

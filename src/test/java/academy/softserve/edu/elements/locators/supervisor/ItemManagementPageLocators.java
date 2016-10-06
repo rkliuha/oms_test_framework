@@ -113,6 +113,11 @@ public enum ItemManagementPageLocators implements ILocator {
     DELETE_PRODUCT("Delete product",
             LocatorsType.BY_XPATH,
             "//table[@id='table']//td[5]/a");
+            "//div[@id='list']/a[2]"),
+
+    EDIT_PRODUCT_LINK("Edit Product Link",
+            LocatorsType.BY_XPATH,
+            "//table[@id='table']//a[@href='editItem.htm?productID=%s']");
 
     protected String elementName;
     protected LocatorsType locatorType;
