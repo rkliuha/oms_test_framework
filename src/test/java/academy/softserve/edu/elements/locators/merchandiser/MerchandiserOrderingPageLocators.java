@@ -122,6 +122,7 @@ public enum MerchandiserOrderingPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//*[@id='list']/table/tbody//td[1]"),
 
+
     TOTAL_PRICE_COLUMN("Total Price Column",
             LocatorsType.BY_XPATH,
             "//*[@id='list']/table/tbody//td[2]"),

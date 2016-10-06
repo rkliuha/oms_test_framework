@@ -312,6 +312,7 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
 
 
     public final AbstractElementAssert isQuantityMoreThan(int quantity) {
+
         if (actual.getElements().size() <= quantity) {
 
             failWithMessage("Element's {%s} quantity should be more, than {%s} ", actual.getLocatorName(), quantity);
@@ -322,7 +323,7 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
         return this;
     }
 
-    public final AbstractElementAssert isLessOrEqualsThan(int quantity) {
+    public final AbstractElementAssert isQuantityLessOrEqualsThan(int quantity) {
         if (actual.getElements().size() > quantity) {
 
             failWithMessage("Element's {%s} quantity should be less or equals, than {%s} ",

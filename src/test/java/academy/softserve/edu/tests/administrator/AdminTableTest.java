@@ -30,9 +30,6 @@ public class AdminTableTest extends TestRunner {
     }
 
 
-/*
-
-
     // To check Admin table is enable or not. And Edit and Delete function is available
     @Test
     final public void testAdminTableIsEnable() {
@@ -189,7 +186,7 @@ public class AdminTableTest extends TestRunner {
                 .getRegionFirstCellLink())
                 .textEquals(comparisonValue);
     }
-*/
+
 
     //Check how many users shows in the Admin Table, after click on the Show 5 or Show 10 buttons.
     @Test
@@ -209,7 +206,7 @@ public class AdminTableTest extends TestRunner {
 
         assertThat(administrationPage
                 .getFirstNameColumn())
-                .isLessOrEqualsThan(10);
+                .isQuantityLessOrEqualsThan(10);
 
         administrationPage
                 .getShowQuantityOfItems()
@@ -220,7 +217,6 @@ public class AdminTableTest extends TestRunner {
                 .isQuantityEqualTo(5);
     }
 
-/*
 
     //To check is number of found users displays the actual number of users for this criterion.
     @Test
@@ -252,7 +248,6 @@ public class AdminTableTest extends TestRunner {
     }
 
 
-
     //To check is sorting function is available for First Name column in the Admin Grid.
     @Test
     public final void testSortingFirstNameColumn() {
@@ -268,7 +263,7 @@ public class AdminTableTest extends TestRunner {
         boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage
                         .getFirstNameColumn()
-                .getElements());
+                        .getElements());
 
         assertThat(isSortedByAscent).isTrue();
     }
@@ -288,7 +283,7 @@ public class AdminTableTest extends TestRunner {
         boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage
                         .getLastNameColumn()
-                .getElements());
+                        .getElements());
 
         assertThat(isSortedByAscent).isTrue();
 
@@ -310,7 +305,7 @@ public class AdminTableTest extends TestRunner {
         boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage
                         .getLoginColumn()
-                .getElements());
+                        .getElements());
 
         assertThat(isSortedByAscent).isTrue();
     }
@@ -330,7 +325,7 @@ public class AdminTableTest extends TestRunner {
         boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage
                         .getRoleColumn()
-                .getElements());
+                        .getElements());
 
         assertThat(isSortedByAscent).isTrue();
     }
@@ -351,11 +346,10 @@ public class AdminTableTest extends TestRunner {
         boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage
                         .getRegionColumn()
-                .getElements());
+                        .getElements());
 
         assertThat(isSortedByAscent).isTrue();
     }
-
 
 
     @Test
@@ -411,6 +405,5 @@ public class AdminTableTest extends TestRunner {
                 .isParseIntQuantityEqualTo(1);
     }
 
-*/
 
 }

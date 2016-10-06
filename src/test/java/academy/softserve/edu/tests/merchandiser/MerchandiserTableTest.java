@@ -25,8 +25,6 @@ public class MerchandiserTableTest extends TestRunner {
         merchandiserOrderingPage = userInfoPage.clickMerchandiserOrderingTab();
     }
 
-
-
     // To check Merchandiser table is enable or not. And Edit and Delete function is available
     @Test
     final public void testMerchandiserTableIsEnable() {
@@ -100,7 +98,6 @@ public class MerchandiserTableTest extends TestRunner {
         assertThat(isSortedByDescend).isTrue();
     }
 
-
     //To check is sorting function is available for Status column in the Merchandiser Table.
     @Test
     public final void testSortingStatusColumn() {
@@ -120,7 +117,6 @@ public class MerchandiserTableTest extends TestRunner {
 
         assertThat(isSortedByAscent).isTrue();
     }
-
 
     @Test
     public final void testMerchandiserTableNavigation() {
@@ -175,7 +171,6 @@ public class MerchandiserTableTest extends TestRunner {
                 .isParseIntQuantityEqualTo(1);
     }
 
-
     //Check how many users shows in the Merchandiser Table, after click on the Show 5 or Show 10 buttons.
     @Test
     public final void testVisibleUsersInTable() {
@@ -193,7 +188,7 @@ public class MerchandiserTableTest extends TestRunner {
 
         assertThat(merchandiserOrderingPage
                 .getOrderNameColumnLink())
-                .isLessOrEqualsThan(10);
+                .isQuantityLessOrEqualsThan(10);
 
         merchandiserOrderingPage
                 .getResizeOrdersListLinks()
@@ -201,7 +196,7 @@ public class MerchandiserTableTest extends TestRunner {
 
         assertThat(merchandiserOrderingPage
                 .getOrderNameColumnLink())
-                .isEqualTo(5);
+                .isQuantityEqualTo(5);
     }
 
     // To check searching function in Merchandiser Table by Status
@@ -213,14 +208,14 @@ public class MerchandiserTableTest extends TestRunner {
                 .sendKeys("Status");
         merchandiserOrderingPage
                 .getSearchInput()
-                .sendKeys("Nothing");
+                .sendKeys("Created");
         merchandiserOrderingPage
                 .getApplyButton()
                 .click();
 
         assertThat(merchandiserOrderingPage
-                .getOrderNameColumnLink())
-                .isEqualTo(0);
+                .getStatusCell())
+                .textEquals("Created");
     }
 
     // To check searching function in Merchandiser Table by Status
@@ -241,6 +236,7 @@ public class MerchandiserTableTest extends TestRunner {
                 .getOrderNameFirstCellLink())
                 .textEquals("OrderName7");
     }
+
 
 }
 
