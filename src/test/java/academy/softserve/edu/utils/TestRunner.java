@@ -22,6 +22,8 @@ public class TestRunner {
     protected CreateNewUserPage createNewUserPage;
     protected CustomerOrderingPage customerOrderingPage;
     protected ItemManagementPage itemManagementPage;
+    protected SupervisorCreateReportPage supervisorCreateReportPage;
+    protected SupervisorReportPage supervisorReportPage;
     protected LogInPage logInPage;
     protected MerchandiserOrderingPage merchandiserOrderingPage;
     protected MerchandiserEditOrderPage merchandiserEditOrderPage;
