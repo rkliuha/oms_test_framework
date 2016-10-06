@@ -1,5 +1,6 @@
 package academy.softserve.edu.tests.customer;
 
+import academy.softserve.edu.elements.wrappers.Element;
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.Test;
@@ -9,6 +10,15 @@ import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
 
 //TODO get rid of collection of WebElements, refactor for use wrappers and custom assertions;
 public class SearchTest extends TestRunner {
+
+    final public boolean checkElementsAmount(final Element elements, final int elementsAmount) {
+
+        if (elements.getElements().size() == elementsAmount) {
+
+            return true;
+
+        } else return false;
+    }
 
     @Test
     public void testStatusSearch() {
@@ -81,11 +91,10 @@ public class SearchTest extends TestRunner {
         customerOrderingPage.getResizeShowItemsLink()
                 .click();
 
-        final boolean elementsAmount = customerOrderingPage
-                .checkElementsAmount(customerOrderingPage.getSearchResultElements(), show5Item);
+        final boolean searchOrderResult = checkElementsAmount(customerOrderingPage.getSearchResultElements(), show5Item);
 
-        assertThat(customerOrderingPage.getSearchResultElements())
-                .isTrue(elementsAmount);
+        assertThat(searchOrderResult)
+                .isTrue();
     }
 
     @Test
@@ -105,10 +114,9 @@ public class SearchTest extends TestRunner {
         customerOrderingPage.getResizeShowItemsLink()
                 .click();
 
-        final boolean elementsAmount = customerOrderingPage
-                .checkElementsAmount(customerOrderingPage.getSearchResultElements(), show10Item);
+        final boolean searchOrderResult = checkElementsAmount(customerOrderingPage.getSearchResultElements(), show10Item);
 
-        assertThat(customerOrderingPage.getSearchResultElements())
-                .isTrue(elementsAmount);
+        assertThat(searchOrderResult)
+                .isTrue();
     }
 }

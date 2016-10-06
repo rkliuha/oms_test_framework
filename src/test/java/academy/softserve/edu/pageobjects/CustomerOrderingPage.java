@@ -51,13 +51,4 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
 
         return new CreateNewOrderPage(driver);
     }
-
-    final public boolean checkElementsAmount(final Element elements, final int elementsAmount) {
-
-        if (elements.getElements().size() == elementsAmount) {
-
-            return true;
-
-        } else return false;
-    }
 }

@@ -18,4 +18,7 @@ public class FluentAssertions {
         return new OrderAssert(actual);
     }
 
+    public static final CommonAssert assertThat(final Boolean actual) {
+        return new CommonAssert(actual);
+    }
 }
