@@ -32,6 +32,7 @@ public class TestRunner {
     protected CreateNewOrderPage createNewOrderPage;
     protected AddItemPage addItemPage;
     protected EditProductPage editProductPage;
+    protected AddProductPage addProductPage;
 
     @Parameters({"browser", "version"})
     @BeforeMethod
