@@ -19,10 +19,14 @@ public class ItemManagementPage extends PageObject<ItemManagementPage> {
 
     private final Element productSearchResult = new Element(driver, PRODUCT_SEARCH_RESULT);
 
-    private final Link deleteProduct = new Link(driver, DELETE_PRODUCT);
+    private final Link deleteProductLink = new Link(driver, DELETE_PRODUCT_LINK);
 
     public final Link getEditProductLinkById(final String productId) {
         return new Link(driver, EDIT_PRODUCT_LINK.modify(productId));
+    }
+
+    public final Link getDeleteProductLinkById(final String productId) {
+        return new Link(driver, DELETE_PRODUCT_LINK.modify(productId));
     }
 
     public ItemManagementPage(final WebDriver driver) {

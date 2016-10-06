@@ -5,7 +5,6 @@ import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.TestRunner;
 import academy.softserve.edu.utils.TestUtil;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -29,12 +28,12 @@ public class DeleteProductTest extends TestRunner {
         itemManagementPage = userInfoPage.clickItemManagementTab();
 
         itemManagementPage
-                .getDeleteProduct()
+                .getDeleteProductLinkById(String.valueOf(testProductId))
                 .click();
 
         itemManagementPage.dismissAlert();
 
-        assertThat(itemManagementPage.getProductSearchResult())
+        assertThat(itemManagementPage.getDeleteProductLinkById(String.valueOf(testProductId)))
                 .isDisplayed();
     }
 
@@ -46,13 +45,13 @@ public class DeleteProductTest extends TestRunner {
         itemManagementPage = userInfoPage.clickItemManagementTab();
 
         itemManagementPage
-                .getDeleteProduct()
+                .getDeleteProductLinkById(String.valueOf(testProductId))
                 .click();
 
         itemManagementPage.acceptAlert();
 
-        assertThat(itemManagementPage.getProductSearchResult())
-                .isNotDisplayed();
+        assertThat(DBHandler.getProductById(testProductId))
+                .isNull();
     }
 
     @AfterMethod
