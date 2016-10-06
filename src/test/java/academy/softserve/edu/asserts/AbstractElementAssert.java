@@ -324,6 +324,7 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
     }
 
     public final AbstractElementAssert isQuantityLessOrEqualsThan(int quantity) {
+
         if (actual.getElements().size() > quantity) {
 
             failWithMessage("Element's {%s} quantity should be less or equals, than {%s} ",
@@ -349,6 +350,7 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
     }
 
     public final AbstractElementAssert isParseIntQuantityEqualTo(int quantity) {
+
         if (Integer.parseInt(actual.getText()) != quantity) {
 
             failWithMessage("Element's {%s} quantity should be equal {%s} ", actual.getLocatorName(), quantity);
