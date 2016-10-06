@@ -17,13 +17,6 @@ public class CreateReportTest extends TestRunner {
     }
 
     @Test
-    public final void testCreateReportLinkVisibility() {
-
-        assertThat(itemManagementPage.getCreateReportLink())
-                .isDisplayed();
-    }
-
-    @Test
     public final void testCreateReportAbility() {
 
         supervisorCreateReportPage = itemManagementPage.clickCreateReportLink();
