@@ -322,7 +322,7 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
     }
 
 
-    public final AbstractElementAssert isMoreThan(int quantity) {
+    public final AbstractElementAssert isQuantityMoreThan(int quantity) {
         if (actual.getElements().size() <= quantity) {
 
             failWithMessage("Element's {%s} data should be more, than {%s} ", actual.getLocatorName(), quantity);
@@ -347,7 +347,7 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
         return this;
     }
 
-    public final AbstractElementAssert isEqualTo(int quantity) {
+    public final AbstractElementAssert isQuantityEqualTo(int quantity) {
         if (actual.getElements().size() != quantity) {
 
             failWithMessage("Element's {%s} data should be equal {%s} ", actual.getLocatorName(), quantity);
@@ -358,7 +358,7 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
         return this;
     }
 
-    public final AbstractElementAssert isParseIntEqualTo(int quantity) {
+    public final AbstractElementAssert isParseIntQuantityEqualTo(int quantity) {
         if (Integer.parseInt(actual.getText()) != quantity) {
 
             failWithMessage("Element's {%s} data should be equal {%s} ", actual.getLocatorName(), quantity);
@@ -369,7 +369,7 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
         return this;
     }
 
-    public final AbstractElementAssert isParseIntMoreThan(int quantity) {
+    public final AbstractElementAssert isParseIntQuantityMoreThan(int quantity) {
 
         if (Integer.parseInt(actual.getText()) <= quantity) {
 
@@ -377,30 +377,6 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
             logFail("Element's {" + actual.getLocatorName() + "} data should be more, than {" + quantity + "}");
         } else {
             logPass("Element's {" + actual.getLocatorName() + "} data more, than {" + quantity + "}");
-        }
-        return this;
-    }
-
-
-    public AbstractElementAssert isTrue(final boolean value) {
-
-        if (!value) {
-            failWithMessage("Element's {%s} Expected True, but in fact False!", actual.getLocatorName());
-            logFail("Element's {" + actual.getLocatorName() + "} Expected True, but in fact False! ");
-        } else {
-            logPass("Element's {" + actual.getLocatorName() + "} True");
-        }
-        return this;
-    }
-
-    public AbstractElementAssert isValueEqualTo(String someString) {
-
-        if (!(someString.equals(actual.getText()))) {
-
-            failWithMessage("Element's {%s} text should be equal to {%s} ", actual.getText(), someString);
-            logFail("Element's  {" + actual.getLocatorName() + "} text should be equal to {" + someString + "}");
-        } else {
-            logPass("Element's {" + actual.getLocatorName() + "} text equal to  {" + someString + "}");
         }
         return this;
     }

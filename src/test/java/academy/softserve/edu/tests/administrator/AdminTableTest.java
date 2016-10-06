@@ -192,7 +192,7 @@ public class AdminTableTest extends TestRunner {
 //TODO to re-consider asserts for comparison with numbers
         assertThat(administrationPage
                 .getQuantityOfFoundUsers())
-                .isParseIntMoreThan(5);
+                .isParseIntQuantityMoreThan(5);
 
         administrationPage
                 .getShowQuantityOfItems()
@@ -200,7 +200,7 @@ public class AdminTableTest extends TestRunner {
 //TODO to re-consider asserts for comparison with numbers
         assertThat(administrationPage
                 .getFirstNameColumn())
-                .isMoreThan(5);
+                .isQuantityMoreThan(5);
 //TODO to re-consider asserts for comparison with numbers
         assertThat(administrationPage
                 .getFirstNameColumn())
