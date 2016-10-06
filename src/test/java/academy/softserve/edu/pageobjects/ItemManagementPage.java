@@ -17,6 +17,10 @@ public class ItemManagementPage extends PageObject<ItemManagementPage> {
     // searchByFieldSet is unique ItemManagementPage element
     private final TextLabel searchByFieldSet = new TextLabel(driver, SEARCH_BY_FIELDSET);
 
+    public final Link getEditProductLinkById(final String productId) {
+        return new Link(driver, EDIT_PRODUCT_LINK.modify(productId));
+    }
+
     public ItemManagementPage(final WebDriver driver) {
         super(driver);
     }

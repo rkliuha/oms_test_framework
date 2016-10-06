@@ -1,9 +1,10 @@
 package academy.softserve.edu.domains;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter @Setter @EqualsAndHashCode
 public class Product {
 
     private int id;
@@ -11,7 +12,6 @@ public class Product {
     private String productDescription;
     private String productName;
     private double productPrice;
-
 
     private Product() {
 
