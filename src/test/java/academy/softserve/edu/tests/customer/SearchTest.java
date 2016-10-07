@@ -2,24 +2,29 @@ package academy.softserve.edu.tests.customer;
 
 import academy.softserve.edu.elements.wrappers.Element;
 import academy.softserve.edu.enums.Roles;
-import academy.softserve.edu.pageobjects.CustomerOrderingPage;
-import academy.softserve.edu.utils.DataProviders;
 import academy.softserve.edu.utils.TestRunner;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.List;
-
-import static academy.softserve.edu.asserts.FluentAssertions.*;
+import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
 
 
 //TODO get rid of collection of WebElements, refactor for use wrappers and custom assertions;
 public class SearchTest extends TestRunner {
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataSearchStatusCustomer")
-    public void testStatusSearch(final String searchOrder, final String searchOrderValue, final Element element) {
+    final public boolean checkElementsAmount(final Element elements, final int elementsAmount) {
+
+        if (elements.getElements().size() == elementsAmount) {
+
+            return true;
+
+        } else return false;
+    }
+
+    @Test
+    public void testStatusSearch() {
+
+        final String dropdownStatus = "Status";
+        final String textFieldValueByStatus = "ordered";
 
         userInfoPage = logInPage
                 .logInAs(Roles.CUSTOMER);
@@ -28,22 +33,25 @@ public class SearchTest extends TestRunner {
                 .getCustomerOrderingLink()
                 .click();
 
-        customerOrderingPage = new CustomerOrderingPage(driver);
+        customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
 
         customerOrderingPage
                 .getSearchDropdown()
-                .sendKeys(searchOrder);
+                .sendKeys(dropdownStatus);
 
         customerOrderingPage
                 .getSearchInput()
-                .sendKeys(searchOrderValue);
+                .sendKeys(textFieldValueByStatus);
 
-        assertThat(element)
+        assertThat(customerOrderingPage.getSearchStatusResult())
                 .isDisplayed();
     }
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "testData5SearchElementsCustomer")
-    public void test5ElementsSearch(final String elements) {
+    @Test
+    public void testNameSearch() {
+
+        final String dropdownName = "Order Name";
+        final String textFieldValueByName = "orderName1";
 
         userInfoPage = logInPage
                 .logInAs(Roles.CUSTOMER);
@@ -52,17 +60,24 @@ public class SearchTest extends TestRunner {
                 .getCustomerOrderingLink()
                 .click();
 
-        customerOrderingPage = new CustomerOrderingPage(driver);
+        customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
 
-        customerOrderingPage.getResizeShowItemsLink()
-                .click();
+        customerOrderingPage
+                .getSearchDropdown()
+                .sendKeys(dropdownName);
 
-        assertThat(customerOrderingPage.getSearchResult(elements))
+        customerOrderingPage
+                .getSearchInput()
+                .sendKeys(textFieldValueByName);
+
+        assertThat(customerOrderingPage.getSearchNameResult())
                 .isDisplayed();
     }
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "testData10SearchElementsCustomer")
-    public void test10ElementsSearch(final String elements) {
+    @Test
+    public void test5ElementsSearch() {
+
+        final int show5Item = 5;
 
         userInfoPage = logInPage
                 .logInAs(Roles.CUSTOMER);
@@ -71,12 +86,37 @@ public class SearchTest extends TestRunner {
                 .getCustomerOrderingLink()
                 .click();
 
-        customerOrderingPage = new CustomerOrderingPage(driver);
+        customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
 
         customerOrderingPage.getResizeShowItemsLink()
                 .click();
 
-        assertThat(customerOrderingPage.getSearchResult(elements))
-                .isDisplayed();
+        final boolean searchOrderResult = checkElementsAmount(customerOrderingPage.getSearchResultElements(), show5Item);
+
+        assertThat(searchOrderResult)
+                .isTrue();
+    }
+
+    @Test
+    public void test10ElementsSearch() {
+
+        final int show10Item = 10;
+
+        userInfoPage = logInPage
+                .logInAs(Roles.CUSTOMER);
+
+        userInfoPage
+                .getCustomerOrderingLink()
+                .click();
+
+        customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
+
+        customerOrderingPage.getResizeShowItemsLink()
+                .click();
+
+        final boolean searchOrderResult = checkElementsAmount(customerOrderingPage.getSearchResultElements(), show10Item);
+
+        assertThat(searchOrderResult)
+                .isTrue();
     }
 }

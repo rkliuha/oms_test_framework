@@ -14,6 +14,7 @@ import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
 
 public class DeleteUserTest extends TestRunner {
 
+    //TODO move inline
     private final static String FILTER_DROPDOWN = "Login";
     private final static String CONDITION_DROPDOWN = "equals";
 
@@ -70,5 +71,4 @@ public class DeleteUserTest extends TestRunner {
                 .getUserByLogin(testUser.getLogin())
                 .getId());
     }
-
 }

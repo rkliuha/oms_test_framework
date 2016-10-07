@@ -4,7 +4,7 @@
     <test name="Switch Tabs Tests">
         <classes>
             <class name="academy.softserve.edu.tests.administrator.SwitchTabsTest"/>
-            <class name="academy.softserve.edu.tests.customer.SwitchTabsByCustomerTest"/>
+            <class name="academy.softserve.edu.tests.customer.SwitchTabsTest"/>
             <class name="academy.softserve.edu.tests.merchandiser.SwitchTabsTest"/>
         </classes>
     </test> <!-- Switch Tabs Tests -->

@@ -8,6 +8,7 @@ import org.testng.annotations.*;
 
 import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
 
+//TODO reformat code to comply with common formatting rules
 public class EditOrderTest extends TestRunner {
     private boolean isChangedToStandardValues;
     private int testOrderId;

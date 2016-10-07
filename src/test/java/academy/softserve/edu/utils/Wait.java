@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+//TODO re-do waits - https://ssu-jira.softserveinc.com/browse/IFATQCZZ-90
 public class Wait {
 
     private WebDriver driver;
@@ -21,6 +22,7 @@ public class Wait {
     public final void waitUntilElementIsPresent() {
 
         new WebDriverWait(driver, timeout)
+                //TODO replace StaleElementReferenceException with NoSuchElement
                 .ignoring(StaleElementReferenceException.class)
                 .until(ExpectedConditions.presenceOfElementLocated(locator.getBy()));
     }
@@ -28,6 +30,7 @@ public class Wait {
     public final void waitUntilElementIsClickable() {
 
         new WebDriverWait(driver, timeout)
+                //TODO replace StaleElementReferenceException with NoSuchElement
                 .ignoring(StaleElementReferenceException.class)
                 .until(ExpectedConditions.elementToBeClickable(locator.getBy()));
     }

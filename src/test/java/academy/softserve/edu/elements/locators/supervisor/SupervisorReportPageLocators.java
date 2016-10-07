@@ -1,35 +1,22 @@
-package academy.softserve.edu.elements.locators.customer;
+package academy.softserve.edu.elements.locators.supervisor;
 
 import academy.softserve.edu.elements.LocatorsType;
 import academy.softserve.edu.elements.interfaces.ILocator;
 import org.openqa.selenium.By;
 
-//TODO remove unused locators
-public enum OrderItemsErrorMessageLocators implements ILocator {
+public enum SupervisorReportPageLocators implements ILocator {
 
-    ORDERING_LINK("Ordering Link",
-            LocatorsType.BY_XPATH,
-            "//ul[@id='nav']/li[1]/a"),
-
-    USER_INFO_LINK("User Info Link",
-            LocatorsType.BY_XPATH,
-            "//ul[@id='nav']/li[2]/a"),
-
-    CONTENT_TEXT("Content Text",
+    REPORT_PAGE_EXISTS("Report Page Exists",
             LocatorsType.BY_ID,
-            "content"),
-
-    ORDER_ITEMS_ERROR_MESSAGE_TEXT("Order Items Error Message Text",
-            LocatorsType.BY_XPATH,
-            "//title[text() = 'Order Items']");
+            "grid");
 
     protected String elementName;
     protected LocatorsType locatorType;
     protected String locatorValue;
     private String modifiedLocator;
 
-    OrderItemsErrorMessageLocators(final String elementName,
-                                   final LocatorsType locatorType, final String locatorValue) {
+    SupervisorReportPageLocators(final String elementName,
+                                 final LocatorsType locatorType, final String locatorValue) {
         this.elementName = elementName;
         this.locatorType = locatorType;
         this.locatorValue = locatorValue;
@@ -52,8 +39,9 @@ public enum OrderItemsErrorMessageLocators implements ILocator {
     }
 
     @Override
-    public OrderItemsErrorMessageLocators modify(final String parameter) {
+    public SupervisorReportPageLocators modify(final String parameter) {
         this.modifiedLocator = String.format(this.locatorValue, parameter);
         return this;
     }
+
 }

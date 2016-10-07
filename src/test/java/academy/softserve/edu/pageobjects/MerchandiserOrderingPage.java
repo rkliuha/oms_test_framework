@@ -21,9 +21,12 @@ public class MerchandiserOrderingPage extends PageObject<MerchandiserOrderingPag
     private final Link deleteCellLink = new Link(driver, DELETE_CELL_LINK.modify("2"));
     private final Link showItemsLink = new Link(driver, SHOW_ITEMS_LINK);
 
+    //TODO remove, turn locator into class fields
     public final Link getOrderLinkByNumber(final String editOrderNumber) {
         return new Link(driver, EDIT_CELL_LINK.modify(editOrderNumber));
     }
+
+    //TODO remove, turn locator into class fields
     public final Link getOrderStatusByNumber(final String statusNumber) {
         return new Link(driver, STATUS_CELL.modify(statusNumber));
     }

@@ -23,4 +23,7 @@ public class FluentAssertions {
         return new ProductAssert(actual);
     }
 
+    public static final CommonAssert assertThat(final Boolean actual) {
+        return new CommonAssert(actual);
+    }
 }
