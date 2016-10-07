@@ -47,6 +47,7 @@ public class ItemManagementPage extends PageObject<ItemManagementPage> {
     private final Button lastNavigationButton = new Button(driver, LAST_NAVIGATION_BUTTON);
     private final Button firstNavigationButton = new Button(driver, FIRST_NAVIGATION_BUTTON);
 
+
     public final Link getEditProductLinkById(final String productId) {
         return new Link(driver, EDIT_PRODUCT_LINK.modify(productId));
     }
