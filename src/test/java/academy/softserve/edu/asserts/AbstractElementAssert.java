@@ -325,8 +325,8 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
 
         if (actual == null) {
 
-            failWithMessage("Required Element should be not null !");
-            logFail("Required Element should be not null !");
+            failWithMessage("Element should be not null");
+            logFail("Element should be not null");
         }
         return this;
     }

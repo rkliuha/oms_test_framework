@@ -9,6 +9,7 @@ import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
 
 public class DoNotRevertDefaultStateTest extends TestRunner {
 
+    //TODO move inline
     private static final String ROLE = "Role";
     private static final String ROLE_FILTER = "contains";
     private static final String TEXT = "A";
@@ -71,5 +72,4 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
         assertThat(administrationPage.getSearchInput())
                 .valueEquals(TEXT);
     }
-
 }

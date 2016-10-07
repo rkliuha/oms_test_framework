@@ -12,13 +12,13 @@ public class SwitchTabsTest extends TestRunner {
     @Test
     final public void testMerchandiserSwitchTabAbility() {
 
-//       login and check if current page is UserInfo page opened by default
+        // login and check if current page is UserInfo page opened by default
         userInfoPage = logInPage.logInAs(Roles.MERCHANDISER);
 
         assertThat(userInfoPage.getUserInfoFieldSet())
                 .isDisplayed();
 
-//       if user can switch between tabs "User Info" and "Ordering"
+        // if user can switch between tabs "User Info" and "Ordering"
         userInfoPage
                 .getMerchandiserOrderingLink()
                 .click();
@@ -28,7 +28,7 @@ public class SwitchTabsTest extends TestRunner {
         assertThat(merchandiserOrderingPage.getSearchByText())
                 .isDisplayed();
 
-//        if user can switch back to "User Info"
+        // if user can switch back to "User Info"
         merchandiserOrderingPage
                 .getUserInfoLink()
                 .click();
@@ -36,5 +36,4 @@ public class SwitchTabsTest extends TestRunner {
         assertThat(userInfoPage.getUserInfoFieldSet())
                 .isDisplayed();
     }
-
 }

@@ -14,8 +14,24 @@ public class ItemManagementPage extends PageObject<ItemManagementPage> {
     private final Dropdown searchFieldFilterDropdown = new Dropdown(driver, SEARCH_FIELD_FILTER_DROPDOWN);
     private final TextInputField searchInput = new TextInputField(driver, SEARCH_INPUT);
     private final Button searchButton = new Button(driver, SEARCH_BUTTON);
+    private final Link addProductLink = new Link(driver, ADD_PRODUCT_LINK);
     // searchByFieldSet is unique ItemManagementPage element
     private final TextLabel searchByFieldSet = new TextLabel(driver, SEARCH_BY_FIELDSET);
+    private final Link createReportLink = new Link(driver, CREATE_REPORT_LINK);
+    private final TextLabel recordsCountText = new TextLabel(driver, RECORDS_COUNT_TEXT);
+
+    //TODO remove, turn locator into class field
+    private final Element productSearchResult = new Element(driver, PRODUCT_SEARCH_RESULT);
+
+    private final Link deleteProductLink = new Link(driver, DELETE_PRODUCT_LINK);
+
+    public final Link getEditProductLinkById(final String productId) {
+        return new Link(driver, EDIT_PRODUCT_LINK.modify(productId));
+    }
+
+    public final Link getDeleteProductLinkById(final String productId) {
+        return new Link(driver, DELETE_PRODUCT_LINK.modify(productId));
+    }
 
     public ItemManagementPage(final WebDriver driver) {
         super(driver);
@@ -27,4 +43,15 @@ public class ItemManagementPage extends PageObject<ItemManagementPage> {
 
         return new UserInfoPage(driver);
     }
+
+    public final SupervisorCreateReportPage clickCreateReportLink() {
+        createReportLink.click();
+        return new SupervisorCreateReportPage(driver);
+    }
+
+    public final AddProductPage clickAddProductLink() {
+        getAddProductLink().click();
+        return new AddProductPage(driver);
+    }
+
 }

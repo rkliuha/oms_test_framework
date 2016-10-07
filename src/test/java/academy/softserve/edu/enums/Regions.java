@@ -17,5 +17,4 @@ public enum Regions {
                 .get()
                 .toString();
     }
-
 }

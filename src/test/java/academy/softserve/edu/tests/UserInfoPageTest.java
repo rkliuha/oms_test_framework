@@ -62,5 +62,4 @@ public class UserInfoPageTest extends TestRunner {
         assertThat(userInfoPage.getUkrainianSwitchLink())
                 .isTextBold();
     }
-
 }

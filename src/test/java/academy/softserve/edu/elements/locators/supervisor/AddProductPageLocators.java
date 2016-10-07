@@ -4,6 +4,7 @@ import academy.softserve.edu.elements.interfaces.ILocator;
 import academy.softserve.edu.elements.LocatorsType;
 import org.openqa.selenium.By;
 
+//TODO remove unused locators, why is this class never used?
 public enum AddProductPageLocators implements ILocator {
 
     ITEM_MANAGEMENT_LINK("Item Management Link",
@@ -46,9 +47,21 @@ public enum AddProductPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//form[@id='productModel']/input[2]"),
 
-    CANCEL_BUITON("Cancel Button",
+    CANCEL_BUTTON("Cancel Button",
             LocatorsType.BY_XPATH,
-            "//form[@id='productModel']/input[2]");
+            "//form[@id='productModel']/input[3]"),
+
+    PRODUCT_NAME_ERROR_TEXT("Product Name Error Text",
+            LocatorsType.BY_XPATH,
+            "//form[@id='productModel']/table/tbody/tr[1]/td[3]"),
+
+    PRODUCT_DESCRIPTION_ERROR_TEXT("Product Description Error Text",
+            LocatorsType.BY_XPATH,
+            "//form[@id='productModel']/table/tbody/tr[2]/td[3]"),
+
+    PRODUCT_PRICE_ERROR_TEXT("Product Price Error Text",
+            LocatorsType.BY_XPATH,
+            "//form[@id='productModel']/table/tbody/tr[3]/td[3]");
 
     protected String elementName;
     protected LocatorsType locatorType;
