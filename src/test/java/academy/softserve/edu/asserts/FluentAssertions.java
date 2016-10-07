@@ -1,9 +1,9 @@
 package academy.softserve.edu.asserts;
 
 import academy.softserve.edu.domains.Order;
-        import academy.softserve.edu.domains.Product;
-        import academy.softserve.edu.domains.User;
-        import academy.softserve.edu.elements.wrappers.AbstractElement;
+import academy.softserve.edu.domains.Product;
+import academy.softserve.edu.domains.User;
+import academy.softserve.edu.elements.wrappers.AbstractElement;
 
 public class FluentAssertions {
 

@@ -4,12 +4,11 @@ import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.utils.DataProviders;
 import academy.softserve.edu.utils.PropertiesReader;
 import academy.softserve.edu.utils.TestRunner;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
 
-public class     LogInPageTest extends TestRunner {
+public class LogInPageTest extends TestRunner {
 
     @Test
     public final void testLoginInputsAreEmpty() {

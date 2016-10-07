@@ -12,14 +12,11 @@ public class SortUtil {
 
     public static final boolean isListSortedByAsc(final List<WebElement> elementsList) {
 
-        List<String> gridsColumnValues;
-
-        gridsColumnValues =
-                elementsList
-                        .stream()
-                        .map(WebElement::getText)
-                        .collect(Collectors
-                                .toList());
+        List<String> gridsColumnValues = elementsList
+                .stream()
+                .map(WebElement::getText)
+                .collect(Collectors
+                        .toList());
 
         return Ordering
                 .natural()
@@ -30,14 +27,11 @@ public class SortUtil {
     //Pull Double to List from list of elements.
     public final static boolean isListDoubleSortedByDescend(final List<WebElement> elementsList) {
 
-        List<Double> gridsColumnDoubleValues;
-
-        gridsColumnDoubleValues =
-                elementsList
-                        .stream()
-                        .map(WebElement::getText).map(Double::parseDouble)
-                        .collect(Collectors
-                                .toList());
+        List<Double> gridsColumnDoubleValues = elementsList
+                .stream()
+                .map(WebElement::getText).map(Double::parseDouble)
+                .collect(Collectors
+                        .toList());
 
         return Ordering
                 .natural()

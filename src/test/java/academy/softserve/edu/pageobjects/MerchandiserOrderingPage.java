@@ -32,8 +32,7 @@ public class MerchandiserOrderingPage extends PageObject<MerchandiserOrderingPag
     private final Button lastButton = new Button(driver, LAST_NAVIGATION_BUTTON);
 
     private final Link orderNameFirstCellLink = new Link(driver, ORDER_NAME_CELL_VALUE);
-    private final Link orderNameSecondCellLink = new Link(driver,
-            ORDER_NAME_CELL.modify("//*[@id='list']/table/tbody/tr[3]/td[1]"));
+    private final Link orderNameSecondCellLink = new Link(driver, ORDER_NAME_CELL.modify("3"));
 
     private final Element orderNameColumnLink = new Element(driver, ORDER_NAME_COLUMN);
     private final Element totalPriceColumnLink = new Element(driver, TOTAL_PRICE_COLUMN);
@@ -43,7 +42,6 @@ public class MerchandiserOrderingPage extends PageObject<MerchandiserOrderingPag
     private final Link numberOfGridPages = new Link(driver, PAGE_NUMBER_TEXT);
     private final Link pageCount = new Link(driver, PAGE_COUNT_TEXT);
     private final Link resizeOrdersListLinks = new Link(driver, RESIZE_ORDERS_LIST_LINK);
-
 
     public final Link getOrderLinkByNumber(final String editOrderNumber) {
         return new Link(driver, EDIT_CELL_LINK.modify(editOrderNumber));
