@@ -17,6 +17,7 @@ public class ItemManagementPage extends PageObject<ItemManagementPage> {
     private final Link addProductLink = new Link(driver, ADD_PRODUCT_LINK);
     // searchByFieldSet is unique ItemManagementPage element
     private final TextLabel searchByFieldSet = new TextLabel(driver, SEARCH_BY_FIELDSET);
+    private final Link createReportLink = new Link(driver, CREATE_REPORT_LINK);
     private final TextLabel recordsCountText = new TextLabel(driver, RECORDS_COUNT_TEXT);
 
     //TODO remove, turn locator into class field
@@ -28,11 +29,14 @@ public class ItemManagementPage extends PageObject<ItemManagementPage> {
         super(driver);
     }
 
+    public final SupervisorCreateReportPage clickCreateReportLink() {
+        createReportLink.click();
+        return new SupervisorCreateReportPage(driver);
+    }
+
     public final AddProductPage clickAddProductLink() {
         getAddProductLink().click();
         return new AddProductPage(driver);
     }
 
 }
-
-
