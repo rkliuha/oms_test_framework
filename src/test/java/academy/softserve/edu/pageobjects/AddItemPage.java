@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import static academy.softserve.edu.elements.locators.customer.AddItemPageLocators.*;
 
 @Getter
+//TODO reformat code into common look - private final Dropdown searchForItemDropdown = new Dropdown(driver, SEARCH_FOR_ITEM_DROPDOWN);
 public class AddItemPage extends PageObject<AddItemPage> {
 
     /**

@@ -3,6 +3,7 @@ package academy.softserve.edu.dao.interfaces;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+//TODO rename, that is not a factory
 public interface DaoFactory {
 
     Connection getConnection() throws SQLException;

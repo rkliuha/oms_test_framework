@@ -4,6 +4,7 @@ import academy.softserve.edu.elements.LocatorsType;
 import academy.softserve.edu.elements.interfaces.ILocator;
 import org.openqa.selenium.By;
 
+//TODO remove unused locators
 public enum CreateNewOrderPageLocators implements ILocator {
 
     CUSTOMER_ORDERING_LINK("Ordering Link",

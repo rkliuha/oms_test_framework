@@ -6,8 +6,6 @@ import org.testng.annotations.DataProvider;
 
 import java.io.IOException;
 
-import static academy.softserve.edu.elements.locators.customer.CustomerOrderingPageLocators.SEARCH_STATUS_RESULT;
-
 public class DataProviders {
 
     private static final String EXCEL_FILE = PropertiesReader.getDefaultProperty("excel.file");
@@ -15,6 +13,43 @@ public class DataProviders {
     @DataProvider
     static public Object[][] testDataForAllUsersRole() {
         return new Object[][]{{Roles.ADMINISTRATOR}, {Roles.MERCHANDISER}, {Roles.SUPERVISOR}, {Roles.CUSTOMER}};
+    }
+
+
+    @DataProvider
+    static final public Object[][] testData5SearchElementsCustomer() {
+        return new Object[][]{
+                {"2"},
+                {"3"},
+                {"4"},
+                {"5"},
+                {"6"}
+        };
+    }
+
+    @DataProvider
+    static final public Object[][] testData10SearchElementsCustomer() {
+        return new Object[][]{
+                {"2"},
+                {"3"},
+                {"4"},
+                {"5"},
+                {"6"},
+                {"7"},
+                {"8"},
+                {"9"},
+                {"10"},
+                {"11"}
+        };
+    }
+
+    @DataProvider
+    static final public Object[][] testDataSearchStatusCustomer() {
+        return new Object[][]{
+                //TODO re-do to avoid passing a page object as parameter
+                {"Status", "ordered", new CustomerOrderingPage(new TestRunner().getDriver()).getSearchStatusResult()},
+                {"Order Name", "orderName1", new CustomerOrderingPage(new TestRunner().getDriver()).getSearchStatusResult()}
+        };
     }
 
     @DataProvider

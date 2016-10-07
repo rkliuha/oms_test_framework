@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+//TODO remove redundant findElement() call - https://ssu-jira.softserveinc.com/browse/IFATQCZZ-90
 public class Dropdown extends AbstractClickableElement<Dropdown> {
 
     public Dropdown(final WebDriver driver, final ILocator locator) {

@@ -11,6 +11,7 @@ import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
 
 public class AddCardInfoToNewOrderTest extends TestRunner {
 
+    //TODO move inline
     private static final String CVV2_CODE = "456";
     private static final String EXPIRE_DATE_MONTH = "10";
     private static final String EXPIRE_DATE_YEAR = "2017";
@@ -44,6 +45,7 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
     }
 
     @Test
+    //TODO remove, no need, you interact with elements in other tests
     public final void testElementsVisibility() {
 
         assertThat(createNewOrderPage.getCardInfoText())
@@ -173,5 +175,4 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
     public final void deleteTestProduct() {
         DBHandler.deleteProduct(testProductId);
     }
-
 }

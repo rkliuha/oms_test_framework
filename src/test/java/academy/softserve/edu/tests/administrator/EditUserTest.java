@@ -15,6 +15,7 @@ import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
 
 public class EditUserTest extends TestRunner {
 
+    //TODO move inline
     private static final String NEW_USER_LAST_NAME = "Tsoni";
     private static final String NEW_USER_PASSWORD = "1qaz2wsx";
     private static final String NEW_USER_EMAIL = "google@gmail.com";
@@ -130,5 +131,4 @@ public class EditUserTest extends TestRunner {
     public final void deleteTestUser() {
         DBHandler.deleteUser(testUserId);
     }
-
 }
