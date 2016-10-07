@@ -107,6 +107,7 @@ public class TotalsSectionTest extends TestRunner {
 
     //  Test order status if the Totals are correctly specified is performed
     @Test
+    //TODO rename
     public final void testItemsPerformed() {
 
         createNewOrderPage

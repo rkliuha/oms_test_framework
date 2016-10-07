@@ -57,7 +57,6 @@ public class CreatedUserLogInTest extends TestRunner {
     @Test(priority = 3)
     public void testCreatedUserExist() {
 
-        //Login value should take from current class constants
         final String FIRST_NAME = "valodja";
         final String LAST_NAME = "gopkin";
         final String PASSWORD = "qwerty";
@@ -146,5 +145,4 @@ public class CreatedUserLogInTest extends TestRunner {
                 .getUserByLogin(LOGIN)
                 .getId());
     }
-
 }

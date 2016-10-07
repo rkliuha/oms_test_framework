@@ -1,6 +1,5 @@
 package academy.softserve.edu.utils;
 
-import academy.softserve.edu.enums.Browsers;
 import academy.softserve.edu.pageobjects.*;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
@@ -10,12 +9,12 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
 import java.net.MalformedURLException;
-import java.util.concurrent.TimeUnit;
 
 public class TestRunner {
 
+    //TODO these are used in one class only, remove from here and add to class
     public static final String CONFIG_PROPERTIES = "src/resources/config.properties";
-    public static final String LOG_IN_PAGE = PropertiesReader.getProperty("login.url", CONFIG_PROPERTIES);
+    private static final String LOG_IN_PAGE = PropertiesReader.getProperty("login.url", CONFIG_PROPERTIES);
 
     @Getter
     protected WebDriver driver;
@@ -24,6 +23,8 @@ public class TestRunner {
     protected CreateNewUserPage createNewUserPage;
     protected CustomerOrderingPage customerOrderingPage;
     protected ItemManagementPage itemManagementPage;
+    protected SupervisorCreateReportPage supervisorCreateReportPage;
+    protected SupervisorReportPage supervisorReportPage;
     protected LogInPage logInPage;
     protected MerchandiserOrderingPage merchandiserOrderingPage;
     protected MerchandiserEditOrderPage merchandiserEditOrderPage;
@@ -33,6 +34,8 @@ public class TestRunner {
     protected ReportPage reportPage;
     protected CreateNewOrderPage createNewOrderPage;
     protected AddItemPage addItemPage;
+    protected EditProductPage editProductPage;
+    protected AddProductPage addProductPage;
 
     @Parameters({"browser", "version"})
     @BeforeMethod
@@ -62,7 +65,6 @@ public class TestRunner {
         driver
                 .quit();
     }
-
 }
 
 

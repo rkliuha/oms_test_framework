@@ -104,5 +104,4 @@ public class AddItemToOrderTest extends TestRunner {
     public final void deleteTestProduct() {
         DBHandler.deleteProduct(testProductId);
     }
-
 }

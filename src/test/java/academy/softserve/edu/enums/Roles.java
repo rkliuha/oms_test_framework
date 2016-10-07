@@ -18,5 +18,4 @@ public enum Roles {
                 .get()
                 .toString();
     }
-
 }

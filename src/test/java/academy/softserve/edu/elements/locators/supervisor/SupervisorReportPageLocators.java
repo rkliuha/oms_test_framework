@@ -1,31 +1,22 @@
-package academy.softserve.edu.elements.locators.merchandiser;
+package academy.softserve.edu.elements.locators.supervisor;
 
 import academy.softserve.edu.elements.LocatorsType;
 import academy.softserve.edu.elements.interfaces.ILocator;
 import org.openqa.selenium.By;
 
-public enum MerchandiserEditOrderPageLocators implements ILocator {
+public enum SupervisorReportPageLocators implements ILocator {
 
-    ORDER_STATUS_DROPDOWN("Order Status Dropdown",
-            LocatorsType.BY_XPATH,
-            "//select[@name = 'orderStatus']"),
-
-    SAVE_BUTTON("Save Button",
-            LocatorsType.BY_XPATH,
-            "//input[@type='button']"),
-
-    SHOW_ITEMS("Edit Order",
-            LocatorsType.BY_XPATH,
-            "//a[@href='orderItemsResize.htm?orderId=1']"),
-    ;
+    REPORT_PAGE_EXISTS("Report Page Exists",
+            LocatorsType.BY_ID,
+            "grid");
 
     protected String elementName;
     protected LocatorsType locatorType;
     protected String locatorValue;
     private String modifiedLocator;
 
-    MerchandiserEditOrderPageLocators(final String elementName,
-                                      final LocatorsType locatorType, final String locatorValue) {
+    SupervisorReportPageLocators(final String elementName,
+                                 final LocatorsType locatorType, final String locatorValue) {
         this.elementName = elementName;
         this.locatorType = locatorType;
         this.locatorValue = locatorValue;
@@ -48,8 +39,9 @@ public enum MerchandiserEditOrderPageLocators implements ILocator {
     }
 
     @Override
-    public MerchandiserEditOrderPageLocators modify(final String parameter) {
+    public SupervisorReportPageLocators modify(final String parameter) {
         this.modifiedLocator = String.format(this.locatorValue, parameter);
         return this;
     }
+
 }

@@ -26,6 +26,7 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
 
     private final Element searchStatusResult = new Element(driver, SEARCH_STATUS_RESULT);
 
+    //TODO remove, turn ORDER_STATUS into class field
     private final Element searchNameResult = new Element(driver, SEARCH_NAME_RESULT);
 
     private final Element searchResultElements = new Element(driver, SEARCH_RESULT_ELEMENTS);
@@ -50,5 +51,22 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
         createNewOrderLink.click();
 
         return new CreateNewOrderPage(driver);
+    }
+
+    //TODO remove, turn ORDER_STATUS into class field
+    public final Element getSearchResult(final String statusNumber) {
+
+        return new Element(driver, SEARCH_STATUS_RESULT.modify(statusNumber));
+    }
+
+
+    //TODO - Kostya - remove
+    final public boolean checkElementsAmount(final Element elements, final int elementsAmount) {
+
+        if (elements.getElements().size() == elementsAmount) {
+
+            return true;
+
+        } else return false;
     }
 }
