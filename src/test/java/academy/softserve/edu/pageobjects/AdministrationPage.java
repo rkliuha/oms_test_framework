@@ -10,6 +10,7 @@ import static academy.softserve.edu.elements.locators.administrator.Administrati
 
 
 @Getter
+//TODO reformat code into common look - private final Dropdown searchForItemDropdown = new Dropdown(driver, SEARCH_FOR_ITEM_DROPDOWN);
 public class AdministrationPage extends PageObject<AdministrationPage> {
 
     private final Link administrationLink = new Link(driver, ADMINISTRATION_LINK);
@@ -59,6 +60,8 @@ public class AdministrationPage extends PageObject<AdministrationPage> {
 
 
     public final EditUserPage clickEditUserById(final int userId) {
+
+        //TODO use click(), create locator and use .modify() to add userId
         driver.findElement(By.xpath("//table[@id='table']//" +
                 "a[@href='editUser.htm?userID=" + userId + "']")).click();
         return new EditUserPage(driver);

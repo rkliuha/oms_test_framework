@@ -4,6 +4,7 @@ import academy.softserve.edu.elements.interfaces.ILocator;
 import academy.softserve.edu.elements.LocatorsType;
 import org.openqa.selenium.By;
 
+//TODO remove unused locators, rename class
 public enum WhatIsThisPageLocators implements ILocator {
 
     WHAT_IS_CVV2_TITLE("What Is CVV2 Text",

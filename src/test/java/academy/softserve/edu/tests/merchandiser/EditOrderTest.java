@@ -1,32 +1,47 @@
 package academy.softserve.edu.tests.merchandiser;
 
 import academy.softserve.edu.enums.Roles;
+import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.TestRunner;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import academy.softserve.edu.utils.TestUtil;
+import org.testng.annotations.*;
 
 import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
 
+//TODO reformat code to comply with common formatting rules
 public class EditOrderTest extends TestRunner {
     private boolean isChangedToStandardValues;
+    private int testOrderId;
+    private int testProduct;
+    private int testOrderItem;
+
+    @BeforeClass
+    public final void createDataInDB() {
+        testOrderId = TestUtil.createValidOrderInDB();
+        testProduct = TestUtil.createActiveProductInDB();
+        testOrderItem = TestUtil.createOrderItemInDB();
+    }
 
     @BeforeMethod
     public final void setUpTests() {
         userInfoPage = logInPage.logInAs(Roles.MERCHANDISER);
-        merchandiserOrderingPage = userInfoPage.clickMerchandiserOrderingTab();
+        merchandiserOrderingPage = userInfoPage
+                .clickMerchandiserOrderingTab()
+                .clickShowItems();
     }
 
     @Test
     public final void testEditFieldsChangingCorrectly() {
         merchandiserEditOrderPage = merchandiserOrderingPage
                 .clickEditOrder(merchandiserOrderingPage
-                        .getOrderLinkByNumber("2"));
+                        .getOrderLinkByNumber("8"));
         merchandiserEditOrderPage
                 .changeOrderStatusTo("Ordered")
+                .clickChooseDate()
+                .clickLastDate()
                 .clickSaveButton();
-        assertThat(merchandiserOrderingPage.getOrderStatusByNumber("2"))
-        .textEquals("Ordered");
+        assertThat(merchandiserOrderingPage.getOrderStatusByNumber("8"))
+                .textEquals("Ordered");
         isChangedToStandardValues = true;
     }
 
@@ -34,7 +49,7 @@ public class EditOrderTest extends TestRunner {
     public final void testShowItemsChanging() {
         merchandiserEditOrderPage = merchandiserOrderingPage
                 .clickEditOrder(merchandiserOrderingPage
-                        .getOrderLinkByNumber("2"));
+                        .getOrderLinkByNumber("8"));
         assertThat(merchandiserEditOrderPage.getShowItems())
                 .isDisplayed();
         assertThat(merchandiserEditOrderPage.getShowItems())
@@ -51,15 +66,22 @@ public class EditOrderTest extends TestRunner {
         isChangedToStandardValues = false;
     }
 
-    @AfterMethod()
+    @AfterMethod
     public final void changeToStandardValues() {
         if (isChangedToStandardValues) {
             merchandiserEditOrderPage = merchandiserOrderingPage
                     .clickEditOrder(merchandiserOrderingPage
-                            .getOrderLinkByNumber("2"));
+                            .getOrderLinkByNumber("8"));
             merchandiserEditOrderPage
                     .changeOrderStatusTo("Created")
                     .clickSaveButton();
         }
+    }
+
+    @AfterClass
+    public final void deleteTestOrder() {
+        DBHandler.deleteOrderById(testOrderId);
+        DBHandler.deleteProduct(testProduct);
+        DBHandler.deleteOrderItemById(testOrderItem);
     }
 }

@@ -8,6 +8,7 @@ import academy.softserve.edu.enums.CustomerTypes;
 import academy.softserve.edu.enums.Regions;
 import academy.softserve.edu.enums.Roles;
 
+//TODO rename into DBHelper
 public final class TestUtil {
 
     private TestUtil() {
@@ -16,6 +17,7 @@ public final class TestUtil {
 
     public static final int createValidUserInDB() {
 
+        //TODO move out User.newBuilder()... into repo package and separate class - UserRepo
         return DBHandler.createUser(User.newBuilder()
                 .setId(0)
                 .setUserActive(1)
@@ -33,6 +35,7 @@ public final class TestUtil {
 
     public static final int createActiveProductInDB() {
 
+        //TODO move out Product.newBuilder()... into repo package and separate class - ProductRepo
         return DBHandler.createProduct(Product.newBuilder()
                 .setId(0)
                 .setProductActive(1)
@@ -45,6 +48,7 @@ public final class TestUtil {
     //  Quantity of Orders must be "<=6"
     public static final int createValidOrderInDB() {
 
+        //TODO move out Order.newBuilder()... into repo package and separate class - OrderRepo
         return DBHandler.createOrder(Order.newBuilder()
                 .setId(0)
                 .setDeliveryDate(null)
@@ -63,6 +67,7 @@ public final class TestUtil {
 
     public static final int createOrderItemInDB() {
 
+        //TODO move out Order.newBuilder()... into repo package and separate class - OrderRepo
         return DBHandler.createOrderItem(OrderItem.newBuilder()
                 .setId(0)
                 .setCost(7500.0)
@@ -73,5 +78,4 @@ public final class TestUtil {
                 .setProductReference(6)
                 .build());
     }
-
 }

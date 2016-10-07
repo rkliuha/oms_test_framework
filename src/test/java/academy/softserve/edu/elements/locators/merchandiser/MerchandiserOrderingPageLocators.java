@@ -4,6 +4,7 @@ import academy.softserve.edu.elements.interfaces.ILocator;
 import academy.softserve.edu.elements.LocatorsType;
 import org.openqa.selenium.By;
 
+//TODO remove unused locators
 public enum MerchandiserOrderingPageLocators implements ILocator {
 
     MERCHANDISER_ORDERING_LINK("Ordering Link",
@@ -116,12 +117,12 @@ public enum MerchandiserOrderingPageLocators implements ILocator {
 
     DELETE_CELL_LINK("Delete Cell Link",
             LocatorsType.BY_XPATH,
+
             "//div[@id='list']/h4"),
 
     ORDER_NAME_COLUMN("Order Name Column",
             LocatorsType.BY_XPATH,
             "//*[@id='list']/table/tbody//td[1]"),
-
 
     TOTAL_PRICE_COLUMN("Total Price Column",
             LocatorsType.BY_XPATH,
@@ -141,7 +142,11 @@ public enum MerchandiserOrderingPageLocators implements ILocator {
 
     ORDER_NAME_CELL_VALUE("Order name value",
             LocatorsType.BY_XPATH,
-            "//*[@id='list']/table/tbody/tr[2]/td[1]");
+            "//*[@id='list']/table/tbody/tr[2]/td[1]"),
+
+    SHOW_ITEMS_LINK("Show items",
+            LocatorsType.BY_XPATH,
+            "//a[@href='resizeOrdersLisr.htm']");
 
 
     protected String elementName;

@@ -14,6 +14,7 @@ import static academy.softserve.edu.elements.locators.supervisor.ItemManagementP
 import static academy.softserve.edu.elements.locators.userinfo.UserInfoPageLocators.*;
 
 @Getter
+
 public class UserInfoPage extends PageObject<UserInfoPage> {
 
     private final Link administrationLink = new Link(driver, ADMINISTRATION_LINK);

@@ -106,7 +106,7 @@ public class EditAndDeleteOrderTest extends TestRunner {
         customerOrderingPage.acceptAlert();
 
         assertThat(customerOrderingPage.getOrderRow())
-                .isDisplayed();
+                .isNotDisplayed();
     }
 
     @AfterTest

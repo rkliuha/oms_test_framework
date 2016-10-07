@@ -49,5 +49,4 @@ public class LogInLogOutTest extends TestRunner {
         assertThat(logInPage.getLogInButton())
                 .isDisplayed();
     }
-
 }

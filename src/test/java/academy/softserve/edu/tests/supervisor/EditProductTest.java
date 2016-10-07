@@ -94,5 +94,4 @@ public class EditProductTest extends TestRunner {
     public final void deleteTestProduct() {
         DBHandler.deleteProduct(testProductId);
     }
-
 }
