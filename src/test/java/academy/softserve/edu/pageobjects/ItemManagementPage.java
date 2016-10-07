@@ -37,6 +37,13 @@ public class ItemManagementPage extends PageObject<ItemManagementPage> {
         super(driver);
     }
 
+    public final UserInfoPage clickUserInfoTab() {
+
+        userInfoLink.click();
+
+        return new UserInfoPage(driver);
+    }
+
     public final SupervisorCreateReportPage clickCreateReportLink() {
         createReportLink.click();
         return new SupervisorCreateReportPage(driver);
