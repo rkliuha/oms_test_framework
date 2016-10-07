@@ -58,7 +58,9 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
 
         return new Element(driver, SEARCH_STATUS_RESULT.modify(statusNumber));
     }
-    
+
+
+    //TODO - Kostya - remove
     final public boolean checkElementsAmount(final Element elements, final int elementsAmount) {
 
         if (elements.getElements().size() == elementsAmount) {
@@ -68,4 +70,3 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
         } else return false;
     }
 }
-
