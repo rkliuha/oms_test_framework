@@ -19,6 +19,7 @@ public class MerchandiserOrderingPage extends PageObject<MerchandiserOrderingPag
     private final TextLabel orderNameCell = new TextLabel(driver, ORDER_NAME_CELL.modify("2"));
     private final TextLabel statusCell = new TextLabel(driver, STATUS_CELL.modify("2"));
     private final Link deleteCellLink = new Link(driver, DELETE_CELL_LINK.modify("2"));
+    private final Link showItemsLink = new Link(driver, SHOW_ITEMS_LINK);
 
     //TODO remove, turn locator into class fields
     public final Link getOrderLinkByNumber(final String editOrderNumber) {
@@ -37,5 +38,9 @@ public class MerchandiserOrderingPage extends PageObject<MerchandiserOrderingPag
     public final MerchandiserEditOrderPage clickEditOrder(final Link editOrderLink) {
         editOrderLink.click();
         return new MerchandiserEditOrderPage(driver);
+    }
+    public final MerchandiserOrderingPage clickShowItems() {
+        showItemsLink.click();
+        return this;
     }
 }

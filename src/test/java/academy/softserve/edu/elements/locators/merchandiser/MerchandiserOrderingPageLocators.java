@@ -119,7 +119,10 @@ public enum MerchandiserOrderingPageLocators implements ILocator {
     DELETE_CELL_LINK("Delete Cell Link",
             LocatorsType.BY_XPATH,
             "//div[@id='list']//tr[%s]/td[7]"),
-    ;
+
+    SHOW_ITEMS_LINK("Show items",
+            LocatorsType.BY_XPATH,
+            "//a[@href='resizeOrdersLisr.htm']");
 
     protected String elementName;
     protected LocatorsType locatorType;
