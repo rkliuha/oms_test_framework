@@ -83,6 +83,7 @@ public abstract class PageObject<T> {
         return (T) this;
     }
 
+    //TODO remove
     public void click(final By path) {
 
         driver

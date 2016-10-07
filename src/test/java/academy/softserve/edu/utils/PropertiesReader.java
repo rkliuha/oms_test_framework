@@ -3,6 +3,7 @@ package academy.softserve.edu.utils;
 import java.io.FileReader;
 import java.util.Properties;
 
+//TODO turn into util class, make methods static, re-factor them
 public class PropertiesReader {
 
     private static final String CONFIG_PROPERTIES = "src/resources/config.properties";

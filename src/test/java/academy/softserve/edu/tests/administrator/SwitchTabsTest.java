@@ -48,5 +48,4 @@ public class SwitchTabsTest extends TestRunner {
 
         userInfoPage.doLogOut();
     }
-
 }

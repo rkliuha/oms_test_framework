@@ -4,6 +4,7 @@ import academy.softserve.edu.elements.interfaces.ILocator;
 import academy.softserve.edu.elements.LocatorsType;
 import org.openqa.selenium.By;
 
+//TODO remove unused locators
 public enum ItemManagementPageLocators implements ILocator {
 
     ITEM_MANAGEMENT_LINK("Item Management Link",
@@ -104,7 +105,11 @@ public enum ItemManagementPageLocators implements ILocator {
 
     CREATE_REPORT_LINK("Create Report Link",
             LocatorsType.BY_XPATH,
-            "//div[@id='list']/a[2]");
+            "//div[@id='list']/a[2]"),
+
+    EDIT_PRODUCT_LINK("Edit Product Link",
+            LocatorsType.BY_XPATH,
+            "//table[@id='table']//a[@href='editItem.htm?productID=%s']");
 
     protected String elementName;
     protected LocatorsType locatorType;

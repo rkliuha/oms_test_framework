@@ -1,31 +1,38 @@
-package academy.softserve.edu.elements.locators.merchandiser;
+package academy.softserve.edu.elements.locators.supervisor;
 
 import academy.softserve.edu.elements.LocatorsType;
 import academy.softserve.edu.elements.interfaces.ILocator;
 import org.openqa.selenium.By;
 
-public enum MerchandiserEditOrderPageLocators implements ILocator {
+public enum EditProductPageLocators implements ILocator {
 
-    ORDER_STATUS_DROPDOWN("Order Status Dropdown",
-            LocatorsType.BY_XPATH,
-            "//select[@name = 'orderStatus']"),
+    PRODUCT_NAME_TEXTFIELD("Product Name Textfield",
+            LocatorsType.BY_ID,
+            "name"),
 
-    SAVE_BUTTON("Save Button",
-            LocatorsType.BY_XPATH,
-            "//input[@type='button']"),
+    PRODUCT_DESCRIPTION_TEXTFIELD("Product Description Textfield",
+            LocatorsType.BY_ID,
+            "description"),
 
-    SHOW_ITEMS("Edit Order",
+    PRODUCT_PRICE_TEXTFIELD("Product Price Textfield",
+            LocatorsType.BY_ID,
+            "price"),
+
+    OK_BUTTON("OK Button",
             LocatorsType.BY_XPATH,
-            "//a[@href='orderItemsResize.htm?orderId=1']"),
-    ;
+            "//form[@id='productModel']/input[2]"),
+
+    CANCEL_BUTTON("Cancel Button",
+            LocatorsType.BY_XPATH,
+            "//form[@id='productModel']/input[3]");
 
     protected String elementName;
     protected LocatorsType locatorType;
     protected String locatorValue;
     private String modifiedLocator;
 
-    MerchandiserEditOrderPageLocators(final String elementName,
-                                      final LocatorsType locatorType, final String locatorValue) {
+    EditProductPageLocators(final String elementName,
+                            final LocatorsType locatorType, final String locatorValue) {
         this.elementName = elementName;
         this.locatorType = locatorType;
         this.locatorValue = locatorValue;
@@ -48,8 +55,10 @@ public enum MerchandiserEditOrderPageLocators implements ILocator {
     }
 
     @Override
-    public MerchandiserEditOrderPageLocators modify(final String parameter) {
+    public EditProductPageLocators modify(final String parameter) {
         this.modifiedLocator = String.format(this.locatorValue, parameter);
         return this;
     }
+
 }
+

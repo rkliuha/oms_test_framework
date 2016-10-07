@@ -4,6 +4,7 @@ import academy.softserve.edu.elements.interfaces.ILocator;
 import academy.softserve.edu.elements.LocatorsType;
 import org.openqa.selenium.By;
 
+//TODO remove unused locators
 public enum SharedLocators implements ILocator {
 
     LOG_OUT_BUTTON("Log Out Button",

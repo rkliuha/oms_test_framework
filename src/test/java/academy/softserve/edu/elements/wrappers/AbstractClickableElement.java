@@ -13,6 +13,7 @@ public abstract class AbstractClickableElement<T> extends AbstractElement {
 
     final public T click() {
 
+        //TODO remove redundant findElement() call - https://ssu-jira.softserveinc.com/browse/IFATQCZZ-90
         wait.waitUntilElementIsPresent();
         wait.waitUntilElementIsClickable();
         driver.findElement(locator.getBy()).click();
@@ -23,6 +24,7 @@ public abstract class AbstractClickableElement<T> extends AbstractElement {
 
     final public T doDoubleClick() {
 
+        //TODO remove redundant findElement() call - https://ssu-jira.softserveinc.com/browse/IFATQCZZ-90
         wait.waitUntilElementIsPresent();
         wait.waitUntilElementIsClickable();
         final Actions action = new Actions(driver);
@@ -34,6 +36,7 @@ public abstract class AbstractClickableElement<T> extends AbstractElement {
 
     final public T clickAndHold() {
 
+        //TODO remove redundant findElement() call - https://ssu-jira.softserveinc.com/browse/IFATQCZZ-90
         wait.waitUntilElementIsPresent();
         wait.waitUntilElementIsClickable();
         final Actions action = new Actions(driver);
@@ -45,6 +48,7 @@ public abstract class AbstractClickableElement<T> extends AbstractElement {
 
     final public void doRightClick() {
 
+        //TODO remove redundant findElement() call - https://ssu-jira.softserveinc.com/browse/IFATQCZZ-90
         wait.waitUntilElementIsPresent();
         wait.waitUntilElementIsClickable();
         final Actions action = new Actions(driver);

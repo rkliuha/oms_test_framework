@@ -4,6 +4,7 @@ import academy.softserve.edu.elements.interfaces.ILocator;
 import academy.softserve.edu.elements.LocatorsType;
 import org.openqa.selenium.By;
 
+//TODO remove unused locators
 public enum SupervisorCreateReportPageLocators implements ILocator {
 
     ITEM_MANAGEMENT_LINK("Item Management Link",
@@ -100,7 +101,7 @@ public enum SupervisorCreateReportPageLocators implements ILocator {
     private String modifiedLocator;
 
     SupervisorCreateReportPageLocators(final String elementName,
-                                       final LocatorsType locatorType, final String locatorValue) {
+                             final LocatorsType locatorType, final String locatorValue) {
         this.elementName = elementName;
         this.locatorType = locatorType;
         this.locatorValue = locatorValue;
