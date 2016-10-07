@@ -309,6 +309,17 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
         return this;
     }
 
+    public AbstractElementAssert isTrue(final boolean value) {
+
+        if(!value){
+            failWithMessage("Element's {%s} Expected True, but in fact False!", actual.getLocatorName());
+            logFail("Element's {" + actual.getLocatorName() + "} Expected True, but in fact False! ");
+        } else {
+            logPass("Element's {" + actual.getLocatorName() + "} True");
+        }
+        return this;
+    }
+
     @Override
     public final AbstractElementAssert isNotNull() {
 

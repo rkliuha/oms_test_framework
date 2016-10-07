@@ -24,11 +24,13 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
 
     private final Element orderRow = new Element(driver, ORDER_ROW);
 
-    private final Element searchResult = new Element(driver, SEARCH_RESULT);
-
     private final Element searchStatusResult = new Element(driver, SEARCH_STATUS_RESULT);
 
     //TODO remove, turn ORDER_STATUS into class field
+    private final Element searchNameResult = new Element(driver, SEARCH_NAME_RESULT);
+
+    private final Element searchResultElements = new Element(driver, SEARCH_RESULT_ELEMENTS);
+
     public final TextLabel getOrderStatusByNumber(final String orderNumber) {
         return new TextLabel(driver, ORDER_STATUS.modify(orderNumber));
     }
@@ -54,6 +56,16 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
     //TODO remove, turn ORDER_STATUS into class field
     public final Element getSearchResult(final String statusNumber) {
 
-        return new Element(driver, SEARCH_RESULT.modify(statusNumber));
+        return new Element(driver, SEARCH_STATUS_RESULT.modify(statusNumber));
+    }
+    
+    final public boolean checkElementsAmount(final Element elements, final int elementsAmount) {
+
+        if (elements.getElements().size() == elementsAmount) {
+
+            return true;
+
+        } else return false;
     }
 }
+
