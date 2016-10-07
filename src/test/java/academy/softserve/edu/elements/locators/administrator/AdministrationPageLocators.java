@@ -33,7 +33,7 @@ public enum AdministrationPageLocators implements ILocator {
 
     SEARCH_FIELD_FILTER("Search Field Filter",
             LocatorsType.BY_XPATH,
-            "//form[@id='searchForm']/label"),
+            "//*[@id='searchForm']/label"),
 
     SEARCH_FIELD_FILTER_DROPDOWN("Search Field Filter Dropdown",
             LocatorsType.BY_XPATH,
@@ -54,6 +54,10 @@ public enum AdministrationPageLocators implements ILocator {
     FOUND_USERS_TEXT_LABEL("Found Users Text Label",
             LocatorsType.BY_XPATH,
             "//div[@id='list']/h4[1]"),
+
+    QUANTITY_OF_FOUND_USERS("Quantity of found Users",
+            LocatorsType.BY_XPATH,
+            "//*[@id='usersFound']"),
 
     RESIZE_USERS_LIST_LINK("Resize Users List Link",
             LocatorsType.BY_XPATH,
@@ -136,20 +140,41 @@ public enum AdministrationPageLocators implements ILocator {
             "//div[@id='list']/h4[2]"),
 
     PAGE_NUMBER_TEXT("Page Number Text",
-            LocatorsType.BY_ID,
-            "pageNumber"),
+            LocatorsType.BY_XPATH,
+            "//*[@id='pageNumber']"),
 
     PAGE_COUNT_TEXT("Page Count Text",
-            LocatorsType.BY_ID,
-            "pageCount"),
+            LocatorsType.BY_XPATH,
+            "//*[@id='pageCount']"),
 
     CREATE_REPORT_LINK("Create Report Link",
             LocatorsType.BY_XPATH,
             "//div[@id='list']/h5/a"),
 
+
     SAVE_REPORT_LINK("Save Report Link",
             LocatorsType.BY_XPATH,
-            "//div[@id='list']/a");
+            "//div[@id='list']/a"),
+
+    FIRST_NAME_COLUMN("First Name column",
+            LocatorsType.BY_XPATH,
+            "//*[@id='table']/tbody/tr//td[1]"),
+
+    LAST_NAME_COLUMN("Last Name column",
+            LocatorsType.BY_XPATH,
+            "//*[@id='table']/tbody/tr//td[2]"),
+
+    LOGIN_COLUMN("Login Column",
+            LocatorsType.BY_XPATH,
+            "//*[@id='table']/tbody/tr//td[3]"),
+
+    ROLE_COLUMN("Role Column",
+            LocatorsType.BY_XPATH,
+            "//*[@id='table']/tbody/tr//td[4]"),
+
+    REGION_COLUMN("Region Column",
+            LocatorsType.BY_XPATH,
+            "//*[@id='table']/tbody/tr//td[5]");
 
 
     protected String elementName;

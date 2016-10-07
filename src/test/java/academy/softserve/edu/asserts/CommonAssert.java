@@ -7,7 +7,9 @@ import static academy.softserve.edu.utils.Logger.logPass;
 
 public class CommonAssert extends AbstractAssert<CommonAssert, Boolean> {
 
-    CommonAssert(final Boolean actual) {super(actual, CommonAssert.class);
+    CommonAssert(final Boolean actual) {
+        super(actual, CommonAssert.class);
+
     }
 
     public static final CommonAssert assertThat(final Boolean actual) {
@@ -24,4 +26,8 @@ public class CommonAssert extends AbstractAssert<CommonAssert, Boolean> {
         }
         return this;
     }
+
 }
+
+
+
