@@ -15,7 +15,7 @@ public enum MerchandiserEditOrderPageLocators implements ILocator {
             "//input[@type='button']"),
 
     SHOW_ITEMS("Edit Order",
-                     LocatorsType.BY_XPATH,
+            LocatorsType.BY_XPATH,
             "//a[@href='orderItemsResize.htm?orderId=1']"),
     ;
 

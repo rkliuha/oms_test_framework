@@ -2,12 +2,9 @@ package academy.softserve.edu.pageobjects;
 
 import academy.softserve.edu.elements.wrappers.*;
 import lombok.Getter;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import static academy.softserve.edu.elements.locators.customer.CustomerOrderingPageLocators.*;
-import static academy.softserve.edu.elements.locators.merchandiser.MerchandiserOrderingPageLocators.STATUS_CELL;
 
 @Getter
 public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
@@ -31,6 +28,7 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
 
     private final Element searchStatusResult = new Element(driver, SEARCH_STATUS_RESULT);
 
+    //TODO remove, turn ORDER_STATUS into class field
     public final TextLabel getOrderStatusByNumber(final String orderNumber) {
         return new TextLabel(driver, ORDER_STATUS.modify(orderNumber));
     }
@@ -53,6 +51,7 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
         return new CreateNewOrderPage(driver);
     }
 
+    //TODO remove, turn ORDER_STATUS into class field
     public final Element getSearchResult(final String statusNumber) {
 
         return new Element(driver, SEARCH_RESULT.modify(statusNumber));

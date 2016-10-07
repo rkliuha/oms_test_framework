@@ -77,5 +77,4 @@ public class SwitchTabsByCustomerTest extends TestRunner {
         assertThat(userInfoPage.getUserInfoFieldSet())
                 .isDisplayed();
     }
-
 }

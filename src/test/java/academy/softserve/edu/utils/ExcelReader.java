@@ -9,11 +9,11 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+//TODO that is a util class, make final with private constructor
 public class ExcelReader {
 
 
     public static String[][] getArrayFromExcel(final String excelFileName, final String sheetName) throws IOException {
-
 
         final FileInputStream fileSystem = new FileInputStream(excelFileName);
         final Workbook workBook = new XSSFWorkbook(fileSystem);
@@ -26,7 +26,6 @@ public class ExcelReader {
                 .getRow(0)
                 .getPhysicalNumberOfCells();
 
-        //I appoint the array size by the number of rows and cells of Excel document
         final String[][] loginData = new String[numberOfRows - 1][numberOfCells];
 
         for (int i = 1; i < numberOfRows; i++) {

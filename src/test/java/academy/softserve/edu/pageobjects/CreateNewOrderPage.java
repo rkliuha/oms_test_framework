@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import static academy.softserve.edu.elements.locators.customer.CreateNewOrderPageLocators.*;
 
 @Getter
+//TODO reformat code into common look - private final Dropdown searchForItemDropdown = new Dropdown(driver, SEARCH_FOR_ITEM_DROPDOWN);
 public class CreateNewOrderPage extends PageObject<CreateNewOrderPage> {
 
     /**
@@ -144,6 +145,7 @@ public class CreateNewOrderPage extends PageObject<CreateNewOrderPage> {
         super(driver);
     }
 
+    //TODO rename
     public final OrderItemsErrorMessagePage getOrderItemsErrorMessage() {
         saveButton.click();
         return new OrderItemsErrorMessagePage(driver);

@@ -4,6 +4,7 @@ import academy.softserve.edu.elements.interfaces.ILocator;
 import academy.softserve.edu.elements.LocatorsType;
 import org.openqa.selenium.By;
 
+//TODO remove unused locators, why is this class never used?
 public enum AddProductPageLocators implements ILocator {
 
     ITEM_MANAGEMENT_LINK("Item Management Link",

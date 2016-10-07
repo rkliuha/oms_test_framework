@@ -3,11 +3,10 @@ package academy.softserve.edu.pageobjects;
 import academy.softserve.edu.elements.locators.administrator.ReportPageLocators;
 import academy.softserve.edu.elements.wrappers.TextLabel;
 import lombok.Getter;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 @Getter
+//TODO reformat code into common look - private final Dropdown searchForItemDropdown = new Dropdown(driver, SEARCH_FOR_ITEM_DROPDOWN);
 public class ReportPage extends PageObject<ReportPage> {
 
     private final TextLabel reportPageExists =
