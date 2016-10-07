@@ -76,6 +76,51 @@ public class ProductAssert extends AbstractAssert<ProductAssert, Product> {
         return this;
     }
 
+    public final ProductAssert nameNotEqual(final String condition) {
+
+        isNotNull();
+
+        if (condition.equals(actual.getProductName())) {
+            failWithMessage("Product's {id=%s} name {%s} equals {%s} !",
+                    actual.getId(), actual.getProductName(), condition);
+            logFail("Product's {id=" + actual.getId() + "} name {" + actual.getProductName() +
+                    "} equals {" + condition + "} !");
+        } else {
+            logPass("Product's {id=" + actual.getId() + "} name not equal {" + condition + "}");
+        }
+        return this;
+    }
+
+    public final ProductAssert descriptionNotEqual(final String condition) {
+
+        isNotNull();
+
+        if (condition.equals(actual.getProductDescription())) {
+            failWithMessage("Product's {id=%s} description {%s} equals {%s} !",
+                    actual.getId(), actual.getProductDescription(), condition);
+            logFail("Product's {id=" + actual.getId() + "} description {" + actual.getProductDescription() +
+                    "} equals {" + condition + "} !");
+        } else {
+            logPass("Product's {id=" + actual.getId() + "} description not equal {" + condition + "}");
+        }
+        return this;
+    }
+
+    public final ProductAssert priceNotEqual(final String condition) {
+
+        isNotNull();
+
+        if (Double.parseDouble(condition) == actual.getProductPrice()) {
+            failWithMessage("Product's {id=%s} price {%s} equals {%s} !",
+                    actual.getId(), actual.getProductPrice(), condition);
+            logFail("Product's {id=" + actual.getId() + "} price {" + actual.getProductPrice() +
+                    "} equals {" + condition + "} !");
+        } else {
+            logPass("Product's {id=" + actual.getId() + "} price not equal {" + condition + "}");
+        }
+        return this;
+    }
+
     @Override
     public final ProductAssert isNotNull() {
 
@@ -85,5 +130,14 @@ public class ProductAssert extends AbstractAssert<ProductAssert, Product> {
             logFail("Required product should be not null !");
         }
         return this;
+    }
+
+    public final void isNull() {
+
+        if (!(actual == null)) {
+
+            failWithMessage("Required product should be null !");
+            logFail("Required product should be null !");
+        }
     }
 }

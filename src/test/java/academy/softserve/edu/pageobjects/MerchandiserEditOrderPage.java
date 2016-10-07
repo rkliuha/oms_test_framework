@@ -1,7 +1,6 @@
 package academy.softserve.edu.pageobjects;
 
 import academy.softserve.edu.elements.wrappers.*;
-import academy.softserve.edu.utils.PropertiesReader;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 
@@ -13,8 +12,11 @@ public class MerchandiserEditOrderPage extends PageObject<MerchandiserEditOrderP
 
     private final Link userInfoLink = new Link(driver, USER_INFO_LINK);
     private final Dropdown orderStatusDropdown = new Dropdown(driver, ORDER_STATUS_DROPDOWN);
-    private final Link showItems = new Link(driver, SHOW_ITEMS);
+    private final Link showItems = new Link(driver, SHOW_ITEMS_LINK);
     private final Button saveButton = new Button(driver, SAVE_BUTTON);
+    private final Link chooseDateLink = new Link(driver, CHOOSE_DATE_LINK);
+    private final Link lastDateLink = new Link(driver, LAST_DAY_LINK);
+
 
     public MerchandiserEditOrderPage(final WebDriver driver) {
         super(driver);
@@ -32,4 +34,13 @@ public class MerchandiserEditOrderPage extends PageObject<MerchandiserEditOrderP
         showItems.click();
         return this;
     }
+    public final MerchandiserEditOrderPage clickChooseDate(){
+        chooseDateLink.click();
+        return this;
+    }
+    public final MerchandiserEditOrderPage clickLastDate(){
+        lastDateLink.click();
+        return this;
+    }
+
 }

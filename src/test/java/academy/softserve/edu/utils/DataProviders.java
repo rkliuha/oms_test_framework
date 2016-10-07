@@ -6,9 +6,6 @@ import org.testng.annotations.DataProvider;
 
 import java.io.IOException;
 
-import static academy.softserve.edu.elements.locators.customer.CustomerOrderingPageLocators.SEARCH_STATUS_RESULT;
-
-
 public class DataProviders {
 
     private static final String EXCEL_FILE = PropertiesReader.getDefaultProperty("excel.file");
@@ -49,6 +46,7 @@ public class DataProviders {
     @DataProvider
     static final public Object[][] testDataSearchStatusCustomer() {
         return new Object[][]{
+                //TODO re-do to avoid passing a page object as parameter
                 {"Status", "ordered", new CustomerOrderingPage(new TestRunner().getDriver()).getSearchStatusResult()},
                 {"Order Name", "orderName1", new CustomerOrderingPage(new TestRunner().getDriver()).getSearchStatusResult()}
         };

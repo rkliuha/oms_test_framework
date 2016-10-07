@@ -9,6 +9,7 @@ import static academy.softserve.edu.elements.locators.customer.OrderItemsErrorMe
 import static academy.softserve.edu.elements.locators.customer.OrderItemsErrorMessageLocators.ORDER_ITEMS_ERROR_MESSAGE_TEXT;
 
 @Getter
+//TODO reformat code into common look - private final Dropdown searchForItemDropdown = new Dropdown(driver, SEARCH_FOR_ITEM_DROPDOWN);
 public class OrderItemsErrorMessagePage extends PageObject<OrderItemsErrorMessagePage> {
 
     public OrderItemsErrorMessagePage(WebDriver driver) {

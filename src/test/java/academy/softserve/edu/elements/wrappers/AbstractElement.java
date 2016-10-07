@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import java.util.LinkedList;
 import java.util.List;
 
+//TODO remove redundant findElement() call - https://ssu-jira.softserveinc.com/browse/IFATQCZZ-90
 public abstract class AbstractElement<T> {
 
     protected WebDriver driver;

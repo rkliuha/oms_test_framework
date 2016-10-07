@@ -18,7 +18,7 @@ public class WebDriverFactory {
     @Getter
     private WebDriver driver;
 
-    public void setDriver(final String browser, final String version) throws MalformedURLException {
+    void setDriver(final String browser, final String version) throws MalformedURLException {
 
         final DesiredCapabilities capabilities = new DesiredCapabilities();
 
@@ -36,6 +36,7 @@ public class WebDriverFactory {
 
             if ("firefox".equals(browser)) {
 
+                //TODO move out drivers path base into a variable
                 switch (propertyBrowserTypeEnum) {
 
                     case CHROME_MAC:
@@ -61,7 +62,7 @@ public class WebDriverFactory {
             } else {
 
                 switch (cmdBrowserTypeEnum) {
-
+                    //TODO move out drivers path base into a variable
                     case CHROME_MAC:
                         System.setProperty("webdriver.chrome.driver", "src//resources//drivers//chromedriver_mac");
                         driver = new ChromeDriver();
@@ -94,6 +95,7 @@ public class WebDriverFactory {
             capabilities
                     .setVersion(version);
 
+            //TODO move out URL to config.properties
             driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
         }
 

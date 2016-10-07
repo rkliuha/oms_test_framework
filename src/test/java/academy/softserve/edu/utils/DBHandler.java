@@ -176,7 +176,6 @@ public final class DBHandler {
         }
     }
 
-    //  Quantity of Orders must be "<=6"
     public static final int createOrder(final Order order) {
 
         final DaoFactory daoFactory = new MySQLDaoFactory();

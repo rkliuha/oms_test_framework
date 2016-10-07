@@ -7,8 +7,10 @@ import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+//TODO that is not a factory, rename
 public class MySQLDaoFactory implements DaoFactory {
 
+    //TODO move out to config.property file
     private static final String USERNAME = "oms";
     private static final String PASSWORD = "1qaz2wsx";
     private static final String DB_URL = "jdbc:mysql://192.168.56.101:3306/oms?allowMultiQueries=true";

@@ -9,6 +9,7 @@ import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
 
 public class DoNotRevertDefaultStateTest extends TestRunner {
 
+    //TODO move inline
     public static final String SEARCH_ORDERS = "Status";
     public static final String SEARCH_ORDERS_VALUE = "Ordered";
 
@@ -61,5 +62,4 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
         assertThat(customerOrderingPage.getSearchInput())
                 .valueEquals(SEARCH_ORDERS_VALUE);
     }
-
 }

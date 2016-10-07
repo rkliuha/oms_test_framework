@@ -310,7 +310,6 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
         return this;
     }
 
-
     public final AbstractElementAssert isQuantityMoreThan(int quantity) {
 
         if (actual.getElements().size() <= quantity) {
@@ -345,9 +344,11 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
             logFail("Element's {" + actual.getLocatorName() + "} quantity should be equal {" + quantity + "}");
         } else {
             logPass("Element's {" + actual.getLocatorName() + "} quantity equal {" + quantity + "}");
+
         }
         return this;
     }
+
 
     public final AbstractElementAssert isParseIntQuantityEqualTo(int quantity) {
 
@@ -379,8 +380,8 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
 
         if (actual == null) {
 
-            failWithMessage("Required Element should be not null !");
-            logFail("Required Element should be not null !");
+            failWithMessage("Element should be not null");
+            logFail("Element should be not null");
         }
         return this;
     }
