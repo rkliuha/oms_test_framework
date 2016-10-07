@@ -117,7 +117,39 @@ public enum ItemManagementPageLocators implements ILocator {
 
     EDIT_PRODUCT_LINK("Edit Product Link",
             LocatorsType.BY_XPATH,
-            "//table[@id='table']//a[@href='editItem.htm?productID=%s']");
+            "//table[@id='table']//a[@href='editItem.htm?productID=%s']"),
+
+    NAME_PRODUCT_CELL_LINK("Name Cell",
+            LocatorsType.BY_XPATH,
+            "//*[@id='table']/tbody/tr[%s]/td[1]"),
+
+    DESCRIPTION_CELL_LINK("Description Cell",
+            LocatorsType.BY_XPATH,
+            "//*[@id='table']/tbody/tr[%s]/td[2]"),
+
+    PRICE_CELL_LINK("Price Cell",
+            LocatorsType.BY_XPATH,
+            "//*[@id='table']/tbody/tr[%s]/td[3]/a"),
+
+    DELETE_PRODUCT_CELL_LINK("Delete Cell",
+            LocatorsType.BY_XPATH,
+            "//*[@id='table']/tbody/tr[%s]/td[5]/a"),
+
+    EDIT_PRODUCT_CELL_LINK("Edit Cell",
+            LocatorsType.BY_XPATH,
+            "//*[@id='table']/tbody/tr[%s]/td[4]/a"),
+
+    NAME_PRODUCT_CELL_COLUMN(" Name Cell Column",
+            LocatorsType.BY_XPATH,
+            "//*[@id='table']/tbody//td[1]"),
+
+    DESCRIPTION_CELL_COLUMN("Description Cell Column",
+            LocatorsType.BY_XPATH,
+            "//*[@id='table']/tbody//td[2]"),
+
+    PRICE_CELL_COLUMN("Price Cell Column",
+            LocatorsType.BY_XPATH,
+            "//*[@id='table']/tbody//td[3]");
 
     protected String elementName;
     protected LocatorsType locatorType;

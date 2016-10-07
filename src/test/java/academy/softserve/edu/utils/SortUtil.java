@@ -38,5 +38,18 @@ public class SortUtil {
                 .reverse()
                 .isOrdered(gridsColumnDoubleValues);
     }
+
+    public final static boolean isListDoubleSortedByAscent(final List<WebElement> elementsList) {
+
+        List<Double> gridsColumnDoubleValues = elementsList
+                .stream()
+                .map(WebElement::getText).map(Double::parseDouble)
+                .collect(Collectors
+                        .toList());
+
+        return Ordering
+                .natural()
+                .isOrdered(gridsColumnDoubleValues);
+    }
 }
 

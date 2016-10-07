@@ -43,7 +43,6 @@ public class AdminTableTest extends TestRunner {
                 .isDisplayed();
     }
 
-
     // To check searching function in Admin Table with first filter All Columns.
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testSearchingForAllColumnsFilter")
     public final void testSearchForAllColumnsFilter(final String secondSearchFilter,
