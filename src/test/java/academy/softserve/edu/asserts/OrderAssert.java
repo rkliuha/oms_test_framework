@@ -22,9 +22,9 @@ public class OrderAssert extends AbstractAssert<OrderAssert, Order> {
 
         if (!condition.equals(actual)) {
 
+            logFail("Order {" + actual + "} \n should equal \n {" + condition + "} !");
             failWithMessage("Order {%s} \n should equal \n {%s} !",
                     actual, condition);
-            logFail("Order {" + actual + "} \n should equal \n {" + condition + "} !");
         } else {
             logPass("Orders are equal");
         }
@@ -36,10 +36,11 @@ public class OrderAssert extends AbstractAssert<OrderAssert, Order> {
         isNotNull();
 
         if (!(condition == actual.getOrderNumber())) {
-            failWithMessage("Order {id=%s} numbers {%s} should equal {%s} !",
-                    actual.getId(), actual.getOrderNumber(), condition);
+
             logFail("Order {id=" + actual.getId() + "} numbers {" + actual.getOrderNumber() +
                     "} should equal {" + condition + "} !");
+            failWithMessage("Order {id=%s} numbers {%s} should equal {%s} !",
+                    actual.getId(), actual.getOrderNumber(), condition);
         } else {
             logPass("Order {id=" + actual.getId() + "} numbers equal {" + condition + "}");
         }
@@ -52,9 +53,9 @@ public class OrderAssert extends AbstractAssert<OrderAssert, Order> {
 
         if (condition.equals(actual)) {
 
+            logFail("Order {" + actual + "} \n should not equal \n {" + condition + "} !");
             failWithMessage("Order {%s} \n should not equal \n {%s} !",
                     actual, condition);
-            logFail("Order {" + actual + "} \n should not equal \n {" + condition + "} !");
         } else {
             logPass("Orders are not equal");
         }
@@ -66,10 +67,11 @@ public class OrderAssert extends AbstractAssert<OrderAssert, Order> {
         isNotNull();
 
         if (condition == actual.getOrderNumber()) {
-            failWithMessage("Order {id=%s} numbers {%s} should not equal {%s} !",
-                    actual.getId(), actual.getOrderNumber(), condition);
+
             logFail("Order {id=" + actual.getId() + "} numbers {" + actual.getOrderNumber() +
                     "} should not equal {" + condition + "} !");
+            failWithMessage("Order {id=%s} numbers {%s} should not equal {%s} !",
+                    actual.getId(), actual.getOrderNumber(), condition);
         } else {
             logPass("Order {id=" + actual.getId() + "} numbers not equal {" + condition + "}");
         }
@@ -81,10 +83,11 @@ public class OrderAssert extends AbstractAssert<OrderAssert, Order> {
         isNotNull();
 
         if (!condition.equals(actual.getOrderStatusName())) {
-            failWithMessage("Order {№%s} status {%s} should equal {%s} !",
-                    actual.getOrderNumber(), actual.getOrderStatusName(), condition);
+
             logFail("Order {№" + actual.getOrderNumber() + "} status {" + actual.getOrderStatusName() +
                     "} should equal {" + condition + "} !");
+            failWithMessage("Order {№%s} status {%s} should equal {%s} !",
+                    actual.getOrderNumber(), actual.getOrderStatusName(), condition);
         } else {
             logPass("Order {№" + actual.getOrderNumber() + "} status equals {" + condition + "}");
         }
@@ -96,8 +99,8 @@ public class OrderAssert extends AbstractAssert<OrderAssert, Order> {
 
         if (actual == null) {
 
-            failWithMessage("Required order should be not null !");
             logFail("Required order should be not null !");
+            failWithMessage("Required order should be not null !");
         }
         return this;
     }
