@@ -75,7 +75,11 @@
                     <reportsDirectory>${project.basedir}/test-output</reportsDirectory>
                     <workingDirectory>${project.basedir}</workingDirectory>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/resources/suites/testng.xml</suiteXmlFile>
+                        <suiteXmlFile>src/resources/suites/administrator.xml</suiteXmlFile>
+                        <suiteXmlFile>src/resources/suites/customer.xml</suiteXmlFile>
+                        <suiteXmlFile>src/resources/suites/merchandiser.xml</suiteXmlFile>
+                        <suiteXmlFile>src/resources/suites/supervisor.xml</suiteXmlFile>
+                        <suiteXmlFile>src/resources/suites/others.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
 
