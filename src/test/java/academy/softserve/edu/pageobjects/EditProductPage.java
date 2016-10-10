@@ -29,4 +29,34 @@ public class EditProductPage extends PageObject<EditProductPage> {
         super(driver);
     }
 
+    public final ItemManagementPage clickOkButton() {
+
+        okButton.click();
+        return new ItemManagementPage(driver);
+    }
+
+    public final ItemManagementPage clickCancelButton() {
+
+        cancelButton.click();
+        return new ItemManagementPage(driver);
+    }
+
+    public final EditProductPage fillProductNameInput(final String productName) {
+
+        productNameInput.sendKeys(productName);
+        return this;
+    }
+
+    public final EditProductPage fillProductDescriptionInput(final String productDescription) {
+
+        productDescriptionInput.sendKeys(productDescription);
+        return this;
+    }
+
+    public final EditProductPage fillProductPriceInput(final String productPrice) {
+
+        productPriceInput.sendKeys(productPrice);
+        return this;
+    }
+
 }

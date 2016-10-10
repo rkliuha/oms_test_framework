@@ -48,18 +48,10 @@ public class AdminTableTest extends TestRunner {
     public final void testSearchForAllColumnsFilter(final String secondSearchFilter,
                                                     final String searchingValue, final String comparisonValue) {
 
-        administrationPage
-                .getSearchFieldFilterDropdown()
-                .sendKeys("All columns");
-        administrationPage
-                .getSearchConditionDropdown()
-                .sendKeys(secondSearchFilter);
-        administrationPage
-                .getSearchInput()
-                .sendKeys(searchingValue);
-        administrationPage
-                .getSearchButton()
-                .click();
+        administrationPage.selectSearchFieldFilterDropdown("All columns")
+                .selectSearchConditionDropdown(secondSearchFilter)
+                .fillSearchInput(searchingValue)
+                .clickSearchButton();
 
         assertThat(administrationPage
                 .getRoleFirstCellLink())
@@ -72,18 +64,10 @@ public class AdminTableTest extends TestRunner {
     public final void testSearchForFirstNameFilter(final String secondSearchFilter,
                                                    final String searchingValue, final String comparisonValue) {
 
-        administrationPage
-                .getSearchFieldFilterDropdown()
-                .sendKeys("First Name");
-        administrationPage
-                .getSearchConditionDropdown()
-                .sendKeys(secondSearchFilter);
-        administrationPage
-                .getSearchInput()
-                .sendKeys(searchingValue);
-        administrationPage
-                .getSearchButton()
-                .click();
+        administrationPage.selectSearchFieldFilterDropdown("First Name")
+                .selectSearchConditionDropdown(secondSearchFilter)
+                .fillSearchInput(searchingValue)
+                .clickSearchButton();
 
         assertThat(administrationPage
                 .getFirstNameFirstCellLink())
@@ -96,18 +80,10 @@ public class AdminTableTest extends TestRunner {
     public final void testSearchForLastNameFilter(final String secondSearchFilter,
                                                   final String searchingValue, final String comparisonValue) {
 
-        administrationPage
-                .getSearchFieldFilterDropdown()
-                .sendKeys("Last Name");
-        administrationPage
-                .getSearchConditionDropdown()
-                .sendKeys(secondSearchFilter);
-        administrationPage
-                .getSearchInput()
-                .sendKeys(searchingValue);
-        administrationPage
-                .getSearchButton()
-                .click();
+        administrationPage.selectSearchFieldFilterDropdown("Last Name")
+                .selectSearchConditionDropdown(secondSearchFilter)
+                .fillSearchInput(searchingValue)
+                .clickSearchButton();
 
         assertThat(administrationPage
                 .getLastNameFirstCellLink())
@@ -119,18 +95,11 @@ public class AdminTableTest extends TestRunner {
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testSearchingForLoginFilter")
     public final void testSearchForLoginFilter(final String secondSearchFilter,
                                                final String searchingValue, final String comparisonValue) {
-        administrationPage
-                .getSearchFieldFilterDropdown()
-                .sendKeys("Login");
-        administrationPage
-                .getSearchConditionDropdown()
-                .sendKeys(secondSearchFilter);
-        administrationPage
-                .getSearchInput()
-                .sendKeys(searchingValue);
-        administrationPage
-                .getSearchButton()
-                .click();
+
+        administrationPage.selectSearchFieldFilterDropdown("Login")
+                .selectSearchConditionDropdown(secondSearchFilter)
+                .fillSearchInput(searchingValue)
+                .clickSearchButton();
 
         assertThat(administrationPage
                 .getLoginFirstCellLink())
@@ -143,23 +112,14 @@ public class AdminTableTest extends TestRunner {
     public final void testSearchForRoleFilter(final String secondSearchFilter,
                                               final String searchingValue, final String comparisonValue) {
 
-        administrationPage
-                .getSearchFieldFilterDropdown()
-                .sendKeys("Role");
-        administrationPage
-                .getSearchConditionDropdown()
-                .sendKeys(secondSearchFilter);
-        administrationPage
-                .getSearchInput()
-                .sendKeys(searchingValue);
-        administrationPage
-                .getSearchButton()
-                .click();
+        administrationPage.selectSearchFieldFilterDropdown("Role")
+                .selectSearchConditionDropdown(secondSearchFilter)
+                .fillSearchInput(searchingValue)
+                .clickSearchButton();
 
         assertThat(administrationPage
                 .getRoleFirstCellLink())
                 .textEquals(comparisonValue);
-
     }
 
 
@@ -168,18 +128,10 @@ public class AdminTableTest extends TestRunner {
     public final void testSearchForRegionFilter(final String secondSearchFilter,
                                                 final String searchingValue, final String comparisonValue) {
 
-        administrationPage
-                .getSearchFieldFilterDropdown()
-                .sendKeys("Region");
-        administrationPage
-                .getSearchConditionDropdown()
-                .sendKeys(secondSearchFilter);
-        administrationPage
-                .getSearchInput()
-                .sendKeys(searchingValue);
-        administrationPage
-                .getSearchButton()
-                .click();
+        administrationPage.selectSearchFieldFilterDropdown("Region")
+                .selectSearchConditionDropdown(secondSearchFilter)
+                .fillSearchInput(searchingValue)
+                .clickSearchButton();
 
         assertThat(administrationPage
                 .getRegionFirstCellLink())
@@ -195,9 +147,7 @@ public class AdminTableTest extends TestRunner {
                 .getQuantityOfFoundUsers())
                 .isParseIntQuantityMoreThan(5);
 
-        administrationPage
-                .getShowQuantityOfItems()
-                .click();
+        administrationPage.clickShowQuantityOfItems();
 
         assertThat(administrationPage
                 .getFirstNameColumn())
@@ -207,9 +157,7 @@ public class AdminTableTest extends TestRunner {
                 .getFirstNameColumn())
                 .isQuantityLessOrEqualsThan(10);
 
-        administrationPage
-                .getShowQuantityOfItems()
-                .click();
+        administrationPage.clickShowQuantityOfItems();
 
         assertThat(administrationPage
                 .getFirstNameColumn())
@@ -226,18 +174,10 @@ public class AdminTableTest extends TestRunner {
         lastAddedUserForUpdate = DBHandler
                 .getLastUser();
 
-        administrationPage
-                .getSearchFieldFilterDropdown()
-                .sendKeys("Login");
-        administrationPage
-                .getSearchConditionDropdown()
-                .sendKeys("equals");
-        administrationPage
-                .getSearchInput()
-                .sendKeys("justlogin");
-        administrationPage
-                .getSearchButton()
-                .click();
+        administrationPage.selectSearchFieldFilterDropdown("Login")
+                .selectSearchConditionDropdown("equals")
+                .fillSearchInput("justlogin")
+                .clickSearchButton();
 
         assertThat(administrationPage
                 .getLoginColumn())
@@ -255,9 +195,7 @@ public class AdminTableTest extends TestRunner {
                 .getLoginSecondCellLink())
                 .isDisplayed();
 
-        administrationPage
-                .getFirstNameHeaderButton()
-                .click();
+        administrationPage.clickFirstNameHeaderButton();
 
         boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage
@@ -275,9 +213,7 @@ public class AdminTableTest extends TestRunner {
                 .getLoginSecondCellLink())
                 .isDisplayed();
 
-        administrationPage
-                .getLastNameHeaderButton()
-                .click();
+        administrationPage.clickLastNameHeaderButton();
 
         boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage
@@ -297,9 +233,7 @@ public class AdminTableTest extends TestRunner {
                 .getLoginSecondCellLink())
                 .isDisplayed();
 
-        administrationPage
-                .getLoginHeaderButton()
-                .click();
+        administrationPage.clickLoginHeaderButton();
 
         boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage
@@ -317,9 +251,7 @@ public class AdminTableTest extends TestRunner {
                 .getLoginSecondCellLink())
                 .isDisplayed();
 
-        administrationPage
-                .getRoleHeaderButton()
-                .click();
+        administrationPage.clickRoleHeaderButton();
 
         boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage
@@ -338,9 +270,7 @@ public class AdminTableTest extends TestRunner {
                 .getLoginSecondCellLink())
                 .isDisplayed();
 
-        administrationPage
-                .getRegionHeaderButton()
-                .click();
+        administrationPage.clickRegionHeaderButton();
 
         boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage
@@ -371,33 +301,25 @@ public class AdminTableTest extends TestRunner {
                 .getBackwardNavigationButton())
                 .isDisabled();
 
-        administrationPage
-                .getForwardNavigationButton()
-                .click();
+        administrationPage.clickForwardNavigationButton();
 
         assertThat(administrationPage
                 .getPageNumberText())
                 .isParseIntQuantityEqualTo(2);
 
-        administrationPage
-                .getBackwardNavigationButton()
-                .click();
+        administrationPage.clickBackwardNavigationButton();
 
         assertThat(administrationPage
                 .getPageNumberText())
                 .isParseIntQuantityEqualTo(1);
 
-        administrationPage
-                .getLastNavigationButton()
-                .click();
+        administrationPage.clickLastNavigationButton();
 
         assertThat(administrationPage
                 .getPageNumberText())
                 .isParseIntQuantityEqualTo(quantityOfGridsPages);
 
-        administrationPage
-                .getFirstNavigationButton()
-                .click();
+        administrationPage.clickFirstNavigationButton();
 
         assertThat(administrationPage
                 .getPageNumberText())

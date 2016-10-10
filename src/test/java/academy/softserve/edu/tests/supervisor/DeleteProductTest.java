@@ -27,9 +27,7 @@ public class DeleteProductTest extends TestRunner {
 
         itemManagementPage = userInfoPage.clickItemManagementTab();
 
-        itemManagementPage
-                .getDeleteProductLinkById(String.valueOf(testProductId))
-                .click();
+        itemManagementPage.clickDeleteProductLinkById(String.valueOf(testProductId));
 
         itemManagementPage.dismissAlert();
 
@@ -44,9 +42,7 @@ public class DeleteProductTest extends TestRunner {
 
         itemManagementPage = userInfoPage.clickItemManagementTab();
 
-        itemManagementPage
-                .getDeleteProductLinkById(String.valueOf(testProductId))
-                .click();
+        itemManagementPage.clickDeleteProductLinkById(String.valueOf(testProductId));
 
         itemManagementPage.acceptAlert();
 

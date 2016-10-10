@@ -28,12 +28,44 @@ public class EditUserPage extends PageObject<EditUserPage> {
         super(driver);
     }
 
+    public final EditUserPage fillLastNameInput(final String lastName) {
+
+        lastNameInput.sendKeys(lastName);
+        return this;
+    }
+
+    public final EditUserPage fillNewPasswordInput(final String password) {
+
+        newPasswordInput.sendKeys(password);
+        return this;
+    }
+
+    public final EditUserPage fillConfirmPasswordInput(final String password) {
+
+        confirmPasswordInput.sendKeys(password);
+        return this;
+    }
+
+    public final EditUserPage fillEmailAddressInput(final String emailAddress) {
+
+        emailAddressInput.sendKeys(emailAddress);
+        return this;
+    }
+
+    public final EditUserPage selectRegionDropdown(final String region) {
+
+        regionDropdown.sendKeys(region);
+        return this;
+    }
+
     public final AdministrationPage clickSaveChangesButton() {
+
         saveChangesButton.click();
         return new AdministrationPage(driver);
     }
 
     public final AdministrationPage clickCancelButton() {
+
         cancelButton.click();
         return new AdministrationPage(driver);
     }

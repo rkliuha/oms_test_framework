@@ -42,15 +42,49 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
     public final UserInfoPage clickUserInfoTab() {
 
         userInfoLink.click();
-
         return new UserInfoPage(driver);
     }
 
     public final CreateNewOrderPage clickCreateNewOrderLink() {
 
         createNewOrderLink.click();
-
         return new CreateNewOrderPage(driver);
+    }
+
+    public final CustomerOrderingPage clickResizeShowItemsLink() {
+
+        resizeShowItemsLink.click();
+        return this;
+    }
+
+    public final CustomerOrderingPage clickApplyButton() {
+
+        applyButton.click();
+        return this;
+    }
+
+    public final CreateNewOrderPage clickEditLink() {
+
+        editLink.click();
+        return new CreateNewOrderPage(driver);
+    }
+
+    public final CustomerOrderingPage clickDeleteLink() {
+
+        deleteLink.click();
+        return this;
+    }
+
+    public final CustomerOrderingPage selectSearchDropdown(final String condition) {
+
+        searchDropdown.sendKeys(condition);
+        return this;
+    }
+
+    public final CustomerOrderingPage fillSearchInput(final String searchText) {
+
+        searchInput.sendKeys(searchText);
+        return this;
     }
 
     //TODO remove, turn ORDER_STATUS into class field

@@ -63,27 +63,36 @@ public class LogInPage extends PageObject<LogInPage> {
 
     public UserInfoPage logInAs(final String login, final String password) {
 
-        inputName(login);
+        fillUserNameInput(login);
 
-        inputPassword(password);
+        fillPasswordInput(password);
 
         clickLogInButton();
 
         return new UserInfoPage(driver);
     }
 
-    public LogInPage inputName(final String name) {
-        getUserNameInput().sendKeys(name);
+    public final LogInPage fillUserNameInput(final String userName) {
+
+        userNameInput.sendKeys(userName);
         return this;
     }
 
-    public LogInPage inputPassword(final String password) {
-        getPasswordInput().sendKeys(password);
+    public final LogInPage fillPasswordInput(final String password) {
+
+        passwordInput.sendKeys(password);
         return this;
     }
 
     public UserInfoPage clickLogInButton() {
+
         logInButton.click();
+        return new UserInfoPage(driver);
+    }
+
+    public UserInfoPage clickCancelButton() {
+
+        cancelButton.click();
         return new UserInfoPage(driver);
     }
 

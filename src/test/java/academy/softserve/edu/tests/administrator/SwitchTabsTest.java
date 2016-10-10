@@ -1,7 +1,6 @@
 package academy.softserve.edu.tests.administrator;
 
 import academy.softserve.edu.enums.Roles;
-import academy.softserve.edu.pageobjects.AdministrationPage;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.Test;
 
@@ -26,11 +25,7 @@ public class SwitchTabsTest extends TestRunner {
         assertThat(userInfoPage.getAdministrationLink())
                 .isDisplayed();
 
-        userInfoPage
-                .getAdministrationLink()
-                .click();
-
-        administrationPage = new AdministrationPage(driver);
+        administrationPage = userInfoPage.clickAdministrationTab();
 
         assertThat(administrationPage.getUserInfoLink())
                 .isDisplayed();

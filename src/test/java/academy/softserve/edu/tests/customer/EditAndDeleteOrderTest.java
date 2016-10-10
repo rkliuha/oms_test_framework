@@ -28,82 +28,40 @@ public class EditAndDeleteOrderTest extends TestRunner {
 
         addItemPage = createNewOrderPage.clickAddItemButton();
 
-        addItemPage
-                .getSearchForItemDropdown()
-                .sendKeys("Item Name");
-
-        addItemPage
-                .getSearchForItemInput()
-                .sendKeys("Baileys");
-
-        addItemPage
-                .getSearchForItemButton()
-                .click();
-
-        addItemPage
-                .getSelectLastAddedItemLink()
-                .click();
-
-        addItemPage
-                .getDoneButton()
-                .click();
+        addItemPage.selectSearchForItemDropdown("Item Name")
+                .fillSearchForItemInput("Baileys")
+                .clickSearchForItemButton()
+                .clickSelectLastAddedItemLink()
+                .clickDoneButton();
 
         testOrderNumber = createNewOrderPage
                 .getOrderNumberTextfield()
                 .getValue();
 
-        createNewOrderPage
-                .getPreferableDeliveryDateChooseLink()
-                .click();
+        createNewOrderPage.clickPreferableDeliveryDateChooseLink();
 
-        createNewOrderPage
-                .getDataLink()
-                .click();
+        createNewOrderPage.clickDataLink();
 
-        createNewOrderPage
-                .getAssigneeDropdown()
-                .sendKeys("login1");
-
-        createNewOrderPage
-                .getCreditCardTypeDropdown()
-                .sendKeys("Visa");
-
-        createNewOrderPage
-                .getCreditCardNumberTextfield()
-                .sendKeys("1111111111111111");
-
-        createNewOrderPage
-                .getCVV2Textfield()
-                .sendKeys("666");
-
-        createNewOrderPage
-                .getSaveButton()
-                .click();
-
-        createNewOrderPage
-                .getOrderingLink()
-                .click();
+        createNewOrderPage.selectAssigneeDropdown("login1")
+                .selectCreditCardTypeDropdown("Visa")
+                .fillCreditCardNumberTextfield("1111111111111111")
+                .fillCVV2Textfield("666")
+                .clickSaveButton()
+                .clickOrderingLink();
     }
 
     @Test
     public final void testOrderEdit() {
 
-        customerOrderingPage
-                .getEditLink()
-                .click();
+        customerOrderingPage.clickEditLink();
 
         assertThat(createNewOrderPage.getCardInfoText())
                 .isDisplayed();
 
-        createNewOrderPage
-                .getOrderingLink()
-                .click();
+        createNewOrderPage.clickOrderingLink();
 
-        customerOrderingPage
-                .getDeleteLink()
-                .click();
-
-        customerOrderingPage.acceptAlert();
+        customerOrderingPage.clickDeleteLink()
+                .acceptAlert();
 
         assertThat(customerOrderingPage.getOrderRow())
                 .isNotDisplayed();

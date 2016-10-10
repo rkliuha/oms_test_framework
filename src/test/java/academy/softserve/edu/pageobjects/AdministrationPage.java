@@ -67,31 +67,124 @@ public class AdministrationPage extends PageObject<AdministrationPage> {
         return new EditUserPage(driver);
     }
 
+    public final AdministrationPage selectSearchFieldFilterDropdown(final String columnFilter) {
+
+        searchFieldFilterDropdown.sendKeys(columnFilter);
+        return this;
+    }
+
+    public final AdministrationPage selectSearchConditionDropdown(final String condition) {
+
+        searchConditionDropdown.sendKeys(condition);
+        return this;
+    }
+
+    public final AdministrationPage fillSearchInput(final String searchText) {
+
+        searchInput.sendKeys(searchText);
+        return this;
+    }
+
+    public final AdministrationPage clickSearchButton() {
+
+        searchButton.click();
+        return this;
+    }
+
+    public final AdministrationPage clickShowQuantityOfItems() {
+
+        showQuantityOfItems.click();
+        return this;
+    }
+
+    public final AdministrationPage clickFirstNameHeaderButton() {
+
+        firstNameHeaderButton.click();
+        return this;
+    }
+
+    public final AdministrationPage clickLastNameHeaderButton() {
+
+        lastNameHeaderButton.click();
+        return this;
+    }
+
+    public final AdministrationPage clickLoginHeaderButton() {
+
+        loginHeaderButton.click();
+        return this;
+    }
+
+    public final AdministrationPage clickRoleHeaderButton() {
+
+        roleHeaderButton.click();
+        return this;
+    }
+
+    public final AdministrationPage clickRegionHeaderButton() {
+
+        regionHeaderButton.click();
+        return this;
+    }
+
+    public final AdministrationPage clickForwardNavigationButton() {
+
+        forwardNavigationButton.click();
+        return this;
+    }
+
+    public final AdministrationPage clickBackwardNavigationButton() {
+
+        backwardNavigationButton.click();
+        return this;
+    }
+
+    public final AdministrationPage clickLastNavigationButton() {
+
+        lastNavigationButton.click();
+        return this;
+    }
+
+    public final AdministrationPage clickFirstNavigationButton() {
+
+        firstNavigationButton.click();
+        return this;
+    }
+
+    public final CreateNewUserPage clickCreateUserLink() {
+
+        createUserLink.click();
+        return new CreateNewUserPage(driver);
+    }
 
     public final UserInfoPage clickUserInfoTab() {
+
         userInfoLink.click();
         return new UserInfoPage(driver);
     }
 
     public final EditUserPage clickEditLastUserLink() {
+
         editLastUserCellLink.click();
         return new EditUserPage(driver);
     }
 
     public final AdministrationPage clickLastUserPaginationButton() {
+
         lastNavigationButton.click();
         return this;
     }
 
     public final AdministrationPage clickDeleteFirstUserLink() {
+
         deleteFirstUserCellLink.click();
         return this;
     }
 
     public final CreateReportPage clickCreateReportLink() {
+
         createReportLink.click();
         return new CreateReportPage(driver);
     }
-
 
 }

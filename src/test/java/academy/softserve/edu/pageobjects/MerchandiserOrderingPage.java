@@ -41,7 +41,7 @@ public class MerchandiserOrderingPage extends PageObject<MerchandiserOrderingPag
 
     private final Link numberOfGridPages = new Link(driver, PAGE_NUMBER_TEXT);
     private final Link pageCount = new Link(driver, PAGE_COUNT_TEXT);
-    private final Link resizeOrdersListLinks = new Link(driver, RESIZE_ORDERS_LIST_LINK);
+    private final Link resizeOrdersListLink = new Link(driver, RESIZE_ORDERS_LIST_LINK);
     private final Link showItemsLink = new Link(driver, SHOW_ITEMS_LINK);
 
 
@@ -62,12 +62,98 @@ public class MerchandiserOrderingPage extends PageObject<MerchandiserOrderingPag
     }
 
     public final MerchandiserEditOrderPage clickEditOrder(final Link editOrderLink) {
+
         editOrderLink.click();
         return new MerchandiserEditOrderPage(driver);
     }
 
     public final MerchandiserOrderingPage clickShowItems() {
+
         showItemsLink.click();
+        return this;
+    }
+
+    public final UserInfoPage clickUserInfoLink() {
+
+        userInfoLink.click();
+        return new UserInfoPage(driver);
+    }
+
+    public final MerchandiserOrderingPage clickApplyButton() {
+
+        applyButton.click();
+        return this;
+    }
+
+    public final MerchandiserOrderingPage clickOrderNameHeaderButton() {
+
+        orderNameHeaderButton.click();
+        return this;
+    }
+
+    public final MerchandiserOrderingPage clickTotalPriceHeaderButton() {
+
+        totalPriceHeaderButton.click();
+        return this;
+    }
+
+    public final MerchandiserOrderingPage clickMaxDiscountHeaderButton() {
+
+        maxDiscountHeaderButton.click();
+        return this;
+    }
+
+    public final MerchandiserOrderingPage clickStatusHeaderButton() {
+
+        statusHeaderButton.click();
+        return this;
+    }
+
+    public final MerchandiserOrderingPage clickForwardButton() {
+
+        forwardButton.click();
+        return this;
+    }
+
+    public final MerchandiserOrderingPage clickBackwardButton() {
+
+        backwardButton.click();
+        return this;
+    }
+
+    public final MerchandiserOrderingPage clickLastButton() {
+
+        lastButton.click();
+        return this;
+    }
+
+    public final MerchandiserOrderingPage clickFirstButton() {
+
+        firstButton.click();
+        return this;
+    }
+
+    public final MerchandiserOrderingPage clickResizeOrdersListLink() {
+
+        resizeOrdersListLink.click();
+        return this;
+    }
+
+    public final MerchandiserOrderingPage clickDeleteCellLink() {
+
+        deleteCellLink.click();
+        return this;
+    }
+
+    public final MerchandiserOrderingPage selectSearchDropdown(final String condition) {
+
+        searchDropdown.sendKeys(condition);
+        return this;
+    }
+
+    public final MerchandiserOrderingPage fillSearchInput(final String searchText) {
+
+        searchInput.sendKeys(searchText);
         return this;
     }
 
