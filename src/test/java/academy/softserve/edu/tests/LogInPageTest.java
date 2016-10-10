@@ -22,8 +22,7 @@ public class LogInPageTest extends TestRunner {
 
     // To check is it possible to input different symbols in to the fillUserNameInput field.
     @Test
-    //TODO rename
-    public final void testInputText() {
+    public final void testInputTextExist() {
 
         logInPage.fillUserNameInput("Asa23@(?|};6756%");
 
@@ -44,8 +43,7 @@ public class LogInPageTest extends TestRunner {
 
     //Try to put in the both fields unregistered data
     @Test
-    //TODO rename
-    public final void testUnregisteredUser() {
+    public final void testLogInButtonExist() {
 
         logInPage
                 .logInAs(Roles.INVALID_USER);

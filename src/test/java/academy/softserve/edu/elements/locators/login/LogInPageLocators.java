@@ -4,7 +4,6 @@ import academy.softserve.edu.elements.interfaces.ILocator;
 import academy.softserve.edu.elements.LocatorsType;
 import org.openqa.selenium.By;
 
-//TODO remove unused locators
 public enum LogInPageLocators implements ILocator {
 
     USER_INFO_LINK("User Info Link",
@@ -19,17 +18,9 @@ public enum LogInPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//div[@id='edit']//font"),
 
-    USER_NAME_TEXT("User Name Text",
-            LocatorsType.BY_XPATH,
-            "//div[@id='edit']//tr[1]/td[1]"),
-
     USER_NAME_INPUT("User Name Field",
             LocatorsType.BY_NAME,
             "j_username"),
-
-    PASSWORD_TEXT("Password Text",
-            LocatorsType.BY_XPATH,
-            "//div[@id='edit']//tr[2]/td[1]"),
 
     PASSWORD_INPUT("Password Field",
             LocatorsType.BY_NAME,
@@ -38,10 +29,6 @@ public enum LogInPageLocators implements ILocator {
     REMEMBER_ME_CHECKBOX("Remember Me Checkbox",
             LocatorsType.BY_XPATH,
             "//div[@id='edit']//tr[3]//input"),
-
-    REMEMBER_ME_TEXT("Remember Me Text",
-            LocatorsType.BY_XPATH,
-            "//div[@id='edit']//tr[3]/td[2]"),
 
     LOG_IN_BUTTON("Log In Button",
             LocatorsType.BY_NAME,

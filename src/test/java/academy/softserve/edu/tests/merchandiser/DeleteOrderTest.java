@@ -4,7 +4,7 @@ import academy.softserve.edu.domains.Order;
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.TestRunner;
-import academy.softserve.edu.utils.TestUtil;
+import academy.softserve.edu.utils.DBHelper;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -20,7 +20,7 @@ public class DeleteOrderTest extends TestRunner {
     @BeforeMethod
     public final void setUpTests() {
 
-        testOrderId = TestUtil.createValidOrderInDB();
+        testOrderId = DBHelper.createValidOrderInDB();
         testOrder = DBHandler.getOrderById(testOrderId);
         userInfoPage = logInPage.logInAs(Roles.MERCHANDISER);
         merchandiserOrderingPage = userInfoPage.clickMerchandiserOrderingTab();

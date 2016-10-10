@@ -6,8 +6,11 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-//TODO that is a util class, make final with private constructor
 public class Logger {
+
+    private Logger() {
+
+    }
 
     private final static Date currentLogDate = new Date();
     private final static Format logFormatter = new SimpleDateFormat("HH:mm:ss - ");

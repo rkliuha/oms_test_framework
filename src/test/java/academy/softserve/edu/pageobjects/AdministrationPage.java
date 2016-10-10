@@ -1,6 +1,7 @@
 package academy.softserve.edu.pageobjects;
 
 import academy.softserve.edu.elements.locators.administrator.AdministrationPageLocators;
+import academy.softserve.edu.elements.interfaces.ILocator;
 import academy.softserve.edu.elements.wrappers.*;
 import lombok.Getter;
 import org.openqa.selenium.By;
@@ -10,21 +11,32 @@ import static academy.softserve.edu.elements.locators.administrator.Administrati
 
 
 @Getter
-//TODO reformat code into common look - private final Dropdown searchForItemDropdown = new Dropdown(driver, SEARCH_FOR_ITEM_DROPDOWN);
 public class AdministrationPage extends PageObject<AdministrationPage> {
 
     private final Link administrationLink = new Link(driver, ADMINISTRATION_LINK);
+
     private final Link userInfoLink = new Link(driver, USER_INFO_LINK);
+
     private final Dropdown searchFieldFilterDropdown = new Dropdown(driver, SEARCH_FIELD_FILTER_DROPDOWN);
+
     private final Dropdown searchConditionDropdown = new Dropdown(driver, SEARCH_CONDITION_DROPDOWN);
+
     private final TextInputField searchInput = new TextInputField(driver, SEARCH_INPUT);
+
     private final Button searchButton = new Button(driver, SEARCH_BUTTON);
+
     // foundUsersTextLabel is unique AdministrationPage element
     private final TextLabel foundUsersTextLabel = new TextLabel(driver, FOUND_USERS_TEXT_LABEL);
     private final Link editLastUserCellLink = new Link(driver, EDIT_USER_CELL_LINK.modify("last()"));
     private final Link deleteFirstUserCellLink = new Link(driver, DELETE_USER_CELL_LINK.modify("1"));
+
+    private final Link editLastUserCellLink = new Link(driver, EDIT_USER_CELL_LINK.modify("last()"));
+
     private final Link createReportLink = new Link(driver, CREATE_REPORT_LINK);
+
     private final Link createUserLink = new Link(driver, CREATE_USER_LINK);
+
+    private final Link editUserLink = new Link(driver, EDIT_USER_LINK);
 
     private final Link editFirstUserCellLink = new Link(driver, EDIT_USER_CELL_LINK.modify("1"));
     private final Link loginSecondCellLink = new Link(driver, LOGIN_CELL.modify("2"));
@@ -58,13 +70,10 @@ public class AdministrationPage extends PageObject<AdministrationPage> {
         super(driver);
     }
 
+    public final Link clickEditUserById(final String userId) {
 
-    public final EditUserPage clickEditUserById(final int userId) {
-
-        //TODO use click(), create locator and use .modify() to add userId
-        driver.findElement(By.xpath("//table[@id='table']//" +
-                "a[@href='editUser.htm?userID=" + userId + "']")).click();
-        return new EditUserPage(driver);
+        return new Link(driver, EDIT_USER_LINK.modify(userId))
+                .click();
     }
 
     public final AdministrationPage selectSearchFieldFilterDropdown(final String columnFilter) {

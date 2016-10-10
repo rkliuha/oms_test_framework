@@ -12,13 +12,21 @@ public class MerchandiserOrderingPage extends PageObject<MerchandiserOrderingPag
 
     // searchByText is unique MerchandiserOrderingPage element
     private final TextLabel searchByText = new TextLabel(driver, SEARCH_BY_TEXT);
+
     private final Link userInfoLink = new Link(driver, USER_INFO_LINK);
+
     private final Dropdown searchDropdown = new Dropdown(driver, SEARCH_DROPDOWN);
+
     private final TextInputField searchInput = new TextInputField(driver, SEARCH_INPUT);
+
     private final Button applyButton = new Button(driver, APPLY_BUTTON);
+
     private final TextLabel orderNameCell = new TextLabel(driver, ORDER_NAME_CELL.modify("2"));
+
     private final TextLabel statusCell = new TextLabel(driver, STATUS_CELL.modify("2"));
+
     private final Link deleteCellLink = new Link(driver, DELETE_CELL_LINK.modify("2"));
+
 
     private final Link editCellLink = new Link(driver, EDIT_CELL_LINK.modify("2"));
 
@@ -44,14 +52,9 @@ public class MerchandiserOrderingPage extends PageObject<MerchandiserOrderingPag
     private final Link resizeOrdersListLink = new Link(driver, RESIZE_ORDERS_LIST_LINK);
     private final Link showItemsLink = new Link(driver, SHOW_ITEMS_LINK);
 
-
-    //TODO remove, turn locator into class fields
     public final Link getOrderLinkByNumber(final String editOrderNumber) {
         return new Link(driver, EDIT_CELL_LINK.modify(editOrderNumber));
     }
-
-
-    //TODO remove, turn locator into class fields
 
     public final Link getOrderStatusByNumber(final String statusNumber) {
         return new Link(driver, STATUS_CELL.modify(statusNumber));

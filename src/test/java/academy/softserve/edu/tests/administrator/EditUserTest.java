@@ -3,9 +3,10 @@ package academy.softserve.edu.tests.administrator;
 import academy.softserve.edu.domains.User;
 import academy.softserve.edu.enums.Regions;
 import academy.softserve.edu.enums.Roles;
+import academy.softserve.edu.pageobjects.EditUserPage;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.TestRunner;
-import academy.softserve.edu.utils.TestUtil;
+import academy.softserve.edu.utils.DBHelper;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
@@ -15,19 +16,13 @@ import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
 
 public class EditUserTest extends TestRunner {
 
-    //TODO move inline
-    private static final String NEW_USER_LAST_NAME = "Tsoni";
-    private static final String NEW_USER_PASSWORD = "1qaz2wsx";
-    private static final String NEW_USER_EMAIL = "google@gmail.com";
-    private static final Regions NEW_REGION = Regions.WEST;
-
     private User testUser;
     private int testUserId;
 
     @BeforeTest
     public final void createTestUser() {
 
-        testUserId = TestUtil.createValidUserInDB();
+        testUserId = DBHelper.createValidUserInDB();
         testUser = DBHandler.getUserById(testUserId);
     }
 
@@ -39,7 +34,9 @@ public class EditUserTest extends TestRunner {
         administrationPage = userInfoPage.clickAdministrationTab()
                 .clickLastUserPaginationButton();
 
-        editUserPage = administrationPage.clickEditUserById(testUserId);
+        administrationPage.clickEditUserById(String.valueOf(testUserId));
+
+        editUserPage = new EditUserPage(driver);
     }
 
     @Test
@@ -73,6 +70,10 @@ public class EditUserTest extends TestRunner {
     @Test
     public final void testEditUserAndClickSave() {
 
+        final String NEW_USER_LAST_NAME = "Tsoni";
+        final String NEW_USER_PASSWORD = "1qaz2wsx";
+        final Regions NEW_REGION = Regions.WEST;
+
         assertThat(editUserPage.getNewPasswordText())
                 .isDisplayed();
 
@@ -99,6 +100,8 @@ public class EditUserTest extends TestRunner {
 
     @Test
     public final void testEditUserAndClickCancel() {
+
+        final String NEW_USER_EMAIL = "google@gmail.com";
 
         assertThat(editUserPage.getNewPasswordText())
                 .isDisplayed();

@@ -26,6 +26,15 @@ public class WebDriverFactory {
         final String propertyBrowser = PropertiesReader.getDefaultProperty("browser");
         final String platform = PropertiesReader.getDefaultProperty("platform");
 
+        final String webDriverChrome = PropertiesReader.getDefaultProperty("webdriver.chrome");
+        final String webDriverIe = PropertiesReader.getDefaultProperty("webdriver.ie");
+
+        final String pathWebDriverChromeMac = PropertiesReader.getDefaultProperty("path.webdriver.chrome.mac");
+        final String pathWebDriverChromeWin = PropertiesReader.getDefaultProperty("path.webdriver.chrome.win");
+        final String pathWebDriverChromeIe = PropertiesReader.getDefaultProperty("path.webdriver.chrome.ie");
+
+        final String remoteWebDriverUrl = PropertiesReader.getDefaultProperty("remote.webdriver.url");
+
         final Browsers propertyBrowserTypeEnum = Browsers.valueOf(propertyBrowser.toUpperCase());
 
         final Browsers cmdBrowserTypeEnum = Browsers.valueOf(browser.toUpperCase());
@@ -36,21 +45,20 @@ public class WebDriverFactory {
 
             if ("firefox".equals(browser)) {
 
-                //TODO move out drivers path base into a variable
                 switch (propertyBrowserTypeEnum) {
 
                     case CHROME_MAC:
-                        System.setProperty("webdriver.chrome.driver", "src//resources//drivers//chromedriver_mac");
+                        System.setProperty(webDriverChrome, pathWebDriverChromeMac);
                         driver = new ChromeDriver();
                         break;
 
                     case CHROME:
-                        System.setProperty("webdriver.chrome.driver", "src//resources//drivers//chromedriver_win.exe");
+                        System.setProperty(webDriverChrome, pathWebDriverChromeWin);
                         driver = new ChromeDriver();
                         break;
 
                     case EXPLORER:
-                        System.setProperty("webdriver.ie.driver", "src//resources//drivers//IEDriverServer.exe");
+                        System.setProperty(webDriverIe, pathWebDriverChromeIe);
                         driver = new InternetExplorerDriver();
                         break;
 
@@ -62,19 +70,18 @@ public class WebDriverFactory {
             } else {
 
                 switch (cmdBrowserTypeEnum) {
-                    //TODO move out drivers path base into a variable
                     case CHROME_MAC:
-                        System.setProperty("webdriver.chrome.driver", "src//resources//drivers//chromedriver_mac");
+                        System.setProperty(webDriverChrome, pathWebDriverChromeMac);
                         driver = new ChromeDriver();
                         break;
 
                     case CHROME:
-                        System.setProperty("webdriver.chrome.driver", "src//resources//drivers//chromedriver_win.exe");
+                        System.setProperty(webDriverChrome, pathWebDriverChromeWin);
                         driver = new ChromeDriver();
                         break;
 
                     case EXPLORER:
-                        System.setProperty("webdriver.ie.driver", "src//resources//drivers//IEDriverServer.exe");
+                        System.setProperty(webDriverIe, pathWebDriverChromeIe);
                         driver = new InternetExplorerDriver();
                         break;
 
@@ -95,8 +102,7 @@ public class WebDriverFactory {
             capabilities
                     .setVersion(version);
 
-            //TODO move out URL to config.properties
-            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+            driver = new RemoteWebDriver(new URL(remoteWebDriverUrl), capabilities);
         }
 
     }
