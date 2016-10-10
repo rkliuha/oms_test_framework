@@ -26,18 +26,22 @@ public class MerchandiserEditOrderPage extends PageObject<MerchandiserEditOrderP
         orderStatusDropdown.selectByValue(status);
         return this;
     }
+
     public final MerchandiserOrderingPage clickSaveButton(){
         saveButton.click();
         return new MerchandiserOrderingPage(driver);
     }
+
     public final MerchandiserEditOrderPage clickShowItemsLink(){
         showItems.click();
         return this;
     }
+
     public final MerchandiserEditOrderPage clickChooseDate(){
         chooseDateLink.click();
         return this;
     }
+
     public final MerchandiserEditOrderPage clickLastDate(){
         lastDateLink.click();
         return this;

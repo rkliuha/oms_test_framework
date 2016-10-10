@@ -1,7 +1,6 @@
 package academy.softserve.edu.tests.merchandiser;
 
 import academy.softserve.edu.enums.Roles;
-import academy.softserve.edu.pageobjects.MerchandiserOrderingPage;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.Test;
 
@@ -19,19 +18,14 @@ public class SwitchTabsTest extends TestRunner {
                 .isDisplayed();
 
         // if user can switch between tabs "User Info" and "Ordering"
-        userInfoPage
-                .getMerchandiserOrderingLink()
-                .click();
 
-        merchandiserOrderingPage = new MerchandiserOrderingPage(driver);
+        merchandiserOrderingPage = userInfoPage.clickMerchandiserOrderingTab();
 
         assertThat(merchandiserOrderingPage.getSearchByText())
                 .isDisplayed();
 
         // if user can switch back to "User Info"
-        merchandiserOrderingPage
-                .getUserInfoLink()
-                .click();
+        merchandiserOrderingPage.clickUserInfoLink();
 
         assertThat(userInfoPage.getUserInfoFieldSet())
                 .isDisplayed();

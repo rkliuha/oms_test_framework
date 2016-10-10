@@ -46,7 +46,7 @@ public class CreateNewOrderPage extends PageObject<CreateNewOrderPage> {
             new TextLabel(driver, START_DATE_MAESTRO_TEXT);
     private final TextLabel issueNumberMaestroText =
             new TextLabel(driver, ISSUE_NUMBER_MAESTRO_TEXT);
-    private final Link validDeliveryDate =
+    private final Link validDeliveryDateLink =
             new Link(driver, VALID_DELIVERY_DATE_LINK);
     private final Dropdown creditCardTypeDropdown =
             new Dropdown(driver, CREDIT_CARD_TYPE_DROPDOWN);
@@ -151,11 +151,112 @@ public class CreateNewOrderPage extends PageObject<CreateNewOrderPage> {
         return new OrderItemsErrorMessagePage(driver);
     }
 
+    public final CustomerOrderingPage clickOrderingLink() {
+
+        orderingLink.click();
+        return new CustomerOrderingPage(driver);
+    }
+
     public final AddItemPage clickAddItemButton() {
 
         getAddItemButton().click();
-
         return new AddItemPage(driver);
+    }
+
+    public final CreateNewOrderPage clickDataLink() {
+
+        dataLink.click();
+        return this;
+    }
+
+    public final CreateNewOrderPage clickCalendarMonthForwardButton() {
+
+        calendarMonthForwardButton.click();
+        return this;
+    }
+
+    public final CreateNewOrderPage clickFirstItemDeleteButton() {
+
+        firstItemDeleteButton.click();
+        return this;
+    }
+
+    public final CreateNewOrderPage clickCalendarTuesdayElement() {
+
+        calendarThursdayElement.click();
+        return this;
+    }
+
+    public final CreateNewOrderPage clickPreferableDeliveryDateChooseLink() {
+
+        preferableDeliveryDateChooseLink.click();
+        return this;
+    }
+
+    public final CreateNewOrderPage clickValidDeliveryDateLink() {
+
+        validDeliveryDateLink.click();
+        return this;
+    }
+
+    public final CreateNewOrderPage clickSaveButton() {
+
+        saveButton.click();
+        return this;
+    }
+
+    public final CustomerOrderingPage clickOrderButton() {
+
+        orderButton.click();
+        return new CustomerOrderingPage(driver);
+    }
+
+    public final CreateNewOrderPage selectAssigneeDropdown(final String assigneeLogin) {
+
+        assigneeDropdown.sendKeys(assigneeLogin);
+        return this;
+    }
+
+    public final CreateNewOrderPage selectCreditCardTypeDropdown(final String cardType) {
+
+        creditCardTypeDropdown.sendKeys(cardType);
+        return this;
+    }
+
+    public final CreateNewOrderPage selectExpireDateMonthDropdown(final String expireMonth) {
+
+        expireDateMonthDropdown.sendKeys(expireMonth);
+        return this;
+    }
+
+    public final CreateNewOrderPage selectExpireDateYearDropdown(final String expireYear) {
+
+        expireDateMonthDropdown.sendKeys(expireYear);
+        return this;
+    }
+
+    public final CreateNewOrderPage fillCreditCardNumberTextfield(final String cardNumber) {
+
+        creditCardNumberTextfield.sendKeys(cardNumber);
+        return this;
+    }
+
+    public final CreateNewOrderPage fillCVV2Textfield(final String CVV2Code) {
+
+        CVV2Textfield.sendKeys(CVV2Code);
+        return this;
+    }
+
+    public final CreateNewOrderPage fillStartDateMaestroTextfield(final String startDate) {
+
+        startDateMaestroTextfield.sendKeys(startDate);
+        return this;
+    }
+
+    public final CreateNewOrderPage fillIssueNumberMaestroTextfield(final String issueNumber) {
+
+        issueNumberMaestroTextfield.sendKeys(issueNumber);
+        return this;
     }
 
 }

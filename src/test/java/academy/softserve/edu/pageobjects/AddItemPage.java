@@ -39,4 +39,46 @@ public class AddItemPage extends PageObject<AddItemPage> {
         super(driver);
     }
 
+    public final AddItemPage clickSelectLastAddedItemLink() {
+
+        selectLastAddedItemLink.click();
+        return this;
+    }
+
+    public final CreateNewOrderPage clickDoneButton() {
+
+        doneButton.click();
+        return new CreateNewOrderPage(driver);
+    }
+
+    public final AddItemPage fillItemQuantityTextfield(final String itemQuantity) {
+
+        itemQuantityTextfield.sendKeys(itemQuantity);
+        return this;
+    }
+
+    public final AddItemPage fillSearchForItemInput(final String searchText) {
+
+        searchForItemInput.sendKeys(searchText);
+        return this;
+    }
+
+    public final AddItemPage selectItemDimensionDropdown(final String itemDimension) {
+
+        itemDimensionDropdown.sendKeys(itemDimension);
+        return this;
+    }
+
+    public final AddItemPage selectSearchForItemDropdown(final String condition) {
+
+        searchForItemDropdown.sendKeys(condition);
+        return this;
+    }
+
+    public final AddItemPage clickSearchForItemButton() {
+
+        searchForItemButton.click();
+        return this;
+    }
+
 }

@@ -37,4 +37,35 @@ public class AddProductPage extends PageObject<AddProductPage> {
     public AddProductPage(final WebDriver driver) {
         super(driver);
     }
+
+    public final ItemManagementPage clickOkButton() {
+
+        okButton.click();
+        return new ItemManagementPage(driver);
+    }
+
+    public final ItemManagementPage clickCancelButton() {
+
+        cancelButton.click();
+        return new ItemManagementPage(driver);
+    }
+
+    public final AddProductPage fillProductNameInput(final String productName) {
+
+        productNameInput.sendKeys(productName);
+        return this;
+    }
+
+    public final AddProductPage fillProductDescriptionInput(final String productDescription) {
+
+        productDescriptionInput.sendKeys(productDescription);
+        return this;
+    }
+
+    public final AddProductPage fillProductPriceInput(final String productPrice) {
+
+        productPriceInput.sendKeys(productPrice);
+        return this;
+    }
+
 }

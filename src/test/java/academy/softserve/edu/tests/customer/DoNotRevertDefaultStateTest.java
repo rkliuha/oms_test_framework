@@ -1,7 +1,6 @@
 package academy.softserve.edu.tests.customer;
 
 import academy.softserve.edu.enums.Roles;
-import academy.softserve.edu.pageobjects.CustomerOrderingPage;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.Test;
 
@@ -32,29 +31,15 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
         userInfoPage = logInPage
                 .logInAs(Roles.CUSTOMER);
 
-        userInfoPage.getCustomerOrderingLink()
-                .click();
+        customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
 
-        customerOrderingPage = new CustomerOrderingPage(driver);
+        customerOrderingPage.selectSearchDropdown(SEARCH_ORDERS)
+                .fillSearchInput(SEARCH_ORDERS_VALUE)
+                .clickApplyButton();
 
-        customerOrderingPage
-                .getSearchDropdown()
-                .sendKeys(SEARCH_ORDERS);
+        customerOrderingPage.clickUserInfoTab();
 
-        customerOrderingPage
-                .getSearchInput()
-                .sendKeys(SEARCH_ORDERS_VALUE);
-
-        customerOrderingPage
-                .getApplyButton().click();
-
-        customerOrderingPage
-                .getUserInfoLink()
-                .click();
-
-        userInfoPage
-                .getCustomerOrderingLink()
-                .click();
+        userInfoPage.clickCustomerOrderingTab();
 
         assertThat(customerOrderingPage.getSearchDropdown())
                 .selectedDropdownEquals(SEARCH_ORDERS);

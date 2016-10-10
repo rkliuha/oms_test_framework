@@ -1,7 +1,6 @@
 package academy.softserve.edu.tests.customer;
 
 import academy.softserve.edu.enums.Roles;
-import academy.softserve.edu.pageobjects.CustomerOrderingPage;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.Test;
 
@@ -45,11 +44,7 @@ public class SwitchTabsTest extends TestRunner {
         userInfoPage = logInPage
                 .logInAs(Roles.CUSTOMER);
 
-        userInfoPage
-                .getCustomerOrderingLink()
-                .click();
-
-        customerOrderingPage = new CustomerOrderingPage(driver);
+        customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
 
         assertThat(customerOrderingPage.getCreateNewOrderLink())
                 .isDisplayed();
@@ -61,18 +56,12 @@ public class SwitchTabsTest extends TestRunner {
         userInfoPage = logInPage
                 .logInAs(Roles.CUSTOMER);
 
-        userInfoPage
-                .getCustomerOrderingLink()
-                .click();
-
-        customerOrderingPage = new CustomerOrderingPage(driver);
+        customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
 
         assertThat(customerOrderingPage.getCreateNewOrderLink())
                 .isDisplayed();
 
-        customerOrderingPage
-                .getUserInfoLink()
-                .click();
+        customerOrderingPage.clickUserInfoTab();
 
         assertThat(userInfoPage.getUserInfoFieldSet())
                 .isDisplayed();

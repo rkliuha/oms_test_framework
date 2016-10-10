@@ -1,7 +1,6 @@
 package academy.softserve.edu.tests.customer;
 
 import academy.softserve.edu.enums.Roles;
-import academy.softserve.edu.pageobjects.AddItemPage;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.TestRunner;
 import academy.softserve.edu.utils.TestUtil;
@@ -31,17 +30,16 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
         customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
 
         createNewOrderPage = customerOrderingPage.clickCreateNewOrderLink();
-        createNewOrderPage.getAddItemButton().click();
+        addItemPage = createNewOrderPage.clickAddItemButton();
 
-        addItemPage = new AddItemPage(driver);
-        addItemPage.getSelectLastAddedItemLink().click();
-        addItemPage.getDoneButton().click();
+        addItemPage.clickSelectLastAddedItemLink()
+                .clickDoneButton();
 
         orderNumber = createNewOrderPage.getOrderNumberTextfield().getValue();
 
-        createNewOrderPage.getPreferableDeliveryDateChooseLink().click();
-        createNewOrderPage.getValidDeliveryDate().click();
-        createNewOrderPage.getAssigneeDropdown().sendKeys(DBHandler.getUserByRole(Roles.MERCHANDISER).getLogin());
+        createNewOrderPage.clickPreferableDeliveryDateChooseLink()
+                .clickValidDeliveryDateLink()
+                .selectAssigneeDropdown(DBHandler.getUserByRole(Roles.MERCHANDISER).getLogin());
     }
 
     @Test
@@ -72,7 +70,7 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
         assertThat(createNewOrderPage.getOrderButton())
                 .isDisabled();
 
-        createNewOrderPage.getSaveButton().click();
+        createNewOrderPage.clickSaveButton();
 
         assertThat(createNewOrderPage.getOrderButton())
                 .isEnabled();
@@ -81,15 +79,14 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
     @Test
     public final void testAddIncorrectCardToOrder() {
 
-        createNewOrderPage.getSaveButton().click();
+        createNewOrderPage.clickSaveButton();
 
-        createNewOrderPage.getCreditCardTypeDropdown().sendKeys("Visa");
-        createNewOrderPage.getCreditCardNumberTextfield().sendKeys("2562624");
-        createNewOrderPage.getCVV2Textfield().sendKeys(CVV2_CODE);
-        createNewOrderPage.getExpireDateMonthDropdown().sendKeys(EXPIRE_DATE_MONTH);
-        createNewOrderPage.getExpireDateYearDropdown().sendKeys(EXPIRE_DATE_YEAR);
-
-        createNewOrderPage.getOrderButton().click();
+        createNewOrderPage.selectCreditCardTypeDropdown("Visa")
+                .fillCreditCardNumberTextfield("2562624")
+                .fillCVV2Textfield(CVV2_CODE)
+                .selectExpireDateMonthDropdown(EXPIRE_DATE_MONTH)
+                .selectExpireDateYearDropdown(EXPIRE_DATE_YEAR)
+                .clickOrderButton();
 
         assertThat(createNewOrderPage.getIncorrectCardErrorMessage())
                 .isDisplayed();
@@ -98,15 +95,14 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
     @Test
     public final void testAddVisaCardToOrder() {
 
-        createNewOrderPage.getSaveButton().click();
+        createNewOrderPage.clickSaveButton();
 
-        createNewOrderPage.getCreditCardTypeDropdown().sendKeys("Visa");
-        createNewOrderPage.getCreditCardNumberTextfield().sendKeys("4532543327732234");
-        createNewOrderPage.getCVV2Textfield().sendKeys(CVV2_CODE);
-        createNewOrderPage.getExpireDateMonthDropdown().sendKeys(EXPIRE_DATE_MONTH);
-        createNewOrderPage.getExpireDateYearDropdown().sendKeys(EXPIRE_DATE_YEAR);
-
-        createNewOrderPage.getOrderButton().click();
+        createNewOrderPage.selectCreditCardTypeDropdown("Visa")
+                .fillCreditCardNumberTextfield("4532543327732234")
+                .fillCVV2Textfield(CVV2_CODE)
+                .selectExpireDateMonthDropdown(EXPIRE_DATE_MONTH)
+                .selectExpireDateYearDropdown(EXPIRE_DATE_YEAR)
+                .clickOrderButton();
 
         assertThat(customerOrderingPage.getOrderStatusByNumber(orderNumber))
                 .textEquals("Ordered");
@@ -115,15 +111,14 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
     @Test
     public final void testAddMasterCardToOrder() {
 
-        createNewOrderPage.getSaveButton().click();
+        createNewOrderPage.clickSaveButton();
 
-        createNewOrderPage.getCreditCardTypeDropdown().sendKeys("MasterCard");
-        createNewOrderPage.getCreditCardNumberTextfield().sendKeys("5408694520868818");
-        createNewOrderPage.getCVV2Textfield().sendKeys(CVV2_CODE);
-        createNewOrderPage.getExpireDateMonthDropdown().sendKeys(EXPIRE_DATE_MONTH);
-        createNewOrderPage.getExpireDateYearDropdown().sendKeys(EXPIRE_DATE_YEAR);
-
-        createNewOrderPage.getOrderButton().click();
+        createNewOrderPage.selectCreditCardTypeDropdown("MasterCard")
+                .fillCreditCardNumberTextfield("5408694520868818")
+                .fillCVV2Textfield(CVV2_CODE)
+                .selectExpireDateMonthDropdown(EXPIRE_DATE_MONTH)
+                .selectExpireDateYearDropdown(EXPIRE_DATE_YEAR)
+                .clickOrderButton();
 
         assertThat(customerOrderingPage.getOrderStatusByNumber(orderNumber))
                 .textEquals("Ordered");
@@ -132,15 +127,14 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
     @Test
     public final void testAddAmericanExpressCardToOrder() {
 
-        createNewOrderPage.getSaveButton().click();
+        createNewOrderPage.clickSaveButton();
 
-        createNewOrderPage.getCreditCardTypeDropdown().sendKeys("American Express");
-        createNewOrderPage.getCreditCardNumberTextfield().sendKeys("345024720300379");
-        createNewOrderPage.getCVV2Textfield().sendKeys(CVV2_CODE);
-        createNewOrderPage.getExpireDateMonthDropdown().sendKeys(EXPIRE_DATE_MONTH);
-        createNewOrderPage.getExpireDateYearDropdown().sendKeys(EXPIRE_DATE_YEAR);
-
-        createNewOrderPage.getOrderButton().click();
+        createNewOrderPage.selectCreditCardTypeDropdown("American Express")
+                .fillCreditCardNumberTextfield("345024720300379")
+                .fillCVV2Textfield(CVV2_CODE)
+                .selectExpireDateMonthDropdown(EXPIRE_DATE_MONTH)
+                .selectExpireDateYearDropdown(EXPIRE_DATE_YEAR)
+                .clickOrderButton();
 
         assertThat(customerOrderingPage.getOrderStatusByNumber(orderNumber))
                 .textEquals("Ordered");
@@ -149,17 +143,16 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
     @Test
     public final void testAddMaestroCardToOrder() {
 
-        createNewOrderPage.getSaveButton().click();
+        createNewOrderPage.clickSaveButton();
 
-        createNewOrderPage.getCreditCardTypeDropdown().sendKeys("Maestro");
-        createNewOrderPage.getCreditCardNumberTextfield().sendKeys("6759316694729609");
-        createNewOrderPage.getCVV2Textfield().sendKeys(CVV2_CODE);
-        createNewOrderPage.getExpireDateMonthDropdown().sendKeys(EXPIRE_DATE_MONTH);
-        createNewOrderPage.getExpireDateYearDropdown().sendKeys(EXPIRE_DATE_YEAR);
-        createNewOrderPage.getStartDateMaestroTextfield().sendKeys("29/09/2016");
-        createNewOrderPage.getIssueNumberMaestroTextfield().sendKeys("4");
-
-        createNewOrderPage.getOrderButton().click();
+        createNewOrderPage.selectCreditCardTypeDropdown("Maestro")
+                .fillCreditCardNumberTextfield("6759316694729609")
+                .fillCVV2Textfield(CVV2_CODE)
+                .selectExpireDateMonthDropdown(EXPIRE_DATE_MONTH)
+                .selectExpireDateYearDropdown(EXPIRE_DATE_YEAR)
+                .fillStartDateMaestroTextfield("29/09/2016")
+                .fillIssueNumberMaestroTextfield("4")
+                .clickOrderButton();
 
         assertThat(customerOrderingPage.getOrderStatusByNumber(orderNumber))
                 .textEquals("Ordered");
