@@ -9,6 +9,7 @@ import static academy.softserve.edu.utils.Logger.logPass;
 
 public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert, AbstractElement> {
 
+
     AbstractElementAssert(final AbstractElement actual) {
         super(actual, AbstractElementAssert.class);
     }
@@ -309,16 +310,70 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
         return this;
     }
 
-    public AbstractElementAssert isTrue(final boolean value) {
+    public final AbstractElementAssert isQuantityMoreThan(int quantity) {
 
-        if(!value){
-            failWithMessage("Element's {%s} Expected True, but in fact False!", actual.getLocatorName());
-            logFail("Element's {" + actual.getLocatorName() + "} Expected True, but in fact False! ");
+        if (actual.getElements().size() <= quantity) {
+
+            failWithMessage("Element's {%s} quantity should be more, than {%s} ", actual.getLocatorName(), quantity);
+            logFail("Element's {" + actual.getLocatorName() + "} quantity should be more than {" + quantity + "}");
         } else {
-            logPass("Element's {" + actual.getLocatorName() + "} True");
+            logPass("Element's {" + actual.getLocatorName() + "} quantity more than {" + quantity + "}");
         }
         return this;
     }
+
+    public final AbstractElementAssert isQuantityLessOrEqualsThan(int quantity) {
+
+        if (actual.getElements().size() > quantity) {
+
+            failWithMessage("Element's {%s} quantity should be less or equals, than {%s} ",
+                    actual.getLocatorName(), quantity);
+            logFail("Element's {" + actual.getLocatorName() + "} quantity should be less or equals" +
+                    " than {" + quantity + "}");
+        } else {
+            logPass("Element's {" + actual.getLocatorName() + "} quantity less or equals" +
+                    " than {" + quantity + "}");
+        }
+        return this;
+    }
+
+    public final AbstractElementAssert isQuantityEqualTo(int quantity) {
+        if (actual.getElements().size() != quantity) {
+
+            failWithMessage("Element's {%s} quantity should be equal {%s} ", actual.getLocatorName(), quantity);
+            logFail("Element's {" + actual.getLocatorName() + "} quantity should be equal {" + quantity + "}");
+        } else {
+            logPass("Element's {" + actual.getLocatorName() + "} quantity equal {" + quantity + "}");
+
+        }
+        return this;
+    }
+
+
+    public final AbstractElementAssert isParseIntQuantityEqualTo(int quantity) {
+
+        if (Integer.parseInt(actual.getText()) != quantity) {
+
+            failWithMessage("Element's {%s} quantity should be equal {%s} ", actual.getLocatorName(), quantity);
+            logFail("Element's {" + actual.getLocatorName() + "} quantity should be equal {" + quantity + "}");
+        } else {
+            logPass("Element's {" + actual.getLocatorName() + "} quantity equal {" + quantity + "}");
+        }
+        return this;
+    }
+
+    public final AbstractElementAssert isParseIntQuantityMoreThan(int quantity) {
+
+        if (Integer.parseInt(actual.getText()) <= quantity) {
+
+            failWithMessage("Element's {%s} quantity should be more, than {%s} ", actual.getLocatorName(), quantity);
+            logFail("Element's {" + actual.getLocatorName() + "} quantity should be more, than {" + quantity + "}");
+        } else {
+            logPass("Element's {" + actual.getLocatorName() + "} quantity more, than {" + quantity + "}");
+        }
+        return this;
+    }
+
 
     @Override
     public final AbstractElementAssert isNotNull() {
