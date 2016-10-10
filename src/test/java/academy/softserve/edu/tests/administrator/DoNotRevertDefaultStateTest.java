@@ -9,11 +9,6 @@ import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
 
 public class DoNotRevertDefaultStateTest extends TestRunner {
 
-    //TODO move inline
-    private static final String ROLE = "Role";
-    private static final String ROLE_FILTER = "contains";
-    private static final String TEXT = "A";
-
     @Test
     public void testUserInfoAdministrationButtonCheck() {
 
@@ -29,6 +24,10 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
 
     @Test
     public void testDoNotRevertDefaultState() {
+
+        final String ROLE = "Role";
+        final String ROLE_FILTER = "contains";
+        final String TEXT = "A";
 
         userInfoPage = logInPage
                 .logInAs(Roles.ADMINISTRATOR);

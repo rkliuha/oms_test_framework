@@ -12,10 +12,6 @@ import java.net.MalformedURLException;
 
 public class TestRunner {
 
-    //TODO these are used in one class only, remove from here and add to class
-    public static final String CONFIG_PROPERTIES = "src/resources/config.properties";
-    private static final String LOG_IN_PAGE = PropertiesReader.getProperty("login.url", CONFIG_PROPERTIES);
-
     @Getter
     protected WebDriver driver;
 
@@ -39,7 +35,9 @@ public class TestRunner {
 
     @Parameters({"browser", "version"})
     @BeforeMethod
-    public final void setUp(@Optional("firefox") final String browser, @Optional("46 ") final String version) throws MalformedURLException {
+    public final void setUp(@Optional("firefox") final String browser, @Optional("46") final String version) throws MalformedURLException {
+
+        final String logInPageUrl = PropertiesReader.getDefaultProperty("login.url");
 
         final WebDriverFactory webDriverFactory = new WebDriverFactory();
 
@@ -54,7 +52,7 @@ public class TestRunner {
                 .maximize();
 
         driver
-                .get(LOG_IN_PAGE);
+                .get(logInPageUrl);
 
         logInPage = new LogInPage(driver);
     }

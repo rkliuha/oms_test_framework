@@ -3,7 +3,7 @@ package academy.softserve.edu.tests.customer;
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.TestRunner;
-import academy.softserve.edu.utils.TestUtil;
+import academy.softserve.edu.utils.DBHelper;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -18,7 +18,7 @@ public class EditAndDeleteOrderTest extends TestRunner {
     @BeforeMethod
     public final void createTestOrder() {
 
-        testProductId = TestUtil.createActiveProductInDB();
+        testProductId = DBHelper.createActiveProductInDB();
 
         userInfoPage = logInPage.logInAs(Roles.CUSTOMER);
 

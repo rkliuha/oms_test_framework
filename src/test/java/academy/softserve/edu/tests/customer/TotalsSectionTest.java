@@ -6,7 +6,7 @@ import academy.softserve.edu.pageobjects.AddItemPage;
 import academy.softserve.edu.pageobjects.OrderItemsErrorMessagePage;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.TestRunner;
-import academy.softserve.edu.utils.TestUtil;
+import academy.softserve.edu.utils.DBHelper;
 import org.testng.annotations.*;
 
 import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
@@ -22,7 +22,7 @@ public class TotalsSectionTest extends TestRunner {
     @BeforeTest
     public final void createTestProduct() {
 
-        testProductId = TestUtil.createActiveProductInDB();
+        testProductId = DBHelper.createActiveProductInDB();
     }
 
     @BeforeMethod
@@ -107,8 +107,7 @@ public class TotalsSectionTest extends TestRunner {
 
     //  Test order status if the Totals are correctly specified is performed
     @Test
-    //TODO rename
-    public final void testItemsPerformed() {
+    public final void testItemsExist() {
 
         createNewOrderPage
                 .getPreferableDeliveryDateChooseLink()
@@ -233,7 +232,7 @@ public class TotalsSectionTest extends TestRunner {
                 .getOrderNumber()
                 .clear();
 
-        orderItemsErrorMessagePage = createNewOrderPage.getOrderItemsErrorMessage();
+        orderItemsErrorMessagePage = createNewOrderPage.clickSaveButton();
 
         assertThat(orderItemsErrorMessagePage.getContentText())
                 .textContains("Order Number is int value");
@@ -288,7 +287,7 @@ public class TotalsSectionTest extends TestRunner {
                 .getAssigneeDropdown()
                 .sendKeys(DBHandler.getUserByRole(Roles.MERCHANDISER).getLogin());
 
-        orderItemsErrorMessagePage = createNewOrderPage.getOrderItemsErrorMessage();
+        orderItemsErrorMessagePage = createNewOrderPage.clickSaveButton();
 
         assertThat(orderItemsErrorMessagePage.getContentText())
                 .textContains("such order number already exists");

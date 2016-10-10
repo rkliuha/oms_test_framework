@@ -4,14 +4,13 @@ import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.AddItemPage;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.TestRunner;
-import academy.softserve.edu.utils.TestUtil;
+import academy.softserve.edu.utils.DBHelper;
 import org.testng.annotations.*;
 
 import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
 
 public class AddCardInfoToNewOrderTest extends TestRunner {
 
-    //TODO move inline
     private static final String CVV2_CODE = "456";
     private static final String EXPIRE_DATE_MONTH = "10";
     private static final String EXPIRE_DATE_YEAR = "2017";
@@ -21,7 +20,7 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
 
     @BeforeTest
     public final void createTestProduct() {
-        testProductId = TestUtil.createActiveProductInDB();
+        testProductId = DBHelper.createActiveProductInDB();
     }
 
     @BeforeMethod
@@ -42,40 +41,6 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
         createNewOrderPage.getPreferableDeliveryDateChooseLink().click();
         createNewOrderPage.getValidDeliveryDate().click();
         createNewOrderPage.getAssigneeDropdown().sendKeys(DBHandler.getUserByRole(Roles.MERCHANDISER).getLogin());
-    }
-
-    @Test
-    //TODO remove, no need, you interact with elements in other tests
-    public final void testElementsVisibility() {
-
-        assertThat(createNewOrderPage.getCardInfoText())
-                .isDisplayed();
-
-        assertThat(createNewOrderPage.getCreditCardTypeText())
-                .isDisplayed();
-
-        assertThat(createNewOrderPage.getCreditCardNumberText())
-                .isDisplayed();
-
-        assertThat(createNewOrderPage.getCVV2Text())
-                .isDisplayed();
-
-        assertThat(createNewOrderPage.getExpireDateText())
-                .isDisplayed();
-
-        assertThat(createNewOrderPage.getStartDateMaestroText())
-                .isDisplayed();
-
-        assertThat(createNewOrderPage.getIssueNumberMaestroText())
-                .isDisplayed();
-
-        assertThat(createNewOrderPage.getOrderButton())
-                .isDisabled();
-
-        createNewOrderPage.getSaveButton().click();
-
-        assertThat(createNewOrderPage.getOrderButton())
-                .isEnabled();
     }
 
     @Test

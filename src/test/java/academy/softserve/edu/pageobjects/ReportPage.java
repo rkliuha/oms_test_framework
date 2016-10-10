@@ -6,11 +6,9 @@ import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 
 @Getter
-//TODO reformat code into common look - private final Dropdown searchForItemDropdown = new Dropdown(driver, SEARCH_FOR_ITEM_DROPDOWN);
 public class ReportPage extends PageObject<ReportPage> {
 
-    private final TextLabel reportPageExists =
-            new TextLabel(driver, ReportPageLocators.REPORT_PAGE_EXISTS);
+    private final TextLabel reportPageExists = new TextLabel(driver, ReportPageLocators.REPORT_PAGE_EXISTS);
 
     public ReportPage(final WebDriver driver) {
         super(driver);

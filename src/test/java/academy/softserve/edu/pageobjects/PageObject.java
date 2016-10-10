@@ -82,12 +82,4 @@ public abstract class PageObject<T> {
         driver.navigate().refresh();
         return (T) this;
     }
-
-    //TODO remove
-    public void click(final By path) {
-
-        driver
-                .findElement(path)
-                .click();
-    }
 }

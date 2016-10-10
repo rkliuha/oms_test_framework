@@ -1,6 +1,5 @@
 package academy.softserve.edu.utils;
 
-
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -9,9 +8,11 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-//TODO that is a util class, make final with private constructor
 public class ExcelReader {
 
+    private ExcelReader() {
+
+    }
 
     public static String[][] getArrayFromExcel(final String excelFileName, final String sheetName) throws IOException {
 
@@ -75,7 +76,6 @@ public class ExcelReader {
 
         return columnArray;
     }
-
 
     public static String[][] getColumnByName(final String cellName, final String sheetName) throws IOException {
 

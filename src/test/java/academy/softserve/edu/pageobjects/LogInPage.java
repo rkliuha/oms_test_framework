@@ -10,20 +10,24 @@ import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 
 import static academy.softserve.edu.elements.locators.login.LogInPageLocators.*;
-import static academy.softserve.edu.utils.TestRunner.CONFIG_PROPERTIES;
 
 @Getter
 public class LogInPage extends PageObject<LogInPage> {
 
     private final TextInputField userNameInput = new TextInputField(driver, USER_NAME_INPUT);
+
     private final TextInputField passwordInput = new TextInputField(driver, PASSWORD_INPUT);
+
     private final Button logInButton = new Button(driver, LOG_IN_BUTTON);
+
     private final Button cancelButton = new Button(driver, CANCEL_BUTTON);
+
     private final Checkbox rememberMeCheckbox = new Checkbox(driver, REMEMBER_ME_CHECKBOX);
+
     private final TextLabel logInErrorMessage = new TextLabel(driver, LOGIN_ERROR_MESSAGE);
+
     // logInFieldSet is unique LogInPage element
     private final TextLabel logInFieldSet = new TextLabel(driver, LOGIN_FIELDSET);
-
 
     public LogInPage(final WebDriver driver) {
         super(driver);
@@ -35,24 +39,24 @@ public class LogInPage extends PageObject<LogInPage> {
         switch (role) {
             case ADMINISTRATOR:
             default:
-                userName = PropertiesReader.getProperty("administrator.login", CONFIG_PROPERTIES);
-                userPassword = PropertiesReader.getProperty("administrator.password", CONFIG_PROPERTIES);
+                userName = PropertiesReader.getDefaultProperty("administrator.login");
+                userPassword = PropertiesReader.getDefaultProperty("administrator.password");
                 break;
             case MERCHANDISER:
-                userName = PropertiesReader.getProperty("merchandiser.login", CONFIG_PROPERTIES);
-                userPassword = PropertiesReader.getProperty("merchandiser.password", CONFIG_PROPERTIES);
+                userName = PropertiesReader.getDefaultProperty("merchandiser.login");
+                userPassword = PropertiesReader.getDefaultProperty("merchandiser.password");
                 break;
             case SUPERVISOR:
-                userName = PropertiesReader.getProperty("supervisor.login", CONFIG_PROPERTIES);
-                userPassword = PropertiesReader.getProperty("supervisor.password", CONFIG_PROPERTIES);
+                userName = PropertiesReader.getDefaultProperty("supervisor.login");
+                userPassword = PropertiesReader.getDefaultProperty("supervisor.password");
                 break;
             case CUSTOMER:
-                userName = PropertiesReader.getProperty("customer.login", CONFIG_PROPERTIES);
-                userPassword = PropertiesReader.getProperty("customer.password", CONFIG_PROPERTIES);
+                userName = PropertiesReader.getDefaultProperty("customer.login");
+                userPassword = PropertiesReader.getDefaultProperty("customer.password");
                 break;
             case INVALID_USER:
-                userName = PropertiesReader.getProperty("invalid.user.login", CONFIG_PROPERTIES);
-                userPassword = PropertiesReader.getProperty("invalid.user.password", CONFIG_PROPERTIES);
+                userName = PropertiesReader.getDefaultProperty("invalid.user.login");
+                userPassword = PropertiesReader.getDefaultProperty("invalid.user.password");
                 break;
         }
         userNameInput.sendKeys(userName);
