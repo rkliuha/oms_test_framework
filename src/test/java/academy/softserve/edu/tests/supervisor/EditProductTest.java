@@ -30,10 +30,9 @@ public class EditProductTest extends TestRunner {
         userInfoPage = logInPage.logInAs(Roles.SUPERVISOR);
 
         itemManagementPage = userInfoPage.clickItemManagementTab();
-        itemManagementPage.getSearchInput()
-                .sendKeys(testProduct.getProductName());
-        itemManagementPage.getSearchButton()
-                .click();
+
+        itemManagementPage.fillSearchInput(testProduct.getProductName())
+                .clickSearchButton();
 
         editProductPage = itemManagementPage.clickEditProductLinkById(String.valueOf(testProductId));
     }
