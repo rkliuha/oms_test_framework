@@ -11,7 +11,7 @@ public final class UserRepo {
 
     }
 
-    public static User userRepo() {
+    public static User getValidUser() {
 
         return User.newBuilder()
                 .setId(0)

@@ -8,7 +8,7 @@ public final class ProductRepo {
 
     }
 
-    public static Product productRepo() {
+    public static Product getValidProduct() {
 
         return Product.newBuilder()
                 .setId(0)

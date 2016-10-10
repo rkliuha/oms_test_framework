@@ -8,7 +8,7 @@ public final class OrderItemRepo {
 
     }
 
-    public static OrderItem orderItemRepo() {
+    public static OrderItem getValidOrderItem() {
 
         return OrderItem.newBuilder()
                 .setId(0)

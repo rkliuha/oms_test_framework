@@ -9,7 +9,7 @@ public final class OrderRepo {
 
     }
 
-    public static Order orderRepo() {
+    public static Order getValidOrder() {
 
         return Order.newBuilder()
                 .setId(0)

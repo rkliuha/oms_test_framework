@@ -1,12 +1,5 @@
 package academy.softserve.edu.utils;
 
-import academy.softserve.edu.domains.Order;
-import academy.softserve.edu.domains.OrderItem;
-import academy.softserve.edu.domains.Product;
-import academy.softserve.edu.domains.User;
-import academy.softserve.edu.enums.CustomerTypes;
-import academy.softserve.edu.enums.Regions;
-import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.repos.OrderItemRepo;
 import academy.softserve.edu.repos.OrderRepo;
 import academy.softserve.edu.repos.ProductRepo;
@@ -20,22 +13,22 @@ public final class DBHelper {
 
     public static final int createValidUserInDB() {
 
-        return DBHandler.createUser(UserRepo.userRepo());
+        return DBHandler.createUser(UserRepo.getValidUser());
     }
 
     public static final int createActiveProductInDB() {
 
-        return DBHandler.createProduct(ProductRepo.productRepo());
+        return DBHandler.createProduct(ProductRepo.getValidProduct());
     }
 
     //  Quantity of Orders must be "<=6"
     public static final int createValidOrderInDB() {
 
-        return DBHandler.createOrder(OrderRepo.orderRepo());
+        return DBHandler.createOrder(OrderRepo.getValidOrder());
     }
 
     public static final int createOrderItemInDB() {
 
-        return DBHandler.createOrderItem(OrderItemRepo.orderItemRepo());
+        return DBHandler.createOrderItem(OrderItemRepo.getValidOrderItem());
     }
 }
