@@ -1,7 +1,6 @@
 package academy.softserve.edu.tests.supervisor;
 
 import academy.softserve.edu.enums.Roles;
-import academy.softserve.edu.pageobjects.ItemManagementPage;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.Test;
 
@@ -32,31 +31,14 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
         userInfoPage = logInPage
                 .logInAs(Roles.SUPERVISOR);
 
-        userInfoPage
-                .getItemManagementLink()
-                .click();
+        itemManagementPage = userInfoPage.clickItemManagementTab();
 
-        itemManagementPage = new ItemManagementPage(driver);
+        itemManagementPage.selectSearchFieldFilterDropdown(FIELD_FILTER)
+                .fillSearchInput(FIELD_FILTER_VALUE)
+                .clickSearchButton()
+                .clickUserInfoTab();
 
-        itemManagementPage
-                .getSearchFieldFilterDropdown()
-                .sendKeys(FIELD_FILTER);
-
-        itemManagementPage
-                .getSearchInput()
-                .sendKeys(FIELD_FILTER_VALUE);
-
-        itemManagementPage
-                .getSearchButton()
-                .click();
-
-        itemManagementPage
-                .getUserInfoLink()
-                .click();
-
-        userInfoPage
-                .getItemManagementLink()
-                .click();
+        userInfoPage.clickItemManagementTab();
 
         assertThat(itemManagementPage.getSearchFieldFilterDropdown())
                 .selectedDropdownEquals(FIELD_FILTER);

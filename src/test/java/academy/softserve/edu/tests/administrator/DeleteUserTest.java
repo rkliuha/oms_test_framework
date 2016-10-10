@@ -34,13 +34,10 @@ public class DeleteUserTest extends TestRunner {
 
         administrationPage = userInfoPage.clickAdministrationTab();
 
-        administrationPage.getSearchFieldFilterDropdown()
-                .sendKeys(FILTER_DROPDOWN);
-        administrationPage.getSearchFieldFilterDropdown()
-                .sendKeys(CONDITION_DROPDOWN);
-        administrationPage.getSearchInput()
-                .sendKeys(testUser.getLogin());
-        administrationPage.getSearchButton().click();
+        administrationPage.selectSearchFieldFilterDropdown(FILTER_DROPDOWN)
+                .selectSearchConditionDropdown(CONDITION_DROPDOWN)
+                .fillSearchInput(testUser.getLogin())
+                .clickSearchButton();
     }
 
     @Test
