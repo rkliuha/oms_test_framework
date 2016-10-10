@@ -20,14 +20,12 @@ public class LogInPageTest extends TestRunner {
                 .isValueEmpty();
     }
 
-    // To check is it possible to input different symbols in to the inputName field.
+    // To check is it possible to input different symbols in to the fillUserNameInput field.
     @Test
     //TODO rename
     public final void testInputText() {
 
-        logInPage
-                .getUserNameInput()
-                .sendKeys("Asa23@(?|};6756%");
+        logInPage.fillUserNameInput("Asa23@(?|};6756%");
 
         assertThat(logInPage.getUserNameInput())
                 .isValueNotEmpty();
@@ -38,9 +36,7 @@ public class LogInPageTest extends TestRunner {
     //TODO remove unused params
     public final void testInputsCanTakeSymbols(final String name, final String password) {
 
-        logInPage
-                .getPasswordInput()
-                .sendKeys(password);
+        logInPage.fillPasswordInput(password);
 
         assertThat(logInPage.getPasswordInput())
                 .textNotEqual(password);
@@ -64,7 +60,7 @@ public class LogInPageTest extends TestRunner {
     public final void testInputOnlyName(final String name, final String password) {
 
         logInPage
-                .inputName(name)
+                .fillUserNameInput(name)
                 .clickLogInButton();
 
         assertThat(logInPage.getLogInButton())
@@ -77,7 +73,7 @@ public class LogInPageTest extends TestRunner {
     public final void testInputOnlyPassword(final String name, final String password) {
 
         logInPage
-                .inputPassword(password)
+                .fillPasswordInput(password)
                 .clickLogInButton();
 
         assertThat(logInPage.getLogInButton())
@@ -100,10 +96,9 @@ public class LogInPageTest extends TestRunner {
     public final void testClearFields(final String name, final String password) {
 
         logInPage
-                .inputName(name)
-                .inputPassword(password)
-                .getCancelButton()
-                .click();
+                .fillUserNameInput(name)
+                .fillPasswordInput(password)
+                .clickCancelButton();
 
         assertThat(logInPage.getUserNameInput())
                 .isValueEmpty();
@@ -134,10 +129,10 @@ public class LogInPageTest extends TestRunner {
     public final void testLoginWithNonExistingData() {
 
         logInPage
-                .inputName("Sarumjan")
+                .fillUserNameInput("Sarumjan")
                 .clickLogInButton();
         logInPage
-                .inputPassword("Mordor")
+                .fillPasswordInput("Mordor")
                 .clickLogInButton();
 
         assertThat(logInPage.getLogInButton())
@@ -151,7 +146,7 @@ public class LogInPageTest extends TestRunner {
     public final void testErrorMessageOnEmptyUsername(final String name, final String password) {
 
         logInPage
-                .inputPassword(password)
+                .fillPasswordInput(password)
                 .clickLogInButton();
 
         assertThat(logInPage.getLogInErrorMessage())
@@ -163,7 +158,7 @@ public class LogInPageTest extends TestRunner {
     @Test
     public final void testErrorMessageOnUnregisteredName() {
 
-        logInPage.inputName("unregistered data")
+        logInPage.fillUserNameInput("unregistered data")
                 .clickLogInButton();
 
         assertThat(logInPage.getLogInErrorMessage())
@@ -177,7 +172,7 @@ public class LogInPageTest extends TestRunner {
     public final void testErrorMessageOnEmptyPasswordField(final String name, final String password) {
 
         logInPage
-                .inputName(name)
+                .fillUserNameInput(name)
                 .clickLogInButton();
 
         assertThat(logInPage.getLogInErrorMessage())
@@ -190,8 +185,8 @@ public class LogInPageTest extends TestRunner {
     public final void testErrorMessageOnWrongPassword(String name, String password) {
 
         logInPage
-                .inputName(name)
-                .inputPassword("Mordor")
+                .fillUserNameInput(name)
+                .fillPasswordInput("Mordor")
                 .clickLogInButton();
 
         assertThat(logInPage.getLogInErrorMessage())

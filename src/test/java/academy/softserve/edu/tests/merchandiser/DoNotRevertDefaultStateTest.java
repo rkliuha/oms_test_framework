@@ -1,7 +1,6 @@
 package academy.softserve.edu.tests.merchandiser;
 
 import academy.softserve.edu.enums.Roles;
-import academy.softserve.edu.pageobjects.MerchandiserOrderingPage;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.Test;
 
@@ -32,31 +31,14 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
         userInfoPage = logInPage
                 .logInAs(Roles.MERCHANDISER);
 
-        userInfoPage
-                .getMerchandiserOrderingLink()
-                .click();
+        merchandiserOrderingPage = userInfoPage.clickMerchandiserOrderingTab();
 
-        merchandiserOrderingPage = new MerchandiserOrderingPage(driver);
+        merchandiserOrderingPage.selectSearchDropdown(SEARCH_ORDERS)
+                .fillSearchInput(SEARCH_ORDERS_VALUE)
+                .clickApplyButton()
+                .clickUserInfoLink();
 
-        merchandiserOrderingPage
-                .getSearchDropdown()
-                .sendKeys(SEARCH_ORDERS);
-
-        merchandiserOrderingPage
-                .getSearchInput()
-                .sendKeys(SEARCH_ORDERS_VALUE);
-
-        merchandiserOrderingPage
-                .getApplyButton()
-                .click();
-
-        merchandiserOrderingPage
-                .getUserInfoLink()
-                .click();
-
-        userInfoPage
-                .getMerchandiserOrderingLink()
-                .click();
+        userInfoPage.clickMerchandiserOrderingTab();
 
         assertThat(merchandiserOrderingPage.getSearchDropdown())
                 .selectedDropdownEquals(SEARCH_ORDERS);

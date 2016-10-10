@@ -63,18 +63,96 @@ public class ItemManagementPage extends PageObject<ItemManagementPage> {
     public final UserInfoPage clickUserInfoTab() {
 
         userInfoLink.click();
-
         return new UserInfoPage(driver);
     }
 
     public final SupervisorCreateReportPage clickCreateReportLink() {
+
         createReportLink.click();
         return new SupervisorCreateReportPage(driver);
     }
 
+    public final EditProductPage clickEditProductLinkById(final String productId) {
+
+        getEditProductLinkById(productId).click();
+        return new EditProductPage(driver);
+    }
+
+    public final ItemManagementPage clickDeleteProductLinkById(final String productId) {
+
+        getDeleteProductLinkById(productId).click();
+        return this;
+    }
+
+    public final ItemManagementPage clickResizeProductsListButton() {
+
+        resizeProductsListButton.click();
+        return this;
+    }
+
+    public final ItemManagementPage clickNameHeaderButton() {
+
+        nameHeaderButton.click();
+        return this;
+    }
+
+    public final ItemManagementPage clickDescriptionHeaderButton() {
+
+        descriptionHeaderButton.click();
+        return this;
+    }
+
+    public final ItemManagementPage clickPriceHeaderButton() {
+
+        priceHeaderButton.click();
+        return this;
+    }
+
+    public final ItemManagementPage clickForwardNavigationButton() {
+
+        forwardNavigationButton.click();
+        return this;
+    }
+
+    public final ItemManagementPage clickBackwardNavigationButton() {
+
+        backwardNavigationButton.click();
+        return this;
+    }
+
+    public final ItemManagementPage clickLastNavigationButton() {
+
+        lastNavigationButton.click();
+        return this;
+    }
+
+    public final ItemManagementPage clickFirstNavigationButton() {
+
+        firstNavigationButton.click();
+        return this;
+    }
+
     public final AddProductPage clickAddProductLink() {
+
         getAddProductLink().click();
         return new AddProductPage(driver);
+    }
+
+    public final ItemManagementPage clickSearchButton() {
+        searchButton.click();
+        return this;
+    }
+
+    public final ItemManagementPage fillSearchInput(final String searchText) {
+
+        searchInput.sendKeys(searchText);
+        return this;
+    }
+
+    public final ItemManagementPage selectSearchFieldFilterDropdown(final String condition) {
+
+        searchFieldFilterDropdown.sendKeys(condition);
+        return this;
     }
 
 }

@@ -45,18 +45,10 @@ public class AddNewProductTest extends TestRunner {
         final String testProductDescription = "productDescription6";
         final String testProductPrice = "6.0";
 
-        addProductPage
-                .getProductNameInput()
-                .sendKeys(testProductName);
-        addProductPage
-                .getProductDescriptionInput()
-                .sendKeys(testProductDescription);
-        addProductPage
-                .getProductPriceInput()
-                .sendKeys(testProductPrice);
-        addProductPage
-                .getOkButton()
-                .click();
+        addProductPage.fillProductNameInput(testProductName)
+                .fillProductDescriptionInput(testProductDescription)
+                .fillProductPriceInput(testProductPrice)
+                .clickOkButton();
 
         testProduct = DBHandler.getLastProduct();
         testProductId = testProduct.getId();
@@ -64,12 +56,8 @@ public class AddNewProductTest extends TestRunner {
         assertThat(itemManagementPage.getSearchInput())
                 .isTextEmpty();
 
-        itemManagementPage
-                .getSearchInput()
-                .sendKeys(testProductName);
-        itemManagementPage
-                .getSearchButton()
-                .click();
+        itemManagementPage.fillSearchInput(testProductName)
+                .clickSearchButton();
 
         assertThat(itemManagementPage.getEditProductLinkById(String.valueOf(testProductId)))
                 .isDisplayed();
@@ -89,30 +77,18 @@ public class AddNewProductTest extends TestRunner {
         final String testProductDescription = "productDescription6";
         final String testProductPrice = "6.0";
 
-        addProductPage
-                .getProductNameInput()
-                .sendKeys(testProductName);
-        addProductPage
-                .getProductDescriptionInput()
-                .sendKeys(testProductDescription);
-        addProductPage
-                .getProductPriceInput()
-                .sendKeys(testProductPrice);
-        addProductPage
-                .getCancelButton()
-                .click();
+        addProductPage.fillProductNameInput(testProductName)
+                .fillProductDescriptionInput(testProductDescription)
+                .fillProductPriceInput(testProductPrice)
+                .clickCancelButton();
 
         testProduct = DBHandler.getLastProduct();
 
         assertThat(itemManagementPage.getSearchInput())
                 .isTextEmpty();
 
-        itemManagementPage
-                .getSearchInput()
-                .sendKeys(testProductName);
-        itemManagementPage
-                .getSearchButton()
-                .click();
+        itemManagementPage.fillSearchInput(testProductName)
+                .clickSearchButton();
 
         assertThat(itemManagementPage.getRecordsCountText())
                 .textEquals("0");
@@ -133,18 +109,10 @@ public class AddNewProductTest extends TestRunner {
         final String invalidDescription = "InvalidProductDescription6";
         final String invalidPrice = "12345678901234";
 
-        addProductPage
-                .getProductNameInput()
-                .sendKeys("");
-        addProductPage
-                .getProductDescriptionInput()
-                .sendKeys("");
-        addProductPage
-                .getProductPriceInput()
-                .sendKeys("");
-        addProductPage
-                .getOkButton()
-                .click();
+        addProductPage.fillProductNameInput("")
+                .fillProductDescriptionInput("")
+                .fillProductPriceInput("")
+                .clickOkButton();
 
         assertThat(addProductPage.getProductNameErrorText())
                 .textEquals("Please enter product name!");
@@ -153,18 +121,10 @@ public class AddNewProductTest extends TestRunner {
         assertThat(addProductPage.getProductPriceErrorText())
                 .textEquals("Please enter product price!");
 
-        addProductPage
-                .getProductNameInput()
-                .sendKeys(invalidLowBoundName);
-        addProductPage
-                .getProductDescriptionInput()
-                .sendKeys(invalidDescription);
-        addProductPage
-                .getProductPriceInput()
-                .sendKeys(invalidPrice);
-        addProductPage
-                .getOkButton()
-                .click();
+        addProductPage.fillProductNameInput(invalidLowBoundName)
+                .fillProductDescriptionInput(invalidDescription)
+                .fillProductPriceInput(invalidPrice)
+                .clickOkButton();
 
         assertThat(addProductPage.getProductNameErrorText())
                 .textEquals("Enter value in range: 3-13");
@@ -173,18 +133,10 @@ public class AddNewProductTest extends TestRunner {
         assertThat(addProductPage.getProductPriceErrorText())
                 .textEquals("Please enter double value!");
 
-        addProductPage
-                .getProductNameInput()
-                .sendKeys(invalidHighBoundName);
-        addProductPage
-                .getProductDescriptionInput()
-                .sendKeys(invalidDescription);
-        addProductPage
-                .getProductPriceInput()
-                .sendKeys(invalidPrice);
-        addProductPage
-                .getOkButton()
-                .click();
+        addProductPage.fillProductNameInput(invalidHighBoundName)
+                .fillProductDescriptionInput(invalidDescription)
+                .fillProductPriceInput(invalidPrice)
+                .clickOkButton();
 
         assertThat(addProductPage.getProductNameErrorText())
                 .textEquals("Enter value in range: 3-13");

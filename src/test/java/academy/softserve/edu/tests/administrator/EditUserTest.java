@@ -36,8 +36,7 @@ public class EditUserTest extends TestRunner {
 
         userInfoPage = logInPage.logInAs(Roles.ADMINISTRATOR);
 
-        administrationPage = userInfoPage
-                .clickAdministrationTab()
+        administrationPage = userInfoPage.clickAdministrationTab()
                 .clickLastUserPaginationButton();
 
         editUserPage = administrationPage.clickEditUserById(testUserId);
@@ -77,22 +76,10 @@ public class EditUserTest extends TestRunner {
         assertThat(editUserPage.getNewPasswordText())
                 .isDisplayed();
 
-        editUserPage
-                .getLastNameInput()
-                .clear();
-        editUserPage
-                .getLastNameInput()
-                .sendKeys(NEW_USER_LAST_NAME);
-        editUserPage
-                .getNewPasswordInput()
-                .sendKeys(NEW_USER_PASSWORD);
-        editUserPage
-                .getConfirmPasswordInput()
-                .sendKeys(NEW_USER_PASSWORD);
-        editUserPage
-                .getRegionDropdown()
-                .sendKeys(NEW_REGION.toString());
-        editUserPage
+        editUserPage.fillLastNameInput(NEW_USER_LAST_NAME)
+                .fillNewPasswordInput(NEW_USER_PASSWORD)
+                .fillConfirmPasswordInput(NEW_USER_PASSWORD)
+                .selectRegionDropdown(NEW_REGION.toString())
                 .clickSaveChangesButton();
 
         testUser = DBHandler.getUserById(testUserId);
@@ -116,9 +103,8 @@ public class EditUserTest extends TestRunner {
         assertThat(editUserPage.getNewPasswordText())
                 .isDisplayed();
 
-        editUserPage.getEmailAddressInput().clear();
-        editUserPage.getEmailAddressInput().sendKeys(NEW_USER_EMAIL);
-        editUserPage.clickCancelButton();
+        editUserPage.fillEmailAddressInput(NEW_USER_EMAIL)
+                .clickCancelButton();
 
         assertThat(DBHandler.getUserById(testUserId))
                 .userEquals(testUser);

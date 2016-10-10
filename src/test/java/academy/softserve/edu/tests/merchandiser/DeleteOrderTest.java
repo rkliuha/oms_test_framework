@@ -30,17 +30,9 @@ public class DeleteOrderTest extends TestRunner {
     public final void testOrdersElementsPresence() {
 
         // checks if there is valid order name and if delete order button is displayed
-        merchandiserOrderingPage
-                .getSearchDropdown()
-                .sendKeys("Order Name");
-
-        merchandiserOrderingPage
-                .getSearchInput()
-                .sendKeys(testOrder.getOrderName());
-
-        merchandiserOrderingPage
-                .getApplyButton()
-                .click();
+        merchandiserOrderingPage.selectSearchDropdown("Order Name")
+                .fillSearchInput(testOrder.getOrderName())
+                .clickApplyButton();
 
         assertThat(merchandiserOrderingPage.getOrderNameCell())
                 .textEquals(testOrder.getOrderName());
@@ -52,23 +44,10 @@ public class DeleteOrderTest extends TestRunner {
     @Test
     public final void testDeleteOrderAndConfirm() {
 
-        merchandiserOrderingPage
-                .getSearchDropdown()
-                .sendKeys("Order Name");
-
-        merchandiserOrderingPage
-                .getSearchInput()
-                .sendKeys(testOrder.getOrderName());
-
-        merchandiserOrderingPage
-                .getApplyButton()
-                .click();
-
-        merchandiserOrderingPage
-                .getDeleteCellLink()
-                .click();
-
-        merchandiserOrderingPage
+        merchandiserOrderingPage.selectSearchDropdown("Order Name")
+                .fillSearchInput(testOrder.getOrderName())
+                .clickApplyButton()
+                .clickDeleteCellLink()
                 .acceptAlert();
 
         assertThat(DBHandler.getOrderByNumber(testOrder.getOrderNumber()))
@@ -79,23 +58,10 @@ public class DeleteOrderTest extends TestRunner {
     @Test
     public final void testDeleteOrderAndCancelConfirmation() {
 
-        merchandiserOrderingPage
-                .getSearchDropdown()
-                .sendKeys("Order Name");
-
-        merchandiserOrderingPage
-                .getSearchInput()
-                .sendKeys(testOrder.getOrderName());
-
-        merchandiserOrderingPage
-                .getApplyButton()
-                .click();
-
-        merchandiserOrderingPage
-                .getDeleteCellLink()
-                .click();
-
-        merchandiserOrderingPage
+        merchandiserOrderingPage.selectSearchDropdown("Order Name")
+                .fillSearchInput(testOrder.getOrderName())
+                .clickApplyButton()
+                .clickDeleteCellLink()
                 .dismissAlert();
 
         assertThat(DBHandler.getOrderByNumber(testOrder.getOrderNumber()))
