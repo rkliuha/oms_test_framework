@@ -38,6 +38,54 @@ public enum AdministrationPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//div[@id='list']/h4[1]"),
 
+    QUANTITY_OF_FOUND_USERS("Quantity of found Users",
+            LocatorsType.BY_XPATH,
+            "//*[@id='usersFound']"),
+
+    RESIZE_USERS_LIST_LINK("Resize Users List Link",
+            LocatorsType.BY_XPATH,
+            "//div[@id='list']/p/a"),
+
+    FIRST_NAME_HEADER_LINK("First Name Header Link",
+            LocatorsType.BY_XPATH,
+            "//table[@id='table']//tr/th[1]/a"),
+
+    FIRST_NAME_CELL("First Name Cell",
+            LocatorsType.BY_XPATH,
+            "//table[@id='table']/tbody/tr[%s]/td[1]"),
+
+    LAST_NAME_HEADER_LINK("Last Name Header Link",
+            LocatorsType.BY_XPATH,
+            "//table[@id='table']//tr/th[2]/a"),
+
+    LAST_NAME_CELL("Last Name Cell",
+            LocatorsType.BY_XPATH,
+            "//table[@id='table']/tbody/tr[%s]/td[2]"),
+
+    LOGIN_HEADER_LINK("Login Header Link",
+            LocatorsType.BY_XPATH,
+            "//table[@id='table']//tr/th[3]/a"),
+
+    LOGIN_CELL("Login Cell",
+            LocatorsType.BY_XPATH,
+            "//table[@id='table']/tbody/tr[%s]/td[3]"),
+
+    ROLE_HEADER_LINK("Role Header Link",
+            LocatorsType.BY_XPATH,
+            "//table[@id='table']//tr/th[4]/a"),
+
+    ROLE_CELL("Role Cell",
+            LocatorsType.BY_XPATH,
+            "//table[@id='table']/tbody/tr[%s]/td[4]"),
+
+    REGION_HEADER_LINK("Region Header Link",
+            LocatorsType.BY_XPATH,
+            "//table[@id='table']//tr/th[5]/a"),
+
+    REGION_CELL("Region Cell",
+            LocatorsType.BY_XPATH,
+            "//table[@id='table']/tbody/tr[%s]/td[5]"),
+
     EDIT_USER_CELL_LINK("Edit Cell",
             LocatorsType.BY_XPATH,
             "//table[@id='table']/tbody/tr[%s]/td[6]/a"),
@@ -46,13 +94,53 @@ public enum AdministrationPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//table[@id='table']/tbody/tr[%s]/td[7]/a"),
 
+    FIRST_NAVIGATION_BUTTON("First Navigation Button",
+            LocatorsType.BY_ID,
+            "first"),
+
+    BACKWARD_NAVIGATION_BUTTON("Backward Navigation Button",
+            LocatorsType.BY_ID,
+            "previous"),
+
+    FORWARD_NAVIGATION_BUTTON("Forward Navigation Button",
+            LocatorsType.BY_ID,
+            "next"),
+
     LAST_NAVIGATION_BUTTON("Last Navigation Button",
             LocatorsType.BY_ID,
             "last"),
 
+    PAGE_NUMBER_TEXT("Page Number Text",
+            LocatorsType.BY_XPATH,
+            "//*[@id='pageNumber']"),
+
+    PAGE_COUNT_TEXT("Page Count Text",
+            LocatorsType.BY_XPATH,
+            "//*[@id='pageCount']"),
+
     CREATE_REPORT_LINK("Create Report Link",
             LocatorsType.BY_XPATH,
             "//div[@id='list']/h5/a"),
+
+    FIRST_NAME_COLUMN("First Name column",
+            LocatorsType.BY_XPATH,
+            "//*[@id='table']/tbody/tr//td[1]"),
+
+    LAST_NAME_COLUMN("Last Name column",
+            LocatorsType.BY_XPATH,
+            "//*[@id='table']/tbody/tr//td[2]"),
+
+    LOGIN_COLUMN("Login Column",
+            LocatorsType.BY_XPATH,
+            "//*[@id='table']/tbody/tr//td[3]"),
+
+    ROLE_COLUMN("Role Column",
+            LocatorsType.BY_XPATH,
+            "//*[@id='table']/tbody/tr//td[4]"),
+
+    REGION_COLUMN("Region Column",
+            LocatorsType.BY_XPATH,
+            "//*[@id='table']/tbody/tr//td[5]"),
 
     EDIT_USER_LINK("Edit user Link",
             LocatorsType.BY_XPATH,
@@ -92,4 +180,4 @@ public enum AdministrationPageLocators implements ILocator {
         this.modifiedLocator = String.format(this.locatorValue, parameter);
         return this;
     }
-}
+    }

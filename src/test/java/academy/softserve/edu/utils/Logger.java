@@ -6,7 +6,7 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Logger {
+public final class Logger {
 
     private Logger() {
 

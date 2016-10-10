@@ -24,16 +24,16 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     @Test
     public void testDoNotRevertDefaultState() {
 
-        final String SEARCH_ORDERS = "Status";
-        final String SEARCH_ORDERS_VALUE = "Ordered";
+        final String searchOrders = "Status";
+        final String searchOrdersValue = "Ordered";
 
         userInfoPage = logInPage
                 .logInAs(Roles.CUSTOMER);
 
         customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
 
-        customerOrderingPage.selectSearchDropdown(SEARCH_ORDERS)
-                .fillSearchInput(SEARCH_ORDERS_VALUE)
+        customerOrderingPage.selectSearchDropdown(searchOrders)
+                .fillSearchInput(searchOrdersValue)
                 .clickApplyButton();
 
         customerOrderingPage.clickUserInfoTab();
@@ -41,9 +41,9 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
         userInfoPage.clickCustomerOrderingTab();
 
         assertThat(customerOrderingPage.getSearchDropdown())
-                .selectedDropdownEquals(SEARCH_ORDERS);
+                .selectedDropdownEquals(searchOrders);
 
         assertThat(customerOrderingPage.getSearchInput())
-                .valueEquals(SEARCH_ORDERS_VALUE);
+                .valueEquals(searchOrdersValue);
     }
 }

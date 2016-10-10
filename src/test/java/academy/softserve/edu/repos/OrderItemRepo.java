@@ -2,9 +2,9 @@ package academy.softserve.edu.repos;
 
 import academy.softserve.edu.domains.OrderItem;
 
-public class OrderItemRepo {
+public final class OrderItemRepo {
 
-    public OrderItemRepo() {
+    private OrderItemRepo() {
 
     }
 

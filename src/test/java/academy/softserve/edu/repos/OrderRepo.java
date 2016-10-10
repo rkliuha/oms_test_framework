@@ -3,7 +3,7 @@ package academy.softserve.edu.repos;
 import academy.softserve.edu.domains.Order;
 import academy.softserve.edu.domains.Product;
 
-public class OrderRepo {
+public final class OrderRepo {
 
     private OrderRepo() {
 

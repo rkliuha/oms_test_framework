@@ -38,6 +38,46 @@ public enum ItemManagementPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//form[@id='searchForm']/input[2]"),
 
+    RESIZE_PRODUCTS_LIST_LINK("Resize Products List Link",
+            LocatorsType.BY_XPATH,
+            "//div[@id='list']/p/a"),
+
+    NAME_HEADER_LINK("Name Header Link",
+            LocatorsType.BY_XPATH,
+            "//table[@id='table']//tr/th[1]/a"),
+
+    DESCRIPTION_HEADER_LINK("Description Header Link",
+            LocatorsType.BY_XPATH,
+            "//table[@id='table']//tr/th[2]/a"),
+
+    PRICE_HEADER_LINK("Price Header Link",
+            LocatorsType.BY_XPATH,
+            "//table[@id='table']//tr/th[3]/a"),
+
+    FIRST_NAVIGATION_BUTTON("First Navigation Button",
+            LocatorsType.BY_ID,
+            "first"),
+
+    BACKWARD_NAVIGATION_BUTTON("Backward Navigation Button",
+            LocatorsType.BY_ID,
+            "previous"),
+
+    FORWARD_NAVIGATION_BUTTON("Forward Navigation Button",
+            LocatorsType.BY_ID,
+            "next"),
+
+    LAST_NAVIGATION_BUTTON("Last Navigation Button",
+            LocatorsType.BY_ID,
+            "last"),
+
+    PAGE_NUMBER_TEXT("Page Number Text",
+            LocatorsType.BY_ID,
+            "pageNumber"),
+
+    PAGE_COUNT_TEXT("Page Count Text",
+            LocatorsType.BY_ID,
+            "pageCount"),
+
     CREATE_REPORT_LINK("Create Report Link",
             LocatorsType.BY_XPATH,
             "//div[@id='list']/a[2]"),
@@ -57,10 +97,6 @@ public enum ItemManagementPageLocators implements ILocator {
     DESCRIPTION_CELL_LINK("Description Cell",
             LocatorsType.BY_XPATH,
             "//*[@id='table']/tbody/tr[%s]/td[2]"),
-
-    PRICE_CELL_LINK("Price Cell",
-            LocatorsType.BY_XPATH,
-            "//*[@id='table']/tbody/tr[%s]/td[3]/a"),
 
     DELETE_PRODUCT_CELL_LINK("Delete Cell",
             LocatorsType.BY_XPATH,

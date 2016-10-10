@@ -2,7 +2,7 @@ package academy.softserve.edu.repos;
 
 import academy.softserve.edu.domains.Product;
 
-public class ProductRepo {
+public final class ProductRepo {
 
     private ProductRepo() {
 

@@ -138,14 +138,22 @@ public class CreateNewOrderPage extends PageObject<CreateNewOrderPage> {
 
     private  final Link orderingLink = new Link(driver, CUSTOMER_ORDERING_LINK);
 
+    private  final Link validDeliveryDateLink = new Link(driver, VALID_DELIVERY_DATE_LINK);
+
     public CreateNewOrderPage(final WebDriver driver) {
         super(driver);
     }
 
-    public final OrderItemsErrorMessagePage clickSaveButton() {
+    public final OrderItemsErrorMessagePage clickSaveButtonFail() {
 
         saveButton.click();
         return new OrderItemsErrorMessagePage(driver);
+    }
+
+    public final CreateNewOrderPage clickSaveButton() {
+
+        saveButton.click();
+        return this;
     }
 
     public final CustomerOrderingPage clickOrderingLink() {
@@ -193,12 +201,6 @@ public class CreateNewOrderPage extends PageObject<CreateNewOrderPage> {
     public final CreateNewOrderPage clickValidDeliveryDateLink() {
 
         validDeliveryDateLink.click();
-        return this;
-    }
-
-    public final CreateNewOrderPage clickSaveButton() {
-
-        saveButton.click();
         return this;
     }
 
@@ -255,5 +257,6 @@ public class CreateNewOrderPage extends PageObject<CreateNewOrderPage> {
         issueNumberMaestroTextfield.sendKeys(issueNumber);
         return this;
     }
+
 
 }

@@ -5,7 +5,7 @@ import academy.softserve.edu.enums.CustomerTypes;
 import academy.softserve.edu.enums.Regions;
 import academy.softserve.edu.enums.Roles;
 
-public class UserRepo {
+public final class UserRepo {
 
     private UserRepo() {
 

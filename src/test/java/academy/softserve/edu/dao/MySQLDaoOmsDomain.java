@@ -8,15 +8,13 @@ import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class MySQLDaoOmsDomains implements DaoOmsDomains {
+public class MySQLDaoOmsDomain implements DaoOmsDomain {
 
-    private PropertiesReader propertiesReader = new PropertiesReader();
+    private final String username = PropertiesReader.getDefaultProperty("oms.username");
+    private final String password = PropertiesReader.getDefaultProperty("oms.password");
+    private final String omsDbUrl = PropertiesReader.getDefaultProperty("oms.db.url");
 
-    private String username = PropertiesReader.getDefaultProperty("oms.username");
-    private String password = PropertiesReader.getDefaultProperty("oms.password");
-    private String omsDbUrl = PropertiesReader.getDefaultProperty("oms.db.url");
-
-    public MySQLDaoOmsDomains() {
+    public MySQLDaoOmsDomain() {
 
         try {
             final Driver driver = new com.mysql.jdbc.Driver();

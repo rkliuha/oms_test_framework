@@ -55,7 +55,6 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
         return new CreateNewOrderPage(driver);
     }
 
-    public final Element getSearchStatusResult(final String statusNumber) {
     public final CustomerOrderingPage clickResizeShowItemsLink() {
 
         resizeShowItemsLink.click();

@@ -192,7 +192,7 @@ public class TotalsSectionTest extends TestRunner {
         createNewOrderPage.getOrderNumber()
                 .clear();
 
-        orderItemsErrorMessagePage = createNewOrderPage.clickSaveButton();
+        orderItemsErrorMessagePage = createNewOrderPage.clickSaveButtonFail();
 
         assertThat(orderItemsErrorMessagePage.getContentText())
                 .textContains("Order Number is int value");
@@ -224,7 +224,7 @@ public class TotalsSectionTest extends TestRunner {
                 .clickCalendarTuesdayElement()
                 .selectAssigneeDropdown(DBHandler.getUserByRole(Roles.MERCHANDISER).getLogin());
 
-        orderItemsErrorMessagePage = createNewOrderPage.clickSaveButton();
+        orderItemsErrorMessagePage = createNewOrderPage.clickSaveButtonFail();
 
         assertThat(orderItemsErrorMessagePage.getContentText())
                 .textContains("such order number already exists");

@@ -16,13 +16,6 @@ public class DataProviders {
     }
 
     @DataProvider
-    static public Object[][] testDataForMerchandiser() {
-        return new Object[][]{
-                {"vpupkin", "qwerty"}
-        };
-    }
-
-    @DataProvider
     static final public Object[][] excelLogInDataForAllUsersRole() throws IOException {
         return ExcelReader
                 .getArrayFromExcel(EXCEL_FILE, "sheet1");

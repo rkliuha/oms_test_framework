@@ -3,7 +3,7 @@ package academy.softserve.edu.dao.interfaces;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public interface DaoOmsDomains {
+public interface DaoOmsDomain {
 
     Connection getConnection() throws SQLException;
 

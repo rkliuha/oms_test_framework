@@ -30,9 +30,53 @@ public enum MerchandiserOrderingPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//form[@id='searchFilter']//td[4]/input"),
 
+    RESIZE_ORDERS_LIST_LINK("Resize Orders List Link",
+            LocatorsType.BY_XPATH,
+            "//form[@id='searchFilter']/p/a"),
+
+    FIRST_NAVIGATION_BUTTON("First Navigation Button",
+            LocatorsType.BY_ID,
+            "first"),
+
+    BACKWARD_NAVIGATION_BUTTON("Backward Navigation Button",
+            LocatorsType.BY_ID,
+            "previous"),
+
+    FORWARD_NAVIGATION_BUTTON("Forward Navigation Button",
+            LocatorsType.BY_ID,
+            "next"),
+
+    LAST_NAVIGATION_BUTTON("Last Navigation Button",
+            LocatorsType.BY_ID,
+            "last"),
+
+    PAGE_NUMBER_TEXT("Page Number Text",
+            LocatorsType.BY_ID,
+            "pageNumber"),
+
+    PAGE_COUNT_TEXT("Page Count Text",
+            LocatorsType.BY_ID,
+            "pageCount"),
+
+    ORDER_NAME_HEADER_LINK("Order Name Header Link",
+            LocatorsType.BY_XPATH,
+            "//div[@id='list']/table//th[1]/a"),
+
     ORDER_NAME_CELL("Order Name Cell",
             LocatorsType.BY_XPATH,
-            "//div[@id='list']//tr[%s]/td[1]"),
+            "//*[@id='list']/table/tbody/tr[%s]/td[1]"),
+
+    TOTAL_PRICE_HEADER_LINK("Total Price Header Link",
+            LocatorsType.BY_XPATH,
+            "//div[@id='list']/table//th[2]/a"),
+
+    MAX_DISCOUNT_HEADER_LINK("Max Discount Header Link",
+            LocatorsType.BY_XPATH,
+            "//div[@id='list']/table//th[3]/a"),
+
+    STATUS_HEADER_LINK("Status Header Link",
+            LocatorsType.BY_XPATH,
+            "//div[@id='list']/table//th[5]/a"),
 
     STATUS_CELL("Status Cell",
             LocatorsType.BY_XPATH,
@@ -44,7 +88,28 @@ public enum MerchandiserOrderingPageLocators implements ILocator {
 
     DELETE_CELL_LINK("Delete Cell Link",
             LocatorsType.BY_XPATH,
-            "//div[@id='list']//tr[%s]/td[7]"),
+
+            "//div[@id='list']/h4"),
+
+    ORDER_NAME_COLUMN("Order Name Column",
+            LocatorsType.BY_XPATH,
+            "//*[@id='list']/table/tbody//td[1]"),
+
+    TOTAL_PRICE_COLUMN("Total Price Column",
+            LocatorsType.BY_XPATH,
+            "//*[@id='list']/table/tbody//td[2]"),
+
+    MAX_DISCOUNT_COLUMN("Max Discount Column",
+            LocatorsType.BY_XPATH,
+            "//*[@id='list']/table/tbody//td[3]"),
+
+    STATUS_COLUMN("Status Column",
+            LocatorsType.BY_XPATH,
+            "//*[@id='list']/table/tbody//td[5]"),
+
+    ORDER_NAME_CELL_VALUE("Order name value",
+            LocatorsType.BY_XPATH,
+            "//*[@id='list']/table/tbody/tr[2]/td[1]"),
 
     SHOW_ITEMS_LINK("Show items",
             LocatorsType.BY_XPATH,
