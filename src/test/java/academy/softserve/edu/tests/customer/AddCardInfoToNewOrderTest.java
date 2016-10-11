@@ -69,6 +69,9 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
                 .selectExpireDateYearDropdown(EXPIRE_DATE_YEAR)
                 .clickOrderButton();
 
+        customerOrderingPage.fillSearchInput("OrderName" + orderNumber)
+                .clickApplyButton();
+
         assertThat(customerOrderingPage.getOrderStatusByNumber(orderNumber))
                 .textEquals("Ordered");
     }
@@ -85,6 +88,9 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
                 .selectExpireDateYearDropdown(EXPIRE_DATE_YEAR)
                 .clickOrderButton();
 
+        customerOrderingPage.fillSearchInput("OrderName" + orderNumber)
+                .clickApplyButton();
+
         assertThat(customerOrderingPage.getOrderStatusByNumber(orderNumber))
                 .textEquals("Ordered");
     }
@@ -100,6 +106,9 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
                 .selectExpireDateMonthDropdown(EXPIRE_DATE_MONTH)
                 .selectExpireDateYearDropdown(EXPIRE_DATE_YEAR)
                 .clickOrderButton();
+
+        customerOrderingPage.fillSearchInput("OrderName" + orderNumber)
+                .clickApplyButton();
 
         assertThat(customerOrderingPage.getOrderStatusByNumber(orderNumber))
                 .textEquals("Ordered");
@@ -118,6 +127,9 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
                 .fillStartDateMaestroTextfield("29/09/2016")
                 .fillIssueNumberMaestroTextfield("4")
                 .clickOrderButton();
+
+        customerOrderingPage.fillSearchInput("OrderName" + orderNumber)
+                .clickApplyButton();
 
         assertThat(customerOrderingPage.getOrderStatusByNumber(orderNumber))
                 .textEquals("Ordered");

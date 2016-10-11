@@ -22,9 +22,9 @@ public class ProductAssert extends AbstractAssert<ProductAssert, Product> {
 
         if (!condition.equals(actual)) {
 
+            logFail("Product {" + actual + "} \n should equal \n {" + condition + "} !");
             failWithMessage("Product {%s} \n should equal \n {%s} !",
                     actual, condition);
-            logFail("Product {" + actual + "} \n should equal \n {" + condition + "} !");
         } else {
             logPass("Products are equal");
         }
@@ -36,10 +36,11 @@ public class ProductAssert extends AbstractAssert<ProductAssert, Product> {
         isNotNull();
 
         if (!condition.equals(actual.getProductName())) {
-            failWithMessage("Product's {id=%s} name {%s} should equal {%s} !",
-                    actual.getId(), actual.getProductName(), condition);
+
             logFail("Product's {id=" + actual.getId() + "} name {" + actual.getProductName() +
                     "} should equal {" + condition + "} !");
+            failWithMessage("Product's {id=%s} name {%s} should equal {%s} !",
+                    actual.getId(), actual.getProductName(), condition);
         } else {
             logPass("Product's {id=" + actual.getId() + "} name equals {" + condition + "}");
         }
@@ -51,10 +52,11 @@ public class ProductAssert extends AbstractAssert<ProductAssert, Product> {
         isNotNull();
 
         if (!condition.equals(actual.getProductDescription())) {
-            failWithMessage("Product's {id=%s} description {%s} should equal {%s} !",
-                    actual.getId(), actual.getProductDescription(), condition);
+
             logFail("Product's {id=" + actual.getId() + "} description {" + actual.getProductDescription() +
                     "} should equal {" + condition + "} !");
+            failWithMessage("Product's {id=%s} description {%s} should equal {%s} !",
+                    actual.getId(), actual.getProductDescription(), condition);
         } else {
             logPass("Product's {id=" + actual.getId() + "} description equals {" + condition + "}");
         }
@@ -66,10 +68,11 @@ public class ProductAssert extends AbstractAssert<ProductAssert, Product> {
         isNotNull();
 
         if (Double.parseDouble(condition) != actual.getProductPrice()) {
-            failWithMessage("Product's {id=%s} price {%s} should equal {%s} !",
-                    actual.getId(), actual.getProductPrice(), condition);
+
             logFail("Product's {id=" + actual.getId() + "} price {" + actual.getProductPrice() +
                     "} should equal {" + condition + "} !");
+            failWithMessage("Product's {id=%s} price {%s} should equal {%s} !",
+                    actual.getId(), actual.getProductPrice(), condition);
         } else {
             logPass("Product's {id=" + actual.getId() + "} price equals {" + condition + "}");
         }
@@ -81,10 +84,11 @@ public class ProductAssert extends AbstractAssert<ProductAssert, Product> {
         isNotNull();
 
         if (condition.equals(actual.getProductName())) {
-            failWithMessage("Product's {id=%s} name {%s} equals {%s} !",
-                    actual.getId(), actual.getProductName(), condition);
+
             logFail("Product's {id=" + actual.getId() + "} name {" + actual.getProductName() +
                     "} equals {" + condition + "} !");
+            failWithMessage("Product's {id=%s} name {%s} equals {%s} !",
+                    actual.getId(), actual.getProductName(), condition);
         } else {
             logPass("Product's {id=" + actual.getId() + "} name not equal {" + condition + "}");
         }
@@ -96,10 +100,11 @@ public class ProductAssert extends AbstractAssert<ProductAssert, Product> {
         isNotNull();
 
         if (condition.equals(actual.getProductDescription())) {
-            failWithMessage("Product's {id=%s} description {%s} equals {%s} !",
-                    actual.getId(), actual.getProductDescription(), condition);
+
             logFail("Product's {id=" + actual.getId() + "} description {" + actual.getProductDescription() +
                     "} equals {" + condition + "} !");
+            failWithMessage("Product's {id=%s} description {%s} equals {%s} !",
+                    actual.getId(), actual.getProductDescription(), condition);
         } else {
             logPass("Product's {id=" + actual.getId() + "} description not equal {" + condition + "}");
         }
@@ -111,10 +116,11 @@ public class ProductAssert extends AbstractAssert<ProductAssert, Product> {
         isNotNull();
 
         if (Double.parseDouble(condition) == actual.getProductPrice()) {
-            failWithMessage("Product's {id=%s} price {%s} equals {%s} !",
-                    actual.getId(), actual.getProductPrice(), condition);
+
             logFail("Product's {id=" + actual.getId() + "} price {" + actual.getProductPrice() +
                     "} equals {" + condition + "} !");
+            failWithMessage("Product's {id=%s} price {%s} equals {%s} !",
+                    actual.getId(), actual.getProductPrice(), condition);
         } else {
             logPass("Product's {id=" + actual.getId() + "} price not equal {" + condition + "}");
         }
@@ -126,8 +132,8 @@ public class ProductAssert extends AbstractAssert<ProductAssert, Product> {
 
         if (actual == null) {
 
-            failWithMessage("Required product should be not null !");
             logFail("Required product should be not null !");
+            failWithMessage("Required product should be not null !");
         }
         return this;
     }

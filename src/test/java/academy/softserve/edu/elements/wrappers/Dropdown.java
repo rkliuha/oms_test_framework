@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-//TODO remove redundant findElement() call - https://ssu-jira.softserveinc.com/browse/IFATQCZZ-90
 public class Dropdown extends AbstractClickableElement<Dropdown> {
 
     public Dropdown(final WebDriver driver, final ILocator locator) {
@@ -16,40 +15,35 @@ public class Dropdown extends AbstractClickableElement<Dropdown> {
     final public Dropdown selectByIndex(final int indexOfElement) {
 
         wait.waitUntilElementIsPresent();
-        wait.waitUntilElementIsClickable();
-        new Select(driver.findElement(locator.getBy())).selectByIndex(indexOfElement);
+        new Select(wait.waitUntilElementIsClickable()).selectByIndex(indexOfElement);
         return this;
     }
 
     final public Dropdown selectByValue(final String valueOfElement) {
 
         wait.waitUntilElementIsPresent();
-        wait.waitUntilElementIsClickable();
-        new Select(driver.findElement(locator.getBy())).selectByValue(valueOfElement);
+        new Select(wait.waitUntilElementIsClickable()).selectByValue(valueOfElement);
         return this;
     }
 
     final public Dropdown deselectByIndex(final int indexOfElement) {
 
         wait.waitUntilElementIsPresent();
-        wait.waitUntilElementIsClickable();
-        new Select(driver.findElement(locator.getBy())).deselectByIndex(indexOfElement);
+        new Select(wait.waitUntilElementIsClickable()).deselectByIndex(indexOfElement);
         return this;
     }
 
     final public Dropdown deselectByValue(final String valueOfElement) {
 
         wait.waitUntilElementIsPresent();
-        wait.waitUntilElementIsClickable();
-        new Select(driver.findElement(locator.getBy())).deselectByValue(valueOfElement);
+        new Select(wait.waitUntilElementIsClickable()).deselectByValue(valueOfElement);
         return this;
     }
 
     final public void sendKeys(final String inputText) {
 
         wait.waitUntilElementIsPresent();
-        wait.waitUntilElementIsClickable();
-        driver.findElement(locator.getBy()).sendKeys(inputText);
+        wait.waitUntilElementIsClickable().sendKeys(inputText);
         Logger.logInfo("<font color='black'>Selected by value: " + inputText + " into " + "<b>"
                 + locator.getName() + "</b></font>");
     }
@@ -57,8 +51,7 @@ public class Dropdown extends AbstractClickableElement<Dropdown> {
     final public WebElement getFirstSelectedOption() {
 
         wait.waitUntilElementIsPresent();
-        wait.waitUntilElementIsClickable();
-        return new Select(driver.findElement(locator.getBy())).getFirstSelectedOption();
+        return new Select(wait.waitUntilElementIsClickable()).getFirstSelectedOption();
     }
 
 }

@@ -27,6 +27,31 @@
         <assertj-core.version>3.5.2</assertj-core.version>
     </properties>
 
+    <profiles>
+        <profile>
+            <id>windows</id>
+            <activation>
+                <os>
+                    <family>windows</family>
+                </os>
+            </activation>
+            <properties>
+                <script.extension>.bat</script.extension>
+            </properties>
+        </profile>
+        <profile>
+            <id>unix</id>
+            <activation>
+                <os>
+                    <family>unix</family>
+                </os>
+            </activation>
+            <properties>
+                <script.extension>.sh</script.extension>
+            </properties>
+        </profile>
+    </profiles>
+
     <build>
         <resources>
             <resource>
@@ -36,7 +61,23 @@
         </resources>
 
         <plugins>
-
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.5.0</version>
+                <executions>
+                    <execution>
+                        <id>SQL_DUMP_SCRIPT</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>src/resources/scripts/execute_sql_dump${script.extension}</executable>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
