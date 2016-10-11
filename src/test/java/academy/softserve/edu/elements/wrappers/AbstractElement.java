@@ -6,10 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.util.LinkedList;
 import java.util.List;
 
-//TODO remove redundant findElement() call - https://ssu-jira.softserveinc.com/browse/IFATQCZZ-90
 public abstract class AbstractElement<T> {
 
     protected WebDriver driver;
@@ -26,30 +24,28 @@ public abstract class AbstractElement<T> {
         return locator.getName();
     }
 
-    final public By getLocatorValue() {return locator.getBy();}
+    final public By getLocatorValue() {
+        return locator.getBy();
+    }
 
     final public WebElement getElement() {
 
-        wait.waitUntilElementIsPresent();
-        return driver.findElement(locator.getBy());
+        return wait.waitUntilElementIsPresent();
     }
 
     final public boolean isDisplayed() {
 
-        wait.waitUntilElementIsPresent();
-        return driver.findElement(locator.getBy()).isDisplayed();
+        return wait.waitUntilElementIsPresent().isDisplayed();
     }
 
     final public boolean isEnabled() {
 
-        wait.waitUntilElementIsPresent();
-        return driver.findElement(locator.getBy()).isEnabled();
+        return wait.waitUntilElementIsPresent().isEnabled();
     }
 
     final public String getText() {
 
-        wait.waitUntilElementIsPresent();
-        return driver.findElement(locator.getBy()).getText();
+        return wait.waitUntilElementIsPresent().getText();
     }
 
     final public List<WebElement> getElements() {
@@ -60,32 +56,26 @@ public abstract class AbstractElement<T> {
 
     final public String getId() {
 
-        wait.waitUntilElementIsPresent();
-        return driver.findElement(locator.getBy()).getAttribute("id");
+        return wait.waitUntilElementIsPresent().getAttribute("id");
     }
 
     final public String getNameAttribute() {
 
-        wait.waitUntilElementIsPresent();
-        return driver.findElement(locator.getBy()).getAttribute("name");
+        return wait.waitUntilElementIsPresent().getAttribute("name");
     }
 
     final public String getValue() {
 
-        wait.waitUntilElementIsPresent();
-        return driver.findElement(locator.getBy()).getAttribute("value");
+        return wait.waitUntilElementIsPresent().getAttribute("value");
     }
 
     final public String getCssValue(final String value) {
 
-        wait.waitUntilElementIsPresent();
-        return driver.findElement(locator.getBy()).getCssValue(value);
+        return wait.waitUntilElementIsPresent().getCssValue(value);
     }
-
 
     final public String getType() {
 
-        wait.waitUntilElementIsPresent();
-        return driver.findElement(locator.getBy()).getAttribute("type");
+        return wait.waitUntilElementIsPresent().getAttribute("type");
     }
 }
