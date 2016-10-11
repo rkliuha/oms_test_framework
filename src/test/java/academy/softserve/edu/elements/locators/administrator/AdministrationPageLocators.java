@@ -144,7 +144,7 @@ public enum AdministrationPageLocators implements ILocator {
 
     EDIT_USER_LINK("Edit user Link",
             LocatorsType.BY_XPATH,
-            "//table[@id='table']//a[@href='editUser.htm?userID=\"%s\"']");
+            "//table[@id='table']//a[@href='editUser.htm?userID=%s']");
 
     protected String elementName;
     protected LocatorsType locatorType;

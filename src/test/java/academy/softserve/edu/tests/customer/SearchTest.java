@@ -1,6 +1,5 @@
 package academy.softserve.edu.tests.customer;
 
-import academy.softserve.edu.elements.wrappers.Element;
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.Test;
@@ -9,20 +8,11 @@ import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
 
 public class SearchTest extends TestRunner {
 
-    final public boolean checkElementsAmount(final Element elements, final int elementsAmount) {
-
-        if (elements.getElements().size() == elementsAmount) {
-
-            return true;
-
-        } else return false;
-    }
-
     @Test
     public void testStatusSearch() {
 
         final String dropdownStatus = "Status";
-        final String textFieldValueByStatus = "ordered";
+        final String textFieldValueByStatus = "Created";
 
         userInfoPage = logInPage
                 .logInAs(Roles.CUSTOMER);
@@ -41,7 +31,7 @@ public class SearchTest extends TestRunner {
     public void testNameSearch() {
 
         final String dropdownName = "Order Name";
-        final String textFieldValueByName = "orderName1";
+        final String textFieldValueByName = "OrderName3";
 
         userInfoPage = logInPage
                 .logInAs(Roles.CUSTOMER);
@@ -57,38 +47,23 @@ public class SearchTest extends TestRunner {
     }
 
     @Test
-    public void test5ElementsSearch() {
-
-        final int show5Item = 5;
+    public void testElementsSearch() {
 
         userInfoPage = logInPage
                 .logInAs(Roles.CUSTOMER);
 
         customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
 
-        customerOrderingPage.clickResizeShowItemsLink();
-
-        final boolean searchOrderResult = checkElementsAmount(customerOrderingPage.getSearchResultElements(), show5Item);
-
-        assertThat(searchOrderResult)
-                .isTrue();
-    }
-
-    @Test
-    public void test10ElementsSearch() {
-
-        final int show10Item = 10;
-
-        userInfoPage = logInPage
-                .logInAs(Roles.CUSTOMER);
-
-        customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
+        assertThat(customerOrderingPage.getOrderNameColumnElements())
+                .isQuantityLessOrEqualsThan(5);
 
         customerOrderingPage.clickResizeShowItemsLink();
 
-        final boolean searchOrderResult = checkElementsAmount(customerOrderingPage.getSearchResultElements(), show10Item);
+        assertThat(customerOrderingPage.getOrderNameColumnElements())
+                .isQuantityMoreThan(5);
 
-        assertThat(searchOrderResult)
-                .isTrue();
+        assertThat(customerOrderingPage.getOrderNameColumnElements())
+                .isQuantityLessOrEqualsThan(10);
     }
+
 }

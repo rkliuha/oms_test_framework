@@ -31,6 +31,20 @@ public class ProductAssert extends AbstractAssert<ProductAssert, Product> {
         return this;
     }
 
+    public final ProductAssert isInactive() {
+
+        isNotNull();
+
+        if (actual.getProductActive() != 0) {
+
+            logFail("Product {" + actual + "} \n should be inactive !");
+            failWithMessage("Product {%s} \n should be inactive !", actual);
+        } else {
+            logPass("Products is inactive");
+        }
+        return this;
+    }
+
     public final ProductAssert nameEquals(final String condition) {
 
         isNotNull();

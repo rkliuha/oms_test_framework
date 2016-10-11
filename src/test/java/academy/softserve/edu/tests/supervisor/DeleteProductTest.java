@@ -1,5 +1,6 @@
 package academy.softserve.edu.tests.supervisor;
 
+import academy.softserve.edu.domains.Product;
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.TestRunner;
@@ -13,19 +14,24 @@ import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
 public class DeleteProductTest extends TestRunner {
 
     private int testProductId;
+    private Product testProduct;
 
     @BeforeMethod
     public final void createTestOrder() {
 
         testProductId = DBHelper.createActiveProductInDB();
+        testProduct = DBHandler.getProductById(testProductId);
     }
 
-    @Test(priority = 1)
+    @Test
     public final void testDismissAlert(){
 
         userInfoPage = logInPage.logInAs(Roles.SUPERVISOR);
 
         itemManagementPage = userInfoPage.clickItemManagementTab();
+
+        itemManagementPage.fillSearchInput(testProduct.getProductName())
+                .clickSearchButton();
 
         itemManagementPage.clickDeleteProductLinkById(String.valueOf(testProductId));
 
@@ -35,19 +41,22 @@ public class DeleteProductTest extends TestRunner {
                 .isDisplayed();
     }
 
-    @Test(priority = 2)
+    @Test
     public final void testDeleteProduct(){
 
         userInfoPage = logInPage.logInAs(Roles.SUPERVISOR);
 
         itemManagementPage = userInfoPage.clickItemManagementTab();
 
+        itemManagementPage.fillSearchInput(testProduct.getProductName())
+                .clickSearchButton();
+
         itemManagementPage.clickDeleteProductLinkById(String.valueOf(testProductId));
 
         itemManagementPage.acceptAlert();
 
         assertThat(DBHandler.getProductById(testProductId))
-                .isNull();
+                .isInactive();
     }
 
     @AfterMethod

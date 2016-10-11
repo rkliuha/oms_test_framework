@@ -300,7 +300,7 @@ CREATE TABLE `Logs` (
   `Row_ID` int(11) NOT NULL,
   `TableName` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=265 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -528,7 +528,7 @@ CREATE TABLE `Orders` (
 
 LOCK TABLES `Orders` WRITE;
 /*!40000 ALTER TABLE `Orders` DISABLE KEYS */;
-INSERT INTO `Orders` VALUES (1,NULL,'\0',11,'2016-09-28 00:12:26','OrderName1',1,'2016-09-28 00:12:26',10,8,10,1),(2,NULL,'\0',12,'2016-09-28 00:13:43','OrderName2',2,'2016-09-28 00:13:43',10,8,11,1),(3,NULL,'\0',13,'2016-09-28 23:25:00','OrderName3',3,'2016-09-30 21:00:00',10,8,10,2),(4,NULL,'\0',14,'2016-09-28 23:25:00','OrderName4',4,'2016-09-30 21:00:00',10,8,10,1),(5,NULL,'\0',15,'2016-09-28 23:25:00','OrderName5',5,'2016-09-30 21:00:00',10,8,11,4),(6,NULL,'\0',16,'2016-09-28 23:25:00','OrderName6',6,'2016-09-30 21:00:00',10,8,10,1);
+INSERT INTO `Orders` VALUES (1,NULL,'\0',11,'2016-09-28 00:12:26','OrderName1',1,'2016-09-28 00:12:26',10,8,13,1),(2,NULL,'\0',12,'2016-09-28 00:13:43','OrderName2',2,'2016-09-28 00:13:43',10,8,13,1),(3,NULL,'\0',13,'2016-09-28 23:25:00','OrderName3',3,'2016-09-30 21:00:00',10,8,13,2),(4,NULL,'\0',14,'2016-09-28 23:25:00','OrderName4',4,'2016-09-30 21:00:00',10,8,13,1),(5,NULL,'\0',15,'2016-09-28 23:25:00','OrderName5',5,'2016-09-30 21:00:00',10,8,13,2),(6,NULL,'\0',16,'2016-09-28 23:25:00','OrderName6',6,'2016-09-30 21:00:00',10,8,13,1);
 /*!40000 ALTER TABLE `Orders` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -609,7 +609,7 @@ CREATE TABLE `Products` (
   `ProductName` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `ProductPrice` double DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -618,7 +618,7 @@ CREATE TABLE `Products` (
 
 LOCK TABLES `Products` WRITE;
 /*!40000 ALTER TABLE `Products` DISABLE KEYS */;
-INSERT INTO `Products` VALUES (1,'','productDescription1','productName1',1),(2,'','productDescription2','productName2',2),(3,'','productDescription3','productName3',3),(4,'','productDescription4','productName4',4),(5,'','productDescription5','productName5',5);
+INSERT INTO `Products` VALUES (1,'','productDescription1','productName1',1),(2,'','productDescription2','productName2',2),(3,'','productDescription3','productName3',3),(4,'','productDescription4','productName4',4),(5,'','productDescription5','productName5',5),(6,'','productDescription6','productName6',6);
 /*!40000 ALTER TABLE `Products` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -891,7 +891,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES (1,1,10,'mail','ivanka','horoshko','iva','qwerty',1,4,1),(2,1,10,'mail','myroslav','shram','myroslav','qwerty',2,3,1),(3,1,10,'mail','marko','bekhta','marko','qwerty',3,2,1),(4,1,10,'mail','vitalik','nobis','vitalik','qwerty',4,1,1),(5,1,10,'mail','orest','vovchack','orest','qwerty',1,4,1),(6,1,10,'mail','roman','nazarevuch','romanN','qwerty',2,3,1),(7,1,10,'mail','roman','svustyn','romanS','qwerty',3,2,1),(8,1,10,'mail','firstName1','lastName1','login1','qwerty',1,1,2),(9,1,10,'mail','firstName2','lastName2','login2','qwerty',1,1,3),(10,1,10,'mail','firstName3','lastName3','login3','qwerty',1,1,4),(11,1,10,'mail','firstName4','lastName4','login4','qwerty',1,2,4),(12,1,0,'vpupkin@pupkin.com','Vasia','Lopatkin','vpupkin','qwerty',1,1,1),(13,1,0,'vpopkin@pupkin.com','Vasia','Popkin','vpopkin','qwerty',1,1,4);
+INSERT INTO `Users` VALUES (1,1,10,'mail','ivanka','horoshko','iva','qwerty',1,4,1),(2,1,10,'mail','myroslav','shram','myroslav','qwerty',2,3,1),(3,1,10,'mail','marko','bekhta','marko','qwerty',3,2,1),(4,1,10,'mail','vitalik','nobis','vitalik','qwerty',4,1,1),(5,1,10,'mail','orest','vovchack','orest','qwerty',1,4,1),(6,1,10,'mail','roman','nazarevuch','romanN','qwerty',2,3,1),(7,1,10,'mail','roman','svustyn','romanS','qwerty',3,2,1),(8,1,10,'mail','firstName1','lastName1','login1','qwerty',1,1,2),(9,1,10,'mail','firstName2','lastName2','login2','qwerty',1,1,3),(10,1,10,'mail','firstName3','lastName3','login3','qwerty',1,1,4),(11,1,10,'mail','firstName4','lastName4','login4','qwerty',1,2,4),(12,1,0,'vpupkin@pupkin.com','Vasia','Lopatkin','vpupkin','qwerty',1,1,1),(13,1,2000,'vpopkin@pupkin.com','Vasia','Popkin','vpopkin','qwerty',2,1,4);
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -975,4 +975,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-09 18:09:30
+-- Dump completed on 2016-10-11 16:25:55

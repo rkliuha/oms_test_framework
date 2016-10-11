@@ -44,12 +44,12 @@ public class SupervisorTableTest extends TestRunner {
     public final void testSearchForNameFilter() {
 
         itemManagementPage.selectSearchFieldFilterDropdown("Name")
-                .fillSearchInput("carabiner")
+                .fillSearchInput("productName5")
                 .clickSearchButton();
 
         assertThat(itemManagementPage
                 .getFirstProductNameCellLink())
-                .textEquals("carabiner");
+                .textEquals("productName5");
     }
 
     // To check searching function in Supervisor Table by Description.
@@ -57,12 +57,12 @@ public class SupervisorTableTest extends TestRunner {
     public final void testSearchForDescriptionFilter() {
 
         itemManagementPage.selectSearchFieldFilterDropdown("Description")
-                .fillSearchInput("climbing devices")
+                .fillSearchInput("productDescription5")
                 .clickSearchButton();
 
         assertThat(itemManagementPage
                 .getFirstDescriptionProductCellLink())
-                .textEquals("Climbing devices");
+                .textEquals("productDescription5");
     }
 
     //Check how many products shows in the Supervisor Table, after click on the Show 5 or Show 10 buttons.
@@ -95,7 +95,7 @@ public class SupervisorTableTest extends TestRunner {
     public final void testRealSearchResult() {
 
         itemManagementPage.selectSearchFieldFilterDropdown("Name")
-                .fillSearchInput("carabiner")
+                .fillSearchInput("productName5")
                 .clickSearchButton();
 
         assertThat(itemManagementPage

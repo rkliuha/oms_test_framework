@@ -3,8 +3,8 @@ package academy.softserve.edu.tests.merchandiser;
 import academy.softserve.edu.domains.Order;
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.utils.DBHandler;
-import academy.softserve.edu.utils.TestRunner;
 import academy.softserve.edu.utils.DBHelper;
+import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -16,12 +16,14 @@ public class DeleteOrderTest extends TestRunner {
 
     private Order testOrder;
     private int testOrderId;
+    private int testOrderItem;
 
     @BeforeMethod
     public final void setUpTests() {
 
         testOrderId = DBHelper.createValidOrderInDB();
         testOrder = DBHandler.getOrderById(testOrderId);
+        testOrderItem = DBHelper.createOrderItemInDB();
         userInfoPage = logInPage.logInAs(Roles.MERCHANDISER);
         merchandiserOrderingPage = userInfoPage.clickMerchandiserOrderingTab();
     }
@@ -34,7 +36,7 @@ public class DeleteOrderTest extends TestRunner {
                 .fillSearchInput(testOrder.getOrderName())
                 .clickApplyButton();
 
-        assertThat(merchandiserOrderingPage.getOrderNameCell())
+        assertThat(merchandiserOrderingPage.getOrderNameByCellId("2"))
                 .textEquals(testOrder.getOrderName());
 
         assertThat(merchandiserOrderingPage.getDeleteCellLink())
@@ -49,6 +51,8 @@ public class DeleteOrderTest extends TestRunner {
                 .clickApplyButton()
                 .clickDeleteCellLink()
                 .acceptAlert();
+
+        merchandiserOrderingPage.refreshPage();
 
         assertThat(DBHandler.getOrderByNumber(testOrder.getOrderNumber()))
                 .isNull();
@@ -66,11 +70,11 @@ public class DeleteOrderTest extends TestRunner {
 
         assertThat(DBHandler.getOrderByNumber(testOrder.getOrderNumber()))
                 .orderNumberEquals(testOrder.getOrderNumber());
-
     }
 
     @AfterMethod
     public final void deleteTestOrder() {
         DBHandler.deleteOrderById(testOrderId);
+        DBHandler.deleteOrderItemById(testOrderItem);
     }
 }
