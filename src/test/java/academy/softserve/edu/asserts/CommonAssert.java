@@ -19,8 +19,9 @@ public class CommonAssert extends AbstractAssert<CommonAssert, Boolean> {
     public CommonAssert isTrue() {
 
         if (!actual) {
-            failWithMessage("Expected True, but in fact False!");
+
             logFail("Expected True, but in fact False! ");
+            failWithMessage("Expected True, but in fact False!");
         } else {
             logPass("True");
         }
