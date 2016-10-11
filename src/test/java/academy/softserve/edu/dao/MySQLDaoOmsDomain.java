@@ -1,21 +1,21 @@
 package academy.softserve.edu.dao;
 
 import academy.softserve.edu.dao.interfaces.*;
+import academy.softserve.edu.utils.PropertiesReader;
 
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-//TODO that is not a factory, rename
-public class MySQLDaoFactory implements DaoFactory {
+public class MySQLDaoOmsDomain implements DaoOmsDomain {
 
-    //TODO move out to config.property file
-    private static final String USERNAME = "oms";
-    private static final String PASSWORD = "1qaz2wsx";
-    private static final String DB_URL = "jdbc:mysql://192.168.56.101:3306/oms?allowMultiQueries=true";
+    private final String username = PropertiesReader.getDefaultProperty("oms.username");
+    private final String password = PropertiesReader.getDefaultProperty("oms.password");
+    private final String omsDbUrl = PropertiesReader.getDefaultProperty("oms.db.url");
 
-    public MySQLDaoFactory() {
+    public MySQLDaoOmsDomain() {
+
         try {
             final Driver driver = new com.mysql.jdbc.Driver();
             DriverManager.registerDriver(driver);
@@ -26,7 +26,7 @@ public class MySQLDaoFactory implements DaoFactory {
 
     @Override
     public final Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+        return DriverManager.getConnection(omsDbUrl, username, password);
     }
 
     @Override

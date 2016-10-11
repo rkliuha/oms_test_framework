@@ -4,12 +4,7 @@ import academy.softserve.edu.elements.interfaces.ILocator;
 import academy.softserve.edu.elements.LocatorsType;
 import org.openqa.selenium.By;
 
-//TODO remove unused locators
 public enum CreateUserPageLocators implements ILocator {
-
-    ADMINISTRATION_LINK("Administration Link",
-            LocatorsType.BY_XPATH,
-            "//ul[@id='nav']/descendant::a[@href='users.htm']"),
 
     USER_INFO_LINK("User Info Link",
             LocatorsType.BY_XPATH,
@@ -19,66 +14,33 @@ public enum CreateUserPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//div[@id='edit']/h3"),
 
-    LOGIN_NAME_TEXT("Login Name Text",
-            LocatorsType.BY_XPATH,
-            "//form[@id='userModel']//tr[1]/td[1]"),
-
     LOGIN_NAME_INPUT("Login Name Input",
             LocatorsType.BY_ID,
             "login"),
-
-    FIRST_NAME_TEXT("First Name Text",
-            LocatorsType.BY_XPATH,
-            "//form[@id='userModel']//tr[2]/td[1]"),
 
     FIRST_NAME_INPUT("First Name Input",
             LocatorsType.BY_ID,
             "firstName"),
 
-    LAST_NAME_TEXT("Last Name Text",
-            LocatorsType.BY_XPATH,
-            "//form[@id='userModel']//tr[3]/td[1]"),
-
     LAST_NAME_INPUT("Last Name Input",
             LocatorsType.BY_ID,
             "lastName"),
-
-    PASSWORD_TEXT("Password Text",
-            LocatorsType.BY_XPATH,
-            "//form[@id='userModel']//tr[4]/td[1]"),
 
     PASSWORD_INPUT("Password Input",
             LocatorsType.BY_ID,
             "password"),
 
-    CONFIRM_PASSWORD_TEXT("Confirm Password Text",
-            LocatorsType.BY_XPATH,
-            "//form[@id='userModel']//tr[5]/td[1]"),
-
-
     CONFIRM_PASSWORD_INPUT("Confirm Password Input",
             LocatorsType.BY_ID,
             "confirmPassword"),
-
-    EMAIL_TEXT("Email Text",
-            LocatorsType.BY_XPATH,
-            "//form[@id='userModel']//tr[6]/td[1]"),
 
     EMAIL_INPUT("Email Input",
             LocatorsType.BY_ID,
             "email"),
 
-    REGION_TEXT("Region Text",
-            LocatorsType.BY_XPATH,
-            "//form[@id='userModel']//tr[7]/td[1]"),
-
     REGION_DROPDOWN("Region Dropdown",
             LocatorsType.BY_ID,
             "regionID"),
-
-    ROLE_TEXT("Role Text",
-            LocatorsType.BY_XPATH,
-            "//form[@id='userModel']//tr[8]/td[1]"),
 
     ROLE_DROPDOWN("Role Dropdown",
             LocatorsType.BY_ID,

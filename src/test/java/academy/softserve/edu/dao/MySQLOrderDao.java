@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 
 import java.sql.*;
 
-// TODO added while to getOrderById and getOrderByNumber, check if it is necessary to use it with other methods
 @RequiredArgsConstructor
 public class MySQLOrderDao implements OrderDao {
 

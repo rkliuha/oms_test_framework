@@ -8,10 +8,6 @@ import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
 
 public class DoNotRevertDefaultStateTest extends TestRunner {
 
-    //TODO move inline
-    public static final String FIELD_FILTER = "Description";
-    public static final String FIELD_FILTER_VALUE = "Fruits";
-
     @Test
     public void testUserInfoItemManagementButtonCheck() {
 
@@ -28,22 +24,25 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     @Test
     public void testDoNotRevertDefaultState() {
 
+        final String fieldFilter = "Description";
+        final String fieldFilterValue = "Fruits";
+
         userInfoPage = logInPage
                 .logInAs(Roles.SUPERVISOR);
 
         itemManagementPage = userInfoPage.clickItemManagementTab();
 
-        itemManagementPage.selectSearchFieldFilterDropdown(FIELD_FILTER)
-                .fillSearchInput(FIELD_FILTER_VALUE)
+        itemManagementPage.selectSearchFieldFilterDropdown(fieldFilter)
+                .fillSearchInput(fieldFilterValue)
                 .clickSearchButton()
                 .clickUserInfoTab();
 
         userInfoPage.clickItemManagementTab();
 
         assertThat(itemManagementPage.getSearchFieldFilterDropdown())
-                .selectedDropdownEquals(FIELD_FILTER);
+                .selectedDropdownEquals(fieldFilter);
 
         assertThat(itemManagementPage.getSearchInput())
-                .valueEquals(FIELD_FILTER_VALUE);
+                .valueEquals(fieldFilterValue);
     }
 }

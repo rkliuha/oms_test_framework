@@ -4,7 +4,6 @@ import academy.softserve.edu.elements.interfaces.ILocator;
 import academy.softserve.edu.elements.LocatorsType;
 import org.openqa.selenium.By;
 
-//TODO remove unused locators
 public enum AdministrationPageLocators implements ILocator {
 
     ADMINISTRATION_LINK("Administration Link",
@@ -15,25 +14,9 @@ public enum AdministrationPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//ul[@id='nav']/li[2]/a"),
 
-    PAGE_INFO_TEXT("Page Info Text",
-            LocatorsType.BY_XPATH,
-            "//div[@id='list']/h2"),
-
     CREATE_USER_LINK("Crete User Link",
             LocatorsType.BY_XPATH,
             "//div[@id='list']/a"),
-
-    FOUND_USERS_CONTAINER("Found Users Container",
-            LocatorsType.BY_XPATH,
-            "//div[@id='list']/h4[1]"),
-
-    SEARCH_BY_FIELDSET("Search By Fieldset",
-            LocatorsType.BY_XPATH,
-            "//div[@id='list']//legend"),
-
-    SEARCH_FIELD_FILTER("Search Field Filter",
-            LocatorsType.BY_XPATH,
-            "//*[@id='searchForm']/label"),
 
     SEARCH_FIELD_FILTER_DROPDOWN("Search Field Filter Dropdown",
             LocatorsType.BY_XPATH,
@@ -103,17 +86,9 @@ public enum AdministrationPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//table[@id='table']/tbody/tr[%s]/td[5]"),
 
-    EDIT_HEADER("Edit Header",
-            LocatorsType.BY_XPATH,
-            "//table[@id='table']//tr/th[6]"),
-
     EDIT_USER_CELL_LINK("Edit Cell",
             LocatorsType.BY_XPATH,
             "//table[@id='table']/tbody/tr[%s]/td[6]/a"),
-
-    DELETE_HEADER("Delete Header",
-            LocatorsType.BY_XPATH,
-            "//table[@id='table']//tr/th[7]"),
 
     DELETE_USER_CELL_LINK("Delete Cell",
             LocatorsType.BY_XPATH,
@@ -135,10 +110,6 @@ public enum AdministrationPageLocators implements ILocator {
             LocatorsType.BY_ID,
             "last"),
 
-    PAGE_NUMBER_CONTAINER("Page Number Container",
-            LocatorsType.BY_XPATH,
-            "//div[@id='list']/h4[2]"),
-
     PAGE_NUMBER_TEXT("Page Number Text",
             LocatorsType.BY_XPATH,
             "//*[@id='pageNumber']"),
@@ -150,11 +121,6 @@ public enum AdministrationPageLocators implements ILocator {
     CREATE_REPORT_LINK("Create Report Link",
             LocatorsType.BY_XPATH,
             "//div[@id='list']/h5/a"),
-
-
-    SAVE_REPORT_LINK("Save Report Link",
-            LocatorsType.BY_XPATH,
-            "//div[@id='list']/a"),
 
     FIRST_NAME_COLUMN("First Name column",
             LocatorsType.BY_XPATH,
@@ -174,8 +140,11 @@ public enum AdministrationPageLocators implements ILocator {
 
     REGION_COLUMN("Region Column",
             LocatorsType.BY_XPATH,
-            "//*[@id='table']/tbody/tr//td[5]");
+            "//*[@id='table']/tbody/tr//td[5]"),
 
+    EDIT_USER_LINK("Edit user Link",
+            LocatorsType.BY_XPATH,
+            "//table[@id='table']//a[@href='editUser.htm?userID=\"%s\"']");
 
     protected String elementName;
     protected LocatorsType locatorType;
@@ -211,4 +180,4 @@ public enum AdministrationPageLocators implements ILocator {
         this.modifiedLocator = String.format(this.locatorValue, parameter);
         return this;
     }
-}
+    }

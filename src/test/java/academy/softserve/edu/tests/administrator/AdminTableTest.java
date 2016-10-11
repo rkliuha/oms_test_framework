@@ -29,7 +29,6 @@ public class AdminTableTest extends TestRunner {
         administrationPage = userInfoPage.clickAdministrationTab();
     }
 
-
     // To check Admin table is enable or not. And Edit and Delete function is available
     @Test
     final public void testAdminTableIsEnable() {
@@ -58,7 +57,6 @@ public class AdminTableTest extends TestRunner {
                 .textEquals(comparisonValue);
     }
 
-
     // To check searching function in Admin Table with first filter First Name.
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testSearchingForFirstNameFilter")
     public final void testSearchForFirstNameFilter(final String secondSearchFilter,
@@ -73,7 +71,6 @@ public class AdminTableTest extends TestRunner {
                 .getFirstNameFirstCellLink())
                 .textEquals(comparisonValue);
     }
-
 
     // To check searching function in Admin Table with first filter Last Name
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testSearchingForLastNameFilter")
@@ -90,7 +87,6 @@ public class AdminTableTest extends TestRunner {
                 .textEquals(comparisonValue);
     }
 
-
     // To check searching function in Admin Table with first filter Login.
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testSearchingForLoginFilter")
     public final void testSearchForLoginFilter(final String secondSearchFilter,
@@ -105,7 +101,6 @@ public class AdminTableTest extends TestRunner {
                 .getLoginFirstCellLink())
                 .textEquals(comparisonValue);
     }
-
 
     // To check searching function in Admin Table with first filter Role.
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testSearchingForRoleFilter")
@@ -169,7 +164,7 @@ public class AdminTableTest extends TestRunner {
     @Test
     public final void testRealSearchResult() {
 
-        TestUtil
+        DBHelper
                 .createValidUserInDB();
         lastAddedUserForUpdate = DBHandler
                 .getLastUser();
@@ -185,7 +180,6 @@ public class AdminTableTest extends TestRunner {
 
         DBHandler.deleteUser(DBHandler.getLastUser().getId());
     }
-
 
     //To check is sorting function is available for First Name column in the Admin Grid.
     @Test
@@ -221,8 +215,6 @@ public class AdminTableTest extends TestRunner {
                         .getElements());
 
         assertThat(isSortedByAscent).isTrue();
-
-
     }
 
     //To check is sorting function is available for Login column in the Admin Table.

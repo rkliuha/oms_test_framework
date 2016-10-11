@@ -17,7 +17,6 @@ public class CreateReportTest extends TestRunner {
         administrationPage = userInfoPage.clickAdministrationTab();
     }
 
-    //TODO remove, useless
     @Test
     public final void testCreateReportLinkVisibility() {
 

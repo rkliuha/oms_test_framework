@@ -4,7 +4,7 @@ import academy.softserve.edu.domains.Product;
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.TestRunner;
-import academy.softserve.edu.utils.TestUtil;
+import academy.softserve.edu.utils.DBHelper;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
@@ -20,7 +20,7 @@ public class AddItemToOrderTest extends TestRunner {
     @BeforeTest
     public final void createTestProduct() {
 
-        testProductId = TestUtil.createActiveProductInDB();
+        testProductId = DBHelper.createActiveProductInDB();
         testProduct = DBHandler.getProductById(testProductId);
     }
 

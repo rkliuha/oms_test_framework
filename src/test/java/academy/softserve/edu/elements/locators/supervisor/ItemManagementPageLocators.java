@@ -4,7 +4,6 @@ import academy.softserve.edu.elements.interfaces.ILocator;
 import academy.softserve.edu.elements.LocatorsType;
 import org.openqa.selenium.By;
 
-//TODO remove unused locators
 public enum ItemManagementPageLocators implements ILocator {
 
     ITEM_MANAGEMENT_LINK("Item Management Link",
@@ -15,17 +14,9 @@ public enum ItemManagementPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//ul[@id='nav']/li[2]/a"),
 
-    PAGE_INFO_TEXT("Page Info Text",
-            LocatorsType.BY_XPATH,
-            "//div[@id='list']/h2"),
-
     ADD_PRODUCT_LINK("Add Product Link",
             LocatorsType.BY_XPATH,
             "//div[@id='list']/a[1]"),
-
-    PRODUCT_FOUND_CONTAINER("Product Found Container",
-            LocatorsType.BY_XPATH,
-            "//div[@id='list']/h4[1]"),
 
     RECORDS_COUNT_TEXT("Records Count Text",
             LocatorsType.BY_ID,
@@ -34,10 +25,6 @@ public enum ItemManagementPageLocators implements ILocator {
     SEARCH_BY_FIELDSET("Search By Fieldset",
             LocatorsType.BY_XPATH,
             "//div[@id='list']//legend"),
-
-    SEARCH_FIELD_FILTER_TEXT("Search Field Filter",
-            LocatorsType.BY_XPATH,
-            "//form[@id='searchForm']/label"),
 
     SEARCH_FIELD_FILTER_DROPDOWN("Search Field Filter Dropdown",
             LocatorsType.BY_XPATH,
@@ -67,14 +54,6 @@ public enum ItemManagementPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//table[@id='table']//tr/th[3]/a"),
 
-    EDIT_HEADER("Edit Header",
-            LocatorsType.BY_XPATH,
-            "//table[@id='table']//tr/th[4]"),
-
-    DELETE_HEADER("Delete Header",
-            LocatorsType.BY_XPATH,
-            "//table[@id='table']//tr/th[5]"),
-
     FIRST_NAVIGATION_BUTTON("First Navigation Button",
             LocatorsType.BY_ID,
             "first"),
@@ -91,10 +70,6 @@ public enum ItemManagementPageLocators implements ILocator {
             LocatorsType.BY_ID,
             "last"),
 
-    PAGE_NUMBER_CONTAINER("Page Number Text Container",
-            LocatorsType.BY_XPATH,
-            "//div[@id='list']/h4[2]"),
-
     PAGE_NUMBER_TEXT("Page Number Text",
             LocatorsType.BY_ID,
             "pageNumber"),
@@ -106,10 +81,6 @@ public enum ItemManagementPageLocators implements ILocator {
     CREATE_REPORT_LINK("Create Report Link",
             LocatorsType.BY_XPATH,
             "//div[@id='list']/a[2]"),
-
-    PRODUCT_SEARCH_RESULT("Product search result",
-            LocatorsType.BY_XPATH,
-            "//table[@id='table']/tbody/tr"),
 
     DELETE_PRODUCT_LINK("Delete product link",
             LocatorsType.BY_XPATH,
@@ -126,10 +97,6 @@ public enum ItemManagementPageLocators implements ILocator {
     DESCRIPTION_CELL_LINK("Description Cell",
             LocatorsType.BY_XPATH,
             "//*[@id='table']/tbody/tr[%s]/td[2]"),
-
-    PRICE_CELL_LINK("Price Cell",
-            LocatorsType.BY_XPATH,
-            "//*[@id='table']/tbody/tr[%s]/td[3]/a"),
 
     DELETE_PRODUCT_CELL_LINK("Delete Cell",
             LocatorsType.BY_XPATH,

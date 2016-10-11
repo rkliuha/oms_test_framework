@@ -7,8 +7,6 @@ import org.testng.annotations.Test;
 
 import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
 
-
-//TODO get rid of collection of WebElements, refactor for use wrappers and custom assertions;
 public class SearchTest extends TestRunner {
 
     final public boolean checkElementsAmount(final Element elements, final int elementsAmount) {

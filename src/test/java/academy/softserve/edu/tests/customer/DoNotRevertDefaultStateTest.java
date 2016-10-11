@@ -8,10 +8,6 @@ import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
 
 public class DoNotRevertDefaultStateTest extends TestRunner {
 
-    //TODO move inline
-    public static final String SEARCH_ORDERS = "Status";
-    public static final String SEARCH_ORDERS_VALUE = "Ordered";
-
     @Test
     public void testUserInfoButtonsDisplayed() {
 
@@ -28,13 +24,16 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     @Test
     public void testDoNotRevertDefaultState() {
 
+        final String searchOrders = "Status";
+        final String searchOrdersValue = "Ordered";
+
         userInfoPage = logInPage
                 .logInAs(Roles.CUSTOMER);
 
         customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
 
-        customerOrderingPage.selectSearchDropdown(SEARCH_ORDERS)
-                .fillSearchInput(SEARCH_ORDERS_VALUE)
+        customerOrderingPage.selectSearchDropdown(searchOrders)
+                .fillSearchInput(searchOrdersValue)
                 .clickApplyButton();
 
         customerOrderingPage.clickUserInfoTab();
@@ -42,9 +41,9 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
         userInfoPage.clickCustomerOrderingTab();
 
         assertThat(customerOrderingPage.getSearchDropdown())
-                .selectedDropdownEquals(SEARCH_ORDERS);
+                .selectedDropdownEquals(searchOrders);
 
         assertThat(customerOrderingPage.getSearchInput())
-                .valueEquals(SEARCH_ORDERS_VALUE);
+                .valueEquals(searchOrdersValue);
     }
 }
