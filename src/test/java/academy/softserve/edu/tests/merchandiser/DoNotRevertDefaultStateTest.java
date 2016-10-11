@@ -1,17 +1,12 @@
 package academy.softserve.edu.tests.merchandiser;
 
 import academy.softserve.edu.enums.Roles;
-import academy.softserve.edu.pageobjects.MerchandiserOrderingPage;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.Test;
 
 import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
 
 public class DoNotRevertDefaultStateTest extends TestRunner {
-
-    //TODO move inline
-    public static final String SEARCH_ORDERS = "Status";
-    public static final String SEARCH_ORDERS_VALUE = "Ordered";
 
     @Test
     public void testUserInfoOrderingButtonCheck() {
@@ -29,40 +24,26 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     @Test
     public void testDoNotRevertDefaultState() {
 
+        final String searchOrders = "Status";
+        final String searchOrdersValue = "Ordered";
+
         userInfoPage = logInPage
                 .logInAs(Roles.MERCHANDISER);
 
-        userInfoPage
-                .getMerchandiserOrderingLink()
-                .click();
+        merchandiserOrderingPage = userInfoPage.clickMerchandiserOrderingTab();
 
-        merchandiserOrderingPage = new MerchandiserOrderingPage(driver);
+        merchandiserOrderingPage.selectSearchDropdown(searchOrders)
+                .fillSearchInput(searchOrdersValue)
+                .clickApplyButton()
+                .clickUserInfoLink();
 
-        merchandiserOrderingPage
-                .getSearchDropdown()
-                .sendKeys(SEARCH_ORDERS);
-
-        merchandiserOrderingPage
-                .getSearchInput()
-                .sendKeys(SEARCH_ORDERS_VALUE);
-
-        merchandiserOrderingPage
-                .getApplyButton()
-                .click();
-
-        merchandiserOrderingPage
-                .getUserInfoLink()
-                .click();
-
-        userInfoPage
-                .getMerchandiserOrderingLink()
-                .click();
+        userInfoPage.clickMerchandiserOrderingTab();
 
         assertThat(merchandiserOrderingPage.getSearchDropdown())
-                .selectedDropdownEquals(SEARCH_ORDERS);
+                .selectedDropdownEquals(searchOrders);
 
         assertThat(merchandiserOrderingPage.getSearchInput())
-                .valueEquals(SEARCH_ORDERS_VALUE);
+                .valueEquals(searchOrdersValue);
     }
 
 }

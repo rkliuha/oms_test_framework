@@ -3,7 +3,7 @@ package academy.softserve.edu.tests.supervisor;
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.TestRunner;
-import academy.softserve.edu.utils.TestUtil;
+import academy.softserve.edu.utils.DBHelper;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -17,7 +17,7 @@ public class DeleteProductTest extends TestRunner {
     @BeforeMethod
     public final void createTestOrder() {
 
-        testProductId = TestUtil.createActiveProductInDB();
+        testProductId = DBHelper.createActiveProductInDB();
     }
 
     @Test(priority = 1)
@@ -27,9 +27,7 @@ public class DeleteProductTest extends TestRunner {
 
         itemManagementPage = userInfoPage.clickItemManagementTab();
 
-        itemManagementPage
-                .getDeleteProductLinkById(String.valueOf(testProductId))
-                .click();
+        itemManagementPage.clickDeleteProductLinkById(String.valueOf(testProductId));
 
         itemManagementPage.dismissAlert();
 
@@ -44,9 +42,7 @@ public class DeleteProductTest extends TestRunner {
 
         itemManagementPage = userInfoPage.clickItemManagementTab();
 
-        itemManagementPage
-                .getDeleteProductLinkById(String.valueOf(testProductId))
-                .click();
+        itemManagementPage.clickDeleteProductLinkById(String.valueOf(testProductId));
 
         itemManagementPage.acceptAlert();
 

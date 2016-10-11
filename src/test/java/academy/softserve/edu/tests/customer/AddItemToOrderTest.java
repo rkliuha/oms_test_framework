@@ -2,10 +2,9 @@ package academy.softserve.edu.tests.customer;
 
 import academy.softserve.edu.domains.Product;
 import academy.softserve.edu.enums.Roles;
-import academy.softserve.edu.pageobjects.AddItemPage;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.TestRunner;
-import academy.softserve.edu.utils.TestUtil;
+import academy.softserve.edu.utils.DBHelper;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
@@ -21,7 +20,7 @@ public class AddItemToOrderTest extends TestRunner {
     @BeforeTest
     public final void createTestProduct() {
 
-        testProductId = TestUtil.createActiveProductInDB();
+        testProductId = DBHelper.createActiveProductInDB();
         testProduct = DBHandler.getProductById(testProductId);
     }
 
@@ -42,9 +41,7 @@ public class AddItemToOrderTest extends TestRunner {
         assertThat(createNewOrderPage.getItemSelectionSection())
                 .isDisplayed();
 
-        createNewOrderPage.getAddItemButton().click();
-
-        addItemPage = new AddItemPage(driver);
+        addItemPage = createNewOrderPage.clickAddItemButton();
 
         assertThat(addItemPage.getResetButton())
                 .isDisplayed();
@@ -53,17 +50,15 @@ public class AddItemToOrderTest extends TestRunner {
     @Test
     public final void testAddItemToOrderAbility() {
 
-        createNewOrderPage.getAddItemButton().click();
+        addItemPage = createNewOrderPage.clickAddItemButton();
 
-        addItemPage = new AddItemPage(driver);
-
-        addItemPage.getSelectLastAddedItemLink().click();
+        addItemPage.clickSelectLastAddedItemLink();
 
         final String quantityOfItem = "3";
         final String dimensionOfItem = "Box";
 
-        addItemPage.getItemDimensionDropdown().sendKeys(dimensionOfItem);
-        addItemPage.getItemQuantityTextfield().sendKeys(quantityOfItem);
+        addItemPage.selectItemDimensionDropdown(dimensionOfItem)
+                .fillItemQuantityTextfield(quantityOfItem);
 
         assertThat(addItemPage.getItemTextField())
                 .textEquals(testProduct.getProductName());
@@ -71,7 +66,7 @@ public class AddItemToOrderTest extends TestRunner {
         assertThat(addItemPage.getItemPriceField())
                 .textEquals(String.valueOf(testProduct.getProductPrice()));
 
-        addItemPage.getDoneButton().click();
+        addItemPage.clickDoneButton();
 
         assertThat(createNewOrderPage.getFirstItemNumber())
                 .textEquals(String.valueOf(testProduct.getId()));

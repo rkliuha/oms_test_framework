@@ -7,27 +7,24 @@ import org.openqa.selenium.WebDriver;
 import static academy.softserve.edu.elements.locators.customer.AddItemPageLocators.*;
 
 @Getter
-//TODO reformat code into common look - private final Dropdown searchForItemDropdown = new Dropdown(driver, SEARCH_FOR_ITEM_DROPDOWN);
 public class AddItemPage extends PageObject<AddItemPage> {
-
     /**
      * resetButton is an unique element on the AddItemPage,
      * can be used as identification of page;
      */
-    private final Button resetButton =
-            new Button(driver, RESET_BUTTON);
-    private final Link selectLastAddedItemLink =
-            new Link(driver, SELECT_LAST_ADDED_ITEM_LINK);
-    private final TextLabel itemTextField =
-            new TextLabel(driver, ITEM_TEXT_FIELD);
-    private final TextLabel itemPriceField =
-            new TextLabel(driver, ITEM_PRICE_FIELD);
-    private final TextInputField itemQuantityTextfield =
-            new TextInputField(driver, ITEM_QUANTITY_INPUT);
-    private final Dropdown itemDimensionDropdown =
-            new Dropdown(driver, ITEM_DIMENSION_DROPDOWN);
-    private final Button doneButton =
-            new Button(driver, DONE_BUTTON);
+    private final Button resetButton = new Button(driver, RESET_BUTTON);
+
+    private final Link selectLastAddedItemLink = new Link(driver, SELECT_LAST_ADDED_ITEM_LINK);
+
+    private final TextLabel itemTextField = new TextLabel(driver, ITEM_TEXT_FIELD);
+
+    private final TextLabel itemPriceField = new TextLabel(driver, ITEM_PRICE_FIELD);
+
+    private final TextInputField itemQuantityTextfield = new TextInputField(driver, ITEM_QUANTITY_INPUT);
+
+    private final Dropdown itemDimensionDropdown = new Dropdown(driver, ITEM_DIMENSION_DROPDOWN);
+
+    private final Button doneButton = new Button(driver, DONE_BUTTON);
 
     private final Dropdown searchForItemDropdown = new Dropdown(driver, SEARCH_FOR_ITEM_DROPDOWN);
 
@@ -37,6 +34,48 @@ public class AddItemPage extends PageObject<AddItemPage> {
 
     public AddItemPage(final WebDriver driver) {
         super(driver);
+    }
+
+    public final AddItemPage clickSelectLastAddedItemLink() {
+
+        selectLastAddedItemLink.click();
+        return this;
+    }
+
+    public final CreateNewOrderPage clickDoneButton() {
+
+        doneButton.click();
+        return new CreateNewOrderPage(driver);
+    }
+
+    public final AddItemPage fillItemQuantityTextfield(final String itemQuantity) {
+
+        itemQuantityTextfield.sendKeys(itemQuantity);
+        return this;
+    }
+
+    public final AddItemPage fillSearchForItemInput(final String searchText) {
+
+        searchForItemInput.sendKeys(searchText);
+        return this;
+    }
+
+    public final AddItemPage selectItemDimensionDropdown(final String itemDimension) {
+
+        itemDimensionDropdown.sendKeys(itemDimension);
+        return this;
+    }
+
+    public final AddItemPage selectSearchForItemDropdown(final String condition) {
+
+        searchForItemDropdown.sendKeys(condition);
+        return this;
+    }
+
+    public final AddItemPage clickSearchForItemButton() {
+
+        searchForItemButton.click();
+        return this;
     }
 
 }

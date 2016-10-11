@@ -4,7 +4,6 @@ import academy.softserve.edu.elements.interfaces.ILocator;
 import academy.softserve.edu.elements.LocatorsType;
 import org.openqa.selenium.By;
 
-//TODO remove unused locators
 public enum SharedLocators implements ILocator {
 
     LOG_OUT_BUTTON("Log Out Button",
@@ -17,23 +16,7 @@ public enum SharedLocators implements ILocator {
 
     UKRAINIAN_SWITCH_LINK("Ukrainian Switch Link",
             LocatorsType.BY_XPATH,
-            "//a[@id='uk_UA']"),
-
-    OMS_LOGO("OMS Logo",
-            LocatorsType.BY_XPATH,
-            "//div[@id='logo']/h1"),
-
-    OMS_SUBLOGO("OMS Sublogo",
-            LocatorsType.BY_XPATH,
-            "//div[@id='logo']/h2"),
-
-    FOOTER_LINK("Footer Google Link",
-            LocatorsType.BY_XPATH,
-            "//div[@id='footer']/a"),
-
-    FOOTER_UPDATE_INFO("Footer Update Info",
-            LocatorsType.BY_XPATH,
-            "//div[@id='footer']/p");
+            "//a[@id='uk_UA']");
 
     protected String elementName;
     protected LocatorsType locatorType;

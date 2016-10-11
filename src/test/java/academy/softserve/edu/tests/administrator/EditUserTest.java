@@ -3,9 +3,10 @@ package academy.softserve.edu.tests.administrator;
 import academy.softserve.edu.domains.User;
 import academy.softserve.edu.enums.Regions;
 import academy.softserve.edu.enums.Roles;
+import academy.softserve.edu.pageobjects.EditUserPage;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.TestRunner;
-import academy.softserve.edu.utils.TestUtil;
+import academy.softserve.edu.utils.DBHelper;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
@@ -15,19 +16,13 @@ import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
 
 public class EditUserTest extends TestRunner {
 
-    //TODO move inline
-    private static final String NEW_USER_LAST_NAME = "Tsoni";
-    private static final String NEW_USER_PASSWORD = "1qaz2wsx";
-    private static final String NEW_USER_EMAIL = "google@gmail.com";
-    private static final Regions NEW_REGION = Regions.WEST;
-
     private User testUser;
     private int testUserId;
 
     @BeforeTest
     public final void createTestUser() {
 
-        testUserId = TestUtil.createValidUserInDB();
+        testUserId = DBHelper.createValidUserInDB();
         testUser = DBHandler.getUserById(testUserId);
     }
 
@@ -36,11 +31,12 @@ public class EditUserTest extends TestRunner {
 
         userInfoPage = logInPage.logInAs(Roles.ADMINISTRATOR);
 
-        administrationPage = userInfoPage
-                .clickAdministrationTab()
+        administrationPage = userInfoPage.clickAdministrationTab()
                 .clickLastUserPaginationButton();
 
-        editUserPage = administrationPage.clickEditUserById(testUserId);
+        administrationPage.clickEditUserById(String.valueOf(testUserId));
+
+        editUserPage = new EditUserPage(driver);
     }
 
     @Test
@@ -74,25 +70,17 @@ public class EditUserTest extends TestRunner {
     @Test
     public final void testEditUserAndClickSave() {
 
+        final String NEW_USER_LAST_NAME = "Tsoni";
+        final String NEW_USER_PASSWORD = "1qaz2wsx";
+        final Regions NEW_REGION = Regions.WEST;
+
         assertThat(editUserPage.getNewPasswordText())
                 .isDisplayed();
 
-        editUserPage
-                .getLastNameInput()
-                .clear();
-        editUserPage
-                .getLastNameInput()
-                .sendKeys(NEW_USER_LAST_NAME);
-        editUserPage
-                .getNewPasswordInput()
-                .sendKeys(NEW_USER_PASSWORD);
-        editUserPage
-                .getConfirmPasswordInput()
-                .sendKeys(NEW_USER_PASSWORD);
-        editUserPage
-                .getRegionDropdown()
-                .sendKeys(NEW_REGION.toString());
-        editUserPage
+        editUserPage.fillLastNameInput(NEW_USER_LAST_NAME)
+                .fillNewPasswordInput(NEW_USER_PASSWORD)
+                .fillConfirmPasswordInput(NEW_USER_PASSWORD)
+                .selectRegionDropdown(NEW_REGION.toString())
                 .clickSaveChangesButton();
 
         testUser = DBHandler.getUserById(testUserId);
@@ -113,12 +101,13 @@ public class EditUserTest extends TestRunner {
     @Test
     public final void testEditUserAndClickCancel() {
 
+        final String NEW_USER_EMAIL = "google@gmail.com";
+
         assertThat(editUserPage.getNewPasswordText())
                 .isDisplayed();
 
-        editUserPage.getEmailAddressInput().clear();
-        editUserPage.getEmailAddressInput().sendKeys(NEW_USER_EMAIL);
-        editUserPage.clickCancelButton();
+        editUserPage.fillEmailAddressInput(NEW_USER_EMAIL)
+                .clickCancelButton();
 
         assertThat(DBHandler.getUserById(testUserId))
                 .userEquals(testUser);

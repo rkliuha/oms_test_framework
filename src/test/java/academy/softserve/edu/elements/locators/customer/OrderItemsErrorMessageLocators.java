@@ -4,12 +4,7 @@ import academy.softserve.edu.elements.LocatorsType;
 import academy.softserve.edu.elements.interfaces.ILocator;
 import org.openqa.selenium.By;
 
-//TODO remove unused locators
 public enum OrderItemsErrorMessageLocators implements ILocator {
-
-    ORDERING_LINK("Ordering Link",
-            LocatorsType.BY_XPATH,
-            "//ul[@id='nav']/li[1]/a"),
 
     USER_INFO_LINK("User Info Link",
             LocatorsType.BY_XPATH,

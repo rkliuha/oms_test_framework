@@ -41,9 +41,4 @@ public class TestListener extends TestListenerAdapter {
         }
     }
 
-    @Override
-    public void onTestSuccess(final ITestResult result) {
-        Logger.logInfo("Test Result: ");
-        Logger.logPass(result.getName());
-    }
 }

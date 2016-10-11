@@ -7,8 +7,6 @@ import org.testng.annotations.Test;
 
 import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
 
-
-//TODO get rid of collection of WebElements, refactor for use wrappers and custom assertions;
 public class SearchTest extends TestRunner {
 
     final public boolean checkElementsAmount(final Element elements, final int elementsAmount) {
@@ -29,19 +27,11 @@ public class SearchTest extends TestRunner {
         userInfoPage = logInPage
                 .logInAs(Roles.CUSTOMER);
 
-        userInfoPage
-                .getCustomerOrderingLink()
-                .click();
-
         customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
 
-        customerOrderingPage
-                .getSearchDropdown()
-                .sendKeys(dropdownStatus);
-
-        customerOrderingPage
-                .getSearchInput()
-                .sendKeys(textFieldValueByStatus);
+        customerOrderingPage.selectSearchDropdown(dropdownStatus)
+                .fillSearchInput(textFieldValueByStatus)
+                .clickApplyButton();
 
         assertThat(customerOrderingPage.getSearchStatusResult())
                 .isDisplayed();
@@ -56,19 +46,11 @@ public class SearchTest extends TestRunner {
         userInfoPage = logInPage
                 .logInAs(Roles.CUSTOMER);
 
-        userInfoPage
-                .getCustomerOrderingLink()
-                .click();
-
         customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
 
-        customerOrderingPage
-                .getSearchDropdown()
-                .sendKeys(dropdownName);
-
-        customerOrderingPage
-                .getSearchInput()
-                .sendKeys(textFieldValueByName);
+        customerOrderingPage.selectSearchDropdown(dropdownName)
+                .fillSearchInput(textFieldValueByName)
+                .clickApplyButton();
 
         assertThat(customerOrderingPage.getSearchNameResult())
                 .isDisplayed();
@@ -82,14 +64,9 @@ public class SearchTest extends TestRunner {
         userInfoPage = logInPage
                 .logInAs(Roles.CUSTOMER);
 
-        userInfoPage
-                .getCustomerOrderingLink()
-                .click();
-
         customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
 
-        customerOrderingPage.getResizeShowItemsLink()
-                .click();
+        customerOrderingPage.clickResizeShowItemsLink();
 
         final boolean searchOrderResult = checkElementsAmount(customerOrderingPage.getSearchResultElements(), show5Item);
 
@@ -105,14 +82,9 @@ public class SearchTest extends TestRunner {
         userInfoPage = logInPage
                 .logInAs(Roles.CUSTOMER);
 
-        userInfoPage
-                .getCustomerOrderingLink()
-                .click();
-
         customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
 
-        customerOrderingPage.getResizeShowItemsLink()
-                .click();
+        customerOrderingPage.clickResizeShowItemsLink();
 
         final boolean searchOrderResult = checkElementsAmount(customerOrderingPage.getSearchResultElements(), show10Item);
 

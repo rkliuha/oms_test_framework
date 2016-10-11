@@ -1,15 +1,12 @@
 package academy.softserve.edu.tests.administrator;
 
 import academy.softserve.edu.enums.Roles;
-import academy.softserve.edu.pageobjects.AdministrationPage;
-import academy.softserve.edu.pageobjects.CreateNewUserPage;
-import academy.softserve.edu.pageobjects.EditUserPage;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
-import static academy.softserve.edu.asserts.FluentAssertions.*;
+import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
 
 public class CreatedUserLogInTest extends TestRunner {
 
@@ -21,11 +18,7 @@ public class CreatedUserLogInTest extends TestRunner {
         userInfoPage = logInPage
                 .logInAs(Roles.ADMINISTRATOR);
 
-        userInfoPage
-                .getAdministrationLink()
-                .click();
-
-        administrationPage = new AdministrationPage(driver);
+        administrationPage = userInfoPage.clickAdministrationTab();
 
         assertThat(administrationPage.getCreateUserLink())
                 .isDisplayed();
@@ -38,17 +31,9 @@ public class CreatedUserLogInTest extends TestRunner {
         userInfoPage = logInPage
                 .logInAs(Roles.ADMINISTRATOR);
 
-        userInfoPage
-                .getAdministrationLink()
-                .click();
+        administrationPage = userInfoPage.clickAdministrationTab();
 
-        administrationPage = new AdministrationPage(driver);
-
-        administrationPage
-                .getCreateUserLink()
-                .click();
-
-        createNewUserPage = new CreateNewUserPage(driver);
+        createNewUserPage = administrationPage.clickCreateUserLink();
 
         assertThat(createNewUserPage.getPageInfoText())
                 .isDisplayed();
@@ -67,54 +52,19 @@ public class CreatedUserLogInTest extends TestRunner {
         userInfoPage = logInPage
                 .logInAs(Roles.ADMINISTRATOR);
 
-        userInfoPage
-                .getAdministrationLink()
-                .click();
+        administrationPage = userInfoPage.clickAdministrationTab();
 
-        administrationPage = new AdministrationPage(driver);
+        createNewUserPage = administrationPage.clickCreateUserLink();
 
-        administrationPage
-                .getCreateUserLink()
-                .click();
-
-        editUserPage = new EditUserPage(driver);
-        createNewUserPage = new CreateNewUserPage(driver);
-
-        createNewUserPage
-                .getLogInNameInput()
-                .sendKeys(LOGIN);
-
-        createNewUserPage
-                .getFirstNameInput()
-                .sendKeys(FIRST_NAME);
-
-        createNewUserPage
-                .getLastNameInput()
-                .sendKeys(LAST_NAME);
-
-        createNewUserPage
-                .getPasswordInput()
-                .sendKeys(PASSWORD);
-
-        createNewUserPage
-                .getConfirmPasswordInput()
-                .sendKeys(PASSWORD);
-
-        createNewUserPage
-                .getEmailInput()
-                .sendKeys(EMAIL);
-
-        createNewUserPage
-                .getRegionDropdown()
-                .sendKeys(REGION);
-
-        createNewUserPage
-                .getRoleDropdown()
-                .sendKeys(ROLE);
-
-        createNewUserPage
-                .getCreateButton()
-                .click();
+        createNewUserPage.fillLogInNameInput(LOGIN)
+                .fillFirstNameInput(FIRST_NAME)
+                .fillLastNameInput(LAST_NAME)
+                .fillPasswordInput(PASSWORD)
+                .fillConfirmPasswordInput(PASSWORD)
+                .fillEmailInput(EMAIL)
+                .selectRegionDropdown(REGION)
+                .selectRoleDropdown(ROLE)
+                .clickCreateButton();
 
         assertThat(DBHandler.getUserByLogin(LOGIN))
                 .isNotNull();

@@ -1,17 +1,12 @@
 package academy.softserve.edu.tests.supervisor;
 
 import academy.softserve.edu.enums.Roles;
-import academy.softserve.edu.pageobjects.ItemManagementPage;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.Test;
 
 import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
 
 public class DoNotRevertDefaultStateTest extends TestRunner {
-
-    //TODO move inline
-    public static final String FIELD_FILTER = "Description";
-    public static final String FIELD_FILTER_VALUE = "Fruits";
 
     @Test
     public void testUserInfoItemManagementButtonCheck() {
@@ -29,39 +24,25 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     @Test
     public void testDoNotRevertDefaultState() {
 
+        final String fieldFilter = "Description";
+        final String fieldFilterValue = "Fruits";
+
         userInfoPage = logInPage
                 .logInAs(Roles.SUPERVISOR);
 
-        userInfoPage
-                .getItemManagementLink()
-                .click();
+        itemManagementPage = userInfoPage.clickItemManagementTab();
 
-        itemManagementPage = new ItemManagementPage(driver);
+        itemManagementPage.selectSearchFieldFilterDropdown(fieldFilter)
+                .fillSearchInput(fieldFilterValue)
+                .clickSearchButton()
+                .clickUserInfoTab();
 
-        itemManagementPage
-                .getSearchFieldFilterDropdown()
-                .sendKeys(FIELD_FILTER);
-
-        itemManagementPage
-                .getSearchInput()
-                .sendKeys(FIELD_FILTER_VALUE);
-
-        itemManagementPage
-                .getSearchButton()
-                .click();
-
-        itemManagementPage
-                .getUserInfoLink()
-                .click();
-
-        userInfoPage
-                .getItemManagementLink()
-                .click();
+        userInfoPage.clickItemManagementTab();
 
         assertThat(itemManagementPage.getSearchFieldFilterDropdown())
-                .selectedDropdownEquals(FIELD_FILTER);
+                .selectedDropdownEquals(fieldFilter);
 
         assertThat(itemManagementPage.getSearchInput())
-                .valueEquals(FIELD_FILTER_VALUE);
+                .valueEquals(fieldFilterValue);
     }
 }

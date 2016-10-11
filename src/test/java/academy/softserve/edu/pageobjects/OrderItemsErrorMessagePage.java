@@ -9,7 +9,6 @@ import static academy.softserve.edu.elements.locators.customer.OrderItemsErrorMe
 import static academy.softserve.edu.elements.locators.customer.OrderItemsErrorMessageLocators.ORDER_ITEMS_ERROR_MESSAGE_TEXT;
 
 @Getter
-//TODO reformat code into common look - private final Dropdown searchForItemDropdown = new Dropdown(driver, SEARCH_FOR_ITEM_DROPDOWN);
 public class OrderItemsErrorMessagePage extends PageObject<OrderItemsErrorMessagePage> {
 
     public OrderItemsErrorMessagePage(WebDriver driver) {
@@ -20,8 +19,7 @@ public class OrderItemsErrorMessagePage extends PageObject<OrderItemsErrorMessag
      * orderItemsErrorMessageText is an unique element on the OrderItemsErrorMessagePage,
      * can be used as identification of page;
      */
-    private final Element orderItemsErrorMessageText =
-            new Element(driver, ORDER_ITEMS_ERROR_MESSAGE_TEXT);
-    private final TextLabel contentText =
-            new TextLabel(driver, CONTENT_TEXT);
+    private final Element orderItemsErrorMessageText = new Element(driver, ORDER_ITEMS_ERROR_MESSAGE_TEXT);
+
+    private final TextLabel contentText = new TextLabel(driver, CONTENT_TEXT);
 }

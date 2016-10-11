@@ -28,4 +28,59 @@ public class CreateNewUserPage extends PageObject<CreateNewUserPage> {
     private final Dropdown roleDropdown = new Dropdown(driver, ROLE_DROPDOWN);
     private final Button createButton = new Button(driver, CREATE_BUTTON);
     private final Button cancelButton = new Button(driver, CANCEL_BUTTON);
+
+    public final CreateNewUserPage fillLogInNameInput(final String login) {
+
+        logInNameInput.sendKeys(login);
+        return this;
+    }
+
+    public final CreateNewUserPage fillFirstNameInput(final String firstName) {
+
+        firstNameInput.sendKeys(firstName);
+        return this;
+    }
+
+    public final CreateNewUserPage fillLastNameInput(final String lastName) {
+
+        lastNameInput.sendKeys(lastName);
+        return this;
+    }
+
+    public final CreateNewUserPage fillPasswordInput(final String password) {
+
+        passwordInput.sendKeys(password);
+        return this;
+    }
+
+    public final CreateNewUserPage fillConfirmPasswordInput(final String password) {
+
+        confirmPasswordInput.sendKeys(password);
+        return this;
+    }
+
+    public final CreateNewUserPage fillEmailInput(final String email) {
+
+        emailInput.sendKeys(email);
+        return this;
+    }
+
+    public final CreateNewUserPage selectRegionDropdown(final String region) {
+
+        regionDropdown.sendKeys(region);
+        return this;
+    }
+
+    public final CreateNewUserPage selectRoleDropdown(final String role) {
+
+        roleDropdown.sendKeys(role);
+        return this;
+    }
+
+    public final AdministrationPage clickCreateButton() {
+
+        createButton.click();
+        return new AdministrationPage(driver);
+    }
+
 }

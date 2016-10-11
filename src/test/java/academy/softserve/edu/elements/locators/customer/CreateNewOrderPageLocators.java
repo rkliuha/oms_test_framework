@@ -4,7 +4,6 @@ import academy.softserve.edu.elements.LocatorsType;
 import academy.softserve.edu.elements.interfaces.ILocator;
 import org.openqa.selenium.By;
 
-//TODO remove unused locators
 public enum CreateNewOrderPageLocators implements ILocator {
 
     CUSTOMER_ORDERING_LINK("Ordering Link",
@@ -15,81 +14,9 @@ public enum CreateNewOrderPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//ul[@id='nav']/li[2]/a"),
 
-    ITEM_SELECTION_FIELDSET("Item Selection Fieldset",
-            LocatorsType.BY_XPATH,
-            "//div[@id='content']/fieldset/legend"),
-
     ADD_ITEM_BUTTON("Add Item Button",
             LocatorsType.BY_XPATH,
             "//form[@id='addItem']/input[@value = 'Add Item']"),
-
-    RESIZE_ITEMS_LIST_LINK("Resize Items List Link",
-            LocatorsType.BY_XPATH,
-            "//div[@id='content']/fieldset//tr/td[2]/a"),
-
-    ITEM_NUMBER_HEADER("Item Number Header",
-            LocatorsType.BY_XPATH,
-            "//table[@id='orderItems']//th[1]"),
-
-    ITEM_NAME_HEADER("Item Name Header",
-            LocatorsType.BY_XPATH,
-            "//table[@id='orderItems']//th[2]"),
-
-    ITEM_DESCRIPTION_HEADER("Item Description Header",
-            LocatorsType.BY_XPATH,
-            "//table[@id='orderItems']//th[3]"),
-
-    DIMENSION_HEADER("Dimension Header",
-            LocatorsType.BY_XPATH,
-            "//table[@id='orderItems']//th[4]"),
-
-    PRICE_HEADER("Price Header",
-            LocatorsType.BY_XPATH,
-            "//table[@id='orderItems']//th[5]"),
-
-    QUANTITY_HEADER("Quantity Header",
-            LocatorsType.BY_XPATH,
-            "//table[@id='orderItems']//th[6]"),
-
-    PRICE_PER_LINE_HEADER("Price Per Line Header",
-            LocatorsType.BY_XPATH,
-            "//table[@id='orderItems']//th[7]"),
-
-    EDIT_HEADER("Edit Header",
-            LocatorsType.BY_XPATH,
-            "//table[@id='orderItems']//th[8]"),
-
-    DELETE_HEADER("Delete Header",
-            LocatorsType.BY_XPATH,
-            "//table[@id='orderItems']//th[9]"),
-
-    FIRST_NAVIGATION_BUTTON("First Navigation Button",
-            LocatorsType.BY_XPATH,
-            "//div[@id='list']//form[1]/input[3]"),
-
-    BACKWARD_NAVIGATION_BUTTON("Backward Navigation Button",
-            LocatorsType.BY_XPATH,
-            "//div[@id='list']//form[2]/input[3]"),
-
-    FORWARD_NAVIGATION_BUTTON("Forward Navigation Button",
-            LocatorsType.BY_XPATH,
-            "//div[@id='list']//form[3]/input[3]"),
-
-    LAST_NAVIGATION_BUTTON("Last Navigation Button",
-            LocatorsType.BY_XPATH,
-            "//div[@id='list']//form[4]/input[3]"),
-
-    PAGE_NUMBER_CONTAINER("Page Number Container",
-            LocatorsType.BY_XPATH,
-            "//div[@id='list']/h4"),
-
-    PAGE_NUMBER_TEXT("Page Number Text",
-            LocatorsType.BY_ID,
-            "pageNumber"),
-
-    PAGE_COUNT_TEXT("Page Count Text",
-            LocatorsType.BY_ID,
-            "pageCount"),
 
     TOTALS_FIELDSET("Totals Fieldset",
             LocatorsType.BY_XPATH,
@@ -175,26 +102,6 @@ public enum CreateNewOrderPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//form[@id='form2']//tr[1]/td[1]//strong[1]"),
 
-    CREDIT_CARD_TYPE_ASTERISK("Credit Card Type Asterisk",
-            LocatorsType.BY_ID,
-            "redAsterisk3"),
-
-    VISA_CREDIT_CARD_IMG("Visa Credit Card Img",
-            LocatorsType.BY_XPATH,
-            "//form[@id='form2']//tr[1]/td[1]//strong[2]/img[1]"),
-
-    MASTERCARD_CREDIT_CARD_IMG("MasterCard Credit Card Img",
-            LocatorsType.BY_XPATH,
-            "//form[@id='form2']//tr[1]/td[1]//strong[2]/img[2]"),
-
-    AMERICANEXPRESS_CREDIT_CARD_IMG("AmericanExpress Credit Card Img",
-            LocatorsType.BY_XPATH,
-            "//form[@id='form2']//tr[1]/td[1]//strong[2]/img[3]"),
-
-    MAESTRO_CREDIT_CARD_IMG("Maestro Credit Card Img",
-            LocatorsType.BY_XPATH,
-            "//form[@id='form2']//tr[1]/td[1]//strong[2]/img[4]"),
-
     CREDIT_CARD_TYPE_DROPDOWN("Credit Card Type Dropdown",
             LocatorsType.BY_ID,
             "cardTypes"),
@@ -202,10 +109,6 @@ public enum CreateNewOrderPageLocators implements ILocator {
     CREDIT_CARD_NUMBER_TEXT("Credit Card Number Text",
             LocatorsType.BY_XPATH,
             "//form[@id='form2']//tr[2]/td[1]/strong"),
-
-    CREDIT_CARD_NUMBER_ASTERISK("Credit Card Number Asterisk",
-            LocatorsType.BY_ID,
-            "redAsterisk4"),
 
     CREDIT_CARD_NUMBER_TEXTFIELD("Credit Card Number Textfield",
             LocatorsType.BY_ID,
@@ -215,14 +118,6 @@ public enum CreateNewOrderPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//form[@id='form2']//tr[3]/td[1]/strong"),
 
-    CVV2_WHAT_IS_THIS_LINK("CVV2 What Is This Link",
-            LocatorsType.BY_XPATH,
-            "//form[@id='form2']//tr[3]/td[1]/strong/a"),
-
-    CVV2_ASTERISK("CVV2 Asterisk",
-            LocatorsType.BY_XPATH,
-            "//form[@id='form2']//tr[3]/td[1]/strong/span"),
-
     CVV2_INPUT("CVV2 Input",
             LocatorsType.BY_ID,
             "cvv2"),
@@ -230,10 +125,6 @@ public enum CreateNewOrderPageLocators implements ILocator {
     EXPIRY_DATE("Expiry Date",
             LocatorsType.BY_XPATH,
             "//form[@id='form2']//tr[4]/td[1]/strong"),
-
-    EXPIRY_DATE_ASTERISK("Expiry Date Asterisk",
-            LocatorsType.BY_XPATH,
-            "//form[@id='form2']//tr[3]/td[1]/strong/span"),
 
     EXPIRY_DATE_MONTH_DROPDOWN("Expiry Date Month Dropdown",
             LocatorsType.BY_ID,
@@ -247,17 +138,9 @@ public enum CreateNewOrderPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//form[@id='form2']//tr[5]/td[1]/strong"),
 
-    START_DATE_MAESTRO_ASTERISK("Start Date Maestro Asterisk",
-            LocatorsType.BY_XPATH,
-            "//form[@id='form2']//tr[5]/td[1]/strong/span"),
-
     START_DATE_MAESTRO_INPUT("Start Date Maestro Input",
             LocatorsType.BY_ID,
             "startDate2"),
-
-    START_DATE_MAESTRO_CHOOSE_LINK("Start date Maestro Choose Link",
-            LocatorsType.BY_XPATH,
-            "//form[@id='form2']//tr[5]/td[2]/strong/a"),
 
     ISSUE_NUMBER_MAESTRO_TEXT("Issue Number Maestro Text",
             LocatorsType.BY_XPATH,
@@ -266,10 +149,6 @@ public enum CreateNewOrderPageLocators implements ILocator {
     ISSUE_NUMBER_MAESTRO_INPUT("Issue Number Maestro Input",
             LocatorsType.BY_ID,
             "issueNumber2"),
-
-    ASTERISK_FIELDS_ARE_MANDATORY_TEXT("Asterisk Fields Are Mandatory Text",
-            LocatorsType.BY_XPATH,
-            "//form[@id='form2']//tr[10]/td[2]/span"),
 
     SAVE_BUTTON("Save Button",
             LocatorsType.BY_ID,

@@ -24,10 +24,10 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
 
         if (!actual.isDisplayed()) {
 
-            failWithMessage("Element {%s} with locator {%s} should be displayed !",
-                    actual.getLocatorName(), actual.getLocatorValue());
             logFail("Element {" + actual.getLocatorName() + "} with locator {" +
                     actual.getLocatorValue() + "} should be displayed !");
+            failWithMessage("Element {%s} with locator {%s} should be displayed !",
+                    actual.getLocatorName(), actual.getLocatorValue());
         } else {
             logPass("Element {" + actual.getLocatorName() + "} is displayed");
         }
@@ -40,10 +40,10 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
 
         if (actual.isDisplayed()) {
 
-            failWithMessage("Element {%s} with locator {%s} should not be displayed !",
-                    actual.getLocatorName(), actual.getLocatorValue());
             logFail("Element {" + actual.getLocatorName() + "} with locator {" +
                     actual.getLocatorValue() + "} should not be displayed !");
+            failWithMessage("Element {%s} with locator {%s} should not be displayed !",
+                    actual.getLocatorName(), actual.getLocatorValue());
         } else {
             logPass("Element {" + actual.getLocatorName() + "} is not displayed");
         }
@@ -57,11 +57,11 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
         if (!actual.getText()
                 .contains(condition)) {
 
-            failWithMessage("Element's {%s} text {%s} with locator {%s} should contain {%s} !",
-                    actual.getLocatorName(), actual.getText(), actual.getLocatorValue(), condition);
             logFail("Element's {" + actual.getLocatorName() + "} text {" + actual.getText() +
                     "} with locator {" + actual.getLocatorValue() + "} should contain {" +
                     condition + "} !");
+            failWithMessage("Element's {%s} text {%s} with locator {%s} should contain {%s} !",
+                    actual.getLocatorName(), actual.getText(), actual.getLocatorValue(), condition);
         } else {
             logPass("Element's {" + actual.getLocatorName() + "} text contains {" + condition + "}");
         }
@@ -74,11 +74,11 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
 
         if (!condition.equals(actual.getText())) {
 
-            failWithMessage("Element's {%s} text {%s} with locator {%s} should equal {%s} !",
-                    actual.getLocatorName(), actual.getText(), actual.getLocatorValue(), condition);
             logFail("Element's {" + actual.getLocatorName() + "} text {" + actual.getText() +
                     "} with locator {" + actual.getLocatorValue() + "} should equal {"
                     + condition + "} !");
+            failWithMessage("Element's {%s} text {%s} with locator {%s} should equal {%s} !",
+                    actual.getLocatorName(), actual.getText(), actual.getLocatorValue(), condition);
         } else {
             logPass("Element's {" + actual.getLocatorName() + "} text equals {" + condition + "}");
         }
@@ -91,11 +91,11 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
 
         if (condition.equals(actual.getText())) {
 
-            failWithMessage("Element's {%s} text {%s} with locator {%s} should not equal {%s} !",
-                    actual.getLocatorName(), actual.getText(), actual.getLocatorValue(), condition);
             logFail("Element's {" + actual.getLocatorName() + "} text {" + actual.getText() +
                     "} with locator {" + actual.getLocatorValue() + "} should not equal {" +
                     condition + "} !");
+            failWithMessage("Element's {%s} text {%s} with locator {%s} should not equal {%s} !",
+                    actual.getLocatorName(), actual.getText(), actual.getLocatorValue(), condition);
         } else {
             logPass("Element's {" + actual.getLocatorName() + "} text does not equal {" + condition + "}");
         }
@@ -109,10 +109,10 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
         if (!actual.getValue()
                 .contains(condition)) {
 
-            failWithMessage("Element's {%s} attribute 'value' {%s} with locator {%s} should contain {%s} !",
-                    actual.getLocatorName(), actual.getValue(), actual.getLocatorValue(), condition);
             logFail("Element's {" + actual.getLocatorName() + "} attribute 'value' {" + actual.getValue() +
                     "} with locator {" + actual.getLocatorValue() + "} should contain {" + condition + "} !");
+            failWithMessage("Element's {%s} attribute 'value' {%s} with locator {%s} should contain {%s} !",
+                    actual.getLocatorName(), actual.getValue(), actual.getLocatorValue(), condition);
         } else {
             logPass("Element's {" + actual.getLocatorName() + "} attribute 'value' contains {" + condition + "}");
         }
@@ -125,10 +125,10 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
 
         if (!condition.equals(actual.getValue())) {
 
-            failWithMessage("Element's {%s} attribute 'value' {%s} with locator {%s} should equal {%s} !",
-                    actual.getLocatorName(), actual.getValue(), actual.getLocatorValue(), condition);
             logFail("Element's {" + actual.getLocatorName() + "} attribute 'value' {" + actual.getValue() +
                     "} with locator {" + actual.getLocatorValue() + "} should equal {" + condition + "} !");
+            failWithMessage("Element's {%s} attribute 'value' {%s} with locator {%s} should equal {%s} !",
+                    actual.getLocatorName(), actual.getValue(), actual.getLocatorValue(), condition);
         } else {
             logPass("Element's {" + actual.getLocatorName() + "} attribute 'value' equals {" + condition + "}");
         }
@@ -141,10 +141,10 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
 
         if (condition.equals(actual.getValue())) {
 
-            failWithMessage("Element's {%s} attribute 'value' {%s} with locator {%s} should not equal {%s} !",
-                    actual.getLocatorName(), actual.getValue(), actual.getLocatorValue(), condition);
             logFail("Element's {" + actual.getLocatorName() + "} attribute 'value' {" + actual.getValue() +
                     "} with locator {" + actual.getLocatorValue() + "} should not equal {" + condition + "} !");
+            failWithMessage("Element's {%s} attribute 'value' {%s} with locator {%s} should not equal {%s} !",
+                    actual.getLocatorName(), actual.getValue(), actual.getLocatorValue(), condition);
         } else {
             logPass("Element's {" + actual.getLocatorName() + "} attribute 'value' does not equal {"
                     + condition + "}");
@@ -159,10 +159,10 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
         if (!actual.getValue()
                 .isEmpty()) {
 
-            failWithMessage("Element's {%s} attribute 'value' {%s} with locator {%s} should be empty !",
-                    actual.getLocatorName(), actual.getValue(), actual.getLocatorValue());
             logFail("Element's {" + actual.getLocatorName() + "} attribute 'value' {" + actual.getValue()
                     + "} with locator {" + actual.getLocatorValue() + "} should be empty !");
+            failWithMessage("Element's {%s} attribute 'value' {%s} with locator {%s} should be empty !",
+                    actual.getLocatorName(), actual.getValue(), actual.getLocatorValue());
         } else {
             logPass("Element's {" + actual.getLocatorName() + "} attribute 'value' is empty");
         }
@@ -176,10 +176,10 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
         if (actual.getValue()
                 .isEmpty()) {
 
-            failWithMessage("Element's {%s} attribute 'value' with locator {%s} should not be empty !",
-                    actual.getLocatorName(), actual.getLocatorValue());
             logFail("Element's {" + actual.getLocatorName() + "} attribute 'value' with locator {" +
                     actual.getLocatorValue() + "} should not be empty !");
+            failWithMessage("Element's {%s} attribute 'value' with locator {%s} should not be empty !",
+                    actual.getLocatorName(), actual.getLocatorValue());
         } else {
             logPass("Element's {" + actual.getLocatorName() + "} attribute 'value' is not empty");
         }
@@ -194,10 +194,10 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
                 .getElement()
                 .getCssValue("font-weight"))) {
 
-            failWithMessage("Element's {%s} text {%s} with locator {%s} should be bold !",
-                    actual.getLocatorName(), actual.getText(), actual.getLocatorValue());
             logFail("Element's {" + actual.getLocatorName() + "} text {" + actual.getText() +
                     "} with locator {" + actual.getLocatorValue() + "} should be bold !");
+            failWithMessage("Element's {%s} text {%s} with locator {%s} should be bold !",
+                    actual.getLocatorName(), actual.getText(), actual.getLocatorValue());
         } else {
             logPass("Element's {" + actual.getLocatorName() + "} text is bold");
         }
@@ -211,10 +211,10 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
         if (!actual.getText()
                 .isEmpty()) {
 
-            failWithMessage("Element's {%s} text {%s} with locator {%s} should be empty !",
-                    actual.getLocatorName(), actual.getText(), actual.getLocatorValue());
             logFail("Element's {" + actual.getLocatorName() + "} text {" + actual.getText() +
                     "} with locator {" + actual.getLocatorValue() + "} should be empty !");
+            failWithMessage("Element's {%s} text {%s} with locator {%s} should be empty !",
+                    actual.getLocatorName(), actual.getText(), actual.getLocatorValue());
         } else {
             logPass("Element's {" + actual.getLocatorName() + "} text is empty");
         }
@@ -228,10 +228,10 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
         if (actual.getText()
                 .isEmpty()) {
 
-            failWithMessage("Element's {%s} text with locator {%s} should not be empty !",
-                    actual.getLocatorName(), actual.getLocatorValue());
             logFail("Element's {" + actual.getLocatorName() + "} text with locator {" +
                     actual.getLocatorValue() + "} should not be empty !");
+            failWithMessage("Element's {%s} text with locator {%s} should not be empty !",
+                    actual.getLocatorName(), actual.getLocatorValue());
         } else {
             logPass("Element's {" + actual.getLocatorName() + "} text is not empty");
         }
@@ -244,10 +244,10 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
 
         if (!actual.isEnabled()) {
 
-            failWithMessage("Element {%s} with locator {%s} should be enabled !",
-                    actual.getLocatorName(), actual.getLocatorValue());
             logFail("Element {" + actual.getLocatorName() + "} with locator {" +
                     actual.getLocatorValue() + "} should be enabled !");
+            failWithMessage("Element {%s} with locator {%s} should be enabled !",
+                    actual.getLocatorName(), actual.getLocatorValue());
         } else {
             logPass("Element {" + actual.getLocatorName() + "} is enabled");
         }
@@ -260,10 +260,10 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
 
         if (actual.isEnabled()) {
 
-            failWithMessage("Element {%s} with locator {%s} should be disabled !",
-                    actual.getLocatorName(), actual.getLocatorValue());
             logFail("Element {" + actual.getLocatorName() + "} with locator {" +
                     actual.getLocatorValue() + "} should be disabled !");
+            failWithMessage("Element {%s} with locator {%s} should be disabled !",
+                    actual.getLocatorName(), actual.getLocatorValue());
         } else {
             logPass("Element {" + actual.getLocatorName() + "} is disabled");
         }
@@ -279,10 +279,10 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
                         .getFirstSelectedOption()
                         .getText())) {
 
-            failWithMessage("Element's {%s} selected dropdown value with locator {%s} should equal {%s} !",
-                    actual.getLocatorName(), actual.getLocatorValue(), condition);
             logFail("Element's {" + actual.getLocatorName() + "} selected dropdown value with locator {" +
                     actual.getLocatorValue() + "} should equal {" + condition + "} !");
+            failWithMessage("Element's {%s} selected dropdown value with locator {%s} should equal {%s} !",
+                    actual.getLocatorName(), actual.getLocatorValue(), condition);
         } else {
             logPass("Element's {" + actual.getLocatorName() + "} selected dropdown value equals {" +
                     condition + "}");
@@ -299,10 +299,10 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
                         .getFirstSelectedOption()
                         .getText())) {
 
-            failWithMessage("Element's {%s} selected dropdown value with locator {%s} should equal {%s}" +
-                    " (case is ignored)!", actual.getLocatorName(), actual.getLocatorValue(), condition);
             logFail("Element's {" + actual.getLocatorName() + "} selected dropdown value with locator {" +
                     actual.getLocatorValue() + "} should equal {" + condition + "} (case is ignored)!");
+            failWithMessage("Element's {%s} selected dropdown value with locator {%s} should equal {%s}" +
+                    " (case is ignored)!", actual.getLocatorName(), actual.getLocatorValue(), condition);
         } else {
             logPass("Element's {" + actual.getLocatorName() + "} selected dropdown value equals {" +
                     condition + "} (case is ignored)");
@@ -314,8 +314,8 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
 
         if (actual.getElements().size() <= quantity) {
 
-            failWithMessage("Element's {%s} quantity should be more, than {%s} ", actual.getLocatorName(), quantity);
             logFail("Element's {" + actual.getLocatorName() + "} quantity should be more than {" + quantity + "}");
+            failWithMessage("Element's {%s} quantity should be more, than {%s} ", actual.getLocatorName(), quantity);
         } else {
             logPass("Element's {" + actual.getLocatorName() + "} quantity more than {" + quantity + "}");
         }
@@ -326,10 +326,10 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
 
         if (actual.getElements().size() > quantity) {
 
-            failWithMessage("Element's {%s} quantity should be less or equals, than {%s} ",
-                    actual.getLocatorName(), quantity);
             logFail("Element's {" + actual.getLocatorName() + "} quantity should be less or equals" +
                     " than {" + quantity + "}");
+            failWithMessage("Element's {%s} quantity should be less or equals, than {%s} ",
+                    actual.getLocatorName(), quantity);
         } else {
             logPass("Element's {" + actual.getLocatorName() + "} quantity less or equals" +
                     " than {" + quantity + "}");
@@ -340,8 +340,8 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
     public final AbstractElementAssert isQuantityEqualTo(int quantity) {
         if (actual.getElements().size() != quantity) {
 
-            failWithMessage("Element's {%s} quantity should be equal {%s} ", actual.getLocatorName(), quantity);
             logFail("Element's {" + actual.getLocatorName() + "} quantity should be equal {" + quantity + "}");
+            failWithMessage("Element's {%s} quantity should be equal {%s} ", actual.getLocatorName(), quantity);
         } else {
             logPass("Element's {" + actual.getLocatorName() + "} quantity equal {" + quantity + "}");
 
@@ -354,8 +354,8 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
 
         if (Integer.parseInt(actual.getText()) != quantity) {
 
-            failWithMessage("Element's {%s} quantity should be equal {%s} ", actual.getLocatorName(), quantity);
             logFail("Element's {" + actual.getLocatorName() + "} quantity should be equal {" + quantity + "}");
+            failWithMessage("Element's {%s} quantity should be equal {%s} ", actual.getLocatorName(), quantity);
         } else {
             logPass("Element's {" + actual.getLocatorName() + "} quantity equal {" + quantity + "}");
         }
@@ -366,8 +366,8 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
 
         if (Integer.parseInt(actual.getText()) <= quantity) {
 
-            failWithMessage("Element's {%s} quantity should be more, than {%s} ", actual.getLocatorName(), quantity);
             logFail("Element's {" + actual.getLocatorName() + "} quantity should be more, than {" + quantity + "}");
+            failWithMessage("Element's {%s} quantity should be more, than {%s} ", actual.getLocatorName(), quantity);
         } else {
             logPass("Element's {" + actual.getLocatorName() + "} quantity more, than {" + quantity + "}");
         }
@@ -380,8 +380,8 @@ public class AbstractElementAssert extends AbstractAssert<AbstractElementAssert,
 
         if (actual == null) {
 
-            failWithMessage("Element should be not null");
             logFail("Element should be not null");
+            failWithMessage("Element should be not null");
         }
         return this;
     }

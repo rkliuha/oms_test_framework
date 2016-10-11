@@ -1,17 +1,12 @@
 package academy.softserve.edu.tests.customer;
 
 import academy.softserve.edu.enums.Roles;
-import academy.softserve.edu.pageobjects.CustomerOrderingPage;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.Test;
 
 import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
 
 public class DoNotRevertDefaultStateTest extends TestRunner {
-
-    //TODO move inline
-    public static final String SEARCH_ORDERS = "Status";
-    public static final String SEARCH_ORDERS_VALUE = "Ordered";
 
     @Test
     public void testUserInfoButtonsDisplayed() {
@@ -29,37 +24,26 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     @Test
     public void testDoNotRevertDefaultState() {
 
+        final String searchOrders = "Status";
+        final String searchOrdersValue = "Ordered";
+
         userInfoPage = logInPage
                 .logInAs(Roles.CUSTOMER);
 
-        userInfoPage.getCustomerOrderingLink()
-                .click();
+        customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
 
-        customerOrderingPage = new CustomerOrderingPage(driver);
+        customerOrderingPage.selectSearchDropdown(searchOrders)
+                .fillSearchInput(searchOrdersValue)
+                .clickApplyButton();
 
-        customerOrderingPage
-                .getSearchDropdown()
-                .sendKeys(SEARCH_ORDERS);
+        customerOrderingPage.clickUserInfoTab();
 
-        customerOrderingPage
-                .getSearchInput()
-                .sendKeys(SEARCH_ORDERS_VALUE);
-
-        customerOrderingPage
-                .getApplyButton().click();
-
-        customerOrderingPage
-                .getUserInfoLink()
-                .click();
-
-        userInfoPage
-                .getCustomerOrderingLink()
-                .click();
+        userInfoPage.clickCustomerOrderingTab();
 
         assertThat(customerOrderingPage.getSearchDropdown())
-                .selectedDropdownEquals(SEARCH_ORDERS);
+                .selectedDropdownEquals(searchOrders);
 
         assertThat(customerOrderingPage.getSearchInput())
-                .valueEquals(SEARCH_ORDERS_VALUE);
+                .valueEquals(searchOrdersValue);
     }
 }

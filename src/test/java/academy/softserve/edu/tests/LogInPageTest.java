@@ -10,6 +10,9 @@ import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
 
 public class LogInPageTest extends TestRunner {
 
+    private final String name = PropertiesReader.getDefaultProperty("customer.login");
+    private final String password = PropertiesReader.getDefaultProperty("customer.password");
+
     @Test
     public final void testLoginInputsAreEmpty() {
 
@@ -20,27 +23,21 @@ public class LogInPageTest extends TestRunner {
                 .isValueEmpty();
     }
 
-    // To check is it possible to input different symbols in to the inputName field.
+    // To check is it possible to input different symbols in to the fillUserNameInput field.
     @Test
-    //TODO rename
-    public final void testInputText() {
+    public final void testInputTextExist() {
 
-        logInPage
-                .getUserNameInput()
-                .sendKeys("Asa23@(?|};6756%");
+        logInPage.fillUserNameInput("Asa23@(?|};6756%");
 
         assertThat(logInPage.getUserNameInput())
                 .isValueNotEmpty();
     }
 
     // To check is it possible to input password data, and characters must be converted in to the asterisk
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
-    //TODO remove unused params
-    public final void testInputsCanTakeSymbols(final String name, final String password) {
+    @Test
+    public final void testInputsCanTakeSymbols() {
 
-        logInPage
-                .getPasswordInput()
-                .sendKeys(password);
+        logInPage.fillPasswordInput(password);
 
         assertThat(logInPage.getPasswordInput())
                 .textNotEqual(password);
@@ -48,8 +45,7 @@ public class LogInPageTest extends TestRunner {
 
     //Try to put in the both fields unregistered data
     @Test
-    //TODO rename
-    public final void testUnregisteredUser() {
+    public final void testLogInButtonExist() {
 
         logInPage
                 .logInAs(Roles.INVALID_USER);
@@ -59,12 +55,11 @@ public class LogInPageTest extends TestRunner {
     }
 
     //Try to Log In with only users field filled
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
-    //TODO remove unused params
-    public final void testInputOnlyName(final String name, final String password) {
+    @Test
+    public final void testInputOnlyName() {
 
         logInPage
-                .inputName(name)
+                .fillUserNameInput(name)
                 .clickLogInButton();
 
         assertThat(logInPage.getLogInButton())
@@ -72,12 +67,11 @@ public class LogInPageTest extends TestRunner {
     }
 
     //Input data at the password field only
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
-    //TODO remove unused params
-    public final void testInputOnlyPassword(final String name, final String password) {
+    @Test
+    public final void testInputOnlyPassword() {
 
         logInPage
-                .inputPassword(password)
+                .fillPasswordInput(password)
                 .clickLogInButton();
 
         assertThat(logInPage.getLogInButton())
@@ -96,14 +90,13 @@ public class LogInPageTest extends TestRunner {
     }
 
     //Check Reset Button
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
-    public final void testClearFields(final String name, final String password) {
+    @Test
+    public final void testClearFields() {
 
         logInPage
-                .inputName(name)
-                .inputPassword(password)
-                .getCancelButton()
-                .click();
+                .fillUserNameInput(name)
+                .fillPasswordInput(password)
+                .clickCancelButton();
 
         assertThat(logInPage.getUserNameInput())
                 .isValueEmpty();
@@ -134,10 +127,10 @@ public class LogInPageTest extends TestRunner {
     public final void testLoginWithNonExistingData() {
 
         logInPage
-                .inputName("Sarumjan")
+                .fillUserNameInput("Sarumjan")
                 .clickLogInButton();
         logInPage
-                .inputPassword("Mordor")
+                .fillPasswordInput("Mordor")
                 .clickLogInButton();
 
         assertThat(logInPage.getLogInButton())
@@ -146,12 +139,11 @@ public class LogInPageTest extends TestRunner {
 
     //Input data in to the Password field, Try to Log In
     //En expected message: «Such user does not exist in the system – please try again.»
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
-    //TODO remove unused params
-    public final void testErrorMessageOnEmptyUsername(final String name, final String password) {
+    @Test
+    public final void testErrorMessageOnEmptyUsername() {
 
         logInPage
-                .inputPassword(password)
+                .fillPasswordInput(password)
                 .clickLogInButton();
 
         assertThat(logInPage.getLogInErrorMessage())
@@ -163,7 +155,7 @@ public class LogInPageTest extends TestRunner {
     @Test
     public final void testErrorMessageOnUnregisteredName() {
 
-        logInPage.inputName("unregistered data")
+        logInPage.fillUserNameInput("unregistered data")
                 .clickLogInButton();
 
         assertThat(logInPage.getLogInErrorMessage())
@@ -172,12 +164,11 @@ public class LogInPageTest extends TestRunner {
 
     //Input data in to the User Field, Try to Log In
     //En expected message: «Password is incorrect – please try again»
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
-    //TODO remove unused params
-    public final void testErrorMessageOnEmptyPasswordField(final String name, final String password) {
+    @Test
+    public final void testErrorMessageOnEmptyPasswordField() {
 
         logInPage
-                .inputName(name)
+                .fillUserNameInput(name)
                 .clickLogInButton();
 
         assertThat(logInPage.getLogInErrorMessage())
@@ -186,12 +177,12 @@ public class LogInPageTest extends TestRunner {
 
     //Input right data in to the User field, input wrong data in to the Password field. Try to log in.
     //En expected message: «Password is incorrect – please try again»
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "testDataForMerchandiser")
-    public final void testErrorMessageOnWrongPassword(String name, String password) {
+    @Test
+    public final void testErrorMessageOnWrongPassword() {
 
         logInPage
-                .inputName(name)
-                .inputPassword("Mordor")
+                .fillUserNameInput(name)
+                .fillPasswordInput("Mordor")
                 .clickLogInButton();
 
         assertThat(logInPage.getLogInErrorMessage())
