@@ -41,8 +41,8 @@ public class AddNewProductTest extends TestRunner {
     @Test
     public final void testAddingProduct() {
 
-        final String testProductName = "productName6";
-        final String testProductDescription = "productDescription6";
+        final String testProductName = "productName7";
+        final String testProductDescription = "productDescription7";
         final String testProductPrice = "6.0";
 
         addProductPage.fillProductNameInput(testProductName)
@@ -73,9 +73,9 @@ public class AddNewProductTest extends TestRunner {
     @Test
     public final void testCancelAddingProduct() {
 
-        final String testProductName = "productName6";
-        final String testProductDescription = "productDescription6";
-        final String testProductPrice = "6.0";
+        final String testProductName = "productName7";
+        final String testProductDescription = "productDescription7";
+        final String testProductPrice = "7";
 
         addProductPage.fillProductNameInput(testProductName)
                 .fillProductDescriptionInput(testProductDescription)

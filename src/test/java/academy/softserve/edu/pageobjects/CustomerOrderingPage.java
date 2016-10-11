@@ -34,6 +34,8 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
 
     private final Element searchResultElements = new Element(driver, SEARCH_RESULT_ELEMENTS);
 
+    private final Element orderNameColumnElements = new Element(driver, ORDER_NAME_COLUMN_ELEMENTS);
+
     public final TextLabel getOrderStatusByNumber(final String orderNumber) {
 
         return new TextLabel(driver, ORDER_STATUS.modify(orderNumber));

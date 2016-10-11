@@ -40,7 +40,7 @@ public class EditAndDeleteOrderTest extends TestRunner {
 
         createNewOrderPage.clickPreferableDeliveryDateChooseLink();
 
-        createNewOrderPage.clickDataLink();
+        createNewOrderPage.clickValidDeliveryDateLink();
 
         createNewOrderPage.selectAssigneeDropdown("login1")
                 .selectCreditCardTypeDropdown("Visa")
@@ -53,6 +53,9 @@ public class EditAndDeleteOrderTest extends TestRunner {
     @Test
     public final void testOrderEdit() {
 
+        customerOrderingPage.fillSearchInput("OrderName" + testOrderNumber)
+                .clickApplyButton();
+
         customerOrderingPage.clickEditLink();
 
         assertThat(createNewOrderPage.getCardInfoText())
@@ -60,11 +63,14 @@ public class EditAndDeleteOrderTest extends TestRunner {
 
         createNewOrderPage.clickOrderingLink();
 
+        customerOrderingPage.fillSearchInput("OrderName" + testOrderNumber)
+                .clickApplyButton();
+
         customerOrderingPage.clickDeleteLink()
                 .acceptAlert();
 
-        assertThat(customerOrderingPage.getOrderRow())
-                .isNotDisplayed();
+        assertThat(DBHandler.getOrderById(Integer.parseInt(testOrderNumber)))
+                .isNull();
     }
 
     @AfterTest

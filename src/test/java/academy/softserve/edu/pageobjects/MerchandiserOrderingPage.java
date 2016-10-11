@@ -21,8 +21,6 @@ public class MerchandiserOrderingPage extends PageObject<MerchandiserOrderingPag
 
     private final Button applyButton = new Button(driver, APPLY_BUTTON);
 
-    private final TextLabel orderNameCell = new TextLabel(driver, ORDER_NAME_CELL.modify("2"));
-
     private final TextLabel statusCell = new TextLabel(driver, STATUS_CELL.modify("2"));
 
     private final Link deleteCellLink = new Link(driver, DELETE_CELL_LINK.modify("2"));
@@ -47,8 +45,6 @@ public class MerchandiserOrderingPage extends PageObject<MerchandiserOrderingPag
 
     private final Link orderNameFirstCellLink = new Link(driver, ORDER_NAME_CELL_VALUE);
 
-    private final Link orderNameSecondCellLink = new Link(driver, ORDER_NAME_CELL.modify("3"));
-
     private final Element orderNameColumnLink = new Element(driver, ORDER_NAME_COLUMN);
 
     private final Element totalPriceColumnLink = new Element(driver, TOTAL_PRICE_COLUMN);
@@ -71,6 +67,11 @@ public class MerchandiserOrderingPage extends PageObject<MerchandiserOrderingPag
 
     public final Link getOrderStatusByNumber(final String statusNumber) {
         return new Link(driver, STATUS_CELL.modify(statusNumber));
+    }
+
+    public final TextLabel getOrderNameByCellId(final String cellId) {
+
+        return new TextLabel(driver, ORDER_NAME_CELL.modify(cellId));
     }
 
     public MerchandiserOrderingPage(final WebDriver driver) {
