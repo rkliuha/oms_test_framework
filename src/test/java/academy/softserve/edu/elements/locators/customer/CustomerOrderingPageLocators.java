@@ -61,7 +61,11 @@ public enum CustomerOrderingPageLocators implements ILocator {
 
     SEARCH_RESULT_ELEMENTS("Search status result",
             LocatorsType.BY_XPATH,
-            "//div[@id='list']/table/tbody/tr");
+            "//div[@id='list']/table/tbody/tr"),
+
+    ORDER_NAME_COLUMN_ELEMENTS("Order Name Column Elements",
+            LocatorsType.BY_XPATH,
+            "//div[@id='list']/table/tbody//td[1]");
 
     protected String elementName;
     protected LocatorsType locatorType;

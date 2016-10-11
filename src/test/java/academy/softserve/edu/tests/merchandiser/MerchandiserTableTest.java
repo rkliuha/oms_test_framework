@@ -41,7 +41,7 @@ public class MerchandiserTableTest extends TestRunner {
     public final void testSortingOrderNameColumn() {
 
         assertThat(merchandiserOrderingPage
-                .getOrderNameSecondCellLink())
+                .getOrderNameByCellId("3"))
                 .isDisplayed();
 
         merchandiserOrderingPage.clickOrderNameHeaderButton();
@@ -59,7 +59,7 @@ public class MerchandiserTableTest extends TestRunner {
     public final void testSortingTotalPriceColumn() {
 
         assertThat(merchandiserOrderingPage
-                .getOrderNameSecondCellLink())
+                .getOrderNameByCellId("3"))
                 .isDisplayed();
 
         merchandiserOrderingPage.clickTotalPriceHeaderButton();
@@ -77,7 +77,7 @@ public class MerchandiserTableTest extends TestRunner {
     public final void testSortingMaxDiscountColumn() {
 
         assertThat(merchandiserOrderingPage
-                .getOrderNameSecondCellLink())
+                .getOrderNameByCellId("3"))
                 .isDisplayed();
 
         merchandiserOrderingPage.clickMaxDiscountHeaderButton();
@@ -95,7 +95,7 @@ public class MerchandiserTableTest extends TestRunner {
     public final void testSortingStatusColumn() {
 
         assertThat(merchandiserOrderingPage
-                .getOrderNameSecondCellLink())
+                .getOrderNameByCellId("3"))
                 .isDisplayed();
 
         merchandiserOrderingPage.clickStatusHeaderButton();
@@ -195,12 +195,12 @@ public class MerchandiserTableTest extends TestRunner {
     public final void testSearchForOrderNameFilter() {
 
         merchandiserOrderingPage.selectSearchDropdown("Order Name")
-                .fillSearchInput("OrderName7")
+                .fillSearchInput("OrderName6")
                 .clickApplyButton();
 
         assertThat(merchandiserOrderingPage
                 .getOrderNameFirstCellLink())
-                .textEquals("OrderName7");
+                .textEquals("OrderName6");
     }
 
 }
