@@ -216,6 +216,12 @@ public class CreateNewOrderPage extends PageObject<CreateNewOrderPage> {
         return this;
     }
 
+    public final CreateNewOrderPage selectOrderNumberTextField(final String cardType) {
+
+        orderNumberTextfield.sendKeys(cardType);
+        return this;
+    }
+
     public final CreateNewOrderPage selectCreditCardTypeDropdown(final String cardType) {
 
         creditCardTypeDropdown.sendKeys(cardType);
