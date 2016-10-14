@@ -28,7 +28,8 @@ public class EditAndDeleteOrderTest extends TestRunner {
 
         addItemPage = createNewOrderPage.clickAddItemButton();
 
-        addItemPage.selectSearchForItemDropdown("Item Name")
+        addItemPage
+                .selectSearchForItemDropdown("Item Name")
                 .fillSearchForItemInput("Baileys")
                 .clickSearchForItemButton()
                 .clickSelectLastAddedItemLink()
@@ -42,7 +43,8 @@ public class EditAndDeleteOrderTest extends TestRunner {
 
         createNewOrderPage.clickValidDeliveryDateLink();
 
-        createNewOrderPage.selectAssigneeDropdown("login1")
+        createNewOrderPage
+                .selectAssigneeDropdown("login1")
                 .selectCreditCardTypeDropdown("Visa")
                 .fillCreditCardNumberTextfield("1111111111111111")
                 .fillCVV2Textfield("666")
@@ -53,17 +55,41 @@ public class EditAndDeleteOrderTest extends TestRunner {
     @Test
     public final void testOrderEdit() {
 
-        customerOrderingPage.fillSearchInput("OrderName" + testOrderNumber)
+        customerOrderingPage
+                .fillSearchInput("OrderName" + testOrderNumber)
                 .clickApplyButton();
 
         customerOrderingPage.clickEditLink();
 
-        assertThat(createNewOrderPage.getCardInfoText())
-                .isDisplayed();
+        createNewOrderPage
+                .fillOrderNumberTextField("8")
+                .selectCreditCardTypeDropdown("MasterCard")
+                .fillCreditCardNumberTextfield("2222222222222222")
+                .fillCVV2Textfield("555")
+                .clickSaveButton();
+
+        final String testOrderNumberCreated = createNewOrderPage
+                .getOrderNumberTextfield()
+                .getValue();
+
+        createNewOrderPage
+                .clickOrderingLink();
+
+        customerOrderingPage
+                .fillSearchInput("OrderName" + testOrderNumberCreated)
+                .clickApplyButton();
+
+        assertThat(DBHandler.getOrderByNumber(Integer.parseInt(testOrderNumberCreated)))
+                .orderNumberEquals(Integer.parseInt(testOrderNumberCreated));
+    }
+
+    @Test
+    public final void testOrderDelete() {
 
         createNewOrderPage.clickOrderingLink();
 
-        customerOrderingPage.fillSearchInput("OrderName" + testOrderNumber)
+        customerOrderingPage
+                .fillSearchInput("OrderName" + testOrderNumber)
                 .clickApplyButton();
 
         customerOrderingPage.clickDeleteLink()
