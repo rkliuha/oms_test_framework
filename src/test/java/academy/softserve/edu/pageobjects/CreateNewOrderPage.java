@@ -216,9 +216,9 @@ public class CreateNewOrderPage extends PageObject<CreateNewOrderPage> {
         return this;
     }
 
-    public final CreateNewOrderPage selectOrderNumberTextField(final String cardType) {
+    public final CreateNewOrderPage fillOrderNumberTextField(final String orderNumber) {
 
-        orderNumberTextfield.sendKeys(cardType);
+        orderNumberTextfield.sendKeys(orderNumber);
         return this;
     }
 

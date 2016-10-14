@@ -62,7 +62,7 @@ public class EditAndDeleteOrderTest extends TestRunner {
         customerOrderingPage.clickEditLink();
 
         createNewOrderPage
-                .selectOrderNumberTextField("8")
+                .fillOrderNumberTextField("8")
                 .selectCreditCardTypeDropdown("MasterCard")
                 .fillCreditCardNumberTextfield("2222222222222222")
                 .fillCVV2Textfield("555")
