@@ -218,8 +218,7 @@ public class TotalsSectionTest extends TestRunner {
         addItemPage.clickSelectLastAddedItemLink()
                 .clickDoneButton();
 
-        createNewOrderPage.getOrderNumber()
-                .sendKeys(orderNumber);
+        createNewOrderPage.fillOrderNumberTextField(orderNumber);
 
         createNewOrderPage.clickPreferableDeliveryDateChooseLink()
                 .clickCalendarMonthForwardButton()

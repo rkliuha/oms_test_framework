@@ -99,7 +99,7 @@ public class SupervisorTableTest extends TestRunner {
 
         itemManagementPage.clickNameHeaderButton();
 
-        boolean isSortedByAscent = SortUtil
+        final boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(itemManagementPage.getNameCellColumn()
                         .getElements());
 
@@ -115,7 +115,7 @@ public class SupervisorTableTest extends TestRunner {
 
         itemManagementPage.clickDescriptionHeaderButton();
 
-        boolean isSortedByAscent = SortUtil
+        final boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(itemManagementPage.getDescriptionCellColumn()
                         .getElements());
 
@@ -131,7 +131,7 @@ public class SupervisorTableTest extends TestRunner {
 
         itemManagementPage.clickPriceHeaderButton();
 
-        boolean isSortedByAscent = SortUtil
+        final boolean isSortedByAscent = SortUtil
                 .isListDoubleSortedByAscent(itemManagementPage.getPriceCellColumn()
                         .getElements());
 
@@ -141,7 +141,7 @@ public class SupervisorTableTest extends TestRunner {
     @Test
     public final void testSupervisorTableNavigation() {
 
-        int quantityOfGridsPages = Integer.parseInt(itemManagementPage.getQuantityOfTablePages()
+        final int quantityOfGridsPages = Integer.parseInt(itemManagementPage.getQuantityOfTablePages()
                 .getText());
 
         assertThat(itemManagementPage.getQuantityOfTablePages())

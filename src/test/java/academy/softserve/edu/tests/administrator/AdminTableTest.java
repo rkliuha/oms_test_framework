@@ -166,7 +166,7 @@ public class AdminTableTest extends TestRunner {
 
         administrationPage.clickFirstNameHeaderButton();
 
-        boolean isSortedByAscent = SortUtil
+        final boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage.getFirstNameColumn()
                         .getElements());
 
@@ -182,7 +182,7 @@ public class AdminTableTest extends TestRunner {
 
         administrationPage.clickLastNameHeaderButton();
 
-        boolean isSortedByAscent = SortUtil
+        final boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage.getLastNameColumn()
                         .getElements());
 
@@ -198,7 +198,7 @@ public class AdminTableTest extends TestRunner {
 
         administrationPage.clickLoginHeaderButton();
 
-        boolean isSortedByAscent = SortUtil
+        final boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage.getLoginColumn()
                         .getElements());
 
@@ -214,7 +214,7 @@ public class AdminTableTest extends TestRunner {
 
         administrationPage.clickRoleHeaderButton();
 
-        boolean isSortedByAscent = SortUtil
+        final boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage.getRoleColumn()
                         .getElements());
 
@@ -230,7 +230,7 @@ public class AdminTableTest extends TestRunner {
 
         administrationPage.clickRegionHeaderButton();
 
-        boolean isSortedByAscent = SortUtil
+        final boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage.getRegionColumn()
                         .getElements());
 
@@ -240,7 +240,7 @@ public class AdminTableTest extends TestRunner {
     @Test
     public final void testAdminTableNavigation() {
 
-        int quantityOfGridsPages = Integer.parseInt(administrationPage.getPageCountText()
+        final int quantityOfGridsPages = Integer.parseInt(administrationPage.getPageCountText()
                 .getText());
 
         assertThat(administrationPage.getPageCountText())

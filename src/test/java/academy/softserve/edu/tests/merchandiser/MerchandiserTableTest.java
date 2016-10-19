@@ -42,7 +42,7 @@ public class MerchandiserTableTest extends TestRunner {
 
         merchandiserOrderingPage.clickOrderNameHeaderButton();
 
-        boolean isSortedByAscent = SortUtil
+        final boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(merchandiserOrderingPage.getOrderNameColumnLink()
                         .getElements());
 
@@ -58,7 +58,7 @@ public class MerchandiserTableTest extends TestRunner {
 
         merchandiserOrderingPage.clickTotalPriceHeaderButton();
 
-        boolean isSortedByDescend = SortUtil
+        final boolean isSortedByDescend = SortUtil
                 .isListDoubleSortedByDescend(merchandiserOrderingPage.getTotalPriceColumnLink()
                         .getElements());
 
@@ -74,7 +74,7 @@ public class MerchandiserTableTest extends TestRunner {
 
         merchandiserOrderingPage.clickMaxDiscountHeaderButton();
 
-        boolean isSortedByDescend = SortUtil
+        final boolean isSortedByDescend = SortUtil
                 .isListDoubleSortedByDescend(merchandiserOrderingPage.getMaxDiscountColumnLink()
                         .getElements());
 
@@ -90,7 +90,7 @@ public class MerchandiserTableTest extends TestRunner {
 
         merchandiserOrderingPage.clickStatusHeaderButton();
 
-        boolean isSortedByAscent = SortUtil
+        final boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(merchandiserOrderingPage.getStatusColumnLink()
                         .getElements());
 
