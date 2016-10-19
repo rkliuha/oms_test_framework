@@ -93,12 +93,9 @@ public class AddNewProductTest extends TestRunner {
         assertThat(itemManagementPage.getRecordsCountText())
                 .textEquals("0");
 
-        assertThat(testProduct)
-                .nameNotEqual(testProductName);
-        assertThat(testProduct)
-                .descriptionNotEqual(testProductDescription);
-        assertThat(testProduct)
-                .priceNotEqual(testProductPrice);
+        assertThat(testProduct).nameNotEqual(testProductName);
+        assertThat(testProduct).descriptionNotEqual(testProductDescription);
+        assertThat(testProduct).priceNotEqual(testProductPrice);
     }
 
     @Test

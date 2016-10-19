@@ -11,8 +11,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     @Test
     public void testUserInfoOrderingButtonCheck() {
 
-        userInfoPage = logInPage
-                .logInAs(Roles.MERCHANDISER);
+        userInfoPage = logInPage.logInAs(Roles.MERCHANDISER);
 
         assertThat(userInfoPage.getUserInfoLink())
                 .isDisplayed();
@@ -27,8 +26,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
         final String searchOrders = "Status";
         final String searchOrdersValue = "Ordered";
 
-        userInfoPage = logInPage
-                .logInAs(Roles.MERCHANDISER);
+        userInfoPage = logInPage.logInAs(Roles.MERCHANDISER);
 
         merchandiserOrderingPage = userInfoPage.clickMerchandiserOrderingTab();
 

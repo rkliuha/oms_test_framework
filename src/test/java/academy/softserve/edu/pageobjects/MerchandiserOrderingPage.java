@@ -10,7 +10,10 @@ import static academy.softserve.edu.elements.locators.userinfo.UserInfoPageLocat
 @Getter
 public class MerchandiserOrderingPage extends PageObject<MerchandiserOrderingPage> {
 
-    // searchByText is unique MerchandiserOrderingPage element
+    /**
+     * searchByText is an unique element on the MerchandiserOrderingPage,
+     * can be used as identification of page;
+     */
     private final TextLabel searchByText = new TextLabel(driver, SEARCH_BY_TEXT);
 
     private final Link userInfoLink = new Link(driver, USER_INFO_LINK);
@@ -62,10 +65,12 @@ public class MerchandiserOrderingPage extends PageObject<MerchandiserOrderingPag
     private final Link showItemsLink = new Link(driver, SHOW_ITEMS_LINK);
 
     public final Link getOrderLinkByNumber(final String editOrderNumber) {
+
         return new Link(driver, EDIT_CELL_LINK.modify(editOrderNumber));
     }
 
     public final Link getOrderStatusByNumber(final String statusNumber) {
+
         return new Link(driver, STATUS_CELL.modify(statusNumber));
     }
 

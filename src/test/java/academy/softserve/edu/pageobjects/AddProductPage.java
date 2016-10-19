@@ -16,7 +16,6 @@ public class AddProductPage extends PageObject<AddProductPage> {
      * okButton is an unique element on the AddProductPage,
      * can be used as identification of page;
      */
-
     private final Button okButton =
             new Button(driver, OK_BUTTON);
     private final Button cancelButton =

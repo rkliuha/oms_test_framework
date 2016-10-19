@@ -35,7 +35,8 @@ public class UserInfoPageTest extends TestRunner {
     public final void testSwitchToEnglish() {
 
         userInfoPage = logInPage.logInAs(Roles.MERCHANDISER);
-        userInfoPage.clickUkrainianButton().clickEnglishButton();
+        userInfoPage.clickUkrainianButton()
+                .clickEnglishButton();
 
         assertThat(userInfoPage.getMerchandiserOrderingLink())
                 .textEquals("Ordering");

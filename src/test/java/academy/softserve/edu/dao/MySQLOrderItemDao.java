@@ -11,14 +11,8 @@ public class MySQLOrderItemDao implements OrderItemDao {
 
     private static final String CREATE_ORDER_ITEM_QUERY = "INSERT INTO OrderItems (Cost," +
             " ItemPrice, Quantity, DimensionRef, OrderRef, ProductRef) VALUES (?, ?, ?, ?, ?, ?);";
-    private static final String GET_ORDER_ITEM_BY_ID_QUERY = "SELECT ID, Cost, ItemPrice, Quantity," +
-            " DimensionRef, OrderRef, ProductRef FROM OrderItems WHERE ID = ?;";
-    private static final String GET_ORDER_ITEM_BY_REFERENCE_QUERY = "SELECT ID, Cost, ItemPrice, Quantity," +
-            " DimensionRef, OrderRef, ProductRef FROM OrderItems WHERE OrderRef = ?;";
     private static final String GET_LAST_ORDER_ITEM_QUERY = "SELECT ID, Cost, ItemPrice, Quantity," +
             " DimensionRef, OrderRef, ProductRef FROM OrderItems ORDER BY ID DESC LIMIT 1;";
-    private static final String UPDATE_ORDER_ITEM_QUERY = "UPDATE OrderItems SET Cost = ?, ItemPrice = ?," +
-            " Quantity = ?, DimensionRef = ?, OrderRef = ?, ProductRef = ? WHERE ID = ?;";
     private static final String DELETE_ORDER_ITEM_BY_ID_QUERY = "DELETE FROM OrderItems WHERE ID = ?;" +
             " ALTER TABLE OrderItems auto_increment=0;";
     private static final String DELETE_ORDER_ITEM_BY_ORDER_REF_QUERY = "DELETE FROM OrderItems WHERE OrderRef = ?;" +
@@ -40,66 +34,16 @@ public class MySQLOrderItemDao implements OrderItemDao {
             preparedStatement.setInt(5, orderItem.getOrderReference());
             preparedStatement.setInt(6, orderItem.getProductReference());
             preparedStatement.execute();
-            final ResultSet resultSet = preparedStatement.getGeneratedKeys();
-            resultSet.next();
 
-            orderItemId = resultSet.getInt(1);
+            final ResultSet resultSet = preparedStatement.getGeneratedKeys();
+
+            while (resultSet.next()) {
+                orderItemId = resultSet.getInt(1);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return orderItemId;
-    }
-
-    @Override
-    public final OrderItem getOrderItemById(final int orderItemId) {
-
-        OrderItem orderItem = null;
-        try (final PreparedStatement preparedStatement =
-                     connection.prepareStatement(GET_ORDER_ITEM_BY_ID_QUERY)) {
-
-            preparedStatement.setInt(1, orderItemId);
-            final ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
-
-            orderItem = OrderItem.newBuilder()
-                    .setId(resultSet.getInt("ID"))
-                    .setCost(resultSet.getDouble("Cost"))
-                    .setItemPrice(resultSet.getDouble("ItemPrice"))
-                    .setQuantity(resultSet.getInt("Quantity"))
-                    .setDimensionReference(resultSet.getInt("DimensionRef"))
-                    .setOrderReference(resultSet.getInt("OrderRef"))
-                    .setProductReference(resultSet.getInt("ProductRef"))
-                    .build();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return orderItem;
-    }
-
-    @Override
-    public final OrderItem getOrderItemByReference(final int orderItemReference) {
-
-        OrderItem orderItem = null;
-        try (final PreparedStatement preparedStatement =
-                     connection.prepareStatement(GET_ORDER_ITEM_BY_REFERENCE_QUERY)) {
-
-            preparedStatement.setInt(1, orderItemReference);
-            final ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
-
-            orderItem = OrderItem.newBuilder()
-                    .setId(resultSet.getInt("ID"))
-                    .setCost(resultSet.getDouble("Cost"))
-                    .setItemPrice(resultSet.getDouble("ItemPrice"))
-                    .setQuantity(resultSet.getInt("Quantity"))
-                    .setDimensionReference(resultSet.getInt("DimensionRef"))
-                    .setOrderReference(resultSet.getInt("OrderRef"))
-                    .setProductReference(resultSet.getInt("ProductRef"))
-                    .build();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return orderItem;
     }
 
     @Override
@@ -110,39 +54,23 @@ public class MySQLOrderItemDao implements OrderItemDao {
                      connection.prepareStatement(GET_LAST_ORDER_ITEM_QUERY)) {
 
             final ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
 
-            orderItem = OrderItem.newBuilder()
-                    .setId(resultSet.getInt("ID"))
-                    .setCost(resultSet.getDouble("Cost"))
-                    .setItemPrice(resultSet.getDouble("ItemPrice"))
-                    .setQuantity(resultSet.getInt("Quantity"))
-                    .setDimensionReference(resultSet.getInt("DimensionRef"))
-                    .setOrderReference(resultSet.getInt("OrderRef"))
-                    .setProductReference(resultSet.getInt("ProductRef"))
-                    .build();
+            while (resultSet.next()) {
+
+                orderItem = OrderItem.newBuilder()
+                        .setId(resultSet.getInt("ID"))
+                        .setCost(resultSet.getDouble("Cost"))
+                        .setItemPrice(resultSet.getDouble("ItemPrice"))
+                        .setQuantity(resultSet.getInt("Quantity"))
+                        .setDimensionReference(resultSet.getInt("DimensionRef"))
+                        .setOrderReference(resultSet.getInt("OrderRef"))
+                        .setProductReference(resultSet.getInt("ProductRef"))
+                        .build();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return orderItem;
-    }
-
-    @Override
-    public final void updateOrderItem(final OrderItem orderItem) {
-
-        try (final PreparedStatement preparedStatement =
-                     connection.prepareStatement(UPDATE_ORDER_ITEM_QUERY)) {
-
-            preparedStatement.setDouble(1, orderItem.getCost());
-            preparedStatement.setDouble(2, orderItem.getItemPrice());
-            preparedStatement.setInt(3, orderItem.getQuantity());
-            preparedStatement.setInt(4, orderItem.getDimensionReference());
-            preparedStatement.setInt(5, orderItem.getOrderReference());
-            preparedStatement.setInt(6, orderItem.getProductReference());
-            preparedStatement.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -170,4 +98,5 @@ public class MySQLOrderItemDao implements OrderItemDao {
             e.printStackTrace();
         }
     }
+
 }

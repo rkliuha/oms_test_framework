@@ -31,6 +31,7 @@ public class TestListener extends TestListenerAdapter {
                 .getScreenshotAs(OutputType.FILE);
 
         try {
+
             FileUtils.copyFile(screenShotFile, new File("test-output//html//screenshots//"
                     + formatter.format(currentDate) + result.getName() + ".png"));
             Logger.logFail("<a target='_top' href='" + "screenshots/"

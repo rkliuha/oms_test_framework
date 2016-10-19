@@ -92,19 +92,6 @@ public final class DBHandler {
         return user;
     }
 
-    public static final void updateUser(final User user) {
-
-        final DaoOmsDomain daoFactory = new MySQLDaoOmsDomain();
-        final UserDao userDao;
-
-        try (final Connection connection = daoFactory.getConnection()) {
-            userDao = daoFactory.getUserDao(connection);
-            userDao.updateUser(user);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     public static final void deleteUser(final int userId) {
 
         final DaoOmsDomain daoFactory = new MySQLDaoOmsDomain();
@@ -221,21 +208,6 @@ public final class DBHandler {
         return order;
     }
 
-    public static final Order getLastOrder() {
-
-        final DaoOmsDomain daoFactory = new MySQLDaoOmsDomain();
-        final OrderDao orderDao;
-        Order order = null;
-
-        try (final Connection connection = daoFactory.getConnection()) {
-            orderDao = daoFactory.getOrderDao(connection);
-            order = orderDao.getLastOrder();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return order;
-    }
-
     public static final void deleteOrderById(final int orderId) {
 
         final DaoOmsDomain daoFactory = new MySQLDaoOmsDomain();
@@ -277,35 +249,6 @@ public final class DBHandler {
         return orderItemId;
     }
 
-    public static final OrderItem getOrderItemById(final int orderItemId) {
-
-        final DaoOmsDomain daoFactory = new MySQLDaoOmsDomain();
-        final OrderItemDao orderItemDao;
-        OrderItem orderItem = null;
-
-        try (final Connection connection = daoFactory.getConnection()) {
-            orderItemDao = daoFactory.getOrderItemDao(connection);
-            orderItem = orderItemDao.getOrderItemById(orderItemId);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return orderItem;
-    }
-
-    public static final OrderItem getOrderItemByReference(final int orderItemReference) {
-
-        final DaoOmsDomain daoFactory = new MySQLDaoOmsDomain();
-        final OrderItemDao orderItemDao;
-        OrderItem orderItem = null;
-        try (final Connection connection = daoFactory.getConnection()) {
-            orderItemDao = daoFactory.getOrderItemDao(connection);
-            orderItem = orderItemDao.getOrderItemByReference(orderItemReference);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return orderItem;
-    }
-
     public static final OrderItem getLastOrderItem() {
 
         final DaoOmsDomain daoFactory = new MySQLDaoOmsDomain();
@@ -319,19 +262,6 @@ public final class DBHandler {
             e.printStackTrace();
         }
         return orderItem;
-    }
-
-    public static final void updateOrderItem(final OrderItem orderItem) {
-
-        final DaoOmsDomain daoFactory = new MySQLDaoOmsDomain();
-        final OrderItemDao orderItemDao;
-
-        try (final Connection connection = daoFactory.getConnection()) {
-            orderItemDao = daoFactory.getOrderItemDao(connection);
-            orderItemDao.updateOrderItem(orderItem);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     public static final void deleteOrderItemById(final int orderItemId) {

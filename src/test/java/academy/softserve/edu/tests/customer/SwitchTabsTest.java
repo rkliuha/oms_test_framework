@@ -11,8 +11,7 @@ public class SwitchTabsTest extends TestRunner {
     @Test
     public void testDefaultUserInfoPage() {
 
-        userInfoPage = logInPage
-                .logInAs(Roles.CUSTOMER);
+        userInfoPage = logInPage.logInAs(Roles.CUSTOMER);
 
         assertThat(userInfoPage.getUserInfoFieldSet())
                 .isDisplayed();
@@ -21,8 +20,7 @@ public class SwitchTabsTest extends TestRunner {
     @Test
     public void testUserInfoButtonCheck() {
 
-        userInfoPage = logInPage
-                .logInAs(Roles.CUSTOMER);
+        userInfoPage = logInPage.logInAs(Roles.CUSTOMER);
 
         assertThat(userInfoPage.getUserInfoLink())
                 .isDisplayed();
@@ -31,8 +29,7 @@ public class SwitchTabsTest extends TestRunner {
     @Test
     public void testOrderingButtonCheck() {
 
-        userInfoPage = logInPage
-                .logInAs(Roles.CUSTOMER);
+        userInfoPage = logInPage.logInAs(Roles.CUSTOMER);
 
         assertThat(userInfoPage.getCustomerOrderingLink())
                 .isDisplayed();
@@ -41,8 +38,7 @@ public class SwitchTabsTest extends TestRunner {
     @Test
     public void testActiveOrderingPage() {
 
-        userInfoPage = logInPage
-                .logInAs(Roles.CUSTOMER);
+        userInfoPage = logInPage.logInAs(Roles.CUSTOMER);
 
         customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
 
@@ -53,8 +49,7 @@ public class SwitchTabsTest extends TestRunner {
     @Test
     public void testSwitchTabsUserOrdering() {
 
-        userInfoPage = logInPage
-                .logInAs(Roles.CUSTOMER);
+        userInfoPage = logInPage.logInAs(Roles.CUSTOMER);
 
         customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
 

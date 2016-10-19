@@ -11,7 +11,10 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
 
     private final Link userInfoLink = new Link(driver, USER_INFO_LINK);
 
-    // createNewOrderLink is an unique CustomerOrderingPage element
+    /**
+     * createNewOrderLink is an unique element on the CustomerOrderingPage,
+     * can be used as identification of page;
+     */
     private final Link createNewOrderLink = new Link(driver, CREATE_NEW_ORDER_LINK);
 
     private final Dropdown searchDropdown = new Dropdown(driver, SEARCH_DROPDOWN);
@@ -93,8 +96,4 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
         return this;
     }
 
-    public final Element getSearchResult(final String statusNumber) {
-
-        return new Element(driver, SEARCH_STATUS_RESULT.modify(statusNumber));
-    }
 }

@@ -25,7 +25,10 @@ public class AdministrationPage extends PageObject<AdministrationPage> {
 
     private final Button searchButton = new Button(driver, SEARCH_BUTTON);
 
-    // foundUsersTextLabel is unique AdministrationPage element
+    /**
+     * foundUsersTextLabel is an unique element on the AdministratorPage,
+     * can be used as identification of page;
+     */
     private final TextLabel foundUsersTextLabel = new TextLabel(driver, FOUND_USERS_TEXT_LABEL);
 
     private final Link deleteFirstUserCellLink = new Link(driver, DELETE_USER_CELL_LINK.modify("1"));

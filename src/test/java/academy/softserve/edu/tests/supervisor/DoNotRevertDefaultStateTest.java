@@ -11,8 +11,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     @Test
     public void testUserInfoItemManagementButtonCheck() {
 
-        userInfoPage = logInPage
-                .logInAs(Roles.SUPERVISOR);
+        userInfoPage = logInPage.logInAs(Roles.SUPERVISOR);
 
         assertThat(userInfoPage.getUserInfoLink())
                 .isDisplayed();
@@ -27,8 +26,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
         final String fieldFilter = "Description";
         final String fieldFilterValue = "Fruits";
 
-        userInfoPage = logInPage
-                .logInAs(Roles.SUPERVISOR);
+        userInfoPage = logInPage.logInAs(Roles.SUPERVISOR);
 
         itemManagementPage = userInfoPage.clickItemManagementTab();
 

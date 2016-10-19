@@ -16,26 +16,11 @@ public class OrderAssert extends AbstractAssert<OrderAssert, Order> {
         return new OrderAssert(actual);
     }
 
-    public final OrderAssert orderEquals(final Order condition) {
-
-        isNotNull();
-
-        if (!condition.equals(actual)) {
-
-            logFail("Order {" + actual + "} \n should equal \n {" + condition + "} !");
-            failWithMessage("Order {%s} \n should equal \n {%s} !",
-                    actual, condition);
-        } else {
-            logPass("Orders are equal");
-        }
-        return this;
-    }
-
     public final OrderAssert orderNumberEquals(final int condition) {
 
         isNotNull();
 
-        if (!(condition == actual.getOrderNumber())) {
+        if (condition != actual.getOrderNumber()) {
 
             logFail("Order {id=" + actual.getId() + "} numbers {" + actual.getOrderNumber() +
                     "} should equal {" + condition + "} !");
@@ -43,37 +28,6 @@ public class OrderAssert extends AbstractAssert<OrderAssert, Order> {
                     actual.getId(), actual.getOrderNumber(), condition);
         } else {
             logPass("Order {id=" + actual.getId() + "} numbers equal {" + condition + "}");
-        }
-        return this;
-    }
-
-    public final OrderAssert orderNotEquals(final Order condition) {
-
-        isNotNull();
-
-        if (condition.equals(actual)) {
-
-            logFail("Order {" + actual + "} \n should not equal \n {" + condition + "} !");
-            failWithMessage("Order {%s} \n should not equal \n {%s} !",
-                    actual, condition);
-        } else {
-            logPass("Orders are not equal");
-        }
-        return this;
-    }
-
-    public final OrderAssert orderNumberNotEquals(final int condition) {
-
-        isNotNull();
-
-        if (condition == actual.getOrderNumber()) {
-
-            logFail("Order {id=" + actual.getId() + "} numbers {" + actual.getOrderNumber() +
-                    "} should not equal {" + condition + "} !");
-            failWithMessage("Order {id=%s} numbers {%s} should not equal {%s} !",
-                    actual.getId(), actual.getOrderNumber(), condition);
-        } else {
-            logPass("Order {id=" + actual.getId() + "} numbers not equal {" + condition + "}");
         }
         return this;
     }

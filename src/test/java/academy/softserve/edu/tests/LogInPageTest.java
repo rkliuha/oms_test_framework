@@ -1,7 +1,6 @@
 package academy.softserve.edu.tests;
 
 import academy.softserve.edu.enums.Roles;
-import academy.softserve.edu.utils.DataProviders;
 import academy.softserve.edu.utils.PropertiesReader;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.Test;
@@ -47,8 +46,7 @@ public class LogInPageTest extends TestRunner {
     @Test
     public final void testLogInButtonExist() {
 
-        logInPage
-                .logInAs(Roles.INVALID_USER);
+        logInPage.logInAs(Roles.INVALID_USER);
 
         assertThat(logInPage.getLogInButton())
                 .isDisplayed();
@@ -58,8 +56,7 @@ public class LogInPageTest extends TestRunner {
     @Test
     public final void testInputOnlyName() {
 
-        logInPage
-                .fillUserNameInput(name)
+        logInPage.fillUserNameInput(name)
                 .clickLogInButton();
 
         assertThat(logInPage.getLogInButton())
@@ -70,8 +67,7 @@ public class LogInPageTest extends TestRunner {
     @Test
     public final void testInputOnlyPassword() {
 
-        logInPage
-                .fillPasswordInput(password)
+        logInPage.fillPasswordInput(password)
                 .clickLogInButton();
 
         assertThat(logInPage.getLogInButton())
@@ -82,8 +78,7 @@ public class LogInPageTest extends TestRunner {
     @Test
     public final void testInputNothing() {
 
-        logInPage
-                .clickLogInButton();
+        logInPage.clickLogInButton();
 
         assertThat(logInPage.getLogInButton())
                 .isDisplayed();
@@ -93,8 +88,7 @@ public class LogInPageTest extends TestRunner {
     @Test
     public final void testClearFields() {
 
-        logInPage
-                .fillUserNameInput(name)
+        logInPage.fillUserNameInput(name)
                 .fillPasswordInput(password)
                 .clickCancelButton();
 
@@ -110,11 +104,10 @@ public class LogInPageTest extends TestRunner {
     @Test
     public final void testRememberUserData() {
 
-        logInPage
-                .clickRememberMeCheckbox()
+        logInPage.clickRememberMeCheckbox()
                 .logInAs(Roles.CUSTOMER);
-        logInPage
-                .doLogOut();
+
+        logInPage.doLogOut();
 
         assertThat(logInPage.getUserNameInput())
                 .valueEquals(PropertiesReader.getDefaultProperty("customer.login"));
@@ -126,11 +119,10 @@ public class LogInPageTest extends TestRunner {
     @Test
     public final void testLoginWithNonExistingData() {
 
-        logInPage
-                .fillUserNameInput("Sarumjan")
+        logInPage.fillUserNameInput("Sarumjan")
                 .clickLogInButton();
-        logInPage
-                .fillPasswordInput("Mordor")
+
+        logInPage.fillPasswordInput("Mordor")
                 .clickLogInButton();
 
         assertThat(logInPage.getLogInButton())
@@ -142,8 +134,7 @@ public class LogInPageTest extends TestRunner {
     @Test
     public final void testErrorMessageOnEmptyUsername() {
 
-        logInPage
-                .fillPasswordInput(password)
+        logInPage.fillPasswordInput(password)
                 .clickLogInButton();
 
         assertThat(logInPage.getLogInErrorMessage())
@@ -167,8 +158,7 @@ public class LogInPageTest extends TestRunner {
     @Test
     public final void testErrorMessageOnEmptyPasswordField() {
 
-        logInPage
-                .fillUserNameInput(name)
+        logInPage.fillUserNameInput(name)
                 .clickLogInButton();
 
         assertThat(logInPage.getLogInErrorMessage())
@@ -180,8 +170,7 @@ public class LogInPageTest extends TestRunner {
     @Test
     public final void testErrorMessageOnWrongPassword() {
 
-        logInPage
-                .fillUserNameInput(name)
+        logInPage.fillUserNameInput(name)
                 .fillPasswordInput("Mordor")
                 .clickLogInButton();
 

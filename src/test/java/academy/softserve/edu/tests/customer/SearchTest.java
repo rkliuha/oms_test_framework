@@ -14,8 +14,7 @@ public class SearchTest extends TestRunner {
         final String dropdownStatus = "Status";
         final String textFieldValueByStatus = "Created";
 
-        userInfoPage = logInPage
-                .logInAs(Roles.CUSTOMER);
+        userInfoPage = logInPage.logInAs(Roles.CUSTOMER);
 
         customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
 
@@ -33,8 +32,7 @@ public class SearchTest extends TestRunner {
         final String dropdownName = "Order Name";
         final String textFieldValueByName = "OrderName3";
 
-        userInfoPage = logInPage
-                .logInAs(Roles.CUSTOMER);
+        userInfoPage = logInPage.logInAs(Roles.CUSTOMER);
 
         customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
 
@@ -49,8 +47,7 @@ public class SearchTest extends TestRunner {
     @Test
     public void testElementsSearch() {
 
-        userInfoPage = logInPage
-                .logInAs(Roles.CUSTOMER);
+        userInfoPage = logInPage.logInAs(Roles.CUSTOMER);
 
         customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
 

@@ -1,7 +1,6 @@
 package academy.softserve.edu.utils;
 
 import academy.softserve.edu.enums.Roles;
-import academy.softserve.edu.pageobjects.CustomerOrderingPage;
 import org.testng.annotations.DataProvider;
 
 import java.io.IOException;
@@ -12,25 +11,26 @@ public class DataProviders {
 
     @DataProvider
     static public Object[][] testDataForAllUsersRole() {
-        return new Object[][]{{Roles.ADMINISTRATOR}, {Roles.MERCHANDISER}, {Roles.SUPERVISOR}, {Roles.CUSTOMER}};
+        return new Object[][]{
+                {Roles.ADMINISTRATOR},
+                {Roles.MERCHANDISER},
+                {Roles.SUPERVISOR},
+                {Roles.CUSTOMER}};
     }
 
     @DataProvider
     static final public Object[][] excelLogInDataForAllUsersRole() throws IOException {
-        return ExcelReader
-                .getArrayFromExcel(EXCEL_FILE, "sheet1");
+        return ExcelReader.getArrayFromExcel(EXCEL_FILE, "sheet1");
     }
 
     @DataProvider
     static final public Object[][] oneColumnOfExcelLoginData() throws IOException {
-        return ExcelReader
-                .getColumnByName(EXCEL_FILE, "password", "sheet1");
+        return ExcelReader.getColumnByName(EXCEL_FILE, "password", "sheet1");
     }
 
     @DataProvider
     static final public Object[][] oneColumnFromDefaultExcelFile() throws IOException {
-        return ExcelReader
-                .getColumnByName("password", "sheet1");
+        return ExcelReader.getColumnByName("password", "sheet1");
     }
 
 

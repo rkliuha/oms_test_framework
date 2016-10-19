@@ -8,8 +8,7 @@ import org.openqa.selenium.WebDriver;
 @Getter
 public class SupervisorReportPage extends PageObject<SupervisorReportPage> {
 
-    private final TextLabel reportPageExists =
-            new TextLabel(driver, SupervisorReportPageLocators.REPORT_PAGE_EXISTS);
+    private final TextLabel reportPageExists = new TextLabel(driver, SupervisorReportPageLocators.REPORT_PAGE_EXISTS);
 
     public SupervisorReportPage(final WebDriver driver) {
         super(driver);

@@ -15,8 +15,6 @@ public interface UserDao {
 
     User getLastUser();
 
-    void updateUser(final User user);
-
     void deleteUser(final int userId);
 
 }

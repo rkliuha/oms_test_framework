@@ -116,12 +116,14 @@ public class TotalsSectionTest extends TestRunner {
         createNewOrderPage.clickCalendarMonthForwardButton()
                 .clickCalendarTuesdayElement();
 
-        final String preferableDate = createNewOrderPage.getPreferableDeliveryDateField().getValue();
+        final String preferableDate = createNewOrderPage.getPreferableDeliveryDateField()
+                .getValue();
 
         createNewOrderPage.selectAssigneeDropdown(DBHandler.getUserByRole(Roles.MERCHANDISER).getLogin())
                 .clickSaveButton();
 
-        orderItem = DBHandler.getLastOrderItem().getId();
+        orderItem = DBHandler.getLastOrderItem()
+                .getId();
 
         assertThat(createNewOrderPage.getOrderNumber())
                 .valueEquals(orderNumber);
@@ -140,8 +142,8 @@ public class TotalsSectionTest extends TestRunner {
 
         final Order testOrder = DBHandler.getOrderByNumber(Integer.parseInt(orderNumber));
 
-        assertThat(testOrder)
-                .statusNameEquals(DBHandler.getOrderByNumber(Integer.parseInt(orderNumber)).getOrderStatusName());
+        assertThat(testOrder).statusNameEquals(DBHandler.getOrderByNumber(Integer.parseInt(orderNumber))
+                .getOrderStatusName());
     }
 
     //  Test error messages if some parameter incorrect

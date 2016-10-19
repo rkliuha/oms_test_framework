@@ -15,6 +15,7 @@ public abstract class AbstractElement<T> {
     final protected Wait wait;
 
     AbstractElement(final WebDriver driver, final ILocator locator) {
+
         this.driver = driver;
         this.locator = locator;
         wait = new Wait(driver, locator);
@@ -29,22 +30,18 @@ public abstract class AbstractElement<T> {
     }
 
     final public WebElement getElement() {
-
         return wait.waitUntilElementIsPresent();
     }
 
     final public boolean isDisplayed() {
-
         return wait.waitUntilElementIsPresent().isDisplayed();
     }
 
     final public boolean isEnabled() {
-
         return wait.waitUntilElementIsPresent().isEnabled();
     }
 
     final public String getText() {
-
         return wait.waitUntilElementIsPresent().getText();
     }
 
@@ -55,27 +52,11 @@ public abstract class AbstractElement<T> {
     }
 
     final public String getId() {
-
         return wait.waitUntilElementIsPresent().getAttribute("id");
     }
 
-    final public String getNameAttribute() {
-
-        return wait.waitUntilElementIsPresent().getAttribute("name");
-    }
-
     final public String getValue() {
-
         return wait.waitUntilElementIsPresent().getAttribute("value");
     }
 
-    final public String getCssValue(final String value) {
-
-        return wait.waitUntilElementIsPresent().getCssValue(value);
-    }
-
-    final public String getType() {
-
-        return wait.waitUntilElementIsPresent().getAttribute("type");
-    }
 }

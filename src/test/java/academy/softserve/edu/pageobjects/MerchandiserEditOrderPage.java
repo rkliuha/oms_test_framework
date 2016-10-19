@@ -11,10 +11,15 @@ import static academy.softserve.edu.elements.locators.userinfo.UserInfoPageLocat
 public class MerchandiserEditOrderPage extends PageObject<MerchandiserEditOrderPage> {
 
     private final Link userInfoLink = new Link(driver, USER_INFO_LINK);
+
     private final Dropdown orderStatusDropdown = new Dropdown(driver, ORDER_STATUS_DROPDOWN);
+
     private final Link showItems = new Link(driver, SHOW_ITEMS_LINK);
+
     private final Button saveButton = new Button(driver, SAVE_BUTTON);
+
     private final Link chooseDateLink = new Link(driver, CHOOSE_DATE_LINK);
+
     private final Link lastDateLink = new Link(driver, LAST_DAY_LINK);
 
 
@@ -22,27 +27,32 @@ public class MerchandiserEditOrderPage extends PageObject<MerchandiserEditOrderP
         super(driver);
     }
 
-    public final MerchandiserEditOrderPage changeOrderStatusTo(final String status){
+    public final MerchandiserEditOrderPage changeOrderStatusTo(final String status) {
+
         orderStatusDropdown.selectByValue(status);
         return this;
     }
 
-    public final MerchandiserOrderingPage clickSaveButton(){
+    public final MerchandiserOrderingPage clickSaveButton() {
+
         saveButton.click();
         return new MerchandiserOrderingPage(driver);
     }
 
-    public final MerchandiserEditOrderPage clickShowItemsLink(){
+    public final MerchandiserEditOrderPage clickShowItemsLink() {
+
         showItems.click();
         return this;
     }
 
-    public final MerchandiserEditOrderPage clickChooseDate(){
+    public final MerchandiserEditOrderPage clickChooseDate() {
+
         chooseDateLink.click();
         return this;
     }
 
-    public final MerchandiserEditOrderPage clickLastDate(){
+    public final MerchandiserEditOrderPage clickLastDate() {
+
         lastDateLink.click();
         return this;
     }

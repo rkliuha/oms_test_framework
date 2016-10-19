@@ -16,6 +16,7 @@ public class CreateReportPage extends PageObject<CreateReportPage> {
     }
 
     public final ReportPage clickSaveReportLink() {
+
         saveReportLink.click();
         return new ReportPage(driver);
     }

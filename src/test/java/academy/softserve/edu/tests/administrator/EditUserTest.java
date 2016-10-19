@@ -85,14 +85,11 @@ public class EditUserTest extends TestRunner {
 
         testUser = DBHandler.getUserById(testUserId);
 
-        assertThat(testUser)
-                .lastNameEquals(NEW_USER_LAST_NAME);
+        assertThat(testUser).lastNameEquals(NEW_USER_LAST_NAME);
 
-        assertThat(testUser)
-                .passwordEquals(NEW_USER_PASSWORD);
+        assertThat(testUser).passwordEquals(NEW_USER_PASSWORD);
 
-        assertThat(testUser)
-                .regionNameEquals(NEW_REGION.toString());
+        assertThat(testUser).regionNameEquals(NEW_REGION.toString());
 
         assertThat(administrationPage.getFoundUsersTextLabel())
                 .isDisplayed();
