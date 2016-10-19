@@ -34,7 +34,7 @@ public class EditUserTest extends TestRunner {
         administrationPage = userInfoPage.clickAdministrationTab()
                 .clickLastUserPaginationButton();
 
-        administrationPage.clickEditUserById(String.valueOf(testUserId));
+        administrationPage.clickEditUserById(testUserId);
 
         editUserPage = new EditUserPage(driver);
     }

@@ -41,7 +41,7 @@ public class MerchandiserTableTest extends TestRunner {
     public final void testSortingOrderNameColumn() {
 
         assertThat(merchandiserOrderingPage
-                .getOrderNameByCellId("3"))
+                .getOrderNameByCellId(3))
                 .isDisplayed();
 
         merchandiserOrderingPage.clickOrderNameHeaderButton();
@@ -59,7 +59,7 @@ public class MerchandiserTableTest extends TestRunner {
     public final void testSortingTotalPriceColumn() {
 
         assertThat(merchandiserOrderingPage
-                .getOrderNameByCellId("3"))
+                .getOrderNameByCellId(3))
                 .isDisplayed();
 
         merchandiserOrderingPage.clickTotalPriceHeaderButton();
@@ -77,7 +77,7 @@ public class MerchandiserTableTest extends TestRunner {
     public final void testSortingMaxDiscountColumn() {
 
         assertThat(merchandiserOrderingPage
-                .getOrderNameByCellId("3"))
+                .getOrderNameByCellId(3))
                 .isDisplayed();
 
         merchandiserOrderingPage.clickMaxDiscountHeaderButton();
@@ -95,7 +95,7 @@ public class MerchandiserTableTest extends TestRunner {
     public final void testSortingStatusColumn() {
 
         assertThat(merchandiserOrderingPage
-                .getOrderNameByCellId("3"))
+                .getOrderNameByCellId(3))
                 .isDisplayed();
 
         merchandiserOrderingPage.clickStatusHeaderButton();

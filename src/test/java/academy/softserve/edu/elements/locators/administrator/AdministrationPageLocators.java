@@ -52,7 +52,7 @@ public enum AdministrationPageLocators implements ILocator {
 
     FIRST_NAME_CELL("First Name Cell",
             LocatorsType.BY_XPATH,
-            "//table[@id='table']/tbody/tr[%s]/td[1]"),
+            "//table[@id='table']/tbody/tr[1]/td[1]"),
 
     LAST_NAME_HEADER_LINK("Last Name Header Link",
             LocatorsType.BY_XPATH,
@@ -60,7 +60,7 @@ public enum AdministrationPageLocators implements ILocator {
 
     LAST_NAME_CELL("Last Name Cell",
             LocatorsType.BY_XPATH,
-            "//table[@id='table']/tbody/tr[%s]/td[2]"),
+            "//table[@id='table']/tbody/tr[1]/td[2]"),
 
     LOGIN_HEADER_LINK("Login Header Link",
             LocatorsType.BY_XPATH,
@@ -76,7 +76,7 @@ public enum AdministrationPageLocators implements ILocator {
 
     ROLE_CELL("Role Cell",
             LocatorsType.BY_XPATH,
-            "//table[@id='table']/tbody/tr[%s]/td[4]"),
+            "//table[@id='table']/tbody/tr[1]/td[4]"),
 
     REGION_HEADER_LINK("Region Header Link",
             LocatorsType.BY_XPATH,
@@ -84,15 +84,15 @@ public enum AdministrationPageLocators implements ILocator {
 
     REGION_CELL("Region Cell",
             LocatorsType.BY_XPATH,
-            "//table[@id='table']/tbody/tr[%s]/td[5]"),
+            "//table[@id='table']/tbody/tr[1]/td[5]"),
 
     EDIT_USER_CELL_LINK("Edit Cell",
             LocatorsType.BY_XPATH,
-            "//table[@id='table']/tbody/tr[%s]/td[6]/a"),
+            "//table[@id='table']/tbody/tr[1]/td[6]/a"),
 
     DELETE_USER_CELL_LINK("Delete Cell",
             LocatorsType.BY_XPATH,
-            "//table[@id='table']/tbody/tr[%s]/td[7]/a"),
+            "//table[@id='table']/tbody/tr[1]/td[7]/a"),
 
     FIRST_NAVIGATION_BUTTON("First Navigation Button",
             LocatorsType.BY_ID,

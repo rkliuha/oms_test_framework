@@ -64,7 +64,7 @@ public class CreateNewOrderPage extends PageObject<CreateNewOrderPage> {
 
     private final TextLabel incorrectCardErrorMessage = new TextLabel(driver, INCORRECT_CARD_ERROR);
 
-    private final TextInputField orderNumberTextfield = new TextInputField(driver, ORDER_NUMBER_FIELD);
+    private final TextInputField orderNumberTextField = new TextInputField(driver, ORDER_NUMBER_FIELD);
 
     private final Element totalsSection = new Element(driver, TOTALS_FIELDSET);
 
@@ -106,19 +106,19 @@ public class CreateNewOrderPage extends PageObject<CreateNewOrderPage> {
 
     private final Element calendarPopupElement = new Element(driver, CALENDAR_POPUP_ELEMENT);
 
-    private final Button calendarMondayElement = new Button(driver, CALENDAR_MONDAY_ELEMENT.modify("3"));
+    private final Button calendarMondayElement = new Button(driver, CALENDAR_MONDAY_ELEMENT);
 
-    private final Button calendarTuesdayElement = new Button(driver, CALENDAR_TUESDAY_ELEMENT.modify("3"));
+    private final Button calendarTuesdayElement = new Button(driver, CALENDAR_TUESDAY_ELEMENT);
 
-    private final Button calendarWednesdayElement = new Button(driver, CALENDAR_WEDNESDAY_ELEMENT.modify("3"));
+    private final Button calendarWednesdayElement = new Button(driver, CALENDAR_WEDNESDAY_ELEMENT);
 
-    private final Button calendarThursdayElement = new Button(driver, CALENDAR_THURSDAY_ELEMENT.modify("3"));
+    private final Button calendarThursdayElement = new Button(driver, CALENDAR_THURSDAY_ELEMENT);
 
-    private final Button calendarFridayElement = new Button(driver, CALENDAR_FRIDAY_ELEMENT.modify("3"));
+    private final Button calendarFridayElement = new Button(driver, CALENDAR_FRIDAY_ELEMENT);
 
-    private final Button calendarSaturdayElement = new Button(driver, CALENDAR_SATURDAY_ELEMENT.modify("3"));
+    private final Button calendarSaturdayElement = new Button(driver, CALENDAR_SATURDAY_ELEMENT);
 
-    private final Button calendarSundayElement = new Button(driver, CALENDAR_SUNDAY_ELEMENT.modify("3"));
+    private final Button calendarSundayElement = new Button(driver, CALENDAR_SUNDAY_ELEMENT);
 
     private final Button calendarYearBackwardButton = new Button(driver, CALENDAR_YEAR_BACKWARD_BUTTON);
 
@@ -218,7 +218,7 @@ public class CreateNewOrderPage extends PageObject<CreateNewOrderPage> {
 
     public final CreateNewOrderPage fillOrderNumberTextField(final String orderNumber) {
 
-        orderNumberTextfield.sendKeys(orderNumber);
+        orderNumberTextField.sendKeys(orderNumber);
         return this;
     }
 

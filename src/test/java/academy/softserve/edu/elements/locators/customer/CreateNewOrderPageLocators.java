@@ -216,31 +216,31 @@ public enum CreateNewOrderPageLocators implements ILocator {
 
     CALENDAR_MONDAY_ELEMENT("Calendar monday element",
             LocatorsType.BY_XPATH,
-            "//div[@id='dp-popup']//tr[1]/td[%s]"),
+            "//div[@id='dp-popup']//tr[1]/td[3]"),
 
     CALENDAR_TUESDAY_ELEMENT("Calendar tuesday element",
             LocatorsType.BY_XPATH,
-            "//div[@id='dp-popup']//tr[2]/td[%s]"),
+            "//div[@id='dp-popup']//tr[2]/td[3]"),
 
     CALENDAR_WEDNESDAY_ELEMENT("Calendar wednesday element",
             LocatorsType.BY_XPATH,
-            "//div[@id='dp-popup']//tr[3]/td[%s]"),
+            "//div[@id='dp-popup']//tr[3]/td[3]"),
 
     CALENDAR_THURSDAY_ELEMENT("Calendar thursday element",
             LocatorsType.BY_XPATH,
-            "//div[@id='dp-popup']//tr[4]/td[%s]"),
+            "//div[@id='dp-popup']//tr[4]/td[3]"),
 
     CALENDAR_FRIDAY_ELEMENT("Calendar friday element",
             LocatorsType.BY_XPATH,
-            "//div[@id='dp-popup']//tr[5]/td[%s]"),
+            "//div[@id='dp-popup']//tr[5]/td[3]"),
 
     CALENDAR_SATURDAY_ELEMENT("Calendar saturday element",
             LocatorsType.BY_XPATH,
-            "//div[@id='dp-popup']//tr[6]/td[%s]"),
+            "//div[@id='dp-popup']//tr[6]/td[3]"),
 
     CALENDAR_SUNDAY_ELEMENT("Calendar sunday element",
             LocatorsType.BY_XPATH,
-            "//div[@id='dp-popup']//tr[7]/td[%s]"),
+            "//div[@id='dp-popup']//tr[7]/td[3]"),
 
     CALENDAR_YEAR_BACKWARD_BUTTON("Calendar Year Backward Button",
             LocatorsType.BY_XPATH,

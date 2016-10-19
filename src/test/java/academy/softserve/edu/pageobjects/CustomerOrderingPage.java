@@ -36,9 +36,9 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
 
     private final Element orderNameColumnElements = new Element(driver, ORDER_NAME_COLUMN_ELEMENTS);
 
-    public final TextLabel getOrderStatusByNumber(final String orderNumber) {
+    public final TextLabel getOrderStatusByNumber(final int orderNumber) {
 
-        return new TextLabel(driver, ORDER_STATUS.modify(orderNumber));
+        return new TextLabel(driver, ORDER_STATUS.modify(String.valueOf(orderNumber)));
     }
 
     public CustomerOrderingPage(WebDriver driver) {
@@ -91,10 +91,5 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
 
         searchInput.sendKeys(searchText);
         return this;
-    }
-
-    public final Element getSearchResult(final String statusNumber) {
-
-        return new Element(driver, SEARCH_STATUS_RESULT.modify(statusNumber));
     }
 }

@@ -32,10 +32,10 @@ public class ItemManagementPage extends PageObject<ItemManagementPage> {
 
     private final Link deleteProductLink = new Link(driver, DELETE_PRODUCT_LINK);
 
-    private final Link firstProductNameCellLink = new Link(driver, NAME_PRODUCT_CELL_LINK.modify("1"));
-    private final Link firstDescriptionProductCellLink = new Link(driver, DESCRIPTION_CELL_LINK.modify("1"));
-    private final Link editFirstProductCellLink = new Link(driver, EDIT_PRODUCT_CELL_LINK.modify("1"));
-    private final Link deleteFirstProductCellLink = new Link(driver, DELETE_PRODUCT_CELL_LINK.modify("1"));
+    private final Link firstProductNameCellLink = new Link(driver, NAME_PRODUCT_CELL_LINK);
+    private final Link firstDescriptionProductCellLink = new Link(driver, DESCRIPTION_CELL_LINK);
+    private final Link editFirstProductCellLink = new Link(driver, EDIT_PRODUCT_CELL_LINK);
+    private final Link deleteFirstProductCellLink = new Link(driver, DELETE_PRODUCT_CELL_LINK);
     private final Button resizeProductsListButton = new Button(driver, RESIZE_PRODUCTS_LIST_LINK);
     private final Link quantityOfTablePages = new Link(driver, PAGE_COUNT_TEXT);
     private final Link numberOfTablePage = new Link(driver, PAGE_NUMBER_TEXT);
@@ -52,14 +52,14 @@ public class ItemManagementPage extends PageObject<ItemManagementPage> {
     private final Button firstNavigationButton = new Button(driver, FIRST_NAVIGATION_BUTTON);
 
 
-    public final Link getEditProductLinkById(final String productId) {
+    public final Link getEditProductLinkById(final int productId) {
 
-        return new Link(driver, EDIT_PRODUCT_LINK.modify(productId));
+        return new Link(driver, EDIT_PRODUCT_LINK.modify(String.valueOf(productId)));
     }
 
-    public final Link getDeleteProductLinkById(final String productId) {
+    public final Link getDeleteProductLinkById(final int productId) {
 
-        return new Link(driver, DELETE_PRODUCT_LINK.modify(productId));
+        return new Link(driver, DELETE_PRODUCT_LINK.modify(String.valueOf(productId)));
     }
 
     public ItemManagementPage(final WebDriver driver) {
@@ -79,13 +79,13 @@ public class ItemManagementPage extends PageObject<ItemManagementPage> {
         return new SupervisorCreateReportPage(driver);
     }
 
-    public final EditProductPage clickEditProductLinkById(final String productId) {
+    public final EditProductPage clickEditProductLinkById(final int productId) {
 
         getEditProductLinkById(productId).click();
         return new EditProductPage(driver);
     }
 
-    public final ItemManagementPage clickDeleteProductLinkById(final String productId) {
+    public final ItemManagementPage clickDeleteProductLinkById(final int productId) {
 
         getDeleteProductLinkById(productId).click();
         return this;
