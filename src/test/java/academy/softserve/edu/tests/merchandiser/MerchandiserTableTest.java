@@ -13,7 +13,8 @@ public class MerchandiserTableTest extends TestRunner {
     @BeforeMethod
     public final void setMerchandiserTableTest() {
 
-        userInfoPage = logInPage.logInAs(Roles.MERCHANDISER);;
+        userInfoPage = logInPage.logInAs(Roles.MERCHANDISER);
+        ;
 
         // after if logIn failure;
         assertThat(userInfoPage
@@ -28,7 +29,7 @@ public class MerchandiserTableTest extends TestRunner {
     final public void testMerchandiserTableIsEnable() {
 
         assertThat(merchandiserOrderingPage
-                .getEditCellLink())
+                .getOrderLinkByNumber(2))
                 .isDisplayed();
 
         assertThat(merchandiserOrderingPage
@@ -186,7 +187,7 @@ public class MerchandiserTableTest extends TestRunner {
                 .clickApplyButton();
 
         assertThat(merchandiserOrderingPage
-                .getStatusCell())
+                .getOrderStatusByNumber(2))
                 .textEquals("Created");
     }
 

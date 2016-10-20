@@ -21,11 +21,7 @@ public class MerchandiserOrderingPage extends PageObject<MerchandiserOrderingPag
 
     private final Button applyButton = new Button(driver, APPLY_BUTTON);
 
-    private final TextLabel statusCell = new TextLabel(driver, STATUS_CELL.modify("2"));
-
-    private final Link deleteCellLink = new Link(driver, DELETE_CELL_LINK.modify("2"));
-
-    private final Link editCellLink = new Link(driver, EDIT_CELL_LINK.modify("2"));
+    private final Link deleteCellLink = new Link(driver, DELETE_CELL_LINK);
 
     private final Button orderNameHeaderButton = new Button(driver, ORDER_NAME_HEADER_LINK);
 
