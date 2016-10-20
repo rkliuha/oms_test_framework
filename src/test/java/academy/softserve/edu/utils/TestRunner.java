@@ -35,7 +35,7 @@ public class TestRunner {
 
     @Parameters({"browser", "version"})
     @BeforeMethod
-    public final void setUp(@Optional("firefox") final String browser, @Optional("46") final String version) throws MalformedURLException {
+    public final void setUp(@Optional("default") final String browser, @Optional("46") final String version) throws MalformedURLException {
 
         final String logInPageUrl = PropertiesReader.getDefaultProperty("login.url");
 

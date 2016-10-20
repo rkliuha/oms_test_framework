@@ -43,7 +43,7 @@ public class WebDriverFactory {
 
         if (!isRemote) {
 
-            if ("firefox".equals(browser)) {
+            if ("default".equals(browser)) {
 
                 switch (propertyBrowserTypeEnum) {
 
