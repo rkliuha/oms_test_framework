@@ -28,9 +28,7 @@ public class AdministrationPage extends PageObject<AdministrationPage> {
     // foundUsersTextLabel is unique AdministrationPage element
     private final TextLabel foundUsersTextLabel = new TextLabel(driver, FOUND_USERS_TEXT_LABEL);
 
-    private final Link deleteFirstUserCellLink = new Link(driver, DELETE_USER_CELL_LINK.modify("1"));
-
-    private final Link editLastUserCellLink = new Link(driver, EDIT_USER_CELL_LINK.modify("last()"));
+    private final Link deleteFirstUserCellLink = new Link(driver, DELETE_USER_CELL_LINK);
 
     private final Link createReportLink = new Link(driver, CREATE_REPORT_LINK);
 
@@ -38,9 +36,7 @@ public class AdministrationPage extends PageObject<AdministrationPage> {
 
     private final Link editUserLink = new Link(driver, EDIT_USER_LINK);
 
-    private final Link editFirstUserCellLink = new Link(driver, EDIT_USER_CELL_LINK.modify("1"));
-
-    private final Link loginSecondCellLink = new Link(driver, LOGIN_CELL.modify("2"));
+    private final Link editFirstUserCellLink = new Link(driver, EDIT_USER_CELL_LINK);
 
     private final Button firstNameHeaderButton = new Button(driver, FIRST_NAME_HEADER_LINK);
 
@@ -52,15 +48,13 @@ public class AdministrationPage extends PageObject<AdministrationPage> {
 
     private final Button regionHeaderButton = new Button(driver, REGION_HEADER_LINK);
 
-    private final Link firstNameFirstCellLink = new Link(driver, FIRST_NAME_CELL.modify("1"));
+    private final Link firstNameFirstCellLink = new Link(driver, FIRST_NAME_CELL);
 
-    private final Link lastNameFirstCellLink = new Link(driver, LAST_NAME_CELL.modify("1"));
+    private final Link lastNameFirstCellLink = new Link(driver, LAST_NAME_CELL);
 
-    private final Link loginFirstCellLink = new Link(driver, LOGIN_CELL.modify("1"));
+    private final Link roleFirstCellLink = new Link(driver, ROLE_CELL);
 
-    private final Link roleFirstCellLink = new Link(driver, ROLE_CELL.modify("1"));
-
-    private final Link regionFirstCellLink = new Link(driver, REGION_CELL.modify("1"));
+    private final Link regionFirstCellLink = new Link(driver, REGION_CELL);
 
     private final Link pageCountText = new Link(driver, PAGE_COUNT_TEXT);
 
@@ -88,14 +82,17 @@ public class AdministrationPage extends PageObject<AdministrationPage> {
 
     private final Element regionColumn = new Element(driver, AdministrationPageLocators.REGION_COLUMN);
 
+    public final Link getLogInCellLink(final int statusNumber) {
+        return new Link(driver, LOGIN_CELL.modify(String.valueOf(statusNumber)));
+    }
 
     public AdministrationPage(final WebDriver driver) {
         super(driver);
     }
 
-    public final Link clickEditUserById(final String userId) {
+    public final Link clickEditUserById(final int userId) {
 
-        return new Link(driver, EDIT_USER_LINK.modify(userId))
+        return new Link(driver, EDIT_USER_LINK.modify(String.valueOf(userId)))
                 .click();
     }
 
@@ -193,12 +190,6 @@ public class AdministrationPage extends PageObject<AdministrationPage> {
 
         userInfoLink.click();
         return new UserInfoPage(driver);
-    }
-
-    public final EditUserPage clickEditLastUserLink() {
-
-        editLastUserCellLink.click();
-        return new EditUserPage(driver);
     }
 
     public final AdministrationPage clickLastUserPaginationButton() {

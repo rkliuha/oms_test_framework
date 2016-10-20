@@ -35,7 +35,7 @@ public class TotalsSectionTest extends TestRunner {
         addItemPage.clickSelectLastAddedItemLink()
                 .clickDoneButton();
 
-        orderNumber = createNewOrderPage.getOrderNumberTextfield().getValue();
+        orderNumber = createNewOrderPage.getOrderNumberTextField().getValue();
         //  For comparing with DateOrdering after clicking "Save" with correct parameters
         dateOfOrdering = createNewOrderPage.getStartDateMaestroTextfield().getValue();
     }

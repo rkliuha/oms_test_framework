@@ -34,7 +34,7 @@ public class EditProductTest extends TestRunner {
         itemManagementPage.fillSearchInput(testProduct.getProductName())
                 .clickSearchButton();
 
-        editProductPage = itemManagementPage.clickEditProductLinkById(String.valueOf(testProductId));
+        editProductPage = itemManagementPage.clickEditProductLinkById(testProductId);
     }
 
     @Test

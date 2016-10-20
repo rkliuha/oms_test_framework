@@ -92,19 +92,19 @@ public enum ItemManagementPageLocators implements ILocator {
 
     NAME_PRODUCT_CELL_LINK("Name Cell",
             LocatorsType.BY_XPATH,
-            "//*[@id='table']/tbody/tr[%s]/td[1]"),
+            "//*[@id='table']/tbody/tr[1]/td[1]"),
 
     DESCRIPTION_CELL_LINK("Description Cell",
             LocatorsType.BY_XPATH,
-            "//*[@id='table']/tbody/tr[%s]/td[2]"),
+            "//*[@id='table']/tbody/tr[1]/td[2]"),
 
     DELETE_PRODUCT_CELL_LINK("Delete Cell",
             LocatorsType.BY_XPATH,
-            "//*[@id='table']/tbody/tr[%s]/td[5]/a"),
+            "//*[@id='table']/tbody/tr[1]/td[5]/a"),
 
     EDIT_PRODUCT_CELL_LINK("Edit Cell",
             LocatorsType.BY_XPATH,
-            "//*[@id='table']/tbody/tr[%s]/td[4]/a"),
+            "//*[@id='table']/tbody/tr[1]/td[4]/a"),
 
     NAME_PRODUCT_CELL_COLUMN(" Name Cell Column",
             LocatorsType.BY_XPATH,

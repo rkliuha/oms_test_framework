@@ -13,7 +13,8 @@ public class MerchandiserTableTest extends TestRunner {
     @BeforeMethod
     public final void setMerchandiserTableTest() {
 
-        userInfoPage = logInPage.logInAs(Roles.MERCHANDISER);;
+        userInfoPage = logInPage.logInAs(Roles.MERCHANDISER);
+        ;
 
         // after if logIn failure;
         assertThat(userInfoPage
@@ -28,7 +29,7 @@ public class MerchandiserTableTest extends TestRunner {
     final public void testMerchandiserTableIsEnable() {
 
         assertThat(merchandiserOrderingPage
-                .getEditCellLink())
+                .getOrderLinkByNumber(2))
                 .isDisplayed();
 
         assertThat(merchandiserOrderingPage
@@ -41,7 +42,7 @@ public class MerchandiserTableTest extends TestRunner {
     public final void testSortingOrderNameColumn() {
 
         assertThat(merchandiserOrderingPage
-                .getOrderNameByCellId("3"))
+                .getOrderNameByCellId(3))
                 .isDisplayed();
 
         merchandiserOrderingPage.clickOrderNameHeaderButton();
@@ -59,7 +60,7 @@ public class MerchandiserTableTest extends TestRunner {
     public final void testSortingTotalPriceColumn() {
 
         assertThat(merchandiserOrderingPage
-                .getOrderNameByCellId("3"))
+                .getOrderNameByCellId(3))
                 .isDisplayed();
 
         merchandiserOrderingPage.clickTotalPriceHeaderButton();
@@ -77,7 +78,7 @@ public class MerchandiserTableTest extends TestRunner {
     public final void testSortingMaxDiscountColumn() {
 
         assertThat(merchandiserOrderingPage
-                .getOrderNameByCellId("3"))
+                .getOrderNameByCellId(3))
                 .isDisplayed();
 
         merchandiserOrderingPage.clickMaxDiscountHeaderButton();
@@ -95,7 +96,7 @@ public class MerchandiserTableTest extends TestRunner {
     public final void testSortingStatusColumn() {
 
         assertThat(merchandiserOrderingPage
-                .getOrderNameByCellId("3"))
+                .getOrderNameByCellId(3))
                 .isDisplayed();
 
         merchandiserOrderingPage.clickStatusHeaderButton();
@@ -186,7 +187,7 @@ public class MerchandiserTableTest extends TestRunner {
                 .clickApplyButton();
 
         assertThat(merchandiserOrderingPage
-                .getStatusCell())
+                .getOrderStatusByNumber(2))
                 .textEquals("Created");
     }
 

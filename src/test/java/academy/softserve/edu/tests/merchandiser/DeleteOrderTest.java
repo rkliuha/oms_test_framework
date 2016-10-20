@@ -36,7 +36,7 @@ public class DeleteOrderTest extends TestRunner {
                 .fillSearchInput(testOrder.getOrderName())
                 .clickApplyButton();
 
-        assertThat(merchandiserOrderingPage.getOrderNameByCellId("2"))
+        assertThat(merchandiserOrderingPage.getOrderNameByCellId(2))
                 .textEquals(testOrder.getOrderName());
 
         assertThat(merchandiserOrderingPage.getDeleteCellLink())

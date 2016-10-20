@@ -37,7 +37,7 @@ public class EditOrderTest extends TestRunner {
     public final void testEditFieldsChangingCorrectly() {
 
         merchandiserEditOrderPage = merchandiserOrderingPage
-                .clickEditOrder(merchandiserOrderingPage.getOrderLinkByNumber("8"));
+                .clickEditOrder(merchandiserOrderingPage.getOrderLinkByNumber(8));
 
         merchandiserEditOrderPage
                 .changeOrderStatusTo("Ordered")
@@ -45,7 +45,7 @@ public class EditOrderTest extends TestRunner {
                 .clickLastDate()
                 .clickSaveButton();
 
-        assertThat(merchandiserOrderingPage.getOrderStatusByNumber("8"))
+        assertThat(merchandiserOrderingPage.getOrderStatusByNumber(8))
                 .textEquals("Ordered");
 
         isChangedToStandardValues = true;
@@ -55,7 +55,7 @@ public class EditOrderTest extends TestRunner {
     public final void testShowItemsChanging() {
 
         merchandiserEditOrderPage = merchandiserOrderingPage
-                .clickEditOrder(merchandiserOrderingPage.getOrderLinkByNumber("8"));
+                .clickEditOrder(merchandiserOrderingPage.getOrderLinkByNumber(8));
 
         assertThat(merchandiserEditOrderPage.getShowItems())
                 .isDisplayed();
@@ -85,7 +85,7 @@ public class EditOrderTest extends TestRunner {
         if (isChangedToStandardValues) {
 
             merchandiserEditOrderPage = merchandiserOrderingPage
-                    .clickEditOrder(merchandiserOrderingPage.getOrderLinkByNumber("8"));
+                    .clickEditOrder(merchandiserOrderingPage.getOrderLinkByNumber(8));
 
             merchandiserEditOrderPage
                     .changeOrderStatusTo("Created")
