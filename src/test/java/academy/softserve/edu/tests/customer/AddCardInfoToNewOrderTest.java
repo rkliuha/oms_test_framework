@@ -34,7 +34,8 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
         addItemPage.clickSelectLastAddedItemLink()
                 .clickDoneButton();
 
-        orderNumber = Integer.parseInt(createNewOrderPage.getOrderNumberTextField().getValue());
+        orderNumber = Integer.parseInt(createNewOrderPage.getOrderNumberTextField()
+                .getValue());
 
         createNewOrderPage.clickPreferableDeliveryDateChooseLink()
                 .clickValidDeliveryDateLink()

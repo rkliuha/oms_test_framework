@@ -9,7 +9,6 @@ import org.openqa.selenium.WebDriver;
 
 import static academy.softserve.edu.elements.locators.administrator.AdministrationPageLocators.*;
 
-
 @Getter
 public class AdministrationPage extends PageObject<AdministrationPage> {
 
@@ -25,7 +24,10 @@ public class AdministrationPage extends PageObject<AdministrationPage> {
 
     private final Button searchButton = new Button(driver, SEARCH_BUTTON);
 
-    // foundUsersTextLabel is unique AdministrationPage element
+    /**
+     * foundUsersTextLabel is an unique element on the AdministratorPage,
+     * can be used as identification of page;
+     */
     private final TextLabel foundUsersTextLabel = new TextLabel(driver, FOUND_USERS_TEXT_LABEL);
 
     private final Link deleteFirstUserCellLink = new Link(driver, DELETE_USER_CELL_LINK);
@@ -83,6 +85,7 @@ public class AdministrationPage extends PageObject<AdministrationPage> {
     private final Element regionColumn = new Element(driver, AdministrationPageLocators.REGION_COLUMN);
 
     public final Link getLogInCellLink(final int statusNumber) {
+
         return new Link(driver, LOGIN_CELL.modify(String.valueOf(statusNumber)));
     }
 

@@ -180,4 +180,4 @@ public enum AdministrationPageLocators implements ILocator {
         this.modifiedLocator = String.format(this.locatorValue, parameter);
         return this;
     }
-    }
+}

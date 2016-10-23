@@ -12,8 +12,6 @@ public interface OrderDao {
 
     Order getOrderByNumber(final int orderNumber) throws SQLException;
 
-    Order getLastOrder();
-
     void deleteOrderById(final int orderId);
 
     void deleteOrderByNumber(final int orderNumber);

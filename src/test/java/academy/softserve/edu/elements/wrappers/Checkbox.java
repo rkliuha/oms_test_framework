@@ -17,11 +17,4 @@ public class Checkbox extends AbstractClickableElement<Checkbox> {
         }
     }
 
-    final public void deselect() {
-
-        wait.waitUntilElementIsPresent();
-        if (wait.waitUntilElementIsClickable().isSelected()) {
-            this.click();
-        }
-    }
 }

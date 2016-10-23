@@ -1,14 +1,8 @@
 package academy.softserve.edu.pageobjects;
 
-
 import academy.softserve.edu.elements.wrappers.Button;
 import lombok.Getter;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
-import java.util.LinkedList;
-import java.util.List;
 
 import static academy.softserve.edu.elements.locators.shared.SharedLocators.LOG_OUT_BUTTON;
 
@@ -25,16 +19,9 @@ public abstract class PageObject<T> {
         logOutButton = new Button(driver, LOG_OUT_BUTTON);
     }
 
-    public final WebElement getElement(final By elementLocation) {
-        return driver.findElement(elementLocation);
-    }
-
-    public final List<WebElement> getElements(final By elementLocation) {
-        return driver.findElements(elementLocation);
-    }
-
     public final void clickLogOutButton() {
-        driver.findElement(LOG_OUT_BUTTON.getBy()).click();
+
+        logOutButton.click();
     }
 
     public final LogInPage doLogOut() {
@@ -46,41 +33,23 @@ public abstract class PageObject<T> {
     }
 
     public final void acceptAlert() {
-        driver
-                .switchTo()
+
+        driver.switchTo()
                 .alert()
                 .accept();
     }
 
     public final void dismissAlert() {
-        driver
-                .switchTo()
+
+        driver.switchTo()
                 .alert()
                 .dismiss();
     }
 
-    public final String getCurrentUrl() {
-        return driver
-                .getCurrentUrl();
-    }
-
-    public final String getPageSource() {
-        return driver
-                .getPageSource();
-    }
-
-    public final void navigateBack() {
-        driver
-                .navigate().back();
-    }
-
-    public final void navigateForward() {
-        driver
-                .navigate().forward();
-    }
-
     public final T refreshPage() {
-        driver.navigate().refresh();
+
+        driver.navigate()
+                .refresh();
         return (T) this;
     }
 }

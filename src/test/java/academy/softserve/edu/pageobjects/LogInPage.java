@@ -26,7 +26,10 @@ public class LogInPage extends PageObject<LogInPage> {
 
     private final TextLabel logInErrorMessage = new TextLabel(driver, LOGIN_ERROR_MESSAGE);
 
-    // logInFieldSet is unique LogInPage element
+    /**
+     * logInFieldSet is an unique element on the LogInPage,
+     * can be used as identification of page;
+     */
     private final TextLabel logInFieldSet = new TextLabel(driver, LOGIN_FIELDSET);
 
     public LogInPage(final WebDriver driver) {
@@ -34,9 +37,12 @@ public class LogInPage extends PageObject<LogInPage> {
     }
 
     public final UserInfoPage logInAs(final Roles role) {
+
         String userName;
         String userPassword;
+
         switch (role) {
+
             case ADMINISTRATOR:
             default:
                 userName = PropertiesReader.getDefaultProperty("administrator.login");
@@ -65,14 +71,11 @@ public class LogInPage extends PageObject<LogInPage> {
         return new UserInfoPage(driver);
     }
 
-    public UserInfoPage logInAs(final String login, final String password) {
+    public final UserInfoPage logInAs(final String login, final String password) {
 
-        fillUserNameInput(login);
-
-        fillPasswordInput(password);
-
-        clickLogInButton();
-
+        fillUserNameInput(login)
+                .fillPasswordInput(password)
+                .clickLogInButton();
         return new UserInfoPage(driver);
     }
 
@@ -101,6 +104,7 @@ public class LogInPage extends PageObject<LogInPage> {
     }
 
     public LogInPage clickRememberMeCheckbox() {
+
         rememberMeCheckbox.click();
         return this;
     }

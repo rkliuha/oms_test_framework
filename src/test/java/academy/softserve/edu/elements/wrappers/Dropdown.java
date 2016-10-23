@@ -12,31 +12,10 @@ public class Dropdown extends AbstractClickableElement<Dropdown> {
         super(driver, locator);
     }
 
-    final public Dropdown selectByIndex(final int indexOfElement) {
-
-        wait.waitUntilElementIsPresent();
-        new Select(wait.waitUntilElementIsClickable()).selectByIndex(indexOfElement);
-        return this;
-    }
-
     final public Dropdown selectByValue(final String valueOfElement) {
 
         wait.waitUntilElementIsPresent();
         new Select(wait.waitUntilElementIsClickable()).selectByValue(valueOfElement);
-        return this;
-    }
-
-    final public Dropdown deselectByIndex(final int indexOfElement) {
-
-        wait.waitUntilElementIsPresent();
-        new Select(wait.waitUntilElementIsClickable()).deselectByIndex(indexOfElement);
-        return this;
-    }
-
-    final public Dropdown deselectByValue(final String valueOfElement) {
-
-        wait.waitUntilElementIsPresent();
-        new Select(wait.waitUntilElementIsClickable()).deselectByValue(valueOfElement);
         return this;
     }
 
@@ -46,12 +25,6 @@ public class Dropdown extends AbstractClickableElement<Dropdown> {
         wait.waitUntilElementIsClickable().sendKeys(inputText);
         Logger.logInfo("<font color='black'>Selected by value: " + inputText + " into " + "<b>"
                 + locator.getName() + "</b></font>");
-    }
-
-    final public WebElement getFirstSelectedOption() {
-
-        wait.waitUntilElementIsPresent();
-        return new Select(wait.waitUntilElementIsClickable()).getFirstSelectedOption();
     }
 
 }

@@ -18,9 +18,6 @@ public class MySQLOrderDao implements OrderDao {
     private static final String GET_ORDER_BY_NUMBER_QUERY = "SELECT ID, DeliveryDate, IsGift, MaxDiscount," +
             " OrderDate, OrderName, OrderNumber, PreferableDeliveryDate, TotalPrice, Assigne, Customer," +
             " OrderStatusRef FROM Orders WHERE OrderNumber = ?;";
-    private static final String GET_LAST_ORDER_QUERY = "SELECT ID, DeliveryDate, IsGift, MaxDiscount," +
-            " OrderDate, OrderName, OrderNumber, PreferableDeliveryDate, TotalPrice, Assigne, Customer," +
-            " OrderStatusRef FROM Orders ORDER BY ID DESC LIMIT 1;";
     private static final String DELETE_ORDER_BY_ID_QUERY = "DELETE FROM Orders WHERE ID = ?;" +
             " ALTER TABLE Orders auto_increment=0;";
     private static final String DELETE_ORDER_BY_NUMBER_QUERY = "DELETE FROM Orders WHERE OrderNumber = ?;" +
@@ -47,10 +44,12 @@ public class MySQLOrderDao implements OrderDao {
             preparedStatement.setInt(10, order.getCustomer());
             preparedStatement.setInt(11, order.getOrderStatusReference());
             preparedStatement.execute();
-            final ResultSet resultSet = preparedStatement.getGeneratedKeys();
-            resultSet.next();
 
-            orderId = resultSet.getInt(1);
+            final ResultSet resultSet = preparedStatement.getGeneratedKeys();
+
+            while (resultSet.next()) {
+                orderId = resultSet.getInt(1);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -65,7 +64,9 @@ public class MySQLOrderDao implements OrderDao {
                      connection.prepareStatement(GET_ORDER_BY_ID_QUERY)) {
 
             preparedStatement.setInt(1, orderId);
+
             final ResultSet resultSet = preparedStatement.executeQuery();
+
             while (resultSet.next()) {
 
                 order = Order.newBuilder()
@@ -97,7 +98,9 @@ public class MySQLOrderDao implements OrderDao {
                      connection.prepareStatement(GET_ORDER_BY_NUMBER_QUERY)) {
 
             preparedStatement.setInt(1, orderNumber);
+
             final ResultSet resultSet = preparedStatement.executeQuery();
+
             while (resultSet.next()) {
 
 
@@ -116,36 +119,6 @@ public class MySQLOrderDao implements OrderDao {
                         .setOrderStatusReference(resultSet.getInt("OrderStatusRef"))
                         .build();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return order;
-    }
-
-    @Override
-    public final Order getLastOrder() {
-
-        Order order = null;
-        try (final PreparedStatement preparedStatement =
-                     connection.prepareStatement(GET_LAST_ORDER_QUERY)) {
-
-            final ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
-
-            order = Order.newBuilder()
-                    .setId(resultSet.getInt("ID"))
-                    .setDeliveryDate(resultSet.getString("DeliveryDate"))
-                    .setGift(resultSet.getInt("IsGift"))
-                    .setMaxDiscount(resultSet.getInt("MaxDiscount"))
-                    .setOrderDate(resultSet.getString("OrderDate"))
-                    .setOrderName(resultSet.getString("OrderName"))
-                    .setOrderNumber(resultSet.getInt("OrderNumber"))
-                    .setPreferableDeliveryDate(resultSet.getString("PreferableDeliveryDate"))
-                    .setTotalPrice(resultSet.getDouble("TotalPrice"))
-                    .setAssignee(resultSet.getInt("Assigne"))
-                    .setCustomer(resultSet.getInt("Customer"))
-                    .setOrderStatusReference(resultSet.getInt("OrderStatusRef"))
-                    .build();
         } catch (SQLException e) {
             e.printStackTrace();
         }

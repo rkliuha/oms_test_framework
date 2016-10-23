@@ -3,6 +3,7 @@ package academy.softserve.edu.dao;
 import academy.softserve.edu.dao.interfaces.ProductDao;
 import academy.softserve.edu.domains.Product;
 import lombok.RequiredArgsConstructor;
+
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -35,10 +36,12 @@ public class MySQLProductDao implements ProductDao {
             preparedStatement.setString(3, product.getProductName());
             preparedStatement.setDouble(4, product.getProductPrice());
             preparedStatement.execute();
-            final ResultSet resultSet = preparedStatement.getGeneratedKeys();
-            resultSet.next();
 
-            productId = resultSet.getInt(1);
+            final ResultSet resultSet = preparedStatement.getGeneratedKeys();
+
+            while (resultSet.next()) {
+                productId = resultSet.getInt(1);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -53,15 +56,17 @@ public class MySQLProductDao implements ProductDao {
                      connection.prepareStatement(GET_LAST_PRODUCT_QUERY)) {
 
             final ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
 
-            product = Product.newBuilder()
-                    .setId(resultSet.getInt("ID"))
-                    .setProductActive(resultSet.getInt("IsProductActive"))
-                    .setProductDescription(resultSet.getString("ProductDescription"))
-                    .setProductName(resultSet.getString("ProductName"))
-                    .setProductPrice(resultSet.getDouble("ProductPrice"))
-                    .build();
+            while (resultSet.next()) {
+
+                product = Product.newBuilder()
+                        .setId(resultSet.getInt("ID"))
+                        .setProductActive(resultSet.getInt("IsProductActive"))
+                        .setProductDescription(resultSet.getString("ProductDescription"))
+                        .setProductName(resultSet.getString("ProductName"))
+                        .setProductPrice(resultSet.getDouble("ProductPrice"))
+                        .build();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -76,16 +81,19 @@ public class MySQLProductDao implements ProductDao {
                      connection.prepareStatement(GET_PRODUCT_BY_ID_QUERY)) {
 
             preparedStatement.setInt(1, productId);
-            final ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
 
-            product = Product.newBuilder()
-                    .setId(resultSet.getInt("ID"))
-                    .setProductActive(resultSet.getInt("IsProductActive"))
-                    .setProductDescription(resultSet.getString("ProductDescription"))
-                    .setProductName(resultSet.getString("ProductName"))
-                    .setProductPrice(resultSet.getDouble("ProductPrice"))
-                    .build();
+            final ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+
+                product = Product.newBuilder()
+                        .setId(resultSet.getInt("ID"))
+                        .setProductActive(resultSet.getInt("IsProductActive"))
+                        .setProductDescription(resultSet.getString("ProductDescription"))
+                        .setProductName(resultSet.getString("ProductName"))
+                        .setProductPrice(resultSet.getDouble("ProductPrice"))
+                        .build();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

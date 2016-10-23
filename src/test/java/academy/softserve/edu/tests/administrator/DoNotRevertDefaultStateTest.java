@@ -11,8 +11,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     @Test
     public void testUserInfoAdministrationButtonCheck() {
 
-        userInfoPage = logInPage
-                .logInAs(Roles.ADMINISTRATOR);
+        userInfoPage = logInPage.logInAs(Roles.ADMINISTRATOR);
 
         assertThat(userInfoPage.getUserInfoLink())
                 .isDisplayed();
@@ -28,8 +27,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
         final String ROLE_FILTER = "contains";
         final String TEXT = "A";
 
-        userInfoPage = logInPage
-                .logInAs(Roles.ADMINISTRATOR);
+        userInfoPage = logInPage.logInAs(Roles.ADMINISTRATOR);
 
         administrationPage = userInfoPage.clickAdministrationTab();
 

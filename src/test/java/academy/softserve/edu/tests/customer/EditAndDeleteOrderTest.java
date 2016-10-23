@@ -28,23 +28,20 @@ public class EditAndDeleteOrderTest extends TestRunner {
 
         addItemPage = createNewOrderPage.clickAddItemButton();
 
-        addItemPage
-                .selectSearchForItemDropdown("Item Name")
+        addItemPage.selectSearchForItemDropdown("Item Name")
                 .fillSearchForItemInput("Baileys")
                 .clickSearchForItemButton()
                 .clickSelectLastAddedItemLink()
                 .clickDoneButton();
 
-        testOrderNumber = createNewOrderPage
-                .getOrderNumberTextField()
+        testOrderNumber = createNewOrderPage.getOrderNumberTextField()
                 .getValue();
 
         createNewOrderPage.clickPreferableDeliveryDateChooseLink();
 
         createNewOrderPage.clickValidDeliveryDateLink();
 
-        createNewOrderPage
-                .selectAssigneeDropdown("login1")
+        createNewOrderPage.selectAssigneeDropdown("login1")
                 .selectCreditCardTypeDropdown("Visa")
                 .fillCreditCardNumberTextfield("1111111111111111")
                 .fillCVV2Textfield("666")
@@ -55,28 +52,23 @@ public class EditAndDeleteOrderTest extends TestRunner {
     @Test
     public final void testOrderEdit() {
 
-        customerOrderingPage
-                .fillSearchInput("OrderName" + testOrderNumber)
+        customerOrderingPage.fillSearchInput("OrderName" + testOrderNumber)
                 .clickApplyButton();
 
         customerOrderingPage.clickEditLink();
 
-        createNewOrderPage
-                .fillOrderNumberTextField("8")
+        createNewOrderPage.fillOrderNumberTextField("8")
                 .selectCreditCardTypeDropdown("MasterCard")
                 .fillCreditCardNumberTextfield("2222222222222222")
                 .fillCVV2Textfield("555")
                 .clickSaveButton();
 
-        final String testOrderNumberCreated = createNewOrderPage
-                .getOrderNumberTextField()
+        final String testOrderNumberCreated = createNewOrderPage.getOrderNumberTextField()
                 .getValue();
 
-        createNewOrderPage
-                .clickOrderingLink();
+        createNewOrderPage.clickOrderingLink();
 
-        customerOrderingPage
-                .fillSearchInput("OrderName" + testOrderNumberCreated)
+        customerOrderingPage.fillSearchInput("OrderName" + testOrderNumberCreated)
                 .clickApplyButton();
 
         assertThat(DBHandler.getOrderByNumber(Integer.parseInt(testOrderNumberCreated)))
@@ -88,8 +80,7 @@ public class EditAndDeleteOrderTest extends TestRunner {
 
         createNewOrderPage.clickOrderingLink();
 
-        customerOrderingPage
-                .fillSearchInput("OrderName" + testOrderNumber)
+        customerOrderingPage.fillSearchInput("OrderName" + testOrderNumber)
                 .clickApplyButton();
 
         customerOrderingPage.clickDeleteLink()

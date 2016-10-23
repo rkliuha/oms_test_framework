@@ -154,7 +154,7 @@ public class ProductAssert extends AbstractAssert<ProductAssert, Product> {
 
     public final void isNull() {
 
-        if (!(actual == null)) {
+        if (actual != null) {
 
             failWithMessage("Required product should be null !");
             logFail("Required product should be null !");

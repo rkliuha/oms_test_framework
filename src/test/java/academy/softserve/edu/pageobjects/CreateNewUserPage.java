@@ -16,17 +16,30 @@ public class CreateNewUserPage extends PageObject<CreateNewUserPage> {
         super(driver);
     }
 
-    // pageInfoText is unique CreateNewUserPage element
+    /**
+     * pageInfoText is an unique element on the CreateNewUserPage,
+     * can be used as identification of page;
+     */
     private final TextLabel pageInfoText = new TextLabel(driver, PAGE_INFO_TEXT);
+
     private final TextInputField logInNameInput = new TextInputField(driver, LOGIN_NAME_INPUT);
+
     private final TextInputField firstNameInput = new TextInputField(driver, FIRST_NAME_INPUT);
+
     private final TextInputField lastNameInput = new TextInputField(driver, LAST_NAME_INPUT);
+
     private final TextInputField passwordInput = new TextInputField(driver, PASSWORD_INPUT);
+
     private final TextInputField confirmPasswordInput = new TextInputField(driver, CONFIRM_PASSWORD_INPUT);
+
     private final TextInputField emailInput = new TextInputField(driver, EMAIL_INPUT);
+
     private final Dropdown regionDropdown = new Dropdown(driver, REGION_DROPDOWN);
+
     private final Dropdown roleDropdown = new Dropdown(driver, ROLE_DROPDOWN);
+
     private final Button createButton = new Button(driver, CREATE_BUTTON);
+
     private final Button cancelButton = new Button(driver, CANCEL_BUTTON);
 
     public final CreateNewUserPage fillLogInNameInput(final String login) {

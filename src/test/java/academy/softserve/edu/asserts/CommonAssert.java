@@ -16,7 +16,7 @@ public class CommonAssert extends AbstractAssert<CommonAssert, Boolean> {
         return new CommonAssert(actual);
     }
 
-    public CommonAssert isTrue() {
+    public final CommonAssert isTrue() {
 
         if (!actual) {
 

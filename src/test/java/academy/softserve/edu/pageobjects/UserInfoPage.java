@@ -14,21 +14,34 @@ import static academy.softserve.edu.elements.locators.supervisor.ItemManagementP
 import static academy.softserve.edu.elements.locators.userinfo.UserInfoPageLocators.*;
 
 @Getter
-
 public class UserInfoPage extends PageObject<UserInfoPage> {
 
     private final Link administrationLink = new Link(driver, ADMINISTRATION_LINK);
+
     private final Link itemManagementLink = new Link(driver, ITEM_MANAGEMENT_LINK);
+
     private final Link customerOrderingLink = new Link(driver, CUSTOMER_ORDERING_LINK);
+
     private final Link merchandiserOrderingLink = new Link(driver, MERCHANDISER_ORDERING_LINK);
+
     private final Link ukrainianSwitchLink = new Link(driver, UKRAINIAN_SWITCH_LINK);
+
     private final Link englishSwitchLink = new Link(driver, ENGLISH_SWITCH_LINK);
+
     private final Link userInfoLink = new Link(driver, USER_INFO_LINK);
-    // userInfoFieldSet is unique UserInfoPage element
+
+    /**
+     * userInfoFieldSet is an unique element on the UserInfoPage,
+     * can be used as identification of page;
+     */
     private final TextLabel userInfoFieldSet = new TextLabel(driver, USER_INFO_FIELDSET);
+
     private final TextLabel firstNameValue = new TextLabel(driver, FIRST_NAME_VALUE);
+
     private final TextLabel lastNameValue = new TextLabel(driver, LAST_NAME_VALUE);
+
     private final TextLabel customerTypeValue = new TextLabel(driver, CUSTOMER_TYPE_VALUE);
+
     private final TextLabel roleValue = new TextLabel(driver, ROLE_VALUE);
 
     public UserInfoPage(final WebDriver driver) {
@@ -36,31 +49,37 @@ public class UserInfoPage extends PageObject<UserInfoPage> {
     }
 
     public final AdministrationPage clickAdministrationTab() {
+
         administrationLink.click();
         return new AdministrationPage(driver);
     }
 
     public final CustomerOrderingPage clickCustomerOrderingTab() {
+
         customerOrderingLink.click();
         return new CustomerOrderingPage(driver);
     }
 
     public final ItemManagementPage clickItemManagementTab() {
+
         itemManagementLink.click();
         return new ItemManagementPage(driver);
     }
 
     public final MerchandiserOrderingPage clickMerchandiserOrderingTab() {
+
         merchandiserOrderingLink.click();
         return new MerchandiserOrderingPage(driver);
     }
 
     public UserInfoPage clickUkrainianButton() {
+
         ukrainianSwitchLink.click();
         return this;
     }
 
     public UserInfoPage clickEnglishButton() {
+
         englishSwitchLink.click();
         return this;
     }

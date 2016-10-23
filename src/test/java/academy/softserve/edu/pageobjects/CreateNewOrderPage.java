@@ -8,6 +8,7 @@ import static academy.softserve.edu.elements.locators.customer.CreateNewOrderPag
 
 @Getter
 public class CreateNewOrderPage extends PageObject<CreateNewOrderPage> {
+
     /**
      * CVV2Text is an unique element on the CreateNewOrderPage,
      * can be used as identification of page;
@@ -134,11 +135,11 @@ public class CreateNewOrderPage extends PageObject<CreateNewOrderPage> {
 
     private final Button firstItemDeleteButton = new Button(driver, FIRST_ITEM_DELETE_BUTTON);
 
-    private  final Link dataLink = new Link(driver, DATA_LINK);
+    private final Link dataLink = new Link(driver, DATA_LINK);
 
-    private  final Link orderingLink = new Link(driver, CUSTOMER_ORDERING_LINK);
+    private final Link orderingLink = new Link(driver, CUSTOMER_ORDERING_LINK);
 
-    private  final Link validDeliveryDateLink = new Link(driver, VALID_DELIVERY_DATE_LINK);
+    private final Link validDeliveryDateLink = new Link(driver, VALID_DELIVERY_DATE_LINK);
 
     public CreateNewOrderPage(final WebDriver driver) {
         super(driver);
@@ -166,12 +167,6 @@ public class CreateNewOrderPage extends PageObject<CreateNewOrderPage> {
 
         getAddItemButton().click();
         return new AddItemPage(driver);
-    }
-
-    public final CreateNewOrderPage clickDataLink() {
-
-        dataLink.click();
-        return this;
     }
 
     public final CreateNewOrderPage clickCalendarMonthForwardButton() {
@@ -263,6 +258,5 @@ public class CreateNewOrderPage extends PageObject<CreateNewOrderPage> {
         issueNumberMaestroTextfield.sendKeys(issueNumber);
         return this;
     }
-
 
 }

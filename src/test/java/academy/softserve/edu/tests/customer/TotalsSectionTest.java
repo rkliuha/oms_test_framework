@@ -35,9 +35,11 @@ public class TotalsSectionTest extends TestRunner {
         addItemPage.clickSelectLastAddedItemLink()
                 .clickDoneButton();
 
-        orderNumber = createNewOrderPage.getOrderNumberTextField().getValue();
+        orderNumber = createNewOrderPage.getOrderNumberTextField()
+                .getValue();
         //  For comparing with DateOrdering after clicking "Save" with correct parameters
-        dateOfOrdering = createNewOrderPage.getStartDateMaestroTextfield().getValue();
+        dateOfOrdering = createNewOrderPage.getStartDateMaestroTextfield()
+                .getValue();
     }
 
     //  Test "Totals" section is displayed below the grid on the 'Create new order' page
@@ -116,12 +118,14 @@ public class TotalsSectionTest extends TestRunner {
         createNewOrderPage.clickCalendarMonthForwardButton()
                 .clickCalendarTuesdayElement();
 
-        final String preferableDate = createNewOrderPage.getPreferableDeliveryDateField().getValue();
+        final String preferableDate = createNewOrderPage.getPreferableDeliveryDateField()
+                .getValue();
 
         createNewOrderPage.selectAssigneeDropdown(DBHandler.getUserByRole(Roles.MERCHANDISER).getLogin())
                 .clickSaveButton();
 
-        orderItem = DBHandler.getLastOrderItem().getId();
+        orderItem = DBHandler.getLastOrderItem()
+                .getId();
 
         assertThat(createNewOrderPage.getOrderNumber())
                 .valueEquals(orderNumber);
@@ -140,8 +144,8 @@ public class TotalsSectionTest extends TestRunner {
 
         final Order testOrder = DBHandler.getOrderByNumber(Integer.parseInt(orderNumber));
 
-        assertThat(testOrder)
-                .statusNameEquals(DBHandler.getOrderByNumber(Integer.parseInt(orderNumber)).getOrderStatusName());
+        assertThat(testOrder).statusNameEquals(DBHandler.getOrderByNumber(Integer.parseInt(orderNumber))
+                .getOrderStatusName());
     }
 
     //  Test error messages if some parameter incorrect
@@ -216,8 +220,7 @@ public class TotalsSectionTest extends TestRunner {
         addItemPage.clickSelectLastAddedItemLink()
                 .clickDoneButton();
 
-        createNewOrderPage.getOrderNumber()
-                .sendKeys(orderNumber);
+        createNewOrderPage.fillOrderNumberTextField(orderNumber);
 
         createNewOrderPage.clickPreferableDeliveryDateChooseLink()
                 .clickCalendarMonthForwardButton()

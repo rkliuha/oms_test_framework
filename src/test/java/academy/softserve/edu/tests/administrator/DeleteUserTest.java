@@ -63,8 +63,7 @@ public class DeleteUserTest extends TestRunner {
 
     @AfterTest
     public final void deleteTestUser() {
-        DBHandler.deleteUser(DBHandler
-                .getUserByLogin(testUser.getLogin())
+        DBHandler.deleteUser(DBHandler.getUserByLogin(testUser.getLogin())
                 .getId());
     }
 }

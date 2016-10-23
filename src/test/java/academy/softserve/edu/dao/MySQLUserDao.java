@@ -22,9 +22,6 @@ public class MySQLUserDao implements UserDao {
     private static final String CREATE_USER_QUERY = "INSERT INTO Users (IsUserActive, Balance, Email," +
             " FirstName, LastName, Login, Password, CustomerTypeRef, RegionRef," +
             " RoleRef) VALUES(?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?); ";
-    private static final String UPDATE_USER_QUERY = "UPDATE Users SET IsUserActive = ?, Balance = ?, Email = ?," +
-            " FirstName = ?, LastName = ?, Login = ?, Password = ?, CustomerTypeRef = ?, RegionRef = ?," +
-            " RoleRef = ? WHERE ID = ?;";
     private static final String DELETE_USER_QUERY = "DELETE FROM Users WHERE ID = ?;" +
             " ALTER TABLE Users auto_increment=0;";
     private static final String GET_USER_BY_LOGIN_QUERY = "SELECT ID, IsUserActive, Balance, Email," +
@@ -37,8 +34,8 @@ public class MySQLUserDao implements UserDao {
     public final int createUser(final User user) {
 
         int userId = 0;
-        try (final PreparedStatement preparedStatement = connection.prepareStatement(CREATE_USER_QUERY,
-                Statement.RETURN_GENERATED_KEYS)) {
+        try (final PreparedStatement preparedStatement =
+                     connection.prepareStatement(CREATE_USER_QUERY, Statement.RETURN_GENERATED_KEYS)) {
 
             preparedStatement.setInt(1, user.getUserActive());
             preparedStatement.setInt(2, user.getBalance());
@@ -51,10 +48,12 @@ public class MySQLUserDao implements UserDao {
             preparedStatement.setInt(9, user.getRegionReference());
             preparedStatement.setInt(10, user.getRoleReference());
             preparedStatement.execute();
-            final ResultSet resultSet = preparedStatement.getGeneratedKeys();
-            resultSet.next();
 
-            userId = resultSet.getInt(1);
+            final ResultSet resultSet = preparedStatement.getGeneratedKeys();
+
+            while (resultSet.next()) {
+                userId = resultSet.getInt(1);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -65,24 +64,29 @@ public class MySQLUserDao implements UserDao {
     public final User getUserById(final int userId) {
 
         User user = null;
-        try (final PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_ID_QUERY)) {
-            preparedStatement.setInt(1, userId);
-            final ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
+        try (final PreparedStatement preparedStatement =
+                     connection.prepareStatement(GET_USER_BY_ID_QUERY)) {
 
-            user = User.newBuilder()
-                    .setId(resultSet.getInt("ID"))
-                    .setUserActive(resultSet.getInt("IsUserActive"))
-                    .setBalance(resultSet.getInt("Balance"))
-                    .setEmail(resultSet.getString("Email"))
-                    .setFirstName(resultSet.getString("FirstName"))
-                    .setLastName(resultSet.getString("LastName"))
-                    .setLogin(resultSet.getString("Login"))
-                    .setPassword(resultSet.getString("Password"))
-                    .setCustomerTypeReference(resultSet.getInt("CustomerTypeRef"))
-                    .setRegionReference(resultSet.getInt("RegionRef"))
-                    .setRoleReference(resultSet.getInt("RoleRef"))
-                    .build();
+            preparedStatement.setInt(1, userId);
+
+            final ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+
+                user = User.newBuilder()
+                        .setId(resultSet.getInt("ID"))
+                        .setUserActive(resultSet.getInt("IsUserActive"))
+                        .setBalance(resultSet.getInt("Balance"))
+                        .setEmail(resultSet.getString("Email"))
+                        .setFirstName(resultSet.getString("FirstName"))
+                        .setLastName(resultSet.getString("LastName"))
+                        .setLogin(resultSet.getString("Login"))
+                        .setPassword(resultSet.getString("Password"))
+                        .setCustomerTypeReference(resultSet.getInt("CustomerTypeRef"))
+                        .setRegionReference(resultSet.getInt("RegionRef"))
+                        .setRoleReference(resultSet.getInt("RoleRef"))
+                        .build();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -93,24 +97,29 @@ public class MySQLUserDao implements UserDao {
     public final User getUserByLogin(final String userLogin) {
 
         User user = null;
-        try (final PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_LOGIN_QUERY)) {
-            preparedStatement.setString(1, userLogin);
-            final ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
+        try (final PreparedStatement preparedStatement =
+                     connection.prepareStatement(GET_USER_BY_LOGIN_QUERY)) {
 
-            user = User.newBuilder()
-                    .setId(resultSet.getInt("ID"))
-                    .setUserActive(resultSet.getInt("IsUserActive"))
-                    .setBalance(resultSet.getInt("Balance"))
-                    .setEmail(resultSet.getString("Email"))
-                    .setFirstName(resultSet.getString("FirstName"))
-                    .setLastName(resultSet.getString("LastName"))
-                    .setLogin(resultSet.getString("Login"))
-                    .setPassword(resultSet.getString("Password"))
-                    .setCustomerTypeReference(resultSet.getInt("CustomerTypeRef"))
-                    .setRegionReference(resultSet.getInt("RegionRef"))
-                    .setRoleReference(resultSet.getInt("RoleRef"))
-                    .build();
+            preparedStatement.setString(1, userLogin);
+
+            final ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+
+                user = User.newBuilder()
+                        .setId(resultSet.getInt("ID"))
+                        .setUserActive(resultSet.getInt("IsUserActive"))
+                        .setBalance(resultSet.getInt("Balance"))
+                        .setEmail(resultSet.getString("Email"))
+                        .setFirstName(resultSet.getString("FirstName"))
+                        .setLastName(resultSet.getString("LastName"))
+                        .setLogin(resultSet.getString("Login"))
+                        .setPassword(resultSet.getString("Password"))
+                        .setCustomerTypeReference(resultSet.getInt("CustomerTypeRef"))
+                        .setRegionReference(resultSet.getInt("RegionRef"))
+                        .setRoleReference(resultSet.getInt("RoleRef"))
+                        .build();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -121,24 +130,29 @@ public class MySQLUserDao implements UserDao {
     public final User getUserByRole(final Roles role) {
 
         User user = null;
-        try (final PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_ROLE_QUERY)) {
-            preparedStatement.setInt(1, (role.ordinal() + 1));
-            final ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
+        try (final PreparedStatement preparedStatement =
+                     connection.prepareStatement(GET_USER_BY_ROLE_QUERY)) {
 
-            user = User.newBuilder()
-                    .setId(resultSet.getInt("ID"))
-                    .setUserActive(resultSet.getInt("IsUserActive"))
-                    .setBalance(resultSet.getInt("Balance"))
-                    .setEmail(resultSet.getString("Email"))
-                    .setFirstName(resultSet.getString("FirstName"))
-                    .setLastName(resultSet.getString("LastName"))
-                    .setLogin(resultSet.getString("Login"))
-                    .setPassword(resultSet.getString("Password"))
-                    .setCustomerTypeReference(resultSet.getInt("CustomerTypeRef"))
-                    .setRegionReference(resultSet.getInt("RegionRef"))
-                    .setRoleReference(resultSet.getInt("RoleRef"))
-                    .build();
+            preparedStatement.setInt(1, (role.ordinal() + 1));
+
+            final ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+
+                user = User.newBuilder()
+                        .setId(resultSet.getInt("ID"))
+                        .setUserActive(resultSet.getInt("IsUserActive"))
+                        .setBalance(resultSet.getInt("Balance"))
+                        .setEmail(resultSet.getString("Email"))
+                        .setFirstName(resultSet.getString("FirstName"))
+                        .setLastName(resultSet.getString("LastName"))
+                        .setLogin(resultSet.getString("Login"))
+                        .setPassword(resultSet.getString("Password"))
+                        .setCustomerTypeReference(resultSet.getInt("CustomerTypeRef"))
+                        .setRegionReference(resultSet.getInt("RegionRef"))
+                        .setRoleReference(resultSet.getInt("RoleRef"))
+                        .build();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -149,23 +163,27 @@ public class MySQLUserDao implements UserDao {
     public final User getLastUser() {
 
         User user = null;
-        try (final PreparedStatement preparedStatement = connection.prepareStatement(GET_LAST_USER_QUERY)) {
-            final ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
+        try (final PreparedStatement preparedStatement =
+                     connection.prepareStatement(GET_LAST_USER_QUERY)) {
 
-            user = User.newBuilder()
-                    .setId(resultSet.getInt("ID"))
-                    .setUserActive(resultSet.getInt("IsUserActive"))
-                    .setBalance(resultSet.getInt("Balance"))
-                    .setEmail(resultSet.getString("Email"))
-                    .setFirstName(resultSet.getString("FirstName"))
-                    .setLastName(resultSet.getString("LastName"))
-                    .setLogin(resultSet.getString("Login"))
-                    .setPassword(resultSet.getString("Password"))
-                    .setCustomerTypeReference(resultSet.getInt("CustomerTypeRef"))
-                    .setRegionReference(resultSet.getInt("RegionRef"))
-                    .setRoleReference(resultSet.getInt("RoleRef"))
-                    .build();
+            final ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+
+                user = User.newBuilder()
+                        .setId(resultSet.getInt("ID"))
+                        .setUserActive(resultSet.getInt("IsUserActive"))
+                        .setBalance(resultSet.getInt("Balance"))
+                        .setEmail(resultSet.getString("Email"))
+                        .setFirstName(resultSet.getString("FirstName"))
+                        .setLastName(resultSet.getString("LastName"))
+                        .setLogin(resultSet.getString("Login"))
+                        .setPassword(resultSet.getString("Password"))
+                        .setCustomerTypeReference(resultSet.getInt("CustomerTypeRef"))
+                        .setRegionReference(resultSet.getInt("RegionRef"))
+                        .setRoleReference(resultSet.getInt("RoleRef"))
+                        .build();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -173,30 +191,11 @@ public class MySQLUserDao implements UserDao {
     }
 
     @Override
-    public final void updateUser(final User user) {
-
-        try (final PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_QUERY)) {
-            preparedStatement.setInt(1, user.getUserActive());
-            preparedStatement.setInt(2, user.getBalance());
-            preparedStatement.setString(3, user.getEmail());
-            preparedStatement.setString(4, user.getFirstName());
-            preparedStatement.setString(5, user.getLastName());
-            preparedStatement.setString(6, user.getLogin());
-            preparedStatement.setString(7, user.getPassword());
-            preparedStatement.setInt(8, user.getCustomerTypeReference());
-            preparedStatement.setInt(9, user.getRegionReference());
-            preparedStatement.setInt(10, user.getRoleReference());
-            preparedStatement.setInt(11, user.getId());
-            preparedStatement.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
     public final void deleteUser(final int userId) {
 
-        try (final PreparedStatement preparedStatement = connection.prepareStatement(DELETE_USER_QUERY)) {
+        try (final PreparedStatement preparedStatement =
+                     connection.prepareStatement(DELETE_USER_QUERY)) {
+
             preparedStatement.setInt(1, userId);
             preparedStatement.execute();
         } catch (SQLException e) {

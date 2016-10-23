@@ -15,8 +15,7 @@ public class CreatedUserLogInTest extends TestRunner {
     @Test(priority = 1)
     public void testTabsExist() {
 
-        userInfoPage = logInPage
-                .logInAs(Roles.ADMINISTRATOR);
+        userInfoPage = logInPage.logInAs(Roles.ADMINISTRATOR);
 
         administrationPage = userInfoPage.clickAdministrationTab();
 
@@ -28,8 +27,7 @@ public class CreatedUserLogInTest extends TestRunner {
     @Test(priority = 2)
     public void testCreateUserPageExist() {
 
-        userInfoPage = logInPage
-                .logInAs(Roles.ADMINISTRATOR);
+        userInfoPage = logInPage.logInAs(Roles.ADMINISTRATOR);
 
         administrationPage = userInfoPage.clickAdministrationTab();
 
@@ -49,8 +47,7 @@ public class CreatedUserLogInTest extends TestRunner {
         final String REGION = "north";
         final String ROLE = "customer";
 
-        userInfoPage = logInPage
-                .logInAs(Roles.ADMINISTRATOR);
+        userInfoPage = logInPage.logInAs(Roles.ADMINISTRATOR);
 
         administrationPage = userInfoPage.clickAdministrationTab();
 
@@ -73,16 +70,13 @@ public class CreatedUserLogInTest extends TestRunner {
     @Test(priority = 4)
     public void testCreatedUserLogIn() {
 
-        final String login = DBHandler
-                .getUserByLogin(LOGIN)
+        final String login = DBHandler.getUserByLogin(LOGIN)
                 .getLogin();
 
-        final String password = DBHandler
-                .getUserByLogin(LOGIN)
+        final String password = DBHandler.getUserByLogin(LOGIN)
                 .getPassword();
 
-        userInfoPage = logInPage
-                .logInAs(login, password);
+        userInfoPage = logInPage.logInAs(login, password);
 
         assertThat(userInfoPage.getUserInfoFieldSet())
                 .isDisplayed();
@@ -91,8 +85,7 @@ public class CreatedUserLogInTest extends TestRunner {
     @AfterClass
     public final void deleteTestUser() {
 
-        DBHandler.deleteUser(DBHandler
-                .getUserByLogin(LOGIN)
+        DBHandler.deleteUser(DBHandler.getUserByLogin(LOGIN)
                 .getId());
     }
 }

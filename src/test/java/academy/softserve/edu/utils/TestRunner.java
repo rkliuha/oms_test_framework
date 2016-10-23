@@ -35,24 +35,22 @@ public class TestRunner {
 
     @Parameters({"browser", "version"})
     @BeforeMethod
-    public final void setUp(@Optional("firefox") final String browser, @Optional("46") final String version) throws MalformedURLException {
+    public final void setUp(@Optional("firefox") final String browser,
+                            @Optional("46") final String version) throws MalformedURLException {
 
         final String logInPageUrl = PropertiesReader.getDefaultProperty("login.url");
 
         final WebDriverFactory webDriverFactory = new WebDriverFactory();
 
-        webDriverFactory
-                .setDriver(browser, version);
+        webDriverFactory.setDriver(browser, version);
 
         driver = webDriverFactory.getDriver();
 
-        driver
-                .manage()
+        driver.manage()
                 .window()
                 .maximize();
 
-        driver
-                .get(logInPageUrl);
+        driver.get(logInPageUrl);
 
         logInPage = new LogInPage(driver);
     }
@@ -60,8 +58,7 @@ public class TestRunner {
     @AfterMethod
     public final void tearDown() {
 
-        driver
-                .quit();
+        driver.quit();
     }
 }
 

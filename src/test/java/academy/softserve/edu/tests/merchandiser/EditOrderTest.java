@@ -28,19 +28,17 @@ public class EditOrderTest extends TestRunner {
 
         userInfoPage = logInPage.logInAs(Roles.MERCHANDISER);
 
-        merchandiserOrderingPage = userInfoPage
-                .clickMerchandiserOrderingTab()
+        merchandiserOrderingPage = userInfoPage.clickMerchandiserOrderingTab()
                 .clickShowItems();
     }
 
     @Test
     public final void testEditFieldsChangingCorrectly() {
 
-        merchandiserEditOrderPage = merchandiserOrderingPage
-                .clickEditOrder(merchandiserOrderingPage.getOrderLinkByNumber(8));
+        merchandiserEditOrderPage =
+                merchandiserOrderingPage.clickEditOrder(merchandiserOrderingPage.getOrderLinkByNumber(8));
 
-        merchandiserEditOrderPage
-                .changeOrderStatusTo("Ordered")
+        merchandiserEditOrderPage.changeOrderStatusTo("Ordered")
                 .clickChooseDate()
                 .clickLastDate()
                 .clickSaveButton();
@@ -54,8 +52,8 @@ public class EditOrderTest extends TestRunner {
     @Test
     public final void testShowItemsChanging() {
 
-        merchandiserEditOrderPage = merchandiserOrderingPage
-                .clickEditOrder(merchandiserOrderingPage.getOrderLinkByNumber(8));
+        merchandiserEditOrderPage =
+                merchandiserOrderingPage.clickEditOrder(merchandiserOrderingPage.getOrderLinkByNumber(8));
 
         assertThat(merchandiserEditOrderPage.getShowItems())
                 .isDisplayed();
@@ -67,6 +65,7 @@ public class EditOrderTest extends TestRunner {
                 .textEquals("Show 10 items");
 
         merchandiserEditOrderPage.clickShowItemsLink();
+
         assertThat(merchandiserEditOrderPage.getShowItems())
                 .isDisplayed();
 
@@ -84,11 +83,10 @@ public class EditOrderTest extends TestRunner {
 
         if (isChangedToStandardValues) {
 
-            merchandiserEditOrderPage = merchandiserOrderingPage
-                    .clickEditOrder(merchandiserOrderingPage.getOrderLinkByNumber(8));
+            merchandiserEditOrderPage =
+                    merchandiserOrderingPage.clickEditOrder(merchandiserOrderingPage.getOrderLinkByNumber(8));
 
-            merchandiserEditOrderPage
-                    .changeOrderStatusTo("Created")
+            merchandiserEditOrderPage.changeOrderStatusTo("Created")
                     .clickSaveButton();
         }
     }

@@ -24,7 +24,7 @@ public class DeleteProductTest extends TestRunner {
     }
 
     @Test
-    public final void testDismissAlert(){
+    public final void testDismissAlert() {
 
         userInfoPage = logInPage.logInAs(Roles.SUPERVISOR);
 
@@ -42,7 +42,7 @@ public class DeleteProductTest extends TestRunner {
     }
 
     @Test
-    public final void testDeleteProduct(){
+    public final void testDeleteProduct() {
 
         userInfoPage = logInPage.logInAs(Roles.SUPERVISOR);
 

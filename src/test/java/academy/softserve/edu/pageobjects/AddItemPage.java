@@ -8,6 +8,7 @@ import static academy.softserve.edu.elements.locators.customer.AddItemPageLocato
 
 @Getter
 public class AddItemPage extends PageObject<AddItemPage> {
+
     /**
      * resetButton is an unique element on the AddItemPage,
      * can be used as identification of page;
