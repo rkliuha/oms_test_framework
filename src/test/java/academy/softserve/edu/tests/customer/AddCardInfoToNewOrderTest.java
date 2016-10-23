@@ -39,8 +39,7 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
 
         createNewOrderPage.clickPreferableDeliveryDateChooseLink()
                 .clickValidDeliveryDateLink()
-                .selectAssigneeDropdown(DBHandler.getUserByRole(Roles.MERCHANDISER)
-                        .getLogin());
+                .selectAssigneeDropdown(DBHandler.getUserByRole(Roles.MERCHANDISER).getLogin());
     }
 
     @Test
