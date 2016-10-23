@@ -34,7 +34,7 @@ public class EditAndDeleteOrderTest extends TestRunner {
                 .clickSelectLastAddedItemLink()
                 .clickDoneButton();
 
-        testOrderNumber = createNewOrderPage.getOrderNumberTextfield()
+        testOrderNumber = createNewOrderPage.getOrderNumberTextField()
                 .getValue();
 
         createNewOrderPage.clickPreferableDeliveryDateChooseLink();
@@ -63,7 +63,7 @@ public class EditAndDeleteOrderTest extends TestRunner {
                 .fillCVV2Textfield("555")
                 .clickSaveButton();
 
-        final String testOrderNumberCreated = createNewOrderPage.getOrderNumberTextfield()
+        final String testOrderNumberCreated = createNewOrderPage.getOrderNumberTextField()
                 .getValue();
 
         createNewOrderPage.clickOrderingLink();

@@ -13,9 +13,7 @@ public class AdminTableTest extends TestRunner {
     @BeforeMethod
     public final void setAdminTableTests() {
 
-        logInPage.logInAs(Roles.ADMINISTRATOR);
-
-        userInfoPage = new UserInfoPage(driver);
+        userInfoPage = logInPage.logInAs(Roles.ADMINISTRATOR);
 
         // after if logIn failure;
         assertThat(userInfoPage.getUserInfoFieldSet())
@@ -87,7 +85,7 @@ public class AdminTableTest extends TestRunner {
                 .fillSearchInput(searchingValue)
                 .clickSearchButton();
 
-        assertThat(administrationPage.getLoginFirstCellLink())
+        assertThat(administrationPage.getLogInCellLink(1))
                 .textEquals(comparisonValue);
     }
 
@@ -154,14 +152,15 @@ public class AdminTableTest extends TestRunner {
         assertThat(administrationPage.getLoginColumn())
                 .isQuantityEqualTo(1);
 
-        DBHandler.deleteUser(DBHandler.getLastUser().getId());
+        DBHandler.deleteUser(DBHandler.getLastUser()
+                .getId());
     }
 
     //To check is sorting function is available for First Name column in the Admin Grid.
     @Test
     public final void testSortingFirstNameColumn() {
 
-        assertThat(administrationPage.getLoginSecondCellLink())
+        assertThat(administrationPage.getLogInCellLink(2))
                 .isDisplayed();
 
         administrationPage.clickFirstNameHeaderButton();
@@ -177,7 +176,7 @@ public class AdminTableTest extends TestRunner {
     @Test
     public final void testSortingLastNameColumn() {
 
-        assertThat(administrationPage.getLoginSecondCellLink())
+        assertThat(administrationPage.getLogInCellLink(2))
                 .isDisplayed();
 
         administrationPage.clickLastNameHeaderButton();
@@ -193,7 +192,7 @@ public class AdminTableTest extends TestRunner {
     @Test
     public final void testSortingLoginColumn() {
 
-        assertThat(administrationPage.getLoginSecondCellLink())
+        assertThat(administrationPage.getLogInCellLink(2))
                 .isDisplayed();
 
         administrationPage.clickLoginHeaderButton();
@@ -209,7 +208,7 @@ public class AdminTableTest extends TestRunner {
     @Test
     public final void testSortingRoleColumn() {
 
-        assertThat(administrationPage.getLoginSecondCellLink())
+        assertThat(administrationPage.getLogInCellLink(2))
                 .isDisplayed();
 
         administrationPage.clickRoleHeaderButton();
@@ -225,7 +224,7 @@ public class AdminTableTest extends TestRunner {
     @Test
     public final void testSortingRegionColumn() {
 
-        assertThat(administrationPage.getLoginSecondCellLink())
+        assertThat(administrationPage.getLogInCellLink(2))
                 .isDisplayed();
 
         administrationPage.clickRegionHeaderButton();

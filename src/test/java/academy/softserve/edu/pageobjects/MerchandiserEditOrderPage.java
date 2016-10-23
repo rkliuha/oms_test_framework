@@ -22,7 +22,6 @@ public class MerchandiserEditOrderPage extends PageObject<MerchandiserEditOrderP
 
     private final Link lastDateLink = new Link(driver, LAST_DAY_LINK);
 
-
     public MerchandiserEditOrderPage(final WebDriver driver) {
         super(driver);
     }

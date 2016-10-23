@@ -35,9 +35,11 @@ public class TotalsSectionTest extends TestRunner {
         addItemPage.clickSelectLastAddedItemLink()
                 .clickDoneButton();
 
-        orderNumber = createNewOrderPage.getOrderNumberTextfield().getValue();
+        orderNumber = createNewOrderPage.getOrderNumberTextField()
+                .getValue();
         //  For comparing with DateOrdering after clicking "Save" with correct parameters
-        dateOfOrdering = createNewOrderPage.getStartDateMaestroTextfield().getValue();
+        dateOfOrdering = createNewOrderPage.getStartDateMaestroTextfield()
+                .getValue();
     }
 
     //  Test "Totals" section is displayed below the grid on the 'Create new order' page

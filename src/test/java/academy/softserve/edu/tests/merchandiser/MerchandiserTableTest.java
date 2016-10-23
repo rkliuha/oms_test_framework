@@ -26,7 +26,7 @@ public class MerchandiserTableTest extends TestRunner {
     @Test
     final public void testMerchandiserTableIsEnable() {
 
-        assertThat(merchandiserOrderingPage.getEditCellLink())
+        assertThat(merchandiserOrderingPage.getOrderLinkByNumber(2))
                 .isDisplayed();
 
         assertThat(merchandiserOrderingPage.getDeleteCellLink())
@@ -37,7 +37,7 @@ public class MerchandiserTableTest extends TestRunner {
     @Test
     public final void testSortingOrderNameColumn() {
 
-        assertThat(merchandiserOrderingPage.getOrderNameByCellId("3"))
+        assertThat(merchandiserOrderingPage.getOrderNameByCellId(3))
                 .isDisplayed();
 
         merchandiserOrderingPage.clickOrderNameHeaderButton();
@@ -53,7 +53,7 @@ public class MerchandiserTableTest extends TestRunner {
     @Test
     public final void testSortingTotalPriceColumn() {
 
-        assertThat(merchandiserOrderingPage.getOrderNameByCellId("3"))
+        assertThat(merchandiserOrderingPage.getOrderNameByCellId(3))
                 .isDisplayed();
 
         merchandiserOrderingPage.clickTotalPriceHeaderButton();
@@ -69,7 +69,7 @@ public class MerchandiserTableTest extends TestRunner {
     @Test
     public final void testSortingMaxDiscountColumn() {
 
-        assertThat(merchandiserOrderingPage.getOrderNameByCellId("3"))
+        assertThat(merchandiserOrderingPage.getOrderNameByCellId(3))
                 .isDisplayed();
 
         merchandiserOrderingPage.clickMaxDiscountHeaderButton();
@@ -85,7 +85,7 @@ public class MerchandiserTableTest extends TestRunner {
     @Test
     public final void testSortingStatusColumn() {
 
-        assertThat(merchandiserOrderingPage.getOrderNameByCellId("3"))
+        assertThat(merchandiserOrderingPage.getOrderNameByCellId(3))
                 .isDisplayed();
 
         merchandiserOrderingPage.clickStatusHeaderButton();
@@ -162,7 +162,7 @@ public class MerchandiserTableTest extends TestRunner {
                 .fillSearchInput("Created")
                 .clickApplyButton();
 
-        assertThat(merchandiserOrderingPage.getStatusCell())
+        assertThat(merchandiserOrderingPage.getOrderStatusByNumber(2))
                 .textEquals("Created");
     }
 

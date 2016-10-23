@@ -59,7 +59,7 @@ public class AddNewProductTest extends TestRunner {
         itemManagementPage.fillSearchInput(testProductName)
                 .clickSearchButton();
 
-        assertThat(itemManagementPage.getEditProductLinkById(String.valueOf(testProductId)))
+        assertThat(itemManagementPage.getEditProductLinkById(testProductId))
                 .isDisplayed();
 
         assertThat(testProduct)

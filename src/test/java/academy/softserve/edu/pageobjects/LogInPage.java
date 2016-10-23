@@ -104,6 +104,7 @@ public class LogInPage extends PageObject<LogInPage> {
     }
 
     public LogInPage clickRememberMeCheckbox() {
+
         rememberMeCheckbox.click();
         return this;
     }

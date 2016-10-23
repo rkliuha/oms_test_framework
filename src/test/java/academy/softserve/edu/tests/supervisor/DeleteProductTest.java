@@ -33,11 +33,11 @@ public class DeleteProductTest extends TestRunner {
         itemManagementPage.fillSearchInput(testProduct.getProductName())
                 .clickSearchButton();
 
-        itemManagementPage.clickDeleteProductLinkById(String.valueOf(testProductId));
+        itemManagementPage.clickDeleteProductLinkById(testProductId);
 
         itemManagementPage.dismissAlert();
 
-        assertThat(itemManagementPage.getDeleteProductLinkById(String.valueOf(testProductId)))
+        assertThat(itemManagementPage.getDeleteProductLinkById(testProductId))
                 .isDisplayed();
     }
 
@@ -51,7 +51,7 @@ public class DeleteProductTest extends TestRunner {
         itemManagementPage.fillSearchInput(testProduct.getProductName())
                 .clickSearchButton();
 
-        itemManagementPage.clickDeleteProductLinkById(String.valueOf(testProductId));
+        itemManagementPage.clickDeleteProductLinkById(testProductId);
 
         itemManagementPage.acceptAlert();
 

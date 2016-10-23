@@ -88,7 +88,7 @@ public enum MerchandiserOrderingPageLocators implements ILocator {
 
     DELETE_CELL_LINK("Delete Cell Link",
             LocatorsType.BY_XPATH,
-            ".//*[@id='list']/table/tbody/tr[%s]/td[7]/a"),
+            ".//*[@id='list']/table/tbody/tr[2]/td[7]/a"),
 
     ORDER_NAME_COLUMN("Order Name Column",
             LocatorsType.BY_XPATH,

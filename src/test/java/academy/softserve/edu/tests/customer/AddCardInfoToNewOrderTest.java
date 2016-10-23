@@ -15,7 +15,7 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
     private static final String EXPIRE_DATE_YEAR = "2017";
 
     private int testProductId;
-    private String orderNumber;
+    private int orderNumber;
 
     @BeforeTest
     public final void createTestProduct() {
@@ -34,12 +34,13 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
         addItemPage.clickSelectLastAddedItemLink()
                 .clickDoneButton();
 
-        orderNumber = createNewOrderPage.getOrderNumberTextfield()
-                .getValue();
+        orderNumber = Integer.parseInt(createNewOrderPage.getOrderNumberTextField()
+                .getValue());
 
         createNewOrderPage.clickPreferableDeliveryDateChooseLink()
                 .clickValidDeliveryDateLink()
-                .selectAssigneeDropdown(DBHandler.getUserByRole(Roles.MERCHANDISER).getLogin());
+                .selectAssigneeDropdown(DBHandler.getUserByRole(Roles.MERCHANDISER)
+                        .getLogin());
     }
 
     @Test
@@ -70,7 +71,7 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
                 .selectExpireDateYearDropdown(EXPIRE_DATE_YEAR)
                 .clickOrderButton();
 
-        customerOrderingPage.fillSearchInput("OrderName" + orderNumber)
+        customerOrderingPage.fillSearchInput("OrderName" + String.valueOf(orderNumber))
                 .clickApplyButton();
 
         assertThat(customerOrderingPage.getOrderStatusByNumber(orderNumber))
@@ -129,7 +130,7 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
                 .fillIssueNumberMaestroTextfield("4")
                 .clickOrderButton();
 
-        customerOrderingPage.fillSearchInput("OrderName" + orderNumber)
+        customerOrderingPage.fillSearchInput("OrderName" + String.valueOf(orderNumber))
                 .clickApplyButton();
 
         assertThat(customerOrderingPage.getOrderStatusByNumber(orderNumber))
@@ -138,8 +139,8 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
 
     @AfterMethod
     public final void deleteTestOrder() {
-        DBHandler.deleteOrderByNumber(Integer.parseInt(orderNumber));
-        DBHandler.deleteOrderItemByOrderRef(Integer.parseInt(orderNumber));
+        DBHandler.deleteOrderByNumber(orderNumber);
+        DBHandler.deleteOrderItemByOrderRef(orderNumber);
     }
 
     @AfterTest
