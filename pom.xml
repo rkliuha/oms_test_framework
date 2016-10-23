@@ -94,13 +94,13 @@
                 <version>2.19.1</version>
 
                 <configuration>
-                    <testFailureIgnore>true</testFailureIgnore>
-                    <argLine>-Xmx1024m</argLine>
-                    <testSourceDirectory>${basedir}/src/java/</testSourceDirectory>
-                    <systemPropertyVariables>
-                        <org.uncommons.reportng.escape-output>false</org.uncommons.reportng.escape-output>
-                        <org.uncommons.reportng.title>Test Results</org.uncommons.reportng.title>
-                    </systemPropertyVariables>
+                <testFailureIgnore>true</testFailureIgnore>
+                <argLine>-Xmx1024m</argLine>
+                <testSourceDirectory>${basedir}/src/java/</testSourceDirectory>
+                <systemPropertyVariables>
+                    <org.uncommons.reportng.escape-output>false</org.uncommons.reportng.escape-output>
+                    <org.uncommons.reportng.title>Test Results</org.uncommons.reportng.title>
+                </systemPropertyVariables>
                     <properties>
                         <property>
                             <name>usedefaultlisteners</name>
