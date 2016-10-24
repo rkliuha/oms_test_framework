@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Demo Suite">
+    <suite-files>
+        <suite-file path="administratorDemo.xml"/>
+        <!--<suite-file path="customerDemo.xml"/>-->
+        <!--<suite-file path="merchandiserDemo.xml"/>-->
+        <suite-file path="supervisorDemo.xml"/>
+    </suite-files>
+</suite> <!-- Demo Suite -->

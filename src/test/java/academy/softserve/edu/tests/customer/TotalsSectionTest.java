@@ -18,7 +18,7 @@ public class TotalsSectionTest extends TestRunner {
     private String dateOfOrdering;
     private OrderItemsErrorMessagePage orderItemsErrorMessagePage;
 
-    @BeforeTest
+    @BeforeClass
     public final void createTestProduct() {
 
         testProductId = DBHelper.createActiveProductInDB();
@@ -239,7 +239,7 @@ public class TotalsSectionTest extends TestRunner {
         DBHandler.deleteOrderItemById(orderItem);
     }
 
-    @AfterTest
+    @AfterClass
     public final void deleteTestProduct() {
         DBHandler.deleteProduct(testProductId);
     }

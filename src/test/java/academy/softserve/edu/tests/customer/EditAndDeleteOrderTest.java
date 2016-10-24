@@ -4,6 +4,7 @@ import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.TestRunner;
 import academy.softserve.edu.utils.DBHelper;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -86,11 +87,13 @@ public class EditAndDeleteOrderTest extends TestRunner {
         customerOrderingPage.clickDeleteLink()
                 .acceptAlert();
 
+        customerOrderingPage.refreshPage();
+
         assertThat(DBHandler.getOrderById(Integer.parseInt(testOrderNumber)))
                 .isNull();
     }
 
-    @AfterTest
+    @AfterClass
     public final void deleteTestProduct() {
 
         DBHandler.deleteProduct(testProductId);

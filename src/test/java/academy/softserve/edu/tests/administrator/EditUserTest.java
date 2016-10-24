@@ -7,10 +7,7 @@ import academy.softserve.edu.pageobjects.EditUserPage;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.TestRunner;
 import academy.softserve.edu.utils.DBHelper;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
 
@@ -19,7 +16,7 @@ public class EditUserTest extends TestRunner {
     private User testUser;
     private int testUserId;
 
-    @BeforeTest
+    @BeforeClass
     public final void createTestUser() {
 
         testUserId = DBHelper.createValidUserInDB();
@@ -113,7 +110,7 @@ public class EditUserTest extends TestRunner {
                 .isDisplayed();
     }
 
-    @AfterTest
+    @AfterClass
     public final void deleteTestUser() {
         DBHandler.deleteUser(testUserId);
     }

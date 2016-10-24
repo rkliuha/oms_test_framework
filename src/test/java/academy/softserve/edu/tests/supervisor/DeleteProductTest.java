@@ -55,6 +55,8 @@ public class DeleteProductTest extends TestRunner {
 
         itemManagementPage.acceptAlert();
 
+        itemManagementPage.refreshPage();
+
         assertThat(DBHandler.getProductById(testProductId))
                 .isInactive();
     }

@@ -17,7 +17,7 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
     private int testProductId;
     private int orderNumber;
 
-    @BeforeTest
+    @BeforeClass
     public final void createTestProduct() {
         testProductId = DBHelper.createActiveProductInDB();
     }
@@ -142,7 +142,7 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
         DBHandler.deleteOrderItemByOrderRef(orderNumber);
     }
 
-    @AfterTest
+    @AfterClass
     public final void deleteTestProduct() {
         DBHandler.deleteProduct(testProductId);
     }

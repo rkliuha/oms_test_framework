@@ -31,7 +31,7 @@ public class WebDriverFactory {
 
         final String pathWebDriverChromeMac = PropertiesReader.getDefaultProperty("path.webdriver.chrome.mac");
         final String pathWebDriverChromeWin = PropertiesReader.getDefaultProperty("path.webdriver.chrome.win");
-        final String pathWebDriverChromeIe = PropertiesReader.getDefaultProperty("path.webdriver.chrome.ie");
+        final String pathWebDriverIe = PropertiesReader.getDefaultProperty("path.webdriver.ie");
 
         final String remoteWebDriverUrl = PropertiesReader.getDefaultProperty("remote.webdriver.url");
 
@@ -58,7 +58,7 @@ public class WebDriverFactory {
                         break;
 
                     case EXPLORER:
-                        System.setProperty(webDriverIe, pathWebDriverChromeIe);
+                        System.setProperty(webDriverIe, pathWebDriverIe);
                         driver = new InternetExplorerDriver();
                         break;
 
@@ -81,7 +81,7 @@ public class WebDriverFactory {
                         break;
 
                     case EXPLORER:
-                        System.setProperty(webDriverIe, pathWebDriverChromeIe);
+                        System.setProperty(webDriverIe, pathWebDriverIe);
                         driver = new InternetExplorerDriver();
                         break;
 

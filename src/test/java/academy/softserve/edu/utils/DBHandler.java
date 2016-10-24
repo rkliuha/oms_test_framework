@@ -1,6 +1,6 @@
 package academy.softserve.edu.utils;
 
-import academy.softserve.edu.dao.MySQLDaoOmsDomain;
+import academy.softserve.edu.dao.MySQLDaoFactory;
 import academy.softserve.edu.dao.interfaces.*;
 import academy.softserve.edu.domains.Order;
 import academy.softserve.edu.domains.OrderItem;
@@ -19,7 +19,7 @@ public final class DBHandler {
 
     public static final int createUser(final User user) {
 
-        final DaoOmsDomain daoFactory = new MySQLDaoOmsDomain();
+        final DaoFactory daoFactory = new MySQLDaoFactory();
         final UserDao userDao;
         int userId = 0;
 
@@ -34,7 +34,7 @@ public final class DBHandler {
 
     public static final User getUserById(final int userId) {
 
-        final DaoOmsDomain daoFactory = new MySQLDaoOmsDomain();
+        final DaoFactory daoFactory = new MySQLDaoFactory();
         final UserDao userDao;
         User user = null;
 
@@ -49,7 +49,7 @@ public final class DBHandler {
 
     public static final User getUserByLogin(final String userLogin) {
 
-        final DaoOmsDomain daoFactory = new MySQLDaoOmsDomain();
+        final DaoFactory daoFactory = new MySQLDaoFactory();
         final UserDao userDao;
         User user = null;
 
@@ -64,7 +64,7 @@ public final class DBHandler {
 
     public static final User getUserByRole(final Roles role) {
 
-        final DaoOmsDomain daoFactory = new MySQLDaoOmsDomain();
+        final DaoFactory daoFactory = new MySQLDaoFactory();
         final UserDao userDao;
         User user = null;
 
@@ -79,7 +79,7 @@ public final class DBHandler {
 
     public static final User getLastUser() {
 
-        final DaoOmsDomain daoFactory = new MySQLDaoOmsDomain();
+        final DaoFactory daoFactory = new MySQLDaoFactory();
         final UserDao userDao;
         User user = null;
 
@@ -94,7 +94,7 @@ public final class DBHandler {
 
     public static final void deleteUser(final int userId) {
 
-        final DaoOmsDomain daoFactory = new MySQLDaoOmsDomain();
+        final DaoFactory daoFactory = new MySQLDaoFactory();
         final UserDao userDao;
 
         try (final Connection connection = daoFactory.getConnection()) {
@@ -107,7 +107,7 @@ public final class DBHandler {
 
     public static final int createProduct(final Product product) {
 
-        final DaoOmsDomain daoFactory = new MySQLDaoOmsDomain();
+        final DaoFactory daoFactory = new MySQLDaoFactory();
         final ProductDao productDao;
         int productId = 0;
 
@@ -122,7 +122,7 @@ public final class DBHandler {
 
     public static final Product getLastProduct() {
 
-        final DaoOmsDomain daoFactory = new MySQLDaoOmsDomain();
+        final DaoFactory daoFactory = new MySQLDaoFactory();
         final ProductDao productDao;
         Product product = null;
 
@@ -137,7 +137,7 @@ public final class DBHandler {
 
     public static final Product getProductById(final int productId) {
 
-        final DaoOmsDomain daoFactory = new MySQLDaoOmsDomain();
+        final DaoFactory daoFactory = new MySQLDaoFactory();
         final ProductDao productDao;
         Product product = null;
 
@@ -152,7 +152,7 @@ public final class DBHandler {
 
     public static final void deleteProduct(final int productId) {
 
-        final DaoOmsDomain daoFactory = new MySQLDaoOmsDomain();
+        final DaoFactory daoFactory = new MySQLDaoFactory();
         final ProductDao productDao;
 
         try (final Connection connection = daoFactory.getConnection()) {
@@ -165,7 +165,7 @@ public final class DBHandler {
 
     public static final int createOrder(final Order order) {
 
-        final DaoOmsDomain daoFactory = new MySQLDaoOmsDomain();
+        final DaoFactory daoFactory = new MySQLDaoFactory();
         final OrderDao orderDao;
         int orderId = 0;
 
@@ -180,7 +180,7 @@ public final class DBHandler {
 
     public static final Order getOrderById(final int orderId) {
 
-        final DaoOmsDomain daoFactory = new MySQLDaoOmsDomain();
+        final DaoFactory daoFactory = new MySQLDaoFactory();
         final OrderDao orderDao;
         Order order = null;
 
@@ -195,7 +195,7 @@ public final class DBHandler {
 
     public static final Order getOrderByNumber(final int orderNumber) {
 
-        final DaoOmsDomain daoFactory = new MySQLDaoOmsDomain();
+        final DaoFactory daoFactory = new MySQLDaoFactory();
         final OrderDao orderDao;
         Order order = null;
 
@@ -210,7 +210,7 @@ public final class DBHandler {
 
     public static final void deleteOrderById(final int orderId) {
 
-        final DaoOmsDomain daoFactory = new MySQLDaoOmsDomain();
+        final DaoFactory daoFactory = new MySQLDaoFactory();
         final OrderDao orderDao;
 
         try (final Connection connection = daoFactory.getConnection()) {
@@ -223,7 +223,7 @@ public final class DBHandler {
 
     public static final void deleteOrderByNumber(final int orderNumber) {
 
-        final DaoOmsDomain daoFactory = new MySQLDaoOmsDomain();
+        final DaoFactory daoFactory = new MySQLDaoFactory();
         final OrderDao orderDao;
 
         try (final Connection connection = daoFactory.getConnection()) {
@@ -236,7 +236,7 @@ public final class DBHandler {
 
     public static final int createOrderItem(final OrderItem orderItem) {
 
-        final DaoOmsDomain daoFactory = new MySQLDaoOmsDomain();
+        final DaoFactory daoFactory = new MySQLDaoFactory();
         final OrderItemDao orderItemDao;
         int orderItemId = 0;
 
@@ -251,7 +251,7 @@ public final class DBHandler {
 
     public static final OrderItem getLastOrderItem() {
 
-        final DaoOmsDomain daoFactory = new MySQLDaoOmsDomain();
+        final DaoFactory daoFactory = new MySQLDaoFactory();
         final OrderItemDao orderItemDao;
         OrderItem orderItem = null;
 
@@ -266,7 +266,7 @@ public final class DBHandler {
 
     public static final void deleteOrderItemById(final int orderItemId) {
 
-        final DaoOmsDomain daoFactory = new MySQLDaoOmsDomain();
+        final DaoFactory daoFactory = new MySQLDaoFactory();
         final OrderItemDao orderItemDao;
 
         try (final Connection connection = daoFactory.getConnection()) {
@@ -279,7 +279,7 @@ public final class DBHandler {
 
     public static final void deleteOrderItemByOrderRef(final int orderRef) {
 
-        final DaoOmsDomain daoFactory = new MySQLDaoOmsDomain();
+        final DaoFactory daoFactory = new MySQLDaoFactory();
         final OrderItemDao orderItemDao;
 
         try (final Connection connection = daoFactory.getConnection()) {
