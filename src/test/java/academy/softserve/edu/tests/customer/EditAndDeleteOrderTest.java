@@ -2,10 +2,9 @@ package academy.softserve.edu.tests.customer;
 
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.utils.DBHandler;
-import academy.softserve.edu.utils.TestRunner;
 import academy.softserve.edu.utils.DBHelper;
+import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 

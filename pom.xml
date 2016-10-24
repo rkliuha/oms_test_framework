@@ -116,7 +116,7 @@
                     <reportsDirectory>${project.basedir}/test-output</reportsDirectory>
                     <workingDirectory>${project.basedir}</workingDirectory>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/resources/suites/parentsuite.xml</suiteXmlFile>
+                        <suiteXmlFile>src/resources/suites/demo.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>

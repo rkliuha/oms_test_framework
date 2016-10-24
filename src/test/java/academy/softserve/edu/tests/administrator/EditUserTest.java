@@ -5,9 +5,12 @@ import academy.softserve.edu.enums.Regions;
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.EditUserPage;
 import academy.softserve.edu.utils.DBHandler;
-import academy.softserve.edu.utils.TestRunner;
 import academy.softserve.edu.utils.DBHelper;
-import org.testng.annotations.*;
+import academy.softserve.edu.utils.TestRunner;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
 

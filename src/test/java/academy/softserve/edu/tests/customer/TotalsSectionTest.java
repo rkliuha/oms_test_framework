@@ -4,8 +4,8 @@ import academy.softserve.edu.domains.Order;
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.OrderItemsErrorMessagePage;
 import academy.softserve.edu.utils.DBHandler;
-import academy.softserve.edu.utils.TestRunner;
 import academy.softserve.edu.utils.DBHelper;
+import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.*;
 
 import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
