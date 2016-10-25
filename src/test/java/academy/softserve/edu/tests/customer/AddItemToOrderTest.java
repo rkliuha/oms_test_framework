@@ -3,11 +3,11 @@ package academy.softserve.edu.tests.customer;
 import academy.softserve.edu.domains.Product;
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.utils.DBHandler;
-import academy.softserve.edu.utils.TestRunner;
 import academy.softserve.edu.utils.DBHelper;
-import org.testng.annotations.AfterTest;
+import academy.softserve.edu.utils.TestRunner;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
@@ -17,7 +17,7 @@ public class AddItemToOrderTest extends TestRunner {
     private Product testProduct;
     private int testProductId;
 
-    @BeforeTest
+    @BeforeClass
     public final void createTestProduct() {
 
         testProductId = DBHelper.createActiveProductInDB();
@@ -95,7 +95,7 @@ public class AddItemToOrderTest extends TestRunner {
                         multiplierOfItem * Integer.parseInt(quantityOfItem)));
     }
 
-    @AfterTest
+    @AfterClass
     public final void deleteTestProduct() {
         DBHandler.deleteProduct(testProductId);
     }

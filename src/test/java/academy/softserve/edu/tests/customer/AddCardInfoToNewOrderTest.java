@@ -2,8 +2,8 @@ package academy.softserve.edu.tests.customer;
 
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.utils.DBHandler;
-import academy.softserve.edu.utils.TestRunner;
 import academy.softserve.edu.utils.DBHelper;
+import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.*;
 
 import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
@@ -17,7 +17,7 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
     private int testProductId;
     private int orderNumber;
 
-    @BeforeTest
+    @BeforeClass
     public final void createTestProduct() {
         testProductId = DBHelper.createActiveProductInDB();
     }
@@ -142,7 +142,7 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
         DBHandler.deleteOrderItemByOrderRef(orderNumber);
     }
 
-    @AfterTest
+    @AfterClass
     public final void deleteTestProduct() {
         DBHandler.deleteProduct(testProductId);
     }

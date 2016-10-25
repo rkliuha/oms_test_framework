@@ -4,8 +4,8 @@ import academy.softserve.edu.domains.Order;
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.pageobjects.OrderItemsErrorMessagePage;
 import academy.softserve.edu.utils.DBHandler;
-import academy.softserve.edu.utils.TestRunner;
 import academy.softserve.edu.utils.DBHelper;
+import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.*;
 
 import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
@@ -18,7 +18,7 @@ public class TotalsSectionTest extends TestRunner {
     private String dateOfOrdering;
     private OrderItemsErrorMessagePage orderItemsErrorMessagePage;
 
-    @BeforeTest
+    @BeforeClass
     public final void createTestProduct() {
 
         testProductId = DBHelper.createActiveProductInDB();
@@ -239,7 +239,7 @@ public class TotalsSectionTest extends TestRunner {
         DBHandler.deleteOrderItemById(orderItem);
     }
 
-    @AfterTest
+    @AfterClass
     public final void deleteTestProduct() {
         DBHandler.deleteProduct(testProductId);
     }

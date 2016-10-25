@@ -3,11 +3,11 @@ package academy.softserve.edu.tests.administrator;
 import academy.softserve.edu.domains.User;
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.utils.DBHandler;
-import academy.softserve.edu.utils.TestRunner;
 import academy.softserve.edu.utils.DBHelper;
-import org.testng.annotations.AfterTest;
+import academy.softserve.edu.utils.TestRunner;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
@@ -16,7 +16,7 @@ public class DeleteUserTest extends TestRunner {
 
     private User testUser;
 
-    @BeforeTest
+    @BeforeClass
     public final void createTestUser() {
 
         final int testUserId = DBHelper.createValidUserInDB();
@@ -57,11 +57,13 @@ public class DeleteUserTest extends TestRunner {
 
         administrationPage.acceptAlert();
 
+        administrationPage.refreshPage();
+
         assertThat(DBHandler.getUserByLogin(testUser.getLogin()))
                 .isUserInactive();
     }
 
-    @AfterTest
+    @AfterClass
     public final void deleteTestUser() {
         DBHandler.deleteUser(DBHandler.getUserByLogin(testUser.getLogin())
                 .getId());

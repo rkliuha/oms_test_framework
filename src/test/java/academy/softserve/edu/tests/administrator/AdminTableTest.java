@@ -1,7 +1,6 @@
 package academy.softserve.edu.tests.administrator;
 
 import academy.softserve.edu.enums.Roles;
-import academy.softserve.edu.pageobjects.UserInfoPage;
 import academy.softserve.edu.utils.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
