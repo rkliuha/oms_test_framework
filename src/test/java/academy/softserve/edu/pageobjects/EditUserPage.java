@@ -1,5 +1,6 @@
 package academy.softserve.edu.pageobjects;
 
+import academy.softserve.edu.domains.User;
 import academy.softserve.edu.elements.wrappers.Button;
 import academy.softserve.edu.elements.wrappers.Dropdown;
 import academy.softserve.edu.elements.wrappers.TextInputField;
@@ -40,45 +41,79 @@ public class EditUserPage extends PageObject<EditUserPage> {
         super(driver);
     }
 
-    public final EditUserPage fillLastNameInput(final String lastName) {
+    public final EditUserPage fillLastName(final String lastName) {
 
         lastNameInput.sendKeys(lastName);
         return this;
     }
 
-    public final EditUserPage fillNewPasswordInput(final String password) {
+    public final EditUserPage fillFirstName(final String firstName) {
+
+        firstNameInput.sendKeys(firstName);
+        return this;
+    }
+
+    public final EditUserPage fillNewPassword(final String password) {
 
         newPasswordInput.sendKeys(password);
         return this;
     }
 
-    public final EditUserPage fillConfirmPasswordInput(final String password) {
+    public final EditUserPage fillConfirmPassword(final String password) {
 
         confirmPasswordInput.sendKeys(password);
         return this;
     }
 
-    public final EditUserPage fillEmailAddressInput(final String emailAddress) {
+    public final EditUserPage fillEmailAddress(final String emailAddress) {
 
         emailAddressInput.sendKeys(emailAddress);
         return this;
     }
 
-    public final EditUserPage selectRegionDropdown(final String region) {
+    public final EditUserPage selectRegion(final String region) {
 
         regionDropdown.sendKeys(region);
         return this;
     }
 
-    public final AdministrationPage clickSaveChangesButton() {
+    public final EditUserPage selectRole(final String role) {
+
+        roleDropdown.sendKeys(role);
+        return this;
+    }
+
+    public final AdministrationPage clickSaveChanges() {
 
         saveChangesButton.click();
         return new AdministrationPage(driver);
     }
 
-    public final AdministrationPage clickCancelButton() {
+    public final AdministrationPage clickCancel() {
 
         cancelButton.click();
         return new AdministrationPage(driver);
     }
+
+    public final EditUserPage setUserFields(final User newUser) {
+
+        return fillFirstName(newUser.getFirstName())
+                .fillLastName(newUser.getLastName())
+                .fillNewPassword(newUser.getPassword())
+                .fillConfirmPassword(newUser.getPassword())
+                .fillEmailAddress(newUser.getEmail())
+                .selectRegion(newUser.getRegionName())
+                .selectRole(newUser.getRoleName());
+    }
+
+    public final AdministrationPage editUser() {
+
+        return clickSaveChanges();
+    }
+
+    public final AdministrationPage doNotEditUser() {
+
+        return clickCancel();
+    }
+
 }

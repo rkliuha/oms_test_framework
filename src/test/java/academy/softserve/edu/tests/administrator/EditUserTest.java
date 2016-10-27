@@ -31,10 +31,10 @@ public class EditUserTest extends TestRunner {
 
         userInfoPage = logInPage.logInAs(Roles.ADMINISTRATOR);
 
-        administrationPage = userInfoPage.clickAdministrationTab()
-                .clickLastUserPaginationButton();
+        administrationPage = userInfoPage.goToAdministrationPage()
+                .navigateTableToLastPage();
 
-        administrationPage.clickEditUserById(testUserId);
+        administrationPage.editUserById(testUserId);
 
         editUserPage = new EditUserPage(driver);
     }
@@ -74,14 +74,15 @@ public class EditUserTest extends TestRunner {
         final String NEW_USER_PASSWORD = "1qaz2wsx";
         final Regions NEW_REGION = Regions.WEST;
 
+        testUser.setLastName(NEW_USER_LAST_NAME);
+        testUser.setPassword(NEW_USER_PASSWORD);
+        testUser.setRegionReference(NEW_REGION.ordinal() + 1);
+
         assertThat(editUserPage.getNewPasswordText())
                 .isDisplayed();
 
-        editUserPage.fillLastNameInput(NEW_USER_LAST_NAME)
-                .fillNewPasswordInput(NEW_USER_PASSWORD)
-                .fillConfirmPasswordInput(NEW_USER_PASSWORD)
-                .selectRegionDropdown(NEW_REGION.toString())
-                .clickSaveChangesButton();
+        editUserPage.setUserFields(testUser)
+                .editUser();
 
         testUser = DBHandler.getUserById(testUserId);
 
@@ -98,16 +99,19 @@ public class EditUserTest extends TestRunner {
     @Test
     public final void testEditUserAndClickCancel() {
 
-        final String NEW_USER_EMAIL = "google@gmail.com";
+        final String OLD_USER_LASTNAME = testUser.getLastName();
+        final String NEW_USER_LASTNAME = "newLastName";
+
+        testUser.setLastName(NEW_USER_LASTNAME);
 
         assertThat(editUserPage.getNewPasswordText())
                 .isDisplayed();
 
-        editUserPage.fillEmailAddressInput(NEW_USER_EMAIL)
-                .clickCancelButton();
+        editUserPage.setUserFields(testUser)
+                .doNotEditUser();
 
         assertThat(DBHandler.getUserById(testUserId))
-                .userEquals(testUser);
+                .lastNameEquals(OLD_USER_LASTNAME);
 
         assertThat(administrationPage.getFoundUsersTextLabel())
                 .isDisplayed();

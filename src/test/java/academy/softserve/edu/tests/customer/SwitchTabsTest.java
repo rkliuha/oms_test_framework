@@ -40,7 +40,7 @@ public class SwitchTabsTest extends TestRunner {
 
         userInfoPage = logInPage.logInAs(Roles.CUSTOMER);
 
-        customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
+        customerOrderingPage = userInfoPage.goToCustomerOrderingPage();
 
         assertThat(customerOrderingPage.getCreateNewOrderLink())
                 .isDisplayed();
@@ -51,12 +51,12 @@ public class SwitchTabsTest extends TestRunner {
 
         userInfoPage = logInPage.logInAs(Roles.CUSTOMER);
 
-        customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
+        customerOrderingPage = userInfoPage.goToCustomerOrderingPage();
 
         assertThat(customerOrderingPage.getCreateNewOrderLink())
                 .isDisplayed();
 
-        customerOrderingPage.clickUserInfoTab();
+        customerOrderingPage.goToUserInfoPage();
 
         assertThat(userInfoPage.getUserInfoFieldSet())
                 .isDisplayed();

@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
+import static academy.softserve.edu.repos.CreditCardRepo.getValidMasterCard;
 
 public class EditAndDeleteOrderTest extends TestRunner {
 
@@ -22,54 +23,44 @@ public class EditAndDeleteOrderTest extends TestRunner {
 
         userInfoPage = logInPage.logInAs(Roles.CUSTOMER);
 
-        customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
+        customerOrderingPage = userInfoPage.goToCustomerOrderingPage();
 
-        createNewOrderPage = customerOrderingPage.clickCreateNewOrderLink();
+        createNewOrderPage = customerOrderingPage.goToCreateNewOrderPage();
 
-        addItemPage = createNewOrderPage.clickAddItemButton();
+        addItemPage = createNewOrderPage.goToAddItemPage();
 
-        addItemPage.selectSearchForItemDropdown("Item Name")
-                .fillSearchForItemInput("Baileys")
-                .clickSearchForItemButton()
-                .clickSelectLastAddedItemLink()
-                .clickDoneButton();
+        addItemPage.searchItem("Item Name", "Baileys")
+                .selectLastAddedItem()
+                .addItemToOrder();
 
         testOrderNumber = createNewOrderPage.getOrderNumberTextField()
                 .getValue();
 
-        createNewOrderPage.clickPreferableDeliveryDateChooseLink();
+        createNewOrderPage.chooseValidDeliveryDate();
 
-        createNewOrderPage.clickValidDeliveryDateLink();
+        createNewOrderPage.chooseOrderAssignee("login1")
+                .saveOrderInfo();
 
-        createNewOrderPage.selectAssigneeDropdown("login1")
-                .selectCreditCardTypeDropdown("Visa")
-                .fillCreditCardNumberTextfield("1111111111111111")
-                .fillCVV2Textfield("666")
-                .clickSaveButton()
-                .clickOrderingLink();
+        createNewOrderPage.goToCustomerOrderingPage();
     }
 
     @Test
     public final void testOrderEdit() {
 
-        customerOrderingPage.fillSearchInput("OrderName" + testOrderNumber)
-                .clickApplyButton();
+        customerOrderingPage.searchOrder("Order Name", "OrderName" + testOrderNumber);
 
-        customerOrderingPage.clickEditLink();
+        customerOrderingPage.editFirstOrder();
 
-        createNewOrderPage.fillOrderNumberTextField("8")
-                .selectCreditCardTypeDropdown("MasterCard")
-                .fillCreditCardNumberTextfield("2222222222222222")
-                .fillCVV2Textfield("555")
-                .clickSaveButton();
+        createNewOrderPage.setOrderNumber("8")
+                .setCreditCardInfo(getValidMasterCard())
+                .saveOrderInfo();
 
         final String testOrderNumberCreated = createNewOrderPage.getOrderNumberTextField()
                 .getValue();
 
-        createNewOrderPage.clickOrderingLink();
+        createNewOrderPage.goToCustomerOrderingPage();
 
-        customerOrderingPage.fillSearchInput("OrderName" + testOrderNumberCreated)
-                .clickApplyButton();
+        customerOrderingPage.searchOrder("Order Name", "OrderName" + testOrderNumberCreated);
 
         assertThat(DBHandler.getOrderByNumber(Integer.parseInt(testOrderNumberCreated)))
                 .orderNumberEquals(Integer.parseInt(testOrderNumberCreated));
@@ -78,12 +69,11 @@ public class EditAndDeleteOrderTest extends TestRunner {
     @Test
     public final void testOrderDelete() {
 
-        createNewOrderPage.clickOrderingLink();
+        createNewOrderPage.goToCustomerOrderingPage();
 
-        customerOrderingPage.fillSearchInput("OrderName" + testOrderNumber)
-                .clickApplyButton();
+        customerOrderingPage.searchOrder("Order Name", "OrderName" + testOrderNumber);
 
-        customerOrderingPage.clickDeleteLink()
+        customerOrderingPage.deleteFirstOrder()
                 .acceptAlert();
 
         customerOrderingPage.refreshPage();

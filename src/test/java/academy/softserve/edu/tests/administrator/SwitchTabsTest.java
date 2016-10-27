@@ -25,7 +25,7 @@ public class SwitchTabsTest extends TestRunner {
         assertThat(userInfoPage.getAdministrationLink())
                 .isDisplayed();
 
-        administrationPage = userInfoPage.clickAdministrationTab();
+        administrationPage = userInfoPage.goToAdministrationPage();
 
         assertThat(administrationPage.getUserInfoLink())
                 .isDisplayed();
@@ -33,7 +33,7 @@ public class SwitchTabsTest extends TestRunner {
         assertThat(administrationPage.getAdministrationLink())
                 .isDisplayed();
 
-        administrationPage.clickUserInfoTab();
+        administrationPage.goToUserInfoPage();
 
         assertThat(userInfoPage.getUserInfoLink())
                 .isDisplayed();

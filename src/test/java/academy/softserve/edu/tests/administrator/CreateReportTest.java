@@ -14,7 +14,7 @@ public class CreateReportTest extends TestRunner {
 
         userInfoPage = logInPage.logInAs(Roles.ADMINISTRATOR);
 
-        administrationPage = userInfoPage.clickAdministrationTab();
+        administrationPage = userInfoPage.goToAdministrationPage();
     }
 
     @Test
@@ -27,12 +27,12 @@ public class CreateReportTest extends TestRunner {
     @Test
     public final void testCreateReportAbility() {
 
-        createReportPage = administrationPage.clickCreateReportLink();
+        createReportPage = administrationPage.goToCreateReportPage();
 
         assertThat(createReportPage.getSaveReportLink())
                 .isDisplayed();
 
-        reportPage = createReportPage.clickSaveReportLink();
+        reportPage = createReportPage.saveReport();
 
         assertThat(reportPage.getReportPageExists())
                 .isDisplayed();

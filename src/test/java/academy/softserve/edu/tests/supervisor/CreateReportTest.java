@@ -13,18 +13,18 @@ public class CreateReportTest extends TestRunner {
     public final void setUpTests() {
 
         userInfoPage = logInPage.logInAs(Roles.SUPERVISOR);
-        itemManagementPage = userInfoPage.clickItemManagementTab();
+        itemManagementPage = userInfoPage.goToItemManagementPage();
     }
 
     @Test
     public final void testCreateReportAbility() {
 
-        supervisorCreateReportPage = itemManagementPage.clickCreateReportLink();
+        supervisorCreateReportPage = itemManagementPage.goToCreateReportPage();
 
         assertThat(supervisorCreateReportPage.getSaveReportLink())
                 .isDisplayed();
 
-        supervisorReportPage = supervisorCreateReportPage.clickSaveReportLink();
+        supervisorReportPage = supervisorCreateReportPage.saveReport();
 
         assertThat(supervisorReportPage.getReportPageExists())
                 .isDisplayed();

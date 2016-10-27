@@ -30,7 +30,7 @@ public class LogInLogOutTest extends TestRunner {
         assertThat(userInfoPage.getLogOutButton())
                 .isDisplayed();
 
-        customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
+        customerOrderingPage = userInfoPage.goToCustomerOrderingPage();
         // we have to check switching between pages, has the same issue with logIn check;
         assertThat(customerOrderingPage.getCreateNewOrderLink())
                 .isDisplayed();
@@ -44,7 +44,7 @@ public class LogInLogOutTest extends TestRunner {
 
         userInfoPage = logInPage.logInAs(Roles.CUSTOMER);
 
-        customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
+        customerOrderingPage = userInfoPage.goToCustomerOrderingPage();
 
         customerOrderingPage.doLogOut();
 

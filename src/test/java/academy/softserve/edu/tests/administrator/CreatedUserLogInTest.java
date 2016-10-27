@@ -1,6 +1,8 @@
 package academy.softserve.edu.tests.administrator;
 
+import academy.softserve.edu.domains.User;
 import academy.softserve.edu.enums.Roles;
+import academy.softserve.edu.repos.UserRepo;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.AfterClass;
@@ -10,14 +12,14 @@ import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
 
 public class CreatedUserLogInTest extends TestRunner {
 
-    private static final String LOGIN = "vgopkin";
+    private static final User newUser = UserRepo.getValidUser();
 
     @Test(priority = 1)
     public void testTabsExist() {
 
         userInfoPage = logInPage.logInAs(Roles.ADMINISTRATOR);
 
-        administrationPage = userInfoPage.clickAdministrationTab();
+        administrationPage = userInfoPage.goToAdministrationPage();
 
         assertThat(administrationPage.getCreateUserLink())
                 .isDisplayed();
@@ -29,9 +31,9 @@ public class CreatedUserLogInTest extends TestRunner {
 
         userInfoPage = logInPage.logInAs(Roles.ADMINISTRATOR);
 
-        administrationPage = userInfoPage.clickAdministrationTab();
+        administrationPage = userInfoPage.goToAdministrationPage();
 
-        createNewUserPage = administrationPage.clickCreateUserLink();
+        createNewUserPage = administrationPage.goToCreateUserPage();
 
         assertThat(createNewUserPage.getPageInfoText())
                 .isDisplayed();
@@ -40,43 +42,23 @@ public class CreatedUserLogInTest extends TestRunner {
     @Test(priority = 3)
     public void testCreatedUserExist() {
 
-        final String FIRST_NAME = "valodja";
-        final String LAST_NAME = "gopkin";
-        final String PASSWORD = "qwerty";
-        final String EMAIL = "vgopkin@mail.ru";
-        final String REGION = "north";
-        final String ROLE = "customer";
-
         userInfoPage = logInPage.logInAs(Roles.ADMINISTRATOR);
 
-        administrationPage = userInfoPage.clickAdministrationTab();
+        administrationPage = userInfoPage.goToAdministrationPage();
 
-        createNewUserPage = administrationPage.clickCreateUserLink();
+        createNewUserPage = administrationPage.goToCreateUserPage();
 
-        createNewUserPage.fillLogInNameInput(LOGIN)
-                .fillFirstNameInput(FIRST_NAME)
-                .fillLastNameInput(LAST_NAME)
-                .fillPasswordInput(PASSWORD)
-                .fillConfirmPasswordInput(PASSWORD)
-                .fillEmailInput(EMAIL)
-                .selectRegionDropdown(REGION)
-                .selectRoleDropdown(ROLE)
-                .clickCreateButton();
+        createNewUserPage.setUserFields(newUser)
+                .createUser();
 
-        assertThat(DBHandler.getUserByLogin(LOGIN))
+        assertThat(DBHandler.getUserByLogin(newUser.getLogin()))
                 .isNotNull();
     }
 
     @Test(priority = 4)
     public void testCreatedUserLogIn() {
 
-        final String login = DBHandler.getUserByLogin(LOGIN)
-                .getLogin();
-
-        final String password = DBHandler.getUserByLogin(LOGIN)
-                .getPassword();
-
-        userInfoPage = logInPage.logInAs(login, password);
+        userInfoPage = logInPage.logInAs(newUser.getLogin(), newUser.getPassword());
 
         assertThat(userInfoPage.getUserInfoFieldSet())
                 .isDisplayed();
@@ -85,7 +67,7 @@ public class CreatedUserLogInTest extends TestRunner {
     @AfterClass
     public final void deleteTestUser() {
 
-        DBHandler.deleteUser(DBHandler.getUserByLogin(LOGIN)
+        DBHandler.deleteUser(DBHandler.getUserByLogin(newUser.getLogin())
                 .getId());
     }
 }

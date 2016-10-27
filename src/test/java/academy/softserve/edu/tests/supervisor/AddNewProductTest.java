@@ -9,18 +9,21 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
+import static academy.softserve.edu.repos.ProductRepo.getInvalidProduct;
+import static academy.softserve.edu.repos.ProductRepo.getValidProduct;
 
 public class AddNewProductTest extends TestRunner {
 
     private int testProductId;
     private Product testProduct;
+    private final Product validProduct = getValidProduct();
 
     @BeforeMethod
     public final void setUpTests() {
 
         userInfoPage = logInPage.logInAs(Roles.SUPERVISOR);
-        itemManagementPage = userInfoPage.clickItemManagementTab();
-        addProductPage = itemManagementPage.clickAddProductLink();
+        itemManagementPage = userInfoPage.goToItemManagementPage();
+        addProductPage = itemManagementPage.goToAddProductPage();
     }
 
     @Test
@@ -41,14 +44,8 @@ public class AddNewProductTest extends TestRunner {
     @Test
     public final void testAddingProduct() {
 
-        final String testProductName = "productName7";
-        final String testProductDescription = "productDescription7";
-        final String testProductPrice = "6.0";
-
-        addProductPage.fillProductNameInput(testProductName)
-                .fillProductDescriptionInput(testProductDescription)
-                .fillProductPriceInput(testProductPrice)
-                .clickOkButton();
+        addProductPage.setProductFields(validProduct)
+                .createProduct();
 
         testProduct = DBHandler.getLastProduct();
         testProductId = testProduct.getId();
@@ -56,60 +53,48 @@ public class AddNewProductTest extends TestRunner {
         assertThat(itemManagementPage.getSearchInput())
                 .isTextEmpty();
 
-        itemManagementPage.fillSearchInput(testProductName)
-                .clickSearchButton();
+        itemManagementPage.searchProduct("Name", validProduct.getProductName());
 
         assertThat(itemManagementPage.getEditProductLinkById(testProductId))
                 .isDisplayed();
 
-        assertThat(testProduct)
-                .nameEquals(testProductName);
-        assertThat(testProduct)
-                .descriptionEquals(testProductDescription);
-        assertThat(testProduct)
-                .priceEquals(testProductPrice);
+        assertThat(testProduct).nameEquals(validProduct.getProductName());
+
+        assertThat(testProduct).descriptionEquals(validProduct.getProductDescription());
+
+        assertThat(testProduct).priceEquals(String.valueOf(validProduct.getProductPrice()));
     }
 
     @Test
     public final void testCancelAddingProduct() {
 
-        final String testProductName = "productName7";
-        final String testProductDescription = "productDescription7";
-        final String testProductPrice = "7";
-
-        addProductPage.fillProductNameInput(testProductName)
-                .fillProductDescriptionInput(testProductDescription)
-                .fillProductPriceInput(testProductPrice)
-                .clickCancelButton();
+        addProductPage.setProductFields(validProduct)
+                .doNotCreateProduct();
 
         testProduct = DBHandler.getLastProduct();
 
         assertThat(itemManagementPage.getSearchInput())
                 .isTextEmpty();
 
-        itemManagementPage.fillSearchInput(testProductName)
-                .clickSearchButton();
+        itemManagementPage.searchProduct("Name", validProduct.getProductName());
 
         assertThat(itemManagementPage.getRecordsCountText())
                 .textEquals("0");
 
-        assertThat(testProduct).nameNotEqual(testProductName);
-        assertThat(testProduct).descriptionNotEqual(testProductDescription);
-        assertThat(testProduct).priceNotEqual(testProductPrice);
+        assertThat(testProduct).nameNotEqual(validProduct.getProductName());
+
+        assertThat(testProduct).descriptionNotEqual(validProduct.getProductDescription());
+
+        assertThat(testProduct).priceNotEqual(String.valueOf(validProduct.getProductPrice()));
     }
 
     @Test
     public final void testInvalidAttributes() {
 
         final String invalidLowBoundName = "PN";
-        final String invalidHighBoundName = "NewProductName";
-        final String invalidDescription = "InvalidProductDescription6";
-        final String invalidPrice = "12345678901234";
+        final Product invalidProduct = getInvalidProduct();
 
-        addProductPage.fillProductNameInput("")
-                .fillProductDescriptionInput("")
-                .fillProductPriceInput("")
-                .clickOkButton();
+        addProductPage.createProduct();
 
         assertThat(addProductPage.getProductNameErrorText())
                 .textEquals("Please enter product name!");
@@ -118,10 +103,8 @@ public class AddNewProductTest extends TestRunner {
         assertThat(addProductPage.getProductPriceErrorText())
                 .textEquals("Please enter product price!");
 
-        addProductPage.fillProductNameInput(invalidLowBoundName)
-                .fillProductDescriptionInput(invalidDescription)
-                .fillProductPriceInput(invalidPrice)
-                .clickOkButton();
+        addProductPage.setProductFields(invalidProduct)
+                .createProduct();
 
         assertThat(addProductPage.getProductNameErrorText())
                 .textEquals("Enter value in range: 3-13");
@@ -130,10 +113,10 @@ public class AddNewProductTest extends TestRunner {
         assertThat(addProductPage.getProductPriceErrorText())
                 .textEquals("Please enter double value!");
 
-        addProductPage.fillProductNameInput(invalidHighBoundName)
-                .fillProductDescriptionInput(invalidDescription)
-                .fillProductPriceInput(invalidPrice)
-                .clickOkButton();
+        invalidProduct.setProductName(invalidLowBoundName);
+
+        addProductPage.setProductFields(invalidProduct)
+                .createProduct();
 
         assertThat(addProductPage.getProductNameErrorText())
                 .textEquals("Enter value in range: 3-13");

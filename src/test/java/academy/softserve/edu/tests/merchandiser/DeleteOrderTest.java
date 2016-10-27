@@ -25,16 +25,14 @@ public class DeleteOrderTest extends TestRunner {
         testOrder = DBHandler.getOrderById(testOrderId);
         testOrderItem = DBHelper.createOrderItemInDB();
         userInfoPage = logInPage.logInAs(Roles.MERCHANDISER);
-        merchandiserOrderingPage = userInfoPage.clickMerchandiserOrderingTab();
+        merchandiserOrderingPage = userInfoPage.goToMerchandiserOrderingPage();
     }
 
     @Test
     public final void testOrdersElementsPresence() {
 
         // checks if there is valid order name and if delete order button is displayed
-        merchandiserOrderingPage.selectSearchDropdown("Order Name")
-                .fillSearchInput(testOrder.getOrderName())
-                .clickApplyButton();
+        merchandiserOrderingPage.searchOrder("Order Name", testOrder.getOrderName());
 
         assertThat(merchandiserOrderingPage.getOrderNameByCellId(2))
                 .textEquals(testOrder.getOrderName());
@@ -46,10 +44,8 @@ public class DeleteOrderTest extends TestRunner {
     @Test
     public final void testDeleteOrderAndConfirm() {
 
-        merchandiserOrderingPage.selectSearchDropdown("Order Name")
-                .fillSearchInput(testOrder.getOrderName())
-                .clickApplyButton()
-                .clickDeleteCellLink()
+        merchandiserOrderingPage.searchOrder("Order Name", testOrder.getOrderName())
+                .deleteFirstOrder()
                 .acceptAlert();
 
         merchandiserOrderingPage.refreshPage();
@@ -62,10 +58,8 @@ public class DeleteOrderTest extends TestRunner {
     @Test
     public final void testDeleteOrderAndCancelConfirmation() {
 
-        merchandiserOrderingPage.selectSearchDropdown("Order Name")
-                .fillSearchInput(testOrder.getOrderName())
-                .clickApplyButton()
-                .clickDeleteCellLink()
+        merchandiserOrderingPage.searchOrder("Order Name", testOrder.getOrderName())
+                .deleteFirstOrder()
                 .dismissAlert();
 
         assertThat(DBHandler.getOrderByNumber(testOrder.getOrderNumber()))

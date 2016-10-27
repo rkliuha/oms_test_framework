@@ -48,37 +48,37 @@ public class UserInfoPage extends PageObject<UserInfoPage> {
         super(driver);
     }
 
-    public final AdministrationPage clickAdministrationTab() {
+    public final AdministrationPage goToAdministrationPage() {
 
         administrationLink.click();
         return new AdministrationPage(driver);
     }
 
-    public final CustomerOrderingPage clickCustomerOrderingTab() {
+    public final CustomerOrderingPage goToCustomerOrderingPage() {
 
         customerOrderingLink.click();
         return new CustomerOrderingPage(driver);
     }
 
-    public final ItemManagementPage clickItemManagementTab() {
+    public final ItemManagementPage goToItemManagementPage() {
 
         itemManagementLink.click();
         return new ItemManagementPage(driver);
     }
 
-    public final MerchandiserOrderingPage clickMerchandiserOrderingTab() {
+    public final MerchandiserOrderingPage goToMerchandiserOrderingPage() {
 
         merchandiserOrderingLink.click();
         return new MerchandiserOrderingPage(driver);
     }
 
-    public UserInfoPage clickUkrainianButton() {
+    public UserInfoPage changeLanguageToUkrainian() {
 
         ukrainianSwitchLink.click();
         return this;
     }
 
-    public UserInfoPage clickEnglishButton() {
+    public UserInfoPage changeLanguageToEnglish() {
 
         englishSwitchLink.click();
         return this;

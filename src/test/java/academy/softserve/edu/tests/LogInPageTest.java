@@ -22,11 +22,11 @@ public class LogInPageTest extends TestRunner {
                 .isValueEmpty();
     }
 
-    // To check is it possible to input different symbols in to the fillUserNameInput field.
+    // To check is it possible to input different symbols in to the fillUserName field.
     @Test
     public final void testInputTextExist() {
 
-        logInPage.fillUserNameInput("Asa23@(?|};6756%");
+        logInPage.fillUserName("Asa23@(?|};6756%");
 
         assertThat(logInPage.getUserNameInput())
                 .isValueNotEmpty();
@@ -36,7 +36,7 @@ public class LogInPageTest extends TestRunner {
     @Test
     public final void testInputsCanTakeSymbols() {
 
-        logInPage.fillPasswordInput(password);
+        logInPage.fillPassword(password);
 
         assertThat(logInPage.getPasswordInput())
                 .textNotEqual(password);
@@ -56,8 +56,8 @@ public class LogInPageTest extends TestRunner {
     @Test
     public final void testInputOnlyName() {
 
-        logInPage.fillUserNameInput(name)
-                .clickLogInButton();
+        logInPage.fillUserName(name)
+                .clickLogIn();
 
         assertThat(logInPage.getLogInButton())
                 .isDisplayed();
@@ -67,8 +67,8 @@ public class LogInPageTest extends TestRunner {
     @Test
     public final void testInputOnlyPassword() {
 
-        logInPage.fillPasswordInput(password)
-                .clickLogInButton();
+        logInPage.fillPassword(password)
+                .clickLogIn();
 
         assertThat(logInPage.getLogInButton())
                 .isDisplayed();
@@ -78,7 +78,7 @@ public class LogInPageTest extends TestRunner {
     @Test
     public final void testInputNothing() {
 
-        logInPage.clickLogInButton();
+        logInPage.clickLogIn();
 
         assertThat(logInPage.getLogInButton())
                 .isDisplayed();
@@ -88,9 +88,9 @@ public class LogInPageTest extends TestRunner {
     @Test
     public final void testClearFields() {
 
-        logInPage.fillUserNameInput(name)
-                .fillPasswordInput(password)
-                .clickCancelButton();
+        logInPage.fillUserName(name)
+                .fillPassword(password)
+                .clickCancel();
 
         assertThat(logInPage.getUserNameInput())
                 .isValueEmpty();
@@ -104,7 +104,7 @@ public class LogInPageTest extends TestRunner {
     @Test
     public final void testRememberUserData() {
 
-        logInPage.clickRememberMeCheckbox()
+        logInPage.clickRememberMe()
                 .logInAs(Roles.CUSTOMER);
 
         logInPage.doLogOut();
@@ -119,11 +119,11 @@ public class LogInPageTest extends TestRunner {
     @Test
     public final void testLoginWithNonExistingData() {
 
-        logInPage.fillUserNameInput("Sarumjan")
-                .clickLogInButton();
+        logInPage.fillUserName("Sarumjan")
+                .clickLogIn();
 
-        logInPage.fillPasswordInput("Mordor")
-                .clickLogInButton();
+        logInPage.fillPassword("Mordor")
+                .clickLogIn();
 
         assertThat(logInPage.getLogInButton())
                 .isDisplayed();
@@ -134,8 +134,8 @@ public class LogInPageTest extends TestRunner {
     @Test
     public final void testErrorMessageOnEmptyUsername() {
 
-        logInPage.fillPasswordInput(password)
-                .clickLogInButton();
+        logInPage.fillPassword(password)
+                .clickLogIn();
 
         assertThat(logInPage.getLogInErrorMessage())
                 .textEquals("Such user does not exist in the system � please try again.");
@@ -146,8 +146,8 @@ public class LogInPageTest extends TestRunner {
     @Test
     public final void testErrorMessageOnUnregisteredName() {
 
-        logInPage.fillUserNameInput("unregistered data")
-                .clickLogInButton();
+        logInPage.fillUserName("unregistered data")
+                .clickLogIn();
 
         assertThat(logInPage.getLogInErrorMessage())
                 .textEquals("Such user does not exist in the system � please try again.");
@@ -158,8 +158,8 @@ public class LogInPageTest extends TestRunner {
     @Test
     public final void testErrorMessageOnEmptyPasswordField() {
 
-        logInPage.fillUserNameInput(name)
-                .clickLogInButton();
+        logInPage.fillUserName(name)
+                .clickLogIn();
 
         assertThat(logInPage.getLogInErrorMessage())
                 .textEquals("Password is incorrect � please try again");
@@ -170,9 +170,9 @@ public class LogInPageTest extends TestRunner {
     @Test
     public final void testErrorMessageOnWrongPassword() {
 
-        logInPage.fillUserNameInput(name)
-                .fillPasswordInput("Mordor")
-                .clickLogInButton();
+        logInPage.fillUserName(name)
+                .fillPassword("Mordor")
+                .clickLogIn();
 
         assertThat(logInPage.getLogInErrorMessage())
                 .textEquals("Password is incorrect � please try again");

@@ -32,13 +32,13 @@ public class MerchandiserEditOrderPage extends PageObject<MerchandiserEditOrderP
         return this;
     }
 
-    public final MerchandiserOrderingPage clickSaveButton() {
+    public final MerchandiserOrderingPage saveOrder() {
 
         saveButton.click();
         return new MerchandiserOrderingPage(driver);
     }
 
-    public final MerchandiserEditOrderPage clickShowItemsLink() {
+    public final MerchandiserEditOrderPage showItems() {
 
         showItems.click();
         return this;
@@ -54,6 +54,11 @@ public class MerchandiserEditOrderPage extends PageObject<MerchandiserEditOrderP
 
         lastDateLink.click();
         return this;
+    }
+
+    public final MerchandiserEditOrderPage chooseValidDeliveryDate() {
+
+        return clickChooseDate().clickLastDate();
     }
 
 }

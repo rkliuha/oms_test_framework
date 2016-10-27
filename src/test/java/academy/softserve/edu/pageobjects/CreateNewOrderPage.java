@@ -1,5 +1,6 @@
 package academy.softserve.edu.pageobjects;
 
+import academy.softserve.edu.domains.CreditCard;
 import academy.softserve.edu.elements.wrappers.*;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
@@ -145,117 +146,123 @@ public class CreateNewOrderPage extends PageObject<CreateNewOrderPage> {
         super(driver);
     }
 
-    public final OrderItemsErrorMessagePage clickSaveButtonFail() {
+    public final OrderItemsErrorMessagePage saveOrderWithFail() {
 
         saveButton.click();
         return new OrderItemsErrorMessagePage(driver);
     }
 
-    public final CreateNewOrderPage clickSaveButton() {
+    public final CreateNewOrderPage saveOrderInfo() {
 
         saveButton.click();
         return this;
     }
 
-    public final CustomerOrderingPage clickOrderingLink() {
+    public final CustomerOrderingPage goToCustomerOrderingPage() {
 
         orderingLink.click();
         return new CustomerOrderingPage(driver);
     }
 
-    public final AddItemPage clickAddItemButton() {
+    public final AddItemPage goToAddItemPage() {
 
         getAddItemButton().click();
         return new AddItemPage(driver);
     }
 
-    public final CreateNewOrderPage clickCalendarMonthForwardButton() {
-
-        calendarMonthForwardButton.click();
-        return this;
-    }
-
-    public final CreateNewOrderPage clickFirstItemDeleteButton() {
+    public final CreateNewOrderPage deleteFirstItem() {
 
         firstItemDeleteButton.click();
         return this;
     }
 
-    public final CreateNewOrderPage clickCalendarTuesdayElement() {
-
-        calendarThursdayElement.click();
-        return this;
-    }
-
-    public final CreateNewOrderPage clickPreferableDeliveryDateChooseLink() {
+    public final CreateNewOrderPage choosePreferableDeliveryDate() {
 
         preferableDeliveryDateChooseLink.click();
         return this;
     }
 
-    public final CreateNewOrderPage clickValidDeliveryDateLink() {
-
-        validDeliveryDateLink.click();
-        return this;
-    }
-
-    public final CustomerOrderingPage clickOrderButton() {
+    public final CustomerOrderingPage doOrder() {
 
         orderButton.click();
         return new CustomerOrderingPage(driver);
     }
 
-    public final CreateNewOrderPage selectAssigneeDropdown(final String assigneeLogin) {
+    public final CreateNewOrderPage chooseOrderAssignee(final String assigneeLogin) {
 
         assigneeDropdown.sendKeys(assigneeLogin);
         return this;
     }
 
-    public final CreateNewOrderPage fillOrderNumberTextField(final String orderNumber) {
+    public final CreateNewOrderPage setOrderNumber(final String orderNumber) {
 
         orderNumberTextField.sendKeys(orderNumber);
         return this;
     }
 
-    public final CreateNewOrderPage selectCreditCardTypeDropdown(final String cardType) {
+    public final CreateNewOrderPage chooseValidDeliveryDate() {
 
-        creditCardTypeDropdown.sendKeys(cardType);
+        getPreferableDeliveryDateChooseLink().click();
+        getValidDeliveryDate().click();
         return this;
     }
 
-    public final CreateNewOrderPage selectExpireDateMonthDropdown(final String expireMonth) {
-
-        expireDateMonthDropdown.sendKeys(expireMonth);
-        return this;
-    }
-
-    public final CreateNewOrderPage selectExpireDateYearDropdown(final String expireYear) {
-
-        expireDateMonthDropdown.sendKeys(expireYear);
-        return this;
-    }
-
-    public final CreateNewOrderPage fillCreditCardNumberTextfield(final String cardNumber) {
+    public final CreateNewOrderPage fillCreditCardNumber(final String cardNumber) {
 
         creditCardNumberTextfield.sendKeys(cardNumber);
         return this;
     }
 
-    public final CreateNewOrderPage fillCVV2Textfield(final String CVV2Code) {
+    public final CreateNewOrderPage fillCVV2(final String CVV2Code) {
 
         CVV2Textfield.sendKeys(CVV2Code);
         return this;
     }
 
-    public final CreateNewOrderPage fillStartDateMaestroTextfield(final String startDate) {
+    public final CreateNewOrderPage fillStartDateMaestro(final String startDate) {
 
         startDateMaestroTextfield.sendKeys(startDate);
         return this;
     }
 
-    public final CreateNewOrderPage fillIssueNumberMaestroTextfield(final String issueNumber) {
+    public final CreateNewOrderPage fillIssueNumberMaestro(final String issueNumber) {
 
         issueNumberMaestroTextfield.sendKeys(issueNumber);
+        return this;
+    }
+
+    public final CreateNewOrderPage selectCreditCardType(final String cardType) {
+
+        creditCardTypeDropdown.sendKeys(cardType);
+        return this;
+    }
+
+    public final CreateNewOrderPage selectExpireDateMonth(final String expireMonth) {
+
+        expireDateMonthDropdown.sendKeys(expireMonth);
+        return this;
+    }
+
+    public final CreateNewOrderPage selectExpireDateYear(final String expireYear) {
+
+        expireDateMonthDropdown.sendKeys(expireYear);
+        return this;
+    }
+
+    public final CreateNewOrderPage setCreditCardInfo(final CreditCard creditCard) {
+
+        selectCreditCardType(creditCard.getCardType())
+                .fillCreditCardNumber(creditCard.getCardNumber())
+                .fillCVV2(String.valueOf(creditCard.getCVV2()))
+                .selectExpireDateMonth(String.valueOf(creditCard.getExpireDateMonth()))
+                .selectExpireDateYear(String.valueOf(creditCard.getExpireDateYear()));
+
+        if (creditCard.getIssueNumber() != 0) {
+
+            fillStartDateMaestro(creditCard.getStartDate())
+                    .fillIssueNumberMaestro(String.valueOf(creditCard.getIssueNumber()));
+        }
+
         return this;
     }
 

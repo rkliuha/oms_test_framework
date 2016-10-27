@@ -2,6 +2,8 @@ package academy.softserve.edu.tests.administrator;
 
 import academy.softserve.edu.domains.User;
 import academy.softserve.edu.enums.Roles;
+import academy.softserve.edu.enums.administration_page.ColumnFilters;
+import academy.softserve.edu.enums.administration_page.SearchConditions;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.DBHelper;
 import academy.softserve.edu.utils.TestRunner;
@@ -26,25 +28,22 @@ public class DeleteUserTest extends TestRunner {
     @BeforeMethod
     public final void setUpTests() {
 
-        final String FILTER_DROPDOWN = "Login";
-        final String CONDITION_DROPDOWN = "equals";
+        final ColumnFilters FILTER_DROPDOWN = ColumnFilters.LOGIN;
+        final SearchConditions CONDITION_DROPDOWN = SearchConditions.EQUALS;
 
         userInfoPage = logInPage.logInAs(Roles.ADMINISTRATOR);
 
-        administrationPage = userInfoPage.clickAdministrationTab();
+        administrationPage = userInfoPage.goToAdministrationPage();
 
-        administrationPage.selectSearchFieldFilterDropdown(FILTER_DROPDOWN)
-                .selectSearchConditionDropdown(CONDITION_DROPDOWN)
-                .fillSearchInput(testUser.getLogin())
-                .clickSearchButton();
+        administrationPage.searchUser(FILTER_DROPDOWN, CONDITION_DROPDOWN, testUser.getLogin());
+
     }
 
     @Test
     public final void testDeleteUserAndClickCancel() {
 
-        administrationPage.clickDeleteFirstUserLink();
-
-        administrationPage.dismissAlert();
+        administrationPage.deleteFirstUser()
+                .dismissAlert();
 
         assertThat(DBHandler.getUserByLogin(testUser.getLogin()))
                 .isUserActive();
@@ -53,9 +52,8 @@ public class DeleteUserTest extends TestRunner {
     @Test
     public final void testDeleteUserAndClickConfirm() {
 
-        administrationPage.clickDeleteFirstUserLink();
-
-        administrationPage.acceptAlert();
+        administrationPage.deleteFirstUser()
+                .acceptAlert();
 
         administrationPage.refreshPage();
 

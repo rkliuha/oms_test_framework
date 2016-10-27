@@ -37,46 +37,53 @@ public class AddItemPage extends PageObject<AddItemPage> {
         super(driver);
     }
 
-    public final AddItemPage clickSelectLastAddedItemLink() {
+    public final AddItemPage selectLastAddedItem() {
 
         selectLastAddedItemLink.click();
         return this;
     }
 
-    public final CreateNewOrderPage clickDoneButton() {
+    public final CreateNewOrderPage addItemToOrder() {
 
         doneButton.click();
         return new CreateNewOrderPage(driver);
     }
 
-    public final AddItemPage fillItemQuantityTextfield(final String itemQuantity) {
-
-        itemQuantityTextfield.sendKeys(itemQuantity);
-        return this;
-    }
-
-    public final AddItemPage fillSearchForItemInput(final String searchText) {
+    public final AddItemPage fillSearchForItem(final String searchText) {
 
         searchForItemInput.sendKeys(searchText);
         return this;
     }
 
-    public final AddItemPage selectItemDimensionDropdown(final String itemDimension) {
+    public final AddItemPage fillItemQuantity(final String itemQuantity) {
+
+        itemQuantityTextfield.sendKeys(itemQuantity);
+        return this;
+    }
+
+    public final AddItemPage selectItemDimension(final String itemDimension) {
 
         itemDimensionDropdown.sendKeys(itemDimension);
         return this;
     }
 
-    public final AddItemPage selectSearchForItemDropdown(final String condition) {
+    public final AddItemPage selectSearchForItem(final String condition) {
 
         searchForItemDropdown.sendKeys(condition);
         return this;
     }
 
-    public final AddItemPage clickSearchForItemButton() {
+    public final AddItemPage clickSearchForItem() {
 
         searchForItemButton.click();
         return this;
+    }
+
+    public final AddItemPage searchItem(final String searchCondition, final String searchText) {
+
+        return selectSearchForItem(searchCondition)
+                .fillSearchForItem(searchText)
+                .clickSearchForItem();
     }
 
 }

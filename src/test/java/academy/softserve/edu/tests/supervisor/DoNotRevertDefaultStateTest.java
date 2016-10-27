@@ -28,14 +28,12 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
 
         userInfoPage = logInPage.logInAs(Roles.SUPERVISOR);
 
-        itemManagementPage = userInfoPage.clickItemManagementTab();
+        itemManagementPage = userInfoPage.goToItemManagementPage();
 
-        itemManagementPage.selectSearchFieldFilterDropdown(fieldFilter)
-                .fillSearchInput(fieldFilterValue)
-                .clickSearchButton()
-                .clickUserInfoTab();
+        itemManagementPage.searchProduct(fieldFilter, fieldFilterValue)
+                .goToUserInfoPage();
 
-        userInfoPage.clickItemManagementTab();
+        userInfoPage.goToItemManagementPage();
 
         assertThat(itemManagementPage.getSearchFieldFilterDropdown())
                 .selectedDropdownEquals(fieldFilter);

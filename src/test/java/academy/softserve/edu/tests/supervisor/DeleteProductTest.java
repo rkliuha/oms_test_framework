@@ -28,12 +28,11 @@ public class DeleteProductTest extends TestRunner {
 
         userInfoPage = logInPage.logInAs(Roles.SUPERVISOR);
 
-        itemManagementPage = userInfoPage.clickItemManagementTab();
+        itemManagementPage = userInfoPage.goToItemManagementPage();
 
-        itemManagementPage.fillSearchInput(testProduct.getProductName())
-                .clickSearchButton();
+        itemManagementPage.searchProduct("Order Name", testProduct.getProductName());
 
-        itemManagementPage.clickDeleteProductLinkById(testProductId);
+        itemManagementPage.deleteProductById(testProductId);
 
         itemManagementPage.dismissAlert();
 
@@ -46,12 +45,11 @@ public class DeleteProductTest extends TestRunner {
 
         userInfoPage = logInPage.logInAs(Roles.SUPERVISOR);
 
-        itemManagementPage = userInfoPage.clickItemManagementTab();
+        itemManagementPage = userInfoPage.goToItemManagementPage();
 
-        itemManagementPage.fillSearchInput(testProduct.getProductName())
-                .clickSearchButton();
+        itemManagementPage.searchProduct("Order Name", testProduct.getProductName());
 
-        itemManagementPage.clickDeleteProductLinkById(testProductId);
+        itemManagementPage.deleteProductById(testProductId);
 
         itemManagementPage.acceptAlert();
 

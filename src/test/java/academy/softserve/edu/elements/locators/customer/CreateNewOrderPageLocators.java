@@ -76,7 +76,7 @@ public enum CreateNewOrderPageLocators implements ILocator {
 
     VALID_DELIVERY_DATE_LINK("Valid Delivery Date Link",
             LocatorsType.BY_XPATH,
-            "//div[@id='dp-popup']/div[3]/table/tbody/tr[5]/td[5]"),
+            "//div[@id='dp-popup']/div[3]/table/tbody/tr[5]/td[last()]"),
 
     DELIVERY_DATE_TEXT("Delivery Date Text",
             LocatorsType.BY_XPATH,

@@ -86,100 +86,107 @@ public class ItemManagementPage extends PageObject<ItemManagementPage> {
         super(driver);
     }
 
-    public final UserInfoPage clickUserInfoTab() {
+    public final UserInfoPage goToUserInfoPage() {
 
         userInfoLink.click();
         return new UserInfoPage(driver);
     }
 
-    public final SupervisorCreateReportPage clickCreateReportLink() {
+    public final SupervisorCreateReportPage goToCreateReportPage() {
 
         createReportLink.click();
         return new SupervisorCreateReportPage(driver);
     }
 
-    public final EditProductPage clickEditProductLinkById(final int productId) {
+    public final EditProductPage editProductById(final int productId) {
 
         getEditProductLinkById(productId).click();
         return new EditProductPage(driver);
     }
 
-    public final ItemManagementPage clickDeleteProductLinkById(final int productId) {
+    public final ItemManagementPage deleteProductById(final int productId) {
 
         getDeleteProductLinkById(productId).click();
         return this;
     }
 
-    public final ItemManagementPage clickResizeProductsListButton() {
+    public final ItemManagementPage resizeShowProducts() {
 
         resizeProductsListButton.click();
         return this;
     }
 
-    public final ItemManagementPage clickNameHeaderButton() {
+    public final ItemManagementPage sortTableByName() {
 
         nameHeaderButton.click();
         return this;
     }
 
-    public final ItemManagementPage clickDescriptionHeaderButton() {
+    public final ItemManagementPage sortTableByDescription() {
 
         descriptionHeaderButton.click();
         return this;
     }
 
-    public final ItemManagementPage clickPriceHeaderButton() {
+    public final ItemManagementPage sortTableByPrice() {
 
         priceHeaderButton.click();
         return this;
     }
 
-    public final ItemManagementPage clickForwardNavigationButton() {
+    public final ItemManagementPage navigateTableForward() {
 
         forwardNavigationButton.click();
         return this;
     }
 
-    public final ItemManagementPage clickBackwardNavigationButton() {
+    public final ItemManagementPage navigateTableBackward() {
 
         backwardNavigationButton.click();
         return this;
     }
 
-    public final ItemManagementPage clickLastNavigationButton() {
+    public final ItemManagementPage navigateTableToLastPage() {
 
         lastNavigationButton.click();
         return this;
     }
 
-    public final ItemManagementPage clickFirstNavigationButton() {
+    public final ItemManagementPage navigateTableToFirstPage() {
 
         firstNavigationButton.click();
         return this;
     }
 
-    public final AddProductPage clickAddProductLink() {
+    public final AddProductPage goToAddProductPage() {
 
         getAddProductLink().click();
         return new AddProductPage(driver);
     }
 
-    public final ItemManagementPage clickSearchButton() {
+    public final ItemManagementPage clickSearch() {
 
         searchButton.click();
         return this;
     }
 
-    public final ItemManagementPage fillSearchInput(final String searchText) {
+    public final ItemManagementPage fillSearch(final String searchText) {
 
         searchInput.sendKeys(searchText);
         return this;
     }
 
-    public final ItemManagementPage selectSearchFieldFilterDropdown(final String condition) {
+    public final ItemManagementPage selectSearchFieldFilter(final String condition) {
 
         searchFieldFilterDropdown.sendKeys(condition);
         return this;
+    }
+
+    public final ItemManagementPage searchProduct(final String searchCondition, final String searchText) {
+
+        return selectSearchFieldFilter(searchCondition)
+                .fillSearch(searchText)
+                .clickSearch();
     }
 
 }

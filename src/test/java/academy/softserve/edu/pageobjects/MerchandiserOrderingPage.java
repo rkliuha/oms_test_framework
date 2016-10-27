@@ -79,100 +79,107 @@ public class MerchandiserOrderingPage extends PageObject<MerchandiserOrderingPag
         super(driver);
     }
 
-    public final MerchandiserEditOrderPage clickEditOrder(final Link editOrderLink) {
+    public final MerchandiserEditOrderPage editOrder(final Link editOrderLink) {
 
         editOrderLink.click();
         return new MerchandiserEditOrderPage(driver);
     }
 
-    public final MerchandiserOrderingPage clickShowItems() {
+    public final MerchandiserOrderingPage showItems() {
 
         showItemsLink.click();
         return this;
     }
 
-    public final UserInfoPage clickUserInfoLink() {
+    public final UserInfoPage goToUserInfoPage() {
 
         userInfoLink.click();
         return new UserInfoPage(driver);
     }
 
-    public final MerchandiserOrderingPage clickApplyButton() {
+    public final MerchandiserOrderingPage clickApply() {
 
         applyButton.click();
         return this;
     }
 
-    public final MerchandiserOrderingPage clickOrderNameHeaderButton() {
+    public final MerchandiserOrderingPage sortTableByOrderName() {
 
         orderNameHeaderButton.click();
         return this;
     }
 
-    public final MerchandiserOrderingPage clickTotalPriceHeaderButton() {
+    public final MerchandiserOrderingPage sortTableByTotalPrice() {
 
         totalPriceHeaderButton.click();
         return this;
     }
 
-    public final MerchandiserOrderingPage clickMaxDiscountHeaderButton() {
+    public final MerchandiserOrderingPage sortTableByMaxDiscount() {
 
         maxDiscountHeaderButton.click();
         return this;
     }
 
-    public final MerchandiserOrderingPage clickStatusHeaderButton() {
+    public final MerchandiserOrderingPage sortTableByStatus() {
 
         statusHeaderButton.click();
         return this;
     }
 
-    public final MerchandiserOrderingPage clickForwardButton() {
+    public final MerchandiserOrderingPage navigateTableForward() {
 
         forwardButton.click();
         return this;
     }
 
-    public final MerchandiserOrderingPage clickBackwardButton() {
+    public final MerchandiserOrderingPage navigateTableBackward() {
 
         backwardButton.click();
         return this;
     }
 
-    public final MerchandiserOrderingPage clickLastButton() {
+    public final MerchandiserOrderingPage navigateTableToLastPage() {
 
         lastButton.click();
         return this;
     }
 
-    public final MerchandiserOrderingPage clickFirstButton() {
+    public final MerchandiserOrderingPage navigateTableToFirstPage() {
 
         firstButton.click();
         return this;
     }
 
-    public final MerchandiserOrderingPage clickResizeOrdersListLink() {
+    public final MerchandiserOrderingPage resizeShowOrders() {
 
         resizeOrdersListLink.click();
         return this;
     }
 
-    public final MerchandiserOrderingPage clickDeleteCellLink() {
+    public final MerchandiserOrderingPage deleteFirstOrder() {
 
         deleteCellLink.click();
         return this;
     }
 
-    public final MerchandiserOrderingPage selectSearchDropdown(final String condition) {
+    public final MerchandiserOrderingPage selectSearchCondition(final String condition) {
 
         searchDropdown.sendKeys(condition);
         return this;
     }
 
-    public final MerchandiserOrderingPage fillSearchInput(final String searchText) {
+    public final MerchandiserOrderingPage fillSearch(final String searchText) {
 
         searchInput.sendKeys(searchText);
         return this;
+    }
+
+    public final MerchandiserOrderingPage searchOrder(final String searchCondition, final String searchText) {
+
+        return selectSearchCondition(searchCondition)
+                .fillSearch(searchText)
+                .clickApply();
     }
 
 }

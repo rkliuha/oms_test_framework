@@ -28,14 +28,12 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
 
         userInfoPage = logInPage.logInAs(Roles.MERCHANDISER);
 
-        merchandiserOrderingPage = userInfoPage.clickMerchandiserOrderingTab();
+        merchandiserOrderingPage = userInfoPage.goToMerchandiserOrderingPage();
 
-        merchandiserOrderingPage.selectSearchDropdown(searchOrders)
-                .fillSearchInput(searchOrdersValue)
-                .clickApplyButton()
-                .clickUserInfoLink();
+        merchandiserOrderingPage.searchOrder(searchOrders, searchOrdersValue)
+                .goToUserInfoPage();
 
-        userInfoPage.clickMerchandiserOrderingTab();
+        userInfoPage.goToMerchandiserOrderingPage();
 
         assertThat(merchandiserOrderingPage.getSearchDropdown())
                 .selectedDropdownEquals(searchOrders);

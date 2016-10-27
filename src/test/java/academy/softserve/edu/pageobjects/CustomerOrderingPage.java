@@ -48,52 +48,59 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
         super(driver);
     }
 
-    public final UserInfoPage clickUserInfoTab() {
+    public final UserInfoPage goToUserInfoPage() {
 
         userInfoLink.click();
         return new UserInfoPage(driver);
     }
 
-    public final CreateNewOrderPage clickCreateNewOrderLink() {
+    public final CreateNewOrderPage goToCreateNewOrderPage() {
 
         createNewOrderLink.click();
         return new CreateNewOrderPage(driver);
     }
 
-    public final CustomerOrderingPage clickResizeShowItemsLink() {
+    public final CustomerOrderingPage resizeShowOrders() {
 
         resizeShowItemsLink.click();
         return this;
     }
 
-    public final CustomerOrderingPage clickApplyButton() {
+    public final CustomerOrderingPage clickApply() {
 
         applyButton.click();
         return this;
     }
 
-    public final CreateNewOrderPage clickEditLink() {
+    public final CreateNewOrderPage editFirstOrder() {
 
         editLink.click();
         return new CreateNewOrderPage(driver);
     }
 
-    public final CustomerOrderingPage clickDeleteLink() {
+    public final CustomerOrderingPage deleteFirstOrder() {
 
         deleteLink.click();
         return this;
     }
 
-    public final CustomerOrderingPage selectSearchDropdown(final String condition) {
+    public final CustomerOrderingPage selectSearchCondition(final String condition) {
 
         searchDropdown.sendKeys(condition);
         return this;
     }
 
-    public final CustomerOrderingPage fillSearchInput(final String searchText) {
+    public final CustomerOrderingPage fillSearch(final String searchText) {
 
         searchInput.sendKeys(searchText);
         return this;
+    }
+
+    public final CustomerOrderingPage searchOrder(final String searchCondition, final String searchText) {
+
+        return selectSearchCondition(searchCondition)
+                .fillSearch(searchText)
+                .clickApply();
     }
 
 }

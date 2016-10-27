@@ -30,7 +30,7 @@ public class LogInLogOutTest extends TestRunner {
         assertThat(userInfoPage.getLogOutButton())
                 .isDisplayed();
 
-        itemManagementPage = userInfoPage.clickItemManagementTab();
+        itemManagementPage = userInfoPage.goToItemManagementPage();
 
         // we have to check switching between pages, has the same issue with logIn check;
         assertThat(itemManagementPage.getSearchByFieldSet())
@@ -45,7 +45,7 @@ public class LogInLogOutTest extends TestRunner {
 
         userInfoPage = logInPage.logInAs(Roles.SUPERVISOR);
 
-        itemManagementPage = userInfoPage.clickItemManagementTab();
+        itemManagementPage = userInfoPage.goToItemManagementPage();
 
         itemManagementPage.doLogOut();
 

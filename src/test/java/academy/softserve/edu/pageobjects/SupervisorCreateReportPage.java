@@ -15,7 +15,7 @@ public class SupervisorCreateReportPage extends PageObject<SupervisorCreateRepor
         super(driver);
     }
 
-    public final SupervisorReportPage clickSaveReportLink() {
+    public final SupervisorReportPage saveReport() {
 
         saveReportLink.click();
         return new SupervisorReportPage(driver);

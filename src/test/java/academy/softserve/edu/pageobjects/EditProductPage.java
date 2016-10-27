@@ -1,5 +1,6 @@
 package academy.softserve.edu.pageobjects;
 
+import academy.softserve.edu.domains.Product;
 import academy.softserve.edu.elements.wrappers.Button;
 import academy.softserve.edu.elements.wrappers.TextInputField;
 import lombok.Getter;
@@ -27,34 +28,52 @@ public class EditProductPage extends PageObject<EditProductPage> {
         super(driver);
     }
 
-    public final ItemManagementPage clickOkButton() {
+    public final ItemManagementPage clickOk() {
 
         okButton.click();
         return new ItemManagementPage(driver);
     }
 
-    public final ItemManagementPage clickCancelButton() {
+    public final ItemManagementPage clickCancel() {
 
         cancelButton.click();
         return new ItemManagementPage(driver);
     }
 
-    public final EditProductPage fillProductNameInput(final String productName) {
+    public final EditProductPage fillProductName(final String productName) {
 
         productNameInput.sendKeys(productName);
         return this;
     }
 
-    public final EditProductPage fillProductDescriptionInput(final String productDescription) {
+    public final EditProductPage fillProductDescription(final String productDescription) {
 
         productDescriptionInput.sendKeys(productDescription);
         return this;
     }
 
-    public final EditProductPage fillProductPriceInput(final String productPrice) {
+    public final EditProductPage fillProductPrice(final String productPrice) {
 
         productPriceInput.sendKeys(productPrice);
         return this;
+    }
+
+    public final EditProductPage setProductFields(final Product product) {
+
+        return fillProductName(product.getProductName())
+                .fillProductDescription(product.getProductDescription())
+                .fillProductPrice(String.valueOf(product.getProductPrice()));
+
+    }
+
+    public final ItemManagementPage editProduct() {
+
+        return clickOk();
+    }
+
+    public final ItemManagementPage doNotEditProduct() {
+
+        return clickCancel();
     }
 
 }

@@ -24,7 +24,7 @@ public class UserInfoPageTest extends TestRunner {
 
         userInfoPage = logInPage.logInAs(Roles.MERCHANDISER);
 
-        userInfoPage.clickUkrainianButton();
+        userInfoPage.changeLanguageToUkrainian();
 
         assertThat(userInfoPage.getMerchandiserOrderingLink())
                 .textEquals("Замовлення");
@@ -35,8 +35,9 @@ public class UserInfoPageTest extends TestRunner {
     public final void testSwitchToEnglish() {
 
         userInfoPage = logInPage.logInAs(Roles.MERCHANDISER);
-        userInfoPage.clickUkrainianButton()
-                .clickEnglishButton();
+
+        userInfoPage.changeLanguageToUkrainian()
+                .changeLanguageToEnglish();
 
         assertThat(userInfoPage.getMerchandiserOrderingLink())
                 .textEquals("Ordering");
@@ -58,7 +59,7 @@ public class UserInfoPageTest extends TestRunner {
 
         userInfoPage = logInPage.logInAs(Roles.MERCHANDISER);
 
-        userInfoPage.clickUkrainianButton();
+        userInfoPage.changeLanguageToUkrainian();
 
         assertThat(userInfoPage.getUkrainianSwitchLink())
                 .isTextBold();

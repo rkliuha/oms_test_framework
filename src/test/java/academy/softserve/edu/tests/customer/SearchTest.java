@@ -16,11 +16,9 @@ public class SearchTest extends TestRunner {
 
         userInfoPage = logInPage.logInAs(Roles.CUSTOMER);
 
-        customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
+        customerOrderingPage = userInfoPage.goToCustomerOrderingPage();
 
-        customerOrderingPage.selectSearchDropdown(dropdownStatus)
-                .fillSearchInput(textFieldValueByStatus)
-                .clickApplyButton();
+        customerOrderingPage.searchOrder(dropdownStatus, textFieldValueByStatus);
 
         assertThat(customerOrderingPage.getSearchStatusResult())
                 .isDisplayed();
@@ -34,11 +32,9 @@ public class SearchTest extends TestRunner {
 
         userInfoPage = logInPage.logInAs(Roles.CUSTOMER);
 
-        customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
+        customerOrderingPage = userInfoPage.goToCustomerOrderingPage();
 
-        customerOrderingPage.selectSearchDropdown(dropdownName)
-                .fillSearchInput(textFieldValueByName)
-                .clickApplyButton();
+        customerOrderingPage.searchOrder(dropdownName, textFieldValueByName);
 
         assertThat(customerOrderingPage.getSearchNameResult())
                 .isDisplayed();
@@ -49,12 +45,12 @@ public class SearchTest extends TestRunner {
 
         userInfoPage = logInPage.logInAs(Roles.CUSTOMER);
 
-        customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
+        customerOrderingPage = userInfoPage.goToCustomerOrderingPage();
 
         assertThat(customerOrderingPage.getOrderNameColumnElements())
                 .isQuantityLessOrEqualsThan(5);
 
-        customerOrderingPage.clickResizeShowItemsLink();
+        customerOrderingPage.resizeShowOrders();
 
         assertThat(customerOrderingPage.getOrderNameColumnElements())
                 .isQuantityMoreThan(5);
