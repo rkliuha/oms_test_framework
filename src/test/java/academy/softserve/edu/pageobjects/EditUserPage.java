@@ -5,6 +5,8 @@ import academy.softserve.edu.elements.wrappers.Button;
 import academy.softserve.edu.elements.wrappers.Dropdown;
 import academy.softserve.edu.elements.wrappers.TextInputField;
 import academy.softserve.edu.elements.wrappers.TextLabel;
+import academy.softserve.edu.enums.Regions;
+import academy.softserve.edu.enums.Roles;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 
@@ -41,45 +43,45 @@ public class EditUserPage extends PageObject<EditUserPage> {
         super(driver);
     }
 
-    public final EditUserPage fillLastName(final String lastName) {
+    public final EditUserPage setLastName(final String lastName) {
 
         lastNameInput.sendKeys(lastName);
         return this;
     }
 
-    public final EditUserPage fillFirstName(final String firstName) {
+    public final EditUserPage setFirstName(final String firstName) {
 
         firstNameInput.sendKeys(firstName);
         return this;
     }
 
-    public final EditUserPage fillNewPassword(final String password) {
+    public final EditUserPage setNewPassword(final String password) {
 
         newPasswordInput.sendKeys(password);
         return this;
     }
 
-    public final EditUserPage fillConfirmPassword(final String password) {
+    public final EditUserPage setConfirmPassword(final String password) {
 
         confirmPasswordInput.sendKeys(password);
         return this;
     }
 
-    public final EditUserPage fillEmailAddress(final String emailAddress) {
+    public final EditUserPage setEmailAddress(final String emailAddress) {
 
         emailAddressInput.sendKeys(emailAddress);
         return this;
     }
 
-    public final EditUserPage selectRegion(final String region) {
+    public final EditUserPage selectRegion(final Regions region) {
 
-        regionDropdown.sendKeys(region);
+        regionDropdown.sendKeys(region.toString());
         return this;
     }
 
-    public final EditUserPage selectRole(final String role) {
+    public final EditUserPage selectRole(final Roles role) {
 
-        roleDropdown.sendKeys(role);
+        roleDropdown.sendKeys(role.toString());
         return this;
     }
 
@@ -97,13 +99,13 @@ public class EditUserPage extends PageObject<EditUserPage> {
 
     public final EditUserPage setUserFields(final User newUser) {
 
-        return fillFirstName(newUser.getFirstName())
-                .fillLastName(newUser.getLastName())
-                .fillNewPassword(newUser.getPassword())
-                .fillConfirmPassword(newUser.getPassword())
-                .fillEmailAddress(newUser.getEmail())
-                .selectRegion(newUser.getRegionName())
-                .selectRole(newUser.getRoleName());
+        return setFirstName(newUser.getFirstName())
+                .setLastName(newUser.getLastName())
+                .setNewPassword(newUser.getPassword())
+                .setConfirmPassword(newUser.getPassword())
+                .setEmailAddress(newUser.getEmail())
+                .selectRegion(Regions.valueOf(newUser.getRegionName()))
+                .selectRole(Roles.valueOf(newUser.getRoleName()));
     }
 
     public final AdministrationPage editUser() {
@@ -111,7 +113,7 @@ public class EditUserPage extends PageObject<EditUserPage> {
         return clickSaveChanges();
     }
 
-    public final AdministrationPage doNotEditUser() {
+    public final AdministrationPage cancelEditingUser() {
 
         return clickCancel();
     }

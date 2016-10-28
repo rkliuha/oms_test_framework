@@ -40,19 +40,19 @@ public class EditProductPage extends PageObject<EditProductPage> {
         return new ItemManagementPage(driver);
     }
 
-    public final EditProductPage fillProductName(final String productName) {
+    public final EditProductPage setProductName(final String productName) {
 
         productNameInput.sendKeys(productName);
         return this;
     }
 
-    public final EditProductPage fillProductDescription(final String productDescription) {
+    public final EditProductPage setProductDescription(final String productDescription) {
 
         productDescriptionInput.sendKeys(productDescription);
         return this;
     }
 
-    public final EditProductPage fillProductPrice(final String productPrice) {
+    public final EditProductPage setProductPrice(final String productPrice) {
 
         productPriceInput.sendKeys(productPrice);
         return this;
@@ -60,9 +60,9 @@ public class EditProductPage extends PageObject<EditProductPage> {
 
     public final EditProductPage setProductFields(final Product product) {
 
-        return fillProductName(product.getProductName())
-                .fillProductDescription(product.getProductDescription())
-                .fillProductPrice(String.valueOf(product.getProductPrice()));
+        return setProductName(product.getProductName())
+                .setProductDescription(product.getProductDescription())
+                .setProductPrice(String.valueOf(product.getProductPrice()));
 
     }
 
@@ -71,7 +71,7 @@ public class EditProductPage extends PageObject<EditProductPage> {
         return clickOk();
     }
 
-    public final ItemManagementPage doNotEditProduct() {
+    public final ItemManagementPage cancelEditingProduct() {
 
         return clickCancel();
     }

@@ -1,6 +1,7 @@
 package academy.softserve.edu.tests.merchandiser;
 
 import academy.softserve.edu.enums.Roles;
+import academy.softserve.edu.enums.merchandiser_ordering_page.SearchConditions;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.Test;
 
@@ -23,20 +24,20 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     @Test
     public void testDoNotRevertDefaultState() {
 
-        final String searchOrders = "Status";
+        final SearchConditions searchOrders = SearchConditions.STATUS;
         final String searchOrdersValue = "Ordered";
 
         userInfoPage = logInPage.logInAs(Roles.MERCHANDISER);
 
         merchandiserOrderingPage = userInfoPage.goToMerchandiserOrderingPage();
 
-        merchandiserOrderingPage.searchOrder(searchOrders, searchOrdersValue)
+        merchandiserOrderingPage.searchForOrder(searchOrders, searchOrdersValue)
                 .goToUserInfoPage();
 
         userInfoPage.goToMerchandiserOrderingPage();
 
         assertThat(merchandiserOrderingPage.getSearchDropdown())
-                .selectedDropdownEquals(searchOrders);
+                .selectedDropdownEqualsIgnoreCase(searchOrders.toString());
 
         assertThat(merchandiserOrderingPage.getSearchInput())
                 .valueEquals(searchOrdersValue);

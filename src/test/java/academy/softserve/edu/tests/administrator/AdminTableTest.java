@@ -3,11 +3,13 @@ package academy.softserve.edu.tests.administrator;
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.enums.administration_page.ColumnFilters;
 import academy.softserve.edu.enums.administration_page.SearchConditions;
+import academy.softserve.edu.enums.administration_page.SortConditions;
 import academy.softserve.edu.utils.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
+import static academy.softserve.edu.enums.administration_page.SortConditions.*;
 
 public class AdminTableTest extends TestRunner {
 
@@ -39,7 +41,7 @@ public class AdminTableTest extends TestRunner {
     public final void testSearchForAllColumnsFilter(final SearchConditions secondSearchFilter,
                                                     final String searchingValue, final String comparisonValue) {
 
-        administrationPage.searchUser(ColumnFilters.ALL_COLUMNS, secondSearchFilter, searchingValue);
+        administrationPage.searchForUser(ColumnFilters.ALL_COLUMNS, secondSearchFilter, searchingValue);
 
         assertThat(administrationPage.getRoleFirstCellLink())
                 .textEquals(comparisonValue);
@@ -50,7 +52,7 @@ public class AdminTableTest extends TestRunner {
     public final void testSearchForFirstNameFilter(final SearchConditions secondSearchFilter,
                                                    final String searchingValue, final String comparisonValue) {
 
-        administrationPage.searchUser(ColumnFilters.FIRST_NAME, secondSearchFilter, searchingValue);
+        administrationPage.searchForUser(ColumnFilters.FIRST_NAME, secondSearchFilter, searchingValue);
 
         assertThat(administrationPage.getFirstNameFirstCellLink())
                 .textEquals(comparisonValue);
@@ -61,7 +63,7 @@ public class AdminTableTest extends TestRunner {
     public final void testSearchForLastNameFilter(final SearchConditions secondSearchFilter,
                                                   final String searchingValue, final String comparisonValue) {
 
-        administrationPage.searchUser(ColumnFilters.LAST_NAME, secondSearchFilter, searchingValue);
+        administrationPage.searchForUser(ColumnFilters.LAST_NAME, secondSearchFilter, searchingValue);
 
         assertThat(administrationPage.getLastNameFirstCellLink())
                 .textEquals(comparisonValue);
@@ -72,7 +74,7 @@ public class AdminTableTest extends TestRunner {
     public final void testSearchForLoginFilter(final SearchConditions secondSearchFilter,
                                                final String searchingValue, final String comparisonValue) {
 
-        administrationPage.searchUser(ColumnFilters.LOGIN, secondSearchFilter, searchingValue);
+        administrationPage.searchForUser(ColumnFilters.LOGIN, secondSearchFilter, searchingValue);
 
         assertThat(administrationPage.getLogInCellLink(1))
                 .textEquals(comparisonValue);
@@ -83,7 +85,7 @@ public class AdminTableTest extends TestRunner {
     public final void testSearchForRoleFilter(final SearchConditions secondSearchFilter,
                                               final String searchingValue, final String comparisonValue) {
 
-        administrationPage.searchUser(ColumnFilters.ROLE, secondSearchFilter, searchingValue);
+        administrationPage.searchForUser(ColumnFilters.ROLE, secondSearchFilter, searchingValue);
 
         assertThat(administrationPage.getRoleFirstCellLink())
                 .textEquals(comparisonValue);
@@ -94,7 +96,7 @@ public class AdminTableTest extends TestRunner {
     public final void testSearchForRegionFilter(final SearchConditions secondSearchFilter,
                                                 final String searchingValue, final String comparisonValue) {
 
-        administrationPage.searchUser(ColumnFilters.REGION, secondSearchFilter, searchingValue);
+        administrationPage.searchForUser(ColumnFilters.REGION, secondSearchFilter, searchingValue);
 
         assertThat(administrationPage.getRegionFirstCellLink())
                 .textEquals(comparisonValue);
@@ -127,7 +129,7 @@ public class AdminTableTest extends TestRunner {
 
         DBHelper.createValidUserInDB();
 
-        administrationPage.searchUser(ColumnFilters.LOGIN, SearchConditions.EQUALS, "justlogin");
+        administrationPage.searchForUser(ColumnFilters.LOGIN, SearchConditions.EQUALS, "justlogin");
 
         assertThat(administrationPage.getLoginColumn())
                 .isQuantityEqualTo(1);
@@ -143,7 +145,7 @@ public class AdminTableTest extends TestRunner {
         assertThat(administrationPage.getLogInCellLink(2))
                 .isDisplayed();
 
-        administrationPage.sortTableByFirstName();
+        administrationPage.sortTableBy(FIRST_NAME);
 
         final boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage.getFirstNameColumn()
@@ -159,7 +161,7 @@ public class AdminTableTest extends TestRunner {
         assertThat(administrationPage.getLogInCellLink(2))
                 .isDisplayed();
 
-        administrationPage.sortTableByLastName();
+        administrationPage.sortTableBy(LAST_NAME);
 
         final boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage.getLastNameColumn()
@@ -175,7 +177,7 @@ public class AdminTableTest extends TestRunner {
         assertThat(administrationPage.getLogInCellLink(2))
                 .isDisplayed();
 
-        administrationPage.sortTableByLogin();
+        administrationPage.sortTableBy(LOGIN);
 
         final boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage.getLoginColumn()
@@ -191,7 +193,7 @@ public class AdminTableTest extends TestRunner {
         assertThat(administrationPage.getLogInCellLink(2))
                 .isDisplayed();
 
-        administrationPage.sortTableByRole();
+        administrationPage.sortTableBy(ROLE);
 
         final boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage.getRoleColumn()
@@ -207,7 +209,7 @@ public class AdminTableTest extends TestRunner {
         assertThat(administrationPage.getLogInCellLink(2))
                 .isDisplayed();
 
-        administrationPage.sortTableByRegion();
+        administrationPage.sortTableBy(REGION);
 
         final boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage.getRegionColumn()

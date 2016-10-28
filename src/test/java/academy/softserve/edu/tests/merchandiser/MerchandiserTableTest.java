@@ -1,12 +1,14 @@
 package academy.softserve.edu.tests.merchandiser;
 
 import academy.softserve.edu.enums.Roles;
+import academy.softserve.edu.enums.merchandiser_ordering_page.SearchConditions;
 import academy.softserve.edu.utils.SortUtil;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
+import static academy.softserve.edu.enums.merchandiser_ordering_page.SortConditions.*;
 
 public class MerchandiserTableTest extends TestRunner {
 
@@ -40,7 +42,7 @@ public class MerchandiserTableTest extends TestRunner {
         assertThat(merchandiserOrderingPage.getOrderNameByCellId(3))
                 .isDisplayed();
 
-        merchandiserOrderingPage.sortTableByOrderName();
+        merchandiserOrderingPage.sortTableBy(ORDER_NAME);
 
         final boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(merchandiserOrderingPage.getOrderNameColumnLink()
@@ -56,7 +58,7 @@ public class MerchandiserTableTest extends TestRunner {
         assertThat(merchandiserOrderingPage.getOrderNameByCellId(3))
                 .isDisplayed();
 
-        merchandiserOrderingPage.sortTableByTotalPrice();
+        merchandiserOrderingPage.sortTableBy(TOTAL_PRICE);
 
         final boolean isSortedByDescend = SortUtil
                 .isListDoubleSortedByDescend(merchandiserOrderingPage.getTotalPriceColumnLink()
@@ -72,7 +74,7 @@ public class MerchandiserTableTest extends TestRunner {
         assertThat(merchandiserOrderingPage.getOrderNameByCellId(3))
                 .isDisplayed();
 
-        merchandiserOrderingPage.sortTableByMaxDiscount();
+        merchandiserOrderingPage.sortTableBy(MAX_DISCOUNT);
 
         final boolean isSortedByDescend = SortUtil
                 .isListDoubleSortedByDescend(merchandiserOrderingPage.getMaxDiscountColumnLink()
@@ -88,7 +90,7 @@ public class MerchandiserTableTest extends TestRunner {
         assertThat(merchandiserOrderingPage.getOrderNameByCellId(3))
                 .isDisplayed();
 
-        merchandiserOrderingPage.sortTableByStatus();
+        merchandiserOrderingPage.sortTableBy(STATUS);
 
         final boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(merchandiserOrderingPage.getStatusColumnLink()
@@ -140,7 +142,7 @@ public class MerchandiserTableTest extends TestRunner {
         assertThat(merchandiserOrderingPage.getPageCount())
                 .isParseIntQuantityMoreThan(1);
 
-        merchandiserOrderingPage.resizeShowOrders();
+        merchandiserOrderingPage.changeItemsPerPage();
 
         assertThat(merchandiserOrderingPage.getOrderNameColumnLink())
                 .isQuantityMoreThan(5);
@@ -148,7 +150,7 @@ public class MerchandiserTableTest extends TestRunner {
         assertThat(merchandiserOrderingPage.getOrderNameColumnLink())
                 .isQuantityLessOrEqualsThan(10);
 
-        merchandiserOrderingPage.resizeShowOrders();
+        merchandiserOrderingPage.changeItemsPerPage();
 
         assertThat(merchandiserOrderingPage.getOrderNameColumnLink())
                 .isQuantityEqualTo(5);
@@ -158,7 +160,7 @@ public class MerchandiserTableTest extends TestRunner {
     @Test
     public final void testSearchForStatusFilter() {
 
-        merchandiserOrderingPage.searchOrder("Status", "Created");
+        merchandiserOrderingPage.searchForOrder(SearchConditions.STATUS, "Created");
 
         assertThat(merchandiserOrderingPage.getOrderStatusByNumber(2))
                 .textEquals("Created");
@@ -168,7 +170,7 @@ public class MerchandiserTableTest extends TestRunner {
     @Test
     public final void testSearchForOrderNameFilter() {
 
-        merchandiserOrderingPage.searchOrder("Order Name", "OrderName6");
+        merchandiserOrderingPage.searchForOrder(SearchConditions.ORDER_NAME, "OrderName6");
 
         assertThat(merchandiserOrderingPage.getOrderNameFirstCellLink())
                 .textEquals("OrderName6");

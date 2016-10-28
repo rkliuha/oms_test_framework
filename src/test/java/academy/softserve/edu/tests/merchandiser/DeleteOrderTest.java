@@ -2,6 +2,7 @@ package academy.softserve.edu.tests.merchandiser;
 
 import academy.softserve.edu.domains.Order;
 import academy.softserve.edu.enums.Roles;
+import academy.softserve.edu.enums.merchandiser_ordering_page.SearchConditions;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.DBHelper;
 import academy.softserve.edu.utils.TestRunner;
@@ -11,6 +12,7 @@ import org.testng.annotations.Test;
 
 import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
 import static academy.softserve.edu.asserts.OrderAssert.assertThat;
+import static academy.softserve.edu.enums.merchandiser_ordering_page.SearchConditions.ORDER_NAME;
 
 public class DeleteOrderTest extends TestRunner {
 
@@ -32,7 +34,7 @@ public class DeleteOrderTest extends TestRunner {
     public final void testOrdersElementsPresence() {
 
         // checks if there is valid order name and if delete order button is displayed
-        merchandiserOrderingPage.searchOrder("Order Name", testOrder.getOrderName());
+        merchandiserOrderingPage.searchForOrder(ORDER_NAME, testOrder.getOrderName());
 
         assertThat(merchandiserOrderingPage.getOrderNameByCellId(2))
                 .textEquals(testOrder.getOrderName());
@@ -44,7 +46,7 @@ public class DeleteOrderTest extends TestRunner {
     @Test
     public final void testDeleteOrderAndConfirm() {
 
-        merchandiserOrderingPage.searchOrder("Order Name", testOrder.getOrderName())
+        merchandiserOrderingPage.searchForOrder(ORDER_NAME, testOrder.getOrderName())
                 .deleteFirstOrder()
                 .acceptAlert();
 
@@ -58,7 +60,7 @@ public class DeleteOrderTest extends TestRunner {
     @Test
     public final void testDeleteOrderAndCancelConfirmation() {
 
-        merchandiserOrderingPage.searchOrder("Order Name", testOrder.getOrderName())
+        merchandiserOrderingPage.searchForOrder(ORDER_NAME, testOrder.getOrderName())
                 .deleteFirstOrder()
                 .dismissAlert();
 

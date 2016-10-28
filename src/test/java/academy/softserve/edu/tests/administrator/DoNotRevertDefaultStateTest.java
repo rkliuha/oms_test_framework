@@ -33,7 +33,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
 
         administrationPage = userInfoPage.goToAdministrationPage();
 
-        administrationPage.searchUser(COLUMN_FILTER, SearchConditions.CONTAINS, TEXT);
+        administrationPage.searchForUser(COLUMN_FILTER, SearchConditions.CONTAINS, TEXT);
 
         administrationPage.goToUserInfoPage();
 
