@@ -7,12 +7,10 @@ import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.*;
 
 import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
+import static academy.softserve.edu.enums.customer_ordering_page.SearchConditions.ORDER_NAME;
+import static academy.softserve.edu.repos.CreditCardRepo.*;
 
 public class AddCardInfoToNewOrderTest extends TestRunner {
-
-    private static final String CVV2_CODE = "456";
-    private static final String EXPIRE_DATE_MONTH = "10";
-    private static final String EXPIRE_DATE_YEAR = "2017";
 
     private int testProductId;
     private int orderNumber;
@@ -26,33 +24,27 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
     public final void setUpTests() {
 
         userInfoPage = logInPage.logInAs(Roles.CUSTOMER);
-        customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
+        customerOrderingPage = userInfoPage.goToCustomerOrderingPage();
 
-        createNewOrderPage = customerOrderingPage.clickCreateNewOrderLink();
-        addItemPage = createNewOrderPage.clickAddItemButton();
+        createNewOrderPage = customerOrderingPage.goToCreateNewOrderPage();
+        addItemPage = createNewOrderPage.goToAddItemPage();
 
-        addItemPage.clickSelectLastAddedItemLink()
-                .clickDoneButton();
+        addItemPage.selectLastAddedItem()
+                .addItemToOrder();
 
         orderNumber = Integer.parseInt(createNewOrderPage.getOrderNumberTextField()
                 .getValue());
 
-        createNewOrderPage.clickPreferableDeliveryDateChooseLink()
-                .clickValidDeliveryDateLink()
-                .selectAssigneeDropdown(DBHandler.getUserByRole(Roles.MERCHANDISER).getLogin());
+        createNewOrderPage.chooseValidDeliveryDate()
+                .chooseOrderAssignee(DBHandler.getUserByRole(Roles.MERCHANDISER).getLogin())
+                .saveOrderInfo();
     }
 
     @Test
     public final void testAddIncorrectCardToOrder() {
 
-        createNewOrderPage.clickSaveButton();
-
-        createNewOrderPage.selectCreditCardTypeDropdown("Visa")
-                .fillCreditCardNumberTextfield("2562624")
-                .fillCVV2Textfield(CVV2_CODE)
-                .selectExpireDateMonthDropdown(EXPIRE_DATE_MONTH)
-                .selectExpireDateYearDropdown(EXPIRE_DATE_YEAR)
-                .clickOrderButton();
+        createNewOrderPage.setCreditCardInfo(getInvalidCard())
+                .createOrder();
 
         assertThat(createNewOrderPage.getIncorrectCardErrorMessage())
                 .isDisplayed();
@@ -61,17 +53,10 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
     @Test
     public final void testAddVisaCardToOrder() {
 
-        createNewOrderPage.clickSaveButton();
+        createNewOrderPage.setCreditCardInfo(getValidVisaCard())
+                .createOrder();
 
-        createNewOrderPage.selectCreditCardTypeDropdown("Visa")
-                .fillCreditCardNumberTextfield("4532543327732234")
-                .fillCVV2Textfield(CVV2_CODE)
-                .selectExpireDateMonthDropdown(EXPIRE_DATE_MONTH)
-                .selectExpireDateYearDropdown(EXPIRE_DATE_YEAR)
-                .clickOrderButton();
-
-        customerOrderingPage.fillSearchInput("OrderName" + String.valueOf(orderNumber))
-                .clickApplyButton();
+        customerOrderingPage.searchForOrder(ORDER_NAME, "OrderName" + orderNumber);
 
         assertThat(customerOrderingPage.getOrderStatusByNumber(orderNumber))
                 .textEquals("Ordered");
@@ -80,17 +65,10 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
     @Test
     public final void testAddMasterCardToOrder() {
 
-        createNewOrderPage.clickSaveButton();
+        createNewOrderPage.setCreditCardInfo(getValidMasterCard())
+                .createOrder();
 
-        createNewOrderPage.selectCreditCardTypeDropdown("MasterCard")
-                .fillCreditCardNumberTextfield("5408694520868818")
-                .fillCVV2Textfield(CVV2_CODE)
-                .selectExpireDateMonthDropdown(EXPIRE_DATE_MONTH)
-                .selectExpireDateYearDropdown(EXPIRE_DATE_YEAR)
-                .clickOrderButton();
-
-        customerOrderingPage.fillSearchInput("OrderName" + orderNumber)
-                .clickApplyButton();
+        customerOrderingPage.searchForOrder(ORDER_NAME, "OrderName" + orderNumber);
 
         assertThat(customerOrderingPage.getOrderStatusByNumber(orderNumber))
                 .textEquals("Ordered");
@@ -99,17 +77,10 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
     @Test
     public final void testAddAmericanExpressCardToOrder() {
 
-        createNewOrderPage.clickSaveButton();
+        createNewOrderPage.setCreditCardInfo(getValidAmericanExpressCard())
+                .createOrder();
 
-        createNewOrderPage.selectCreditCardTypeDropdown("American Express")
-                .fillCreditCardNumberTextfield("345024720300379")
-                .fillCVV2Textfield(CVV2_CODE)
-                .selectExpireDateMonthDropdown(EXPIRE_DATE_MONTH)
-                .selectExpireDateYearDropdown(EXPIRE_DATE_YEAR)
-                .clickOrderButton();
-
-        customerOrderingPage.fillSearchInput("OrderName" + orderNumber)
-                .clickApplyButton();
+        customerOrderingPage.searchForOrder(ORDER_NAME, "OrderName" + orderNumber);
 
         assertThat(customerOrderingPage.getOrderStatusByNumber(orderNumber))
                 .textEquals("Ordered");
@@ -118,19 +89,10 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
     @Test
     public final void testAddMaestroCardToOrder() {
 
-        createNewOrderPage.clickSaveButton();
+        createNewOrderPage.setCreditCardInfo(getValidMaestroCard())
+                .createOrder();
 
-        createNewOrderPage.selectCreditCardTypeDropdown("Maestro")
-                .fillCreditCardNumberTextfield("6759316694729609")
-                .fillCVV2Textfield(CVV2_CODE)
-                .selectExpireDateMonthDropdown(EXPIRE_DATE_MONTH)
-                .selectExpireDateYearDropdown(EXPIRE_DATE_YEAR)
-                .fillStartDateMaestroTextfield("29/09/2016")
-                .fillIssueNumberMaestroTextfield("4")
-                .clickOrderButton();
-
-        customerOrderingPage.fillSearchInput("OrderName" + String.valueOf(orderNumber))
-                .clickApplyButton();
+        customerOrderingPage.searchForOrder(ORDER_NAME, "OrderName" + orderNumber);
 
         assertThat(customerOrderingPage.getOrderStatusByNumber(orderNumber))
                 .textEquals("Ordered");

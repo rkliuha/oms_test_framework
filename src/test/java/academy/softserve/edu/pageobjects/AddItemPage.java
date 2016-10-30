@@ -1,6 +1,7 @@
 package academy.softserve.edu.pageobjects;
 
 import academy.softserve.edu.elements.wrappers.*;
+import academy.softserve.edu.enums.add_item_page.SearchConditions;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 
@@ -37,46 +38,53 @@ public class AddItemPage extends PageObject<AddItemPage> {
         super(driver);
     }
 
-    public final AddItemPage clickSelectLastAddedItemLink() {
+    public final AddItemPage selectLastAddedItem() {
 
         selectLastAddedItemLink.click();
         return this;
     }
 
-    public final CreateNewOrderPage clickDoneButton() {
+    public final CreateNewOrderPage addItemToOrder() {
 
         doneButton.click();
         return new CreateNewOrderPage(driver);
     }
 
-    public final AddItemPage fillItemQuantityTextfield(final String itemQuantity) {
-
-        itemQuantityTextfield.sendKeys(itemQuantity);
-        return this;
-    }
-
-    public final AddItemPage fillSearchForItemInput(final String searchText) {
+    public final AddItemPage setSearchText(final String searchText) {
 
         searchForItemInput.sendKeys(searchText);
         return this;
     }
 
-    public final AddItemPage selectItemDimensionDropdown(final String itemDimension) {
+    public final AddItemPage setItemQuantity(final String itemQuantity) {
+
+        itemQuantityTextfield.sendKeys(itemQuantity);
+        return this;
+    }
+
+    public final AddItemPage selectItemDimension(final String itemDimension) {
 
         itemDimensionDropdown.sendKeys(itemDimension);
         return this;
     }
 
-    public final AddItemPage selectSearchForItemDropdown(final String condition) {
+    public final AddItemPage selectSearchCondition(final SearchConditions condition) {
 
-        searchForItemDropdown.sendKeys(condition);
+        searchForItemDropdown.sendKeys(condition.toString());
         return this;
     }
 
-    public final AddItemPage clickSearchForItemButton() {
+    public final AddItemPage clickSearch() {
 
         searchForItemButton.click();
         return this;
+    }
+
+    public final AddItemPage searchForItem(final SearchConditions searchCondition, final String searchText) {
+
+        return selectSearchCondition(searchCondition)
+                .setSearchText(searchText)
+                .clickSearch();
     }
 
 }

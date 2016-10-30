@@ -18,4 +18,15 @@ public final class ProductRepo {
                 .setProductPrice(500.0)
                 .build();
     }
+
+    public static Product getInvalidProduct() {
+
+        return Product.newBuilder()
+                .setId(0)
+                .setProductActive(1)
+                .setProductDescription("InvalidProductDescription6")
+                .setProductName("NewProductName")
+                .setProductPrice(Double.parseDouble("12345678901234"))
+                .build();
+    }
 }

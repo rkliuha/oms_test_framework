@@ -1,6 +1,8 @@
 package academy.softserve.edu.tests.administrator;
 
 import academy.softserve.edu.enums.Roles;
+import academy.softserve.edu.enums.administration_page.ColumnFilters;
+import academy.softserve.edu.enums.administration_page.SearchConditions;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.Test;
 
@@ -23,28 +25,25 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     @Test
     public void testDoNotRevertDefaultState() {
 
-        final String ROLE = "Role";
-        final String ROLE_FILTER = "contains";
+        final ColumnFilters COLUMN_FILTER = ColumnFilters.ROLE;
+        final SearchConditions ROLE_FILTER = SearchConditions.CONTAINS;
         final String TEXT = "A";
 
         userInfoPage = logInPage.logInAs(Roles.ADMINISTRATOR);
 
-        administrationPage = userInfoPage.clickAdministrationTab();
+        administrationPage = userInfoPage.goToAdministrationPage();
 
-        administrationPage.selectSearchFieldFilterDropdown(ROLE)
-                .selectSearchConditionDropdown(ROLE_FILTER)
-                .fillSearchInput(TEXT)
-                .clickSearchButton();
+        administrationPage.searchForUser(COLUMN_FILTER, SearchConditions.CONTAINS, TEXT);
 
-        administrationPage.clickUserInfoTab();
+        administrationPage.goToUserInfoPage();
 
-        userInfoPage.clickAdministrationTab();
+        userInfoPage.goToAdministrationPage();
 
         assertThat(administrationPage.getSearchFieldFilterDropdown())
-                .selectedDropdownEquals(ROLE);
+                .selectedDropdownEqualsIgnoreCase(COLUMN_FILTER.toString());
 
         assertThat(administrationPage.getSearchConditionDropdown())
-                .selectedDropdownEquals(ROLE_FILTER);
+                .selectedDropdownEqualsIgnoreCase(ROLE_FILTER.toString());
 
         assertThat(administrationPage.getSearchInput())
                 .valueEquals(TEXT);

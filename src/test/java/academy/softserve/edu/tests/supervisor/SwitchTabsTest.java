@@ -40,7 +40,7 @@ public class SwitchTabsTest extends TestRunner {
 
         userInfoPage = logInPage.logInAs(Roles.SUPERVISOR);
 
-        itemManagementPage = userInfoPage.clickItemManagementTab();
+        itemManagementPage = userInfoPage.goToItemManagementPage();
 
         assertThat(itemManagementPage.getSearchByFieldSet())
                 .isDisplayed();
@@ -51,12 +51,12 @@ public class SwitchTabsTest extends TestRunner {
 
         userInfoPage = logInPage.logInAs(Roles.SUPERVISOR);
 
-        itemManagementPage = userInfoPage.clickItemManagementTab();
+        itemManagementPage = userInfoPage.goToItemManagementPage();
 
         assertThat(itemManagementPage.getSearchByFieldSet())
                 .isDisplayed();
 
-        itemManagementPage.clickUserInfoTab();
+        itemManagementPage.goToUserInfoPage();
 
         assertThat(userInfoPage.getUserInfoFieldSet())
                 .isDisplayed();

@@ -1,10 +1,11 @@
 package academy.softserve.edu.pageobjects;
 
 import academy.softserve.edu.elements.locators.administrator.AdministrationPageLocators;
-import academy.softserve.edu.elements.interfaces.ILocator;
 import academy.softserve.edu.elements.wrappers.*;
+import academy.softserve.edu.enums.administration_page.ColumnFilters;
+import academy.softserve.edu.enums.administration_page.SearchConditions;
+import academy.softserve.edu.enums.administration_page.SortConditions;
 import lombok.Getter;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import static academy.softserve.edu.elements.locators.administrator.AdministrationPageLocators.*;
@@ -93,124 +94,122 @@ public class AdministrationPage extends PageObject<AdministrationPage> {
         super(driver);
     }
 
-    public final Link clickEditUserById(final int userId) {
+    public final Link editUserById(final int userId) {
 
         return new Link(driver, EDIT_USER_LINK.modify(String.valueOf(userId)))
                 .click();
     }
 
-    public final AdministrationPage selectSearchFieldFilterDropdown(final String columnFilter) {
-
-        searchFieldFilterDropdown.sendKeys(columnFilter);
-        return this;
-    }
-
-    public final AdministrationPage selectSearchConditionDropdown(final String condition) {
-
-        searchConditionDropdown.sendKeys(condition);
-        return this;
-    }
-
-    public final AdministrationPage fillSearchInput(final String searchText) {
+    public final AdministrationPage setSearchText(final String searchText) {
 
         searchInput.sendKeys(searchText);
         return this;
     }
 
-    public final AdministrationPage clickSearchButton() {
+    public final AdministrationPage clickSearch() {
 
         searchButton.click();
         return this;
     }
 
-    public final AdministrationPage clickShowQuantityOfItems() {
+    public final AdministrationPage showQuantityOfItems() {
 
         showQuantityOfItems.click();
         return this;
     }
 
-    public final AdministrationPage clickFirstNameHeaderButton() {
+    public final AdministrationPage sortTableBy(final SortConditions condition) {
 
-        firstNameHeaderButton.click();
+        switch (condition) {
+
+            case FIRST_NAME:
+                firstNameHeaderButton.click();
+                break;
+            case LAST_NAME:
+                lastNameHeaderButton.click();
+                break;
+            case LOGIN:
+                loginHeaderButton.click();
+                break;
+            case ROLE:
+                roleHeaderButton.click();
+                break;
+            case REGION:
+                regionHeaderButton.click();
+                break;
+        }
+
         return this;
     }
 
-    public final AdministrationPage clickLastNameHeaderButton() {
-
-        lastNameHeaderButton.click();
-        return this;
-    }
-
-    public final AdministrationPage clickLoginHeaderButton() {
-
-        loginHeaderButton.click();
-        return this;
-    }
-
-    public final AdministrationPage clickRoleHeaderButton() {
-
-        roleHeaderButton.click();
-        return this;
-    }
-
-    public final AdministrationPage clickRegionHeaderButton() {
-
-        regionHeaderButton.click();
-        return this;
-    }
-
-    public final AdministrationPage clickForwardNavigationButton() {
+    public final AdministrationPage navigateTableForward() {
 
         forwardNavigationButton.click();
         return this;
     }
 
-    public final AdministrationPage clickBackwardNavigationButton() {
+    public final AdministrationPage navigateTableBackward() {
 
         backwardNavigationButton.click();
         return this;
     }
 
-    public final AdministrationPage clickLastNavigationButton() {
+    public final AdministrationPage navigateTableToLastPage() {
 
         lastNavigationButton.click();
         return this;
     }
 
-    public final AdministrationPage clickFirstNavigationButton() {
+    public final AdministrationPage navigateTableToFirstPage() {
 
         firstNavigationButton.click();
         return this;
     }
 
-    public final CreateNewUserPage clickCreateUserLink() {
+    public final CreateNewUserPage goToCreateUserPage() {
 
         createUserLink.click();
         return new CreateNewUserPage(driver);
     }
 
-    public final UserInfoPage clickUserInfoTab() {
+    public final UserInfoPage goToUserInfoPage() {
 
         userInfoLink.click();
         return new UserInfoPage(driver);
     }
 
-    public final AdministrationPage clickLastUserPaginationButton() {
-
-        lastNavigationButton.click();
-        return this;
-    }
-
-    public final AdministrationPage clickDeleteFirstUserLink() {
+    public final AdministrationPage deleteFirstUser() {
 
         deleteFirstUserCellLink.click();
         return this;
     }
 
-    public final CreateReportPage clickCreateReportLink() {
+    public final CreateReportPage goToCreateReportPage() {
 
         createReportLink.click();
         return new CreateReportPage(driver);
+    }
+
+    public final AdministrationPage selectSearchColumnFilter(final String columnFilter) {
+
+        searchFieldFilterDropdown.sendKeys(columnFilter);
+        return this;
+    }
+
+    public final AdministrationPage selectSearchCondition(final String condition) {
+
+        searchConditionDropdown.sendKeys(condition);
+        return this;
+    }
+
+    public final AdministrationPage searchForUser(final ColumnFilters columnFilter,
+                                                  final SearchConditions searchCondition,
+                                                  final String searchText) {
+
+        return selectSearchColumnFilter(columnFilter.toString())
+                .selectSearchCondition(searchCondition.toString())
+                .setSearchText(searchText)
+                .clickSearch();
     }
 
 }

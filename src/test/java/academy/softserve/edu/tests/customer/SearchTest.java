@@ -1,6 +1,7 @@
 package academy.softserve.edu.tests.customer;
 
 import academy.softserve.edu.enums.Roles;
+import academy.softserve.edu.enums.customer_ordering_page.SearchConditions;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.Test;
 
@@ -11,16 +12,14 @@ public class SearchTest extends TestRunner {
     @Test
     public void testStatusSearch() {
 
-        final String dropdownStatus = "Status";
+        final SearchConditions dropdownStatus = SearchConditions.STATUS;
         final String textFieldValueByStatus = "Created";
 
         userInfoPage = logInPage.logInAs(Roles.CUSTOMER);
 
-        customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
+        customerOrderingPage = userInfoPage.goToCustomerOrderingPage();
 
-        customerOrderingPage.selectSearchDropdown(dropdownStatus)
-                .fillSearchInput(textFieldValueByStatus)
-                .clickApplyButton();
+        customerOrderingPage.searchForOrder(dropdownStatus, textFieldValueByStatus);
 
         assertThat(customerOrderingPage.getSearchStatusResult())
                 .isDisplayed();
@@ -29,16 +28,14 @@ public class SearchTest extends TestRunner {
     @Test
     public void testNameSearch() {
 
-        final String dropdownName = "Order Name";
+        final SearchConditions dropdownName = SearchConditions.ORDER_NAME;
         final String textFieldValueByName = "OrderName3";
 
         userInfoPage = logInPage.logInAs(Roles.CUSTOMER);
 
-        customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
+        customerOrderingPage = userInfoPage.goToCustomerOrderingPage();
 
-        customerOrderingPage.selectSearchDropdown(dropdownName)
-                .fillSearchInput(textFieldValueByName)
-                .clickApplyButton();
+        customerOrderingPage.searchForOrder(dropdownName, textFieldValueByName);
 
         assertThat(customerOrderingPage.getSearchNameResult())
                 .isDisplayed();
@@ -49,12 +46,12 @@ public class SearchTest extends TestRunner {
 
         userInfoPage = logInPage.logInAs(Roles.CUSTOMER);
 
-        customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
+        customerOrderingPage = userInfoPage.goToCustomerOrderingPage();
 
         assertThat(customerOrderingPage.getOrderNameColumnElements())
                 .isQuantityLessOrEqualsThan(5);
 
-        customerOrderingPage.clickResizeShowItemsLink();
+        customerOrderingPage.changeItemsPerPage();
 
         assertThat(customerOrderingPage.getOrderNameColumnElements())
                 .isQuantityMoreThan(5);

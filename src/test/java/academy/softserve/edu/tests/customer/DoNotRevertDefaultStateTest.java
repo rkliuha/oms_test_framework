@@ -1,6 +1,7 @@
 package academy.softserve.edu.tests.customer;
 
 import academy.softserve.edu.enums.Roles;
+import academy.softserve.edu.enums.customer_ordering_page.SearchConditions;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.Test;
 
@@ -23,23 +24,21 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     @Test
     public void testDoNotRevertDefaultState() {
 
-        final String searchOrders = "Status";
+        final SearchConditions searchOrders = SearchConditions.STATUS;
         final String searchOrdersValue = "Ordered";
 
         userInfoPage = logInPage.logInAs(Roles.CUSTOMER);
 
-        customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
+        customerOrderingPage = userInfoPage.goToCustomerOrderingPage();
 
-        customerOrderingPage.selectSearchDropdown(searchOrders)
-                .fillSearchInput(searchOrdersValue)
-                .clickApplyButton();
+        customerOrderingPage.searchForOrder(searchOrders, searchOrdersValue);
 
-        customerOrderingPage.clickUserInfoTab();
+        customerOrderingPage.goToUserInfoPage();
 
-        userInfoPage.clickCustomerOrderingTab();
+        userInfoPage.goToCustomerOrderingPage();
 
         assertThat(customerOrderingPage.getSearchDropdown())
-                .selectedDropdownEquals(searchOrders);
+                .selectedDropdownEqualsIgnoreCase(searchOrders.toString());
 
         assertThat(customerOrderingPage.getSearchInput())
                 .valueEquals(searchOrdersValue);

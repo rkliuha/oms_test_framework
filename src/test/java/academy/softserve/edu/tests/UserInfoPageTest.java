@@ -1,10 +1,13 @@
 package academy.softserve.edu.tests;
 
+import academy.softserve.edu.enums.Languages;
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.Test;
 
 import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
+import static academy.softserve.edu.enums.Languages.EN;
+import static academy.softserve.edu.enums.Languages.UA;
 
 public class UserInfoPageTest extends TestRunner {
 
@@ -24,7 +27,7 @@ public class UserInfoPageTest extends TestRunner {
 
         userInfoPage = logInPage.logInAs(Roles.MERCHANDISER);
 
-        userInfoPage.clickUkrainianButton();
+        userInfoPage.changeLanguageTo(UA);
 
         assertThat(userInfoPage.getMerchandiserOrderingLink())
                 .textEquals("Замовлення");
@@ -35,8 +38,9 @@ public class UserInfoPageTest extends TestRunner {
     public final void testSwitchToEnglish() {
 
         userInfoPage = logInPage.logInAs(Roles.MERCHANDISER);
-        userInfoPage.clickUkrainianButton()
-                .clickEnglishButton();
+
+        userInfoPage.changeLanguageTo(UA)
+                .changeLanguageTo(EN);
 
         assertThat(userInfoPage.getMerchandiserOrderingLink())
                 .textEquals("Ordering");
@@ -58,7 +62,7 @@ public class UserInfoPageTest extends TestRunner {
 
         userInfoPage = logInPage.logInAs(Roles.MERCHANDISER);
 
-        userInfoPage.clickUkrainianButton();
+        userInfoPage.changeLanguageTo(UA);
 
         assertThat(userInfoPage.getUkrainianSwitchLink())
                 .isTextBold();

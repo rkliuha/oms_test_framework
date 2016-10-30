@@ -1,11 +1,15 @@
 package academy.softserve.edu.tests.administrator;
 
 import academy.softserve.edu.enums.Roles;
+import academy.softserve.edu.enums.administration_page.ColumnFilters;
+import academy.softserve.edu.enums.administration_page.SearchConditions;
+import academy.softserve.edu.enums.administration_page.SortConditions;
 import academy.softserve.edu.utils.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
+import static academy.softserve.edu.enums.administration_page.SortConditions.*;
 
 public class AdminTableTest extends TestRunner {
 
@@ -18,7 +22,7 @@ public class AdminTableTest extends TestRunner {
         assertThat(userInfoPage.getUserInfoFieldSet())
                 .isDisplayed();
 
-        administrationPage = userInfoPage.clickAdministrationTab();
+        administrationPage = userInfoPage.goToAdministrationPage();
     }
 
     // To check Admin table is enable or not. And Edit and Delete function is available
@@ -34,13 +38,10 @@ public class AdminTableTest extends TestRunner {
 
     // To check searching function in Admin Table with first filter All Columns.
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testSearchingForAllColumnsFilter")
-    public final void testSearchForAllColumnsFilter(final String secondSearchFilter,
+    public final void testSearchForAllColumnsFilter(final SearchConditions secondSearchFilter,
                                                     final String searchingValue, final String comparisonValue) {
 
-        administrationPage.selectSearchFieldFilterDropdown("All columns")
-                .selectSearchConditionDropdown(secondSearchFilter)
-                .fillSearchInput(searchingValue)
-                .clickSearchButton();
+        administrationPage.searchForUser(ColumnFilters.ALL_COLUMNS, secondSearchFilter, searchingValue);
 
         assertThat(administrationPage.getRoleFirstCellLink())
                 .textEquals(comparisonValue);
@@ -48,13 +49,10 @@ public class AdminTableTest extends TestRunner {
 
     // To check searching function in Admin Table with first filter First Name.
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testSearchingForFirstNameFilter")
-    public final void testSearchForFirstNameFilter(final String secondSearchFilter,
+    public final void testSearchForFirstNameFilter(final SearchConditions secondSearchFilter,
                                                    final String searchingValue, final String comparisonValue) {
 
-        administrationPage.selectSearchFieldFilterDropdown("First Name")
-                .selectSearchConditionDropdown(secondSearchFilter)
-                .fillSearchInput(searchingValue)
-                .clickSearchButton();
+        administrationPage.searchForUser(ColumnFilters.FIRST_NAME, secondSearchFilter, searchingValue);
 
         assertThat(administrationPage.getFirstNameFirstCellLink())
                 .textEquals(comparisonValue);
@@ -62,13 +60,10 @@ public class AdminTableTest extends TestRunner {
 
     // To check searching function in Admin Table with first filter Last Name
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testSearchingForLastNameFilter")
-    public final void testSearchForLastNameFilter(final String secondSearchFilter,
+    public final void testSearchForLastNameFilter(final SearchConditions secondSearchFilter,
                                                   final String searchingValue, final String comparisonValue) {
 
-        administrationPage.selectSearchFieldFilterDropdown("Last Name")
-                .selectSearchConditionDropdown(secondSearchFilter)
-                .fillSearchInput(searchingValue)
-                .clickSearchButton();
+        administrationPage.searchForUser(ColumnFilters.LAST_NAME, secondSearchFilter, searchingValue);
 
         assertThat(administrationPage.getLastNameFirstCellLink())
                 .textEquals(comparisonValue);
@@ -76,13 +71,10 @@ public class AdminTableTest extends TestRunner {
 
     // To check searching function in Admin Table with first filter Login.
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testSearchingForLoginFilter")
-    public final void testSearchForLoginFilter(final String secondSearchFilter,
+    public final void testSearchForLoginFilter(final SearchConditions secondSearchFilter,
                                                final String searchingValue, final String comparisonValue) {
 
-        administrationPage.selectSearchFieldFilterDropdown("Login")
-                .selectSearchConditionDropdown(secondSearchFilter)
-                .fillSearchInput(searchingValue)
-                .clickSearchButton();
+        administrationPage.searchForUser(ColumnFilters.LOGIN, secondSearchFilter, searchingValue);
 
         assertThat(administrationPage.getLogInCellLink(1))
                 .textEquals(comparisonValue);
@@ -90,13 +82,10 @@ public class AdminTableTest extends TestRunner {
 
     // To check searching function in Admin Table with first filter Role.
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testSearchingForRoleFilter")
-    public final void testSearchForRoleFilter(final String secondSearchFilter,
+    public final void testSearchForRoleFilter(final SearchConditions secondSearchFilter,
                                               final String searchingValue, final String comparisonValue) {
 
-        administrationPage.selectSearchFieldFilterDropdown("Role")
-                .selectSearchConditionDropdown(secondSearchFilter)
-                .fillSearchInput(searchingValue)
-                .clickSearchButton();
+        administrationPage.searchForUser(ColumnFilters.ROLE, secondSearchFilter, searchingValue);
 
         assertThat(administrationPage.getRoleFirstCellLink())
                 .textEquals(comparisonValue);
@@ -104,13 +93,10 @@ public class AdminTableTest extends TestRunner {
 
     // To check searching function in Admin Table with first filter Region
     @Test(dataProviderClass = DataProviders.class, dataProvider = "testSearchingForRegionFilter")
-    public final void testSearchForRegionFilter(final String secondSearchFilter,
+    public final void testSearchForRegionFilter(final SearchConditions secondSearchFilter,
                                                 final String searchingValue, final String comparisonValue) {
 
-        administrationPage.selectSearchFieldFilterDropdown("Region")
-                .selectSearchConditionDropdown(secondSearchFilter)
-                .fillSearchInput(searchingValue)
-                .clickSearchButton();
+        administrationPage.searchForUser(ColumnFilters.REGION, secondSearchFilter, searchingValue);
 
         assertThat(administrationPage.getRegionFirstCellLink())
                 .textEquals(comparisonValue);
@@ -123,7 +109,7 @@ public class AdminTableTest extends TestRunner {
         assertThat(administrationPage.getQuantityOfFoundUsers())
                 .isParseIntQuantityMoreThan(5);
 
-        administrationPage.clickShowQuantityOfItems();
+        administrationPage.showQuantityOfItems();
 
         assertThat(administrationPage.getFirstNameColumn())
                 .isQuantityMoreThan(5);
@@ -131,7 +117,7 @@ public class AdminTableTest extends TestRunner {
         assertThat(administrationPage.getFirstNameColumn())
                 .isQuantityLessOrEqualsThan(10);
 
-        administrationPage.clickShowQuantityOfItems();
+        administrationPage.showQuantityOfItems();
 
         assertThat(administrationPage.getFirstNameColumn())
                 .isQuantityEqualTo(5);
@@ -143,10 +129,7 @@ public class AdminTableTest extends TestRunner {
 
         DBHelper.createValidUserInDB();
 
-        administrationPage.selectSearchFieldFilterDropdown("Login")
-                .selectSearchConditionDropdown("equals")
-                .fillSearchInput("justlogin")
-                .clickSearchButton();
+        administrationPage.searchForUser(ColumnFilters.LOGIN, SearchConditions.EQUALS, "justlogin");
 
         assertThat(administrationPage.getLoginColumn())
                 .isQuantityEqualTo(1);
@@ -162,7 +145,7 @@ public class AdminTableTest extends TestRunner {
         assertThat(administrationPage.getLogInCellLink(2))
                 .isDisplayed();
 
-        administrationPage.clickFirstNameHeaderButton();
+        administrationPage.sortTableBy(FIRST_NAME);
 
         final boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage.getFirstNameColumn()
@@ -178,7 +161,7 @@ public class AdminTableTest extends TestRunner {
         assertThat(administrationPage.getLogInCellLink(2))
                 .isDisplayed();
 
-        administrationPage.clickLastNameHeaderButton();
+        administrationPage.sortTableBy(LAST_NAME);
 
         final boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage.getLastNameColumn()
@@ -194,7 +177,7 @@ public class AdminTableTest extends TestRunner {
         assertThat(administrationPage.getLogInCellLink(2))
                 .isDisplayed();
 
-        administrationPage.clickLoginHeaderButton();
+        administrationPage.sortTableBy(LOGIN);
 
         final boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage.getLoginColumn()
@@ -210,7 +193,7 @@ public class AdminTableTest extends TestRunner {
         assertThat(administrationPage.getLogInCellLink(2))
                 .isDisplayed();
 
-        administrationPage.clickRoleHeaderButton();
+        administrationPage.sortTableBy(ROLE);
 
         final boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage.getRoleColumn()
@@ -226,7 +209,7 @@ public class AdminTableTest extends TestRunner {
         assertThat(administrationPage.getLogInCellLink(2))
                 .isDisplayed();
 
-        administrationPage.clickRegionHeaderButton();
+        administrationPage.sortTableBy(REGION);
 
         final boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(administrationPage.getRegionColumn()
@@ -250,22 +233,22 @@ public class AdminTableTest extends TestRunner {
         assertThat(administrationPage.getBackwardNavigationButton())
                 .isDisabled();
 
-        administrationPage.clickForwardNavigationButton();
+        administrationPage.navigateTableForward();
 
         assertThat(administrationPage.getPageNumberText())
                 .isParseIntQuantityEqualTo(2);
 
-        administrationPage.clickBackwardNavigationButton();
+        administrationPage.navigateTableBackward();
 
         assertThat(administrationPage.getPageNumberText())
                 .isParseIntQuantityEqualTo(1);
 
-        administrationPage.clickLastNavigationButton();
+        administrationPage.navigateTableToLastPage();
 
         assertThat(administrationPage.getPageNumberText())
                 .isParseIntQuantityEqualTo(quantityOfGridsPages);
 
-        administrationPage.clickFirstNavigationButton();
+        administrationPage.navigateTableToFirstPage();
 
         assertThat(administrationPage.getPageNumberText())
                 .isParseIntQuantityEqualTo(1);
