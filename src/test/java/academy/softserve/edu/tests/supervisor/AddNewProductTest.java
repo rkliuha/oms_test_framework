@@ -2,6 +2,7 @@ package academy.softserve.edu.tests.supervisor;
 
 import academy.softserve.edu.domains.Product;
 import academy.softserve.edu.enums.Roles;
+import academy.softserve.edu.enums.item_management_page.SearchConditions;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.AfterMethod;
@@ -9,6 +10,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
+import static academy.softserve.edu.enums.item_management_page.SearchConditions.NAME;
 import static academy.softserve.edu.repos.ProductRepo.getInvalidProduct;
 import static academy.softserve.edu.repos.ProductRepo.getValidProduct;
 
@@ -53,7 +55,7 @@ public class AddNewProductTest extends TestRunner {
         assertThat(itemManagementPage.getSearchInput())
                 .isTextEmpty();
 
-        itemManagementPage.searchProduct("Name", validProduct.getProductName());
+        itemManagementPage.searchForProduct(NAME, validProduct.getProductName());
 
         assertThat(itemManagementPage.getEditProductLinkById(testProductId))
                 .isDisplayed();
@@ -69,14 +71,14 @@ public class AddNewProductTest extends TestRunner {
     public final void testCancelAddingProduct() {
 
         addProductPage.setProductFields(validProduct)
-                .doNotCreateProduct();
+                .cancelCreatingProduct();
 
         testProduct = DBHandler.getLastProduct();
 
         assertThat(itemManagementPage.getSearchInput())
                 .isTextEmpty();
 
-        itemManagementPage.searchProduct("Name", validProduct.getProductName());
+        itemManagementPage.searchForProduct(NAME, validProduct.getProductName());
 
         assertThat(itemManagementPage.getRecordsCountText())
                 .textEquals("0");

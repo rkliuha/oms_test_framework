@@ -1,6 +1,8 @@
 package academy.softserve.edu.pageobjects;
 
 import academy.softserve.edu.elements.wrappers.*;
+import academy.softserve.edu.enums.merchandiser_ordering_page.SearchConditions;
+import academy.softserve.edu.enums.merchandiser_ordering_page.SortConditions;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 
@@ -103,27 +105,24 @@ public class MerchandiserOrderingPage extends PageObject<MerchandiserOrderingPag
         return this;
     }
 
-    public final MerchandiserOrderingPage sortTableByOrderName() {
+    public final MerchandiserOrderingPage sortTableBy(final SortConditions condition) {
 
-        orderNameHeaderButton.click();
-        return this;
-    }
+        switch (condition) {
 
-    public final MerchandiserOrderingPage sortTableByTotalPrice() {
+            case ORDER_NAME:
+                orderNameHeaderButton.click();
+                break;
+            case TOTAL_PRICE:
+                totalPriceHeaderButton.click();
+                break;
+            case MAX_DISCOUNT:
+                maxDiscountHeaderButton.click();
+                break;
+            case STATUS:
+                statusHeaderButton.click();
+                break;
+        }
 
-        totalPriceHeaderButton.click();
-        return this;
-    }
-
-    public final MerchandiserOrderingPage sortTableByMaxDiscount() {
-
-        maxDiscountHeaderButton.click();
-        return this;
-    }
-
-    public final MerchandiserOrderingPage sortTableByStatus() {
-
-        statusHeaderButton.click();
         return this;
     }
 
@@ -151,7 +150,7 @@ public class MerchandiserOrderingPage extends PageObject<MerchandiserOrderingPag
         return this;
     }
 
-    public final MerchandiserOrderingPage resizeShowOrders() {
+    public final MerchandiserOrderingPage changeItemsPerPage() {
 
         resizeOrdersListLink.click();
         return this;
@@ -163,22 +162,22 @@ public class MerchandiserOrderingPage extends PageObject<MerchandiserOrderingPag
         return this;
     }
 
-    public final MerchandiserOrderingPage selectSearchCondition(final String condition) {
+    public final MerchandiserOrderingPage selectSearchCondition(final SearchConditions condition) {
 
-        searchDropdown.sendKeys(condition);
+        searchDropdown.sendKeys(condition.toString());
         return this;
     }
 
-    public final MerchandiserOrderingPage fillSearch(final String searchText) {
+    public final MerchandiserOrderingPage setSearchText(final String searchText) {
 
         searchInput.sendKeys(searchText);
         return this;
     }
 
-    public final MerchandiserOrderingPage searchOrder(final String searchCondition, final String searchText) {
+    public final MerchandiserOrderingPage searchForOrder(final SearchConditions searchCondition, final String searchText) {
 
         return selectSearchCondition(searchCondition)
-                .fillSearch(searchText)
+                .setSearchText(searchText)
                 .clickApply();
     }
 

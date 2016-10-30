@@ -7,6 +7,7 @@ import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.*;
 
 import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
+import static academy.softserve.edu.enums.customer_ordering_page.SearchConditions.ORDER_NAME;
 import static academy.softserve.edu.repos.CreditCardRepo.*;
 
 public class AddCardInfoToNewOrderTest extends TestRunner {
@@ -43,7 +44,7 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
     public final void testAddIncorrectCardToOrder() {
 
         createNewOrderPage.setCreditCardInfo(getInvalidCard())
-                .doOrder();
+                .createOrder();
 
         assertThat(createNewOrderPage.getIncorrectCardErrorMessage())
                 .isDisplayed();
@@ -53,9 +54,9 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
     public final void testAddVisaCardToOrder() {
 
         createNewOrderPage.setCreditCardInfo(getValidVisaCard())
-                .doOrder();
+                .createOrder();
 
-        customerOrderingPage.searchOrder("Order Name", "OrderName" + orderNumber);
+        customerOrderingPage.searchForOrder(ORDER_NAME, "OrderName" + orderNumber);
 
         assertThat(customerOrderingPage.getOrderStatusByNumber(orderNumber))
                 .textEquals("Ordered");
@@ -65,9 +66,9 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
     public final void testAddMasterCardToOrder() {
 
         createNewOrderPage.setCreditCardInfo(getValidMasterCard())
-                .doOrder();
+                .createOrder();
 
-        customerOrderingPage.searchOrder("Order Name", "OrderName" + orderNumber);
+        customerOrderingPage.searchForOrder(ORDER_NAME, "OrderName" + orderNumber);
 
         assertThat(customerOrderingPage.getOrderStatusByNumber(orderNumber))
                 .textEquals("Ordered");
@@ -77,9 +78,9 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
     public final void testAddAmericanExpressCardToOrder() {
 
         createNewOrderPage.setCreditCardInfo(getValidAmericanExpressCard())
-                .doOrder();
+                .createOrder();
 
-        customerOrderingPage.searchOrder("Order Name", "OrderName" + orderNumber);
+        customerOrderingPage.searchForOrder(ORDER_NAME, "OrderName" + orderNumber);
 
         assertThat(customerOrderingPage.getOrderStatusByNumber(orderNumber))
                 .textEquals("Ordered");
@@ -89,9 +90,9 @@ public class AddCardInfoToNewOrderTest extends TestRunner {
     public final void testAddMaestroCardToOrder() {
 
         createNewOrderPage.setCreditCardInfo(getValidMaestroCard())
-                .doOrder();
+                .createOrder();
 
-        customerOrderingPage.searchOrder("Order Name", "OrderName" + orderNumber);
+        customerOrderingPage.searchForOrder(ORDER_NAME, "OrderName" + orderNumber);
 
         assertThat(customerOrderingPage.getOrderStatusByNumber(orderNumber))
                 .textEquals("Ordered");

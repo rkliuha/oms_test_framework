@@ -4,6 +4,7 @@ import academy.softserve.edu.elements.locators.administrator.AdministrationPageL
 import academy.softserve.edu.elements.wrappers.*;
 import academy.softserve.edu.enums.administration_page.ColumnFilters;
 import academy.softserve.edu.enums.administration_page.SearchConditions;
+import academy.softserve.edu.enums.administration_page.SortConditions;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 
@@ -99,7 +100,7 @@ public class AdministrationPage extends PageObject<AdministrationPage> {
                 .click();
     }
 
-    public final AdministrationPage fillSearch(final String searchText) {
+    public final AdministrationPage setSearchText(final String searchText) {
 
         searchInput.sendKeys(searchText);
         return this;
@@ -117,33 +118,27 @@ public class AdministrationPage extends PageObject<AdministrationPage> {
         return this;
     }
 
-    public final AdministrationPage sortTableByFirstName() {
+    public final AdministrationPage sortTableBy(final SortConditions condition) {
 
-        firstNameHeaderButton.click();
-        return this;
-    }
+        switch (condition) {
 
-    public final AdministrationPage sortTableByLastName() {
+            case FIRST_NAME:
+                firstNameHeaderButton.click();
+                break;
+            case LAST_NAME:
+                lastNameHeaderButton.click();
+                break;
+            case LOGIN:
+                loginHeaderButton.click();
+                break;
+            case ROLE:
+                roleHeaderButton.click();
+                break;
+            case REGION:
+                regionHeaderButton.click();
+                break;
+        }
 
-        lastNameHeaderButton.click();
-        return this;
-    }
-
-    public final AdministrationPage sortTableByLogin() {
-
-        loginHeaderButton.click();
-        return this;
-    }
-
-    public final AdministrationPage sortTableByRole() {
-
-        roleHeaderButton.click();
-        return this;
-    }
-
-    public final AdministrationPage sortTableByRegion() {
-
-        regionHeaderButton.click();
         return this;
     }
 
@@ -195,7 +190,7 @@ public class AdministrationPage extends PageObject<AdministrationPage> {
         return new CreateReportPage(driver);
     }
 
-    public final AdministrationPage selectSearchFieldFilter(final String columnFilter) {
+    public final AdministrationPage selectSearchColumnFilter(final String columnFilter) {
 
         searchFieldFilterDropdown.sendKeys(columnFilter);
         return this;
@@ -207,13 +202,13 @@ public class AdministrationPage extends PageObject<AdministrationPage> {
         return this;
     }
 
-    public final AdministrationPage searchUser(final ColumnFilters columnFilter,
-                                               final SearchConditions searchCondition,
-                                               final String searchText) {
+    public final AdministrationPage searchForUser(final ColumnFilters columnFilter,
+                                                  final SearchConditions searchCondition,
+                                                  final String searchText) {
 
-        return selectSearchFieldFilter(columnFilter.toString())
+        return selectSearchColumnFilter(columnFilter.toString())
                 .selectSearchCondition(searchCondition.toString())
-                .fillSearch(searchText)
+                .setSearchText(searchText)
                 .clickSearch();
     }
 

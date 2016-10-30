@@ -9,6 +9,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
+import static academy.softserve.edu.enums.add_item_page.SearchConditions.ITEM_NAME;
+import static academy.softserve.edu.enums.customer_ordering_page.SearchConditions.ORDER_NAME;
 import static academy.softserve.edu.repos.CreditCardRepo.getValidMasterCard;
 
 public class EditAndDeleteOrderTest extends TestRunner {
@@ -29,7 +31,7 @@ public class EditAndDeleteOrderTest extends TestRunner {
 
         addItemPage = createNewOrderPage.goToAddItemPage();
 
-        addItemPage.searchItem("Item Name", "Baileys")
+        addItemPage.searchForItem(ITEM_NAME, "Baileys")
                 .selectLastAddedItem()
                 .addItemToOrder();
 
@@ -47,7 +49,7 @@ public class EditAndDeleteOrderTest extends TestRunner {
     @Test
     public final void testOrderEdit() {
 
-        customerOrderingPage.searchOrder("Order Name", "OrderName" + testOrderNumber);
+        customerOrderingPage.searchForOrder(ORDER_NAME, "OrderName" + testOrderNumber);
 
         customerOrderingPage.editFirstOrder();
 
@@ -60,7 +62,7 @@ public class EditAndDeleteOrderTest extends TestRunner {
 
         createNewOrderPage.goToCustomerOrderingPage();
 
-        customerOrderingPage.searchOrder("Order Name", "OrderName" + testOrderNumberCreated);
+        customerOrderingPage.searchForOrder(ORDER_NAME, "OrderName" + testOrderNumberCreated);
 
         assertThat(DBHandler.getOrderByNumber(Integer.parseInt(testOrderNumberCreated)))
                 .orderNumberEquals(Integer.parseInt(testOrderNumberCreated));
@@ -71,7 +73,7 @@ public class EditAndDeleteOrderTest extends TestRunner {
 
         createNewOrderPage.goToCustomerOrderingPage();
 
-        customerOrderingPage.searchOrder("Order Name", "OrderName" + testOrderNumber);
+        customerOrderingPage.searchForOrder(ORDER_NAME, "OrderName" + testOrderNumber);
 
         customerOrderingPage.deleteFirstOrder()
                 .acceptAlert();

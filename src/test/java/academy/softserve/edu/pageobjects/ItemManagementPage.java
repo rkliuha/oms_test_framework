@@ -1,6 +1,8 @@
 package academy.softserve.edu.pageobjects;
 
 import academy.softserve.edu.elements.wrappers.*;
+import academy.softserve.edu.enums.item_management_page.SearchConditions;
+import academy.softserve.edu.enums.item_management_page.SortConditions;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 
@@ -110,27 +112,27 @@ public class ItemManagementPage extends PageObject<ItemManagementPage> {
         return this;
     }
 
-    public final ItemManagementPage resizeShowProducts() {
+    public final ItemManagementPage changeItemsPerPage() {
 
         resizeProductsListButton.click();
         return this;
     }
 
-    public final ItemManagementPage sortTableByName() {
+    public final ItemManagementPage sortTableBy(final SortConditions condition) {
 
-        nameHeaderButton.click();
-        return this;
-    }
+        switch (condition) {
 
-    public final ItemManagementPage sortTableByDescription() {
+            case NAME:
+                nameHeaderButton.click();
+                break;
+            case DESCRIPTION:
+                descriptionHeaderButton.click();
+                break;
+            case PRICE:
+                priceHeaderButton.click();
+                break;
+        }
 
-        descriptionHeaderButton.click();
-        return this;
-    }
-
-    public final ItemManagementPage sortTableByPrice() {
-
-        priceHeaderButton.click();
         return this;
     }
 
@@ -170,22 +172,22 @@ public class ItemManagementPage extends PageObject<ItemManagementPage> {
         return this;
     }
 
-    public final ItemManagementPage fillSearch(final String searchText) {
+    public final ItemManagementPage setSearchText(final String searchText) {
 
         searchInput.sendKeys(searchText);
         return this;
     }
 
-    public final ItemManagementPage selectSearchFieldFilter(final String condition) {
+    public final ItemManagementPage selectSearchCondition(final SearchConditions condition) {
 
-        searchFieldFilterDropdown.sendKeys(condition);
+        searchFieldFilterDropdown.sendKeys(condition.toString());
         return this;
     }
 
-    public final ItemManagementPage searchProduct(final String searchCondition, final String searchText) {
+    public final ItemManagementPage searchForProduct(final SearchConditions searchCondition, final String searchText) {
 
-        return selectSearchFieldFilter(searchCondition)
-                .fillSearch(searchText)
+        return selectSearchCondition(searchCondition)
+                .setSearchText(searchText)
                 .clickSearch();
     }
 

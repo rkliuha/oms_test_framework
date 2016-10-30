@@ -146,6 +146,7 @@ public class CreateNewOrderPage extends PageObject<CreateNewOrderPage> {
         super(driver);
     }
 
+    //TODO consider better name
     public final OrderItemsErrorMessagePage saveOrderWithFail() {
 
         saveButton.click();
@@ -182,7 +183,7 @@ public class CreateNewOrderPage extends PageObject<CreateNewOrderPage> {
         return this;
     }
 
-    public final CustomerOrderingPage doOrder() {
+    public final CustomerOrderingPage createOrder() {
 
         orderButton.click();
         return new CustomerOrderingPage(driver);
@@ -207,25 +208,25 @@ public class CreateNewOrderPage extends PageObject<CreateNewOrderPage> {
         return this;
     }
 
-    public final CreateNewOrderPage fillCreditCardNumber(final String cardNumber) {
+    public final CreateNewOrderPage setCreditCardNumber(final String cardNumber) {
 
         creditCardNumberTextfield.sendKeys(cardNumber);
         return this;
     }
 
-    public final CreateNewOrderPage fillCVV2(final String CVV2Code) {
+    public final CreateNewOrderPage setCVV2(final String CVV2Code) {
 
         CVV2Textfield.sendKeys(CVV2Code);
         return this;
     }
 
-    public final CreateNewOrderPage fillStartDateMaestro(final String startDate) {
+    public final CreateNewOrderPage setStartDateMaestro(final String startDate) {
 
         startDateMaestroTextfield.sendKeys(startDate);
         return this;
     }
 
-    public final CreateNewOrderPage fillIssueNumberMaestro(final String issueNumber) {
+    public final CreateNewOrderPage setIssueNumberMaestro(final String issueNumber) {
 
         issueNumberMaestroTextfield.sendKeys(issueNumber);
         return this;
@@ -252,15 +253,15 @@ public class CreateNewOrderPage extends PageObject<CreateNewOrderPage> {
     public final CreateNewOrderPage setCreditCardInfo(final CreditCard creditCard) {
 
         selectCreditCardType(creditCard.getCardType())
-                .fillCreditCardNumber(creditCard.getCardNumber())
-                .fillCVV2(String.valueOf(creditCard.getCVV2()))
+                .setCreditCardNumber(creditCard.getCardNumber())
+                .setCVV2(String.valueOf(creditCard.getCVV2()))
                 .selectExpireDateMonth(String.valueOf(creditCard.getExpireDateMonth()))
                 .selectExpireDateYear(String.valueOf(creditCard.getExpireDateYear()));
 
         if (creditCard.getIssueNumber() != 0) {
 
-            fillStartDateMaestro(creditCard.getStartDate())
-                    .fillIssueNumberMaestro(String.valueOf(creditCard.getIssueNumber()));
+            setStartDateMaestro(creditCard.getStartDate())
+                    .setIssueNumberMaestro(String.valueOf(creditCard.getIssueNumber()));
         }
 
         return this;

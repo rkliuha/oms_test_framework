@@ -2,6 +2,7 @@ package academy.softserve.edu.tests.supervisor;
 
 import academy.softserve.edu.domains.Product;
 import academy.softserve.edu.enums.Roles;
+import academy.softserve.edu.enums.item_management_page.SearchConditions;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.DBHelper;
 import academy.softserve.edu.utils.TestRunner;
@@ -11,6 +12,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
+import static academy.softserve.edu.enums.item_management_page.SearchConditions.NAME;
 
 public class EditProductTest extends TestRunner {
 
@@ -31,7 +33,7 @@ public class EditProductTest extends TestRunner {
 
         itemManagementPage = userInfoPage.goToItemManagementPage();
 
-        itemManagementPage.searchProduct("Name", testProduct.getProductName());
+        itemManagementPage.searchForProduct(NAME, testProduct.getProductName());
 
         editProductPage = itemManagementPage.editProductById(testProductId);
     }
@@ -74,7 +76,7 @@ public class EditProductTest extends TestRunner {
         testProduct.setProductDescription("AnotherDesc");
 
         editProductPage.setProductFields(testProduct)
-                .doNotEditProduct();
+                .cancelEditingProduct();
 
         assertThat(itemManagementPage.getSearchByFieldSet())
                 .isDisplayed();

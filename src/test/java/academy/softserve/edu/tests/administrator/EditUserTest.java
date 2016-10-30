@@ -108,7 +108,7 @@ public class EditUserTest extends TestRunner {
                 .isDisplayed();
 
         editUserPage.setUserFields(testUser)
-                .doNotEditUser();
+                .cancelEditingUser();
 
         assertThat(DBHandler.getUserById(testUserId))
                 .lastNameEquals(OLD_USER_LASTNAME);

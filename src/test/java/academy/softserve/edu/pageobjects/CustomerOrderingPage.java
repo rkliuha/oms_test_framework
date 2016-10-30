@@ -1,6 +1,7 @@
 package academy.softserve.edu.pageobjects;
 
 import academy.softserve.edu.elements.wrappers.*;
+import academy.softserve.edu.enums.customer_ordering_page.SearchConditions;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 
@@ -60,7 +61,7 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
         return new CreateNewOrderPage(driver);
     }
 
-    public final CustomerOrderingPage resizeShowOrders() {
+    public final CustomerOrderingPage changeItemsPerPage() {
 
         resizeShowItemsLink.click();
         return this;
@@ -84,22 +85,22 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
         return this;
     }
 
-    public final CustomerOrderingPage selectSearchCondition(final String condition) {
+    public final CustomerOrderingPage selectSearchCondition(final SearchConditions condition) {
 
-        searchDropdown.sendKeys(condition);
+        searchDropdown.sendKeys(condition.toString());
         return this;
     }
 
-    public final CustomerOrderingPage fillSearch(final String searchText) {
+    public final CustomerOrderingPage setSearchText(final String searchText) {
 
         searchInput.sendKeys(searchText);
         return this;
     }
 
-    public final CustomerOrderingPage searchOrder(final String searchCondition, final String searchText) {
+    public final CustomerOrderingPage searchForOrder(final SearchConditions searchCondition, final String searchText) {
 
         return selectSearchCondition(searchCondition)
-                .fillSearch(searchText)
+                .setSearchText(searchText)
                 .clickApply();
     }
 

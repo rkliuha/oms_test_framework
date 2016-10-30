@@ -1,6 +1,7 @@
 package academy.softserve.edu.tests.supervisor;
 
 import academy.softserve.edu.enums.Roles;
+import academy.softserve.edu.enums.item_management_page.SearchConditions;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.Test;
 
@@ -23,20 +24,20 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     @Test
     public void testDoNotRevertDefaultState() {
 
-        final String fieldFilter = "Description";
+        final SearchConditions fieldFilter = SearchConditions.DESCRIPTION;
         final String fieldFilterValue = "Fruits";
 
         userInfoPage = logInPage.logInAs(Roles.SUPERVISOR);
 
         itemManagementPage = userInfoPage.goToItemManagementPage();
 
-        itemManagementPage.searchProduct(fieldFilter, fieldFilterValue)
+        itemManagementPage.searchForProduct(fieldFilter, fieldFilterValue)
                 .goToUserInfoPage();
 
         userInfoPage.goToItemManagementPage();
 
         assertThat(itemManagementPage.getSearchFieldFilterDropdown())
-                .selectedDropdownEquals(fieldFilter);
+                .selectedDropdownEqualsIgnoreCase(fieldFilter.toString());
 
         assertThat(itemManagementPage.getSearchInput())
                 .valueEquals(fieldFilterValue);

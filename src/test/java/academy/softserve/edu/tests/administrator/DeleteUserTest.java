@@ -35,7 +35,7 @@ public class DeleteUserTest extends TestRunner {
 
         administrationPage = userInfoPage.goToAdministrationPage();
 
-        administrationPage.searchUser(FILTER_DROPDOWN, CONDITION_DROPDOWN, testUser.getLogin());
+        administrationPage.searchForUser(FILTER_DROPDOWN, CONDITION_DROPDOWN, testUser.getLogin());
 
     }
 

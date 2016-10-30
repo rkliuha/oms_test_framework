@@ -58,7 +58,7 @@ public class AddItemToOrderTest extends TestRunner {
         final String dimensionOfItem = "Box";
 
         addItemPage.selectItemDimension(dimensionOfItem)
-                .fillItemQuantity(quantityOfItem);
+                .setItemQuantity(quantityOfItem);
 
         assertThat(addItemPage.getItemTextField())
                 .textEquals(testProduct.getProductName());
