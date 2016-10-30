@@ -54,6 +54,7 @@ public final class SuiteRunner {
                         "   firefox,\n" +
                         "   explorer.\n" +
                         "   As default: firefox");
+
                 System.exit(0);
             }
         }
