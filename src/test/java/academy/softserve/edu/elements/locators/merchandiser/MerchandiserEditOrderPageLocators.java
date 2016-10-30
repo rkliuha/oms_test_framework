@@ -14,6 +14,10 @@ public enum MerchandiserEditOrderPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//input[@type='button']"),
 
+    CANCEL_BUTTON("Cancel Button",
+            LocatorsType.BY_XPATH,
+            "//input[@value='Cancel']"),
+
     SHOW_ITEMS_LINK("Edit Order",
             LocatorsType.BY_XPATH,
             "//a[@href='orderItemsResize.htm?orderId=1']"),

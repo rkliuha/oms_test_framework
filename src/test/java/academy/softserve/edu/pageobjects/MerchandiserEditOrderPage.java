@@ -18,6 +18,8 @@ public class MerchandiserEditOrderPage extends PageObject<MerchandiserEditOrderP
 
     private final Button saveButton = new Button(driver, SAVE_BUTTON);
 
+    private final Button cancelButton = new Button(driver, CANCEL_BUTTON);
+
     private final Link chooseDateLink = new Link(driver, CHOOSE_DATE_LINK);
 
     private final Link lastDateLink = new Link(driver, LAST_DAY_LINK);
@@ -35,6 +37,12 @@ public class MerchandiserEditOrderPage extends PageObject<MerchandiserEditOrderP
     public final MerchandiserOrderingPage clickSaveButton() {
 
         saveButton.click();
+        return new MerchandiserOrderingPage(driver);
+    }
+
+    public final MerchandiserOrderingPage clickCancelButton() {
+
+        cancelButton.click();
         return new MerchandiserOrderingPage(driver);
     }
 
