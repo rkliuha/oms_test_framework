@@ -90,19 +90,18 @@ public final class SuiteRunner {
 
             case CHROME:
                 driverPath = "chromedriver_win.exe";
-                System.setProperty("browser", "chrome");
                 break;
             case CHROME_MAC:
                 driverPath = "chromedriver_mac";
-                System.setProperty("browser", "chrome_mac");
                 break;
             case EXPLORER:
                 driverPath = "IEDriverServer.exe";
-                System.setProperty("browser", "explorer");
                 break;
             default:
                 return;
         }
+
+        System.setProperty("browser", browser.toString().toLowerCase());
 
         try (final InputStream resource = SuiteRunner.class
                 .getClassLoader()
