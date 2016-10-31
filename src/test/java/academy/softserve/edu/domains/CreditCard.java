@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CreditCard {
+public final class CreditCard {
 
     private String cardType;
     private String cardNumber;

@@ -4,8 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-
-public class OrderItem {
+public final class OrderItem {
 
     private int id;
     private double cost;

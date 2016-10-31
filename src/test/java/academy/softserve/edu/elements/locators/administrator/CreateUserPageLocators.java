@@ -54,9 +54,9 @@ public enum CreateUserPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//form[@id='userModel']/input[5]");
 
-    protected String elementName;
-    protected LocatorsType locatorType;
-    protected String locatorValue;
+    private String elementName;
+    private LocatorsType locatorType;
+    private String locatorValue;
     private String modifiedLocator;
 
     CreateUserPageLocators(final String elementName,

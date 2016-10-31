@@ -10,8 +10,8 @@ import java.util.List;
 
 public abstract class AbstractElement<T> {
 
-    protected WebDriver driver;
-    protected ILocator locator;
+    final private WebDriver driver;
+    final protected ILocator locator;
     final protected Wait wait;
 
     AbstractElement(final WebDriver driver, final ILocator locator) {

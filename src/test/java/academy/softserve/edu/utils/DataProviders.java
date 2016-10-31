@@ -6,7 +6,10 @@ import org.testng.annotations.DataProvider;
 
 import java.io.IOException;
 
-public class DataProviders {
+public final class DataProviders {
+
+    private DataProviders() {
+    }
 
     private static final String EXCEL_FILE = PropertiesReader.getDefaultProperty("excel.file");
 

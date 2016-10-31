@@ -42,9 +42,9 @@ public enum AddProductPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//form[@id='productModel']/table/tbody/tr[3]/td[3]");
 
-    protected String elementName;
-    protected LocatorsType locatorType;
-    protected String locatorValue;
+    private String elementName;
+    private LocatorsType locatorType;
+    private String locatorValue;
     private String modifiedLocator;
 
     AddProductPageLocators(final String elementName,

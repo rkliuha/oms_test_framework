@@ -18,9 +18,9 @@ public enum OrderItemsErrorMessageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//title[text() = 'Order Items']");
 
-    protected String elementName;
-    protected LocatorsType locatorType;
-    protected String locatorValue;
+    private String elementName;
+    private LocatorsType locatorType;
+    private String locatorValue;
     private String modifiedLocator;
 
     OrderItemsErrorMessageLocators(final String elementName,

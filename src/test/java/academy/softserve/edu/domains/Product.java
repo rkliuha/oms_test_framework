@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter @EqualsAndHashCode
-public class Product {
+public final class Product {
 
     private int id;
     private int productActive;

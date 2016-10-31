@@ -18,9 +18,9 @@ public enum SharedLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//a[@id='uk_UA']");
 
-    protected String elementName;
-    protected LocatorsType locatorType;
-    protected String locatorValue;
+    private String elementName;
+    private LocatorsType locatorType;
+    private String locatorValue;
     private String modifiedLocator;
 
 

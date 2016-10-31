@@ -3,7 +3,6 @@ package academy.softserve.edu.tests.administrator;
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.enums.administration_page.ColumnFilters;
 import academy.softserve.edu.enums.administration_page.SearchConditions;
-import academy.softserve.edu.enums.administration_page.SortConditions;
 import academy.softserve.edu.utils.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

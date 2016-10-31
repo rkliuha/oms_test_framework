@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter @EqualsAndHashCode
-public class User {
+public final class User {
 
     private int id;
     private int userActive;

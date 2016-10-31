@@ -43,11 +43,6 @@ public class LogInPage extends PageObject<LogInPage> {
 
         switch (role) {
 
-            case ADMINISTRATOR:
-            default:
-                userName = PropertiesReader.getDefaultProperty("administrator.login");
-                userPassword = PropertiesReader.getDefaultProperty("administrator.password");
-                break;
             case MERCHANDISER:
                 userName = PropertiesReader.getDefaultProperty("merchandiser.login");
                 userPassword = PropertiesReader.getDefaultProperty("merchandiser.password");
@@ -63,6 +58,11 @@ public class LogInPage extends PageObject<LogInPage> {
             case INVALID_USER:
                 userName = PropertiesReader.getDefaultProperty("invalid.user.login");
                 userPassword = PropertiesReader.getDefaultProperty("invalid.user.password");
+                break;
+            case ADMINISTRATOR:
+            default:
+                userName = PropertiesReader.getDefaultProperty("administrator.login");
+                userPassword = PropertiesReader.getDefaultProperty("administrator.password");
                 break;
         }
         userNameInput.sendKeys(userName);
