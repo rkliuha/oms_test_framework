@@ -12,7 +12,7 @@ public class SwitchTabsTest extends TestRunner {
     //  test checks if Administrator user can switch between tabs.
 
     @Test
-    final public void testSwitchingBetweenTabs() {
+    public final void testSwitchingBetweenTabs() {
 
         userInfoPage = logInPage.logInAs(Roles.ADMINISTRATOR);
 

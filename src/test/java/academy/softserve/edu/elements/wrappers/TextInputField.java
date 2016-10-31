@@ -10,14 +10,15 @@ public class TextInputField extends AbstractClickableElement<TextInputField> {
         super(driver, locator);
     }
 
-    final public void clear() {
+    public final void clear() {
 
         wait.waitUntilElementIsClickable().clear();
         Logger.logInfo("<font color='black'>Cleared Element "
                 + "<b>" + locator.getName() + "</b></font>");
     }
+
     //TODO consider avoid double calling of findElement
-    final public void sendKeys(final String inputText) {
+    public final void sendKeys(final String inputText) {
 
         this.clear();
         wait.waitUntilElementIsClickable().sendKeys(inputText);

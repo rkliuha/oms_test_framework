@@ -10,7 +10,7 @@ public abstract class AbstractClickableElement<T> extends AbstractElement {
         super(driver, locator);
     }
 
-    final public T click() {
+    public final T click() {
 
         wait.waitUntilElementIsClickable().click();
         Logger.logInfo("<font color='black'>Clicked On "

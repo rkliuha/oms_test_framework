@@ -26,7 +26,7 @@ public class AdminTableTest extends TestRunner {
 
     // To check Admin table is enable or not. And Edit and Delete function is available
     @Test
-    final public void testAdminTableIsEnable() {
+    public final void testAdminTableIsEnable() {
 
         assertThat(administrationPage.getEditFirstUserCellLink())
                 .isDisplayed();

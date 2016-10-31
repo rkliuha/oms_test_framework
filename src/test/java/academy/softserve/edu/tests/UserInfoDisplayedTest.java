@@ -10,7 +10,7 @@ import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
 public class UserInfoDisplayedTest extends TestRunner {
 
     @Test(dataProvider = "testDataForAllUsersRole", dataProviderClass = DataProviders.class)
-    public void testUserInfoDisplayed(final Roles role) {
+    public final void testUserInfoDisplayed(final Roles role) {
 
         userInfoPage = logInPage.logInAs(role);
 

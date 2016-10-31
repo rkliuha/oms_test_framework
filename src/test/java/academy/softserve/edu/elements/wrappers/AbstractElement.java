@@ -10,9 +10,9 @@ import java.util.List;
 
 public abstract class AbstractElement<T> {
 
-    final private WebDriver driver;
-    final protected ILocator locator;
-    final protected Wait wait;
+    private final WebDriver driver;
+    protected final ILocator locator;
+    protected final Wait wait;
 
     AbstractElement(final WebDriver driver, final ILocator locator) {
 
@@ -21,41 +21,41 @@ public abstract class AbstractElement<T> {
         wait = new Wait(driver, locator);
     }
 
-    final public String getLocatorName() {
+    public final String getLocatorName() {
         return locator.getName();
     }
 
-    final public By getLocatorValue() {
+    public final By getLocatorValue() {
         return locator.getBy();
     }
 
-    final public WebElement getElement() {
+    public final WebElement getElement() {
         return wait.waitUntilElementIsPresent();
     }
 
-    final public boolean isDisplayed() {
+    public final boolean isDisplayed() {
         return wait.waitUntilElementIsPresent().isDisplayed();
     }
 
-    final public boolean isEnabled() {
+    public final boolean isEnabled() {
         return wait.waitUntilElementIsPresent().isEnabled();
     }
 
-    final public String getText() {
+    public final String getText() {
         return wait.waitUntilElementIsPresent().getText();
     }
 
-    final public List<WebElement> getElements() {
+    public final List<WebElement> getElements() {
 
         wait.waitUntilElementIsPresent();
         return driver.findElements(locator.getBy());
     }
 
-    final public String getId() {
+    public final String getId() {
         return wait.waitUntilElementIsPresent().getAttribute("id");
     }
 
-    final public String getValue() {
+    public final String getValue() {
         return wait.waitUntilElementIsPresent().getAttribute("value");
     }
 

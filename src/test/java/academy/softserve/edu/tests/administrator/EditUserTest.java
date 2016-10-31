@@ -70,13 +70,13 @@ public class EditUserTest extends TestRunner {
     @Test
     public final void testEditUserAndClickSave() {
 
-        final String NEW_USER_LAST_NAME = "Tsoni";
-        final String NEW_USER_PASSWORD = "1qaz2wsx";
-        final Regions NEW_REGION = Regions.WEST;
+        final String newUserLastName = "Tsoni";
+        final String newUserPassword = "1qaz2wsx";
+        final Regions newRegion = Regions.WEST;
 
-        testUser.setLastName(NEW_USER_LAST_NAME);
-        testUser.setPassword(NEW_USER_PASSWORD);
-        testUser.setRegionReference(NEW_REGION.ordinal() + 1);
+        testUser.setLastName(newUserLastName);
+        testUser.setPassword(newUserPassword);
+        testUser.setRegionReference(newRegion.ordinal() + 1);
 
         assertThat(editUserPage.getNewPasswordText())
                 .isDisplayed();
@@ -86,11 +86,11 @@ public class EditUserTest extends TestRunner {
 
         testUser = DBHandler.getUserById(testUserId);
 
-        assertThat(testUser).lastNameEquals(NEW_USER_LAST_NAME);
+        assertThat(testUser).lastNameEquals(newUserLastName);
 
-        assertThat(testUser).passwordEquals(NEW_USER_PASSWORD);
+        assertThat(testUser).passwordEquals(newUserPassword);
 
-        assertThat(testUser).regionNameEquals(NEW_REGION.toString());
+        assertThat(testUser).regionNameEquals(newRegion.toString());
 
         assertThat(administrationPage.getFoundUsersTextLabel())
                 .isDisplayed();
@@ -99,10 +99,10 @@ public class EditUserTest extends TestRunner {
     @Test
     public final void testEditUserAndClickCancel() {
 
-        final String OLD_USER_LASTNAME = testUser.getLastName();
-        final String NEW_USER_LASTNAME = "newLastName";
+        final String oldUserLastname = testUser.getLastName();
+        final String newUserLastname = "newLastName";
 
-        testUser.setLastName(NEW_USER_LASTNAME);
+        testUser.setLastName(newUserLastname);
 
         assertThat(editUserPage.getNewPasswordText())
                 .isDisplayed();
@@ -111,7 +111,7 @@ public class EditUserTest extends TestRunner {
                 .cancelEditingUser();
 
         assertThat(DBHandler.getUserById(testUserId))
-                .lastNameEquals(OLD_USER_LASTNAME);
+                .lastNameEquals(oldUserLastname);
 
         assertThat(administrationPage.getFoundUsersTextLabel())
                 .isDisplayed();

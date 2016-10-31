@@ -26,6 +26,36 @@ public final class User {
 
     }
 
+    public final String getRoleName() {
+        return Roles.getRoleNameByReference(roleReference);
+    }
+
+    public final String getRegionName() {
+        return Regions.getRegionNameByReference(regionReference);
+    }
+
+    public final String getCustomerTypeName() {
+        return CustomerTypes.getCustomerTypeNameByReference(customerTypeReference);
+    }
+
+    @Override
+    public final String toString() {
+
+        return "User {" +
+                "ID=" + id +
+                ", isUserActive=" + userActive +
+                ", Balance=" + balance +
+                ", Email=" + email +
+                ", FirstName=" + firstName +
+                ", LastName=" + lastName +
+                ", Login=" + login +
+                ", Password=" + password +
+                ", CustomerTypeRef=" + customerTypeReference +
+                ", RegionRef=" + regionReference +
+                ", RoleRef=" + roleReference +
+                "}";
+    }
+
     public static FirstIdStep newBuilder() {
         return new Builder();
     }
@@ -180,35 +210,4 @@ public final class User {
             return user;
         }
     }
-
-    public final String getRoleName() {
-        return Roles.getRoleNameByReference(roleReference);
-    }
-
-    public final String getRegionName() {
-        return Regions.getRegionNameByReference(regionReference);
-    }
-
-    public final String getCustomerTypeName() {
-        return CustomerTypes.getCustomerTypeNameByReference(customerTypeReference);
-    }
-
-    @Override
-    public final String toString() {
-
-        return "User {" +
-                "ID=" + id +
-                ", isUserActive=" + userActive +
-                ", Balance=" + balance +
-                ", Email=" + email +
-                ", FirstName=" + firstName +
-                ", LastName=" + lastName +
-                ", Login=" + login +
-                ", Password=" + password +
-                ", CustomerTypeRef=" + customerTypeReference +
-                ", RegionRef=" + regionReference +
-                ", RoleRef=" + roleReference +
-                "}";
-    }
-
 }

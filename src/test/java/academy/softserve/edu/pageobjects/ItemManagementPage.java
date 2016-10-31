@@ -53,7 +53,7 @@ public class ItemManagementPage extends PageObject<ItemManagementPage> {
 
     private final Link quantityOfProducts = new Link(driver, RECORDS_COUNT_TEXT);
 
-    private final Element NameCellColumn = new Element(driver, NAME_PRODUCT_CELL_COLUMN);
+    private final Element nameCellColumn = new Element(driver, NAME_PRODUCT_CELL_COLUMN);
 
     private final Element descriptionCellColumn = new Element(driver, DESCRIPTION_CELL_COLUMN);
 

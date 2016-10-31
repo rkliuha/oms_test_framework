@@ -91,19 +91,19 @@ public class LogInPage extends PageObject<LogInPage> {
         return this;
     }
 
-    public UserInfoPage clickLogIn() {
+    public final UserInfoPage clickLogIn() {
 
         logInButton.click();
         return new UserInfoPage(driver);
     }
 
-    public UserInfoPage clickCancel() {
+    public final UserInfoPage clickCancel() {
 
         cancelButton.click();
         return new UserInfoPage(driver);
     }
 
-    public LogInPage clickRememberMe() {
+    public final LogInPage clickRememberMe() {
 
         rememberMeCheckbox.click();
         return this;

@@ -17,6 +17,18 @@ public final class Product {
 
     }
 
+    @Override
+    public final String toString() {
+
+        return "Product {" +
+                "ID=" + id +
+                ", IsProductActive=" + productActive +
+                ", ProductDescription=" + productDescription +
+                ", ProductName=" + productName +
+                ", ProductPrice=" + productPrice +
+                "}";
+    }
+
     public static FirstIdStep newBuilder() {
         return new Builder();
     }
@@ -99,17 +111,4 @@ public final class Product {
             return product;
         }
     }
-
-    @Override
-    public final String toString() {
-
-        return "Product {" +
-                "ID=" + id +
-                ", IsProductActive=" + productActive +
-                ", ProductDescription=" + productDescription +
-                ", ProductName=" + productName +
-                ", ProductPrice=" + productPrice +
-                "}";
-    }
-
 }

@@ -18,6 +18,20 @@ public final class OrderItem {
 
     }
 
+    @Override
+    public String toString() {
+
+        return "OrderItem{" +
+                "ID=" + id +
+                ", Cost=" + cost +
+                ", ItemPrice=" + itemPrice +
+                ", Quantity=" + quantity +
+                ", DimensionReference=" + dimensionReference +
+                ", OrderReference=" + orderReference +
+                ", ProductReference=" + productReference +
+                "}";
+    }
+
     public static FirstIdStep newBuilder() {
         return new Builder();
     }
@@ -124,19 +138,4 @@ public final class OrderItem {
             return orderItem;
         }
     }
-
-    @Override
-    public String toString() {
-
-        return "OrderItem{" +
-                "ID=" + id +
-                ", Cost=" + cost +
-                ", ItemPrice=" + itemPrice +
-                ", Quantity=" + quantity +
-                ", DimensionReference=" + dimensionReference +
-                ", OrderReference=" + orderReference +
-                ", ProductReference=" + productReference +
-                "}";
-    }
-
 }

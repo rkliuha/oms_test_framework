@@ -25,6 +25,29 @@ public final class Order {
 
     }
 
+    public final String getOrderStatusName() {
+        return OrderStatus.getOrderStatusNameByReference(orderStatusReference);
+    }
+
+    @Override
+    public String toString() {
+
+        return "Order{" +
+                "ID=" + id +
+                ", DeliveryDate='" + deliveryDate +
+                ", Gift=" + gift +
+                ", MaxDiscount=" + maxDiscount +
+                ", OrderDate='" + orderDate +
+                ", OrderName='" + orderName +
+                ", OrderNumber=" + orderNumber +
+                ", PreferableDeliveryDate='" + preferableDeliveryDate +
+                ", TotalPrice=" + totalPrice +
+                ", Assignee=" + assignee +
+                ", Customer=" + customer +
+                ", OrderStatusReference=" + orderStatusReference +
+                "}";
+    }
+
     public static FirstIdStep newBuilder() {
         return new Builder();
     }
@@ -191,28 +214,4 @@ public final class Order {
             return order;
         }
     }
-
-    public final String getOrderStatusName() {
-        return OrderStatus.getOrderStatusNameByReference(orderStatusReference);
-    }
-
-    @Override
-    public String toString() {
-
-        return "Order{" +
-                "ID=" + id +
-                ", DeliveryDate='" + deliveryDate +
-                ", Gift=" + gift +
-                ", MaxDiscount=" + maxDiscount +
-                ", OrderDate='" + orderDate +
-                ", OrderName='" + orderName +
-                ", OrderNumber=" + orderNumber +
-                ", PreferableDeliveryDate='" + preferableDeliveryDate +
-                ", TotalPrice=" + totalPrice +
-                ", Assignee=" + assignee +
-                ", Customer=" + customer +
-                ", OrderStatusReference=" + orderStatusReference +
-                "}";
-    }
-
 }

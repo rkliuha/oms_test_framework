@@ -14,7 +14,7 @@ public final class DataProviders {
     private static final String EXCEL_FILE = PropertiesReader.getDefaultProperty("excel.file");
 
     @DataProvider
-    static public Object[][] testDataForAllUsersRole() {
+    public static Object[][] testDataForAllUsersRole() {
         return new Object[][]{
                 {Roles.ADMINISTRATOR},
                 {Roles.MERCHANDISER},
@@ -23,23 +23,23 @@ public final class DataProviders {
     }
 
     @DataProvider
-    static final public Object[][] excelLogInDataForAllUsersRole() throws IOException {
+    public static final Object[][] excelLogInDataForAllUsersRole() throws IOException {
         return ExcelReader.getArrayFromExcel(EXCEL_FILE, "sheet1");
     }
 
     @DataProvider
-    static final public Object[][] oneColumnOfExcelLoginData() throws IOException {
+    public static final Object[][] oneColumnOfExcelLoginData() throws IOException {
         return ExcelReader.getColumnByName(EXCEL_FILE, "password", "sheet1");
     }
 
     @DataProvider
-    static final public Object[][] oneColumnFromDefaultExcelFile() throws IOException {
+    public static final Object[][] oneColumnFromDefaultExcelFile() throws IOException {
         return ExcelReader.getColumnByName("password", "sheet1");
     }
 
 
     @DataProvider
-    static final public Object[][] testSearchingForAllColumnsFilter() {
+    public static final Object[][] testSearchingForAllColumnsFilter() {
         return new Object[][]{
                 {SearchConditions.EQUALS, "Customer", "Customer"},
                 {SearchConditions.NOT_EQUALS_TO, "Sarumjan", "Administrator"},
@@ -51,7 +51,7 @@ public final class DataProviders {
     }
 
     @DataProvider
-    static final public Object[][] testSearchingForFirstNameFilter() {
+    public static final Object[][] testSearchingForFirstNameFilter() {
         return new Object[][]{
                 {SearchConditions.EQUALS, "ivanka", "ivanka"},
                 {SearchConditions.NOT_EQUALS_TO, "Sarumjan", "ivanka"},
@@ -62,7 +62,7 @@ public final class DataProviders {
     }
 
     @DataProvider
-    static final public Object[][] testSearchingForLastNameFilter() {
+    public static final Object[][] testSearchingForLastNameFilter() {
         return new Object[][]{
                 {SearchConditions.EQUALS, "horoshko", "horoshko"},
                 {SearchConditions.NOT_EQUALS_TO, "shram", "horoshko"},
@@ -73,7 +73,7 @@ public final class DataProviders {
     }
 
     @DataProvider
-    static final public Object[][] testSearchingForLoginFilter() {
+    public static final Object[][] testSearchingForLoginFilter() {
         return new Object[][]{
                 {SearchConditions.EQUALS, "login1", "login1"},
                 {SearchConditions.NOT_EQUALS_TO, "sha", "iva"},
@@ -84,7 +84,7 @@ public final class DataProviders {
     }
 
     @DataProvider
-    static final public Object[][] testSearchingForRoleFilter() {
+    public static final Object[][] testSearchingForRoleFilter() {
         return new Object[][]{
                 {SearchConditions.EQUALS, "Merchandiser", "Merchandiser"},
                 {SearchConditions.NOT_EQUALS_TO, "Administrator", "Merchandiser"},
@@ -95,7 +95,7 @@ public final class DataProviders {
     }
 
     @DataProvider
-    static final public Object[][] testSearchingForRegionFilter() {
+    public static final Object[][] testSearchingForRegionFilter() {
         return new Object[][]{
                 {SearchConditions.EQUALS, "West", "West"},
                 {SearchConditions.NOT_EQUALS_TO, "West", "South"},
