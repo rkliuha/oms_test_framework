@@ -30,15 +30,9 @@ public final class SuiteRunner {
             try {
                 testSuite = Suites.valueOf(args[0].toUpperCase());
             } catch (IllegalArgumentException e) {
-                System.err.println("Invalid suite name. Available: \n" +
-                        "    administrator,\n" +
-                        "    customer,\n" +
-                        "    merchandiser,\n" +
-                        "    supervisor,\n" +
-                        "    others,\n" +
-                        "    parentsuite,\n" +
-                        "    demo.\n" +
-                        "    As default: parentsuite");
+                System.err.println("\nInvalid suite name. Available: \n" +
+                        Arrays.toString(Suites.values()).toLowerCase() +
+                        "\nAs default: " + testSuite.toString().toLowerCase());
 
                 System.exit(0);
             }
@@ -48,12 +42,9 @@ public final class SuiteRunner {
                 prepareDriver(browser);
             } catch (ArrayIndexOutOfBoundsException ignored) {
             } catch (IllegalArgumentException e) {
-                System.err.println("Invalid browser name. Available: \n" +
-                        "   chrome,\n" +
-                        "   chrome_mac,\n" +
-                        "   firefox,\n" +
-                        "   explorer.\n" +
-                        "   As default: firefox");
+                System.err.println("\nInvalid browser name. Available: \n" +
+                        Arrays.toString(Browsers.values()).toLowerCase() +
+                        "\nAs default: " + PropertiesReader.getDefaultProperty("browser"));
 
                 System.exit(0);
             }

@@ -246,7 +246,7 @@ public class CreateNewOrderPage extends PageObject<CreateNewOrderPage> {
 
     public final CreateNewOrderPage selectExpireDateYear(final String expireYear) {
 
-        expireDateMonthDropdown.sendKeys(expireYear);
+        expireDateYearDropdown.sendKeys(expireYear);
         return this;
     }
 

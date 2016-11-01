@@ -24,7 +24,7 @@ public enum MerchandiserEditOrderPageLocators implements ILocator {
 
     LAST_DAY_LINK("Last day",
             LocatorsType.BY_XPATH,
-            "//table[@class = 'jCalendar']//tr[6]/td[last()]");
+            "//table[@class = 'jCalendar']//tr[last()]/td[last()]");
 
     protected String elementName;
     protected LocatorsType locatorType;
