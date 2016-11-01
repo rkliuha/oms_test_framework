@@ -10,6 +10,7 @@ import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
 
 public class EditOrderTest extends TestRunner {
 
+    private boolean isChangedToStandardValues;
     private int testOrderId;
     private int testProduct;
     private int testOrderItem;
@@ -26,15 +27,32 @@ public class EditOrderTest extends TestRunner {
     public final void setUpTests() {
 
         userInfoPage = logInPage.logInAs(Roles.MERCHANDISER);
-        merchandiserOrderingPage = userInfoPage.clickMerchandiserOrderingTab()
-                .clickShowItems();
+
+        merchandiserOrderingPage = userInfoPage.goToMerchandiserOrderingPage()
+                .showItems();
+    }
+
+    @Test
+    public final void testEditFieldsChangingCorrectly() {
+
+        merchandiserEditOrderPage =
+                merchandiserOrderingPage.editOrder(merchandiserOrderingPage.getOrderLinkByNumber(8));
+
+        merchandiserEditOrderPage.changeOrderStatusTo("Ordered")
+                .chooseValidDeliveryDate()
+                .saveOrder();
+
+        assertThat(merchandiserOrderingPage.getOrderStatusByNumber(8))
+                .textEquals("Ordered");
+
+        isChangedToStandardValues = true;
     }
 
     @Test
     public final void testShowItemsChanging() {
 
         merchandiserEditOrderPage =
-                merchandiserOrderingPage.clickEditOrder(merchandiserOrderingPage.getLastEditCellLink());
+                merchandiserOrderingPage.editOrder(merchandiserOrderingPage.getOrderLinkByNumber(8));
 
         assertThat(merchandiserEditOrderPage.getShowItems())
                 .isDisplayed();
@@ -45,7 +63,7 @@ public class EditOrderTest extends TestRunner {
         assertThat(merchandiserEditOrderPage.getShowItems())
                 .textEquals("Show 10 items");
 
-        merchandiserEditOrderPage.clickShowItemsLink();
+        merchandiserEditOrderPage.showItems();
 
         assertThat(merchandiserEditOrderPage.getShowItems())
                 .isDisplayed();
@@ -55,36 +73,21 @@ public class EditOrderTest extends TestRunner {
 
         assertThat(merchandiserEditOrderPage.getShowItems())
                 .textEquals("Show 5 items");
+
+        isChangedToStandardValues = false;
     }
 
-    @Test
-    public final void testEditFieldsChangingCorrectly() {
+    @AfterMethod
+    public final void changeToStandardValues() {
 
-        merchandiserEditOrderPage =
-                merchandiserOrderingPage.clickEditOrder(merchandiserOrderingPage.getLastEditCellLink());
+        if (isChangedToStandardValues) {
 
-        merchandiserEditOrderPage.changeOrderStatusTo("Ordered")
-                .clickChooseDate()
-                .clickLastDate()
-                .clickSaveButton();
+            merchandiserEditOrderPage =
+                    merchandiserOrderingPage.editOrder(merchandiserOrderingPage.getOrderLinkByNumber(8));
 
-        assertThat(merchandiserOrderingPage.getLastStatusCellLink())
-                .textEquals("Ordered");
-    }
-
-    @Test
-    public final void testEditFieldsCancelChangingCorrectly() {
-
-        merchandiserEditOrderPage =
-                merchandiserOrderingPage.clickEditOrder(merchandiserOrderingPage.getLastEditCellLink());
-
-        merchandiserEditOrderPage.changeOrderStatusTo("Delivered")
-                .clickChooseDate()
-                .clickLastDate()
-                .clickCancelButton();
-
-        assertThat(merchandiserOrderingPage.getLastStatusCellLink())
-                .textNotEqual("Delivered");
+            merchandiserEditOrderPage.changeOrderStatusTo("Created")
+                    .saveOrder();
+        }
     }
 
     @AfterClass

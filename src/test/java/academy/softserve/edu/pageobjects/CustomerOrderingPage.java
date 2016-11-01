@@ -1,6 +1,7 @@
 package academy.softserve.edu.pageobjects;
 
 import academy.softserve.edu.elements.wrappers.*;
+import academy.softserve.edu.enums.customer_ordering_page.SearchConditions;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 
@@ -48,52 +49,59 @@ public class CustomerOrderingPage extends PageObject<CustomerOrderingPage> {
         super(driver);
     }
 
-    public final UserInfoPage clickUserInfoTab() {
+    public final UserInfoPage goToUserInfoPage() {
 
         userInfoLink.click();
         return new UserInfoPage(driver);
     }
 
-    public final CreateNewOrderPage clickCreateNewOrderLink() {
+    public final CreateNewOrderPage goToCreateNewOrderPage() {
 
         createNewOrderLink.click();
         return new CreateNewOrderPage(driver);
     }
 
-    public final CustomerOrderingPage clickResizeShowItemsLink() {
+    public final CustomerOrderingPage changeItemsPerPage() {
 
         resizeShowItemsLink.click();
         return this;
     }
 
-    public final CustomerOrderingPage clickApplyButton() {
+    public final CustomerOrderingPage clickApply() {
 
         applyButton.click();
         return this;
     }
 
-    public final CreateNewOrderPage clickEditLink() {
+    public final CreateNewOrderPage editFirstOrder() {
 
         editLink.click();
         return new CreateNewOrderPage(driver);
     }
 
-    public final CustomerOrderingPage clickDeleteLink() {
+    public final CustomerOrderingPage deleteFirstOrder() {
 
         deleteLink.click();
         return this;
     }
 
-    public final CustomerOrderingPage selectSearchDropdown(final String condition) {
+    public final CustomerOrderingPage selectSearchCondition(final SearchConditions condition) {
 
-        searchDropdown.sendKeys(condition);
+        searchDropdown.sendKeys(condition.toString());
         return this;
     }
 
-    public final CustomerOrderingPage fillSearchInput(final String searchText) {
+    public final CustomerOrderingPage setSearchText(final String searchText) {
 
         searchInput.sendKeys(searchText);
         return this;
+    }
+
+    public final CustomerOrderingPage searchForOrder(final SearchConditions searchCondition, final String searchText) {
+
+        return selectSearchCondition(searchCondition)
+                .setSearchText(searchText)
+                .clickApply();
     }
 
 }

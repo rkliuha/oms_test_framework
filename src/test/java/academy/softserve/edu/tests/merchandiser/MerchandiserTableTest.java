@@ -1,12 +1,14 @@
 package academy.softserve.edu.tests.merchandiser;
 
 import academy.softserve.edu.enums.Roles;
+import academy.softserve.edu.enums.merchandiser_ordering_page.SearchConditions;
 import academy.softserve.edu.utils.SortUtil;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
+import static academy.softserve.edu.enums.merchandiser_ordering_page.SortConditions.*;
 
 public class MerchandiserTableTest extends TestRunner {
 
@@ -19,7 +21,7 @@ public class MerchandiserTableTest extends TestRunner {
         assertThat(userInfoPage.getUserInfoFieldSet())
                 .isDisplayed();
 
-        merchandiserOrderingPage = userInfoPage.clickMerchandiserOrderingTab();
+        merchandiserOrderingPage = userInfoPage.goToMerchandiserOrderingPage();
     }
 
     // To check Merchandiser table is enable or not. And Edit and Delete function is available
@@ -40,7 +42,7 @@ public class MerchandiserTableTest extends TestRunner {
         assertThat(merchandiserOrderingPage.getOrderNameByCellId(3))
                 .isDisplayed();
 
-        merchandiserOrderingPage.clickOrderNameHeaderButton();
+        merchandiserOrderingPage.sortTableBy(ORDER_NAME);
 
         final boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(merchandiserOrderingPage.getOrderNameColumnLink()
@@ -56,7 +58,7 @@ public class MerchandiserTableTest extends TestRunner {
         assertThat(merchandiserOrderingPage.getOrderNameByCellId(3))
                 .isDisplayed();
 
-        merchandiserOrderingPage.clickTotalPriceHeaderButton();
+        merchandiserOrderingPage.sortTableBy(TOTAL_PRICE);
 
         final boolean isSortedByDescend = SortUtil
                 .isListDoubleSortedByDescend(merchandiserOrderingPage.getTotalPriceColumnLink()
@@ -72,7 +74,7 @@ public class MerchandiserTableTest extends TestRunner {
         assertThat(merchandiserOrderingPage.getOrderNameByCellId(3))
                 .isDisplayed();
 
-        merchandiserOrderingPage.clickMaxDiscountHeaderButton();
+        merchandiserOrderingPage.sortTableBy(MAX_DISCOUNT);
 
         final boolean isSortedByDescend = SortUtil
                 .isListDoubleSortedByDescend(merchandiserOrderingPage.getMaxDiscountColumnLink()
@@ -88,7 +90,7 @@ public class MerchandiserTableTest extends TestRunner {
         assertThat(merchandiserOrderingPage.getOrderNameByCellId(3))
                 .isDisplayed();
 
-        merchandiserOrderingPage.clickStatusHeaderButton();
+        merchandiserOrderingPage.sortTableBy(STATUS);
 
         final boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(merchandiserOrderingPage.getStatusColumnLink()
@@ -112,22 +114,22 @@ public class MerchandiserTableTest extends TestRunner {
         assertThat(merchandiserOrderingPage.getBackwardButton())
                 .isDisabled();
 
-        merchandiserOrderingPage.clickForwardButton();
+        merchandiserOrderingPage.navigateTableForward();
 
         assertThat(merchandiserOrderingPage.getNumberOfGridPages())
                 .isParseIntQuantityEqualTo(2);
 
-        merchandiserOrderingPage.clickBackwardButton();
+        merchandiserOrderingPage.navigateTableBackward();
 
         assertThat(merchandiserOrderingPage.getNumberOfGridPages())
                 .isParseIntQuantityEqualTo(1);
 
-        merchandiserOrderingPage.clickLastButton();
+        merchandiserOrderingPage.navigateTableToLastPage();
 
         assertThat(merchandiserOrderingPage.getNumberOfGridPages())
                 .isParseIntQuantityEqualTo(quantityOfGridPages);
 
-        merchandiserOrderingPage.clickFirstButton();
+        merchandiserOrderingPage.navigateTableToFirstPage();
 
         assertThat(merchandiserOrderingPage.getNumberOfGridPages())
                 .isParseIntQuantityEqualTo(1);
@@ -140,7 +142,7 @@ public class MerchandiserTableTest extends TestRunner {
         assertThat(merchandiserOrderingPage.getPageCount())
                 .isParseIntQuantityMoreThan(1);
 
-        merchandiserOrderingPage.clickResizeOrdersListLink();
+        merchandiserOrderingPage.changeItemsPerPage();
 
         assertThat(merchandiserOrderingPage.getOrderNameColumnLink())
                 .isQuantityMoreThan(5);
@@ -148,7 +150,7 @@ public class MerchandiserTableTest extends TestRunner {
         assertThat(merchandiserOrderingPage.getOrderNameColumnLink())
                 .isQuantityLessOrEqualsThan(10);
 
-        merchandiserOrderingPage.clickResizeOrdersListLink();
+        merchandiserOrderingPage.changeItemsPerPage();
 
         assertThat(merchandiserOrderingPage.getOrderNameColumnLink())
                 .isQuantityEqualTo(5);
@@ -158,9 +160,7 @@ public class MerchandiserTableTest extends TestRunner {
     @Test
     public final void testSearchForStatusFilter() {
 
-        merchandiserOrderingPage.selectSearchDropdown("Status")
-                .fillSearchInput("Created")
-                .clickApplyButton();
+        merchandiserOrderingPage.searchForOrder(SearchConditions.STATUS, "Created");
 
         assertThat(merchandiserOrderingPage.getOrderStatusByNumber(2))
                 .textEquals("Created");
@@ -170,9 +170,7 @@ public class MerchandiserTableTest extends TestRunner {
     @Test
     public final void testSearchForOrderNameFilter() {
 
-        merchandiserOrderingPage.selectSearchDropdown("Order Name")
-                .fillSearchInput("OrderName6")
-                .clickApplyButton();
+        merchandiserOrderingPage.searchForOrder(SearchConditions.ORDER_NAME, "OrderName6");
 
         assertThat(merchandiserOrderingPage.getOrderNameFirstCellLink())
                 .textEquals("OrderName6");

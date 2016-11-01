@@ -1,12 +1,14 @@
 package academy.softserve.edu.tests.supervisor;
 
 import academy.softserve.edu.enums.Roles;
+import academy.softserve.edu.enums.item_management_page.SearchConditions;
 import academy.softserve.edu.utils.SortUtil;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
+import static academy.softserve.edu.enums.item_management_page.SortConditions.*;
 
 public class SupervisorTableTest extends TestRunner {
 
@@ -19,7 +21,7 @@ public class SupervisorTableTest extends TestRunner {
         assertThat(userInfoPage.getUserInfoFieldSet())
                 .isDisplayed();
 
-        itemManagementPage = userInfoPage.clickItemManagementTab();
+        itemManagementPage = userInfoPage.goToItemManagementPage();
     }
 
     // To check Admin table is enable or not. And Edit and Delete function is available
@@ -37,9 +39,7 @@ public class SupervisorTableTest extends TestRunner {
     @Test
     public final void testSearchForNameFilter() {
 
-        itemManagementPage.selectSearchFieldFilterDropdown("Name")
-                .fillSearchInput("productName5")
-                .clickSearchButton();
+        itemManagementPage.searchForProduct(SearchConditions.NAME, "productName5");
 
         assertThat(itemManagementPage.getFirstProductNameCellLink())
                 .textEquals("productName5");
@@ -49,9 +49,7 @@ public class SupervisorTableTest extends TestRunner {
     @Test
     public final void testSearchForDescriptionFilter() {
 
-        itemManagementPage.selectSearchFieldFilterDropdown("Description")
-                .fillSearchInput("productDescription5")
-                .clickSearchButton();
+        itemManagementPage.searchForProduct(SearchConditions.DESCRIPTION, "productDescription5");
 
         assertThat(itemManagementPage.getFirstDescriptionProductCellLink())
                 .textEquals("productDescription5");
@@ -64,7 +62,7 @@ public class SupervisorTableTest extends TestRunner {
         assertThat(itemManagementPage.getQuantityOfProducts())
                 .isParseIntQuantityMoreThan(5);
 
-        itemManagementPage.clickResizeProductsListButton();
+        itemManagementPage.changeItemsPerPage();
 
         assertThat(itemManagementPage.getNameCellColumn())
                 .isQuantityMoreThan(5);
@@ -72,7 +70,7 @@ public class SupervisorTableTest extends TestRunner {
         assertThat(itemManagementPage.getNameCellColumn())
                 .isQuantityLessOrEqualsThan(10);
 
-        itemManagementPage.clickResizeProductsListButton();
+        itemManagementPage.changeItemsPerPage();
 
         assertThat(itemManagementPage.getNameCellColumn())
                 .isQuantityEqualTo(5);
@@ -82,9 +80,7 @@ public class SupervisorTableTest extends TestRunner {
     @Test
     public final void testRealSearchResult() {
 
-        itemManagementPage.selectSearchFieldFilterDropdown("Name")
-                .fillSearchInput("productName5")
-                .clickSearchButton();
+        itemManagementPage.searchForProduct(SearchConditions.NAME, "productName5");
 
         assertThat(itemManagementPage.getNameCellColumn())
                 .isQuantityEqualTo(1);
@@ -97,7 +93,7 @@ public class SupervisorTableTest extends TestRunner {
         assertThat(itemManagementPage.getSearchByFieldSet())
                 .isDisplayed();
 
-        itemManagementPage.clickNameHeaderButton();
+        itemManagementPage.sortTableBy(NAME);
 
         final boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(itemManagementPage.getNameCellColumn()
@@ -113,7 +109,7 @@ public class SupervisorTableTest extends TestRunner {
         assertThat(itemManagementPage.getSearchByFieldSet())
                 .isDisplayed();
 
-        itemManagementPage.clickDescriptionHeaderButton();
+        itemManagementPage.sortTableBy(DESCRIPTION);
 
         final boolean isSortedByAscent = SortUtil
                 .isListSortedByAsc(itemManagementPage.getDescriptionCellColumn()
@@ -129,7 +125,7 @@ public class SupervisorTableTest extends TestRunner {
         assertThat(itemManagementPage.getSearchByFieldSet())
                 .isDisplayed();
 
-        itemManagementPage.clickPriceHeaderButton();
+        itemManagementPage.sortTableBy(PRICE);
 
         final boolean isSortedByAscent = SortUtil
                 .isListDoubleSortedByAscent(itemManagementPage.getPriceCellColumn()
@@ -153,22 +149,22 @@ public class SupervisorTableTest extends TestRunner {
         assertThat(itemManagementPage.getBackwardNavigationButton())
                 .isDisabled();
 
-        itemManagementPage.clickForwardNavigationButton();
+        itemManagementPage.navigateTableForward();
 
         assertThat(itemManagementPage.getNumberOfTablePage())
                 .isParseIntQuantityEqualTo(2);
 
-        itemManagementPage.clickBackwardNavigationButton();
+        itemManagementPage.navigateTableBackward();
 
         assertThat(itemManagementPage.getNumberOfTablePage())
                 .isParseIntQuantityEqualTo(1);
 
-        itemManagementPage.clickLastNavigationButton();
+        itemManagementPage.navigateTableToLastPage();
 
         assertThat(itemManagementPage.getNumberOfTablePage())
                 .isParseIntQuantityEqualTo(quantityOfGridsPages);
 
-        itemManagementPage.clickFirstNavigationButton();
+        itemManagementPage.navigateTableToFirstPage();
 
         assertThat(itemManagementPage.getNumberOfTablePage())
                 .isParseIntQuantityEqualTo(1);

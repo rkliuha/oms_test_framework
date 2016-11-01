@@ -2,6 +2,7 @@ package academy.softserve.edu.tests.supervisor;
 
 import academy.softserve.edu.domains.Product;
 import academy.softserve.edu.enums.Roles;
+import academy.softserve.edu.enums.item_management_page.SearchConditions;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.DBHelper;
 import academy.softserve.edu.utils.TestRunner;
@@ -11,6 +12,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
+import static academy.softserve.edu.enums.item_management_page.SearchConditions.NAME;
 
 public class EditProductTest extends TestRunner {
 
@@ -29,12 +31,11 @@ public class EditProductTest extends TestRunner {
 
         userInfoPage = logInPage.logInAs(Roles.SUPERVISOR);
 
-        itemManagementPage = userInfoPage.clickItemManagementTab();
+        itemManagementPage = userInfoPage.goToItemManagementPage();
 
-        itemManagementPage.fillSearchInput(testProduct.getProductName())
-                .clickSearchButton();
+        itemManagementPage.searchForProduct(NAME, testProduct.getProductName());
 
-        editProductPage = itemManagementPage.clickEditProductLinkById(testProductId);
+        editProductPage = itemManagementPage.editProductById(testProductId);
     }
 
     @Test
@@ -47,10 +48,12 @@ public class EditProductTest extends TestRunner {
         final String testProductDescription = "someProductDescription";
         final String testProductPrice = "100";
 
-        editProductPage.fillProductNameInput(testProductName)
-                .fillProductDescriptionInput(testProductDescription)
-                .fillProductPriceInput(testProductPrice)
-                .clickOkButton();
+        testProduct.setProductName(testProductName);
+        testProduct.setProductDescription(testProductDescription);
+        testProduct.setProductPrice(Double.parseDouble(testProductPrice));
+
+        editProductPage.setProductFields(testProduct)
+                .editProduct();
 
         assertThat(itemManagementPage.getSearchByFieldSet())
                 .isDisplayed();
@@ -70,16 +73,16 @@ public class EditProductTest extends TestRunner {
         assertThat(editProductPage.getProductNameInput())
                 .isValueNotEmpty();
 
-        editProductPage.fillProductNameInput("AnotherName")
-                .fillProductDescriptionInput("AnotherDescription")
-                .fillProductPriceInput("500")
-                .clickCancelButton();
+        testProduct.setProductDescription("AnotherDesc");
+
+        editProductPage.setProductFields(testProduct)
+                .cancelEditingProduct();
 
         assertThat(itemManagementPage.getSearchByFieldSet())
                 .isDisplayed();
 
         assertThat(DBHandler.getProductById(testProductId))
-                .productEquals(testProduct);
+                .nameNotEqual(testProduct.getProductDescription());
     }
 
     @AfterClass

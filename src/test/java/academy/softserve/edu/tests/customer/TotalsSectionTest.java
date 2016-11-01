@@ -28,12 +28,13 @@ public class TotalsSectionTest extends TestRunner {
     public final void setUpTests() {
 
         userInfoPage = logInPage.logInAs(Roles.CUSTOMER);
-        customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
-        createNewOrderPage = customerOrderingPage.clickCreateNewOrderLink();
+        customerOrderingPage = userInfoPage.goToCustomerOrderingPage();
+        createNewOrderPage = customerOrderingPage.goToCreateNewOrderPage();
 
-        addItemPage = createNewOrderPage.clickAddItemButton();
-        addItemPage.clickSelectLastAddedItemLink()
-                .clickDoneButton();
+        addItemPage = createNewOrderPage.goToAddItemPage();
+
+        addItemPage.selectLastAddedItem()
+                .addItemToOrder();
 
         orderNumber = createNewOrderPage.getOrderNumberTextField()
                 .getValue();
@@ -110,19 +111,20 @@ public class TotalsSectionTest extends TestRunner {
     @Test
     public final void testItemsExist() {
 
-        createNewOrderPage.clickPreferableDeliveryDateChooseLink();
+        createNewOrderPage.choosePreferableDeliveryDate();
 
         assertThat(createNewOrderPage.getCalendarPopupElement())
                 .isDisplayed();
 
-        createNewOrderPage.clickCalendarMonthForwardButton()
-                .clickCalendarTuesdayElement();
+        createNewOrderPage.refreshPage();
+
+        createNewOrderPage.chooseValidDeliveryDate();
 
         final String preferableDate = createNewOrderPage.getPreferableDeliveryDateField()
                 .getValue();
 
-        createNewOrderPage.selectAssigneeDropdown(DBHandler.getUserByRole(Roles.MERCHANDISER).getLogin())
-                .clickSaveButton();
+        createNewOrderPage.chooseOrderAssignee(DBHandler.getUserByRole(Roles.MERCHANDISER).getLogin())
+                .saveOrderInfo();
 
         orderItem = DBHandler.getLastOrderItem()
                 .getId();
@@ -152,33 +154,31 @@ public class TotalsSectionTest extends TestRunner {
     @Test
     public final void testErrorMessages() {
 
-        createNewOrderPage.clickSaveButton();
+        createNewOrderPage.saveOrderInfo();
 
         assertThat(createNewOrderPage.getNoItemsError())
                 .isDisplayed();
 
         createNewOrderPage.refreshPage();
 
-        createNewOrderPage.clickPreferableDeliveryDateChooseLink()
-                .clickCalendarMonthForwardButton()
-                .clickCalendarTuesdayElement()
-                .clickSaveButton();
+        createNewOrderPage.chooseValidDeliveryDate()
+                .saveOrderInfo();
 
         assertThat(createNewOrderPage.getNoItemsError())
                 .isDisplayed();
 
         createNewOrderPage.refreshPage();
 
-        createNewOrderPage.selectAssigneeDropdown(DBHandler.getUserByRole(Roles.MERCHANDISER).getLogin())
-                .clickSaveButton();
+        createNewOrderPage.chooseOrderAssignee(DBHandler.getUserByRole(Roles.MERCHANDISER).getLogin())
+                .saveOrderInfo();
 
         assertThat(createNewOrderPage.getNoItemsError())
                 .isDisplayed();
 
         createNewOrderPage.refreshPage();
 
-        createNewOrderPage.clickFirstItemDeleteButton()
-                .clickSaveButton();
+        createNewOrderPage.deleteFirstItem()
+                .saveOrderInfo();
 
         assertThat(createNewOrderPage.getNoItemsError())
                 .isDisplayed();
@@ -188,15 +188,13 @@ public class TotalsSectionTest extends TestRunner {
     @Test
     public final void testOrderNumberEmptyErrorMessage() {
 
-        createNewOrderPage.clickPreferableDeliveryDateChooseLink()
-                .clickCalendarMonthForwardButton()
-                .clickCalendarTuesdayElement()
-                .selectAssigneeDropdown(DBHandler.getUserByRole(Roles.MERCHANDISER).getLogin());
+        createNewOrderPage.chooseValidDeliveryDate()
+                .chooseOrderAssignee(DBHandler.getUserByRole(Roles.MERCHANDISER).getLogin());
 
         createNewOrderPage.getOrderNumber()
                 .clear();
 
-        orderItemsErrorMessagePage = createNewOrderPage.clickSaveButtonFail();
+        orderItemsErrorMessagePage = createNewOrderPage.saveOrderWithFail();
 
         assertThat(orderItemsErrorMessagePage.getContentText())
                 .textContains("Order Number is int value");
@@ -207,27 +205,23 @@ public class TotalsSectionTest extends TestRunner {
     @Test
     public final void testOrderNumberExistsErrorMessage() {
 
-        createNewOrderPage.clickPreferableDeliveryDateChooseLink()
-                .clickCalendarMonthForwardButton()
-                .clickCalendarTuesdayElement()
-                .selectAssigneeDropdown(DBHandler.getUserByRole(Roles.MERCHANDISER).getLogin())
-                .clickSaveButton();
+        createNewOrderPage.chooseValidDeliveryDate()
+                .chooseOrderAssignee(DBHandler.getUserByRole(Roles.MERCHANDISER).getLogin())
+                .saveOrderInfo();
 
-        customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
-        createNewOrderPage = customerOrderingPage.clickCreateNewOrderLink();
-        createNewOrderPage.clickAddItemButton();
+        customerOrderingPage = userInfoPage.goToCustomerOrderingPage();
+        createNewOrderPage = customerOrderingPage.goToCreateNewOrderPage();
+        createNewOrderPage.goToAddItemPage();
 
-        addItemPage.clickSelectLastAddedItemLink()
-                .clickDoneButton();
+        addItemPage.selectLastAddedItem()
+                .addItemToOrder();
 
-        createNewOrderPage.fillOrderNumberTextField(orderNumber);
+        createNewOrderPage.setOrderNumber(orderNumber);
 
-        createNewOrderPage.clickPreferableDeliveryDateChooseLink()
-                .clickCalendarMonthForwardButton()
-                .clickCalendarTuesdayElement()
-                .selectAssigneeDropdown(DBHandler.getUserByRole(Roles.MERCHANDISER).getLogin());
+        createNewOrderPage.chooseValidDeliveryDate()
+                .chooseOrderAssignee(DBHandler.getUserByRole(Roles.MERCHANDISER).getLogin());
 
-        orderItemsErrorMessagePage = createNewOrderPage.clickSaveButtonFail();
+        orderItemsErrorMessagePage = createNewOrderPage.saveOrderWithFail();
 
         assertThat(orderItemsErrorMessagePage.getContentText())
                 .textContains("such order number already exists");

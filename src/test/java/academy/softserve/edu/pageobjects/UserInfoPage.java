@@ -2,6 +2,7 @@ package academy.softserve.edu.pageobjects;
 
 import academy.softserve.edu.elements.wrappers.Link;
 import academy.softserve.edu.elements.wrappers.TextLabel;
+import academy.softserve.edu.enums.Languages;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 
@@ -48,39 +49,42 @@ public class UserInfoPage extends PageObject<UserInfoPage> {
         super(driver);
     }
 
-    public final AdministrationPage clickAdministrationTab() {
+    public final AdministrationPage goToAdministrationPage() {
 
         administrationLink.click();
         return new AdministrationPage(driver);
     }
 
-    public final CustomerOrderingPage clickCustomerOrderingTab() {
+    public final CustomerOrderingPage goToCustomerOrderingPage() {
 
         customerOrderingLink.click();
         return new CustomerOrderingPage(driver);
     }
 
-    public final ItemManagementPage clickItemManagementTab() {
+    public final ItemManagementPage goToItemManagementPage() {
 
         itemManagementLink.click();
         return new ItemManagementPage(driver);
     }
 
-    public final MerchandiserOrderingPage clickMerchandiserOrderingTab() {
+    public final MerchandiserOrderingPage goToMerchandiserOrderingPage() {
 
         merchandiserOrderingLink.click();
         return new MerchandiserOrderingPage(driver);
     }
 
-    public UserInfoPage clickUkrainianButton() {
+    public final UserInfoPage changeLanguageTo(final Languages language) {
 
-        ukrainianSwitchLink.click();
-        return this;
-    }
+        switch (language) {
 
-    public UserInfoPage clickEnglishButton() {
+            case UA:
+                ukrainianSwitchLink.click();
+                break;
+            case EN:
+                englishSwitchLink.click();
+                break;
+        }
 
-        englishSwitchLink.click();
         return this;
     }
 }

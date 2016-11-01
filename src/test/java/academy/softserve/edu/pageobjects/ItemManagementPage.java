@@ -1,6 +1,8 @@
 package academy.softserve.edu.pageobjects;
 
 import academy.softserve.edu.elements.wrappers.*;
+import academy.softserve.edu.enums.item_management_page.SearchConditions;
+import academy.softserve.edu.enums.item_management_page.SortConditions;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 
@@ -86,100 +88,107 @@ public class ItemManagementPage extends PageObject<ItemManagementPage> {
         super(driver);
     }
 
-    public final UserInfoPage clickUserInfoTab() {
+    public final UserInfoPage goToUserInfoPage() {
 
         userInfoLink.click();
         return new UserInfoPage(driver);
     }
 
-    public final SupervisorCreateReportPage clickCreateReportLink() {
+    public final SupervisorCreateReportPage goToCreateReportPage() {
 
         createReportLink.click();
         return new SupervisorCreateReportPage(driver);
     }
 
-    public final EditProductPage clickEditProductLinkById(final int productId) {
+    public final EditProductPage editProductById(final int productId) {
 
         getEditProductLinkById(productId).click();
         return new EditProductPage(driver);
     }
 
-    public final ItemManagementPage clickDeleteProductLinkById(final int productId) {
+    public final ItemManagementPage deleteProductById(final int productId) {
 
         getDeleteProductLinkById(productId).click();
         return this;
     }
 
-    public final ItemManagementPage clickResizeProductsListButton() {
+    public final ItemManagementPage changeItemsPerPage() {
 
         resizeProductsListButton.click();
         return this;
     }
 
-    public final ItemManagementPage clickNameHeaderButton() {
+    public final ItemManagementPage sortTableBy(final SortConditions condition) {
 
-        nameHeaderButton.click();
+        switch (condition) {
+
+            case NAME:
+                nameHeaderButton.click();
+                break;
+            case DESCRIPTION:
+                descriptionHeaderButton.click();
+                break;
+            case PRICE:
+                priceHeaderButton.click();
+                break;
+        }
+
         return this;
     }
 
-    public final ItemManagementPage clickDescriptionHeaderButton() {
-
-        descriptionHeaderButton.click();
-        return this;
-    }
-
-    public final ItemManagementPage clickPriceHeaderButton() {
-
-        priceHeaderButton.click();
-        return this;
-    }
-
-    public final ItemManagementPage clickForwardNavigationButton() {
+    public final ItemManagementPage navigateTableForward() {
 
         forwardNavigationButton.click();
         return this;
     }
 
-    public final ItemManagementPage clickBackwardNavigationButton() {
+    public final ItemManagementPage navigateTableBackward() {
 
         backwardNavigationButton.click();
         return this;
     }
 
-    public final ItemManagementPage clickLastNavigationButton() {
+    public final ItemManagementPage navigateTableToLastPage() {
 
         lastNavigationButton.click();
         return this;
     }
 
-    public final ItemManagementPage clickFirstNavigationButton() {
+    public final ItemManagementPage navigateTableToFirstPage() {
 
         firstNavigationButton.click();
         return this;
     }
 
-    public final AddProductPage clickAddProductLink() {
+    public final AddProductPage goToAddProductPage() {
 
         getAddProductLink().click();
         return new AddProductPage(driver);
     }
 
-    public final ItemManagementPage clickSearchButton() {
+    public final ItemManagementPage clickSearch() {
 
         searchButton.click();
         return this;
     }
 
-    public final ItemManagementPage fillSearchInput(final String searchText) {
+    public final ItemManagementPage setSearchText(final String searchText) {
 
         searchInput.sendKeys(searchText);
         return this;
     }
 
-    public final ItemManagementPage selectSearchFieldFilterDropdown(final String condition) {
+    public final ItemManagementPage selectSearchCondition(final SearchConditions condition) {
 
-        searchFieldFilterDropdown.sendKeys(condition);
+        searchFieldFilterDropdown.sendKeys(condition.toString());
         return this;
+    }
+
+    public final ItemManagementPage searchForProduct(final SearchConditions searchCondition, final String searchText) {
+
+        return selectSearchCondition(searchCondition)
+                .setSearchText(searchText)
+                .clickSearch();
     }
 
 }

@@ -19,14 +19,14 @@ public abstract class PageObject<T> {
         logOutButton = new Button(driver, LOG_OUT_BUTTON);
     }
 
-    public final void clickLogOutButton() {
+    public final void clickLogOut() {
 
         logOutButton.click();
     }
 
     public final LogInPage doLogOut() {
 
-        clickLogOutButton();
+        clickLogOut();
         acceptAlert();
         return new LogInPage(driver);
 

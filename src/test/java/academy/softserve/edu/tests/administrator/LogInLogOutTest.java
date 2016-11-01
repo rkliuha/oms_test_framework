@@ -30,7 +30,7 @@ public class LogInLogOutTest extends TestRunner {
         assertThat(userInfoPage.getLogOutButton())
                 .isDisplayed();
 
-        administrationPage = userInfoPage.clickAdministrationTab();
+        administrationPage = userInfoPage.goToAdministrationPage();
         // we have to check switching between pages, has the same issue with logIn check;
         assertThat(administrationPage.getFoundUsersTextLabel())
                 .isDisplayed();
@@ -43,7 +43,7 @@ public class LogInLogOutTest extends TestRunner {
     public final void testLogOut() {
 
         userInfoPage = logInPage.logInAs(Roles.ADMINISTRATOR);
-        administrationPage = userInfoPage.clickAdministrationTab();
+        administrationPage = userInfoPage.goToAdministrationPage();
         administrationPage.doLogOut();
 
         assertThat(logInPage.getLogInButton())

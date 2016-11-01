@@ -2,6 +2,7 @@ package academy.softserve.edu.tests.supervisor;
 
 import academy.softserve.edu.domains.Product;
 import academy.softserve.edu.enums.Roles;
+import academy.softserve.edu.enums.item_management_page.SearchConditions;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.DBHelper;
 import academy.softserve.edu.utils.TestRunner;
@@ -10,6 +11,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
+import static academy.softserve.edu.enums.item_management_page.SearchConditions.NAME;
 
 public class DeleteProductTest extends TestRunner {
 
@@ -28,12 +30,11 @@ public class DeleteProductTest extends TestRunner {
 
         userInfoPage = logInPage.logInAs(Roles.SUPERVISOR);
 
-        itemManagementPage = userInfoPage.clickItemManagementTab();
+        itemManagementPage = userInfoPage.goToItemManagementPage();
 
-        itemManagementPage.fillSearchInput(testProduct.getProductName())
-                .clickSearchButton();
+        itemManagementPage.searchForProduct(NAME, testProduct.getProductName());
 
-        itemManagementPage.clickDeleteProductLinkById(testProductId);
+        itemManagementPage.deleteProductById(testProductId);
 
         itemManagementPage.dismissAlert();
 
@@ -46,12 +47,11 @@ public class DeleteProductTest extends TestRunner {
 
         userInfoPage = logInPage.logInAs(Roles.SUPERVISOR);
 
-        itemManagementPage = userInfoPage.clickItemManagementTab();
+        itemManagementPage = userInfoPage.goToItemManagementPage();
 
-        itemManagementPage.fillSearchInput(testProduct.getProductName())
-                .clickSearchButton();
+        itemManagementPage.searchForProduct(NAME, testProduct.getProductName());
 
-        itemManagementPage.clickDeleteProductLinkById(testProductId);
+        itemManagementPage.deleteProductById(testProductId);
 
         itemManagementPage.acceptAlert();
 

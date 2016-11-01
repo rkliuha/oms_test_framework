@@ -19,13 +19,13 @@ public class SwitchTabsTest extends TestRunner {
 
         // if user can switch between tabs "User Info" and "Ordering"
 
-        merchandiserOrderingPage = userInfoPage.clickMerchandiserOrderingTab();
+        merchandiserOrderingPage = userInfoPage.goToMerchandiserOrderingPage();
 
         assertThat(merchandiserOrderingPage.getSearchByText())
                 .isDisplayed();
 
         // if user can switch back to "User Info"
-        merchandiserOrderingPage.clickUserInfoLink();
+        merchandiserOrderingPage.goToUserInfoPage();
 
         assertThat(userInfoPage.getUserInfoFieldSet())
                 .isDisplayed();

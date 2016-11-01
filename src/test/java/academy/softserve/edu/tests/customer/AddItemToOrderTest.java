@@ -28,8 +28,8 @@ public class AddItemToOrderTest extends TestRunner {
     public final void setUpTests() {
 
         userInfoPage = logInPage.logInAs(Roles.CUSTOMER);
-        customerOrderingPage = userInfoPage.clickCustomerOrderingTab();
-        createNewOrderPage = customerOrderingPage.clickCreateNewOrderLink();
+        customerOrderingPage = userInfoPage.goToCustomerOrderingPage();
+        createNewOrderPage = customerOrderingPage.goToCreateNewOrderPage();
     }
 
     @Test
@@ -41,7 +41,7 @@ public class AddItemToOrderTest extends TestRunner {
         assertThat(createNewOrderPage.getItemSelectionSection())
                 .isDisplayed();
 
-        addItemPage = createNewOrderPage.clickAddItemButton();
+        addItemPage = createNewOrderPage.goToAddItemPage();
 
         assertThat(addItemPage.getResetButton())
                 .isDisplayed();
@@ -50,15 +50,15 @@ public class AddItemToOrderTest extends TestRunner {
     @Test
     public final void testAddItemToOrderAbility() {
 
-        addItemPage = createNewOrderPage.clickAddItemButton();
+        addItemPage = createNewOrderPage.goToAddItemPage();
 
-        addItemPage.clickSelectLastAddedItemLink();
+        addItemPage.selectLastAddedItem();
 
         final String quantityOfItem = "3";
         final String dimensionOfItem = "Box";
 
-        addItemPage.selectItemDimensionDropdown(dimensionOfItem)
-                .fillItemQuantityTextfield(quantityOfItem);
+        addItemPage.selectItemDimension(dimensionOfItem)
+                .setItemQuantity(quantityOfItem);
 
         assertThat(addItemPage.getItemTextField())
                 .textEquals(testProduct.getProductName());
@@ -66,7 +66,7 @@ public class AddItemToOrderTest extends TestRunner {
         assertThat(addItemPage.getItemPriceField())
                 .textEquals(String.valueOf(testProduct.getProductPrice()));
 
-        addItemPage.clickDoneButton();
+        addItemPage.addItemToOrder();
 
         assertThat(createNewOrderPage.getFirstItemNumber())
                 .textEquals(String.valueOf(testProduct.getId()));

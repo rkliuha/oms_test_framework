@@ -1,9 +1,9 @@
 package academy.softserve.edu.pageobjects;
 
+import academy.softserve.edu.domains.Product;
 import academy.softserve.edu.elements.wrappers.Button;
 import academy.softserve.edu.elements.wrappers.Element;
 import academy.softserve.edu.elements.wrappers.TextInputField;
-import academy.softserve.edu.elements.wrappers.TextLabel;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 
@@ -36,34 +36,51 @@ public class AddProductPage extends PageObject<AddProductPage> {
         super(driver);
     }
 
-    public final ItemManagementPage clickOkButton() {
+    public final ItemManagementPage clickOk() {
 
         okButton.click();
         return new ItemManagementPage(driver);
     }
 
-    public final ItemManagementPage clickCancelButton() {
+    public final ItemManagementPage clickCancel() {
 
         cancelButton.click();
         return new ItemManagementPage(driver);
     }
 
-    public final AddProductPage fillProductNameInput(final String productName) {
+    public final AddProductPage setProductName(final String productName) {
 
         productNameInput.sendKeys(productName);
         return this;
     }
 
-    public final AddProductPage fillProductDescriptionInput(final String productDescription) {
+    public final AddProductPage setProductDescription(final String productDescription) {
 
         productDescriptionInput.sendKeys(productDescription);
         return this;
     }
 
-    public final AddProductPage fillProductPriceInput(final String productPrice) {
+    public final AddProductPage setProductPrice(final String productPrice) {
 
         productPriceInput.sendKeys(productPrice);
         return this;
+    }
+
+    public final AddProductPage setProductFields(final Product product) {
+
+        return setProductName(product.getProductName())
+                .setProductDescription(product.getProductDescription())
+                .setProductPrice(String.valueOf(product.getProductPrice()));
+    }
+
+    public final ItemManagementPage createProduct() {
+
+        return clickOk();
+    }
+
+    public final ItemManagementPage cancelCreatingProduct() {
+
+        return clickCancel();
     }
 
 }

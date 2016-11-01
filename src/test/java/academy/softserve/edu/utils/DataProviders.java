@@ -1,6 +1,7 @@
 package academy.softserve.edu.utils;
 
 import academy.softserve.edu.enums.Roles;
+import academy.softserve.edu.enums.administration_page.SearchConditions;
 import org.testng.annotations.DataProvider;
 
 import java.io.IOException;
@@ -37,11 +38,11 @@ public class DataProviders {
     @DataProvider
     static final public Object[][] testSearchingForAllColumnsFilter() {
         return new Object[][]{
-                {"equals", "Customer", "Customer"},
-                {"not equals to", "Sarumjan", "Administrator"},
-                {"starts with", "C", "Customer"},
-                {"contains", "Admin", "Administrator"},
-                {"does not contain", "Admin", "Merchandiser"},
+                {SearchConditions.EQUALS, "Customer", "Customer"},
+                {SearchConditions.NOT_EQUALS_TO, "Sarumjan", "Administrator"},
+                {SearchConditions.STARTS_WITH, "C", "Customer"},
+                {SearchConditions.CONTAINS, "Admin", "Administrator"},
+                {SearchConditions.DOES_NOT_CONTAIN, "Admin", "Merchandiser"},
 
         };
     }
@@ -49,55 +50,55 @@ public class DataProviders {
     @DataProvider
     static final public Object[][] testSearchingForFirstNameFilter() {
         return new Object[][]{
-                {"equals", "ivanka", "ivanka"},
-                {"not equals to", "Sarumjan", "ivanka"},
-                {"starts with", "i", "ivanka"},
-                {"contains", "ivank", "ivanka"},
-                {"does not contain", "rom", "ivanka"},
+                {SearchConditions.EQUALS, "ivanka", "ivanka"},
+                {SearchConditions.NOT_EQUALS_TO, "Sarumjan", "ivanka"},
+                {SearchConditions.STARTS_WITH, "i", "ivanka"},
+                {SearchConditions.CONTAINS, "ivank", "ivanka"},
+                {SearchConditions.DOES_NOT_CONTAIN, "rom", "ivanka"},
         };
     }
 
     @DataProvider
     static final public Object[][] testSearchingForLastNameFilter() {
         return new Object[][]{
-                {"equals", "horoshko", "horoshko"},
-                {"not equals to", "shram", "horoshko"},
-                {"starts with", "h", "horoshko"},
-                {"contains", "horosh", "horoshko"},
-                {"does not contain", "a", "horoshko"},
+                {SearchConditions.EQUALS, "horoshko", "horoshko"},
+                {SearchConditions.NOT_EQUALS_TO, "shram", "horoshko"},
+                {SearchConditions.STARTS_WITH, "h", "horoshko"},
+                {SearchConditions.CONTAINS, "horosh", "horoshko"},
+                {SearchConditions.DOES_NOT_CONTAIN, "a", "horoshko"},
         };
     }
 
     @DataProvider
     static final public Object[][] testSearchingForLoginFilter() {
         return new Object[][]{
-                {"equals", "login1", "login1"},
-                {"not equals to", "sha", "iva"},
-                {"starts with", "l", "login1"},
-                {"contains", "login1", "login1"},
-                {"does not contain", "login1", "iva"},
+                {SearchConditions.EQUALS, "login1", "login1"},
+                {SearchConditions.NOT_EQUALS_TO, "sha", "iva"},
+                {SearchConditions.STARTS_WITH, "l", "login1"},
+                {SearchConditions.CONTAINS, "login1", "login1"},
+                {SearchConditions.DOES_NOT_CONTAIN, "login1", "iva"},
         };
     }
 
     @DataProvider
     static final public Object[][] testSearchingForRoleFilter() {
         return new Object[][]{
-                {"equals", "Merchandiser", "Merchandiser"},
-                {"not equals to", "Administrator", "Merchandiser"},
-                {"starts with", "Cust", "Customer"},
-                {"contains", "Merchandiser", "Merchandiser"},
-                {"does not contain", "Administrator", "Merchandiser"},
+                {SearchConditions.EQUALS, "Merchandiser", "Merchandiser"},
+                {SearchConditions.NOT_EQUALS_TO, "Administrator", "Merchandiser"},
+                {SearchConditions.STARTS_WITH, "Cust", "Customer"},
+                {SearchConditions.CONTAINS, "Merchandiser", "Merchandiser"},
+                {SearchConditions.DOES_NOT_CONTAIN, "Administrator", "Merchandiser"},
         };
     }
 
     @DataProvider
     static final public Object[][] testSearchingForRegionFilter() {
         return new Object[][]{
-                {"equals", "West", "West"},
-                {"not equals to", "West", "South"},
-                {"starts with", "North", "North"},
-                {"contains", "South", "South"},
-                {"does not contain", "East", "West"}
+                {SearchConditions.EQUALS, "West", "West"},
+                {SearchConditions.NOT_EQUALS_TO, "West", "South"},
+                {SearchConditions.STARTS_WITH, "North", "North"},
+                {SearchConditions.CONTAINS, "South", "South"},
+                {SearchConditions.DOES_NOT_CONTAIN, "East", "West"}
         };
     }
 }

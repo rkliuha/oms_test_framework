@@ -1,6 +1,8 @@
 package academy.softserve.edu.pageobjects;
 
 import academy.softserve.edu.elements.wrappers.*;
+import academy.softserve.edu.enums.merchandiser_ordering_page.SearchConditions;
+import academy.softserve.edu.enums.merchandiser_ordering_page.SortConditions;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 
@@ -83,100 +85,104 @@ public class MerchandiserOrderingPage extends PageObject<MerchandiserOrderingPag
         super(driver);
     }
 
-    public final MerchandiserEditOrderPage clickEditOrder(final Link editOrderLink) {
+    public final MerchandiserEditOrderPage editOrder(final Link editOrderLink) {
 
         editOrderLink.click();
         return new MerchandiserEditOrderPage(driver);
     }
 
-    public final MerchandiserOrderingPage clickShowItems() {
+    public final MerchandiserOrderingPage showItems() {
 
         showItemsLink.click();
         return this;
     }
 
-    public final UserInfoPage clickUserInfoLink() {
+    public final UserInfoPage goToUserInfoPage() {
 
         userInfoLink.click();
         return new UserInfoPage(driver);
     }
 
-    public final MerchandiserOrderingPage clickApplyButton() {
+    public final MerchandiserOrderingPage clickApply() {
 
         applyButton.click();
         return this;
     }
 
-    public final MerchandiserOrderingPage clickOrderNameHeaderButton() {
+    public final MerchandiserOrderingPage sortTableBy(final SortConditions condition) {
 
-        orderNameHeaderButton.click();
+        switch (condition) {
+
+            case ORDER_NAME:
+                orderNameHeaderButton.click();
+                break;
+            case TOTAL_PRICE:
+                totalPriceHeaderButton.click();
+                break;
+            case MAX_DISCOUNT:
+                maxDiscountHeaderButton.click();
+                break;
+            case STATUS:
+                statusHeaderButton.click();
+                break;
+        }
+
         return this;
     }
 
-    public final MerchandiserOrderingPage clickTotalPriceHeaderButton() {
-
-        totalPriceHeaderButton.click();
-        return this;
-    }
-
-    public final MerchandiserOrderingPage clickMaxDiscountHeaderButton() {
-
-        maxDiscountHeaderButton.click();
-        return this;
-    }
-
-    public final MerchandiserOrderingPage clickStatusHeaderButton() {
-
-        statusHeaderButton.click();
-        return this;
-    }
-
-    public final MerchandiserOrderingPage clickForwardButton() {
+    public final MerchandiserOrderingPage navigateTableForward() {
 
         forwardButton.click();
         return this;
     }
 
-    public final MerchandiserOrderingPage clickBackwardButton() {
+    public final MerchandiserOrderingPage navigateTableBackward() {
 
         backwardButton.click();
         return this;
     }
 
-    public final MerchandiserOrderingPage clickLastButton() {
+    public final MerchandiserOrderingPage navigateTableToLastPage() {
 
         lastButton.click();
         return this;
     }
 
-    public final MerchandiserOrderingPage clickFirstButton() {
+    public final MerchandiserOrderingPage navigateTableToFirstPage() {
 
         firstButton.click();
         return this;
     }
 
-    public final MerchandiserOrderingPage clickResizeOrdersListLink() {
+    public final MerchandiserOrderingPage changeItemsPerPage() {
 
         resizeOrdersListLink.click();
         return this;
     }
 
-    public final MerchandiserOrderingPage clickDeleteCellLink() {
+    public final MerchandiserOrderingPage deleteFirstOrder() {
 
         deleteCellLink.click();
         return this;
     }
 
-    public final MerchandiserOrderingPage selectSearchDropdown(final String condition) {
+    public final MerchandiserOrderingPage selectSearchCondition(final SearchConditions condition) {
 
-        searchDropdown.sendKeys(condition);
+        searchDropdown.sendKeys(condition.toString());
         return this;
     }
 
-    public final MerchandiserOrderingPage fillSearchInput(final String searchText) {
+    public final MerchandiserOrderingPage setSearchText(final String searchText) {
 
         searchInput.sendKeys(searchText);
         return this;
+    }
+
+    public final MerchandiserOrderingPage searchForOrder(final SearchConditions searchCondition, final String searchText) {
+
+        return selectSearchCondition(searchCondition)
+                .setSearchText(searchText)
+                .clickApply();
     }
 
 }

@@ -1,9 +1,12 @@
 package academy.softserve.edu.pageobjects;
 
+import academy.softserve.edu.domains.User;
 import academy.softserve.edu.elements.wrappers.Button;
 import academy.softserve.edu.elements.wrappers.Dropdown;
 import academy.softserve.edu.elements.wrappers.TextInputField;
 import academy.softserve.edu.elements.wrappers.TextLabel;
+import academy.softserve.edu.enums.Regions;
+import academy.softserve.edu.enums.Roles;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 
@@ -42,55 +45,67 @@ public class CreateNewUserPage extends PageObject<CreateNewUserPage> {
 
     private final Button cancelButton = new Button(driver, CANCEL_BUTTON);
 
-    public final CreateNewUserPage fillLogInNameInput(final String login) {
+    public final CreateNewUserPage setLoginName(final String login) {
 
         logInNameInput.sendKeys(login);
         return this;
     }
 
-    public final CreateNewUserPage fillFirstNameInput(final String firstName) {
+    public final CreateNewUserPage setFirstName(final String firstName) {
 
         firstNameInput.sendKeys(firstName);
         return this;
     }
 
-    public final CreateNewUserPage fillLastNameInput(final String lastName) {
+    public final CreateNewUserPage setLastName(final String lastName) {
 
         lastNameInput.sendKeys(lastName);
         return this;
     }
 
-    public final CreateNewUserPage fillPasswordInput(final String password) {
+    public final CreateNewUserPage setPassword(final String password) {
 
         passwordInput.sendKeys(password);
         return this;
     }
 
-    public final CreateNewUserPage fillConfirmPasswordInput(final String password) {
+    public final CreateNewUserPage setConfirmPassword(final String password) {
 
         confirmPasswordInput.sendKeys(password);
         return this;
     }
 
-    public final CreateNewUserPage fillEmailInput(final String email) {
+    public final CreateNewUserPage setEmail(final String email) {
 
         emailInput.sendKeys(email);
         return this;
     }
 
-    public final CreateNewUserPage selectRegionDropdown(final String region) {
+    public final CreateNewUserPage selectRegion(final Regions region) {
 
-        regionDropdown.sendKeys(region);
+        regionDropdown.sendKeys(region.toString());
         return this;
     }
 
-    public final CreateNewUserPage selectRoleDropdown(final String role) {
+    public final CreateNewUserPage selectRole(final Roles role) {
 
-        roleDropdown.sendKeys(role);
+        roleDropdown.sendKeys(role.toString());
         return this;
     }
 
-    public final AdministrationPage clickCreateButton() {
+    public final CreateNewUserPage setUserFields(final User newUser) {
+
+        return setLoginName(newUser.getLogin())
+                .setFirstName(newUser.getFirstName())
+                .setLastName(newUser.getLastName())
+                .setPassword(newUser.getPassword())
+                .setConfirmPassword(newUser.getPassword())
+                .setEmail(newUser.getEmail())
+                .selectRegion(Regions.valueOf(newUser.getRegionName()))
+                .selectRole(Roles.valueOf(newUser.getRoleName()));
+    }
+
+    public final AdministrationPage createUser() {
 
         createButton.click();
         return new AdministrationPage(driver);

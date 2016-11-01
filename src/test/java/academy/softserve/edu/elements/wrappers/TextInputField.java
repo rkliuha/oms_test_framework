@@ -12,16 +12,13 @@ public class TextInputField extends AbstractClickableElement<TextInputField> {
 
     final public void clear() {
 
-        wait.waitUntilElementIsPresent();
         wait.waitUntilElementIsClickable().clear();
         Logger.logInfo("<font color='black'>Cleared Element "
                 + "<b>" + locator.getName() + "</b></font>");
     }
-
+    //TODO consider avoid double calling of findElement
     final public void sendKeys(final String inputText) {
 
-        wait.waitUntilElementIsPresent();
-        wait.waitUntilElementIsClickable();
         this.clear();
         wait.waitUntilElementIsClickable().sendKeys(inputText);
         Logger.logInfo("<font color='black'>Made input: " + inputText + " into " + "<b>"
