@@ -16,7 +16,7 @@ import java.util.Date;
 public class TestListener extends TestListenerAdapter {
 
     @Override
-    public void onTestFailure(final ITestResult result) {
+    public final void onTestFailure(final ITestResult result) {
 
         final Object currentClass = result
                 .getInstance();

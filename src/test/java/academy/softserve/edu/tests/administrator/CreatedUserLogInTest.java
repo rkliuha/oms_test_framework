@@ -12,10 +12,10 @@ import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
 
 public class CreatedUserLogInTest extends TestRunner {
 
-    private static final User newUser = UserRepo.getValidUser();
+    private final User newUser = UserRepo.getValidUser();
 
     @Test(priority = 1)
-    public void testTabsExist() {
+    public final void testTabsExist() {
 
         userInfoPage = logInPage.logInAs(Roles.ADMINISTRATOR);
 
@@ -27,7 +27,7 @@ public class CreatedUserLogInTest extends TestRunner {
 
 
     @Test(priority = 2)
-    public void testCreateUserPageExist() {
+    public final void testCreateUserPageExist() {
 
         userInfoPage = logInPage.logInAs(Roles.ADMINISTRATOR);
 
@@ -40,7 +40,7 @@ public class CreatedUserLogInTest extends TestRunner {
     }
 
     @Test(priority = 3)
-    public void testCreatedUserExist() {
+    public final void testCreatedUserExist() {
 
         userInfoPage = logInPage.logInAs(Roles.ADMINISTRATOR);
 
@@ -56,7 +56,7 @@ public class CreatedUserLogInTest extends TestRunner {
     }
 
     @Test(priority = 4)
-    public void testCreatedUserLogIn() {
+    public final void testCreatedUserLogIn() {
 
         userInfoPage = logInPage.logInAs(newUser.getLogin(), newUser.getPassword());
 

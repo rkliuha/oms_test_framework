@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter @EqualsAndHashCode
-public class Product {
+public final class Product {
 
     private int id;
     private int productActive;
@@ -15,6 +15,18 @@ public class Product {
 
     private Product() {
 
+    }
+
+    @Override
+    public final String toString() {
+
+        return "Product {" +
+                "ID=" + id +
+                ", IsProductActive=" + productActive +
+                ", ProductDescription=" + productDescription +
+                ", ProductName=" + productName +
+                ", ProductPrice=" + productPrice +
+                "}";
     }
 
     public static FirstIdStep newBuilder() {
@@ -99,17 +111,4 @@ public class Product {
             return product;
         }
     }
-
-    @Override
-    public final String toString() {
-
-        return "Product {" +
-                "ID=" + id +
-                ", IsProductActive=" + productActive +
-                ", ProductDescription=" + productDescription +
-                ", ProductName=" + productName +
-                ", ProductPrice=" + productPrice +
-                "}";
-    }
-
 }

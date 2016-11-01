@@ -9,7 +9,7 @@ import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
 public class SwitchTabsTest extends TestRunner {
 
     @Test
-    final public void testMerchandiserSwitchTabAbility() {
+    public final void testMerchandiserSwitchTabAbility() {
 
         // login and check if current page is UserInfo page opened by default
         userInfoPage = logInPage.logInAs(Roles.MERCHANDISER);

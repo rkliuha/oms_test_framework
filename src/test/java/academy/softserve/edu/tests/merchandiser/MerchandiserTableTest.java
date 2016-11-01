@@ -26,7 +26,7 @@ public class MerchandiserTableTest extends TestRunner {
 
     // To check Merchandiser table is enable or not. And Edit and Delete function is available
     @Test
-    final public void testMerchandiserTableIsEnable() {
+    public final void testMerchandiserTableIsEnable() {
 
         assertThat(merchandiserOrderingPage.getOrderLinkByNumber(2))
                 .isDisplayed();

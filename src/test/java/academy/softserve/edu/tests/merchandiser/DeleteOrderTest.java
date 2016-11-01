@@ -2,7 +2,6 @@ package academy.softserve.edu.tests.merchandiser;
 
 import academy.softserve.edu.domains.Order;
 import academy.softserve.edu.enums.Roles;
-import academy.softserve.edu.enums.merchandiser_ordering_page.SearchConditions;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.DBHelper;
 import academy.softserve.edu.utils.TestRunner;

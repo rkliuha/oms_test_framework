@@ -31,9 +31,9 @@ public enum UserInfoPageLocators implements ILocator {
             "//div[@id='content']//tr[4]/td[2]");
 
 
-    protected String elementName;
-    protected LocatorsType locatorType;
-    protected String locatorValue;
+    private String elementName;
+    private LocatorsType locatorType;
+    private String locatorValue;
     private String modifiedLocator;
 
     UserInfoPageLocators(final String elementName,

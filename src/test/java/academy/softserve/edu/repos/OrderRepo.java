@@ -1,7 +1,6 @@
 package academy.softserve.edu.repos;
 
 import academy.softserve.edu.domains.Order;
-import academy.softserve.edu.domains.Product;
 
 public final class OrderRepo {
 

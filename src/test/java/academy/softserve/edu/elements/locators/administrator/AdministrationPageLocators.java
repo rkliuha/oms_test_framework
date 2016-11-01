@@ -146,9 +146,9 @@ public enum AdministrationPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//table[@id='table']//a[@href='editUser.htm?userID=%s']");
 
-    protected String elementName;
-    protected LocatorsType locatorType;
-    protected String locatorValue;
+    private String elementName;
+    private LocatorsType locatorType;
+    private String locatorValue;
     private String modifiedLocator;
 
     AdministrationPageLocators(final String elementName,

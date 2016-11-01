@@ -30,9 +30,9 @@ public enum MerchandiserEditOrderPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//table[@class = 'jCalendar']//tr[6]/td[last()]");
 
-    protected String elementName;
-    protected LocatorsType locatorType;
-    protected String locatorValue;
+    private String elementName;
+    private LocatorsType locatorType;
+    private String locatorValue;
     private String modifiedLocator;
 
     MerchandiserEditOrderPageLocators(final String elementName,

@@ -8,8 +8,9 @@ public class Checkbox extends AbstractClickableElement<Checkbox> {
     public Checkbox(final WebDriver driver, final ILocator locator) {
         super(driver, locator);
     }
+
     //TODO consider avoid double calling of findElement
-    final public void select() {
+    public final void select() {
 
         if (!wait.waitUntilElementIsClickable().isSelected()) {
             this.click();

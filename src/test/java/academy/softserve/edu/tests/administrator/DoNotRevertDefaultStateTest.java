@@ -11,7 +11,7 @@ import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
 public class DoNotRevertDefaultStateTest extends TestRunner {
 
     @Test
-    public void testUserInfoAdministrationButtonCheck() {
+    public final void testUserInfoAdministrationButtonCheck() {
 
         userInfoPage = logInPage.logInAs(Roles.ADMINISTRATOR);
 
@@ -23,29 +23,29 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     }
 
     @Test
-    public void testDoNotRevertDefaultState() {
+    public final void testDoNotRevertDefaultState() {
 
-        final ColumnFilters COLUMN_FILTER = ColumnFilters.ROLE;
-        final SearchConditions ROLE_FILTER = SearchConditions.CONTAINS;
-        final String TEXT = "A";
+        final ColumnFilters columnFilter = ColumnFilters.ROLE;
+        final SearchConditions roleFilter = SearchConditions.CONTAINS;
+        final String text = "A";
 
         userInfoPage = logInPage.logInAs(Roles.ADMINISTRATOR);
 
         administrationPage = userInfoPage.goToAdministrationPage();
 
-        administrationPage.searchForUser(COLUMN_FILTER, SearchConditions.CONTAINS, TEXT);
+        administrationPage.searchForUser(columnFilter, SearchConditions.CONTAINS, text);
 
         administrationPage.goToUserInfoPage();
 
         userInfoPage.goToAdministrationPage();
 
         assertThat(administrationPage.getSearchFieldFilterDropdown())
-                .selectedDropdownEqualsIgnoreCase(COLUMN_FILTER.toString());
+                .selectedDropdownEqualsIgnoreCase(columnFilter.toString());
 
         assertThat(administrationPage.getSearchConditionDropdown())
-                .selectedDropdownEqualsIgnoreCase(ROLE_FILTER.toString());
+                .selectedDropdownEqualsIgnoreCase(roleFilter.toString());
 
         assertThat(administrationPage.getSearchInput())
-                .valueEquals(TEXT);
+                .valueEquals(text);
     }
 }

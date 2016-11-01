@@ -38,9 +38,9 @@ public enum LogInPageLocators implements ILocator {
             LocatorsType.BY_NAME,
             "reset");
 
-    protected String elementName;
-    protected LocatorsType locatorType;
-    protected String locatorValue;
+    private String elementName;
+    private LocatorsType locatorType;
+    private String locatorValue;
     private String modifiedLocator;
 
     LogInPageLocators(String elementName,

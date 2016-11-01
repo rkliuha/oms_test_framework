@@ -67,9 +67,9 @@ public enum CustomerOrderingPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//div[@id='list']/table/tbody//td[1]");
 
-    protected String elementName;
-    protected LocatorsType locatorType;
-    protected String locatorValue;
+    private String elementName;
+    private LocatorsType locatorType;
+    private String locatorValue;
     private String modifiedLocator;
 
     CustomerOrderingPageLocators(final String elementName,

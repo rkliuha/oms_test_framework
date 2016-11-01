@@ -2,7 +2,6 @@ package academy.softserve.edu.tests.supervisor;
 
 import academy.softserve.edu.domains.Product;
 import academy.softserve.edu.enums.Roles;
-import academy.softserve.edu.enums.item_management_page.SearchConditions;
 import academy.softserve.edu.utils.DBHandler;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.AfterMethod;

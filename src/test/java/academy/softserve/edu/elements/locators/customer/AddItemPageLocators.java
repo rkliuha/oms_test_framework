@@ -1,7 +1,7 @@
 package academy.softserve.edu.elements.locators.customer;
 
-import academy.softserve.edu.elements.interfaces.ILocator;
 import academy.softserve.edu.elements.LocatorsType;
+import academy.softserve.edu.elements.interfaces.ILocator;
 import org.openqa.selenium.By;
 
 public enum AddItemPageLocators implements ILocator {
@@ -54,9 +54,9 @@ public enum AddItemPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//div[@id='list']/descendant::form[contains(@id, 'selectFrom')][1]/a");
 
-    protected String elementName;
-    protected LocatorsType locatorType;
-    protected String locatorValue;
+    private String elementName;
+    private LocatorsType locatorType;
+    private String locatorValue;
     private String modifiedLocator;
 
     AddItemPageLocators(final String elementName,

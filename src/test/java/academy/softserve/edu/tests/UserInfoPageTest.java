@@ -1,6 +1,5 @@
 package academy.softserve.edu.tests;
 
-import academy.softserve.edu.enums.Languages;
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.utils.TestRunner;
 import org.testng.annotations.Test;

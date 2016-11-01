@@ -10,7 +10,7 @@ import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
 public class SearchTest extends TestRunner {
 
     @Test
-    public void testStatusSearch() {
+    public final void testStatusSearch() {
 
         final SearchConditions dropdownStatus = SearchConditions.STATUS;
         final String textFieldValueByStatus = "Created";
@@ -26,7 +26,7 @@ public class SearchTest extends TestRunner {
     }
 
     @Test
-    public void testNameSearch() {
+    public final void testNameSearch() {
 
         final SearchConditions dropdownName = SearchConditions.ORDER_NAME;
         final String textFieldValueByName = "OrderName3";
@@ -42,7 +42,7 @@ public class SearchTest extends TestRunner {
     }
 
     @Test
-    public void testElementsSearch() {
+    public final void testElementsSearch() {
 
         userInfoPage = logInPage.logInAs(Roles.CUSTOMER);
 
