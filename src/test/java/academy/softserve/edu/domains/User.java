@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter @EqualsAndHashCode
-public class User {
+public final class User {
 
     private int id;
     private int userActive;
@@ -24,6 +24,36 @@ public class User {
 
     private User() {
 
+    }
+
+    public final String getRoleName() {
+        return Roles.getRoleNameByReference(roleReference);
+    }
+
+    public final String getRegionName() {
+        return Regions.getRegionNameByReference(regionReference);
+    }
+
+    public final String getCustomerTypeName() {
+        return CustomerTypes.getCustomerTypeNameByReference(customerTypeReference);
+    }
+
+    @Override
+    public final String toString() {
+
+        return "User {" +
+                "ID=" + id +
+                ", isUserActive=" + userActive +
+                ", Balance=" + balance +
+                ", Email=" + email +
+                ", FirstName=" + firstName +
+                ", LastName=" + lastName +
+                ", Login=" + login +
+                ", Password=" + password +
+                ", CustomerTypeRef=" + customerTypeReference +
+                ", RegionRef=" + regionReference +
+                ", RoleRef=" + roleReference +
+                "}";
     }
 
     public static FirstIdStep newBuilder() {
@@ -180,35 +210,4 @@ public class User {
             return user;
         }
     }
-
-    public final String getRoleName() {
-        return Roles.getRoleNameByReference(roleReference);
-    }
-
-    public final String getRegionName() {
-        return Regions.getRegionNameByReference(regionReference);
-    }
-
-    public final String getCustomerTypeName() {
-        return CustomerTypes.getCustomerTypeNameByReference(customerTypeReference);
-    }
-
-    @Override
-    public final String toString() {
-
-        return "User {" +
-                "ID=" + id +
-                ", isUserActive=" + userActive +
-                ", Balance=" + balance +
-                ", Email=" + email +
-                ", FirstName=" + firstName +
-                ", LastName=" + lastName +
-                ", Login=" + login +
-                ", Password=" + password +
-                ", CustomerTypeRef=" + customerTypeReference +
-                ", RegionRef=" + regionReference +
-                ", RoleRef=" + roleReference +
-                "}";
-    }
-
 }

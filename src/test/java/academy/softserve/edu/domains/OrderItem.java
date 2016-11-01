@@ -4,8 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-
-public class OrderItem {
+public final class OrderItem {
 
     private int id;
     private double cost;
@@ -17,6 +16,20 @@ public class OrderItem {
 
     private OrderItem() {
 
+    }
+
+    @Override
+    public String toString() {
+
+        return "OrderItem{" +
+                "ID=" + id +
+                ", Cost=" + cost +
+                ", ItemPrice=" + itemPrice +
+                ", Quantity=" + quantity +
+                ", DimensionReference=" + dimensionReference +
+                ", OrderReference=" + orderReference +
+                ", ProductReference=" + productReference +
+                "}";
     }
 
     public static FirstIdStep newBuilder() {
@@ -125,19 +138,4 @@ public class OrderItem {
             return orderItem;
         }
     }
-
-    @Override
-    public String toString() {
-
-        return "OrderItem{" +
-                "ID=" + id +
-                ", Cost=" + cost +
-                ", ItemPrice=" + itemPrice +
-                ", Quantity=" + quantity +
-                ", DimensionReference=" + dimensionReference +
-                ", OrderReference=" + orderReference +
-                ", ProductReference=" + productReference +
-                "}";
-    }
-
 }

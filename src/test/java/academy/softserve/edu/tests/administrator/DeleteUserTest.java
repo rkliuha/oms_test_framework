@@ -28,14 +28,14 @@ public class DeleteUserTest extends TestRunner {
     @BeforeMethod
     public final void setUpTests() {
 
-        final ColumnFilters FILTER_DROPDOWN = ColumnFilters.LOGIN;
-        final SearchConditions CONDITION_DROPDOWN = SearchConditions.EQUALS;
+        final ColumnFilters filterDropdown = ColumnFilters.LOGIN;
+        final SearchConditions conditionDropdown = SearchConditions.EQUALS;
 
         userInfoPage = logInPage.logInAs(Roles.ADMINISTRATOR);
 
         administrationPage = userInfoPage.goToAdministrationPage();
 
-        administrationPage.searchForUser(FILTER_DROPDOWN, CONDITION_DROPDOWN, testUser.getLogin());
+        administrationPage.searchForUser(filterDropdown, conditionDropdown, testUser.getLogin());
 
     }
 

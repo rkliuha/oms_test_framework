@@ -62,6 +62,10 @@ public class MerchandiserOrderingPage extends PageObject<MerchandiserOrderingPag
 
     private final Link showItemsLink = new Link(driver, SHOW_ITEMS_LINK);
 
+    private final Link lastEditCellLink = new Link(driver, LAST_EDIT_CELL_LINK);
+
+    private final Link lastStatusCellLink = new Link(driver, LAST_STATUS_CELL_LINK);
+
     public final Link getOrderLinkByNumber(final int editOrderNumber) {
 
         return new Link(driver, EDIT_CELL_LINK.modify(String.valueOf(editOrderNumber)));

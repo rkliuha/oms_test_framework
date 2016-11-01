@@ -82,9 +82,17 @@ public enum MerchandiserOrderingPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//div[@id='list']//tr[%s]/td[5]"),
 
+    LAST_STATUS_CELL_LINK("Last Status Cell Link",
+            LocatorsType.BY_XPATH,
+            "//div[@id='list']//tr[last()]/td[5]"),
+
     EDIT_CELL_LINK("Edit Cell Link",
             LocatorsType.BY_XPATH,
             "//div[@id='list']//tr[%s]/td[6]/a"),
+
+    LAST_EDIT_CELL_LINK("Last Edit Cell Link",
+            LocatorsType.BY_XPATH,
+            "//div[@id='list']//tr[last()]/td[6]/a"),
 
     DELETE_CELL_LINK("Delete Cell Link",
             LocatorsType.BY_XPATH,
@@ -114,9 +122,9 @@ public enum MerchandiserOrderingPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//a[@href='resizeOrdersLisr.htm']");
 
-    protected String elementName;
-    protected LocatorsType locatorType;
-    protected String locatorValue;
+    private String elementName;
+    private LocatorsType locatorType;
+    private String locatorValue;
     private String modifiedLocator;
 
     MerchandiserOrderingPageLocators(final String elementName,

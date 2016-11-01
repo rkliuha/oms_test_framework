@@ -51,9 +51,9 @@ public enum EditUserPageLocators implements ILocator {
             "//form[@id='userModel']/input[6]");
 
 
-    protected String elementName;
-    protected LocatorsType locatorType;
-    protected String locatorValue;
+    private String elementName;
+    private LocatorsType locatorType;
+    private String locatorValue;
     private String modifiedLocator;
 
     EditUserPageLocators(final String elementName,

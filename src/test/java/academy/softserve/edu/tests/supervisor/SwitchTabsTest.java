@@ -9,7 +9,7 @@ import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
 public class SwitchTabsTest extends TestRunner {
 
     @Test
-    public void testDefaultUserInfoPage() {
+    public final void testDefaultUserInfoPage() {
 
         userInfoPage = logInPage.logInAs(Roles.SUPERVISOR);
 
@@ -18,7 +18,7 @@ public class SwitchTabsTest extends TestRunner {
     }
 
     @Test
-    public void testUserInfoButtonCheck() {
+    public final void testUserInfoButtonCheck() {
 
         userInfoPage = logInPage.logInAs(Roles.SUPERVISOR);
 
@@ -27,7 +27,7 @@ public class SwitchTabsTest extends TestRunner {
     }
 
     @Test
-    public void testOrderingButtonCheck() {
+    public final void testOrderingButtonCheck() {
 
         userInfoPage = logInPage.logInAs(Roles.SUPERVISOR);
 
@@ -36,7 +36,7 @@ public class SwitchTabsTest extends TestRunner {
     }
 
     @Test
-    public void testActiveOrderingPage() {
+    public final void testActiveOrderingPage() {
 
         userInfoPage = logInPage.logInAs(Roles.SUPERVISOR);
 
@@ -47,7 +47,7 @@ public class SwitchTabsTest extends TestRunner {
     }
 
     @Test
-    public void testSwitchTabsUserOrdering() {
+    public final void testSwitchTabsUserOrdering() {
 
         userInfoPage = logInPage.logInAs(Roles.SUPERVISOR);
 

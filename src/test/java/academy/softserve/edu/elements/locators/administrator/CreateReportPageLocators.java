@@ -14,9 +14,9 @@ public enum CreateReportPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//div[@id='list']/a");
 
-    protected String elementName;
-    protected LocatorsType locatorType;
-    protected String locatorValue;
+    private String elementName;
+    private LocatorsType locatorType;
+    private String locatorValue;
     private String modifiedLocator;
 
     CreateReportPageLocators(final String elementName,

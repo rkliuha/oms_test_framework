@@ -18,7 +18,7 @@ public class WebDriverFactory {
     @Getter
     private WebDriver driver;
 
-    void setDriver(final String browser, final String version) throws MalformedURLException {
+    final void setDriver(final String browser, final String version) throws MalformedURLException {
 
         final DesiredCapabilities capabilities = new DesiredCapabilities();
 

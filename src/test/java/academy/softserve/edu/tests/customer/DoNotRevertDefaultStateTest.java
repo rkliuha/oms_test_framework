@@ -10,7 +10,7 @@ import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
 public class DoNotRevertDefaultStateTest extends TestRunner {
 
     @Test
-    public void testUserInfoButtonsDisplayed() {
+    public final void testUserInfoButtonsDisplayed() {
 
         userInfoPage = logInPage.logInAs(Roles.CUSTOMER);
 
@@ -22,7 +22,7 @@ public class DoNotRevertDefaultStateTest extends TestRunner {
     }
 
     @Test
-    public void testDoNotRevertDefaultState() {
+    public final void testDoNotRevertDefaultState() {
 
         final SearchConditions searchOrders = SearchConditions.STATUS;
         final String searchOrdersValue = "Ordered";

@@ -26,9 +26,9 @@ public enum EditProductPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//form[@id='productModel']/input[3]");
 
-    protected String elementName;
-    protected LocatorsType locatorType;
-    protected String locatorValue;
+    private String elementName;
+    private LocatorsType locatorType;
+    private String locatorValue;
     private String modifiedLocator;
 
     EditProductPageLocators(final String elementName,

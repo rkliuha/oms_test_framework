@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Order {
+public final class Order {
 
     private int id;
     private String deliveryDate;
@@ -23,6 +23,29 @@ public class Order {
 
     private Order() {
 
+    }
+
+    public final String getOrderStatusName() {
+        return OrderStatus.getOrderStatusNameByReference(orderStatusReference);
+    }
+
+    @Override
+    public String toString() {
+
+        return "Order{" +
+                "ID=" + id +
+                ", DeliveryDate='" + deliveryDate +
+                ", Gift=" + gift +
+                ", MaxDiscount=" + maxDiscount +
+                ", OrderDate='" + orderDate +
+                ", OrderName='" + orderName +
+                ", OrderNumber=" + orderNumber +
+                ", PreferableDeliveryDate='" + preferableDeliveryDate +
+                ", TotalPrice=" + totalPrice +
+                ", Assignee=" + assignee +
+                ", Customer=" + customer +
+                ", OrderStatusReference=" + orderStatusReference +
+                "}";
     }
 
     public static FirstIdStep newBuilder() {
@@ -191,28 +214,4 @@ public class Order {
             return order;
         }
     }
-
-    public final String getOrderStatusName() {
-        return OrderStatus.getOrderStatusNameByReference(orderStatusReference);
-    }
-
-    @Override
-    public String toString() {
-
-        return "Order{" +
-                "ID=" + id +
-                ", DeliveryDate='" + deliveryDate +
-                ", Gift=" + gift +
-                ", MaxDiscount=" + maxDiscount +
-                ", OrderDate='" + orderDate +
-                ", OrderName='" + orderName +
-                ", OrderNumber=" + orderNumber +
-                ", PreferableDeliveryDate='" + preferableDeliveryDate +
-                ", TotalPrice=" + totalPrice +
-                ", Assignee=" + assignee +
-                ", Customer=" + customer +
-                ", OrderStatusReference=" + orderStatusReference +
-                "}";
-    }
-
 }

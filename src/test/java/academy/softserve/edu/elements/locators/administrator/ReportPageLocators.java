@@ -10,9 +10,9 @@ public enum ReportPageLocators implements ILocator {
             LocatorsType.BY_ID,
             "grid");
 
-    protected String elementName;
-    protected LocatorsType locatorType;
-    protected String locatorValue;
+    private String elementName;
+    private LocatorsType locatorType;
+    private String locatorValue;
     private String modifiedLocator;
 
     ReportPageLocators(final String elementName,

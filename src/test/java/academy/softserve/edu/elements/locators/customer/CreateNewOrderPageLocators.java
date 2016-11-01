@@ -262,9 +262,9 @@ public enum CreateNewOrderPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//div[@id='dp-popup']//tbody/tr[3]/td[1]");
 
-    protected String elementName;
-    protected LocatorsType locatorType;
-    protected String locatorValue;
+    private String elementName;
+    private LocatorsType locatorType;
+    private String locatorValue;
     private String modifiedLocator;
 
     CreateNewOrderPageLocators(final String elementName,

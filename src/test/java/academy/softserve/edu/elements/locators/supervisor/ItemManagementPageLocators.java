@@ -118,9 +118,9 @@ public enum ItemManagementPageLocators implements ILocator {
             LocatorsType.BY_XPATH,
             "//*[@id='table']/tbody//td[3]");
 
-    protected String elementName;
-    protected LocatorsType locatorType;
-    protected String locatorValue;
+    private String elementName;
+    private LocatorsType locatorType;
+    private String locatorValue;
     private String modifiedLocator;
 
     ItemManagementPageLocators(final String elementName,
