@@ -1,6 +1,6 @@
 package academy.softserve.edu.utils;
 
-import java.io.FileReader;
+import java.io.InputStream;
 import java.util.Properties;
 
 public final class PropertiesReader {
@@ -9,13 +9,14 @@ public final class PropertiesReader {
 
     }
 
-    private static final String CONFIG_PROPERTIES = "src/resources/config.properties";
+    private static final String CONFIG_PROPERTIES = "config.properties";
 
     public static String getDefaultProperty(final String propertyName) {
 
         String propertyValue = null;
 
-        try (final FileReader reader = new FileReader(CONFIG_PROPERTIES)) {
+        try (final InputStream reader = PropertiesReader.class
+                .getClassLoader().getResourceAsStream(CONFIG_PROPERTIES)) {
 
             final Properties properties = new Properties();
             properties.load(reader);
