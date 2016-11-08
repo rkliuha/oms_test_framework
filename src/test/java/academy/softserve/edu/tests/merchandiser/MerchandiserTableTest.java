@@ -1,5 +1,6 @@
 package academy.softserve.edu.tests.merchandiser;
 
+import academy.softserve.edu.enums.Orderliness;
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.enums.merchandiser_ordering_page.SearchConditions;
 import academy.softserve.edu.utils.SortUtil;
@@ -8,6 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
+import static academy.softserve.edu.enums.Orderliness.*;
 import static academy.softserve.edu.enums.merchandiser_ordering_page.SortConditions.*;
 
 public class MerchandiserTableTest extends TestRunner {
@@ -45,8 +47,8 @@ public class MerchandiserTableTest extends TestRunner {
         merchandiserOrderingPage.sortTableBy(ORDER_NAME);
 
         final boolean isSortedByAscent = SortUtil
-                .isListSortedByAsc(merchandiserOrderingPage.getOrderNameColumnLink()
-                        .getElements());
+                .isListSorted(merchandiserOrderingPage.getOrderNameColumnLink()
+                        .getElements(), ASCENT);
 
         assertThat(isSortedByAscent).isTrue();
     }
@@ -61,8 +63,8 @@ public class MerchandiserTableTest extends TestRunner {
         merchandiserOrderingPage.sortTableBy(TOTAL_PRICE);
 
         final boolean isSortedByDescend = SortUtil
-                .isListDoubleSortedByDescend(merchandiserOrderingPage.getTotalPriceColumnLink()
-                        .getElements());
+                .isDoubleListSorted(merchandiserOrderingPage.getTotalPriceColumnLink()
+                        .getElements(), DESCENT);
 
         assertThat(isSortedByDescend).isTrue();
     }
@@ -77,8 +79,8 @@ public class MerchandiserTableTest extends TestRunner {
         merchandiserOrderingPage.sortTableBy(MAX_DISCOUNT);
 
         final boolean isSortedByDescend = SortUtil
-                .isListDoubleSortedByDescend(merchandiserOrderingPage.getMaxDiscountColumnLink()
-                        .getElements());
+                .isDoubleListSorted(merchandiserOrderingPage.getMaxDiscountColumnLink()
+                        .getElements(), DESCENT);
 
         assertThat(isSortedByDescend).isTrue();
     }
@@ -93,8 +95,8 @@ public class MerchandiserTableTest extends TestRunner {
         merchandiserOrderingPage.sortTableBy(STATUS);
 
         final boolean isSortedByAscent = SortUtil
-                .isListSortedByAsc(merchandiserOrderingPage.getStatusColumnLink()
-                        .getElements());
+                .isListSorted(merchandiserOrderingPage.getStatusColumnLink()
+                        .getElements(), ASCENT);
 
         assertThat(isSortedByAscent).isTrue();
     }

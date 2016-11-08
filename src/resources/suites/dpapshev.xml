@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="dpapshev">
+
+<test name="Test Admin Table Navigation">
+    <classes>
+        <class name="academy.softserve.edu.tests.administrator.AdminTableTest">
+            <methods>
+                <include name="testAdminTableNavigation"/>
+                <include name="testSortingLastNameColumn"/>
+            </methods>
+        </class>
+    </classes>
+</test>
+
+</suite>

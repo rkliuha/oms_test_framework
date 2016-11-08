@@ -2,6 +2,7 @@ package academy.softserve.edu.elements.wrappers;
 
 import academy.softserve.edu.elements.interfaces.ILocator;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class Checkbox extends AbstractClickableElement<Checkbox> {
 
@@ -9,11 +10,10 @@ public class Checkbox extends AbstractClickableElement<Checkbox> {
         super(driver, locator);
     }
 
-    //TODO consider avoid double calling of findElement
     public final void select() {
-
-        if (!wait.waitUntilElementIsClickable().isSelected()) {
-            this.click();
+        final WebElement webElement = wait.getClickableElement();
+        if (!webElement.isSelected()) {
+            webElement.click();
         }
     }
 

@@ -1,5 +1,6 @@
 package academy.softserve.edu.tests.administrator;
 
+import academy.softserve.edu.enums.Orderliness;
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.enums.administration_page.ColumnFilters;
 import academy.softserve.edu.enums.administration_page.SearchConditions;
@@ -8,6 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
+import static academy.softserve.edu.enums.Orderliness.*;
 import static academy.softserve.edu.enums.administration_page.SortConditions.*;
 
 public class AdminTableTest extends TestRunner {
@@ -147,8 +149,8 @@ public class AdminTableTest extends TestRunner {
         administrationPage.sortTableBy(FIRST_NAME);
 
         final boolean isSortedByAscent = SortUtil
-                .isListSortedByAsc(administrationPage.getFirstNameColumn()
-                        .getElements());
+                .isListSorted(administrationPage.getFirstNameColumn()
+                        .getElements(), ASCENT);
 
         assertThat(isSortedByAscent).isTrue();
     }
@@ -163,8 +165,8 @@ public class AdminTableTest extends TestRunner {
         administrationPage.sortTableBy(LAST_NAME);
 
         final boolean isSortedByAscent = SortUtil
-                .isListSortedByAsc(administrationPage.getLastNameColumn()
-                        .getElements());
+                .isListSorted(administrationPage.getLastNameColumn()
+                        .getElements(), ASCENT);
 
         assertThat(isSortedByAscent).isTrue();
     }
@@ -179,8 +181,8 @@ public class AdminTableTest extends TestRunner {
         administrationPage.sortTableBy(LOGIN);
 
         final boolean isSortedByAscent = SortUtil
-                .isListSortedByAsc(administrationPage.getLoginColumn()
-                        .getElements());
+                .isListSorted(administrationPage.getLoginColumn()
+                        .getElements(), ASCENT);
 
         assertThat(isSortedByAscent).isTrue();
     }
@@ -195,8 +197,8 @@ public class AdminTableTest extends TestRunner {
         administrationPage.sortTableBy(ROLE);
 
         final boolean isSortedByAscent = SortUtil
-                .isListSortedByAsc(administrationPage.getRoleColumn()
-                        .getElements());
+                .isListSorted(administrationPage.getRoleColumn()
+                        .getElements(), ASCENT);
 
         assertThat(isSortedByAscent).isTrue();
     }
@@ -211,8 +213,8 @@ public class AdminTableTest extends TestRunner {
         administrationPage.sortTableBy(REGION);
 
         final boolean isSortedByAscent = SortUtil
-                .isListSortedByAsc(administrationPage.getRegionColumn()
-                        .getElements());
+                .isListSorted(administrationPage.getRegionColumn()
+                        .getElements(), ASCENT);
 
         assertThat(isSortedByAscent).isTrue();
     }

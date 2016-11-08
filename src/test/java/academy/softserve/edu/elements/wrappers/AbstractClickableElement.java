@@ -12,7 +12,7 @@ public abstract class AbstractClickableElement<T> extends AbstractElement {
 
     public final T click() {
 
-        wait.waitUntilElementIsClickable().click();
+        wait.getClickableElement().click();
         Logger.logInfo("<font color='black'>Clicked On "
                 + "<b>" + locator.getName() + "</b></font>");
         return (T) this;

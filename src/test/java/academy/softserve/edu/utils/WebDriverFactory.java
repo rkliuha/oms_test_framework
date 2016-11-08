@@ -12,7 +12,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-//TODO improve System Property configuration
+
 public class WebDriverFactory {
 
     @Getter
@@ -26,14 +26,14 @@ public class WebDriverFactory {
         final String propertyBrowser = PropertiesReader.getDefaultProperty("browser");
         final String platform = PropertiesReader.getDefaultProperty("platform");
 
-        final String webDriverChrome = PropertiesReader.getDefaultProperty("webdriver.chrome");
-        final String webDriverIe = PropertiesReader.getDefaultProperty("webdriver.ie");
+        final String webDriverChrome = PropertiesReader.getDefaultProperty("webDriver.chrome");
+        final String webDriverIe = PropertiesReader.getDefaultProperty("webDriver.ie");
 
-        final String pathWebDriverChromeMac = PropertiesReader.getDefaultProperty("path.webdriver.chrome.mac");
-        final String pathWebDriverChromeWin = PropertiesReader.getDefaultProperty("path.webdriver.chrome.win");
-        final String pathWebDriverIe = PropertiesReader.getDefaultProperty("path.webdriver.ie");
+        final String pathWebDriverChromeMac = PropertiesReader.getDefaultProperty("path.webDriver.chrome.mac");
+        final String pathWebDriverChromeWin = PropertiesReader.getDefaultProperty("path.webDriver.chrome.win");
+        final String pathWebDriverIe = PropertiesReader.getDefaultProperty("path.webDriver.ie");
 
-        final String remoteWebDriverUrl = PropertiesReader.getDefaultProperty("remote.webdriver.url");
+        final String remoteWebDriverUrl = PropertiesReader.getDefaultProperty("remote.webDriver.url");
 
         final Browsers propertyBrowserTypeEnum = Browsers.valueOf(propertyBrowser.toUpperCase());
 
@@ -45,7 +45,7 @@ public class WebDriverFactory {
 
             if ("default".equals(browser)) {
 
-                switch (propertyBrowserTypeEnum) {
+                switch (propertyBrowserTypeEnum) { //Switching browser if using property
 
                     case CHROME_MAC:
                         System.setProperty(webDriverChrome, pathWebDriverChromeMac);
@@ -69,7 +69,7 @@ public class WebDriverFactory {
                 }
             } else {
 
-                switch (cmdBrowserTypeEnum) {
+                switch (cmdBrowserTypeEnum) { //Switching browser if using command line
                     case CHROME_MAC:
                         System.setProperty(webDriverChrome, pathWebDriverChromeMac);
                         driver = new ChromeDriver();
