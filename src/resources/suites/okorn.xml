@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-
 <suite name="okorn">
-
-<test name="Edit Order Test">
-    <classes>
-        <class name="academy.softserve.edu.tests.merchandiser.EditOrderTest"/>
-    </classes>
-</test>
-
+    <test name="Edit Order Test">
+        <classes>
+            <class name="academy.softserve.edu.tests.merchandiser.EditOrderTest"/>
+        </classes>
+    </test>
 </suite>

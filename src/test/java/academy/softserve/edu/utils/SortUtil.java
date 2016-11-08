@@ -16,7 +16,7 @@ public final class SortUtil {
 
     }
 
-    public static final boolean isListSorted(final List<WebElement> elementsList, Orderliness order) {
+    public static final boolean isListSorted(final List<WebElement> elementsList, final Orderliness order) {
 
         final List<String> gridsColumnValues = elementsList.stream()
                 .map(WebElement::getText)
@@ -34,7 +34,7 @@ public final class SortUtil {
     }
 
 
-    public final static boolean isDoubleListSorted(final List<WebElement> elementsList, Orderliness order) {
+    public final static boolean isDoubleListSorted(final List<WebElement> elementsList, final Orderliness order) {
 
         final ArrayList<Double> gridsColumnDoubleValues = elementsList.stream()
                 .map(WebElement::getText).map(Double::parseDouble)

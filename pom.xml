@@ -24,7 +24,7 @@
         <guice.version>4.1.0</guice.version>
         <lombok.version>1.16.10</lombok.version>
         <assertj-core.version>3.5.2</assertj-core.version>
-        <suite>demo</suite>
+        <suite>parentsuite</suite>
     </properties>
 
     <profiles>
