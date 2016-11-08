@@ -10,7 +10,6 @@ import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
 
 public class EditOrderTest extends TestRunner {
 
-    private boolean isChangedToStandardValues;
     private int testOrderId;
     private int testProduct;
     private int testOrderItem;
@@ -36,23 +35,21 @@ public class EditOrderTest extends TestRunner {
     public final void testEditFieldsChangingCorrectly() {
 
         merchandiserEditOrderPage =
-                merchandiserOrderingPage.editOrder(merchandiserOrderingPage.getOrderLinkByNumber(8));
+                merchandiserOrderingPage.editOrder(merchandiserOrderingPage.getLastEditCellLink());
 
         merchandiserEditOrderPage.changeOrderStatusTo("Ordered")
                 .chooseValidDeliveryDate()
                 .saveOrder();
 
-        assertThat(merchandiserOrderingPage.getOrderStatusByNumber(8))
+        assertThat(merchandiserOrderingPage.getLastStatusCellLink())
                 .textEquals("Ordered");
-
-        isChangedToStandardValues = true;
     }
 
     @Test
     public final void testShowItemsChanging() {
 
         merchandiserEditOrderPage =
-                merchandiserOrderingPage.editOrder(merchandiserOrderingPage.getOrderLinkByNumber(8));
+                merchandiserOrderingPage.editOrder(merchandiserOrderingPage.getLastEditCellLink());
 
         assertThat(merchandiserEditOrderPage.getShowItems())
                 .isDisplayed();
@@ -73,21 +70,18 @@ public class EditOrderTest extends TestRunner {
 
         assertThat(merchandiserEditOrderPage.getShowItems())
                 .textEquals("Show 5 items");
-
-        isChangedToStandardValues = false;
     }
 
-    @AfterMethod
-    public final void changeToStandardValues() {
-
-        if (isChangedToStandardValues) {
-
-            merchandiserEditOrderPage =
-                    merchandiserOrderingPage.editOrder(merchandiserOrderingPage.getOrderLinkByNumber(8));
-
-            merchandiserEditOrderPage.changeOrderStatusTo("Created")
-                    .saveOrder();
-        }
+    @Test
+    public final void testEditFieldsCancelChangingCorrectly() {
+        merchandiserEditOrderPage =
+                merchandiserOrderingPage.editOrder(merchandiserOrderingPage.getLastEditCellLink());
+        merchandiserEditOrderPage.changeOrderStatusTo("Delivered")
+                .clickChooseDate()
+                .clickLastDate()
+                .clickCancelButton();
+        assertThat(merchandiserOrderingPage.getLastStatusCellLink())
+                .textNotEqual("Delivered");
     }
 
     @AfterClass

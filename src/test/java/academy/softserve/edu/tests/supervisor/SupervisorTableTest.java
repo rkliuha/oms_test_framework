@@ -1,5 +1,6 @@
 package academy.softserve.edu.tests.supervisor;
 
+import academy.softserve.edu.enums.Orderliness;
 import academy.softserve.edu.enums.Roles;
 import academy.softserve.edu.enums.item_management_page.SearchConditions;
 import academy.softserve.edu.utils.SortUtil;
@@ -8,6 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static academy.softserve.edu.asserts.FluentAssertions.assertThat;
+import static academy.softserve.edu.enums.Orderliness.ASCENT;
 import static academy.softserve.edu.enums.item_management_page.SortConditions.*;
 
 public class SupervisorTableTest extends TestRunner {
@@ -96,8 +98,8 @@ public class SupervisorTableTest extends TestRunner {
         itemManagementPage.sortTableBy(NAME);
 
         final boolean isSortedByAscent = SortUtil
-                .isListSortedByAsc(itemManagementPage.getNameCellColumn()
-                        .getElements());
+                .isListSorted(itemManagementPage.getNameCellColumn()
+                        .getElements(), ASCENT);
 
         assertThat(isSortedByAscent).isTrue();
     }
@@ -112,8 +114,8 @@ public class SupervisorTableTest extends TestRunner {
         itemManagementPage.sortTableBy(DESCRIPTION);
 
         final boolean isSortedByAscent = SortUtil
-                .isListSortedByAsc(itemManagementPage.getDescriptionCellColumn()
-                        .getElements());
+                .isListSorted(itemManagementPage.getDescriptionCellColumn()
+                        .getElements(), ASCENT);
 
         assertThat(isSortedByAscent).isTrue();
     }
@@ -128,8 +130,8 @@ public class SupervisorTableTest extends TestRunner {
         itemManagementPage.sortTableBy(PRICE);
 
         final boolean isSortedByAscent = SortUtil
-                .isListDoubleSortedByAscent(itemManagementPage.getPriceCellColumn()
-                        .getElements());
+                .isDoubleListSorted(itemManagementPage.getPriceCellColumn()
+                        .getElements(), ASCENT);
 
         assertThat(isSortedByAscent).isTrue();
     }

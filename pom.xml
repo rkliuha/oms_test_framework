@@ -24,6 +24,7 @@
         <guice.version>4.1.0</guice.version>
         <lombok.version>1.16.10</lombok.version>
         <assertj-core.version>3.5.2</assertj-core.version>
+        <suite>parentsuite</suite>
     </properties>
 
     <profiles>
@@ -116,7 +117,7 @@
                     <reportsDirectory>${project.basedir}/test-output</reportsDirectory>
                     <workingDirectory>${project.basedir}</workingDirectory>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/resources/suites/demo.xml</suiteXmlFile>
+                        <suiteXmlFile>src/resources/suites/${suite}.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>

@@ -146,7 +146,7 @@ public class CreateNewOrderPage extends PageObject<CreateNewOrderPage> {
         super(driver);
     }
 
-    //TODO consider better name
+    //TODO consider adding new logic
     public final OrderItemsErrorMessagePage saveOrderWithFail() {
 
         saveButton.click();

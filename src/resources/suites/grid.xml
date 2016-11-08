@@ -1,6 +1,6 @@
-
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Parallel test" verbose="1" parallel="tests" thread-count="2">
-
     <test name="Google test Firefox">
         <parameter name="browser" value="firefox"/>
         <parameter name="version" value="46"/>
@@ -24,5 +24,4 @@
             </class>
         </classes>
     </test>
-
 </suite>

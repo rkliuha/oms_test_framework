@@ -1,13 +1,13 @@
 package academy.softserve.edu.utils;
 
 import academy.softserve.edu.elements.interfaces.ILocator;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-//TODO re-do waits - https://ssu-jira.softserveinc.com/browse/IFATQCZZ-90
 public class Wait {
 
     private WebDriver driver;
@@ -20,19 +20,17 @@ public class Wait {
         this.locator = locator;
     }
 
-    public final WebElement waitUntilElementIsPresent() {
+    public final WebElement getPresentElement() {
 
         return new WebDriverWait(driver, timeout)
-                //TODO replace StaleElementReferenceException with NoSuchElement
-                .ignoring(StaleElementReferenceException.class)
+                .ignoring(NoSuchElementException.class)
                 .until(ExpectedConditions.presenceOfElementLocated(locator.getBy()));
     }
 
-    public final WebElement waitUntilElementIsClickable() {
+    public final WebElement getClickableElement() {
 
         return new WebDriverWait(driver, timeout)
-                //TODO replace StaleElementReferenceException with NoSuchElement
-                .ignoring(StaleElementReferenceException.class)
+                .ignoring(NoSuchElementException.class)
                 .until(ExpectedConditions.elementToBeClickable(locator.getBy()));
     }
 }

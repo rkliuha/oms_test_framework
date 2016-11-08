@@ -1,10 +1,14 @@
 package academy.softserve.edu.utils;
 
+import academy.softserve.edu.enums.Orderliness;
 import com.google.common.collect.Ordering;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static academy.softserve.edu.enums.Orderliness.DESCENT;
 
 public final class SortUtil {
 
@@ -12,38 +16,41 @@ public final class SortUtil {
 
     }
 
-    public static final boolean isListSortedByAsc(final List<WebElement> elementsList) {
+    public static final boolean isListSorted(final List<WebElement> elementsList, final Orderliness order) {
 
         final List<String> gridsColumnValues = elementsList.stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
 
-        return Ordering.natural()
-                .isOrdered(gridsColumnValues);
+        if (order == DESCENT) {
+            return Ordering
+                    .natural()
+                    .reverse()
+                    .isOrdered(gridsColumnValues);
+        } else {
+            return Ordering.natural()
+                    .isOrdered(gridsColumnValues);
+        }
     }
 
-    //TODO re-consider
-    //Pull Double to List from list of elements.
-    public final static boolean isListDoubleSortedByDescend(final List<WebElement> elementsList) {
 
-        final List<Double> gridsColumnDoubleValues = elementsList.stream()
+    public final static boolean isDoubleListSorted(final List<WebElement> elementsList, final Orderliness order) {
+
+        final ArrayList<Double> gridsColumnDoubleValues = elementsList.stream()
                 .map(WebElement::getText).map(Double::parseDouble)
-                .collect(Collectors.toList());
+                .collect(Collectors.toCollection(ArrayList::new));
 
-        return Ordering.natural()
-                .reverse()
-                .isOrdered(gridsColumnDoubleValues);
+        if (order == DESCENT) {
+            return Ordering
+                    .natural()
+                    .reverse()
+                    .isOrdered(gridsColumnDoubleValues);
+        } else {
+            return Ordering.natural()
+                    .isOrdered(gridsColumnDoubleValues);
+        }
     }
 
-    public final static boolean isListDoubleSortedByAscent(final List<WebElement> elementsList) {
 
-        final List<Double> gridsColumnDoubleValues = elementsList.stream()
-                .map(WebElement::getText)
-                .map(Double::parseDouble)
-                .collect(Collectors.toList());
-
-        return Ordering.natural()
-                .isOrdered(gridsColumnDoubleValues);
-    }
 }
 

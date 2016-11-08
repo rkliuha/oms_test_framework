@@ -30,33 +30,33 @@ public abstract class AbstractElement<T> {
     }
 
     public final WebElement getElement() {
-        return wait.waitUntilElementIsPresent();
+        return wait.getPresentElement();
     }
 
     public final boolean isDisplayed() {
-        return wait.waitUntilElementIsPresent().isDisplayed();
+        return wait.getPresentElement().isDisplayed();
     }
 
     public final boolean isEnabled() {
-        return wait.waitUntilElementIsPresent().isEnabled();
+        return wait.getPresentElement().isEnabled();
     }
 
     public final String getText() {
-        return wait.waitUntilElementIsPresent().getText();
+        return wait.getPresentElement().getText();
     }
 
     public final List<WebElement> getElements() {
 
-        wait.waitUntilElementIsPresent();
+        wait.getPresentElement();
         return driver.findElements(locator.getBy());
     }
 
     public final String getId() {
-        return wait.waitUntilElementIsPresent().getAttribute("id");
+        return wait.getPresentElement().getAttribute("id");
     }
 
     public final String getValue() {
-        return wait.waitUntilElementIsPresent().getAttribute("value");
+        return wait.getPresentElement().getAttribute("value");
     }
 
 }

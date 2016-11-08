@@ -8,6 +8,11 @@ public enum Suites {
     SUPERVISOR,
     OTHERS,
     PARENTSUITE,
-    DEMO
+    DPAPSHEV,
+    DSHKLIAR,
+    KMARKO,
+    KSICHENKO,
+    OKORN,
+    RKLIUHA
 
 }

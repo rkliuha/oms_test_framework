@@ -13,13 +13,13 @@ public class Dropdown extends AbstractClickableElement<Dropdown> {
 
     public final Dropdown selectByValue(final String valueOfElement) {
 
-        new Select(wait.waitUntilElementIsClickable()).selectByValue(valueOfElement);
+        new Select(wait.getClickableElement()).selectByValue(valueOfElement);
         return this;
     }
 
     public final void sendKeys(final String inputText) {
 
-        wait.waitUntilElementIsClickable().sendKeys(inputText);
+        wait.getClickableElement().sendKeys(inputText);
         Logger.logInfo("<font color='black'>Selected by value: " + inputText + " into " + "<b>"
                 + locator.getName() + "</b></font>");
     }
