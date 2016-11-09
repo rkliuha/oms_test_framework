@@ -9,8 +9,8 @@ import static academy.softserve.edu.asserts.AbstractElementAssert.assertThat;
 
 public class LogInPageTest extends TestRunner {
 
-    private final String name = PropertiesReader.getDefaultProperty("customer.login");
-    private final String password = PropertiesReader.getDefaultProperty("customer.password");
+    private final String name = PropertiesReader.getProperty("customer.login");
+    private final String password = PropertiesReader.getProperty("customer.password");
 
     @Test
     public final void testLoginInputsAreEmpty() {
@@ -110,7 +110,7 @@ public class LogInPageTest extends TestRunner {
         logInPage.doLogOut();
 
         assertThat(logInPage.getUserNameInput())
-                .valueEquals(PropertiesReader.getDefaultProperty("customer.login"));
+                .valueEquals(PropertiesReader.getProperty("customer.login"));
 
         assertThat(logInPage.getPasswordInput())
                 .isValueEmpty();

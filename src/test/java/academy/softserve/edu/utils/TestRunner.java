@@ -38,7 +38,7 @@ public class TestRunner {
     public final void setUp(@Optional("default") final String browser,
                             @Optional("46") final String version) throws MalformedURLException {
 
-        final String logInPageUrl = PropertiesReader.getDefaultProperty("login.url");
+        final String logInPageUrl = PropertiesReader.getProperty("login.url");
 
         final WebDriverFactory webDriverFactory = new WebDriverFactory();
 

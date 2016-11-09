@@ -44,7 +44,7 @@ public final class SuiteRunner {
             } catch (IllegalArgumentException e) {
                 System.err.println("\nInvalid browser name. Available: \n" +
                         Arrays.toString(Browsers.values()).toLowerCase() +
-                        "\nAs default: " + PropertiesReader.getDefaultProperty("browser"));
+                        "\nAs default: " + PropertiesReader.getProperty("browser"));
 
                 System.exit(0);
             }

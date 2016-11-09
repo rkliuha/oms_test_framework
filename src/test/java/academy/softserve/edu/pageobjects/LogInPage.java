@@ -44,25 +44,25 @@ public class LogInPage extends PageObject<LogInPage> {
         switch (role) {
 
             case MERCHANDISER:
-                userName = PropertiesReader.getDefaultProperty("merchandiser.login");
-                userPassword = PropertiesReader.getDefaultProperty("merchandiser.password");
+                userName = PropertiesReader.getProperty("merchandiser.login");
+                userPassword = PropertiesReader.getProperty("merchandiser.password");
                 break;
             case SUPERVISOR:
-                userName = PropertiesReader.getDefaultProperty("supervisor.login");
-                userPassword = PropertiesReader.getDefaultProperty("supervisor.password");
+                userName = PropertiesReader.getProperty("supervisor.login");
+                userPassword = PropertiesReader.getProperty("supervisor.password");
                 break;
             case CUSTOMER:
-                userName = PropertiesReader.getDefaultProperty("customer.login");
-                userPassword = PropertiesReader.getDefaultProperty("customer.password");
+                userName = PropertiesReader.getProperty("customer.login");
+                userPassword = PropertiesReader.getProperty("customer.password");
                 break;
             case INVALID_USER:
-                userName = PropertiesReader.getDefaultProperty("invalid.user.login");
-                userPassword = PropertiesReader.getDefaultProperty("invalid.user.password");
+                userName = PropertiesReader.getProperty("invalid.user.login");
+                userPassword = PropertiesReader.getProperty("invalid.user.password");
                 break;
             case ADMINISTRATOR:
             default:
-                userName = PropertiesReader.getDefaultProperty("administrator.login");
-                userPassword = PropertiesReader.getDefaultProperty("administrator.password");
+                userName = PropertiesReader.getProperty("administrator.login");
+                userPassword = PropertiesReader.getProperty("administrator.password");
                 break;
         }
         userNameInput.sendKeys(userName);

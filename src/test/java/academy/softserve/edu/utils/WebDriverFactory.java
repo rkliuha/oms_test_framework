@@ -22,18 +22,18 @@ public class WebDriverFactory {
 
         final DesiredCapabilities capabilities = new DesiredCapabilities();
 
-        final String remote = PropertiesReader.getDefaultProperty("remote");
-        final String propertyBrowser = PropertiesReader.getDefaultProperty("browser");
-        final String platform = PropertiesReader.getDefaultProperty("platform");
+        final String remote = PropertiesReader.getProperty("remote");
+        final String propertyBrowser = PropertiesReader.getProperty("browser");
+        final String platform = PropertiesReader.getProperty("platform");
 
-        final String webDriverChrome = PropertiesReader.getDefaultProperty("webDriver.chrome");
-        final String webDriverIe = PropertiesReader.getDefaultProperty("webDriver.ie");
+        final String webDriverChrome = PropertiesReader.getProperty("webDriver.chrome");
+        final String webDriverIe = PropertiesReader.getProperty("webDriver.ie");
 
-        final String pathWebDriverChromeMac = PropertiesReader.getDefaultProperty("path.webDriver.chrome.mac");
-        final String pathWebDriverChromeWin = PropertiesReader.getDefaultProperty("path.webDriver.chrome.win");
-        final String pathWebDriverIe = PropertiesReader.getDefaultProperty("path.webDriver.ie");
+        final String pathWebDriverChromeMac = PropertiesReader.getProperty("path.webDriver.chrome.mac");
+        final String pathWebDriverChromeWin = PropertiesReader.getProperty("path.webDriver.chrome.win");
+        final String pathWebDriverIe = PropertiesReader.getProperty("path.webDriver.ie");
 
-        final String remoteWebDriverUrl = PropertiesReader.getDefaultProperty("remote.webDriver.url");
+        final String remoteWebDriverUrl = PropertiesReader.getProperty("remote.webDriver.url");
 
         final Browsers propertyBrowserTypeEnum = Browsers.valueOf(propertyBrowser.toUpperCase());
 

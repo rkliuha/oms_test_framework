@@ -10,9 +10,9 @@ import java.sql.SQLException;
 
 public class MySQLDaoFactory implements DaoFactory {
 
-    private final String username = PropertiesReader.getDefaultProperty("oms.username");
-    private final String password = PropertiesReader.getDefaultProperty("oms.password");
-    private final String omsDbUrl = PropertiesReader.getDefaultProperty("oms.db.url");
+    private final String username = PropertiesReader.getProperty("oms.username");
+    private final String password = PropertiesReader.getProperty("oms.password");
+    private final String omsDbUrl = PropertiesReader.getProperty("oms.db.url");
 
     public MySQLDaoFactory() {
 

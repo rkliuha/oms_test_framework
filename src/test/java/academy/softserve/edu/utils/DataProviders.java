@@ -11,7 +11,7 @@ public final class DataProviders {
     private DataProviders() {
     }
 
-    private static final String EXCEL_FILE = PropertiesReader.getDefaultProperty("excel.file");
+    private static final String EXCEL_FILE = PropertiesReader.getProperty("excel.file");
 
     @DataProvider
     public static Object[][] testDataForAllUsersRole() {

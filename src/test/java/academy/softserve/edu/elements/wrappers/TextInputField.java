@@ -3,6 +3,7 @@ package academy.softserve.edu.elements.wrappers;
 import academy.softserve.edu.elements.interfaces.ILocator;
 import academy.softserve.edu.utils.Logger;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class TextInputField extends AbstractClickableElement<TextInputField> {
 
@@ -10,17 +11,17 @@ public class TextInputField extends AbstractClickableElement<TextInputField> {
         super(driver, locator);
     }
 
-    public final TextInputField clear() {
 
-        wait.getClickableElement().clear();
+    public final WebElement clear() {
+        final WebElement element = wait.getClickableElement();
+        element.clear();
         Logger.logInfo("<font color='black'>Cleared Element "
                 + "<b>" + locator.getName() + "</b></font>");
-        return this;
+        return element;
     }
 
     public final void sendKeys(final String inputText) {
-
-        this.clear().sendKeys(inputText);
+        clear().sendKeys(inputText);
         Logger.logInfo("<font color='black'>Made input: " + inputText + " into " + "<b>"
                 + locator.getName() + "</b></font>");
     }

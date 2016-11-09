@@ -84,7 +84,7 @@ public final class ExcelReader {
     public static String[][] getColumnByName(final String cellName,
                                              final String sheetName) throws IOException {
 
-        final FileInputStream fileSystem = new FileInputStream(PropertiesReader.getDefaultProperty("excel.file"));
+        final FileInputStream fileSystem = new FileInputStream(PropertiesReader.getProperty("excel.file"));
 
         final Workbook workBook = new XSSFWorkbook(fileSystem);
         final Sheet sheet = workBook.getSheet(sheetName);
